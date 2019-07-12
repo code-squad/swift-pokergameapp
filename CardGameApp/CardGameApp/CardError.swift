@@ -8,6 +8,13 @@
 
 import Foundation
 
-enum CardError: String, Error {
-    case NotExistCard = "더 이상 카드가 없습니다!"
+enum CardError: Error {
+    case notExistCard
+    
+    var localizedDescription: String {
+        switch self {
+        case .notExistCard:
+            return "더 이상 카드가 없습니다!"
+        }
+    }
 }
