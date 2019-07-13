@@ -69,11 +69,13 @@ class ViewController: UIViewController {
         
         for index in 0..<menu.getCardCount() {
             participant.showCard(index) { (name, cardImageName) in
-                let label = UILabel(frame: CGRect(x: 10, y: 180+order*100, width: 200, height: 21))
-                label.text = name
-                label.tag = order+1
-                label.textColor = UIColor.white
-                self.view.addSubview(label)
+                if index == 0 {
+                    let label = UILabel(frame: CGRect(x: 10, y: 180+order*100, width: 200, height: 21))
+                    label.text = name
+                    label.tag = order+1
+                    label.textColor = UIColor.white
+                    self.view.addSubview(label)
+                }
                 
                 let coordinateX = Double(10 + 47 * index)
                 let coordinateY = Double(200 + 100 * order)
