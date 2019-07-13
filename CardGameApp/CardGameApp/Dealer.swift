@@ -23,4 +23,10 @@ struct Dealer: Participant {
     init(){
         
     }
+    
+    func showCard(_ index: Int, handler: (String, String) -> ()) {
+        let cardImageName = cards.getCardImageName(index)
+        
+        handler(name, cardImageName)
+    }
 }

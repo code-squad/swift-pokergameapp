@@ -123,4 +123,8 @@ struct Cards: CustomStringConvertible {
         
         return maxCard
     }
+    
+    func getCardImageName (_ index: Int) -> String {
+        return cards[index].getImageName()
+    }
 }

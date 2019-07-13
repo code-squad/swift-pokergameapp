@@ -59,5 +59,9 @@ struct Player: Participant {
         return (otherPlayer, otherPlayer.name)
     }
     
-    
+    func showCard(_ index: Int, handler: (String, String) -> ()) {
+        let cardImageName = cards.getCardImageName(index)
+        
+        handler(name, cardImageName)
+    }
 }

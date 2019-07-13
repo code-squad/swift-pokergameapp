@@ -26,6 +26,9 @@
                                     <segment title="5 Cards"/>
                                 </segments>
                                 <color key="tintColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                <connections>
+                                    <action selector="changeSegment:" destination="BYZ-38-t0r" eventType="valueChanged" id="wHL-oC-fPq"/>
+                                </connections>
                             </segmentedControl>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="DEn-6K-Qcy">
                                 <rect key="frame" x="147" y="92" width="121" height="29"/>
@@ -37,7 +40,7 @@
                                 </segments>
                                 <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
-                                    <action selector="startCardGame:" destination="BYZ-38-t0r" eventType="valueChanged" id="HqG-ho-tbH"/>
+                                    <action selector="changeSegment:" destination="BYZ-38-t0r" eventType="valueChanged" id="E79-AN-Ca2"/>
                                 </connections>
                             </segmentedControl>
                         </subviews>

@@ -13,7 +13,7 @@ enum Menu: Int {
     case fiveCard = 2
     case exit = 9
     
-    func userCardCount () -> Int {
+    func getCardCount () -> Int {
         switch self {
         case .exit: return 0
         case .fiveCard: return 5
