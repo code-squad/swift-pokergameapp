@@ -32,7 +32,7 @@ struct CardGame {
     private mutating func getOneUserCard (_ menu: Menu) throws -> Cards {
         var oneUserCards = Cards()
         
-        for _ in 0..<menu.userCardCount() {
+        for _ in 0..<menu.getCardCount() {
             oneUserCards.cards.append(try cardDeck.removeOne())
         }
         
@@ -43,6 +43,7 @@ struct CardGame {
     mutating func gameEnd () {
         players.removeAll()
         dealer = Dealer()
+        cardDeck = CardDeck()
     }
     
     /// 우승자 구하기

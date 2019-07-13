@@ -23,11 +23,30 @@ class Card {
             case .spades: return 1
             }
         }
+        
+        func getCode () -> String {
+            switch self {
+            case .clubs: return "c"
+            case .diamonds: return "d"
+            case .hearts: return "h"
+            case .spades: return "s"
+            }
+        }
     }
     
     // nested Rank enumeration
     enum Rank: Int, CaseIterable {
         case ace = 1, two, three, four, five, six, seven, eight, nine, ten, jack, queen, king
+        
+        func getCode () -> String {
+            switch self {
+            case .ace: return "A"
+            case .jack: return "J"
+            case .king: return "K"
+            case .queen: return "Q"
+            default: return String(self.rawValue)
+            }
+        }
     }
     
     // Card properties and methods
@@ -67,6 +86,14 @@ class Card {
         }
         
         return false
+    }
+    
+    func getImageName () -> String {
+        let suitCode = suit.getCode()
+        let rankCode = rank.getCode()
+        let imageName = suitCode+rankCode+".png"
+        
+        return imageName
     }
 }
 

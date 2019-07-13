@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol Participant: CustomStringConvertible {
-    var description: String { get }
+protocol Participant {
+    func showCard (_ index: Int, handler: (String, String) -> ())
 }
 
