@@ -67,7 +67,6 @@ class ViewController: UIViewController {
                 if index == 0 {
                     let label = UILabel(frame: CGRect(x: 10, y: 180+order*100, width: 200, height: 21))
                     label.text = name
-                    label.tag = order+1
                     label.textColor = UIColor.white
                     self.view.addSubview(label)
                     subviews.append(label)
@@ -78,7 +77,7 @@ class ViewController: UIViewController {
                 
                 let image: UIImage = UIImage(named: cardImageName)!
                 let imageView = UIImageView(image: image)
-                imageView.tag = order+1
+
                 self.view.addSubview(imageView)
                 imageView.frame = CGRect(x: Double(coordinateX), y: coordinateY, width: 50.0, height: 63.5)
                 subviews.append(imageView)
@@ -96,7 +95,7 @@ class ViewController: UIViewController {
         
         let image: UIImage = UIImage(named: "gold-medal.png")!
         let imageView = UIImageView(image: image)
-        imageView.tag = order+1
+        
         self.view.addSubview(imageView)
         imageView.frame = CGRect(x: Double(coordinateX), y: coordinateY, width: 50.0, height: 50.0)
         subviews.append(imageView)
