@@ -11,6 +11,7 @@ import UIKit
 class ViewController: UIViewController {
     var cardGame = CardGame()
     var participants = [Participant]()
+    var subviews = [UIView]()
     
     @IBOutlet weak var menuSegemnt: UISegmentedControl!
     @IBOutlet weak var playerCountSegent: UISegmentedControl!
@@ -43,17 +44,11 @@ class ViewController: UIViewController {
     }
     
     private func removeSubview() {
-        for index in 0..<participants.count {
-            removeSubviewPerParticipant(index+1)
+        for view in subviews {
+            view.removeFromSuperview()
         }
         
         cardGame.gameEnd()
-    }
-    
-    private func removeSubviewPerParticipant(_ index: Int) {
-        for view in view.subviews where view.tag == index {
-            view.removeFromSuperview()
-        }
     }
     
     private func showCards() {
@@ -75,6 +70,7 @@ class ViewController: UIViewController {
                     label.tag = order+1
                     label.textColor = UIColor.white
                     self.view.addSubview(label)
+                    subviews.append(label)
                 }
                 
                 let coordinateX = Double(10 + 47 * index)
@@ -85,6 +81,7 @@ class ViewController: UIViewController {
                 imageView.tag = order+1
                 self.view.addSubview(imageView)
                 imageView.frame = CGRect(x: Double(coordinateX), y: coordinateY, width: 50.0, height: 63.5)
+                subviews.append(imageView)
                 
                 if champion.1 == name && index == 0 {
                     showChampionMark(order)
@@ -102,6 +99,7 @@ class ViewController: UIViewController {
         imageView.tag = order+1
         self.view.addSubview(imageView)
         imageView.frame = CGRect(x: Double(coordinateX), y: coordinateY, width: 50.0, height: 50.0)
+        subviews.append(imageView)
     }
     
     @IBAction func changeSegment(_ sender: UISegmentedControl) {
