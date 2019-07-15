@@ -61,30 +61,30 @@ class ViewController: UIViewController {
         let menuIndex = menuSegemnt.selectedSegmentIndex+1
         let menu = Menu.init(rawValue: menuIndex)!
         let champion = cardGame.getChanpion()
+
+        participant.showCard(0) { (name, cardImageName) in
+            let label = UILabel(frame: CGRect(x: 10, y: 180+order*100, width: 200, height: 21))
+            label.text = name
+            label.textColor = UIColor.white
+            self.view.addSubview(label)
+            subviews.append(label)
+            
+            if champion.1 == name {
+                showChampionMark(order)
+            }
+        }
         
         for index in 0..<menu.getCardCount() {
             participant.showCard(index) { (name, cardImageName) in
-                if index == 0 {
-                    let label = UILabel(frame: CGRect(x: 10, y: 180+order*100, width: 200, height: 21))
-                    label.text = name
-                    label.textColor = UIColor.white
-                    self.view.addSubview(label)
-                    subviews.append(label)
-                }
-                
                 let coordinateX = Double(10 + 47 * index)
                 let coordinateY = Double(200 + 100 * order)
-                
+
                 let image: UIImage = UIImage(named: cardImageName)!
                 let imageView = UIImageView(image: image)
 
                 self.view.addSubview(imageView)
                 imageView.frame = CGRect(x: Double(coordinateX), y: coordinateY, width: 50.0, height: 63.5)
                 subviews.append(imageView)
-                
-                if champion.1 == name && index == 0 {
-                    showChampionMark(order)
-                }
             }
         }
     }
