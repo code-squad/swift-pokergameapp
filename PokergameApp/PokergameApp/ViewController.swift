@@ -33,8 +33,6 @@ class ViewController: UIViewController {
     private func addImageViewsInStackView(){
         let imageWidth = (deckSizeRect.width-70)/7
         let imageHeight = height
-        
-        /// add imageView
         for _ in 0..<cardSize  {
             let currentCardRect = CGRect.init(x: 0, y: 0, width: imageWidth, height: imageHeight)
             let uiImageView = UIImageView.init(frame: currentCardRect)
