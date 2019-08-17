@@ -16,5 +16,16 @@ class ViewController: UIViewController {
         
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        guard let backgroundPatternImage = UIImage.init(named: "bg_pattern.png") else {
+            return
+        }
+        view.backgroundColor = UIColor.init(patternImage: backgroundPatternImage)
+    }
+
 }
 
