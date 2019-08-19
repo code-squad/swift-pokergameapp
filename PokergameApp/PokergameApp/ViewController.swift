@@ -23,13 +23,22 @@ class ViewController: UIViewController {
     private let verticalConstant: CGFloat = 20
     override func viewDidLoad() {
         super.viewDidLoad()
+        setBackgroundPatternImage()
+        
         width = view.frame.width * widthProportion
         deckSizeRect = CGRect.init(x: 0, y: 0, width: width, height: height)
-        ///stack view
         stackview = UIStackView.init(frame: deckSizeRect)
         addImageViewsInStackView()
         view.addSubview(stackview)
+        
         setConstraints()
+    }
+    
+    private func setBackgroundPatternImage(){
+        guard let backgroundPatternImage = UIImage.init(named: "\(ImageInfo.background)") else {
+            return
+        }
+        view.backgroundColor = UIColor.init(patternImage: backgroundPatternImage)
     }
     
     private func addImageViewsInStackView(){
@@ -59,10 +68,7 @@ class ViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        guard let backgroundPatternImage = UIImage.init(named: "\(ImageInfo.background)") else {
-            return
-        }
-        view.backgroundColor = UIColor.init(patternImage: backgroundPatternImage)
+        super.viewWillAppear(animated)
     }
 
 }
