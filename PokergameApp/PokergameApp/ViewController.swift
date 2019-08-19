@@ -55,7 +55,7 @@ class ViewController: UIViewController {
         for _ in 0..<cardSizeInfo.cardSize  {
             let currentCardRect = CGRect.init(x: 0, y: 0, width: imageWidth, height: imageHeight)
             let uiImageView = UIImageView.init(frame: currentCardRect)
-            uiImageView.image = UIImage.init(named: "\(ImageInfo.cardBack)")!
+            uiImageView.image = UIImage.init(named: ImageInfo.cardBack)
             stackview.addArrangedSubview(uiImageView)
         }
         stackview.distribution = .fillEqually
