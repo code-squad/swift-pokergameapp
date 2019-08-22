@@ -12,8 +12,24 @@
 		C5486194230415A400F6555C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5486192230415A400F6555C /* Main.storyboard */; };
 		C5486196230415A600F6555C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5486195230415A600F6555C /* Assets.xcassets */; };
 		C5486199230415A600F6555C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5486197230415A600F6555C /* LaunchScreen.storyboard */; };
-		C5628D3E230680A800308FC6 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5628D3D230680A800308FC6 /* Player.swift */; };
-		C5628D40230680B200308FC6 /* Dealer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5628D3F230680B200308FC6 /* Dealer.swift */; };
+		C59ABA72230EA54000FB2DBE /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59ABA58230EA54000FB2DBE /* Card.swift */; };
+		C59ABA73230EA54000FB2DBE /* CardDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59ABA59230EA54000FB2DBE /* CardDeck.swift */; };
+		C59ABA74230EA54000FB2DBE /* Dealer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59ABA5C230EA54000FB2DBE /* Dealer.swift */; };
+		C59ABA75230EA54000FB2DBE /* Hand.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59ABA5D230EA54000FB2DBE /* Hand.swift */; };
+		C59ABA76230EA54000FB2DBE /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59ABA5E230EA54000FB2DBE /* Player.swift */; };
+		C59ABA77230EA54000FB2DBE /* Playable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59ABA60230EA54000FB2DBE /* Playable.swift */; };
+		C59ABA78230EA54000FB2DBE /* Dealable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59ABA61230EA54000FB2DBE /* Dealable.swift */; };
+		C59ABA79230EA54000FB2DBE /* GameType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59ABA64230EA54000FB2DBE /* GameType.swift */; };
+		C59ABA7A230EA54000FB2DBE /* SystemMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59ABA65230EA54000FB2DBE /* SystemMessage.swift */; };
+		C59ABA7B230EA54000FB2DBE /* PlayerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59ABA66230EA54000FB2DBE /* PlayerType.swift */; };
+		C59ABA7C230EA54000FB2DBE /* CardScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59ABA68230EA54000FB2DBE /* CardScore.swift */; };
+		C59ABA7D230EA54000FB2DBE /* CardType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59ABA69230EA54000FB2DBE /* CardType.swift */; };
+		C59ABA7E230EA54000FB2DBE /* CardNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59ABA6A230EA54000FB2DBE /* CardNumber.swift */; };
+		C59ABA7F230EA54000FB2DBE /* DrawCardError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59ABA6C230EA54000FB2DBE /* DrawCardError.swift */; };
+		C59ABA80230EA54000FB2DBE /* GameMenuError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59ABA6D230EA54000FB2DBE /* GameMenuError.swift */; };
+		C59ABA81230EA54000FB2DBE /* GameResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59ABA6F230EA54000FB2DBE /* GameResult.swift */; };
+		C59ABA82230EA54000FB2DBE /* OutputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59ABA70230EA54000FB2DBE /* OutputView.swift */; };
+		C59ABA83230EA54000FB2DBE /* CardGamePlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59ABA71230EA54000FB2DBE /* CardGamePlay.swift */; };
 		C5C279DB230A720B009C7FE6 /* ImageInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C279DA230A720B009C7FE6 /* ImageInfo.swift */; };
 /* End PBXBuildFile section */
 
@@ -25,8 +41,24 @@
 		C5486195230415A600F6555C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C5486198230415A600F6555C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C548619A230415A600F6555C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C5628D3D230680A800308FC6 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
-		C5628D3F230680B200308FC6 /* Dealer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dealer.swift; sourceTree = "<group>"; };
+		C59ABA58230EA54000FB2DBE /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		C59ABA59230EA54000FB2DBE /* CardDeck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardDeck.swift; sourceTree = "<group>"; };
+		C59ABA5C230EA54000FB2DBE /* Dealer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dealer.swift; sourceTree = "<group>"; };
+		C59ABA5D230EA54000FB2DBE /* Hand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hand.swift; sourceTree = "<group>"; };
+		C59ABA5E230EA54000FB2DBE /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		C59ABA60230EA54000FB2DBE /* Playable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Playable.swift; sourceTree = "<group>"; };
+		C59ABA61230EA54000FB2DBE /* Dealable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dealable.swift; sourceTree = "<group>"; };
+		C59ABA64230EA54000FB2DBE /* GameType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameType.swift; sourceTree = "<group>"; };
+		C59ABA65230EA54000FB2DBE /* SystemMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemMessage.swift; sourceTree = "<group>"; };
+		C59ABA66230EA54000FB2DBE /* PlayerType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerType.swift; sourceTree = "<group>"; };
+		C59ABA68230EA54000FB2DBE /* CardScore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardScore.swift; sourceTree = "<group>"; };
+		C59ABA69230EA54000FB2DBE /* CardType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardType.swift; sourceTree = "<group>"; };
+		C59ABA6A230EA54000FB2DBE /* CardNumber.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardNumber.swift; sourceTree = "<group>"; };
+		C59ABA6C230EA54000FB2DBE /* DrawCardError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawCardError.swift; sourceTree = "<group>"; };
+		C59ABA6D230EA54000FB2DBE /* GameMenuError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameMenuError.swift; sourceTree = "<group>"; };
+		C59ABA6F230EA54000FB2DBE /* GameResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameResult.swift; sourceTree = "<group>"; };
+		C59ABA70230EA54000FB2DBE /* OutputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutputView.swift; sourceTree = "<group>"; };
+		C59ABA71230EA54000FB2DBE /* CardGamePlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardGamePlay.swift; sourceTree = "<group>"; };
 		C5C279DA230A720B009C7FE6 /* ImageInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageInfo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -60,10 +92,9 @@
 		C548618D230415A400F6555C /* PokergameApp */ = {
 			isa = PBXGroup;
 			children = (
-				C5628D3223067FC000308FC6 /* PokergamePlay */,
-				C5628D3023067E2700308FC6 /* CardModels */,
-				C5628D2F23067E1300308FC6 /* PokerGameEnums */,
-				C5628D2C23067DEE00308FC6 /* PlayerModels */,
+				C59ABA56230EA53F00FB2DBE /* Models */,
+				C59ABA62230EA54000FB2DBE /* PokerGameEnums */,
+				C59ABA6E230EA54000FB2DBE /* PokergamePlay */,
 				C548618E230415A400F6555C /* AppDelegate.swift */,
 				C5486190230415A400F6555C /* ViewController.swift */,
 				C5C279DA230A720B009C7FE6 /* ImageInfo.swift */,
@@ -75,82 +106,99 @@
 			path = PokergameApp;
 			sourceTree = "<group>";
 		};
-		C5628D2C23067DEE00308FC6 /* PlayerModels */ = {
+		C59ABA56230EA53F00FB2DBE /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				C5628D2E23067E0000308FC6 /* Protocols */,
-				C5628D2D23067DF700308FC6 /* Dealer */,
+				C59ABA57230EA53F00FB2DBE /* CardModels */,
+				C59ABA5A230EA54000FB2DBE /* PlayerModels */,
 			);
-			path = PlayerModels;
+			path = Models;
 			sourceTree = "<group>";
 		};
-		C5628D2D23067DF700308FC6 /* Dealer */ = {
+		C59ABA57230EA53F00FB2DBE /* CardModels */ = {
 			isa = PBXGroup;
 			children = (
-			);
-			path = Dealer;
-			sourceTree = "<group>";
-		};
-		C5628D2E23067E0000308FC6 /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Protocols;
-			sourceTree = "<group>";
-		};
-		C5628D2F23067E1300308FC6 /* PokerGameEnums */ = {
-			isa = PBXGroup;
-			children = (
-				C5628D3A2306805F00308FC6 /* Cards */,
-				C5628D392306804E00308FC6 /* Types */,
-				C5628D382306803700308FC6 /* Errors */,
-				C5628D372306803200308FC6 /* GameMenus */,
-			);
-			path = PokerGameEnums;
-			sourceTree = "<group>";
-		};
-		C5628D3023067E2700308FC6 /* CardModels */ = {
-			isa = PBXGroup;
-			children = (
-				C5628D3D230680A800308FC6 /* Player.swift */,
-				C5628D3F230680B200308FC6 /* Dealer.swift */,
+				C59ABA58230EA54000FB2DBE /* Card.swift */,
+				C59ABA59230EA54000FB2DBE /* CardDeck.swift */,
 			);
 			path = CardModels;
 			sourceTree = "<group>";
 		};
-		C5628D3223067FC000308FC6 /* PokergamePlay */ = {
+		C59ABA5A230EA54000FB2DBE /* PlayerModels */ = {
 			isa = PBXGroup;
 			children = (
+				C59ABA5B230EA54000FB2DBE /* Models */,
+				C59ABA5F230EA54000FB2DBE /* Protocols */,
 			);
-			path = PokergamePlay;
+			path = PlayerModels;
 			sourceTree = "<group>";
 		};
-		C5628D372306803200308FC6 /* GameMenus */ = {
+		C59ABA5B230EA54000FB2DBE /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				C59ABA5C230EA54000FB2DBE /* Dealer.swift */,
+				C59ABA5D230EA54000FB2DBE /* Hand.swift */,
+				C59ABA5E230EA54000FB2DBE /* Player.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		C59ABA5F230EA54000FB2DBE /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				C59ABA60230EA54000FB2DBE /* Playable.swift */,
+				C59ABA61230EA54000FB2DBE /* Dealable.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		C59ABA62230EA54000FB2DBE /* PokerGameEnums */ = {
+			isa = PBXGroup;
+			children = (
+				C59ABA63230EA54000FB2DBE /* GameMenus */,
+				C59ABA67230EA54000FB2DBE /* Cards */,
+				C59ABA6B230EA54000FB2DBE /* Errors */,
+			);
+			path = PokerGameEnums;
+			sourceTree = "<group>";
+		};
+		C59ABA63230EA54000FB2DBE /* GameMenus */ = {
+			isa = PBXGroup;
+			children = (
+				C59ABA64230EA54000FB2DBE /* GameType.swift */,
+				C59ABA65230EA54000FB2DBE /* SystemMessage.swift */,
+				C59ABA66230EA54000FB2DBE /* PlayerType.swift */,
 			);
 			path = GameMenus;
 			sourceTree = "<group>";
 		};
-		C5628D382306803700308FC6 /* Errors */ = {
+		C59ABA67230EA54000FB2DBE /* Cards */ = {
 			isa = PBXGroup;
 			children = (
+				C59ABA68230EA54000FB2DBE /* CardScore.swift */,
+				C59ABA69230EA54000FB2DBE /* CardType.swift */,
+				C59ABA6A230EA54000FB2DBE /* CardNumber.swift */,
+			);
+			path = Cards;
+			sourceTree = "<group>";
+		};
+		C59ABA6B230EA54000FB2DBE /* Errors */ = {
+			isa = PBXGroup;
+			children = (
+				C59ABA6C230EA54000FB2DBE /* DrawCardError.swift */,
+				C59ABA6D230EA54000FB2DBE /* GameMenuError.swift */,
 			);
 			path = Errors;
 			sourceTree = "<group>";
 		};
-		C5628D392306804E00308FC6 /* Types */ = {
+		C59ABA6E230EA54000FB2DBE /* PokergamePlay */ = {
 			isa = PBXGroup;
 			children = (
+				C59ABA6F230EA54000FB2DBE /* GameResult.swift */,
+				C59ABA70230EA54000FB2DBE /* OutputView.swift */,
+				C59ABA71230EA54000FB2DBE /* CardGamePlay.swift */,
 			);
-			path = Types;
-			sourceTree = "<group>";
-		};
-		C5628D3A2306805F00308FC6 /* Cards */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Cards;
+			path = PokergamePlay;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -224,11 +272,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C59ABA7A230EA54000FB2DBE /* SystemMessage.swift in Sources */,
 				C5486191230415A400F6555C /* ViewController.swift in Sources */,
+				C59ABA78230EA54000FB2DBE /* Dealable.swift in Sources */,
+				C59ABA73230EA54000FB2DBE /* CardDeck.swift in Sources */,
+				C59ABA74230EA54000FB2DBE /* Dealer.swift in Sources */,
 				C5C279DB230A720B009C7FE6 /* ImageInfo.swift in Sources */,
+				C59ABA76230EA54000FB2DBE /* Player.swift in Sources */,
+				C59ABA80230EA54000FB2DBE /* GameMenuError.swift in Sources */,
+				C59ABA79230EA54000FB2DBE /* GameType.swift in Sources */,
+				C59ABA7D230EA54000FB2DBE /* CardType.swift in Sources */,
+				C59ABA7C230EA54000FB2DBE /* CardScore.swift in Sources */,
+				C59ABA77230EA54000FB2DBE /* Playable.swift in Sources */,
+				C59ABA83230EA54000FB2DBE /* CardGamePlay.swift in Sources */,
+				C59ABA7B230EA54000FB2DBE /* PlayerType.swift in Sources */,
+				C59ABA75230EA54000FB2DBE /* Hand.swift in Sources */,
 				C548618F230415A400F6555C /* AppDelegate.swift in Sources */,
-				C5628D40230680B200308FC6 /* Dealer.swift in Sources */,
-				C5628D3E230680A800308FC6 /* Player.swift in Sources */,
+				C59ABA82230EA54000FB2DBE /* OutputView.swift in Sources */,
+				C59ABA7F230EA54000FB2DBE /* DrawCardError.swift in Sources */,
+				C59ABA7E230EA54000FB2DBE /* CardNumber.swift in Sources */,
+				C59ABA81230EA54000FB2DBE /* GameResult.swift in Sources */,
+				C59ABA72230EA54000FB2DBE /* Card.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,0 +1,68 @@
+//
+//  CardDeck.swift
+//  PokergameApp
+//
+//  Created by hw on 22/08/2019.
+//  Copyright © 2019 hwj. All rights reserved.
+//
+
+import Foundation
+
+struct CardDeck {
+    private var cardList : [Card]
+    var deckSize : Int {
+        return cardList.count
+    }
+    
+    init(){
+        self.cardList = [Card]()
+        fillCardList()
+        shuffle()
+    }
+    ///카드 초기화
+    mutating func reset(){
+        self.cardList.removeAll()
+        fillCardList()
+        shuffle()
+    }
+    
+    ///카드 하나 뽑기
+    mutating func removeOne() -> Result<Card, DrawCardError> {
+        guard let drawOne = cardList.popLast() else {
+            return .failure(.noMoreCardInDeck)
+        }
+        return .success(drawOne)
+    }
+    
+    ///카드 셔플 by mordern method
+    //    for i from n−1 downto 1 do
+    //    j ← random integer such that 0 ≤ j ≤ i
+    //    exchange a[j] and a[i]
+    mutating func shuffle(){
+        for index in 0..<deckSize {
+            let randomNumber = Int.random(in: 0..<deckSize-index)
+            if randomNumber != index {
+                swap(lhs: index, rhs: randomNumber)
+            }
+        }
+    }
+    
+    private mutating func swap (lhs: Int, rhs: Int) {
+        let temp: Card = cardList[lhs]
+        cardList[lhs] = cardList[rhs]
+        cardList[rhs] = temp
+    }
+    
+    private mutating func fillCardList()  {
+        for type in CardType.allCases {
+            fillCardListByType(cardType: type)
+        }
+    }
+    
+    ///타입별로 카드 생성
+    private mutating func fillCardListByType(cardType: CardType){
+        for cardNumber in CardNumber.allCases{
+            self.cardList.append(Card(type: cardType, number: cardNumber))
+        }
+    }
+}
