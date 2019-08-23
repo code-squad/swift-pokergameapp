@@ -17,7 +17,7 @@ class GameResult {
     private var playerList : [Player]
     
     init?(_ players: [Playable]) {
-        guard var list = players as? [Player] else {
+        guard let list = players as? [Player] else {
             return nil
         }
         playerList = list

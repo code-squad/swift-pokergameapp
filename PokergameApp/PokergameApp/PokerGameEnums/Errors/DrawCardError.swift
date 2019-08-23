@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum DrawCardErrors: Error, CustomStringConvertible {
+enum DrawCardError: Error, CustomStringConvertible {
     case noMoreCardInDeck
     case notEnoughCardInDeck
     
