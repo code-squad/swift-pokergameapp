@@ -30,6 +30,7 @@
 		C59ABA81230EA54000FB2DBE /* GameResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59ABA6F230EA54000FB2DBE /* GameResult.swift */; };
 		C59ABA82230EA54000FB2DBE /* OutputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59ABA70230EA54000FB2DBE /* OutputView.swift */; };
 		C59ABA83230EA54000FB2DBE /* CardGamePlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59ABA71230EA54000FB2DBE /* CardGamePlay.swift */; };
+		C59ABA85230EA9D300FB2DBE /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59ABA84230EA9D300FB2DBE /* DataController.swift */; };
 		C5C279DB230A720B009C7FE6 /* ImageInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C279DA230A720B009C7FE6 /* ImageInfo.swift */; };
 /* End PBXBuildFile section */
 
@@ -59,6 +60,7 @@
 		C59ABA6F230EA54000FB2DBE /* GameResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameResult.swift; sourceTree = "<group>"; };
 		C59ABA70230EA54000FB2DBE /* OutputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutputView.swift; sourceTree = "<group>"; };
 		C59ABA71230EA54000FB2DBE /* CardGamePlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardGamePlay.swift; sourceTree = "<group>"; };
+		C59ABA84230EA9D300FB2DBE /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		C5C279DA230A720B009C7FE6 /* ImageInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageInfo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -94,9 +96,9 @@
 			children = (
 				C59ABA56230EA53F00FB2DBE /* Models */,
 				C59ABA62230EA54000FB2DBE /* PokerGameEnums */,
-				C59ABA6E230EA54000FB2DBE /* PokergamePlay */,
 				C548618E230415A400F6555C /* AppDelegate.swift */,
 				C5486190230415A400F6555C /* ViewController.swift */,
+				C59ABA84230EA9D300FB2DBE /* DataController.swift */,
 				C5C279DA230A720B009C7FE6 /* ImageInfo.swift */,
 				C5486192230415A400F6555C /* Main.storyboard */,
 				C5486195230415A600F6555C /* Assets.xcassets */,
@@ -109,6 +111,7 @@
 		C59ABA56230EA53F00FB2DBE /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				C59ABA6E230EA54000FB2DBE /* PokergamePlay */,
 				C59ABA57230EA53F00FB2DBE /* CardModels */,
 				C59ABA5A230EA54000FB2DBE /* PlayerModels */,
 			);
@@ -198,7 +201,8 @@
 				C59ABA70230EA54000FB2DBE /* OutputView.swift */,
 				C59ABA71230EA54000FB2DBE /* CardGamePlay.swift */,
 			);
-			path = PokergamePlay;
+			name = PokergamePlay;
+			path = ../PokergamePlay;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -277,6 +281,7 @@
 				C59ABA78230EA54000FB2DBE /* Dealable.swift in Sources */,
 				C59ABA73230EA54000FB2DBE /* CardDeck.swift in Sources */,
 				C59ABA74230EA54000FB2DBE /* Dealer.swift in Sources */,
+				C59ABA85230EA9D300FB2DBE /* DataController.swift in Sources */,
 				C5C279DB230A720B009C7FE6 /* ImageInfo.swift in Sources */,
 				C59ABA76230EA54000FB2DBE /* Player.swift in Sources */,
 				C59ABA80230EA54000FB2DBE /* GameMenuError.swift in Sources */,
