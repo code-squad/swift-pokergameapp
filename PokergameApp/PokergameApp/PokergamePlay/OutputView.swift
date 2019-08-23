@@ -9,7 +9,7 @@
 import Foundation
 
 struct OutputView {
-    static func printOutput(_ players: [Playable]){
+    static func printOutput(_ players: [Playable]) {
         let format = { (name: String, hand: Hand) in
             print("\(name):", terminator: " ")
             let innerFormat = { (deck: [Card]) in

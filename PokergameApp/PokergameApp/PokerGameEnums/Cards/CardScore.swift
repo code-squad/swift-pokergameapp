@@ -29,7 +29,7 @@ import Foundation
 /// fourCard
 ///  - 포카드.  가진 카드 중 네 카드 숫자가 같은 경우
 ///  - range : 2_800_000 >= ... >= 400_000
-enum CardScore : Int, CustomStringConvertible{
+enum CardScore : Int, CustomStringConvertible {
     case highCard = 0
     case onePair = 2
     case twoPair = 1
@@ -37,7 +37,7 @@ enum CardScore : Int, CustomStringConvertible{
     case straight = 5
     case fourCard = 4
     
-    init (_ score : Int ){
+    init (_ score: Int) {
         let highCardScope = CardScore.highCard.weightedScoreValue * CardNumber.ace.rawValue + 1
         let onePairScope = CardScore.onePair.weightedScoreValue * CardNumber.ace.rawValue + 1
         let twoPairScope = CardScore.twoPair.weightedScoreValue * CardNumber.ace.rawValue + 1
@@ -59,7 +59,7 @@ enum CardScore : Int, CustomStringConvertible{
         }
     }
     
-    var weightedScoreValue : Int{
+    var weightedScoreValue: Int {
         switch self {
         case .highCard:
             return 1

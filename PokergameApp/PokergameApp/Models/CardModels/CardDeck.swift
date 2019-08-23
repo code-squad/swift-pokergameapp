@@ -20,7 +20,7 @@ struct CardDeck {
         shuffleDeck()
     }
 
-    mutating func resetCardDeck(){
+    mutating func resetCardDeck() {
         self.cardList.removeAll()
         fillCardList()
         shuffleDeck()
@@ -37,7 +37,7 @@ struct CardDeck {
     //    for i from n−1 downto 1 do
     //    j ← random integer such that 0 ≤ j ≤ i
     //    exchange a[j] and a[i]
-    mutating func shuffleDeck(){
+    mutating func shuffleDeck() {
         for index in 0..<deckSize {
             let randomNumber = Int.random(in: 0..<deckSize-index)
             if randomNumber != index {
@@ -52,14 +52,14 @@ struct CardDeck {
         cardList[rhs] = temp
     }
     
-    private mutating func fillCardList()  {
+    private mutating func fillCardList() {
         for type in CardType.allCases {
             fillCardListByType(cardType: type)
         }
     }
     
     ///타입별로 카드 생성
-    private mutating func fillCardListByType(cardType: CardType){
+    private mutating func fillCardListByType(cardType: CardType) {
         for cardNumber in CardNumber.allCases{
             self.cardList.append(Card(type: cardType, number: cardNumber))
         }

@@ -8,8 +8,7 @@
 
 import Foundation
 
-enum PlayerType: Int, CustomStringConvertible{
-    
+enum PlayerType: Int, CustomStringConvertible {
     case two = 2
     case three = 3
     case four = 4

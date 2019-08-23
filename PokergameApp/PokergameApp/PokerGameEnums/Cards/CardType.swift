@@ -8,14 +8,14 @@
 
 import Foundation
 
-enum CardType: String, CustomStringConvertible, CaseIterable{
+enum CardType: String, CustomStringConvertible, CaseIterable {
     case spade
     case heart
     case diamond
     case clover
     
-    var description: String{
-        switch self{
+    var description: String {
+        switch self {
         case .spade:
             return "s"//"♠️"     //"\u{2663}"
         case .heart:
