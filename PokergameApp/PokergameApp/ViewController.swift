@@ -10,6 +10,21 @@ import UIKit
 
 class ViewController: UIViewController {
     private var dataController: DataController!
+    
+    private var cardSizeInfo = CardSizeInfo()
+    private var initialRectSize = InitialRectSize()
+    private var stackViewSizeInfo = StackViewSizeInfo()
+    private var segmentControlsSizeInfo = SegmentControlsSizeInfo()
+    private let verticalConstant: CGFloat = 200
+    private lazy var stackview = UIStackView.init(frame: initialRectSize.basicCGRect)
+    private lazy var stackviewList = [UIStackView]()
+    private lazy var doubleStackView = UIStackView.init(frame: initialRectSize.basicCGRect)
+    private lazy var gameTypeSegmentedControl = UISegmentedControl.init(frame: initialRectSize.basicCGRect)
+    private lazy var playerTypeSementedControl = UISegmentedControl.init(frame: initialRectSize.basicCGRect)
+    var height: CGFloat {
+        return CGFloat((stackViewSizeInfo.width-stackViewSizeInfo.marginSpace * CGFloat(cardSizeInfo.cardSize))
+            / CGFloat(cardSizeInfo.cardSize)) * cardSizeInfo.ratio
+    }
     private struct CardSizeInfo {
         var cardSize = 7
         let ratio: CGFloat = 1.27
@@ -21,52 +36,91 @@ class ViewController: UIViewController {
         var leftAlign: CGFloat = -20
         var spacingSize: CGFloat = -10
     }
-    
-    private struct InitialRectSize {
-        var basicCGRect: CGRect = CGRect.init(x: 0, y: 0, width: 1, height: 1)
-    }
-    
-    var height: CGFloat {
-        return CGFloat((stackViewSizeInfo.width-stackViewSizeInfo.marginSpace * CGFloat(cardSizeInfo.cardSize))
-            / CGFloat(cardSizeInfo.cardSize)) * cardSizeInfo.ratio
-    }
-    
-    private func configureData(_ dataController: DataController){
-        self.dataController = dataController
-    }
-    
-    private var cardSizeInfo = CardSizeInfo()
-    private var initialRectSize = InitialRectSize()
-    private var stackViewSizeInfo = StackViewSizeInfo()
-    private var segmentControlsSizeInfo = SegmentControlsSizeInfo()
-    private let verticalConstant: CGFloat = 200
-    private lazy var stackview = UIStackView.init(frame: initialRectSize.basicCGRect)
-    private lazy var gameTypeSegmentedControl = UISegmentedControl.init(frame: initialRectSize.basicCGRect)
-    private lazy var playerTypeSementedControl = UISegmentedControl.init(frame: initialRectSize.basicCGRect)
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setBackgroundPatternImage()
-        
-        stackViewSizeInfo.width = view.frame.width * stackViewSizeInfo.widthProportion
-        initialRectSize.basicCGRect = CGRect.init(x: 0, y: 0, width: stackViewSizeInfo.width, height: height)
-        stackview = UIStackView.init(frame: initialRectSize.basicCGRect)
-        
-        gameTypeSegmentedControl = UISegmentedControl.init(frame: initialRectSize.basicCGRect)
-        playerTypeSementedControl = UISegmentedControl.init(frame: initialRectSize.basicCGRect)
-        setSegmentedControls()
-
-        addImageViewsInStackView()
-        view.addSubview(stackview)
-        setConstraints()
-    }
-    
     struct SegmentControlsSizeInfo {
         let xCoordinate: CGFloat = 126
         let yCoordinateFirst: CGFloat = 100
         let yCoordinateSecond: CGFloat = 150
         let width: CGFloat = 160
         let height: CGFloat = 30
+    }
+    private struct InitialRectSize {
+        var basicCGRect: CGRect = CGRect.init(x: 1, y: 1, width: 100, height: 30)
+    }
+    private func configureData(_ dataController: DataController){
+        self.dataController = dataController
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setBackgroundPatternImage()
+        
+        stackViewSizeInfo.width = view.frame.width * stackViewSizeInfo.widthProportion
+        gameTypeSegmentedControl = UISegmentedControl.init(frame: initialRectSize.basicCGRect)
+        playerTypeSementedControl = UISegmentedControl.init(frame: initialRectSize.basicCGRect)
+        
+        setSegmentedControls()
+        setStackviewList()
+    }
+    
+    private func setStackviewList(){
+        let num = 4
+        for _ in 0..<num {
+            let rect = CGRect(x: 0, y: 0, width: stackViewSizeInfo.width, height: height)
+            let stackview = UIStackView.init(frame: rect)
+            stackviewList.append(stackview)
+        }
+        
+        setImageViewsInStackViewList(stackviewList)
+        addStackViewList(stackviewList)
+        setConstraintOfStackViewList(stackviewList)
+    }
+    
+    private func setImageViewsInStackViewList(_ list: [UIStackView]){
+        for index in 0..<list.endIndex{
+            addImageViewsInStackView(list[index], order: index)
+        }
+    }
+    
+    private func setConstraintOfStackViewList(_ list: [UIStackView]){
+        var constraintList = [NSLayoutConstraint]()
+        for index in 0..<list.endIndex{
+            let eachDefaultConstraints = setStackviewDefaultConstraints(list[index], order: index)
+            eachDefaultConstraints.forEach { (eachNSLayoutConstraint) in
+                constraintList.append(eachNSLayoutConstraint)
+            }
+        }
+        let firstStackView = list[0]
+        let firstStackViewConstraints = setFirstStackViewConstraints(firstStackView)
+        firstStackViewConstraints.forEach { (constraint) in
+            constraintList.append(constraint)
+        }
+        setRestStackViewAdditionalConstraints(list).forEach { (constraint) in
+            constraintList.append(constraint)
+        }
+        NSLayoutConstraint.activate(constraintList)
+    }
+    
+    private func setRestStackViewAdditionalConstraints(_ list: [UIStackView]) -> [NSLayoutConstraint]{
+        var verticalSpacingConstraintList: [NSLayoutConstraint] = []
+        for index in 1..<list.endIndex{
+            let currentStackView = list[index]
+            let previousStackView = list[index-1]
+            let verticalSpacingConstraint = NSLayoutConstraint.init(item: currentStackView, attribute: NSLayoutConstraint.Attribute.topMargin, relatedBy: NSLayoutConstraint.Relation.equal, toItem: previousStackView, attribute: NSLayoutConstraint.Attribute.bottomMargin, multiplier: 1, constant: height)
+            verticalSpacingConstraintList.append(verticalSpacingConstraint)
+        }
+        return verticalSpacingConstraintList
+    }
+    
+    private func setFirstStackViewConstraints(_ firstStackView: UIStackView) -> [NSLayoutConstraint]{
+        let initialViewVerticalConstraint = NSLayoutConstraint.init(item: firstStackView, attribute: NSLayoutConstraint.Attribute.topMargin, relatedBy: NSLayoutConstraint.Relation.equal, toItem: playerTypeSementedControl, attribute: NSLayoutConstraint.Attribute.bottomMargin, multiplier: 1, constant: height)
+        let horizontalConstraint = NSLayoutConstraint.init(item: firstStackView, attribute: NSLayoutConstraint.Attribute.centerX, relatedBy: NSLayoutConstraint.Relation.equal, toItem: firstStackView.superview, attribute: NSLayoutConstraint.Attribute.centerX, multiplier: 1, constant: stackViewSizeInfo.leftAlign)
+        return [initialViewVerticalConstraint, horizontalConstraint]
+    }
+    
+    private func addStackViewList(_ list: [UIStackView]){
+        list.forEach { (stackview) in
+            view.addSubview(stackview)
+        }
     }
     
     private func setSegmentedControls(){
@@ -109,7 +163,6 @@ class ViewController: UIViewController {
                            height: segmentControlsSizeInfo.height)
     }
     
-    
     private func setBackgroundPatternImage(){
         guard let backgroundPatternImage = UIImage.init(named: "\(ImageInfo.background)") else {
             return
@@ -117,7 +170,7 @@ class ViewController: UIViewController {
         view.backgroundColor = UIColor.init(patternImage: backgroundPatternImage)
     }
     
-    private func addImageViewsInStackView(){
+    private func addImageViewsInStackView(_ stackview: UIStackView, order: Int){
         let imageWidth = (initialRectSize.basicCGRect.width - stackViewSizeInfo.marginSpace
             * CGFloat(cardSizeInfo.cardSize))/CGFloat(cardSizeInfo.cardSize)
         let imageHeight = height
@@ -128,22 +181,16 @@ class ViewController: UIViewController {
             stackview.addArrangedSubview(uiImageView)
         }
         stackview.distribution = .fillEqually
-        stackview.contentMode = .scaleAspectFit
         stackview.spacing = stackViewSizeInfo.marginSpace
     }
     
-    private func setSegmentedControlConstraints(){
-        
-    }
-    
-    private func setConstraints(){
+    private func setStackviewDefaultConstraints(_ stackview: UIStackView, order: Int) -> [NSLayoutConstraint]{
         stackview.translatesAutoresizingMaskIntoConstraints = false
         stackview.spacing = stackViewSizeInfo.spacingSize
         let horizontalConstraint = NSLayoutConstraint.init(item: stackview, attribute: NSLayoutConstraint.Attribute.centerX, relatedBy: NSLayoutConstraint.Relation.equal, toItem: stackview.superview, attribute: NSLayoutConstraint.Attribute.centerX, multiplier: 1, constant: stackViewSizeInfo.leftAlign)
-        let verticalConstraint = NSLayoutConstraint.init(item: stackview, attribute: NSLayoutConstraint.Attribute.topMargin, relatedBy: NSLayoutConstraint.Relation.equal, toItem: stackview.superview, attribute: NSLayoutConstraint.Attribute.topMargin, multiplier: 1, constant: verticalConstant)
         let widthConstraint = NSLayoutConstraint.init(item: stackview, attribute: NSLayoutConstraint.Attribute.width, relatedBy: NSLayoutConstraint.Relation.equal, toItem: stackview.superview, attribute: NSLayoutConstraint.Attribute.width, multiplier: 0, constant: stackViewSizeInfo.width)
         let heightConstraint = NSLayoutConstraint.init(item: stackview, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: stackview.superview, attribute:  NSLayoutConstraint.Attribute.height, multiplier: 0, constant: height)
-        NSLayoutConstraint.activate([horizontalConstraint, verticalConstraint, widthConstraint, heightConstraint])
+        return [horizontalConstraint, widthConstraint, heightConstraint] //horizontalConstraint, verticalConstraint,
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
