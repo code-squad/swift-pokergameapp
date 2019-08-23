@@ -15,9 +15,11 @@ class ViewController: UIViewController {
         let ratio: CGFloat = 1.27
     }
     private struct StackViewSizeInfo {
-        let widthProportion: CGFloat = 0.9
-        let marginSpace: CGFloat = 10
+        let widthProportion: CGFloat = 0.7
+        let marginSpace: CGFloat = 0
         var width: CGFloat = 0
+        var leftAlign: CGFloat = -20
+        var spacingSize: CGFloat = -10
     }
     
     private struct InitialRectSize {
@@ -126,6 +128,7 @@ class ViewController: UIViewController {
             stackview.addArrangedSubview(uiImageView)
         }
         stackview.distribution = .fillEqually
+        stackview.contentMode = .scaleAspectFit
         stackview.spacing = stackViewSizeInfo.marginSpace
     }
     
@@ -135,7 +138,8 @@ class ViewController: UIViewController {
     
     private func setConstraints(){
         stackview.translatesAutoresizingMaskIntoConstraints = false
-        let horizontalConstraint = NSLayoutConstraint.init(item: stackview, attribute: NSLayoutConstraint.Attribute.centerX, relatedBy: NSLayoutConstraint.Relation.equal, toItem: stackview.superview, attribute: NSLayoutConstraint.Attribute.centerX, multiplier: 1, constant: 0)
+        stackview.spacing = stackViewSizeInfo.spacingSize
+        let horizontalConstraint = NSLayoutConstraint.init(item: stackview, attribute: NSLayoutConstraint.Attribute.centerX, relatedBy: NSLayoutConstraint.Relation.equal, toItem: stackview.superview, attribute: NSLayoutConstraint.Attribute.centerX, multiplier: 1, constant: stackViewSizeInfo.leftAlign)
         let verticalConstraint = NSLayoutConstraint.init(item: stackview, attribute: NSLayoutConstraint.Attribute.topMargin, relatedBy: NSLayoutConstraint.Relation.equal, toItem: stackview.superview, attribute: NSLayoutConstraint.Attribute.topMargin, multiplier: 1, constant: verticalConstant)
         let widthConstraint = NSLayoutConstraint.init(item: stackview, attribute: NSLayoutConstraint.Attribute.width, relatedBy: NSLayoutConstraint.Relation.equal, toItem: stackview.superview, attribute: NSLayoutConstraint.Attribute.width, multiplier: 0, constant: stackViewSizeInfo.width)
         let heightConstraint = NSLayoutConstraint.init(item: stackview, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: stackview.superview, attribute:  NSLayoutConstraint.Attribute.height, multiplier: 0, constant: height)
