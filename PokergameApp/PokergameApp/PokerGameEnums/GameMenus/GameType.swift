@@ -8,8 +8,7 @@
 
 import Foundation
 
-enum GameType: Int, CustomStringConvertible{
-    
+enum GameType: Int, CustomStringConvertible {
     case sevenCard = 7
     case fiveCard = 5
     

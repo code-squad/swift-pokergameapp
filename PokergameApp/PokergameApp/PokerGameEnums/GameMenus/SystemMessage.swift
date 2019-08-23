@@ -8,10 +8,10 @@
 
 import Foundation
 
-
-enum SystemMessage: CustomStringConvertible{
+enum SystemMessage: CustomStringConvertible {
     case autoInitializeDeck
     case gameWinner([String], String)
+    
     var description : String {
         switch  self {
         case .autoInitializeDeck:

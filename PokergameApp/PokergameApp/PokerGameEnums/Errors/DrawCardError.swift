@@ -8,9 +8,10 @@
 
 import Foundation
 
-enum DrawCardError : Error, CustomStringConvertible {
+enum DrawCardErrors: Error, CustomStringConvertible {
     case noMoreCardInDeck
     case notEnoughCardInDeck
+    
     var description: String {
         switch self {
         case .noMoreCardInDeck:

@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum GameMenuError : Error, CustomStringConvertible{
+enum GameMenuError: Error, CustomStringConvertible {
     case notANumber
     case outOfRangeMenu
     case outOfRangePlayer

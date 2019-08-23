@@ -8,8 +8,9 @@
 
 import Foundation
 
-enum CardNumber: Int, CustomStringConvertible, CaseIterable{
+enum CardNumber: Int, CustomStringConvertible, CaseIterable {
     case two = 2, three, four, five, six, seven, eight, nine, ten, jack, queen, king, ace
+    
     var description: String {
         switch self {
         case .ace:
