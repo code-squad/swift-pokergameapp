@@ -17,17 +17,16 @@ struct CardDeck {
     init(){
         self.cardList = [Card]()
         fillCardList()
-        shuffle()
+        shuffleDeck()
     }
-    ///카드 초기화
-    mutating func reset(){
+
+    mutating func resetCardDeck(){
         self.cardList.removeAll()
         fillCardList()
-        shuffle()
+        shuffleDeck()
     }
     
-    ///카드 하나 뽑기
-    mutating func removeOne() -> Result<Card, DrawCardError> {
+    mutating func drawCard() -> Result<Card, DrawCardError> {
         guard let drawOne = cardList.popLast() else {
             return .failure(.noMoreCardInDeck)
         }
@@ -38,7 +37,7 @@ struct CardDeck {
     //    for i from n−1 downto 1 do
     //    j ← random integer such that 0 ≤ j ≤ i
     //    exchange a[j] and a[i]
-    mutating func shuffle(){
+    mutating func shuffleDeck(){
         for index in 0..<deckSize {
             let randomNumber = Int.random(in: 0..<deckSize-index)
             if randomNumber != index {

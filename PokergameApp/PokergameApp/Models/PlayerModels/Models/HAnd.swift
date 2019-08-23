@@ -7,16 +7,18 @@
 //
 
 import Foundation
-//private typealias HandSet =  [(key: Int, value: [CardType])]
+
 struct CardDictionary {
     var dictionary: [Int:[CardType]]
 }
+
 struct OrderedHandSet {
     var orderedKeyList:[Int] = []
     var orderedCardTypeList: [[CardType]] = [[]]
-    
     init(_ playerScoreDictionary: CardDictionary){
-        let result = playerScoreDictionary.dictionary.sorted { (lhs: (key: Int, value: [CardType]), rhs: (key: Int, value: [CardType])) -> Bool in
+        let result = playerScoreDictionary.dictionary.sorted
+        { (lhs: (key: Int, value: [CardType]),
+            rhs: (key: Int, value: [CardType])) -> Bool in
             return lhs.key < rhs.key
         }
         result.map { (element: (key: Int, value: [CardType])) in
@@ -25,6 +27,7 @@ struct OrderedHandSet {
         }
     }
 }
+
 private typealias CardScoreSet = (one: Int, two: Int, triple: Int, straight: Int, quad: Int )
 struct Hand {
     private var myCardDeck : [Card]
@@ -34,7 +37,7 @@ struct Hand {
     }
     
     mutating func receiveCard(_ card: Card){
-         myCardDeck.append(card)
+        myCardDeck.append(card)
     }
     
     func printFormat( format: ([Card])->Void ) {
@@ -88,12 +91,14 @@ struct Hand {
     
     private func getTwoPairScore(_ result: OrderedHandSet) -> Int {
         let onePairNumber = getMultipleNumber(result, coefficient: CardScore.onePair.rawValue)
-        let twoPairNumber = getTwoPairNumber(result: result, coefficient: CardScore.onePair.rawValue, prevNumber: onePairNumber)
+        let twoPairNumber = getTwoPairNumber(result: result,
+                                             coefficient: CardScore.onePair.rawValue, prevNumber: onePairNumber)
         var handValue = 0
         if onePairNumber == 0 {
             return handValue
         }
-        handValue = twoPairNumber == 0 ? (onePairNumber * CardScore.onePair.weightedScoreValue): (onePairNumber * CardScore.twoPair.weightedScoreValue)
+        handValue = twoPairNumber == 0 ? (onePairNumber * CardScore.onePair.weightedScoreValue)
+                                        : (onePairNumber * CardScore.twoPair.weightedScoreValue)
         return handValue
     }
     
@@ -118,15 +123,17 @@ struct Hand {
     //start from : 14(ACE) 13 12 11 10 9 8 7 6 5
     private func getStraightNumber(handSet: OrderedHandSet, count: Int) -> Int {
         var number = 0
-        for element in stride(from: handSet.orderedKeyList.endIndex-1, through: handSet.orderedKeyList.startIndex+3, by: -1){
-            if element > handSet.orderedKeyList.startIndex+3 && handSet.orderedCardTypeList[element].count > 0 {
-                if isStraight(handSet: handSet, from: element) {
-                    number = handSet.orderedKeyList[element]
+        for index in stride(from: handSet.orderedKeyList.endIndex-1,
+                            through: handSet.orderedKeyList.startIndex+3,
+                            by: -1){
+            if index > handSet.orderedKeyList.startIndex+3 && handSet.orderedCardTypeList[index].count > 0 {
+                if isStraight(handSet: handSet, from: index) {
+                    number = handSet.orderedKeyList[index]
                     break
                 }
             }
-            if element == handSet.orderedKeyList.startIndex+3 && isMinimalStraight(handSet: handSet, from: element){
-                number = handSet.orderedKeyList[element]
+            if index == handSet.orderedKeyList.startIndex+3 && isMinimalStraight(handSet: handSet, from: index){
+                number = handSet.orderedKeyList[index]
                 break
             }
         }
@@ -138,8 +145,8 @@ struct Hand {
         if (handSet.orderedCardTypeList[handSet.orderedKeyList.endIndex-1].count == 0){
             return false
         }
-        for element in handSet.orderedCardTypeList.startIndex..<(from+1){
-            count += (handSet.orderedCardTypeList[element].count > 0) ? 1: 0
+        for index in handSet.orderedCardTypeList.startIndex..<(from+1){
+            count += (handSet.orderedCardTypeList[index].count > 0) ? 1: 0
         }
         let result = count == CardScore.straight.rawValue ? true : false
         return result
@@ -156,7 +163,9 @@ struct Hand {
     
     private func getTwoPairNumber(result: OrderedHandSet, coefficient: Int = 2, prevNumber: Int ) -> Int {
         var number = 0
-        for index in stride(from: result.orderedKeyList.endIndex-1, through: result.orderedKeyList.startIndex, by: -1) {
+        for index in stride(from: result.orderedKeyList.endIndex-1,
+                            through: result.orderedKeyList.startIndex,
+                            by: -1) {
             if result.orderedKeyList[index] == prevNumber {
                 continue
             }
@@ -169,7 +178,9 @@ struct Hand {
     }
     private func getMultipleNumber (_ result: OrderedHandSet, coefficient: Int)-> Int {
         var number = 0
-        for index in stride(from: result.orderedKeyList.endIndex-1, through: result.orderedKeyList.startIndex, by: -1) {
+        for index in stride(from: result.orderedKeyList.endIndex-1,
+                            through: result.orderedKeyList.startIndex,
+                            by: -1) {
             if result.orderedCardTypeList[index].count == coefficient {
                 number = result.orderedKeyList[index]
                 break

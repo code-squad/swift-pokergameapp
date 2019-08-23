@@ -23,15 +23,15 @@ extension Dealer : Dealable{
     func distributeCards(_ players: [Playable], gameType: GameType) {
         if gameType.rawValue * players.count > deck.deckSize {
             print(SystemMessage.autoInitializeDeck)
-            deck.reset()
+            deck.resetCardDeck()
         }
         switch gameType {
         case .fiveCard:
-            for time in 0..<gameType.rawValue {
+            for _ in 0..<gameType.rawValue {
                 distributeEachCard(players)
             }
         case .sevenCard:
-            for time in 0..<gameType.rawValue {
+            for _ in 0..<gameType.rawValue {
                 distributeEachCard(players)
             }
         }
@@ -40,11 +40,11 @@ extension Dealer : Dealable{
     func distributeEachCard(_ players: [Playable]) {
         players.forEach { (player) in
             do {
-                let drawCard = try deck.removeOne().get()
+                let drawCard = try deck.drawCard().get()
                 player.receiveCard(drawCard)
             } catch let drawError as DrawCardError {
                 print(drawError.description)
-                deck.reset()
+                deck.resetCardDeck()
             } catch{
                 print(error.localizedDescription)
             }

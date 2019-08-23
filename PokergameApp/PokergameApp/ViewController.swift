@@ -9,7 +9,7 @@
 import UIKit
 
 class ViewController: UIViewController {
-    let cardGamePlay = CardGamePlay(5)
+    private var dataController: DataController!
     private struct CardSizeInfo {
         var cardSize = 7
         let ratio: CGFloat = 1.27
@@ -40,7 +40,7 @@ class ViewController: UIViewController {
         view.addSubview(stackview)
         
         setConstraints()
-        cardGamePlay.playGame()
+//        cardGamePlay.playGame()
     }
     
     private func setBackgroundPatternImage(){
