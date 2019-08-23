@@ -36,7 +36,7 @@
                             <stackView opaque="NO" contentMode="scaleAspectFit" axis="vertical" distribution="fillEqually" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="UtC-VE-YXT">
                                 <rect key="frame" x="52" y="278" width="235" height="353"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="-1" translatesAutoresizingMaskIntoConstraints="NO" id="vsj-vO-dTu">
+                                    <stackView opaque="NO" contentMode="scaleAspectFit" spacing="-1" translatesAutoresizingMaskIntoConstraints="NO" id="vsj-vO-dTu">
                                         <rect key="frame" x="0.0" y="0.0" width="235" height="50.5"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="card-back" translatesAutoresizingMaskIntoConstraints="NO" id="ehp-Cn-QhQ">
