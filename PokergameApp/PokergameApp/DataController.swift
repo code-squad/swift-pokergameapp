@@ -14,4 +14,6 @@ class DataController {
     init(playStyle: CardGamePlay){
         cardGamePlay = playStyle
     }
+    
+    
 }
