@@ -95,7 +95,6 @@
 			isa = PBXGroup;
 			children = (
 				C59ABA56230EA53F00FB2DBE /* Models */,
-				C59ABA62230EA54000FB2DBE /* PokerGameEnums */,
 				C548618E230415A400F6555C /* AppDelegate.swift */,
 				C5486190230415A400F6555C /* ViewController.swift */,
 				C59ABA84230EA9D300FB2DBE /* DataController.swift */,
@@ -111,6 +110,7 @@
 		C59ABA56230EA53F00FB2DBE /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				C59ABA62230EA54000FB2DBE /* PokerGameEnums */,
 				C59ABA6E230EA54000FB2DBE /* PokergamePlay */,
 				C59ABA57230EA53F00FB2DBE /* CardModels */,
 				C59ABA5A230EA54000FB2DBE /* PlayerModels */,
@@ -162,7 +162,8 @@
 				C59ABA67230EA54000FB2DBE /* Cards */,
 				C59ABA6B230EA54000FB2DBE /* Errors */,
 			);
-			path = PokerGameEnums;
+			name = PokerGameEnums;
+			path = ../PokerGameEnums;
 			sourceTree = "<group>";
 		};
 		C59ABA63230EA54000FB2DBE /* GameMenus */ = {

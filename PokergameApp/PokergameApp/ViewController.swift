@@ -18,30 +18,95 @@ class ViewController: UIViewController {
         let widthProportion: CGFloat = 0.9
         let marginSpace: CGFloat = 10
         var width: CGFloat = 0
-        var deckSizeRect: CGRect = CGRect.init(x: 0, y: 0, width: 1, height: 1)
     }
+    
+    private struct InitialRectSize {
+        var basicCGRect: CGRect = CGRect.init(x: 0, y: 0, width: 1, height: 1)
+    }
+    
     var height: CGFloat {
         return CGFloat((stackViewSizeInfo.width-stackViewSizeInfo.marginSpace * CGFloat(cardSizeInfo.cardSize))
             / CGFloat(cardSizeInfo.cardSize)) * cardSizeInfo.ratio
     }
+    
+    private func configureData(_ dataController: DataController){
+        self.dataController = dataController
+    }
+    
     private var cardSizeInfo = CardSizeInfo()
+    private var initialRectSize = InitialRectSize()
     private var stackViewSizeInfo = StackViewSizeInfo()
-    private lazy var stackview: UIStackView = UIStackView.init(frame: stackViewSizeInfo.deckSizeRect)
-    private let verticalConstant: CGFloat = 20
+    private var segmentControlsSizeInfo = SegmentControlsSizeInfo()
+    private let verticalConstant: CGFloat = 200
+    private lazy var stackview = UIStackView.init(frame: initialRectSize.basicCGRect)
+    private lazy var gameTypeSegmentedControl = UISegmentedControl.init(frame: initialRectSize.basicCGRect)
+    private lazy var playerTypeSementedControl = UISegmentedControl.init(frame: initialRectSize.basicCGRect)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setBackgroundPatternImage()
         
         stackViewSizeInfo.width = view.frame.width * stackViewSizeInfo.widthProportion
-        stackViewSizeInfo.deckSizeRect = CGRect.init(x: 0, y: 0, width: stackViewSizeInfo.width, height: height)
-        stackview = UIStackView.init(frame: stackViewSizeInfo.deckSizeRect)
+        initialRectSize.basicCGRect = CGRect.init(x: 0, y: 0, width: stackViewSizeInfo.width, height: height)
+        stackview = UIStackView.init(frame: initialRectSize.basicCGRect)
+        
+        gameTypeSegmentedControl = UISegmentedControl.init(frame: initialRectSize.basicCGRect)
+        playerTypeSementedControl = UISegmentedControl.init(frame: initialRectSize.basicCGRect)
+        setSegmentedControls()
+
         addImageViewsInStackView()
         view.addSubview(stackview)
-        
         setConstraints()
-//        cardGamePlay.playGame()
     }
+    
+    struct SegmentControlsSizeInfo {
+        let xCoordinate: CGFloat = 126
+        let yCoordinateFirst: CGFloat = 100
+        let yCoordinateSecond: CGFloat = 150
+        let width: CGFloat = 160
+        let height: CGFloat = 30
+    }
+    
+    private func setSegmentedControls(){
+        setGameTypeSegmentedControl()
+        setPlayerTypeSegmentedControlRectSize()
+        view.addSubview(gameTypeSegmentedControl)
+        view.addSubview(playerTypeSementedControl)
+    }
+    
+    private func setGameTypeSegmentedControl() {
+        let gameTypeSegmentedControlRectSize = createGameTypeSegmentedControlRectSize()
+        gameTypeSegmentedControl = UISegmentedControl.init(frame: gameTypeSegmentedControlRectSize)
+        gameTypeSegmentedControl.tintColor = .white
+        gameTypeSegmentedControl.backgroundColor = .black
+        gameTypeSegmentedControl.insertSegment(withTitle: GameType.fiveCard.description, at: 0, animated: true)
+        gameTypeSegmentedControl.insertSegment(withTitle: GameType.sevenCard.description, at: 0, animated: true)
+    }
+    
+    private func setPlayerTypeSegmentedControlRectSize(){
+        let playerTypeSegmentedControlRectSize = createPlayerTypeSegmentedControlRectSize()
+        playerTypeSementedControl = UISegmentedControl.init(frame: playerTypeSegmentedControlRectSize)
+        playerTypeSementedControl.tintColor = .white
+        playerTypeSementedControl.backgroundColor = .black
+        playerTypeSementedControl.insertSegment(withTitle: PlayerType.four.description, at: 0, animated: true)
+        playerTypeSementedControl.insertSegment(withTitle: PlayerType.three.description, at: 0, animated: true)
+        playerTypeSementedControl.insertSegment(withTitle: PlayerType.two.description, at: 0, animated: true)
+    }
+    
+    private func createGameTypeSegmentedControlRectSize() -> CGRect {
+        return  CGRect.init(x: segmentControlsSizeInfo.xCoordinate,
+                            y: segmentControlsSizeInfo.yCoordinateFirst,
+                            width: segmentControlsSizeInfo.width,
+                            height: segmentControlsSizeInfo.height)
+    }
+    
+    private func createPlayerTypeSegmentedControlRectSize() -> CGRect {
+        return CGRect.init(x: segmentControlsSizeInfo.xCoordinate,
+                           y: segmentControlsSizeInfo.yCoordinateSecond,
+                           width: segmentControlsSizeInfo.width,
+                           height: segmentControlsSizeInfo.height)
+    }
+    
     
     private func setBackgroundPatternImage(){
         guard let backgroundPatternImage = UIImage.init(named: "\(ImageInfo.background)") else {
@@ -51,7 +116,7 @@ class ViewController: UIViewController {
     }
     
     private func addImageViewsInStackView(){
-        let imageWidth = (stackViewSizeInfo.deckSizeRect.width - stackViewSizeInfo.marginSpace
+        let imageWidth = (initialRectSize.basicCGRect.width - stackViewSizeInfo.marginSpace
             * CGFloat(cardSizeInfo.cardSize))/CGFloat(cardSizeInfo.cardSize)
         let imageHeight = height
         for _ in 0..<cardSizeInfo.cardSize  {
@@ -62,6 +127,10 @@ class ViewController: UIViewController {
         }
         stackview.distribution = .fillEqually
         stackview.spacing = stackViewSizeInfo.marginSpace
+    }
+    
+    private func setSegmentedControlConstraints(){
+        
     }
     
     private func setConstraints(){
