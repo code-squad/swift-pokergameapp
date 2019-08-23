@@ -9,29 +9,27 @@
 import Foundation
 
 
-class CardGamePlay {
+struct CardGamePlay {
     var dealer = Dealer.init()
     var players: [Playable] = [Playable]()
     var gameType : GameType
-    var playerCount: Int
+    var playerCount: PlayerType
     
-    func playGame(){
+    func playGame() -> GameWinner? {
         players.forEach { (player) in
             player.resetHand()
         }
         dealer.distributeCards(players, gameType: gameType)
-        OutputView.printOutput(players)
         guard let winner = GameResult.init(players)?.selectWinnerName() else {
-            return
+            return nil
         }
-        print(winner.name, winner.type)
+        return winner
     }
     
-    
-    init(_ number: Int, gameType: GameType = GameType.fiveCard){
+    init(number: PlayerType = PlayerType.two, gameType: GameType = GameType.sevenCard){
         self.playerCount = number
         self.gameType = gameType
-        for index in 1..<playerCount {
+        for index in 1..<playerCount.rawValue {
             let player = Player.init("Player\(index)")
             players.append(player)
         }
