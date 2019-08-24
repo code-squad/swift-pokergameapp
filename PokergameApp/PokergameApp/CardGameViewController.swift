@@ -84,6 +84,12 @@ class CardGameViewController: UIViewController {
         addNotificationObservers()
     }
     
+    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        if motion == .motionShake{
+            playGame()
+        }
+    }
+    
     private func updateStackViewWidthSize() {
         stackViewSizeInfo.width = view.frame.width * stackViewSizeInfo.widthProportion
             * CGFloat(cardGameSizeInfo.cardSize)
