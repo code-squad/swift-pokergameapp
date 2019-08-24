@@ -11,33 +11,36 @@ import UIKit
 class CardGameViewController: UIViewController {
     private var dataController: DataController!
     
-    private var cardSizeInfo = CardSizeInfo()
+    private var cardGameSizeInfo = CardGameSizeInfo()
     private var initialRectSize = InitialRectSize()
     private var stackViewSizeInfo = StackViewSizeInfo()
     private var segmentControlsSizeInfo = SegmentControlsSizeInfo()
     private var playButtonSizeInfo = PlayButtonSizeInfo()
     private let verticalConstant: CGFloat = 200
-    private lazy var stackview = UIStackView.init(frame: initialRectSize.basicCGRect)
+    private lazy var uiLabelList = [UILabel]()
     private lazy var stackviewList = [UIStackView]()
-    private lazy var doubleStackView = UIStackView.init(frame: initialRectSize.basicCGRect)
+
     private lazy var gameTypeSegmentedControl = UISegmentedControl.init(frame: initialRectSize.basicCGRect)
     private lazy var playerTypeSementedControl = UISegmentedControl.init(frame: initialRectSize.basicCGRect)
     private lazy var playButton: UIButton = UIButton.init(frame: initialRectSize.basicCGRect)
     var height: CGFloat {
-        return CGFloat((stackViewSizeInfo.width-stackViewSizeInfo.marginSpace * CGFloat(cardSizeInfo.cardSize))
-            / CGFloat(cardSizeInfo.cardSize)) * cardSizeInfo.ratio
+        return CGFloat((stackViewSizeInfo.width-stackViewSizeInfo.marginSpace * CGFloat(cardGameSizeInfo.cardSize))
+            / CGFloat(cardGameSizeInfo.cardSize)) * cardGameSizeInfo.ratio
     }
-    private struct CardSizeInfo {
+    
+    private struct CardGameSizeInfo {
         var cardSize = 7
+        var playerSize = 5
         let ratio: CGFloat = 1.27
     }
     private struct StackViewSizeInfo {
-        let widthProportion: CGFloat = 0.7
+        let widthProportion: CGFloat = 0.1
         let marginSpace: CGFloat = 0
         var width: CGFloat = 0
         var leftAlign: CGFloat = -20
         var spacingSize: CGFloat = -10
     }
+    
     struct SegmentControlsSizeInfo {
         let xCoordinate: CGFloat = 126
         let yCoordinateFirst: CGFloat = 100
@@ -56,7 +59,7 @@ class CardGameViewController: UIViewController {
     private struct InitialRectSize {
         var basicCGRect: CGRect = CGRect.init(x: 1, y: 1, width: 100, height: 30)
     }
-    func configureData(_ dataController: DataController){
+    func configureData(_ dataController: DataController) {
         self.dataController = dataController
     }
 
@@ -64,25 +67,51 @@ class CardGameViewController: UIViewController {
         super.viewDidLoad()
         setBackgroundPatternImage()
 
-        stackViewSizeInfo.width = view.frame.width * stackViewSizeInfo.widthProportion
+        updateStackViewWidthSize()
         gameTypeSegmentedControl = UISegmentedControl.init(frame: initialRectSize.basicCGRect)
         playerTypeSementedControl = UISegmentedControl.init(frame: initialRectSize.basicCGRect)
         
         setButton()
         setSegmentedControls()
-        setStackviewList()
+        setDefaultStackviewListBySettings()
         
         addSegmentedControlTargetActionHandlers()
         addNotificationObservers()
     }
     
-    private func addNotificationObservers(){
+    private func updateStackViewWidthSize() {
+        stackViewSizeInfo.width = view.frame.width * stackViewSizeInfo.widthProportion
+            * CGFloat(cardGameSizeInfo.cardSize)
+    }
+    private func addNotificationObservers() {
         NotificationCenter.default.addObserver(self, selector: #selector(updateWinner), name: .notifyWinner, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateCardList), name: .updateCardList, object: nil)
     }
     
-    @objc func updateWinner(_ notification: Notification){
+    @objc func updateCardList(_ notification: Notification) {
+        guard let userInfo = notification.userInfo as? [String: [Player]],
+            let players = userInfo["players"] as? [Player] else {
+            displayAlertInplace(.systemError)
+            return
+        }
+        let format = { (name: String, hand: Hand) in
+            print("\(name):", terminator: " ")
+            let innerFormat = { (deck: [Card]) in
+                deck.forEach({ (card) in
+                    print(card.description, terminator: " ")
+                })
+            }
+            hand.printFormat(format: innerFormat)
+            print()
+        }
+        players.forEach { (player) in
+            player.receivePrintFormat(format)
+        }
+    }
+    
+    @objc func updateWinner(_ notification: Notification) {
         guard let userInfo = notification.userInfo as? [String: GameWinner],
-            let winner = userInfo["result"] as? GameWinner else {
+            let winner = userInfo["result"] else {
             displayAlertInplace(.systemError)
             return
         }
@@ -92,39 +121,107 @@ class CardGameViewController: UIViewController {
         
     }
     private func addSegmentedControlTargetActionHandlers(){
-        addPlayCardGameHandler()
+        addPlayCardGameButtonHandler()
+        addPlayerTypeSegmentedControlHandler()
+        addGameTypeSegmentedControlHandler()
     }
-
-    private func addPlayCardGameHandler(){
+    
+    private func addPlayerTypeSegmentedControlHandler(){
+        playerTypeSementedControl.addTarget(self,
+                                            action: #selector(updatePlayerTypeInfoToStackView),
+                                            for: .valueChanged )
+    }
+    
+    @objc func updatePlayerTypeInfoToStackView(){
+        if checkAllControlsSelected(){
+            guard let currentPlayerType = retrivePlayerTypeFromSegmentedControl() else { return }
+            guard let currentGameType = retriveGameTypeFromSegmentedControl() else { return }
+            cardGameSizeInfo.cardSize = currentGameType.rawValue
+            cardGameSizeInfo.playerSize = currentPlayerType.rawValue
+            setDefaultStackviewListBySettings()
+        }
+        else if isPlayerTypeSegmentedControlSelected() {
+            guard let currentPlayerType = retrivePlayerTypeFromSegmentedControl() else { return }
+            cardGameSizeInfo.playerSize = currentPlayerType.rawValue
+            setDefaultStackviewListBySettings()
+        }
+    }
+    
+    private func addGameTypeSegmentedControlHandler(){
+        gameTypeSegmentedControl.addTarget(self, action: #selector(updateGameTypeInfoToStackView), for: .valueChanged)
+    }
+    
+    @objc func updateGameTypeInfoToStackView(){
+        if checkAllControlsSelected(){
+            guard let currentPlayerType = retrivePlayerTypeFromSegmentedControl() else { return }
+            guard let currentGameType = retriveGameTypeFromSegmentedControl() else { return }
+            cardGameSizeInfo.cardSize = currentGameType.rawValue
+            cardGameSizeInfo.playerSize = currentPlayerType.rawValue
+            stackViewSizeInfo.width = view.frame.width * stackViewSizeInfo.widthProportion
+            setDefaultStackviewListBySettings()
+        }
+        else if isGameTypeSegmentedControlSelected() {
+            guard let currentGameType = retriveGameTypeFromSegmentedControl() else { return }
+            cardGameSizeInfo.cardSize = currentGameType.rawValue
+            setDefaultStackviewListBySettings()
+        }
+    }
+    
+    private func removeCurrentStackViews(){
+        stackviewList.forEach { (stackview) in
+            stackview.removeFromSuperview()
+        }
+        stackviewList.removeAll()
+    }
+    
+    private func addPlayCardGameButtonHandler(){
         playButton.addTarget(self, action: #selector(playGame), for: .touchUpInside)
     }
     
     @objc func playGame(){
         if checkAllControlsSelected() {
-            guard let playerType = playerTypeSementedControl.titleForSegment(at:
-                playerTypeSementedControl.selectedSegmentIndex) else {
-                    return
-            }
-            guard let gameType = gameTypeSegmentedControl.titleForSegment(at:
-                gameTypeSegmentedControl.selectedSegmentIndex) else {
-                    return
-            }
-            guard let currentPlayerType = try? PlayerType.init(playerType) else { return }
-            guard let currentGameType = try? GameType.init(gameType) else { return }
+            guard let currentPlayerType = retrivePlayerTypeFromSegmentedControl() else { return }
+            guard let currentGameType = retriveGameTypeFromSegmentedControl() else { return }
             dataController.play(playerType: currentPlayerType, gameType: currentGameType)
         }
     }
     
-    private func checkAllControlsSelected() -> Bool {
-        if playerTypeSementedControl.selectedSegmentIndex < 0 {
-            displayAlertInplace(.selectedGamePlayersAbsence)
-            return false
+    private func retrivePlayerTypeFromSegmentedControl() -> PlayerType? {
+        guard let playerType = playerTypeSementedControl.titleForSegment(at:
+            playerTypeSementedControl.selectedSegmentIndex) else {
+                return nil
         }
-        if gameTypeSegmentedControl.selectedSegmentIndex < 0 {
+        guard let currentPlayerType = try? PlayerType.init(playerType) else { return nil}
+        return currentPlayerType
+    }
+    
+    private func retriveGameTypeFromSegmentedControl() -> GameType?  {
+        guard let gameType = gameTypeSegmentedControl.titleForSegment(at:
+            gameTypeSegmentedControl.selectedSegmentIndex) else {
+                return nil
+        }
+        guard let currentGameType = try? GameType.init(gameType) else { return nil }
+        return currentGameType
+    }
+    
+    private func isPlayerTypeSegmentedControlSelected() -> Bool {
+        if playerTypeSementedControl.selectedSegmentIndex == -1 {
             displayAlertInplace(.selectedGamePlayersAbsence)
             return false
         }
         return true
+    }
+    
+    private func isGameTypeSegmentedControlSelected() -> Bool {
+        if gameTypeSegmentedControl.selectedSegmentIndex == -1 {
+            displayAlertInplace(.selectedGameTypeAbsence)
+            return false
+        }
+        return true
+    }
+    
+    private func checkAllControlsSelected() -> Bool {
+        return isPlayerTypeSegmentedControlSelected() && isGameTypeSegmentedControlSelected()
     }
     
     private func displayAlertInplace(_ error: GameMenuError) {
@@ -134,8 +231,10 @@ class CardGameViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    private func setStackviewList(_ number: Int = 4){
-        let numberOfPlayer = number
+    private func setDefaultStackviewListBySettings(){
+        updateStackViewWidthSize()
+        removeCurrentStackViews()
+        let numberOfPlayer = cardGameSizeInfo.playerSize
         for _ in 0..<numberOfPlayer {
             let rect = CGRect(x: 0, y: 0, width: stackViewSizeInfo.width, height: height)
             let stackview = UIStackView.init(frame: rect)
@@ -187,12 +286,22 @@ class CardGameViewController: UIViewController {
         let horizontalConstraint = NSLayoutConstraint.init(item: firstStackView, attribute: NSLayoutConstraint.Attribute.centerX, relatedBy: NSLayoutConstraint.Relation.equal, toItem: firstStackView.superview, attribute: NSLayoutConstraint.Attribute.centerX, multiplier: 1, constant: stackViewSizeInfo.leftAlign)
         return [initialViewVerticalConstraint, horizontalConstraint]
     }
+    
+    private func setStackviewDefaultConstraints(_ stackview: UIStackView, order: Int) -> [NSLayoutConstraint]{
+        stackview.translatesAutoresizingMaskIntoConstraints = false
+        stackview.spacing = stackViewSizeInfo.spacingSize
+        let horizontalConstraint = NSLayoutConstraint.init(item: stackview, attribute: NSLayoutConstraint.Attribute.centerX, relatedBy: NSLayoutConstraint.Relation.equal, toItem: stackview.superview, attribute: NSLayoutConstraint.Attribute.centerX, multiplier: 1, constant: stackViewSizeInfo.leftAlign)
+        let widthConstraint = NSLayoutConstraint.init(item: stackview, attribute: NSLayoutConstraint.Attribute.width, relatedBy: NSLayoutConstraint.Relation.equal, toItem: stackview.superview, attribute: NSLayoutConstraint.Attribute.width, multiplier: 0, constant: stackViewSizeInfo.width)
+        let heightConstraint = NSLayoutConstraint.init(item: stackview, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: stackview.superview, attribute:  NSLayoutConstraint.Attribute.height, multiplier: 0, constant: height)
+        return [horizontalConstraint, widthConstraint, heightConstraint] //horizontalConstraint, verticalConstraint,
+    }
 
     private func addStackViewList(_ list: [UIStackView]){
         list.forEach { (stackview) in
             view.addSubview(stackview)
         }
     }
+    
     private func setButton(){
         let playButtonRectSize = CGRect.init(x: playButtonSizeInfo.xCoordinate,
                                              y: playButtonSizeInfo.yCoordinateFirst,
@@ -254,9 +363,9 @@ class CardGameViewController: UIViewController {
     
     private func addImageViewsInStackView(_ stackview: UIStackView, order: Int){
         let imageWidth = (initialRectSize.basicCGRect.width - stackViewSizeInfo.marginSpace
-            * CGFloat(cardSizeInfo.cardSize))/CGFloat(cardSizeInfo.cardSize)
+            * CGFloat(cardGameSizeInfo.cardSize))/CGFloat(cardGameSizeInfo.cardSize)
         let imageHeight = height
-        for _ in 0..<cardSizeInfo.cardSize  {
+        for _ in 0..<cardGameSizeInfo.cardSize  {
             let currentCardRect = CGRect.init(x: 0, y: 0, width: imageWidth, height: imageHeight)
             let uiImageView = UIImageView.init(frame: currentCardRect)
             uiImageView.image = UIImage.init(named: ImageInfo.cardBack)
@@ -266,14 +375,7 @@ class CardGameViewController: UIViewController {
         stackview.spacing = stackViewSizeInfo.marginSpace
     }
     
-    private func setStackviewDefaultConstraints(_ stackview: UIStackView, order: Int) -> [NSLayoutConstraint]{
-        stackview.translatesAutoresizingMaskIntoConstraints = false
-        stackview.spacing = stackViewSizeInfo.spacingSize
-        let horizontalConstraint = NSLayoutConstraint.init(item: stackview, attribute: NSLayoutConstraint.Attribute.centerX, relatedBy: NSLayoutConstraint.Relation.equal, toItem: stackview.superview, attribute: NSLayoutConstraint.Attribute.centerX, multiplier: 1, constant: stackViewSizeInfo.leftAlign)
-        let widthConstraint = NSLayoutConstraint.init(item: stackview, attribute: NSLayoutConstraint.Attribute.width, relatedBy: NSLayoutConstraint.Relation.equal, toItem: stackview.superview, attribute: NSLayoutConstraint.Attribute.width, multiplier: 0, constant: stackViewSizeInfo.width)
-        let heightConstraint = NSLayoutConstraint.init(item: stackview, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: stackview.superview, attribute:  NSLayoutConstraint.Attribute.height, multiplier: 0, constant: height)
-        return [horizontalConstraint, widthConstraint, heightConstraint] //horizontalConstraint, verticalConstraint,
-    }
+ 
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
