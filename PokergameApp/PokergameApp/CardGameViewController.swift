@@ -40,7 +40,6 @@ class CardGameViewController: UIViewController {
         var leftAlign: CGFloat = -20
         var spacingSize: CGFloat = -10
     }
-    
     private struct SegmentControlsSizeInfo {
         let xCoordinate: CGFloat = 126
         let yCoordinateFirst: CGFloat = 100
@@ -189,6 +188,13 @@ class CardGameViewController: UIViewController {
             stackview.removeFromSuperview()
         }
         stackviewList.removeAll()
+       
+    }
+    private func removeCurrentUILabels(){
+        uiLabelList.forEach { (label) in
+            label.removeFromSuperview()
+        }
+        uiLabelList.removeAll()
     }
     
     private func addPlayCardGameButtonHandler(){
@@ -250,25 +256,52 @@ class CardGameViewController: UIViewController {
     
     private func setDefaultStackviewListBySettings(){
         updateStackViewWidthSize()
-        removeCurrentStackViews()
+        removeCurrentUIComponents()
         let numberOfPlayer = cardGameSizeInfo.playerSize
         for _ in 0..<numberOfPlayer {
             let rect = CGRect(x: 0, y: 0, width: stackViewSizeInfo.width, height: height)
             let stackview = UIStackView.init(frame: rect)
             stackviewList.append(stackview)
-            
-            uiLabelList.append(UILabel.init(frame: rect))
+            let basicLabel = UILabel.init(frame: rect)
+            basicLabel.text = "Player"
+            basicLabel.textColor = .white
+            basicLabel.backgroundColor = .black
+            basicLabel.textAlignment = .left
+            uiLabelList.append(basicLabel)
         }
-        setUILabels(uiLabelList)
         setImageViewsInStackViewList(stackviewList)
         addStackViewList(stackviewList)
+        addUILabelList(uiLabelList)
         setConstraintOfStackViewList(stackviewList)
+        setConstraintOfUILableList(uiLabelList, stackviewList: stackviewList)
     }
-    private func setUILabels(_ list : [UILabel]){
+    
+    private func removeCurrentUIComponents(){
+        removeCurrentStackViews()
+        removeCurrentUILabels()
+    }
+   
+    private func setConstraintOfUILableList(_ list: [UILabel], stackviewList: [UIStackView]){
+        var constraintList = [NSLayoutConstraint]()
         for index in 0..<list.endIndex{
-            
+            let eachDefaultConstraints = setUILabelDefaultConstraints(label: list[index],
+                                                                      stackview: stackviewList[index],
+                                                                      order: index)
+                eachDefaultConstraints.forEach { (eachNSLayoutConstraint) in
+                    constraintList.append(eachNSLayoutConstraint)
+            }
         }
+        NSLayoutConstraint.activate(constraintList)
     }
+    
+    private func setUILabelDefaultConstraints(label: UILabel, stackview: UIStackView, order: Int) -> [NSLayoutConstraint]{
+        label.translatesAutoresizingMaskIntoConstraints = false
+        let leadingConstraint = NSLayoutConstraint.init(item: label, attribute: NSLayoutConstraint.Attribute.leading, relatedBy: NSLayoutConstraint.Relation.equal, toItem: stackview, attribute: NSLayoutConstraint.Attribute.leading, multiplier: 1, constant: 0)
+        let topConstraint = NSLayoutConstraint.init(item: label, attribute: NSLayoutConstraint.Attribute.bottom, relatedBy: NSLayoutConstraint.Relation.equal, toItem: stackview, attribute: NSLayoutConstraint.Attribute.top, multiplier: 1, constant: stackViewSizeInfo.spacingSize)
+        return [leadingConstraint, topConstraint]
+    }
+    
+    
     private func setImageViewsInStackViewList(_ list: [UIStackView]){
         for index in 0..<list.endIndex{
             addImageViewsInStackView(list[index], order: index)
@@ -331,9 +364,14 @@ class CardGameViewController: UIViewController {
         let horizontalConstraint = NSLayoutConstraint.init(item: stackview, attribute: NSLayoutConstraint.Attribute.centerX, relatedBy: NSLayoutConstraint.Relation.equal, toItem: stackview.superview, attribute: NSLayoutConstraint.Attribute.centerX, multiplier: 1, constant: stackViewSizeInfo.leftAlign)
         let widthConstraint = NSLayoutConstraint.init(item: stackview, attribute: NSLayoutConstraint.Attribute.width, relatedBy: NSLayoutConstraint.Relation.equal, toItem: stackview.superview, attribute: NSLayoutConstraint.Attribute.width, multiplier: 0, constant: stackViewSizeInfo.width)
         let heightConstraint = NSLayoutConstraint.init(item: stackview, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: stackview.superview, attribute:  NSLayoutConstraint.Attribute.height, multiplier: 0, constant: height)
-        return [horizontalConstraint, widthConstraint, heightConstraint] //horizontalConstraint, verticalConstraint,
+        return [horizontalConstraint, widthConstraint, heightConstraint]
     }
 
+    private func addUILabelList(_ list: [UILabel]){
+        list.forEach { (label) in
+            view.addSubview(label)
+        }
+    }
     private func addStackViewList(_ list: [UIStackView]){
         list.forEach { (stackview) in
             view.addSubview(stackview)
@@ -398,9 +436,6 @@ class CardGameViewController: UIViewController {
         }
         view.backgroundColor = UIColor.init(patternImage: backgroundPatternImage)
     }
-    
-    
- 
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
