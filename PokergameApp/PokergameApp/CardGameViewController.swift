@@ -19,7 +19,8 @@ class CardGameViewController: UIViewController {
     private let verticalConstant: CGFloat = 200
     private lazy var uiLabelList = [UILabel]()
     private lazy var stackviewList = [UIStackView]()
-
+    private lazy var medalImageView = [UIImageView]()
+    private var stackViewPlayerMappingDictionary = [String: Int]()
     private lazy var gameTypeSegmentedControl = UISegmentedControl.init(frame: initialRectSize.basicCGRect)
     private lazy var playerTypeSementedControl = UISegmentedControl.init(frame: initialRectSize.basicCGRect)
     private lazy var playButton: UIButton = UIButton.init(frame: initialRectSize.basicCGRect)
@@ -33,11 +34,13 @@ class CardGameViewController: UIViewController {
         var playerSize = 5
         let ratio: CGFloat = 1.27
     }
+    
     private struct StackViewSizeInfo {
         let widthProportion: CGFloat = 0.1
         let marginSpace: CGFloat = 0
         var width: CGFloat = 0
         var leftAlign: CGFloat = -20
+        var rightAlign: CGFloat = 20
         var spacingSize: CGFloat = -10
     }
     private struct SegmentControlsSizeInfo {
@@ -86,27 +89,33 @@ class CardGameViewController: UIViewController {
     }
     private func addNotificationObservers() {
         NotificationCenter.default.addObserver(self, selector: #selector(updateWinner), name: .notifyWinner, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(updateCardList), name: .updateCardList, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updatePlayerInfo), name: .updateCardList, object: nil)
     }
     
-    @objc func updateCardList(_ notification: Notification) {
+    @objc func updatePlayerInfo(_ notification: Notification) {
         guard let userInfo = notification.userInfo as? [String: [Player]],
             let players = userInfo["players"] else {
             displayAlertInplace(.systemError)
             return
         }
+        updatePlayerInfoViews(players)
+    }
+    
+    private func updatePlayerInfoViews(_ players: [Player]){
+        stackViewPlayerMappingDictionary.removeAll()
         for index in 0..<self.stackviewList.endIndex {
             let playerInfoFormat = { (name: String, hand: Hand) in
                 guard let subViews = self.stackviewList[index].arrangedSubviews as? [UIImageView] else {
                     return
                 }
-                let innerFormat = { (deck: [Card]) in
+                let retrivePlayerDeckFormat = { (deck: [Card]) in
                     for index in 0..<deck.endIndex {
                         subViews[index].image = UIImage.init(named: "\(deck[index].description).png")
                     }
                 }
-                hand.printFormat(format: innerFormat)
+                hand.printFormat(format: retrivePlayerDeckFormat)
                 self.uiLabelList[index].text = name
+                self.stackViewPlayerMappingDictionary.updateValue(index, forKey: name)
             }
             players[index].receivePrintFormat(playerInfoFormat)
         }
@@ -120,9 +129,40 @@ class CardGameViewController: UIViewController {
         }
         updateMedalNextToWinnerDeck(winner)
     }
+    
     private func updateMedalNextToWinnerDeck(_ winner: GameWinner){
-        
+        winner.name.forEach { (name) in
+            let imageWidth = (initialRectSize.basicCGRect.width - stackViewSizeInfo.marginSpace
+                * CGFloat(cardGameSizeInfo.cardSize))/CGFloat(cardGameSizeInfo.cardSize)
+            let imageHeight = height
+            let winnerMedal = UIImageView.init(frame: CGRect.init(x: 0, y: 0, width: imageWidth, height: imageHeight))
+            
+            winnerMedal.image = UIImage.init(named: "winner.png")
+            guard let winnerIndex = stackViewPlayerMappingDictionary[name] else { return }
+
+            medalImageView.append(winnerMedal)
+            view.addSubview(winnerMedal)
+            medalConstratins(medal: winnerMedal, stackview: stackviewList[winnerIndex])
+        }
     }
+    
+    private func medalConstratins(medal: UIImageView, stackview: UIStackView) {
+        medal.translatesAutoresizingMaskIntoConstraints = false
+        let leadingConstraint = NSLayoutConstraint.init(item: medal, attribute: NSLayoutConstraint.Attribute.leading, relatedBy: NSLayoutConstraint.Relation.equal, toItem: stackview, attribute: NSLayoutConstraint.Attribute.trailing, multiplier: 1, constant: stackViewSizeInfo.rightAlign)
+         let topConstraint = NSLayoutConstraint.init(item: medal, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: stackview, attribute: NSLayoutConstraint.Attribute.top, multiplier: 1, constant: 0)
+        let widthConstraint = NSLayoutConstraint.init(item: medal, attribute: NSLayoutConstraint.Attribute.width, relatedBy: NSLayoutConstraint.Relation.equal, toItem: stackview, attribute: NSLayoutConstraint.Attribute.height, multiplier: 1, constant: 0)
+        let heightConstraint = NSLayoutConstraint.init(item: medal, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: stackview, attribute: NSLayoutConstraint.Attribute.height, multiplier: 1, constant: 0)
+        NSLayoutConstraint.activate([leadingConstraint, topConstraint, widthConstraint, heightConstraint])
+    }
+    
+    private func setUILabelDefaultConstraints2(label: UILabel, stackview: UIStackView, order: Int) -> [NSLayoutConstraint]{
+        label.translatesAutoresizingMaskIntoConstraints = false
+        let leadingConstraint = NSLayoutConstraint.init(item: label, attribute: NSLayoutConstraint.Attribute.leading, relatedBy: NSLayoutConstraint.Relation.equal, toItem: stackview, attribute: NSLayoutConstraint.Attribute.leading, multiplier: 1, constant: 0)
+        let topConstraint = NSLayoutConstraint.init(item: label, attribute: NSLayoutConstraint.Attribute.bottom, relatedBy: NSLayoutConstraint.Relation.equal, toItem: stackview, attribute: NSLayoutConstraint.Attribute.top, multiplier: 1, constant: stackViewSizeInfo.spacingSize)
+        return [leadingConstraint, topConstraint]
+    }
+    
+    
     private func addSegmentedControlTargetActionHandlers(){
         addPlayCardGameButtonHandler()
         addPlayerTypeSegmentedControlHandler()
@@ -169,7 +209,12 @@ class CardGameViewController: UIViewController {
             setDefaultStackviewListBySettings()
         }
     }
-    
+    private func removeMedalImage(){
+        medalImageView.forEach({ (imageView) in
+            imageView.removeFromSuperview()
+        })
+        medalImageView.removeAll()
+    }
     private func removeCurrentStackViews(){
         stackviewList.forEach { (stackview) in
             stackview.removeFromSuperview()
@@ -269,6 +314,7 @@ class CardGameViewController: UIViewController {
     }
     
     private func removeCurrentUIComponents(){
+        removeMedalImage()
         removeCurrentStackViews()
         removeCurrentUILabels()
     }
@@ -292,7 +338,6 @@ class CardGameViewController: UIViewController {
         let topConstraint = NSLayoutConstraint.init(item: label, attribute: NSLayoutConstraint.Attribute.bottom, relatedBy: NSLayoutConstraint.Relation.equal, toItem: stackview, attribute: NSLayoutConstraint.Attribute.top, multiplier: 1, constant: stackViewSizeInfo.spacingSize)
         return [leadingConstraint, topConstraint]
     }
-    
     
     private func setImageViewsInStackViewList(_ list: [UIStackView]){
         for index in 0..<list.endIndex{
