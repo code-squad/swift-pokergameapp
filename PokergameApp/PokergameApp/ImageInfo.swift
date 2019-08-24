@@ -21,9 +21,11 @@ struct BasicTextInfo {
     static let notifier = "알림"
     static let confirmation = "확인"
 }
+
 struct InvalidNumberRange {
     static let outOfIndex = -1
 }
+
 struct DictionaryKeys{
     static let result = "result"
     static let players = "players"
