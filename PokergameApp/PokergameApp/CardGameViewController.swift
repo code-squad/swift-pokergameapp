@@ -35,7 +35,6 @@ class CardGameViewController: UIViewController {
         let ratio: CGFloat = 1.27
         let bufferSize: CGFloat = 10
     }
-    
     private struct StackViewSizeInfo {
         let widthProportion: CGFloat = 0.1
         let marginSpace: CGFloat = 0
@@ -67,11 +66,11 @@ class CardGameViewController: UIViewController {
     func configureData(_ dataController: DataController) {
         self.dataController = dataController
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setBackgroundPatternImage()
-
+        
         updateStackViewWidthSize()
         gameTypeSegmentedControl = UISegmentedControl.init(frame: initialRectSize.basicCGRect)
         playerTypeSementedControl = UISegmentedControl.init(frame: initialRectSize.basicCGRect)
@@ -95,15 +94,19 @@ class CardGameViewController: UIViewController {
             * CGFloat(cardGameSizeInfo.cardSize)
     }
     private func addNotificationObservers() {
-        NotificationCenter.default.addObserver(self, selector: #selector(updateWinner), name: .notifyWinner, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(updatePlayerInfo), name: .updateCardList, object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(updateWinner),
+                                               name: .notifyWinner, object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(updatePlayerInfo),
+                                               name: .updateCardList, object: nil)
     }
     
     @objc func updatePlayerInfo(_ notification: Notification) {
         guard let userInfo = notification.userInfo as? [String: [Player]],
             let players = userInfo[DictionaryKeys.players] else {
-            displayAlertInplace(.systemError)
-            return
+                displayAlertInplace(.systemError)
+                return
         }
         updatePlayerInfoViews(players)
     }
@@ -131,8 +134,8 @@ class CardGameViewController: UIViewController {
     @objc func updateWinner(_ notification: Notification) {
         guard let userInfo = notification.userInfo as? [String: GameWinner],
             let winner = userInfo["result"] else {
-            displayAlertInplace(.systemError)
-            return
+                displayAlertInplace(.systemError)
+                return
         }
         updateMedalNextToWinnerDeck(winner)
     }
@@ -142,11 +145,10 @@ class CardGameViewController: UIViewController {
             let imageWidth = (initialRectSize.basicCGRect.width - stackViewSizeInfo.marginSpace
                 * CGFloat(cardGameSizeInfo.cardSize))/CGFloat(cardGameSizeInfo.cardSize)
             let imageHeight = height
-            let winnerMedal = UIImageView.init(frame: CGRect.init(x: 0, y: 0, width: imageWidth, height: imageHeight))
-            
+            let cgRect = CGRect.init(x: 0, y: 0, width: imageWidth, height: imageHeight)
+            let winnerMedal = UIImageView.init(frame: cgRect)
             winnerMedal.image = UIImage.init(named: ImageInfo.winner)
             guard let winnerIndex = stackViewPlayerMappingDictionary[name] else { return }
-
             medalImageView.append(winnerMedal)
             view.addSubview(winnerMedal)
             medalConstratins(medal: winnerMedal, stackview: stackviewList[winnerIndex])
@@ -155,25 +157,58 @@ class CardGameViewController: UIViewController {
     
     private func medalConstratins(medal: UIImageView, stackview: UIStackView) {
         medal.translatesAutoresizingMaskIntoConstraints = false
-        let leadingConstraint = NSLayoutConstraint.init(item: medal, attribute: NSLayoutConstraint.Attribute.leading, relatedBy: NSLayoutConstraint.Relation.equal, toItem: stackview, attribute: NSLayoutConstraint.Attribute.trailing, multiplier: 1, constant: stackViewSizeInfo.rightAlign)
-         let topConstraint = NSLayoutConstraint.init(item: medal, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: stackview, attribute: NSLayoutConstraint.Attribute.top, multiplier: 1, constant: 0)
-        let widthConstraint = NSLayoutConstraint.init(item: medal, attribute: NSLayoutConstraint.Attribute.width, relatedBy: NSLayoutConstraint.Relation.equal, toItem: stackview, attribute: NSLayoutConstraint.Attribute.height, multiplier: 1, constant: 0)
-        let heightConstraint = NSLayoutConstraint.init(item: medal, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: stackview, attribute: NSLayoutConstraint.Attribute.height, multiplier: 1, constant: 0)
+        let leadingConstraint = NSLayoutConstraint.init(item: medal,
+                                                        attribute: NSLayoutConstraint.Attribute.leading,
+                                                        relatedBy: NSLayoutConstraint.Relation.equal,
+                                                        toItem: stackview,
+                                                        attribute: NSLayoutConstraint.Attribute.trailing,
+                                                        multiplier: 1, constant: stackViewSizeInfo.rightAlign)
+        let topConstraint = NSLayoutConstraint.init(item: medal,
+                                                    attribute: NSLayoutConstraint.Attribute.top,
+                                                    relatedBy: NSLayoutConstraint.Relation.equal,
+                                                    toItem: stackview,
+                                                    attribute: NSLayoutConstraint.Attribute.top,
+                                                    multiplier: 1, constant: 0)
+        let widthConstraint = NSLayoutConstraint.init(item: medal,
+                                                      attribute: NSLayoutConstraint.Attribute.width,
+                                                      relatedBy: NSLayoutConstraint.Relation.equal,
+                                                      toItem: stackview,
+                                                      attribute: NSLayoutConstraint.Attribute.height,
+                                                      multiplier: 1, constant: 0)
+        let heightConstraint = NSLayoutConstraint.init(item: medal,
+                                                       attribute: NSLayoutConstraint.Attribute.height,
+                                                       relatedBy: NSLayoutConstraint.Relation.equal,
+                                                       toItem: stackview,
+                                                       attribute: NSLayoutConstraint.Attribute.height,
+                                                       multiplier: 1, constant: 0)
         NSLayoutConstraint.activate([leadingConstraint, topConstraint, widthConstraint, heightConstraint])
     }
     
     private func setUILabelDefaultConstraints2(label: UILabel, stackview: UIStackView, order: Int) -> [NSLayoutConstraint] {
         label.translatesAutoresizingMaskIntoConstraints = false
-        let leadingConstraint = NSLayoutConstraint.init(item: label, attribute: NSLayoutConstraint.Attribute.leading, relatedBy: NSLayoutConstraint.Relation.equal, toItem: stackview, attribute: NSLayoutConstraint.Attribute.leading, multiplier: 1, constant: 0)
-        let topConstraint = NSLayoutConstraint.init(item: label, attribute: NSLayoutConstraint.Attribute.bottom, relatedBy: NSLayoutConstraint.Relation.equal, toItem: stackview, attribute: NSLayoutConstraint.Attribute.top, multiplier: 1, constant: stackViewSizeInfo.spacingSize)
+        let leadingConstraint = NSLayoutConstraint.init(item: label,
+                                                        attribute: NSLayoutConstraint.Attribute.leading,
+                                                        relatedBy: NSLayoutConstraint.Relation.equal,
+                                                        toItem: stackview,
+                                                        attribute: NSLayoutConstraint.Attribute.leading,
+                                                        multiplier: 1, constant: 0)
+        let topConstraint = NSLayoutConstraint.init(item: label,
+                                                    attribute: NSLayoutConstraint.Attribute.bottom,
+                                                    relatedBy: NSLayoutConstraint.Relation.equal,
+                                                    toItem: stackview,
+                                                    attribute: NSLayoutConstraint.Attribute.top,
+                                                    multiplier: 1, constant: stackViewSizeInfo.spacingSize)
         return [leadingConstraint, topConstraint]
     }
-    
     
     private func addSegmentedControlTargetActionHandlers() {
         addPlayCardGameButtonHandler()
         addPlayerTypeSegmentedControlHandler()
         addGameTypeSegmentedControlHandler()
+    }
+    
+    private func addPlayCardGameButtonHandler() {
+        playButton.addTarget(self, action: #selector(playGame), for: .touchUpInside)
     }
     
     private func addPlayerTypeSegmentedControlHandler() {
@@ -198,7 +233,9 @@ class CardGameViewController: UIViewController {
     }
     
     private func addGameTypeSegmentedControlHandler() {
-        gameTypeSegmentedControl.addTarget(self, action: #selector(updateGameTypeInfoToStackView), for: .valueChanged)
+        gameTypeSegmentedControl.addTarget(self,
+                                           action: #selector(updateGameTypeInfoToStackView),
+                                           for: .valueChanged)
     }
     
     @objc func updateGameTypeInfoToStackView() {
@@ -215,29 +252,6 @@ class CardGameViewController: UIViewController {
             cardGameSizeInfo.cardSize = currentGameType.rawValue
             setDefaultStackviewListBySettings()
         }
-    }
-    private func removeMedalImage() {
-        medalImageView.forEach({ (imageView) in
-            imageView.removeFromSuperview()
-        })
-        medalImageView.removeAll()
-    }
-    private func removeCurrentStackViews() {
-        stackviewList.forEach { (stackview) in
-            stackview.removeFromSuperview()
-        }
-        stackviewList.removeAll()
-       
-    }
-    private func removeCurrentUILabels() {
-        uiLabelList.forEach { (label) in
-            label.removeFromSuperview()
-        }
-        uiLabelList.removeAll()
-    }
-    
-    private func addPlayCardGameButtonHandler() {
-        playButton.addTarget(self, action: #selector(playGame), for: .touchUpInside)
     }
     
     @objc func playGame() {
@@ -287,7 +301,9 @@ class CardGameViewController: UIViewController {
     }
     
     private func displayAlertInplace(_ error: GameMenuError) {
-        let alert = UIAlertController(title: BasicTextInfo.notifier, message: "\(error)", preferredStyle: UIAlertController.Style.alert)
+        let alert = UIAlertController(title: BasicTextInfo.notifier,
+                                      message: "\(error)",
+            preferredStyle: UIAlertController.Style.alert)
         let errorConfirmAction = UIAlertAction(title: BasicTextInfo.confirmation, style: .default, handler: nil)
         alert.addAction(errorConfirmAction)
         present(alert, animated: true, completion: nil)
@@ -325,15 +341,36 @@ class CardGameViewController: UIViewController {
         removeCurrentStackViews()
         removeCurrentUILabels()
     }
-   
+    
+    private func removeMedalImage() {
+        medalImageView.forEach({ (imageView) in
+            imageView.removeFromSuperview()
+        })
+        medalImageView.removeAll()
+    }
+    
+    private func removeCurrentStackViews() {
+        stackviewList.forEach { (stackview) in
+            stackview.removeFromSuperview()
+        }
+        stackviewList.removeAll()
+        
+    }
+    private func removeCurrentUILabels() {
+        uiLabelList.forEach { (label) in
+            label.removeFromSuperview()
+        }
+        uiLabelList.removeAll()
+    }
+    
     private func setConstraintOfUILableList(_ list: [UILabel], stackviewList: [UIStackView]) {
         var constraintList = [NSLayoutConstraint]()
         for index in 0..<list.endIndex{
             let eachDefaultConstraints = setUILabelDefaultConstraints(label: list[index],
                                                                       stackview: stackviewList[index],
                                                                       order: index)
-                eachDefaultConstraints.forEach { (eachNSLayoutConstraint) in
-                    constraintList.append(eachNSLayoutConstraint)
+            eachDefaultConstraints.forEach { (eachNSLayoutConstraint) in
+                constraintList.append(eachNSLayoutConstraint)
             }
         }
         NSLayoutConstraint.activate(constraintList)
@@ -341,8 +378,18 @@ class CardGameViewController: UIViewController {
     
     private func setUILabelDefaultConstraints(label: UILabel, stackview: UIStackView, order: Int) -> [NSLayoutConstraint] {
         label.translatesAutoresizingMaskIntoConstraints = false
-        let leadingConstraint = NSLayoutConstraint.init(item: label, attribute: NSLayoutConstraint.Attribute.leading, relatedBy: NSLayoutConstraint.Relation.equal, toItem: stackview, attribute: NSLayoutConstraint.Attribute.leading, multiplier: 1, constant: 0)
-        let topConstraint = NSLayoutConstraint.init(item: label, attribute: NSLayoutConstraint.Attribute.bottom, relatedBy: NSLayoutConstraint.Relation.equal, toItem: stackview, attribute: NSLayoutConstraint.Attribute.top, multiplier: 1, constant: stackViewSizeInfo.spacingSize)
+        let leadingConstraint = NSLayoutConstraint.init(item: label,
+                                                        attribute: NSLayoutConstraint.Attribute.leading,
+                                                        relatedBy: NSLayoutConstraint.Relation.equal,
+                                                        toItem: stackview,
+                                                        attribute: NSLayoutConstraint.Attribute.leading,
+                                                        multiplier: 1, constant: 0)
+        let topConstraint = NSLayoutConstraint.init(item: label,
+                                                    attribute: NSLayoutConstraint.Attribute.bottom,
+                                                    relatedBy: NSLayoutConstraint.Relation.equal,
+                                                    toItem: stackview,
+                                                    attribute: NSLayoutConstraint.Attribute.top,
+                                                    multiplier: 1, constant: stackViewSizeInfo.spacingSize)
         return [leadingConstraint, topConstraint]
     }
     
@@ -390,27 +437,58 @@ class CardGameViewController: UIViewController {
         for index in 1..<list.endIndex {
             let currentStackView = list[index]
             let previousStackView = list[index-1]
-            let verticalSpacingConstraint = NSLayoutConstraint.init(item: currentStackView, attribute: NSLayoutConstraint.Attribute.topMargin, relatedBy: NSLayoutConstraint.Relation.equal, toItem: previousStackView, attribute: NSLayoutConstraint.Attribute.bottomMargin, multiplier: 1, constant: height)
+            let verticalSpacingConstraint = NSLayoutConstraint.init(item: currentStackView,
+                                                                    attribute: NSLayoutConstraint.Attribute.topMargin,
+                                                                    relatedBy: NSLayoutConstraint.Relation.equal,
+                                                                    toItem: previousStackView,
+                                                                    attribute: NSLayoutConstraint.Attribute.bottomMargin,
+                                                                    multiplier: 1, constant: height)
             verticalSpacingConstraintList.append(verticalSpacingConstraint)
         }
         return verticalSpacingConstraintList
     }
     
     private func setFirstStackViewConstraints(_ firstStackView: UIStackView) -> [NSLayoutConstraint] {
-        let initialViewVerticalConstraint = NSLayoutConstraint.init(item: firstStackView, attribute: NSLayoutConstraint.Attribute.topMargin, relatedBy: NSLayoutConstraint.Relation.equal, toItem: playerTypeSementedControl, attribute: NSLayoutConstraint.Attribute.bottomMargin, multiplier: 1, constant: height)
-        let horizontalConstraint = NSLayoutConstraint.init(item: firstStackView, attribute: NSLayoutConstraint.Attribute.centerX, relatedBy: NSLayoutConstraint.Relation.equal, toItem: firstStackView.superview, attribute: NSLayoutConstraint.Attribute.centerX, multiplier: 1, constant: stackViewSizeInfo.leftAlign)
+        let initialViewVerticalConstraint = NSLayoutConstraint.init(item: firstStackView,
+                                                                    attribute: NSLayoutConstraint.Attribute.topMargin,
+                                                                    relatedBy: NSLayoutConstraint.Relation.equal,
+                                                                    toItem: playerTypeSementedControl,
+                                                                    attribute: NSLayoutConstraint.Attribute.bottomMargin,
+                                                                    multiplier: 1, constant: height)
+        let horizontalConstraint = NSLayoutConstraint.init(item: firstStackView,
+                                                           attribute: NSLayoutConstraint.Attribute.centerX,
+                                                           relatedBy: NSLayoutConstraint.Relation.equal,
+                                                           toItem: firstStackView.superview,
+                                                           attribute: NSLayoutConstraint.Attribute.centerX,
+                                                           multiplier: 1, constant: stackViewSizeInfo.leftAlign)
         return [initialViewVerticalConstraint, horizontalConstraint]
     }
     
     private func setStackviewDefaultConstraints(_ stackview: UIStackView, order: Int) -> [NSLayoutConstraint] {
         stackview.translatesAutoresizingMaskIntoConstraints = false
         stackview.spacing = stackViewSizeInfo.spacingSize
-        let horizontalConstraint = NSLayoutConstraint.init(item: stackview, attribute: NSLayoutConstraint.Attribute.centerX, relatedBy: NSLayoutConstraint.Relation.equal, toItem: stackview.superview, attribute: NSLayoutConstraint.Attribute.centerX, multiplier: 1, constant: stackViewSizeInfo.leftAlign)
-        let widthConstraint = NSLayoutConstraint.init(item: stackview, attribute: NSLayoutConstraint.Attribute.width, relatedBy: NSLayoutConstraint.Relation.equal, toItem: stackview.superview, attribute: NSLayoutConstraint.Attribute.width, multiplier: 0, constant: stackViewSizeInfo.width)
-        let heightConstraint = NSLayoutConstraint.init(item: stackview, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: stackview, attribute:  NSLayoutConstraint.Attribute.width, multiplier: (cardGameSizeInfo.ratio/CGFloat(cardGameSizeInfo.cardSize)), constant: cardGameSizeInfo.bufferSize)
+        let horizontalConstraint = NSLayoutConstraint.init(item: stackview,
+                                                           attribute: NSLayoutConstraint.Attribute.centerX,
+                                                           relatedBy: NSLayoutConstraint.Relation.equal,
+                                                           toItem: stackview.superview,
+                                                           attribute: NSLayoutConstraint.Attribute.centerX,
+                                                           multiplier: 1, constant: stackViewSizeInfo.leftAlign)
+        let widthConstraint = NSLayoutConstraint.init(item: stackview,
+                                                      attribute: NSLayoutConstraint.Attribute.width,
+                                                      relatedBy: NSLayoutConstraint.Relation.equal,
+                                                      toItem: stackview.superview,
+                                                      attribute: NSLayoutConstraint.Attribute.width,
+                                                      multiplier: 0, constant: stackViewSizeInfo.width)
+        let heightConstraint = NSLayoutConstraint.init(item: stackview,
+                                                       attribute: NSLayoutConstraint.Attribute.height,
+                                                       relatedBy: NSLayoutConstraint.Relation.equal,
+                                                       toItem: stackview,
+                                                       attribute:  NSLayoutConstraint.Attribute.width,
+                                                       multiplier: (cardGameSizeInfo.ratio/CGFloat(cardGameSizeInfo.cardSize)),
+                                                       constant: cardGameSizeInfo.bufferSize)
         return [horizontalConstraint, widthConstraint, heightConstraint]
     }
-
+    
     private func addUILabelList(_ list: [UILabel]) {
         list.forEach { (label) in
             view.addSubview(label)
@@ -450,6 +528,13 @@ class CardGameViewController: UIViewController {
         gameTypeSegmentedControl.insertSegment(withTitle: GameType.sevenCard.description, at: 0, animated: true)
     }
     
+    private func createGameTypeSegmentedControlRectSize() -> CGRect {
+        return  CGRect.init(x: segmentControlsSizeInfo.xCoordinate,
+                            y: segmentControlsSizeInfo.yCoordinateFirst,
+                            width: segmentControlsSizeInfo.width,
+                            height: segmentControlsSizeInfo.height)
+    }
+    
     private func setPlayerTypeSegmentedControlRectSize() {
         let playerTypeSegmentedControlRectSize = createPlayerTypeSegmentedControlRectSize()
         playerTypeSementedControl = UISegmentedControl.init(frame: playerTypeSegmentedControlRectSize)
@@ -458,13 +543,6 @@ class CardGameViewController: UIViewController {
         playerTypeSementedControl.insertSegment(withTitle: PlayerType.four.description, at: 0, animated: true)
         playerTypeSementedControl.insertSegment(withTitle: PlayerType.three.description, at: 0, animated: true)
         playerTypeSementedControl.insertSegment(withTitle: PlayerType.two.description, at: 0, animated: true)
-    }
-    
-    private func createGameTypeSegmentedControlRectSize() -> CGRect {
-        return  CGRect.init(x: segmentControlsSizeInfo.xCoordinate,
-                            y: segmentControlsSizeInfo.yCoordinateFirst,
-                            width: segmentControlsSizeInfo.width,
-                            height: segmentControlsSizeInfo.height)
     }
     
     private func createPlayerTypeSegmentedControlRectSize() -> CGRect {
