@@ -8,19 +8,21 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class CardGameViewController: UIViewController {
     private var dataController: DataController!
     
     private var cardSizeInfo = CardSizeInfo()
     private var initialRectSize = InitialRectSize()
     private var stackViewSizeInfo = StackViewSizeInfo()
     private var segmentControlsSizeInfo = SegmentControlsSizeInfo()
+    private var playButtonSizeInfo = PlayButtonSizeInfo()
     private let verticalConstant: CGFloat = 200
     private lazy var stackview = UIStackView.init(frame: initialRectSize.basicCGRect)
     private lazy var stackviewList = [UIStackView]()
     private lazy var doubleStackView = UIStackView.init(frame: initialRectSize.basicCGRect)
     private lazy var gameTypeSegmentedControl = UISegmentedControl.init(frame: initialRectSize.basicCGRect)
     private lazy var playerTypeSementedControl = UISegmentedControl.init(frame: initialRectSize.basicCGRect)
+    private lazy var playButton: UIButton = UIButton.init(frame: initialRectSize.basicCGRect)
     var height: CGFloat {
         return CGFloat((stackViewSizeInfo.width-stackViewSizeInfo.marginSpace * CGFloat(cardSizeInfo.cardSize))
             / CGFloat(cardSizeInfo.cardSize)) * cardSizeInfo.ratio
@@ -43,6 +45,14 @@ class ViewController: UIViewController {
         let width: CGFloat = 160
         let height: CGFloat = 30
     }
+    struct PlayButtonSizeInfo {
+        let xCoordinate: CGFloat = 120
+        let yCoordinateFirst: CGFloat = 50
+        let width: CGFloat = 160
+        let height: CGFloat = 30
+        let backgroundColor: UIColor = .cyan
+        let tintColor: UIColor = .red
+    }
     private struct InitialRectSize {
         var basicCGRect: CGRect = CGRect.init(x: 1, y: 1, width: 100, height: 30)
     }
@@ -57,14 +67,34 @@ class ViewController: UIViewController {
         stackViewSizeInfo.width = view.frame.width * stackViewSizeInfo.widthProportion
         gameTypeSegmentedControl = UISegmentedControl.init(frame: initialRectSize.basicCGRect)
         playerTypeSementedControl = UISegmentedControl.init(frame: initialRectSize.basicCGRect)
-        
+        setButton()
         setSegmentedControls()
         setStackviewList()
+        addSegmentedControlTargetActionHandlers()
     }
-    
-    private func setStackviewList(){
-        let num = 4
-        for _ in 0..<num {
+    private func addSegmentedControlTargetActionHandlers(){
+        addPlayerTypeSementedControlEventHandler()
+        addGameTypeSegmentedControlEventHandler()
+    }
+    private func addPlayerTypeSementedControlEventHandler(){
+        playerTypeSementedControl.addTarget(self, action: #selector(setPlayerTypeOfCardPlay), for: .valueChanged)
+    }
+    private func addGameTypeSegmentedControlEventHandler(){
+        gameTypeSegmentedControl.addTarget(self, action: #selector(setGameTypeOfCardPlay), for: .valueChanged)
+    }
+    @objc func setPlayerTypeOfCardPlay(_ sender: UISegmentedControl){
+
+    }
+    @objc func setGameTypeOfCardPlay(_ sender: UISegmentedControl){
+        guard let title = sender.titleForSegment(at: sender.selectedSegmentIndex) else {
+            return
+        }
+        dataController.play(playerType: .four, gameType: .sevenCard)
+        
+    }
+    private func setStackviewList(_ number: Int = 4){
+        let numberOfPlayer = number
+        for _ in 0..<numberOfPlayer {
             let rect = CGRect(x: 0, y: 0, width: stackViewSizeInfo.width, height: height)
             let stackview = UIStackView.init(frame: rect)
             stackviewList.append(stackview)
@@ -116,11 +146,22 @@ class ViewController: UIViewController {
         let horizontalConstraint = NSLayoutConstraint.init(item: firstStackView, attribute: NSLayoutConstraint.Attribute.centerX, relatedBy: NSLayoutConstraint.Relation.equal, toItem: firstStackView.superview, attribute: NSLayoutConstraint.Attribute.centerX, multiplier: 1, constant: stackViewSizeInfo.leftAlign)
         return [initialViewVerticalConstraint, horizontalConstraint]
     }
-    
+
     private func addStackViewList(_ list: [UIStackView]){
         list.forEach { (stackview) in
             view.addSubview(stackview)
         }
+    }
+    private func setButton(){
+        let playButtonRectSize = CGRect.init(x: playButtonSizeInfo.xCoordinate,
+                                             y: playButtonSizeInfo.yCoordinateFirst,
+                                             width: playButtonSizeInfo.width,
+                                             height: playButtonSizeInfo.height)
+        playButton = UIButton.init(frame: playButtonRectSize)
+        playButton.tintColor = playButtonSizeInfo.tintColor
+        playButton.backgroundColor = playButtonSizeInfo.backgroundColor
+        playButton.setTitle("Play", for: .normal)
+        view.addSubview(playButton)
     }
     
     private func setSegmentedControls(){

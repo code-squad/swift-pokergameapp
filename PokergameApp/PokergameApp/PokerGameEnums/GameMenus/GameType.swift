@@ -22,6 +22,16 @@ enum GameType: Int, CustomStringConvertible {
             throw GameMenuError.outOfRangeMenu
         }
     }
+    init (_ segmentedControlTitle: String) throws  {
+        switch segmentedControlTitle {
+        case "7 Cards":
+            self = .sevenCard
+        case "5 Cards":
+            self = .fiveCard
+        default:
+            throw GameMenuError.outOfRangeMenu
+        }
+    }
     var description: String {
         switch self {
         case .sevenCard:
