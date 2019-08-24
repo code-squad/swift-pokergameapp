@@ -170,3 +170,53 @@ Pixel == Point ?
 - https://zeddios.tistory.com/6
 - [MAC 에서의 포인트(pt)와 픽셀(px)의 관계 - 1x 2x 3x](https://zeddios.tistory.com/26)
 
+
+
+
+
+
+
+
+
+
+
+## STEP 2
+
+### 결과화면
+
+<img src="./images/step2/result.gif" width="300px">
+
+
+
+### 주요 구현사항 및 학습내용
+
+- **STEP 9 카드게임 리팩토링**
+
+  - Player / Dealer 구분 및 프로토콜 추가
+    - `extension`으로 채택 프로토콜 별 준수사항(메서드 구현) 분리
+  - System에 의해서가 아닌 Dealer에 의한 카드배분으로 수정
+
+  
+
+- UIStoryboard 없이 **코드레벨에서만 UIComponents  생성**
+
+  - autoLayout을 NSLayoutConstraint으로 생성
+  - Stackview
+  - UILabel
+  - UISegmentedControl 
+  - 게임 유형과 참여인원 값을 변경할 때마다 뷰가 변하도록 이벤트 핸들러 추가
+
+  
+
+- ViewController와 Model을 담는 **DataController 분리**
+
+  - DataController는 ViewController의 프로퍼티로 존재
+  - AppDelegate에서 setter Injection으로 DataController 를 ViewController에 주입
+  - Target-Action으로 View -> Controller 이벤트 전달
+  - Model -> Controller 업데이트 내역 전달은 NotificationCenter 활용하여 구현
+
+  
+
+- 기타 
+
+  - 변수 값 하드코딩을 가급적 줄이기 위해 클래스 내부 구조체나 static 변수를 담은 구조체들을 생성하여 관리
