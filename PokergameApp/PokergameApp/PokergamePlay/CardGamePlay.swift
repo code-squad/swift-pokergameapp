@@ -25,7 +25,7 @@ struct CardGamePlay {
         }
         dealer.distributeCards(players, gameType: gameType)
         let userInfo = ["players" : players]
-        NotificationCenter.default.post(name: .updateCardList, object: dealer, userInfo: userInfo)
+        NotificationCenter.default.post(name: .updateCardList, object: nil, userInfo: userInfo)
         guard let winner = GameResult.init(players)?.selectWinnerName() else {
             return nil
         }
