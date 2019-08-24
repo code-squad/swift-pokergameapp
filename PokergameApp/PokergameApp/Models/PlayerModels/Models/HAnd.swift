@@ -40,7 +40,7 @@ struct Hand {
         myCardDeck.append(card)
     }
     
-    func printFormat( format: ([Card])->Void ) {
+    func printFormat(format: ([Card])->Void ) {
         format(myCardDeck)
     }
     mutating func clear(){

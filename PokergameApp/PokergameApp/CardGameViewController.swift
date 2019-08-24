@@ -41,24 +41,26 @@ class CardGameViewController: UIViewController {
         var spacingSize: CGFloat = -10
     }
     
-    struct SegmentControlsSizeInfo {
+    private struct SegmentControlsSizeInfo {
         let xCoordinate: CGFloat = 126
         let yCoordinateFirst: CGFloat = 100
         let yCoordinateSecond: CGFloat = 150
         let width: CGFloat = 160
         let height: CGFloat = 30
     }
-    struct PlayButtonSizeInfo {
+    private struct PlayButtonSizeInfo {
         let xCoordinate: CGFloat = 120
         let yCoordinateFirst: CGFloat = 50
         let width: CGFloat = 160
         let height: CGFloat = 30
-        let backgroundColor: UIColor = .cyan
+        let backgroundColor: UIColor = .brown
         let tintColor: UIColor = .red
     }
     private struct InitialRectSize {
         var basicCGRect: CGRect = CGRect.init(x: 1, y: 1, width: 100, height: 30)
     }
+    
+    /// setter Injection
     func configureData(_ dataController: DataController) {
         self.dataController = dataController
     }
@@ -90,7 +92,7 @@ class CardGameViewController: UIViewController {
     
     @objc func updateCardList(_ notification: Notification) {
         guard let userInfo = notification.userInfo as? [String: [Player]],
-            let players = userInfo["players"] as? [Player] else {
+            let players = userInfo["players"] else {
             displayAlertInplace(.systemError)
             return
         }
@@ -104,8 +106,23 @@ class CardGameViewController: UIViewController {
             hand.printFormat(format: innerFormat)
             print()
         }
+        
         players.forEach { (player) in
             player.receivePrintFormat(format)
+        }
+        for index in 0..<self.stackviewList.endIndex {
+            let imageFormat = { (name: String, hand: Hand) in 
+                guard let subViews = self.stackviewList[index].arrangedSubviews as? [UIImageView] else {
+                    return
+                }
+                let innerFormat = { (deck: [Card]) in
+                    for index in 0..<deck.endIndex {
+                        subViews[index].image = UIImage.init(named: "\(deck[index].description).png")
+                    }
+                }
+                hand.printFormat(format: innerFormat)
+            }
+            players[index].receivePrintFormat(imageFormat)
         }
     }
     
@@ -239,16 +256,37 @@ class CardGameViewController: UIViewController {
             let rect = CGRect(x: 0, y: 0, width: stackViewSizeInfo.width, height: height)
             let stackview = UIStackView.init(frame: rect)
             stackviewList.append(stackview)
+            
+            uiLabelList.append(UILabel.init(frame: rect))
         }
+        setUILabels(uiLabelList)
         setImageViewsInStackViewList(stackviewList)
         addStackViewList(stackviewList)
         setConstraintOfStackViewList(stackviewList)
     }
-    
+    private func setUILabels(_ list : [UILabel]){
+        for index in 0..<list.endIndex{
+            
+        }
+    }
     private func setImageViewsInStackViewList(_ list: [UIStackView]){
         for index in 0..<list.endIndex{
             addImageViewsInStackView(list[index], order: index)
         }
+    }
+    
+    private func addImageViewsInStackView(_ stackview: UIStackView, order: Int){
+        let imageWidth = (initialRectSize.basicCGRect.width - stackViewSizeInfo.marginSpace
+            * CGFloat(cardGameSizeInfo.cardSize))/CGFloat(cardGameSizeInfo.cardSize)
+        let imageHeight = height
+        for _ in 0..<cardGameSizeInfo.cardSize  {
+            let currentCardRect = CGRect.init(x: 0, y: 0, width: imageWidth, height: imageHeight)
+            let uiImageView = UIImageView.init(frame: currentCardRect)
+            uiImageView.image = UIImage.init(named: ImageInfo.cardBack)
+            stackview.addArrangedSubview(uiImageView)
+        }
+        stackview.distribution = .fillEqually
+        stackview.spacing = stackViewSizeInfo.marginSpace
     }
     
     private func setConstraintOfStackViewList(_ list: [UIStackView]){
@@ -361,19 +399,6 @@ class CardGameViewController: UIViewController {
         view.backgroundColor = UIColor.init(patternImage: backgroundPatternImage)
     }
     
-    private func addImageViewsInStackView(_ stackview: UIStackView, order: Int){
-        let imageWidth = (initialRectSize.basicCGRect.width - stackViewSizeInfo.marginSpace
-            * CGFloat(cardGameSizeInfo.cardSize))/CGFloat(cardGameSizeInfo.cardSize)
-        let imageHeight = height
-        for _ in 0..<cardGameSizeInfo.cardSize  {
-            let currentCardRect = CGRect.init(x: 0, y: 0, width: imageWidth, height: imageHeight)
-            let uiImageView = UIImageView.init(frame: currentCardRect)
-            uiImageView.image = UIImage.init(named: ImageInfo.cardBack)
-            stackview.addArrangedSubview(uiImageView)
-        }
-        stackview.distribution = .fillEqually
-        stackview.spacing = stackViewSizeInfo.marginSpace
-    }
     
  
     
