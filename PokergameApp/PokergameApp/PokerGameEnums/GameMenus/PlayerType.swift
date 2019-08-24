@@ -25,6 +25,18 @@ enum PlayerType: Int, CustomStringConvertible {
             throw GameMenuError.outOfRangeMenu
         }
     }
+    init (_ segmentedControlTitle: String) throws {
+        switch segmentedControlTitle {
+        case "2명":
+            self = .two
+        case "3명":
+            self = .three
+        case "4명":
+            self = .four
+        default:
+            throw GameMenuError.outOfRangeMenu
+        }
+    }
     var description: String {
         switch self {
         case .two:
