@@ -8,12 +8,21 @@
 
 import Foundation
 
+extension Notification.Name {
+    static let notifyWinner = Notification.Name(rawValue: "notifyWinner")
+}
+
 class DataController {
-    private var cardGamePlay = CardGamePlay(number: PlayerType.three, gameType: .sevenCard)
+    private var cardGamePlay = CardGamePlay(number: .three, gameType: .sevenCard)
     
-    init(playStyle: CardGamePlay){
-        cardGamePlay = playStyle
+    init(){}
+    func play(playerType: PlayerType, gameType: GameType){
+        cardGamePlay = CardGamePlay.init(number: playerType, gameType: gameType)
+        guard let winner = cardGamePlay.playGame() else {
+            return
+        }
+        var userInfo = [String: GameWinner]()
+        userInfo.updateValue(winner, forKey: "result")
+        NotificationCenter.default.post(name: .notifyWinner, object: nil, userInfo: userInfo)
     }
-    
-    
 }
