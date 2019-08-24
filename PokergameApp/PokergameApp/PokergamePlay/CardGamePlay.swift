@@ -9,7 +9,9 @@
 import Foundation
 
 
-
+extension Notification.Name {
+    static let updateCardList = Notification.Name(rawValue: "updateCardList")
+}
 
 struct CardGamePlay {
     var dealer = Dealer.init()
@@ -22,6 +24,8 @@ struct CardGamePlay {
             player.resetHand()
         }
         dealer.distributeCards(players, gameType: gameType)
+        let userInfo = ["players" : players]
+        NotificationCenter.default.post(name: .updateCardList, object: dealer, userInfo: userInfo)
         guard let winner = GameResult.init(players)?.selectWinnerName() else {
             return nil
         }
