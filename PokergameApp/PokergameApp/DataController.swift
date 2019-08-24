@@ -26,3 +26,4 @@ class DataController {
         NotificationCenter.default.post(name: .notifyWinner, object: nil, userInfo: userInfo)
     }
 }
+
