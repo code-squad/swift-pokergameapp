@@ -31,8 +31,9 @@ class CardGameViewController: UIViewController {
     
     private struct CardGameSizeInfo {
         var cardSize = 7
-        var playerSize = 5
+        var playerSize = 4
         let ratio: CGFloat = 1.27
+        let bufferSize: CGFloat = 10
     }
     
     private struct StackViewSizeInfo {
@@ -400,7 +401,7 @@ class CardGameViewController: UIViewController {
         stackview.spacing = stackViewSizeInfo.spacingSize
         let horizontalConstraint = NSLayoutConstraint.init(item: stackview, attribute: NSLayoutConstraint.Attribute.centerX, relatedBy: NSLayoutConstraint.Relation.equal, toItem: stackview.superview, attribute: NSLayoutConstraint.Attribute.centerX, multiplier: 1, constant: stackViewSizeInfo.leftAlign)
         let widthConstraint = NSLayoutConstraint.init(item: stackview, attribute: NSLayoutConstraint.Attribute.width, relatedBy: NSLayoutConstraint.Relation.equal, toItem: stackview.superview, attribute: NSLayoutConstraint.Attribute.width, multiplier: 0, constant: stackViewSizeInfo.width)
-        let heightConstraint = NSLayoutConstraint.init(item: stackview, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: stackview.superview, attribute:  NSLayoutConstraint.Attribute.height, multiplier: 0, constant: height)
+        let heightConstraint = NSLayoutConstraint.init(item: stackview, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: stackview, attribute:  NSLayoutConstraint.Attribute.width, multiplier: (cardGameSizeInfo.ratio/CGFloat(cardGameSizeInfo.cardSize)), constant: cardGameSizeInfo.bufferSize)
         return [horizontalConstraint, widthConstraint, heightConstraint]
     }
 
