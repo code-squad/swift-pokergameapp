@@ -56,84 +56,42 @@ class CardGameViewController: UIViewController {
     private struct InitialRectSize {
         var basicCGRect: CGRect = CGRect.init(x: 1, y: 1, width: 100, height: 30)
     }
-    func configureData(_ dataController: DataController){
+    private func configureData(_ dataController: DataController){
         self.dataController = dataController
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setBackgroundPatternImage()
-
+        
         stackViewSizeInfo.width = view.frame.width * stackViewSizeInfo.widthProportion
         gameTypeSegmentedControl = UISegmentedControl.init(frame: initialRectSize.basicCGRect)
         playerTypeSementedControl = UISegmentedControl.init(frame: initialRectSize.basicCGRect)
-        
         setButton()
         setSegmentedControls()
         setStackviewList()
-        
         addSegmentedControlTargetActionHandlers()
-        addNotificationObservers()
-    }
-    
-    private func addNotificationObservers(){
-        NotificationCenter.default.addObserver(self, selector: #selector(updateWinner), name: .notifyWinner, object: nil)
-    }
-    
-    @objc func updateWinner(_ notification: Notification){
-        guard let userInfo = notification.userInfo as? [String: GameWinner],
-            let winner = userInfo["result"] as? GameWinner else {
-            displayAlertInplace(.systemError)
-            return
-        }
-        updateMedalNextToWinnerDeck(winner)
-    }
-    private func updateMedalNextToWinnerDeck(_ winner: GameWinner){
-        
     }
     private func addSegmentedControlTargetActionHandlers(){
-        addPlayCardGameHandler()
+        addPlayerTypeSementedControlEventHandler()
+        addGameTypeSegmentedControlEventHandler()
     }
+    private func addPlayerTypeSementedControlEventHandler(){
+        playerTypeSementedControl.addTarget(self, action: #selector(setPlayerTypeOfCardPlay), for: .valueChanged)
+    }
+    private func addGameTypeSegmentedControlEventHandler(){
+        gameTypeSegmentedControl.addTarget(self, action: #selector(setGameTypeOfCardPlay), for: .valueChanged)
+    }
+    @objc func setPlayerTypeOfCardPlay(_ sender: UISegmentedControl){
 
-    private func addPlayCardGameHandler(){
-        playButton.addTarget(self, action: #selector(playGame), for: .touchUpInside)
     }
-    
-    @objc func playGame(){
-        if checkAllControlsSelected() {
-            guard let playerType = playerTypeSementedControl.titleForSegment(at:
-                playerTypeSementedControl.selectedSegmentIndex) else {
-                    return
-            }
-            guard let gameType = gameTypeSegmentedControl.titleForSegment(at:
-                gameTypeSegmentedControl.selectedSegmentIndex) else {
-                    return
-            }
-            guard let currentPlayerType = try? PlayerType.init(playerType) else { return }
-            guard let currentGameType = try? GameType.init(gameType) else { return }
-            dataController.play(playerType: currentPlayerType, gameType: currentGameType)
+    @objc func setGameTypeOfCardPlay(_ sender: UISegmentedControl){
+        guard let title = sender.titleForSegment(at: sender.selectedSegmentIndex) else {
+            return
         }
+        dataController.play(playerType: .four, gameType: .sevenCard)
+        
     }
-    
-    private func checkAllControlsSelected() -> Bool {
-        if playerTypeSementedControl.selectedSegmentIndex < 0 {
-            displayAlertInplace(.selectedGamePlayersAbsence)
-            return false
-        }
-        if gameTypeSegmentedControl.selectedSegmentIndex < 0 {
-            displayAlertInplace(.selectedGamePlayersAbsence)
-            return false
-        }
-        return true
-    }
-    
-    private func displayAlertInplace(_ error: GameMenuError) {
-        let alert = UIAlertController(title: "알림", message: "\(error)", preferredStyle: UIAlertController.Style.alert)
-        let errorConfirmAction = UIAlertAction(title:"확인", style: .default, handler: nil)
-        alert.addAction(errorConfirmAction)
-        present(alert, animated: true, completion: nil)
-    }
-    
     private func setStackviewList(_ number: Int = 4){
         let numberOfPlayer = number
         for _ in 0..<numberOfPlayer {
@@ -141,6 +99,7 @@ class CardGameViewController: UIViewController {
             let stackview = UIStackView.init(frame: rect)
             stackviewList.append(stackview)
         }
+        
         setImageViewsInStackViewList(stackviewList)
         addStackViewList(stackviewList)
         setConstraintOfStackViewList(stackviewList)
@@ -282,5 +241,6 @@ class CardGameViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
+    
 }
 
