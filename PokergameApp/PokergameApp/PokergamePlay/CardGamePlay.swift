@@ -24,7 +24,7 @@ struct CardGamePlay {
             player.resetHand()
         }
         dealer.distributeCards(players, gameType: gameType)
-        let userInfo = ["players" : players]
+        let userInfo = [DictionaryKeys.players : players]
         NotificationCenter.default.post(name: .updateCardList, object: nil, userInfo: userInfo)
         guard let winner = GameResult.init(players)?.selectWinnerName() else {
             return nil
@@ -36,7 +36,7 @@ struct CardGamePlay {
         self.playerCount = number
         self.gameType = gameType
         for index in 1..<playerCount.rawValue {
-            let player = Player.init("Player\(index)")
+            let player = Player.init("\(BasicTextInfo.player)\(index)")
             players.append(player)
         }
         players.append(dealer)
