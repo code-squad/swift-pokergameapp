@@ -95,22 +95,8 @@ class CardGameViewController: UIViewController {
             displayAlertInplace(.systemError)
             return
         }
-        let format = { (name: String, hand: Hand) in
-            print("\(name):", terminator: " ")
-            let innerFormat = { (deck: [Card]) in
-                deck.forEach({ (card) in
-                    print(card.description, terminator: " ")
-                })
-            }
-            hand.printFormat(format: innerFormat)
-            print()
-        }
-        
-        players.forEach { (player) in
-            player.receivePrintFormat(format)
-        }
         for index in 0..<self.stackviewList.endIndex {
-            let imageFormat = { (name: String, hand: Hand) in 
+            let playerInfoFormat = { (name: String, hand: Hand) in
                 guard let subViews = self.stackviewList[index].arrangedSubviews as? [UIImageView] else {
                     return
                 }
@@ -120,8 +106,9 @@ class CardGameViewController: UIViewController {
                     }
                 }
                 hand.printFormat(format: innerFormat)
+                self.uiLabelList[index].text = name
             }
-            players[index].receivePrintFormat(imageFormat)
+            players[index].receivePrintFormat(playerInfoFormat)
         }
     }
     
@@ -262,11 +249,7 @@ class CardGameViewController: UIViewController {
             let rect = CGRect(x: 0, y: 0, width: stackViewSizeInfo.width, height: height)
             let stackview = UIStackView.init(frame: rect)
             stackviewList.append(stackview)
-            let basicLabel = UILabel.init(frame: rect)
-            basicLabel.text = "Player"
-            basicLabel.textColor = .white
-            basicLabel.backgroundColor = .black
-            basicLabel.textAlignment = .left
+            let basicLabel = createBasicUILabel(rect)
             uiLabelList.append(basicLabel)
         }
         setImageViewsInStackViewList(stackviewList)
@@ -274,6 +257,15 @@ class CardGameViewController: UIViewController {
         addUILabelList(uiLabelList)
         setConstraintOfStackViewList(stackviewList)
         setConstraintOfUILableList(uiLabelList, stackviewList: stackviewList)
+    }
+    
+    private func createBasicUILabel(_ cgRect: CGRect) -> UILabel {
+        let basicLabel = UILabel.init(frame: cgRect)
+        basicLabel.text = "Player"
+        basicLabel.textColor = .white
+        basicLabel.backgroundColor = .black
+        basicLabel.textAlignment = .left
+        return basicLabel
     }
     
     private func removeCurrentUIComponents(){
