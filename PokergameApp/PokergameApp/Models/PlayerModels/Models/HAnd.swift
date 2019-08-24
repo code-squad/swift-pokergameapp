@@ -21,7 +21,7 @@ struct OrderedHandSet {
             rhs: (key: Int, value: [CardType])) -> Bool in
             return lhs.key < rhs.key
         }
-        result.map { (element: (key: Int, value: [CardType])) in
+        result.forEach{ (element: (key: Int, value: [CardType])) in
             self.orderedKeyList.append(element.key)
             self.orderedCardTypeList.append(element.value)
         }
