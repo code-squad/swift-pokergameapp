@@ -51,7 +51,8 @@ struct Hand {
         })
     }
     
-    func calculateEachPlayerHand() -> Int{
+    mutating func calculateEachPlayerHand() -> Int{
+        sortOwnDeck()
         var maxScore = myCardDeck[myCardDeck.count-1].number.rawValue * CardScore.highCard.weightedScoreValue
         guard let orderedHandSet = getOrderedHandSet() else{
             return maxScore

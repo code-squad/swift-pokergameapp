@@ -9,7 +9,6 @@
 import Foundation
 
 protocol Playable {
-    func sortOwnHand()
     func receiveCard(_ card: Card)
     func receivePrintFormat(_ format: (_ name: String, _ hand: Hand ) -> Void )
     func resetHand()

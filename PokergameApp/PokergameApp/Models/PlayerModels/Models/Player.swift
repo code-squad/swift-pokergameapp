@@ -31,10 +31,6 @@ extension Player: Playable{
         self.myHand.clear()
     }
     
-    func sortOwnHand(){
-        self.myHand.sortOwnDeck()
-    }
-    
     func receiveCard(_ card: Card){
         myHand.receiveCard(card)
     }
