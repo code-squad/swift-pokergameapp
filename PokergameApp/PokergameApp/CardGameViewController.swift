@@ -302,10 +302,8 @@ class CardGameViewController: UIViewController {
         let numberOfPlayer = cardGameSizeInfo.playerSize
         for _ in 0..<numberOfPlayer {
             let rect = CGRect(x: 0, y: 0, width: stackViewSizeInfo.width, height: height)
-            let stackview = UICardStackView.init(frame: rect,
-                                                 number: cardGameSizeInfo.cardSize,
-                                                 stackViewSizeInfo: stackViewSizeInfo,
-                                                 height: height)
+            let stackview = UICardStackView.init(frame: rect)
+            stackview.configure(stackViewSizeInfo: stackViewSizeInfo, cardSize: cardGameSizeInfo.cardSize)
             stackviewList.append(stackview)
             let basicLabel = createBasicUILabel(rect)
             uiLabelList.append(basicLabel)
