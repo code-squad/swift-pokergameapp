@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C507FE6C2313CA4B002AC86D /* SizeInfoStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = C507FE6A2313CA4A002AC86D /* SizeInfoStructs.swift */; };
+		C507FE6D2313CA4B002AC86D /* UICardStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C507FE6B2313CA4B002AC86D /* UICardStackView.swift */; };
 		C52FBE4623116DD800E9D4F9 /* DrawCardError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C52FBE4523116DD800E9D4F9 /* DrawCardError.swift */; };
 		C548618F230415A400F6555C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C548618E230415A400F6555C /* AppDelegate.swift */; };
 		C5486191230415A400F6555C /* CardGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5486190230415A400F6555C /* CardGameViewController.swift */; };
@@ -34,6 +36,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C507FE6A2313CA4A002AC86D /* SizeInfoStructs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SizeInfoStructs.swift; sourceTree = "<group>"; };
+		C507FE6B2313CA4B002AC86D /* UICardStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICardStackView.swift; sourceTree = "<group>"; };
 		C52FBE4523116DD800E9D4F9 /* DrawCardError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawCardError.swift; sourceTree = "<group>"; };
 		C548618B230415A400F6555C /* PokergameApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PokergameApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C548618E230415A400F6555C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -96,6 +100,8 @@
 				C548618E230415A400F6555C /* AppDelegate.swift */,
 				C5486190230415A400F6555C /* CardGameViewController.swift */,
 				C59ABA84230EA9D300FB2DBE /* DataController.swift */,
+				C507FE6B2313CA4B002AC86D /* UICardStackView.swift */,
+				C507FE6A2313CA4A002AC86D /* SizeInfoStructs.swift */,
 				C5C279DA230A720B009C7FE6 /* ImageInfo.swift */,
 				C5486192230415A400F6555C /* Main.storyboard */,
 				C5486195230415A600F6555C /* Assets.xcassets */,
@@ -282,6 +288,7 @@
 				C59ABA85230EA9D300FB2DBE /* DataController.swift in Sources */,
 				C5C279DB230A720B009C7FE6 /* ImageInfo.swift in Sources */,
 				C59ABA76230EA54000FB2DBE /* Player.swift in Sources */,
+				C507FE6D2313CA4B002AC86D /* UICardStackView.swift in Sources */,
 				C59ABA80230EA54000FB2DBE /* GameMenuError.swift in Sources */,
 				C59ABA79230EA54000FB2DBE /* GameType.swift in Sources */,
 				C59ABA7D230EA54000FB2DBE /* CardType.swift in Sources */,
@@ -295,6 +302,7 @@
 				C59ABA7E230EA54000FB2DBE /* CardNumber.swift in Sources */,
 				C59ABA81230EA54000FB2DBE /* GameResult.swift in Sources */,
 				C59ABA72230EA54000FB2DBE /* Card.swift in Sources */,
+				C507FE6C2313CA4B002AC86D /* SizeInfoStructs.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
