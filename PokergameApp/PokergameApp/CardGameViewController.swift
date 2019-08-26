@@ -29,20 +29,6 @@ class CardGameViewController: UIViewController {
             / CGFloat(cardGameSizeInfo.cardSize)) * cardGameSizeInfo.ratio
     }
     
-    private struct CardGameSizeInfo {
-        var cardSize = 7
-        var playerSize = 4
-        let ratio: CGFloat = 1.27
-        let bufferSize: CGFloat = 10
-    }
-    private struct StackViewSizeInfo {
-        let widthProportion: CGFloat = 0.1
-        let marginSpace: CGFloat = 0
-        var width: CGFloat = 0
-        var leftAlign: CGFloat = -20
-        var rightAlign: CGFloat = 20
-        var spacingSize: CGFloat = -10
-    }
     private struct SegmentControlsSizeInfo {
         let xCoordinate: CGFloat = 126
         let yCoordinateFirst: CGFloat = 100
@@ -316,12 +302,14 @@ class CardGameViewController: UIViewController {
         let numberOfPlayer = cardGameSizeInfo.playerSize
         for _ in 0..<numberOfPlayer {
             let rect = CGRect(x: 0, y: 0, width: stackViewSizeInfo.width, height: height)
-            let stackview = UIStackView.init(frame: rect)
+            let stackview = UICardStackView.init(frame: rect,
+                                                 number: cardGameSizeInfo.cardSize,
+                                                 stackViewSizeInfo: stackViewSizeInfo,
+                                                 height: height)
             stackviewList.append(stackview)
             let basicLabel = createBasicUILabel(rect)
             uiLabelList.append(basicLabel)
         }
-        setImageViewsInStackViewList(stackviewList)
         addStackViewList(stackviewList)
         addUILabelList(uiLabelList)
         setConstraintOfStackViewList(stackviewList)
@@ -393,27 +381,7 @@ class CardGameViewController: UIViewController {
                                                     multiplier: 1, constant: stackViewSizeInfo.spacingSize)
         return [leadingConstraint, topConstraint]
     }
-    
-    private func setImageViewsInStackViewList(_ list: [UIStackView]) {
-        for index in 0..<list.endIndex {
-            addImageViewsInStackView(list[index], order: index)
-        }
-    }
-    
-    private func addImageViewsInStackView(_ stackview: UIStackView, order: Int) {
-        let imageWidth = (initialRectSize.basicCGRect.width - stackViewSizeInfo.marginSpace
-            * CGFloat(cardGameSizeInfo.cardSize))/CGFloat(cardGameSizeInfo.cardSize)
-        let imageHeight = height
-        for _ in 0..<cardGameSizeInfo.cardSize {
-            let currentCardRect = CGRect.init(x: 0, y: 0, width: imageWidth, height: imageHeight)
-            let uiImageView = UIImageView.init(frame: currentCardRect)
-            uiImageView.image = UIImage.init(named: ImageInfo.cardBack)
-            stackview.addArrangedSubview(uiImageView)
-        }
-        stackview.distribution = .fillEqually
-        stackview.spacing = stackViewSizeInfo.marginSpace
-    }
-    
+
     private func setConstraintOfStackViewList(_ list: [UIStackView]) {
         var constraintList = [NSLayoutConstraint]()
         for index in 0..<list.endIndex {
