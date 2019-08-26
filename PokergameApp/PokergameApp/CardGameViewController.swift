@@ -256,6 +256,7 @@ class CardGameViewController: UIViewController {
     
     @objc func playGame() {
         if checkAllControlsSelected() {
+            removeMedalImage()
             guard let currentPlayerType = retrivePlayerTypeFromSegmentedControl() else { return }
             guard let currentGameType = retriveGameTypeFromSegmentedControl() else { return }
             dataController.play(playerType: currentPlayerType, gameType: currentGameType)

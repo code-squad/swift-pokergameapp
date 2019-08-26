@@ -21,7 +21,6 @@ class GameResult {
             return nil
         }
         playerList = list
-        sortPlayerCardDeck()
     }
     
     func selectWinnerName() -> GameWinner {
@@ -45,12 +44,6 @@ class GameResult {
     private func sortPlayerByDescendingOrderScore() {
         self.playerList.sort { (player1, player2) -> Bool in
             player1 > player2
-        }
-    }
-    
-    private func sortPlayerCardDeck() {
-        for player in self.playerList {
-            player.sortOwnHand()
         }
     }
     
