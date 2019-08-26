@@ -41,15 +41,9 @@ struct CardDeck {
         for index in 0..<deckSize {
             let randomNumber = Int.random(in: 0..<deckSize-index)
             if randomNumber != index {
-                swap(lhs: index, rhs: randomNumber)
+                self.cardList.swapAt(index, randomNumber)
             }
         }
-    }
-    
-    private mutating func swap (lhs: Int, rhs: Int) {
-        let temp: Card = cardList[lhs]
-        cardList[lhs] = cardList[rhs]
-        cardList[rhs] = temp
     }
     
     private mutating func fillCardList() {
