@@ -11,27 +11,36 @@ import UIKit
 class UICardStackView: UIStackView {
     private var stackViewSizeInfo: StackViewSizeInfo = StackViewSizeInfo()
     private var initialRectSize = CGRect.init(x: 1, y: 1, width: 100, height: 30)
-    private var height: CGFloat
-    
-    init(frame: CGRect, number: Int, stackViewSizeInfo: StackViewSizeInfo, height: CGFloat) {
+    private var cardSize: Int = GameType.sevenCard.rawValue
+    override init(frame: CGRect) {
+        initialRectSize = frame
+        super.init(frame: frame)
+    }
+    //constructor injection
+    init(frame: CGRect, stackViewSizeInfo: StackViewSizeInfo, cardSize: Int){
         initialRectSize = frame
         self.stackViewSizeInfo = stackViewSizeInfo
-        self.height = height
-        
+        self.cardSize = cardSize
         super.init(frame: frame)
-        addImageViewsInStackView(number)
+        addImageViewsInStackView()
+    }
+    //setter injection
+    func configure(stackViewSizeInfo: StackViewSizeInfo, cardSize: Int){
+        self.stackViewSizeInfo = stackViewSizeInfo
+        self.cardSize = cardSize
+        addImageViewsInStackView()
     }
     
     required init(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: coder)
+        cardSize = coder.decodeObject(forKey: "cardSize") as! Int
     }
     
-    private func addImageViewsInStackView(_ cardSize: Int) {
+    private func addImageViewsInStackView() {
         let imageWidth = (initialRectSize.width - stackViewSizeInfo.marginSpace
             * CGFloat(cardSize))/CGFloat(cardSize)
-        let imageHeight = height
         for _ in 0..<cardSize {
-            let currentCardRect = CGRect.init(x: 0, y: 0, width: imageWidth, height: imageHeight)
+            let currentCardRect = CGRect.init(x: 0, y: 0, width: imageWidth, height: frame.height)
             let uiImageView = UIImageView.init(frame: currentCardRect)
             uiImageView.image = UIImage.init(named: ImageInfo.cardBack)
             self.addArrangedSubview(uiImageView)
