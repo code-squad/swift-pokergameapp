@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "poker.jpg",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "poker.jpg",
       "scale" : "2x"
     },
     {

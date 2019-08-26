@@ -271,6 +271,6 @@
     </scenes>
     <resources>
         <image name="card-back" width="214" height="270"/>
-        <image name="winner" width="860" height="860"/>
+        <image name="winner" width="516" height="495"/>
     </resources>
 </document>
