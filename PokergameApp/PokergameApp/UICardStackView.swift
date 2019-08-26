@@ -32,8 +32,10 @@ class UICardStackView: UIStackView {
     }
     
     required init(coder: NSCoder) {
-        super.init(coder: coder)
         cardSize = coder.decodeObject(forKey: "cardSize") as! Int
+        stackViewSizeInfo = coder.decodeObject(forKey: "stackViewSizeInfo") as! StackViewSizeInfo
+        initialRectSize = coder.decodeObject(forKey: "initialRectSize") as! CGRect
+        super.init(coder: coder)
     }
     
     private func addImageViewsInStackView() {
