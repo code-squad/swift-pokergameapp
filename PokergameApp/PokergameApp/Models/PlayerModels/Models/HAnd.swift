@@ -151,7 +151,7 @@ struct Hand {
         for index in handSet.orderedCardTypeList.startIndex..<(from+1){
             count += (handSet.orderedCardTypeList[index].count > 0) ? 1: 0
         }
-        let result = count == CardScore.straight.rawValue ? true : false
+        let result = (count == CardScore.straight.rawValue)
         return result
     }
     
