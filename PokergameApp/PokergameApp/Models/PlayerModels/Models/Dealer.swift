@@ -25,16 +25,11 @@ extension Dealer : Dealable{
             print(SystemMessage.autoInitializeDeck)
             deck.resetCardDeck()
         }
-        switch gameType {
-        case .fiveCard:
-            for _ in 0..<gameType.rawValue {
-                distributeEachCard(players)
-            }
-        case .sevenCard:
-            for _ in 0..<gameType.rawValue {
-                distributeEachCard(players)
-            }
+  
+        for _ in 0..<gameType.rawValue {
+            distributeEachCard(players)
         }
+    
     }
     
     func distributeEachCard(_ players: [Playable]) {
