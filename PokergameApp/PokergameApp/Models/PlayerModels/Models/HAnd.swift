@@ -8,16 +8,12 @@
 
 import Foundation
 
-struct CardDictionary {
-    var dictionary: [Int:[CardType]]
-}
-
 struct OrderedHandSet {
     var orderedKeyList:[Int] = []
     var orderedCardTypeList: [[CardType]] = [[]]
     
-    init(_ playerScoreDictionary: CardDictionary){
-        let result = playerScoreDictionary.dictionary.sorted
+    init(_ playerScoreDictionary: [Int:[CardType]]){
+        let result = playerScoreDictionary.sorted
         { (lhs: (key: Int, value: [CardType]),
             rhs: (key: Int, value: [CardType])) -> Bool in
             return lhs.key < rhs.key
@@ -192,25 +188,25 @@ struct Hand {
         return number
     }
     
-    private func buildDeckDictionary() -> CardDictionary {
+    private func buildDeckDictionary() -> [Int:[CardType]] {
         var cardDictionary = initializeDictionary()
         for card in myCardDeck {
             let number = card.number.rawValue
-            guard var eachType = cardDictionary.dictionary[number] else {
+            guard var eachType = cardDictionary[number] else {
                 break
             }
             eachType.append(card.type)
-            cardDictionary.dictionary.updateValue(eachType, forKey: number)
+            cardDictionary.updateValue(eachType, forKey: number)
         }
         return cardDictionary
     }
     
-    private func initializeDictionary () -> CardDictionary {
+    private func initializeDictionary () -> [Int:[CardType]] {
         var dictionary = [Int : [CardType]]()
         for index in CardNumber.two.rawValue..<CardNumber.ace.rawValue+1 {
             dictionary.updateValue([CardType](), forKey: index)
         }
-        return CardDictionary.init(dictionary: dictionary)
+        return dictionary
     }
 }
 
