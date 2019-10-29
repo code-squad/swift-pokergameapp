@@ -13,6 +13,7 @@
 		F3891F702366E1EB001FE17B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3891F6E2366E1EB001FE17B /* Main.storyboard */; };
 		F3891F722366E1ED001FE17B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3891F712366E1ED001FE17B /* Assets.xcassets */; };
 		F3891F752366E1ED001FE17B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3891F732366E1ED001FE17B /* LaunchScreen.storyboard */; };
+		F3891F7D23672725001FE17B /* CardImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3891F7C23672725001FE17B /* CardImageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		F3891F712366E1ED001FE17B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F3891F742366E1ED001FE17B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F3891F762366E1ED001FE17B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F3891F7C23672725001FE17B /* CardImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 				F3891F682366E1EB001FE17B /* AppDelegate.swift */,
 				F3891F6A2366E1EB001FE17B /* SceneDelegate.swift */,
 				F3891F6C2366E1EB001FE17B /* ViewController.swift */,
+				F3891F7C23672725001FE17B /* CardImageView.swift */,
 				F3891F6E2366E1EB001FE17B /* Main.storyboard */,
 				F3891F712366E1ED001FE17B /* Assets.xcassets */,
 				F3891F732366E1ED001FE17B /* LaunchScreen.storyboard */,
@@ -140,6 +143,7 @@
 			files = (
 				F3891F6D2366E1EB001FE17B /* ViewController.swift in Sources */,
 				F3891F692366E1EB001FE17B /* AppDelegate.swift in Sources */,
+				F3891F7D23672725001FE17B /* CardImageView.swift in Sources */,
 				F3891F6B2366E1EB001FE17B /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
