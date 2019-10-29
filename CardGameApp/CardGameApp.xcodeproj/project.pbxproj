@@ -14,6 +14,19 @@
 		F3891F722366E1ED001FE17B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3891F712366E1ED001FE17B /* Assets.xcassets */; };
 		F3891F752366E1ED001FE17B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3891F732366E1ED001FE17B /* LaunchScreen.storyboard */; };
 		F3891F7D23672725001FE17B /* CardImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3891F7C23672725001FE17B /* CardImageView.swift */; };
+		F3891F9323687903001FE17B /* Dealer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3891F8023687902001FE17B /* Dealer.swift */; };
+		F3891F9423687903001FE17B /* HandBetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3891F8123687902001FE17B /* HandBetting.swift */; };
+		F3891F9523687903001FE17B /* CardGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3891F8223687902001FE17B /* CardGame.swift */; };
+		F3891F9623687903001FE17B /* Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3891F8323687902001FE17B /* Score.swift */; };
+		F3891F9723687903001FE17B /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3891F8423687902001FE17B /* Player.swift */; };
+		F3891F9823687903001FE17B /* GameMakePlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3891F8523687902001FE17B /* GameMakePlayer.swift */; };
+		F3891F9923687903001FE17B /* cardDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3891F8623687902001FE17B /* cardDeck.swift */; };
+		F3891F9A23687903001FE17B /* CardStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3891F8723687903001FE17B /* CardStack.swift */; };
+		F3891F9B23687903001FE17B /* CardFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3891F8823687903001FE17B /* CardFactory.swift */; };
+		F3891FA023687903001FE17B /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3891F8E23687903001FE17B /* Menu.swift */; };
+		F3891FA123687903001FE17B /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3891F9023687903001FE17B /* Card.swift */; };
+		F3891FA223687903001FE17B /* Number.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3891F9123687903001FE17B /* Number.swift */; };
+		F3891FA323687903001FE17B /* Shape.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3891F9223687903001FE17B /* Shape.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +39,19 @@
 		F3891F742366E1ED001FE17B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F3891F762366E1ED001FE17B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F3891F7C23672725001FE17B /* CardImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardImageView.swift; sourceTree = "<group>"; };
+		F3891F8023687902001FE17B /* Dealer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dealer.swift; sourceTree = "<group>"; };
+		F3891F8123687902001FE17B /* HandBetting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HandBetting.swift; sourceTree = "<group>"; };
+		F3891F8223687902001FE17B /* CardGame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardGame.swift; sourceTree = "<group>"; };
+		F3891F8323687902001FE17B /* Score.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Score.swift; sourceTree = "<group>"; };
+		F3891F8423687902001FE17B /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		F3891F8523687902001FE17B /* GameMakePlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameMakePlayer.swift; sourceTree = "<group>"; };
+		F3891F8623687902001FE17B /* cardDeck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = cardDeck.swift; sourceTree = "<group>"; };
+		F3891F8723687903001FE17B /* CardStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardStack.swift; sourceTree = "<group>"; };
+		F3891F8823687903001FE17B /* CardFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardFactory.swift; sourceTree = "<group>"; };
+		F3891F8E23687903001FE17B /* Menu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
+		F3891F9023687903001FE17B /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		F3891F9123687903001FE17B /* Number.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Number.swift; sourceTree = "<group>"; };
+		F3891F9223687903001FE17B /* Shape.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shape.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +84,7 @@
 		F3891F672366E1EB001FE17B /* CardGameApp */ = {
 			isa = PBXGroup;
 			children = (
+				F3891F7E236878C9001FE17B /* Model */,
 				F3891F682366E1EB001FE17B /* AppDelegate.swift */,
 				F3891F6A2366E1EB001FE17B /* SceneDelegate.swift */,
 				F3891F6C2366E1EB001FE17B /* ViewController.swift */,
@@ -68,6 +95,42 @@
 				F3891F762366E1ED001FE17B /* Info.plist */,
 			);
 			path = CardGameApp;
+			sourceTree = "<group>";
+		};
+		F3891F7E236878C9001FE17B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F3891F8F23687903001FE17B /* Card */,
+				F3891F8623687902001FE17B /* cardDeck.swift */,
+				F3891F8823687903001FE17B /* CardFactory.swift */,
+				F3891F8723687903001FE17B /* CardStack.swift */,
+				F3891F7F23687902001FE17B /* Game */,
+				F3891F8E23687903001FE17B /* Menu.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		F3891F7F23687902001FE17B /* Game */ = {
+			isa = PBXGroup;
+			children = (
+				F3891F8023687902001FE17B /* Dealer.swift */,
+				F3891F8123687902001FE17B /* HandBetting.swift */,
+				F3891F8223687902001FE17B /* CardGame.swift */,
+				F3891F8323687902001FE17B /* Score.swift */,
+				F3891F8423687902001FE17B /* Player.swift */,
+				F3891F8523687902001FE17B /* GameMakePlayer.swift */,
+			);
+			path = Game;
+			sourceTree = "<group>";
+		};
+		F3891F8F23687903001FE17B /* Card */ = {
+			isa = PBXGroup;
+			children = (
+				F3891F9023687903001FE17B /* Card.swift */,
+				F3891F9123687903001FE17B /* Number.swift */,
+				F3891F9223687903001FE17B /* Shape.swift */,
+			);
+			path = Card;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -141,9 +204,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F3891FA223687903001FE17B /* Number.swift in Sources */,
 				F3891F6D2366E1EB001FE17B /* ViewController.swift in Sources */,
 				F3891F692366E1EB001FE17B /* AppDelegate.swift in Sources */,
+				F3891FA123687903001FE17B /* Card.swift in Sources */,
+				F3891F9A23687903001FE17B /* CardStack.swift in Sources */,
+				F3891F9623687903001FE17B /* Score.swift in Sources */,
+				F3891F9B23687903001FE17B /* CardFactory.swift in Sources */,
+				F3891FA023687903001FE17B /* Menu.swift in Sources */,
+				F3891FA323687903001FE17B /* Shape.swift in Sources */,
+				F3891F9523687903001FE17B /* CardGame.swift in Sources */,
+				F3891F9923687903001FE17B /* cardDeck.swift in Sources */,
+				F3891F9823687903001FE17B /* GameMakePlayer.swift in Sources */,
 				F3891F7D23672725001FE17B /* CardImageView.swift in Sources */,
+				F3891F9323687903001FE17B /* Dealer.swift in Sources */,
+				F3891F9423687903001FE17B /* HandBetting.swift in Sources */,
+				F3891F9723687903001FE17B /* Player.swift in Sources */,
 				F3891F6B2366E1EB001FE17B /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
