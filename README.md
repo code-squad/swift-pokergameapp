@@ -6,8 +6,7 @@ STEP15 포커게임 앱 저장소
 ## 15-1 : 게임판 만들기
 
 ### 화면 이미지
-
-<img src="/Users/adolph/Desktop/swift-pokergameapp/img/step01.png" alt="image" style="zoom:30%;" />
+<img src="./img/step01.png" width="200" style="max-width:100%;">
 
 ### 핵심 기능
 
