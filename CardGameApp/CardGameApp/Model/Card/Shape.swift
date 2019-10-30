@@ -26,5 +26,10 @@ enum Shape: Int, CaseIterable {
             return "♠️"
         }
     }
+    
+    ///shape 첫번째 문자 반환
+    var shapeFirst: Character? {
+        return "\(self)".first
+    }
 }
 
