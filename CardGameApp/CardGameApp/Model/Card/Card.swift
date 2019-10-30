@@ -6,7 +6,7 @@
 //  Copyright © 2019 JK. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 // 카드에 숫자와 도형을 표현하고, 카드를 표현하는 문자열을 정의
 class Card: CustomStringConvertible {
@@ -22,6 +22,12 @@ class Card: CustomStringConvertible {
         return "\(shape.value)\(number.value)"
     }
     
+    /// 카드이미지 가져오기
+    var image: UIImage? {
+        guard let shape = self.shape.shapeFirst else { return nil }
+        return UIImage(named: "\(shape)\(number.value)")
+    }
+
 }
 
 extension Card {
