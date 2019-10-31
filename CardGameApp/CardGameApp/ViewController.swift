@@ -9,9 +9,12 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
+    //MARK: IBOutlet
+    @IBOutlet weak var cardsSegment: UISegmentedControl!
+    @IBOutlet weak var playerSegment: UISegmentedControl!
+    
     //MARK: override
-
     ///StatusBar 스타일을 lightContent
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -25,7 +28,7 @@ class ViewController: UIViewController {
 
         drawCards(cardCount: 7)
     }
-
+    
     //MARK: private func
     /// 카드를 갯수를 입력받은 만큼 그려준다.
     private func drawCards(cardCount: Int) {
@@ -45,5 +48,4 @@ class ViewController: UIViewController {
             self.view.addSubview(imageView)
         }
     }
-
 }
