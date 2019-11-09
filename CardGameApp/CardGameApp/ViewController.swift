@@ -10,7 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    //MARK: value
+    //MARK: variable
     var subviews = [UIView]()
     var flag = true
     var number = 0
@@ -38,9 +38,23 @@ class ViewController: UIViewController {
 
         guard let image = UIImage(named: "bg_pattern") else { return }
         self.view.backgroundColor = UIColor(patternImage: image)
-
+        self.becomeFirstResponder()
+        
         playGame()
 
+    }
+    
+    /// 사용자 Shake 이벤트를 발생
+    override var canBecomeFirstResponder: Bool {
+        return true
+    }
+    
+    /// Shake 종료시 호출
+    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        if motion == .motionShake {
+            deleteView()
+            playGame()
+        }
     }
 
     //MARK: private func
