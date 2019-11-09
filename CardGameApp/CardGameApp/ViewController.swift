@@ -9,7 +9,12 @@
 import UIKit
 
 class ViewController: UIViewController {
-    
+
+    //MARK: value
+    var subviews = [UIView]()
+    var flag = true
+    var number = 0
+
     //MARK: IBOutlet
     @IBOutlet weak var cardsSegment: UISegmentedControl!
     @IBOutlet weak var playerSegment: UISegmentedControl!
@@ -43,7 +48,55 @@ class ViewController: UIViewController {
     func showResults(_ cardGame: CardGame) -> Bool {
         return cardGame.play(card(name: cardStack:), winner)
     }
+
+    /// 카드
+    func card(name: String, cardStack: String) {
+        number = drawLabel(name: name)
+
+        let cardStackDescription = cardStack.description
+        var shape = cardStackDescription.components(separatedBy: ",")
+        shape[0].remove(at: shape[0].startIndex)
+        shape[shape.count - 1].remove(at: shape[shape.count - 1].index(before: shape[shape.count - 1].endIndex))
+
+        for index in 0..<shape.count {
+            let imgShape = shape[index].trimmingCharacters(in: .whitespacesAndNewlines)
+            let cardX = Double(10 + 47 * index)
+            let cardY = Double(100 + 100 * number)
+            guard let image: UIImage = UIImage(named: imgShape) else { break }
+
+            let imageView = UIImageView(image: image)
+
             self.view.addSubview(imageView)
+            imageView.frame = CGRect(x: cardX, y: cardY, width: 50.0, height: 63.5)
+            subviews.append(imageView)
         }
+    }
+    
+    /// 이름의 마지막 글자를 보고 숫자를 돌려준다.
+    func nameResult(name: String) -> Int {
+        let lastCharIndex = name.index(before: name.endIndex)
+        let lastIndexString = name[lastCharIndex]
+        
+        var nameNumber = 0
+        if lastIndexString == "러" {
+            nameNumber = playerSegment.selectedSegmentIndex + 3
+        } else {
+            nameNumber = Int(String(lastIndexString)) ?? 0
+        }
+        
+        return nameNumber
+    }
+
+    /// Label 그리기
+    func drawLabel(name: String) -> Int {
+        let number = nameResult(name: name)
+
+        let label = UILabel(frame: CGRect(x: 10, y: 80 + number * 100, width: 200, height: 21))
+        label.text = name
+        label.textColor = UIColor.white
+        self.view.addSubview(label)
+        subviews.append(label)
+        return number
+    }
     }
 }
