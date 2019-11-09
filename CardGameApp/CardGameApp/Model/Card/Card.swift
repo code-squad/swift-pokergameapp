@@ -19,15 +19,11 @@ class Card: CustomStringConvertible {
     }
     
     var description: String {
-        return "\(shape.value)\(number.value)"
+        guard let first = shape.shapeFirst else {
+            return "\(shape.value)\(number.value)"
+        }
+        return "\(first)\(number.value)"
     }
-    
-    /// 카드이미지 가져오기
-    var image: UIImage? {
-        guard let shape = self.shape.shapeFirst else { return nil }
-        return UIImage(named: "\(shape)\(number.value)")
-    }
-
 }
 
 extension Card {
