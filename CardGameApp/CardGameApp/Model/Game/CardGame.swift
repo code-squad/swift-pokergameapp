@@ -57,6 +57,7 @@ class CardGame {
         for _ in 0..<gameMode.modeCardNumber {
             guard gameMakePlays.sendRoundCards(cards) else { return false }
         }
+        gameMakePlays.showResults(cards)
         return true
     }
     
