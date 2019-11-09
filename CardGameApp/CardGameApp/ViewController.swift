@@ -98,5 +98,17 @@ class ViewController: UIViewController {
         subviews.append(label)
         return number
     }
+
+    /// 메달 주기
+    func winner(name: String) {
+        let number = nameResult(name: name)
+        let cardX = Double(10 + 47 * 7 + 20)
+        let cardY = Double(100 + 100 * number)
+        guard let image: UIImage = UIImage(named: "gold-medal") else { return }
+        let imageView = UIImageView(image: image)
+
+        self.view.addSubview(imageView)
+        imageView.frame = CGRect(x: cardX, y: cardY, width: 50.0, height: 50.0)
+        subviews.append(imageView)
     }
 }
