@@ -23,6 +23,9 @@
                                     <segment title="5 Cards"/>
                                 </segments>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <action selector="changeSegment:" destination="BYZ-38-t0r" eventType="valueChanged" id="9NJ-H7-tZt"/>
+                                </connections>
                             </segmentedControl>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="2" translatesAutoresizingMaskIntoConstraints="NO" id="OPw-oE-qtb">
                                 <rect key="frame" x="142" y="101" width="131" height="32"/>
@@ -33,6 +36,9 @@
                                     <segment title="4명"/>
                                 </segments>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <action selector="changeSegment:" destination="BYZ-38-t0r" eventType="valueChanged" id="gNT-AH-QgX"/>
+                                </connections>
                             </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
