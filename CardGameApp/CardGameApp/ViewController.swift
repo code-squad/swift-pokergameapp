@@ -18,7 +18,15 @@ class ViewController: UIViewController {
     //MARK: IBOutlet
     @IBOutlet weak var cardsSegment: UISegmentedControl!
     @IBOutlet weak var playerSegment: UISegmentedControl!
-    
+
+    //MARK: IBAction
+    @IBAction func changeSegment(_ sender: Any) {
+        self.flag = true
+        self.number = 0
+        deleteView()
+        playGame()
+    }
+
     //MARK: override
     ///StatusBar 스타일을 lightContent
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -44,6 +52,15 @@ class ViewController: UIViewController {
 
         let _ = showResults(cardGame)
     }
+
+    //MARK: func
+    /// view 삭제
+    func deleteView() {
+        for view in subviews {
+            view.removeFromSuperview()
+        }
+    }
+      
     /// 결과
     func showResults(_ cardGame: CardGame) -> Bool {
         return cardGame.play(card(name: cardStack:), winner)
