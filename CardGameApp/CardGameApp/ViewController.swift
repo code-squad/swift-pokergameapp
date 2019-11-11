@@ -12,8 +12,7 @@ class ViewController: UIViewController {
 
     //MARK: variable
     var subviews = [UIView]()
-    var flag = true
-    var number = 0
+    private var number = 0
 
     //MARK: IBOutlet
     @IBOutlet weak var cardsSegment: UISegmentedControl!
@@ -21,7 +20,6 @@ class ViewController: UIViewController {
 
     //MARK: IBAction
     @IBAction func changeSegment(_ sender: Any) {
-        self.flag = true
         self.number = 0
         deleteView()
         playGame()
