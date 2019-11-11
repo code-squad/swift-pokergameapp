@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F35D973723794BF000E41CBB /* CardGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35D973623794BF000E41CBB /* CardGameView.swift */; };
 		F3891F692366E1EB001FE17B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3891F682366E1EB001FE17B /* AppDelegate.swift */; };
 		F3891F6B2366E1EB001FE17B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3891F6A2366E1EB001FE17B /* SceneDelegate.swift */; };
 		F3891F6D2366E1EB001FE17B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3891F6C2366E1EB001FE17B /* ViewController.swift */; };
@@ -30,6 +31,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F35D973623794BF000E41CBB /* CardGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardGameView.swift; sourceTree = "<group>"; };
 		F3891F652366E1EB001FE17B /* CardGameApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CardGameApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3891F682366E1EB001FE17B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F3891F6A2366E1EB001FE17B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 				F3891F6A2366E1EB001FE17B /* SceneDelegate.swift */,
 				F3891F6C2366E1EB001FE17B /* ViewController.swift */,
 				F3891F7C23672725001FE17B /* CardImageView.swift */,
+				F35D973623794BF000E41CBB /* CardGameView.swift */,
 				F3891F6E2366E1EB001FE17B /* Main.storyboard */,
 				F3891F712366E1ED001FE17B /* Assets.xcassets */,
 				F3891F732366E1ED001FE17B /* LaunchScreen.storyboard */,
@@ -210,6 +213,7 @@
 				F3891FA123687903001FE17B /* Card.swift in Sources */,
 				F3891F9A23687903001FE17B /* CardStack.swift in Sources */,
 				F3891F9623687903001FE17B /* Score.swift in Sources */,
+				F35D973723794BF000E41CBB /* CardGameView.swift in Sources */,
 				F3891F9B23687903001FE17B /* CardFactory.swift in Sources */,
 				F3891FA023687903001FE17B /* Menu.swift in Sources */,
 				F3891FA323687903001FE17B /* Shape.swift in Sources */,
