@@ -12,7 +12,7 @@ class ViewController: UIViewController {
 
     //MARK: variable
     var subviews = [UIView]()
-    private var number = 0
+    private var participantsCount = 0
 
     //MARK: IBOutlet
     @IBOutlet weak var cardsSegment: UISegmentedControl!
@@ -20,7 +20,7 @@ class ViewController: UIViewController {
 
     //MARK: IBAction
     @IBAction func changeSegment(_ sender: Any) {
-        self.number = 0
+        self.participantsCount = 0
         deleteView()
         playGame()
     }
@@ -80,7 +80,7 @@ class ViewController: UIViewController {
 
     /// 카드
     func card(name: String, cardStack: String) {
-        number = drawLabel(name: name)
+        participantsCount = drawLabel(name: name)
 
         let cardStackDescription = cardStack.description
         var shape = cardStackDescription.components(separatedBy: ",")
@@ -90,7 +90,7 @@ class ViewController: UIViewController {
         for index in 0..<shape.count {
             let imgShape = shape[index].trimmingCharacters(in: .whitespacesAndNewlines)
             let cardX = Double(10 + 47 * index)
-            let cardY = Double(100 + 100 * number)
+            let cardY = Double(100 + 100 * participantsCount)
             guard let image: UIImage = UIImage(named: imgShape) else { break }
 
             let imageView = UIImageView(image: image)
