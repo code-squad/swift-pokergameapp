@@ -74,8 +74,6 @@ class ViewController: UIViewController {
 
         let _ = cardGameView.showResults(cardGame)
         
-        for view in cardGameView.returnView() {
-            self.view.addSubview(view)
-        }
+        self.view.addSubview(cardGameView)
     }
 }

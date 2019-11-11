@@ -12,7 +12,6 @@ class CardGameView: UIView {
     
     //MARK: variable
     private var participantsCount = 0
-    var subview = [UIView]()
 
     //MARK: override
     override init(frame: CGRect) {
@@ -26,14 +25,9 @@ class CardGameView: UIView {
     //MARK: func
     func reset() {
         self.participantsCount = 0
-        for view in subview {
+        for view in self.subviews {
             view.removeFromSuperview()
         }
-        self.subview.removeAll()
-    }
-    
-    func returnView() -> [UIView]{
-        return subview
     }
     
     func showResults(_ cardGame: CardGame) -> Bool {
@@ -57,7 +51,7 @@ class CardGameView: UIView {
 
             let imageView = UIImageView(image: image)
 
-            subview.append(imageView)
+            self.addSubview(imageView)
             imageView.frame = CGRect(x: cardX, y: cardY, width: 50.0, height: 63.5)
         }
     }
@@ -75,7 +69,7 @@ class CardGameView: UIView {
         let label = UILabel(frame: CGRect(x: 10, y: 80 + number * 100, width: 200, height: 21))
         label.text = name
         label.textColor = UIColor.white
-        subview.append(label)
+        self.addSubview(label)
         return number
     }
 
@@ -87,7 +81,7 @@ class CardGameView: UIView {
         guard let image: UIImage = UIImage(named: "gold-medal") else { return }
         let imageView = UIImageView(image: image)
 
-        subview.append(imageView)
+        self.addSubview(imageView)
         imageView.frame = CGRect(x: cardX, y: cardY, width: 50.0, height: 50.0)
     }
     
