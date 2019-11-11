@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     //MARK: variable
     var subviews = [UIView]()
     private var participantsCount = 0
+    private let bg_pattern = "bg_pattern"
 
     //MARK: IBOutlet
     @IBOutlet weak var cardsSegment: UISegmentedControl!
@@ -34,7 +35,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        guard let image = UIImage(named: "bg_pattern") else { return }
+        guard let image = UIImage(named: bg_pattern) else { return }
         self.view.backgroundColor = UIColor(patternImage: image)
         self.becomeFirstResponder()
         
