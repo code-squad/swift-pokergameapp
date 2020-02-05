@@ -25,7 +25,6 @@ class Card {
     }
     
     enum Rank: Int {
-        case ace = 14
         case king = 13
         case queen = 12
         case jack = 11
@@ -38,5 +37,6 @@ class Card {
         case four = 4
         case three = 3
         case two = 2
+        case ace = 1
     }
 }
