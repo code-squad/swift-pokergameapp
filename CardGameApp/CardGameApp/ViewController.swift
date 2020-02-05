@@ -20,10 +20,6 @@ class ViewController: UIViewController {
         stackView.isLayoutMarginsRelativeArrangement = true
         (0..<numberOfUpturnedCards).forEach { _ in
             let upturnedCardImageView = UIImageView(image: UIImage(named: "card-back")!)
-            upturnedCardImageView.translatesAutoresizingMaskIntoConstraints = false
-            upturnedCardImageView.heightAnchor
-                .constraint(equalTo: upturnedCardImageView.widthAnchor, multiplier: 1.27)
-                .isActive = true
             stackView.addArrangedSubview(upturnedCardImageView)
         }
         return stackView
@@ -36,17 +32,28 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.addSubview(cardStackView)
+        setBackgroundPattern()
+        layoutUpturnedCards()
+    }
+    
+    private func setBackgroundPattern() {
         if let backgroundPatternImage = UIImage(named: "bg_pattern") {
-            self.view.backgroundColor = UIColor(patternImage: backgroundPatternImage)
+            view.backgroundColor = UIColor(patternImage: backgroundPatternImage)
         }
-        
-        self.view.addSubview(cardStackView)
-        
-        let safeArea = self.view.safeAreaLayoutGuide
+    }
+    
+    private func layoutUpturnedCards() {
+        let safeArea = view.safeAreaLayoutGuide
         cardStackView.translatesAutoresizingMaskIntoConstraints = false
         cardStackView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
         cardStackView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
         cardStackView.topAnchor.constraint(equalTo: safeArea.topAnchor).isActive = true
+        cardStackView.arrangedSubviews.forEach { card in
+            card.translatesAutoresizingMaskIntoConstraints = false
+            card.heightAnchor
+                .constraint(equalTo: card.widthAnchor, multiplier: 1.27)
+                .isActive = true
+        }
     }
 }
-
