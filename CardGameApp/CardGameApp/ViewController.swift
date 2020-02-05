@@ -22,6 +22,11 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let card1 = Card(suit: .heart, rank: .king)
+        print(card1.toString())
+        let card2 = Card(suit: .spade, rank: .ace)
+        print(card2.toString())
+        
         setupUI()
     }
     
