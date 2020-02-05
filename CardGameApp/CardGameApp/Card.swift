@@ -17,7 +17,7 @@ class Card {
         self.rank = rank
     }
     
-    enum Suit: String {
+    enum Suit: Character {
         case spade = "♠"
         case heart = "♡"
         case club = "♣"
