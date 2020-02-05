@@ -61,11 +61,11 @@
 				385F3AC523EA6FA9003FA6A2 /* AppDelegate.swift */,
 				385F3AC723EA6FA9003FA6A2 /* SceneDelegate.swift */,
 				385F3AC923EA6FA9003FA6A2 /* ViewController.swift */,
+				385F3AD923EACB92003FA6A2 /* Card.swift */,
 				385F3ACB23EA6FA9003FA6A2 /* Main.storyboard */,
 				385F3ACE23EA6FAB003FA6A2 /* Assets.xcassets */,
 				385F3AD023EA6FAB003FA6A2 /* LaunchScreen.storyboard */,
 				385F3AD323EA6FAB003FA6A2 /* Info.plist */,
-				385F3AD923EACB92003FA6A2 /* Card.swift */,
 			);
 			path = CardGameApp;
 			sourceTree = "<group>";
