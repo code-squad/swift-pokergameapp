@@ -44,7 +44,6 @@ class ViewController: UIViewController {
         cardStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8).isActive = true
         cardStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 8).isActive = true
         cardStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8).isActive = true
-        cardStackView.heightAnchor.constraint(equalToConstant: 60).isActive = true
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
