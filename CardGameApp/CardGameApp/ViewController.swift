@@ -10,6 +10,15 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    let cardStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.distribution = .fillEqually
+        stackView.spacing = 4
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -26,6 +35,16 @@ class ViewController: UIViewController {
     
     private func setupUI() {
         view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "bg_pattern"))
+        
+        for _ in 0..<7 {
+            cardStackView.addArrangedSubview(generateCardImageView())
+        }
+        
+        view.addSubview(cardStackView)
+        cardStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8).isActive = true
+        cardStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 8).isActive = true
+        cardStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8).isActive = true
+        cardStackView.heightAnchor.constraint(equalToConstant: 60).isActive = true
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
