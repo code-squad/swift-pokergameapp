@@ -1,2 +1,12 @@
-# swift-pokergameapp
-STEP15 포커게임 앱 저장소
+# PokerGameApp
+
+포커게임 앱 저장소
+
+## STEP1. 게임판 만들기
+
+* 게임판 배경 패턴 설정
+* 이미지뷰가 7개 들어가는 스택뷰를 생성하여 7개 카드 뒷면 디스플레이
+* 오토 레이아웃을 이용하여 레이아웃
+
+**실행 화면**
+![step1-result](step1-result.png)
