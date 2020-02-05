@@ -17,11 +17,10 @@ class ViewController: UIViewController {
     }
     
     private func setupUI() {
-        view.backgroundColor = .darkGray
+        view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "bg_pattern"))
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
 }
-
