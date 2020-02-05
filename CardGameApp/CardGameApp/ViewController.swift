@@ -19,6 +19,8 @@ class ViewController: UIViewController {
     private func generateCardImageView() -> UIImageView {
         let imageView = UIImageView(image: #imageLiteral(resourceName: "card-back"))
         imageView.contentMode = .scaleAspectFill
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor, multiplier: 1.27).isActive = true
         return imageView
     }
     
