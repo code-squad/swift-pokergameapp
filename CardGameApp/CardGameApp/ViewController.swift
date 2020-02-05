@@ -25,7 +25,7 @@ class ViewController: UIViewController {
         setupUI()
     }
     
-    private func generateCardImageView() -> UIImageView {
+    private func cardImageView() -> UIImageView {
         let imageView = UIImageView(image: #imageLiteral(resourceName: "card-back"))
         imageView.contentMode = .scaleAspectFill
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -37,7 +37,7 @@ class ViewController: UIViewController {
         view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "bg_pattern"))
         
         for _ in 0..<7 {
-            cardStackView.addArrangedSubview(generateCardImageView())
+            cardStackView.addArrangedSubview(cardImageView())
         }
         
         view.addSubview(cardStackView)
