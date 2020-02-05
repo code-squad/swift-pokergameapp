@@ -17,13 +17,6 @@ class Card {
         self.rank = rank
     }
     
-    enum Suit: Character {
-        case spade = "♠"
-        case heart = "♡"
-        case club = "♣"
-        case diamond = "⬦"
-    }
-    
     func toString() -> String {
         var rank = ""
         switch self.rank {
@@ -39,6 +32,13 @@ class Card {
             rank = String(self.rank.rawValue)
         }
         return "\(suit.rawValue)\(rank)"
+    }
+    
+    enum Suit: Character {
+        case spade = "♠"
+        case heart = "♡"
+        case club = "♣"
+        case diamond = "⬦"
     }
     
     enum Rank: Int {
