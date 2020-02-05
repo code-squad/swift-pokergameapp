@@ -16,6 +16,12 @@ class ViewController: UIViewController {
         setupUI()
     }
     
+    private func generateCardImageView() -> UIImageView {
+        let imageView = UIImageView(image: #imageLiteral(resourceName: "card-back"))
+        imageView.contentMode = .scaleAspectFill
+        return imageView
+    }
+    
     private func setupUI() {
         view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "bg_pattern"))
     }
