@@ -24,6 +24,23 @@ class Card {
         case diamond = "⬦"
     }
     
+    func toString() -> String {
+        var rank = ""
+        switch self.rank {
+        case .jack:
+            rank = "J"
+        case .queen:
+            rank = "Q"
+        case .king:
+            rank = "K"
+        case .ace:
+            rank = "A"
+        default:
+            rank = String(self.rank.rawValue)
+        }
+        return "\(suit.rawValue)\(rank)"
+    }
+    
     enum Rank: Int {
         case king = 13
         case queen = 12
