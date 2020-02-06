@@ -10,22 +10,30 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setUI()
+
+        let card = Card(number: .one, pattern: .clover)
+        print(card.number.transformUniqueNumber(number: card.number))
+        print(card.pattern.rawValue)
+    }
+    
     let cardImageStack: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.distribution = .fillEqually
         stackView.spacing = 5
         stackView.translatesAutoresizingMaskIntoConstraints = false
-       return stackView
+        return stackView
     }()
-
+    
     func cardImageView() -> UIImageView {
         let image = UIImageView(image: UIImage(named: "card-back"))
         return image
     }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    
+    func setUI() {
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "bg_pattern")!)
         for _ in 0..<7 {
             let cardImage = cardImageView()
@@ -33,6 +41,7 @@ class ViewController: UIViewController {
             cardImage.heightAnchor.constraint(equalTo: cardImage.widthAnchor, multiplier: 1.27).isActive = true
         }
         self.view.addSubview(cardImageStack)
+        setStackContraints()
     }
     
     func setStackContraints() {
