@@ -9,16 +9,20 @@
 import UIKit
 
 class ViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        if let image = UIImage(named: "bg_pattern") {
-            self.view.backgroundColor = UIColor(patternImage: image)
-        }
-    }
-
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        assignBackground(imageName : Constant.BACKGROUND_IMAGE_NAME)
+    }
+    
+    private func assignBackground(imageName name : String) {
+        if let image = UIImage(named: name) {
+            self.view.backgroundColor = UIColor(patternImage: image)
+        }
     }
 }
 
