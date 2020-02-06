@@ -14,6 +14,7 @@
 		385F3ACF23EA6FAB003FA6A2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 385F3ACE23EA6FAB003FA6A2 /* Assets.xcassets */; };
 		385F3AD223EA6FAB003FA6A2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 385F3AD023EA6FAB003FA6A2 /* LaunchScreen.storyboard */; };
 		385F3ADA23EACB92003FA6A2 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385F3AD923EACB92003FA6A2 /* Card.swift */; };
+		385F3ADC23EC3FF6003FA6A2 /* CardDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385F3ADB23EC3FF6003FA6A2 /* CardDeck.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		385F3AD123EA6FAB003FA6A2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		385F3AD323EA6FAB003FA6A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		385F3AD923EACB92003FA6A2 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		385F3ADB23EC3FF6003FA6A2 /* CardDeck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDeck.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 				385F3ACE23EA6FAB003FA6A2 /* Assets.xcassets */,
 				385F3AD023EA6FAB003FA6A2 /* LaunchScreen.storyboard */,
 				385F3AD323EA6FAB003FA6A2 /* Info.plist */,
+				385F3ADB23EC3FF6003FA6A2 /* CardDeck.swift */,
 			);
 			path = CardGameApp;
 			sourceTree = "<group>";
@@ -142,6 +145,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				385F3ACA23EA6FA9003FA6A2 /* ViewController.swift in Sources */,
+				385F3ADC23EC3FF6003FA6A2 /* CardDeck.swift in Sources */,
 				385F3AC623EA6FA9003FA6A2 /* AppDelegate.swift in Sources */,
 				385F3AC823EA6FA9003FA6A2 /* SceneDelegate.swift in Sources */,
 				385F3ADA23EACB92003FA6A2 /* Card.swift in Sources */,
