@@ -23,23 +23,6 @@ class Card {
         self.rank = rank
     }
     
-    func toString() -> String {
-        var rank = ""
-        switch self.rank {
-        case .jack:
-            rank = "J"
-        case .queen:
-            rank = "Q"
-        case .king:
-            rank = "K"
-        case .ace:
-            rank = "A"
-        default:
-            rank = String(self.rank.rawValue)
-        }
-        return "\(suit.rawValue)\(rank)"
-    }
-    
     enum Suit: Character {
         case spade = "♠"
         case heart = "♡"
@@ -61,5 +44,24 @@ class Card {
         case three = 3
         case two = 2
         case ace = 1
+    }
+}
+
+extension Card: CustomStringConvertible {
+    var description: String {
+        var rank = ""
+        switch self.rank {
+        case .jack:
+            rank = "J"
+        case .queen:
+            rank = "Q"
+        case .king:
+            rank = "K"
+        case .ace:
+            rank = "A"
+        default:
+            rank = String(self.rank.rawValue)
+        }
+        return "\(suit.rawValue)\(rank)"
     }
 }

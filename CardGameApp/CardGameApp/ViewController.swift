@@ -23,9 +23,9 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         let card1 = Card(suit: .heart, rank: .king)
-        print(card1.toString())
+        print(card1)
         let card2 = Card(suit: .spade, rank: .ace)
-        print(card2.toString())
+        print(card2)
         
         setupUI()
     }
