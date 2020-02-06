@@ -30,9 +30,25 @@
 
 - Card class 추가
 - Nested enum class를 사용해 Suit, Rank type 구현
-- Card class에 출력을 위한 toString() 함수 구현
+- Card instance의 정보 출력을 위해 CustomStringConvertible Protocol 사용
 - Card class의 테스트 객체 생성 및 Card 정보 출력
 
 <img src="https://github.com/corykim0829/swift-pokergameapp/blob/corykim0829/Screenshots/step2-1.png?raw=true" width="440px">
 
 <img src="https://github.com/corykim0829/swift-pokergameapp/blob/corykim0829/Screenshots/step2-2.png?raw=true" width="380px">
+
+<br>
+
+## Step3 - Impementing CardDeck & Testing
+
+- CardDeck class 구현
+- `setupDeck()`, `shuffle()`, `removeOne()`, `reset()`, `count` 함수 및 프로퍼티 구현
+- 모든 카드를 뽑았을 수도 있기 때문에 `removeOne()` 반환타입을 `Card?` 로 지정
+
+<br>
+
+<img src="https://github.com/corykim0829/swift-pokergameapp/blob/corykim0829/Screenshots/step3-1.png?raw=true" width="380px">
+<br>
+<img src="https://github.com/corykim0829/swift-pokergameapp/blob/corykim0829/Screenshots/step3-2.png?raw=true" width="380px">
+<br>
+<img src="https://github.com/corykim0829/swift-pokergameapp/blob/corykim0829/Screenshots/step3-3.png?raw=true" width="380px">
