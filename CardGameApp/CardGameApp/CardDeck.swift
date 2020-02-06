@@ -33,11 +33,12 @@ class CardDeck {
     }
     
     func shuffle() {
-        
+        cards.shuffle()
     }
     
-    func removeOn() {
-        
+    func removeOne() -> Card? {
+        guard cards.count > 0 else { return nil }
+        return cards.removeLast()
     }
     
     func reset() {
