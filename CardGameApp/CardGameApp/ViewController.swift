@@ -12,7 +12,9 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        if let image = UIImage(named: "bg_pattern") {
+            self.view.backgroundColor = UIColor(patternImage: image)
+        }
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
