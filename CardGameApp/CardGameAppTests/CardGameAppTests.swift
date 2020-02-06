@@ -33,4 +33,18 @@ class CardGameAppTests: XCTestCase {
         cardDeck.shuffle()
         print("전체 52장의 카드를 섞었습니다.")
     }
+    
+    func testCardDeckRemoveOne() {
+        print("> 카드 하나 뽑기")
+        let cardDeck = CardDeck()
+        cardDeck.shuffle()
+        
+        guard let card1 = cardDeck.removeOne() else { return }
+        print(card1)
+        print("총 \(cardDeck.count)장의 카드가 남아있습니다.\n")
+        
+        guard let card2 = cardDeck.removeOne() else { return }
+        print(card2)
+        print("총 \(cardDeck.count)장의 카드가 남아있습니다.\n")
+    }
 }
