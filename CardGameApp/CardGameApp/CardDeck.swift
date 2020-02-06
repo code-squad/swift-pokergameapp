@@ -41,6 +41,7 @@ class CardDeck {
     }
     
     func reset() {
-        
+        cards.removeAll()
+        setupDeck()
     }
 }
