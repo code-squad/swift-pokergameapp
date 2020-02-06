@@ -16,23 +16,32 @@ class Card {
         case spade = "♠️"
     }
     
+    enum Rank: Int {
+        case ace = 1
+        case two, three, four, five, six, seven, eight, nine, ten, jack, queen, king
+    }
+    
     private let suit: Suit
-    private let number: Int
+    private let rank: Rank
     
-    private let numberFormattingDictionary = [1: "A", 11: "J", 12: "Q", 13: "K"]
+    private let numberFormattingDictionary: Dictionary<Rank, String> = [
+        .ace: "A",
+        .jack: "J",
+        .queen: "Q",
+        .king: "K"]
     
-    init(suit: Suit, number: Int) {
+    init(suit: Suit, rank: Rank) {
         self.suit = suit
-        self.number = number
+        self.rank = rank
     }
 }
 
 extension Card: CustomStringConvertible {
     var formattedNumber: String {
-        if let string = numberFormattingDictionary[number] {
+        if let string = numberFormattingDictionary[rank] {
             return string
         }
-        return "\(number)"
+        return "\(rank.rawValue)"
     }
     
     var description: String {
