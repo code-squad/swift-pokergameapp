@@ -10,6 +10,11 @@ import Foundation
 
 class CardDeck {
     var cards: [Card] = []
+    var count: Int {
+        get {
+            return cards.count
+        }
+    }
     
     init() {
         setupDeck()
@@ -25,5 +30,17 @@ class CardDeck {
                 cards.append(card)
             }
         }
+    }
+    
+    func shuffle() {
+        
+    }
+    
+    func removeOn() {
+        
+    }
+    
+    func reset() {
+        
     }
 }
