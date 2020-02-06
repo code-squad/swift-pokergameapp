@@ -41,6 +41,8 @@
 
 ## Step3 - Impementing CardDeck & Testing
 
+2020/Feb/06
+
 - CardDeck class 구현
 - `setupDeck()`, `shuffle()`, `removeOne()`, `reset()`, `count` 함수 및 프로퍼티 구현
 - 모든 카드를 뽑았을 수도 있기 때문에 `removeOne()` 반환타입을 `Card?` 로 지정
