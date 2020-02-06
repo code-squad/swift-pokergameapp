@@ -35,6 +35,9 @@ class ViewController: UIViewController {
         view.addSubview(cardStackView)
         setBackgroundPattern()
         layoutUpturnedCards()
+        
+        print(Card(suit: .heart, number: 12))
+        print(Card(suit: .spade, number: 7))
     }
     
     private func setBackgroundPattern() {

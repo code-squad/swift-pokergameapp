@@ -19,8 +19,23 @@ class Card {
     private let suit: Suit
     private let number: Int
     
+    private let numberFormattingDictionary = [1: "A", 11: "J", 12: "Q", 13: "K"]
+    
     init(suit: Suit, number: Int) {
         self.suit = suit
         self.number = number
+    }
+}
+
+extension Card: CustomStringConvertible {
+    var formattedNumber: String {
+        if let string = numberFormattingDictionary[number] {
+            return string
+        }
+        return "\(number)"
+    }
+    
+    var description: String {
+        return "\(suit.rawValue)\(formattedNumber)"
     }
 }
