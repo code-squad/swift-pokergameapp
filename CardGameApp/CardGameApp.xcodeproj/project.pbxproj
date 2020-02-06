@@ -13,6 +13,7 @@
 		C2D9584423EA7B09002057D6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C2D9584223EA7B09002057D6 /* Main.storyboard */; };
 		C2D9584623EA7B0B002057D6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C2D9584523EA7B0B002057D6 /* Assets.xcassets */; };
 		C2D9584923EA7B0B002057D6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C2D9584723EA7B0B002057D6 /* LaunchScreen.storyboard */; };
+		C2D9585223EBB1EE002057D6 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D9585123EBB1EE002057D6 /* Card.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		C2D9584523EA7B0B002057D6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C2D9584823EA7B0B002057D6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C2D9584A23EA7B0B002057D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C2D9585123EBB1EE002057D6 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 		C2D9583B23EA7B09002057D6 /* CardGameApp */ = {
 			isa = PBXGroup;
 			children = (
+				C2D9585023EBB1DE002057D6 /* Models */,
 				C2D9583C23EA7B09002057D6 /* AppDelegate.swift */,
 				C2D9583E23EA7B09002057D6 /* SceneDelegate.swift */,
 				C2D9584023EA7B09002057D6 /* ViewController.swift */,
@@ -65,6 +68,14 @@
 				C2D9584A23EA7B0B002057D6 /* Info.plist */,
 			);
 			path = CardGameApp;
+			sourceTree = "<group>";
+		};
+		C2D9585023EBB1DE002057D6 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C2D9585123EBB1EE002057D6 /* Card.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -141,6 +152,7 @@
 				C2D9584123EA7B09002057D6 /* ViewController.swift in Sources */,
 				C2D9583D23EA7B09002057D6 /* AppDelegate.swift in Sources */,
 				C2D9583F23EA7B09002057D6 /* SceneDelegate.swift in Sources */,
+				C2D9585223EBB1EE002057D6 /* Card.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
