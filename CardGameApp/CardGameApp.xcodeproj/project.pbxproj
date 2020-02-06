@@ -15,6 +15,9 @@
 		5AE093C923EC216A0046DA63 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5AE093C723EC216A0046DA63 /* LaunchScreen.storyboard */; };
 		5AE093D423EC216A0046DA63 /* CardGameAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE093D323EC216A0046DA63 /* CardGameAppTests.swift */; };
 		5AE093DF23EC216B0046DA63 /* CardGameAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE093DE23EC216B0046DA63 /* CardGameAppUITests.swift */; };
+		5AE093ED23EC33D90046DA63 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE093EC23EC33D90046DA63 /* Constant.swift */; };
+		5AE093EE23EC33D90046DA63 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE093EC23EC33D90046DA63 /* Constant.swift */; };
+		5AE093EF23EC33D90046DA63 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE093EC23EC33D90046DA63 /* Constant.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +52,7 @@
 		5AE093DA23EC216B0046DA63 /* CardGameAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CardGameAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5AE093DE23EC216B0046DA63 /* CardGameAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardGameAppUITests.swift; sourceTree = "<group>"; };
 		5AE093E023EC216B0046DA63 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5AE093EC23EC33D90046DA63 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +110,7 @@
 				5AE093C523EC216A0046DA63 /* Assets.xcassets */,
 				5AE093C723EC216A0046DA63 /* LaunchScreen.storyboard */,
 				5AE093CA23EC216A0046DA63 /* Info.plist */,
+				5AE093EC23EC33D90046DA63 /* Constant.swift */,
 			);
 			path = CardGameApp;
 			sourceTree = "<group>";
@@ -262,6 +267,7 @@
 				5AE093C123EC21670046DA63 /* ViewController.swift in Sources */,
 				5AE093BD23EC21670046DA63 /* AppDelegate.swift in Sources */,
 				5AE093BF23EC21670046DA63 /* SceneDelegate.swift in Sources */,
+				5AE093ED23EC33D90046DA63 /* Constant.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -270,6 +276,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5AE093D423EC216A0046DA63 /* CardGameAppTests.swift in Sources */,
+				5AE093EE23EC33D90046DA63 /* Constant.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,6 +285,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5AE093DF23EC216B0046DA63 /* CardGameAppUITests.swift in Sources */,
+				5AE093EF23EC33D90046DA63 /* Constant.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
