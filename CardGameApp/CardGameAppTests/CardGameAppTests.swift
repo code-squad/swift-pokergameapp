@@ -26,4 +26,11 @@ class CardGameAppTests: XCTestCase {
         XCTAssertTrue(cardDeck.count == 52)
         print("총 \(cardDeck.count)장의 카드가 있습니다.")
     }
+    
+    func testCardDeckShuffle() {
+        print("> 카드 섞기")
+        let cardDeck = CardDeck()
+        cardDeck.shuffle()
+        print("전체 52장의 카드를 섞었습니다.")
+    }
 }
