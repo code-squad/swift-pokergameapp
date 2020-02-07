@@ -9,7 +9,11 @@
 import Foundation
 
 struct CardDeck {
-    var cards = [Card]()
+    private var cards = [Card]()
+    
+    var count: Int {
+        return cards.count
+    }
     
     init() {
         Card.Suit.allCases.forEach { suit in
