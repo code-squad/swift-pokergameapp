@@ -75,19 +75,136 @@ class Card {
     enum Rank: Int {
         case A = 1, two, three, four, five, six, seven, eight, nine, ten, J, Q, K
     }
-    
-    func getInfo() -> String {
-        var info = shape.rawValue
+}
+
+extension Card: CustomStringConvertible {
+    var description: String {
         switch rank {
         case .A, .J, .Q, .K:
-            info += "\(rank)"
+            return "\(shape.rawValue)\(rank)"
         default:
-            info += "\(rank.rawValue)"
+            return "\(shape.rawValue)\(rank.rawValue)"
         }
-        return info
     }
 }
 ```
+
+Card 클래스에 CustomStringConvertible 프로토콜을 채택해줘서 정보에 맞게 문자열로 변환
+
 <img width="470" alt="스크린샷 2020-02-07 오후 5 09 17" src="https://user-images.githubusercontent.com/50410213/74012058-b52cf580-49cc-11ea-85dc-8ec158ab2d1f.png">
 <img width="273" alt="스크린샷 2020-02-07 오후 5 09 07" src="https://user-images.githubusercontent.com/50410213/74012053-b3fbc880-49cc-11ea-9cfb-187f702e138c.png">
 
+#### 5 - 1. 카드덱 구현
+```swift
+struct Deck {
+    private var cards = [Card]() {
+        didSet {
+            print("총 \(count)장의 카드가 남아있습니다.")
+        }
+    }
+    var count: Int {
+        cards.count
+    }
+    
+    init() {
+        reset()
+    }
+    
+    mutating func reset() {
+        cards = [Card]()
+        Card.Shape.allCases.forEach {
+            let shape = $0
+            Card.Rank.allCases.forEach {
+                cards.append(Card(shape: shape, rank: $0))
+            }
+        }
+    }
+    
+    mutating func removeOne() -> Card? {
+        guard count > 0 else {
+            print("카드가 없어요")
+            return nil
+        }
+        let card = cards.removeLast()
+        return card
+    }
+    
+    mutating func shuffle() {
+        cards.shuffle()
+    }
+}
+```
+* property observer 로 카드 덱에 변화가 생길 때마다 남은 장수 출력
+* count 는 카드 배열의 갯수를 반환하는 연산 프로퍼티로 만들어줌
+* 구조체 내부 데이터를 수정해주기위해 mutating func 으로 함수들 선언
+* reset() - 카드가 담긴 배열을 초기화해주고 카드들을 담아줌
+* removeOne() - 카드가 남아있는지 여부를 확인하고 있다면 뽑아주고 없으면 nil 을 반환
+* shuffle() - 카드를 섞어줌
+
+#### 5 - 2. 테스트
+
+```swift
+extension Deck: Equatable {
+    static func == (lhs: Deck, rhs: Deck) -> Bool {
+        for index in 0..<lhs.count {
+            if "\(lhs.cards[index])" != "\(rhs.cards[index])" {
+                return false
+            }
+        }
+        return true
+    }
+}
+```
+* 유닛 테스트에서 덱이 같은지 여부를 확인하기위해 Deck 에 Equatable 프로토콜을 채택해줌
+
+```swift
+@testable import CardGameApp
+import XCTest
+
+class CardGameAppTests: XCTestCase {
+
+    var deck: Deck!
+    
+    override func setUp() {
+        super.setUp()
+        deck = Deck()
+    }
+
+    func testShuffle() {
+        let beforeShuffle = deck
+        deck.shuffle()
+        XCTAssertNotEqual(beforeShuffle, deck)
+    }
+    
+    func testReset() {
+        let initialDeck = deck
+        deck.shuffle()
+        XCTAssertNotEqual(initialDeck, deck)
+        deck.reset()
+        XCTAssertEqual(initialDeck, deck)
+    }
+    
+    func testRemoveOneAndCount() {
+        let beforeRemove = deck.count
+        for count in 1...beforeRemove {
+            if let card = deck.removeOne() {
+                print(card)
+                XCTAssertEqual(beforeRemove - count, deck.count)
+            }
+        }
+        XCTAssertNil(deck.removeOne())
+    }
+
+    func testExampleScenario() {
+        let initialDeck = deck
+        deck.reset()
+        XCTAssertEqual(deck.count, 52)
+        deck.shuffle()
+        XCTAssertNotEqual(deck, initialDeck)
+        deck.removeOne()
+        XCTAssertEqual(deck.count, 51)
+        deck.removeOne()
+        XCTAssertEqual(deck.count, 50)
+    }
+}
+```
