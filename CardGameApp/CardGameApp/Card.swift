@@ -31,19 +31,7 @@ class Card {
     }
     
     enum Rank: Int {
-        case king = 13
-        case queen = 12
-        case jack = 11
-        case ten = 10
-        case nine = 9
-        case eight = 8
-        case seven = 7
-        case six = 6
-        case five = 5
-        case four = 4
-        case three = 3
-        case two = 2
-        case ace = 1
+        case ace = 1, two, three, four, five, six, seven, eight, nine, ten, jack, queen, king
     }
 }
 
