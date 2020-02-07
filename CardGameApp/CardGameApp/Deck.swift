@@ -32,13 +32,13 @@ struct Deck {
         }
     }
     
-    mutating func removeOne() {
+    mutating func removeOne() -> Card? {
         guard count > 0 else {
             print("카드가 없어요")
-            return
+            return nil
         }
         let card = cards.removeLast()
-        print(card)
+        return card
     }
     
     mutating func shuffle() {
