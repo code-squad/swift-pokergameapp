@@ -130,7 +130,11 @@ struct Deck {
     }
     
     mutating func shuffle() {
-        cards.shuffle()
+        guard count > 2 else { return }
+        let beforeShuffle = cards
+        while beforeShuffle == cards {
+            cards.shuffle()
+        }
     }
 }
 ```
@@ -139,7 +143,26 @@ struct Deck {
 * 구조체 내부 데이터를 수정해주기위해 mutating func 으로 함수들 선언
 * reset() - 카드가 담긴 배열을 초기화해주고 카드들을 담아줌
 * removeOne() - 카드가 남아있는지 여부를 확인하고 있다면 뽑아주고 없으면 nil 을 반환
-* shuffle() - 카드를 섞어줌
+* shuffle() - 섞을 카드의 갯수가 2개보다 적다면 아무 동작도 하지 않음, 카드를 섞은 후의 결과가 섞기 전과 같다면 다시 섞음
+
+```swift
+extension Card: CustomStringConvertible, Equatable {
+    static func == (lhs: Card, rhs: Card) -> Bool {
+        return "\(lhs)" == "\(rhs)"
+    }
+    
+    var description: String {
+        switch rank {
+        case .A, .J, .Q, .K:
+            return "\(shape.rawValue)\(rank)"
+        default:
+            return "\(shape.rawValue)\(rank.rawValue)"
+        }
+    }
+}
+```
+
+* shuffle() 에서 카드를 담은 배열이 같은지 확인하기위해 Card 에 Equatable 프로토콜을 채택해줌
 
 #### 5 - 2. 테스트
 
