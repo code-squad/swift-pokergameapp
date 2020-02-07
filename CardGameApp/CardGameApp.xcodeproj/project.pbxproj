@@ -8,22 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		AE40A35E23ED340A009AB61B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE40A35D23ED340A009AB61B /* AppDelegate.swift */; };
-		AE40A36023ED340A009AB61B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE40A35F23ED340A009AB61B /* SceneDelegate.swift */; };
 		AE40A36223ED340A009AB61B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE40A36123ED340A009AB61B /* ViewController.swift */; };
-		AE40A36523ED340A009AB61B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE40A36323ED340A009AB61B /* Main.storyboard */; };
 		AE40A36723ED340B009AB61B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE40A36623ED340B009AB61B /* Assets.xcassets */; };
-		AE40A36A23ED340B009AB61B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE40A36823ED340B009AB61B /* LaunchScreen.storyboard */; };
+		AE40A37223ED35B4009AB61B /* FirstView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE40A37123ED35B4009AB61B /* FirstView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		AE40A35A23ED340A009AB61B /* CardGameApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CardGameApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE40A35D23ED340A009AB61B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		AE40A35F23ED340A009AB61B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		AE40A36123ED340A009AB61B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		AE40A36423ED340A009AB61B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AE40A36623ED340B009AB61B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		AE40A36923ED340B009AB61B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AE40A36B23ED340B009AB61B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AE40A37123ED35B4009AB61B /* FirstView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,11 +53,9 @@
 			isa = PBXGroup;
 			children = (
 				AE40A35D23ED340A009AB61B /* AppDelegate.swift */,
-				AE40A35F23ED340A009AB61B /* SceneDelegate.swift */,
+				AE40A37123ED35B4009AB61B /* FirstView.swift */,
 				AE40A36123ED340A009AB61B /* ViewController.swift */,
-				AE40A36323ED340A009AB61B /* Main.storyboard */,
 				AE40A36623ED340B009AB61B /* Assets.xcassets */,
-				AE40A36823ED340B009AB61B /* LaunchScreen.storyboard */,
 				AE40A36B23ED340B009AB61B /* Info.plist */,
 			);
 			path = CardGameApp;
@@ -125,9 +119,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AE40A36A23ED340B009AB61B /* LaunchScreen.storyboard in Resources */,
 				AE40A36723ED340B009AB61B /* Assets.xcassets in Resources */,
-				AE40A36523ED340A009AB61B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -139,31 +131,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				AE40A36223ED340A009AB61B /* ViewController.swift in Sources */,
+				AE40A37223ED35B4009AB61B /* FirstView.swift in Sources */,
 				AE40A35E23ED340A009AB61B /* AppDelegate.swift in Sources */,
-				AE40A36023ED340A009AB61B /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		AE40A36323ED340A009AB61B /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				AE40A36423ED340A009AB61B /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		AE40A36823ED340B009AB61B /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				AE40A36923ED340B009AB61B /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		AE40A36C23ED340B009AB61B /* Debug */ = {
