@@ -31,8 +31,9 @@ class ViewController: UIViewController {
         cardStack.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 30).isActive = true
         cardStack.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 5).isActive = true
         cardStack.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -5).isActive = true
-        let a = Card(shape: .diamond, rank: .A)
-        print(a)
+        var a = Deck()
+        a.reset()
+        print(a.cards)
     }
     
     func makeCards() {
