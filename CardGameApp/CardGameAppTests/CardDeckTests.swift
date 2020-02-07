@@ -37,10 +37,25 @@ class CardDeckTests: XCTestCase {
     }
     
     func testShuffle() {
+        let fixedGenerator = FixedRandomNumberGenerator()
         let cardsBeforeSuffle = (0..<52).map { _ in cardDeck.removeOne() }
+        
         cardDeck.reset()
-        cardDeck.shuffle()
+        cardDeck.shuffle(using: fixedGenerator)
+        
         let cardsAfterSuffle = (0..<52).map { _ in cardDeck.removeOne() }
         XCTAssertNotEqual(cardsBeforeSuffle, cardsAfterSuffle)
+    }
+}
+
+class FixedRandomNumberGenerator: RandomNumberGenerator {
+    private var seed = 123456789
+    private let modulus = 2 << 30
+    private let multiplier = 1103515245
+    private let increment = 12345
+    
+    func next<T>() -> T where T : FixedWidthInteger, T : UnsignedInteger {
+        seed = (multiplier * seed + increment) % modulus
+        return T(seed)
     }
 }
