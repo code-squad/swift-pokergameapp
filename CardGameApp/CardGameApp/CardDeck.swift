@@ -8,7 +8,7 @@
 
 import Foundation
 struct CardDeck {
-    var cards :[Card] = []
+    private var cards :[Card] = []
     
     init() {
         Card.Number.allCases.map { number in
