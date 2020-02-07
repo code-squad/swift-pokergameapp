@@ -55,3 +55,39 @@ makeCards() 로 카드를 만들어 스택에 담아주고 스택뷰를 뷰 위�
 스택뷰의 위치를 기존 뷰를 기준으로 정해줌
 
 <img width="442" alt="스크린샷 2020-02-06 오후 8 02 20" src="https://user-images.githubusercontent.com/50410213/73932149-0f6e7d80-491d-11ea-94ef-206edcced0cd.png">
+
+#### 4. 카드 클래스 구현
+```swift
+class Card {
+    var shape: Shape
+    var rank: Rank
+
+    init (shape: Shape, rank: Rank) {
+        self.shape = shape
+        self.rank = rank
+    }
+    
+    enum Shape: String {
+        case heart = "♥︎", spade = "♠︎", clover = "♣︎", diamond = "♦︎"
+    }
+    
+    // enum 을 중첩해서 사용하여 A, J, Q, K 와 숫자들을 구분해뒀었는데 생각해보니 나중에 포커게임을 구현할 때 연속된 숫자임을 확인하기 위해선 모두 Int 타입의 RawValue 를 가져야할것같아 수정해주었습니다.
+    enum Rank: Int {
+        case A = 1, two, three, four, five, six, seven, eight, nine, ten, J, Q, K
+    }
+    
+    func getInfo() -> String {
+        var info = shape.rawValue
+        switch rank {
+        case .A, .J, .Q, .K:
+            info += "\(rank)"
+        default:
+            info += "\(rank.rawValue)"
+        }
+        return info
+    }
+}
+```
+<img width="470" alt="스크린샷 2020-02-07 오후 5 09 17" src="https://user-images.githubusercontent.com/50410213/74012058-b52cf580-49cc-11ea-85dc-8ec158ab2d1f.png">
+<img width="273" alt="스크린샷 2020-02-07 오후 5 09 07" src="https://user-images.githubusercontent.com/50410213/74012053-b3fbc880-49cc-11ea-9cfb-187f702e138c.png">
+
