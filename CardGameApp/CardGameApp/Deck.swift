@@ -42,14 +42,18 @@ struct Deck {
     }
     
     mutating func shuffle() {
-        cards.shuffle()
+        guard count > 2 else { return }
+        let beforeShuffle = cards
+        while beforeShuffle == cards {
+            cards.shuffle()
+        }
     }
 }
 
 extension Deck: Equatable {
     static func == (lhs: Deck, rhs: Deck) -> Bool {
         for index in 0..<lhs.count {
-            if "\(lhs.cards[index])" != "\(rhs.cards[index])" {
+            if lhs.cards[index] != rhs.cards[index] {
                 return false
             }
         }
