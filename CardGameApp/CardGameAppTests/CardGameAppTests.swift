@@ -11,8 +11,10 @@ import CardGameApp
 
 class CardGameAppTests: XCTestCase {
 
+    var deck: CardDeck!
+    
     override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        self.deck = CardDeck()
     }
 
     override func tearDown() {
@@ -21,30 +23,34 @@ class CardGameAppTests: XCTestCase {
     
     func testCardDeckInitializer() {
         print("> 카드 초기화")
-        let cardDeck = CardDeck()
+        deck = CardDeck()
         print("카드 전체를 초기화했습니다.")
-        XCTAssertTrue(cardDeck.count == 52)
-        print("총 \(cardDeck.count)장의 카드가 있습니다.")
+        XCTAssertNotNil(deck)
+        XCTAssertEqual(deck.count, 52)
+        print("총 \(deck.count)장의 카드가 있습니다.")
     }
     
     func testCardDeckShuffle() {
         print("> 카드 섞기")
-        let cardDeck = CardDeck()
-        cardDeck.shuffle()
+        let initializedCards = deck.cards
+        deck.shuffle()
+        let shuffledCards = deck.cards
+        XCTAssertNotEqual(initializedCards, shuffledCards)
         print("전체 52장의 카드를 섞었습니다.")
     }
     
     func testCardDeckRemoveOne() {
         print("> 카드 하나 뽑기")
-        let cardDeck = CardDeck()
-        cardDeck.shuffle()
+        deck.shuffle()
         
-        guard let card1 = cardDeck.removeOne() else { return }
+        guard let card1 = deck.removeOne() else { return }
         print(card1)
-        print("총 \(cardDeck.count)장의 카드가 남아있습니다.\n")
+        XCTAssertEqual(deck.count, 51)
+        print("총 \(deck.count)장의 카드가 남아있습니다.\n")
         
-        guard let card2 = cardDeck.removeOne() else { return }
+        guard let card2 = deck.removeOne() else { return }
         print(card2)
-        print("총 \(cardDeck.count)장의 카드가 남아있습니다.\n")
+        XCTAssertEqual(deck.count, 50)
+        print("총 \(deck.count)장의 카드가 남아있습니다.\n")
     }
 }
