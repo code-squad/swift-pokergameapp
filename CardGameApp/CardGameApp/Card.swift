@@ -47,7 +47,12 @@ class Card {
     }
 }
 
-extension Card: CustomStringConvertible {
+extension Card: CustomStringConvertible, Equatable {
+    static func == (lhs: Card, rhs: Card) -> Bool {
+        return lhs.suit == rhs.suit &&
+            lhs.rank == rhs.rank
+    }
+    
     var description: String {
         var rank = ""
         switch self.rank {
