@@ -16,13 +16,10 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        assignBackground(imageName : Constant.BACKGROUND_IMAGE_NAME)
+        setupBackground()
     }
     
-    private func assignBackground(imageName name : String) {
-        if let image = UIImage(named: name) {
-            self.view.backgroundColor = UIColor(patternImage: image)
-        }
+    private func setupBackground() {
+        self.view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "bg_pattern"))
     }
 }
-
