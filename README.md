@@ -24,3 +24,11 @@
 **실행 화면**
 ![step2-result](step2-result.png)
 
+## STEP3. 카드덱 구현과 테스트
+
+* 열거형이 CaseIterable을 따르도록 하고, 모든 case에 대해 열거형 인스턴스 생성해서 카드덱 초기화
+* 카드덱 구조체의 removeone, reset, shuffle 메서드 구현 및 테스트
+
+**실행 결과**
+![step3-result](step3-result.png)
+
