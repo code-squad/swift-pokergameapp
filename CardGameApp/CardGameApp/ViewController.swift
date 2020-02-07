@@ -32,7 +32,7 @@ class ViewController: UIViewController {
         cardStack.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 5).isActive = true
         cardStack.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -5).isActive = true
         let a = Card(shape: .diamond, rank: .A)
-        print(a.getInfo())
+        print(a)
     }
     
     func makeCards() {
