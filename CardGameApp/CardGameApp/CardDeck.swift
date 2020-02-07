@@ -9,11 +9,9 @@
 import Foundation
 
 class CardDeck {
-    var cards: [Card] = []
+    private var cards: [Card] = []
     var count: Int {
-        get {
-            return cards.count
-        }
+        cards.count
     }
     
     init() {
@@ -24,10 +22,10 @@ class CardDeck {
         let suits: [Card.Suit] = [.club, .diamond, .heart, .spade]
         let ranks: [Card.Rank] = [.ace, .two, .three, .four, .five, .six, .seven, .eight, .nine, .ten, .jack, .queen, .king]
         
-        for suitIndex in 0..<suits.count {
-            for rankIndex in 0..<ranks.count {
-                let card = Card(suit: suits[suitIndex], rank: ranks[rankIndex])
-                cards.append(card)
+        suits.forEach {
+            let suit = $0
+            ranks.forEach {
+                cards.append(Card(suit: suit, rank: $0))
             }
         }
     }
