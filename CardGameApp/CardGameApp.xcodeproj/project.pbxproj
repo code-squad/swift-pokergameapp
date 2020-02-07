@@ -19,6 +19,7 @@
 		385F3AEB23EC4689003FA6A2 /* CardDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385F3ADB23EC3FF6003FA6A2 /* CardDeck.swift */; };
 		385F3AEC23EC468C003FA6A2 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385F3AD923EACB92003FA6A2 /* Card.swift */; };
 		385F3AEE23EC4691003FA6A2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385F3AC923EA6FA9003FA6A2 /* ViewController.swift */; };
+		385F3AF023EDBA1D003FA6A2 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385F3AEF23EDBA1D003FA6A2 /* Player.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +46,7 @@
 		385F3AE123EC466E003FA6A2 /* CardGameAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CardGameAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		385F3AE323EC466E003FA6A2 /* CardGameAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardGameAppTests.swift; sourceTree = "<group>"; };
 		385F3AE523EC466E003FA6A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		385F3AEF23EDBA1D003FA6A2 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +97,7 @@
 				385F3AD023EA6FAB003FA6A2 /* LaunchScreen.storyboard */,
 				385F3AD323EA6FAB003FA6A2 /* Info.plist */,
 				385F3ADB23EC3FF6003FA6A2 /* CardDeck.swift */,
+				385F3AEF23EDBA1D003FA6A2 /* Player.swift */,
 			);
 			path = CardGameApp;
 			sourceTree = "<group>";
@@ -213,6 +216,7 @@
 				385F3ADC23EC3FF6003FA6A2 /* CardDeck.swift in Sources */,
 				385F3AC623EA6FA9003FA6A2 /* AppDelegate.swift in Sources */,
 				385F3AC823EA6FA9003FA6A2 /* SceneDelegate.swift in Sources */,
+				385F3AF023EDBA1D003FA6A2 /* Player.swift in Sources */,
 				385F3ADA23EACB92003FA6A2 /* Card.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
