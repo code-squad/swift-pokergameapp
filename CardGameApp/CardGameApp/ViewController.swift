@@ -13,9 +13,6 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
-
-        let card = Card(number: .one, pattern: .clover)
-        print(card.description)
     }
     
     let cardImageStack: UIStackView = {
