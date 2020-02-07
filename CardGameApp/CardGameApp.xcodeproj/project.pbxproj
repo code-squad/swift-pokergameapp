@@ -13,6 +13,7 @@
 		DE0FBE5823ED299A007E1FEA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE0FBE5623ED299A007E1FEA /* Main.storyboard */; };
 		DE0FBE5A23ED299C007E1FEA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE0FBE5923ED299C007E1FEA /* Assets.xcassets */; };
 		DE0FBE5D23ED299C007E1FEA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE0FBE5B23ED299C007E1FEA /* LaunchScreen.storyboard */; };
+		DE0FBE6523ED2D5B007E1FEA /* pattern.png in Resources */ = {isa = PBXBuildFile; fileRef = DE0FBE6423ED2D5A007E1FEA /* pattern.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		DE0FBE5923ED299C007E1FEA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DE0FBE5C23ED299C007E1FEA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DE0FBE5E23ED299C007E1FEA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DE0FBE6423ED2D5A007E1FEA /* pattern.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pattern.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +63,7 @@
 				DE0FBE5423ED299A007E1FEA /* ViewController.swift */,
 				DE0FBE5623ED299A007E1FEA /* Main.storyboard */,
 				DE0FBE5923ED299C007E1FEA /* Assets.xcassets */,
+				DE0FBE6423ED2D5A007E1FEA /* pattern.png */,
 				DE0FBE5B23ED299C007E1FEA /* LaunchScreen.storyboard */,
 				DE0FBE5E23ED299C007E1FEA /* Info.plist */,
 			);
@@ -125,6 +128,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE0FBE6523ED2D5B007E1FEA /* pattern.png in Resources */,
 				DE0FBE5D23ED299C007E1FEA /* LaunchScreen.storyboard in Resources */,
 				DE0FBE5A23ED299C007E1FEA /* Assets.xcassets in Resources */,
 				DE0FBE5823ED299A007E1FEA /* Main.storyboard in Resources */,
