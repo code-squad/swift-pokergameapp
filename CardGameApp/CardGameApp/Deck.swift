@@ -18,6 +18,10 @@ struct Deck {
         cards.count
     }
     
+    init() {
+        reset()
+    }
+    
     mutating func reset() {
         cards = [Card]()
         Card.Shape.allCases.forEach {
@@ -39,5 +43,16 @@ struct Deck {
     
     mutating func shuffle() {
         cards.shuffle()
+    }
+}
+
+extension Deck: Equatable {
+    static func == (lhs: Deck, rhs: Deck) -> Bool {
+        for index in 0..<lhs.count {
+            if "\(lhs.cards[index])" != "\(rhs.cards[index])" {
+                return false
+            }
+        }
+        return true
     }
 }
