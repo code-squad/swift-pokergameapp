@@ -41,4 +41,16 @@ class CardGameAppTests: XCTestCase {
         }
         XCTAssertNil(deck.removeOne())
     }
+    
+    func testExampleScenario() {
+        let initialDeck = deck
+        deck.reset()
+        XCTAssertEqual(deck.count, 52)
+        deck.shuffle()
+        XCTAssertNotEqual(deck, initialDeck)
+        deck.removeOne()
+        XCTAssertEqual(deck.count, 51)
+        deck.removeOne()
+        XCTAssertEqual(deck.count, 50)
+    }
 }
