@@ -30,4 +30,15 @@ class CardGameAppTests: XCTestCase {
         deck.reset()
         XCTAssertEqual(initialDeck, deck)
     }
+    
+    func testRemoveOneAndCount() {
+        let beforeRemove = deck.count
+        for count in 1...beforeRemove {
+            if let card = deck.removeOne() {
+                print(card)
+                XCTAssertEqual(beforeRemove - count, deck.count)
+            }
+        }
+        XCTAssertNil(deck.removeOne())
+    }
 }
