@@ -14,7 +14,7 @@
 		C2D9584623EA7B0B002057D6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C2D9584523EA7B0B002057D6 /* Assets.xcassets */; };
 		C2D9584923EA7B0B002057D6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C2D9584723EA7B0B002057D6 /* LaunchScreen.storyboard */; };
 		C2D9585223EBB1EE002057D6 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D9585123EBB1EE002057D6 /* Card.swift */; };
-		C2E62B0A23ED33C100236059 /* CardGameAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E62B0923ED33C100236059 /* CardGameAppTests.swift */; };
+		C2E62B0A23ED33C100236059 /* CardDeckTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E62B0923ED33C100236059 /* CardDeckTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,7 +38,7 @@
 		C2D9584A23EA7B0B002057D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C2D9585123EBB1EE002057D6 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		C2E62B0723ED33C100236059 /* CardGameAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CardGameAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C2E62B0923ED33C100236059 /* CardGameAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardGameAppTests.swift; sourceTree = "<group>"; };
+		C2E62B0923ED33C100236059 /* CardDeckTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDeckTests.swift; sourceTree = "<group>"; };
 		C2E62B0B23ED33C100236059 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -104,7 +104,7 @@
 		C2E62B0823ED33C100236059 /* CardGameAppTests */ = {
 			isa = PBXGroup;
 			children = (
-				C2E62B0923ED33C100236059 /* CardGameAppTests.swift */,
+				C2E62B0923ED33C100236059 /* CardDeckTests.swift */,
 				C2E62B0B23ED33C100236059 /* Info.plist */,
 			);
 			path = CardGameAppTests;
@@ -222,7 +222,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C2E62B0A23ED33C100236059 /* CardGameAppTests.swift in Sources */,
+				C2E62B0A23ED33C100236059 /* CardDeckTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
