@@ -15,7 +15,18 @@
 		30476F0623EA7AE60046DAE5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30476F0423EA7AE60046DAE5 /* LaunchScreen.storyboard */; };
 		30BF90A023EBCA1000A5D728 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BF909F23EBCA1000A5D728 /* Card.swift */; };
 		30BF90A223EC42FF00A5D728 /* CardDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BF90A123EC42FF00A5D728 /* CardDeck.swift */; };
+		30C0728A23ED796300DCE7AA /* CardGameAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C0728923ED796300DCE7AA /* CardGameAppTests.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		30C0728C23ED796300DCE7AA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 30476EEE23EA7AE30046DAE5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 30476EF523EA7AE30046DAE5;
+			remoteInfo = CardGameApp;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		30476EF623EA7AE30046DAE5 /* CardGameApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CardGameApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -28,10 +39,20 @@
 		30476F0723EA7AE60046DAE5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		30BF909F23EBCA1000A5D728 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		30BF90A123EC42FF00A5D728 /* CardDeck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDeck.swift; sourceTree = "<group>"; };
+		30C0728723ED796300DCE7AA /* CardGameAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CardGameAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		30C0728923ED796300DCE7AA /* CardGameAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardGameAppTests.swift; sourceTree = "<group>"; };
+		30C0728B23ED796300DCE7AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		30476EF323EA7AE30046DAE5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		30C0728423ED796300DCE7AA /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -45,6 +66,7 @@
 			isa = PBXGroup;
 			children = (
 				30476EF823EA7AE30046DAE5 /* CardGameApp */,
+				30C0728823ED796300DCE7AA /* CardGameAppTests */,
 				30476EF723EA7AE30046DAE5 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -53,6 +75,7 @@
 			isa = PBXGroup;
 			children = (
 				30476EF623EA7AE30046DAE5 /* CardGameApp.app */,
+				30C0728723ED796300DCE7AA /* CardGameAppTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -71,6 +94,15 @@
 				30BF90A123EC42FF00A5D728 /* CardDeck.swift */,
 			);
 			path = CardGameApp;
+			sourceTree = "<group>";
+		};
+		30C0728823ED796300DCE7AA /* CardGameAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				30C0728923ED796300DCE7AA /* CardGameAppTests.swift */,
+				30C0728B23ED796300DCE7AA /* Info.plist */,
+			);
+			path = CardGameAppTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -93,6 +125,24 @@
 			productReference = 30476EF623EA7AE30046DAE5 /* CardGameApp.app */;
 			productType = "com.apple.product-type.application";
 		};
+		30C0728623ED796300DCE7AA /* CardGameAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 30C0729023ED796300DCE7AA /* Build configuration list for PBXNativeTarget "CardGameAppTests" */;
+			buildPhases = (
+				30C0728323ED796300DCE7AA /* Sources */,
+				30C0728423ED796300DCE7AA /* Frameworks */,
+				30C0728523ED796300DCE7AA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				30C0728D23ED796300DCE7AA /* PBXTargetDependency */,
+			);
+			name = CardGameAppTests;
+			productName = CardGameAppTests;
+			productReference = 30C0728723ED796300DCE7AA /* CardGameAppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -105,6 +155,10 @@
 				TargetAttributes = {
 					30476EF523EA7AE30046DAE5 = {
 						CreatedOnToolsVersion = 11.3;
+					};
+					30C0728623ED796300DCE7AA = {
+						CreatedOnToolsVersion = 11.3;
+						TestTargetID = 30476EF523EA7AE30046DAE5;
 					};
 				};
 			};
@@ -122,6 +176,7 @@
 			projectRoot = "";
 			targets = (
 				30476EF523EA7AE30046DAE5 /* CardGameApp */,
+				30C0728623ED796300DCE7AA /* CardGameAppTests */,
 			);
 		};
 /* End PBXProject section */
@@ -134,6 +189,13 @@
 				30476F0623EA7AE60046DAE5 /* LaunchScreen.storyboard in Resources */,
 				30476F0323EA7AE60046DAE5 /* Assets.xcassets in Resources */,
 				30476F0123EA7AE30046DAE5 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		30C0728523ED796300DCE7AA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -152,7 +214,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		30C0728323ED796300DCE7AA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				30C0728A23ED796300DCE7AA /* CardGameAppTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		30C0728D23ED796300DCE7AA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 30476EF523EA7AE30046DAE5 /* CardGameApp */;
+			targetProxy = 30C0728C23ED796300DCE7AA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		30476EFF23EA7AE30046DAE5 /* Main.storyboard */ = {
@@ -324,6 +402,46 @@
 			};
 			name = Release;
 		};
+		30C0728E23ED796300DCE7AA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NC28R53QWB;
+				INFOPLIST_FILE = CardGameAppTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.delma.CardGameAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CardGameApp.app/CardGameApp";
+			};
+			name = Debug;
+		};
+		30C0728F23ED796300DCE7AA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NC28R53QWB;
+				INFOPLIST_FILE = CardGameAppTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.delma.CardGameAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CardGameApp.app/CardGameApp";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -341,6 +459,15 @@
 			buildConfigurations = (
 				30476F0B23EA7AE60046DAE5 /* Debug */,
 				30476F0C23EA7AE60046DAE5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		30C0729023ED796300DCE7AA /* Build configuration list for PBXNativeTarget "CardGameAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				30C0728E23ED796300DCE7AA /* Debug */,
+				30C0728F23ED796300DCE7AA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

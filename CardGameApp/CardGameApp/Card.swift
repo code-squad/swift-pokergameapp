@@ -16,14 +16,14 @@ class Card {
         self.pattern = pattern
     }
     
-    enum Pattern: Character {
+    enum Pattern: Character, CaseIterable {
         case spade = "♠️"
         case clover = "♣️"
         case heart = "♥️"
         case diamond = "♦️"
     }
     
-    enum Number: Int {
+    enum Number: Int, CaseIterable {
         case one = 1, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve, thirteen
     }
     
