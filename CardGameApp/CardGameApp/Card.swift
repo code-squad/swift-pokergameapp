@@ -17,11 +17,11 @@ class Card {
         self.rank = rank
     }
     
-    enum Shape: String {
+    enum Shape: String, CaseIterable {
         case heart = "♥︎", spade = "♠︎", clover = "♣︎", diamond = "♦︎"
     }
     
-    enum Rank: Int {
+    enum Rank: Int, CaseIterable {
         case A = 1, two, three, four, five, six, seven, eight, nine, ten, J, Q, K
     }
 }
