@@ -48,3 +48,10 @@ extension Card: CustomStringConvertible {
         return "\(suit.rawValue)\(formattedNumber)"
     }
 }
+
+extension Card: Equatable {
+    static func == (lhs: Card, rhs: Card) -> Bool {
+        return lhs.suit == rhs.suit
+            && lhs.rank == rhs.rank
+    }
+}
