@@ -25,22 +25,25 @@ class Card {
     
     enum Number: Int {
         case one = 1, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve, thirteen
-        
-        func transformUniqueNumber(number: Number) -> String {
-            switch number {
-            case .one:
-                return "A"
-            case .eleven:
-                return "J"
-            case .twelve:
-                return "Q"
-            case .thirteen:
-                return "K"
-            default:
-                return "\(number)"
-            }
-        }
     }
     
 }
 
+extension Card: CustomStringConvertible {
+    var description: String {
+        var numberCharacter = ""
+        switch self.number {
+        case .one:
+            numberCharacter = "A"
+        case .eleven:
+            numberCharacter = "J"
+        case .twelve:
+            numberCharacter = "Q"
+        case .thirteen:
+            numberCharacter = "K"
+        default:
+            numberCharacter = "\(self.number)"
+        }
+        return "\(pattern.rawValue) \(numberCharacter)"
+    }
+}

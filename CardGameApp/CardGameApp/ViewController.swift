@@ -15,8 +15,7 @@ class ViewController: UIViewController {
         setUI()
 
         let card = Card(number: .one, pattern: .clover)
-        print(card.number.transformUniqueNumber(number: card.number))
-        print(card.pattern.rawValue)
+        print(card.description)
     }
     
     let cardImageStack: UIStackView = {
