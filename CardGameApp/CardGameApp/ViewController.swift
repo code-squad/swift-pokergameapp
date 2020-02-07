@@ -33,7 +33,8 @@ class ViewController: UIViewController {
         cardStack.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -5).isActive = true
         var a = Deck()
         a.reset()
-        print(a.cards)
+        a.shuffle()
+        a.removeOne()
     }
     
     func makeCards() {

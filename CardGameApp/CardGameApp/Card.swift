@@ -9,8 +9,8 @@
 import Foundation
 
 class Card {
-    var shape: Shape
-    var rank: Rank
+    private var shape: Shape
+    private var rank: Rank
 
     init (shape: Shape, rank: Rank) {
         self.shape = shape
