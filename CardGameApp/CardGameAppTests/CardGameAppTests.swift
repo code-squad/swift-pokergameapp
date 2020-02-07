@@ -22,4 +22,12 @@ class CardGameAppTests: XCTestCase {
         deck.shuffle()
         XCTAssertNotEqual(beforeShuffle, deck)
     }
+    
+    func testReset() {
+        let initialDeck = deck
+        deck.shuffle()
+        XCTAssertNotEqual(initialDeck, deck)
+        deck.reset()
+        XCTAssertEqual(initialDeck, deck)
+    }
 }
