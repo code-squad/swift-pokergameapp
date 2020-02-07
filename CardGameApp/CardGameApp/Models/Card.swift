@@ -9,14 +9,14 @@
 import Foundation
 
 class Card {
-    enum Suit: String {
+    enum Suit: String, CaseIterable {
         case heart = "♥️"
         case diamond = "♦️"
         case club = "♣️"
         case spade = "♠️"
     }
     
-    enum Rank: Int {
+    enum Rank: Int, CaseIterable {
         case ace = 1
         case two, three, four, five, six, seven, eight, nine, ten, jack, queen, king
     }
