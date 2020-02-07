@@ -7,10 +7,17 @@
 //
 
 import XCTest
+@testable import CardGameApp
 
 class CardDeckTests: XCTestCase {
 
+    var cardDeck: CardDeck!
+    
     override func setUp() {
-        
+        cardDeck = CardDeck()
+    }
+    
+    func testCount() {
+        XCTAssertEqual(cardDeck.count, 52)
     }
 }
