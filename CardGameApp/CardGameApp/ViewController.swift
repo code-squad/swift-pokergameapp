@@ -24,6 +24,12 @@ class ViewController: UIViewController {
         self.view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "pattern"))
         
         view.addSubview(cardStackView)
+        
+        for _ in 1...7 {
+            let cardBackImage = UIImageView(image: #imageLiteral(resourceName: "card-back"))
+            cardBackImage.contentMode = .scaleAspectFit
+            cardStackView.addArrangedSubview(cardBackImage)
+        }
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
