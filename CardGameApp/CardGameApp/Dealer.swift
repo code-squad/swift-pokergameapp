@@ -10,4 +10,9 @@ import Foundation
 
 class Dealer: Player {
     var deck = Deck()
+    var drawnCard: Card?
+    
+    func drawCard() {
+        drawnCard = deck.removeOne()
+    }
 }
