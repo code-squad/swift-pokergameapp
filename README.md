@@ -143,7 +143,10 @@ struct Deck {
 * 구조체 내부 데이터를 수정해주기위해 mutating func 으로 함수들 선언
 * reset() - 카드가 담긴 배열을 초기화해주고 카드들을 담아줌
 * removeOne() - 카드가 남아있는지 여부를 확인하고 있다면 뽑아주고 없으면 nil 을 반환
-* shuffle() - 섞을 카드의 갯수가 2개보다 적다면 아무 동작도 하지 않음, 카드를 섞은 후의 결과가 섞기 전과 같다면 다시 섞음
+* shuffle() - 카드를 섞어줌
+
+
+#### 5 - 2. 테스트
 
 ```swift
 extension Card: CustomStringConvertible, Equatable {
@@ -162,10 +165,6 @@ extension Card: CustomStringConvertible, Equatable {
 }
 ```
 
-* shuffle() 에서 카드를 담은 배열이 같은지 확인하기위해 Card 에 Equatable 프로토콜을 채택해줌
-
-#### 5 - 2. 테스트
-
 ```swift
 extension Deck: Equatable {
     static func == (lhs: Deck, rhs: Deck) -> Bool {
@@ -178,13 +177,13 @@ extension Deck: Equatable {
     }
 }
 ```
-* 유닛 테스트에서 덱이 같은지 여부를 확인하기위해 Deck 에 Equatable 프로토콜을 채택해줌
+* 유닛 테스트에서 덱이 같은지 여부를 확인하기위해 Card 와 Deck 에 Equatable 프로토콜을 채택해줌
 
 ```swift
 @testable import CardGameApp
 import XCTest
 
-class CardGameAppTests: XCTestCase {
+class DeckTest: XCTestCase {
 
     var deck: Deck!
     
@@ -192,19 +191,26 @@ class CardGameAppTests: XCTestCase {
         super.setUp()
         deck = Deck()
     }
-
+    
     func testShuffle() {
         let beforeShuffle = deck
-        deck.shuffle()
-        XCTAssertNotEqual(beforeShuffle, deck)
+        var isItDifferent = 0
+        for _ in 1...100 {
+            deck.shuffle()
+            if deck != beforeShuffle {
+                isItDifferent += 1
+            } else {
+                isItDifferent -= 1
+            }
+        }
+        XCTAssertGreaterThan(isItDifferent, 0)
     }
     
     func testReset() {
-        let initialDeck = deck
-        deck.shuffle()
-        XCTAssertNotEqual(initialDeck, deck)
+        var anotherDeck = Deck()
         deck.reset()
-        XCTAssertEqual(initialDeck, deck)
+        anotherDeck.reset()
+        XCTAssertEqual(deck, anotherDeck)
     }
     
     func testRemoveOneAndCount() {
@@ -217,8 +223,25 @@ class CardGameAppTests: XCTestCase {
         }
         XCTAssertNil(deck.removeOne())
     }
+}
+```
+* Deck 의 기능을 테스트하기 위한 코드
+* shuffle 은 섞고 난 후에도 같은 결과가 나올 수 있기 때문에 shuffle 을 여러번 수행한 결과를 보고 테스트
 
-    func testExampleScenario() {
+```swift
+@testable import CardGameApp
+import XCTest
+
+class IntegrationTest: XCTestCase {
+
+    var deck: Deck!
+    
+    override func setUp() {
+        super.setUp()
+        deck = Deck()
+    }
+
+    func testIntegration() {
         let initialDeck = deck
         deck.reset()
         XCTAssertEqual(deck.count, 52)
@@ -231,3 +254,4 @@ class CardGameAppTests: XCTestCase {
     }
 }
 ```
+* 각각의 기능을 테스트하기위한 코드와 통합 테스트를 나눠줌
