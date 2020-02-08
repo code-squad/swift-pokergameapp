@@ -11,50 +11,41 @@ import XCTest
 
 class CardGameAppTests: XCTestCase {
 
+    var cardDeck: CardDeck!
+    
     override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
         super.setUp()
-    }
-
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() {
-        
-       
-        
-        
-    }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
-
-    func testCardShuffle() {
-        let cardDeck = CardDeck()
-        let output = """
-            > 카드 섞기
-            전체 \(cardDeck.count())장의 카드를 섞었습니다.
-            """
-        print(output)
-    }
-    func testInitCard() {
-         let cardDeck = CardDeck()
-        print("> 카드 초기화\n카드 전체를 초기화했습니다.\n총 \(cardDeck.count())장의 카드를 섞었습니다.")
+        cardDeck = CardDeck()
     }
     
-    func testPickOneCard() {
-        var cardDeck = CardDeck()
-        let output = """
-        > 카드 하나 뽑기
-        \(cardDeck.removeOn())
-        총 \(cardDeck.count())장의 카드가 남아있습니다.
-        """
-        print(output)
+    func testCount() {
+         XCTAssertEqual(cardDeck.count(), 52)
+    }
+    
+    func testShuffle() {
+        let beforeShuffle = (0..<52).map { _ in  cardDeck.removeOne()
+        }
+        cardDeck.shuffle()
+        let afterShuffle = (0..<52).map { _ in
+            cardDeck.removeOne()
+        }
+        XCTAssertNotEqual(beforeShuffle, afterShuffle)
+        
+    }
+    
+    func testRemoveOne() {
+        cardDeck.removeOne()
+        XCTAssertEqual(cardDeck.count(), 51)
+        cardDeck.removeOne()
+        XCTAssertEqual(cardDeck.count(), 50)
+    }
+    
+    func testReset() {
+        XCTAssertEqual(cardDeck.count(), 52)
+        cardDeck.removeOne()
+        cardDeck.removeOne()
+        cardDeck.reset()
+        XCTAssertEqual(cardDeck.count(), 52)
     }
     
 }

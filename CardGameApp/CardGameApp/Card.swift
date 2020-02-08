@@ -47,3 +47,11 @@ extension Card: CustomStringConvertible {
         return "\(pattern.rawValue) \(numberCharacter)"
     }
 }
+
+extension Card: Equatable {
+    static func == (lhs: Card, rhs: Card) -> Bool {
+        return lhs.number == rhs.number && lhs.pattern == rhs.pattern
+    }
+    
+    
+}

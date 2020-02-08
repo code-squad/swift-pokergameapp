@@ -23,15 +23,15 @@ struct CardDeck {
     }
     
     mutating func shuffle() {
-        self.cards = cards.shuffled()
+        cards.shuffle()
     }
     
-    mutating func removeOn() -> Card {
+    mutating func removeOne() -> Card? {
         return cards.removeFirst()
     }
     
-    func reset() {
-        type(of: self).init()
+    mutating func reset() {
+        self = .init()
     }
     
 }
