@@ -9,6 +9,5 @@
 import Foundation
 
 class Player {
-    var number: Int?
     var hand: [Card]?
 }
