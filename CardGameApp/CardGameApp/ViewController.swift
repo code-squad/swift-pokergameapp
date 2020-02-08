@@ -14,6 +14,9 @@ class ViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        let backgroundImage: UIImage = UIImage(named: "bg_pattern.png")!
+        view.backgroundColor = UIColor(patternImage:backgroundImage)
     }
 }
+
 
