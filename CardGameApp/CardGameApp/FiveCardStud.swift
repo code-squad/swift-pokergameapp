@@ -33,4 +33,11 @@ class FiveCardStud {
             $0.hand.append(drawnCard)
         }
     }
+    
+    func run() {
+        addPlayers()
+        for _ in 1...5 {
+            distributeCards()
+        }
+    }
 }
