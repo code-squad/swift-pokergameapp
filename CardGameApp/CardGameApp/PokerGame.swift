@@ -1,5 +1,5 @@
 //
-//  FiveCardStud.swift
+//  PokerGame.swift
 //  CardGameApp
 //
 //  Created by TTOzzi on 2020/02/08.
@@ -8,17 +8,19 @@
 
 import Foundation
 
-class FiveCardStud {
+class PokerGame {
     var dealer = Dealer()
     var players = [Player]()
-    var numberOfPlayer: Int
+    var numberOfPlayers: Int
+    var gameType: Int
     
-    init(numberOfPlayer: Int) {
-        self.numberOfPlayer = numberOfPlayer
+    init(gameType: Int, numberOfPlayers: Int) {
+        self.gameType = gameType
+        self.numberOfPlayers = numberOfPlayers
     }
     
     func addPlayers() {
-        for _ in 1...numberOfPlayer {
+        for _ in 1...numberOfPlayers {
             players.append(Player())
         }
         players.append(dealer)
@@ -36,7 +38,7 @@ class FiveCardStud {
     
     func run() {
         addPlayers()
-        for _ in 1...5 {
+        for _ in 1...gameType {
             distributeCards()
         }
     }
