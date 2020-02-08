@@ -42,11 +42,7 @@ struct Deck {
     }
     
     mutating func shuffle() {
-        guard count > 2 else { return }
-        let beforeShuffle = cards
-        while beforeShuffle == cards {
-            cards.shuffle()
-        }
+        cards.shuffle()
     }
 }
 
