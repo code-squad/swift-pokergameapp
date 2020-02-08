@@ -32,9 +32,19 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "444F3F1823ED75AC0010F74E"
-               BuildableName = "CardGameAppTests.xctest"
-               BlueprintName = "CardGameAppTests"
+               BlueprintIdentifier = "443AEA7923EEC8C40084A967"
+               BuildableName = "IntegrationTest.xctest"
+               BlueprintName = "IntegrationTest"
+               ReferencedContainer = "container:CardGameApp.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "443AEA8D23EECABB0084A967"
+               BuildableName = "DeckTest.xctest"
+               BlueprintName = "DeckTest"
                ReferencedContainer = "container:CardGameApp.xcodeproj">
             </BuildableReference>
          </TestableReference>
