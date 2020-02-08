@@ -10,9 +10,17 @@ import Foundation
 
 class FiveCardStud {
     var dealer = Dealer()
+    var players = [Player]()
     var numberOfPlayer: Int
     
     init(numberOfPlayer: Int) {
         self.numberOfPlayer = numberOfPlayer
+    }
+    
+    func addPlayers() {
+        for _ in 1...numberOfPlayer {
+            players.append(Player())
+        }
+        players.append(dealer)
     }
 }

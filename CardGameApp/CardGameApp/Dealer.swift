@@ -8,7 +8,6 @@
 
 import Foundation
 
-class Dealer {
-    var hand: [Card]?
-    
+class Dealer: Player {
+    var deck = Deck()
 }
