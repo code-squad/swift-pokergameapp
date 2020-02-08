@@ -29,7 +29,14 @@ class FiveCardStudTest: XCTestCase {
         game.addPlayers()
         game.distributeCards()
         game.players.forEach {
-            XCTAssertEqual($0.hand.count, 1) 
+            XCTAssertEqual($0.hand.count, 1)
+        }
+    }
+    
+    func testGame() {
+        game.run()
+        game.players.forEach {
+            XCTAssertEqual($0.hand.count, 5)
         }
     }
 }
