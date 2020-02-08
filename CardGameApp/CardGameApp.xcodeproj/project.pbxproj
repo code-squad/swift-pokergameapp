@@ -19,8 +19,8 @@
 		44B649F123EA75F000C9F914 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44B649EF23EA75F000C9F914 /* LaunchScreen.storyboard */; };
 		44E3EB6623EED8F7009402E0 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E3EB6523EED8F7009402E0 /* Player.swift */; };
 		44E3EB6823EED98E009402E0 /* Dealer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E3EB6723EED98E009402E0 /* Dealer.swift */; };
-		44E3EB6C23EEDB20009402E0 /* FiveCardStud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E3EB6B23EEDB20009402E0 /* FiveCardStud.swift */; };
-		44E3EB7423EEE76C009402E0 /* FiveCardStudTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E3EB7323EEE76C009402E0 /* FiveCardStudTest.swift */; };
+		44E3EB6C23EEDB20009402E0 /* PokerGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E3EB6B23EEDB20009402E0 /* PokerGame.swift */; };
+		44E3EB7423EEE76C009402E0 /* PokerGameTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E3EB7323EEE76C009402E0 /* PokerGameTest.swift */; };
 		44E3EB8223EEEA75009402E0 /* DealerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E3EB8123EEEA75009402E0 /* DealerTest.swift */; };
 /* End PBXBuildFile section */
 
@@ -74,9 +74,9 @@
 		44B649F223EA75F000C9F914 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		44E3EB6523EED8F7009402E0 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		44E3EB6723EED98E009402E0 /* Dealer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dealer.swift; sourceTree = "<group>"; };
-		44E3EB6B23EEDB20009402E0 /* FiveCardStud.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiveCardStud.swift; sourceTree = "<group>"; };
+		44E3EB6B23EEDB20009402E0 /* PokerGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokerGame.swift; sourceTree = "<group>"; };
 		44E3EB7123EEE76C009402E0 /* FiveCardStudTest.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FiveCardStudTest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		44E3EB7323EEE76C009402E0 /* FiveCardStudTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiveCardStudTest.swift; sourceTree = "<group>"; };
+		44E3EB7323EEE76C009402E0 /* PokerGameTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokerGameTest.swift; sourceTree = "<group>"; };
 		44E3EB7523EEE76C009402E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		44E3EB7F23EEEA75009402E0 /* DealerTest.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DealerTest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		44E3EB8123EEEA75009402E0 /* DealerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DealerTest.swift; sourceTree = "<group>"; };
@@ -173,7 +173,7 @@
 				444F3F0F23ED14430010F74E /* Card.swift */,
 				44E3EB6523EED8F7009402E0 /* Player.swift */,
 				44E3EB6723EED98E009402E0 /* Dealer.swift */,
-				44E3EB6B23EEDB20009402E0 /* FiveCardStud.swift */,
+				44E3EB6B23EEDB20009402E0 /* PokerGame.swift */,
 				444F3F1323ED5A380010F74E /* Deck.swift */,
 				44B649EA23EA75EE00C9F914 /* Main.storyboard */,
 				44B649ED23EA75F000C9F914 /* Assets.xcassets */,
@@ -186,7 +186,7 @@
 		44E3EB7223EEE76C009402E0 /* FiveCardStudTest */ = {
 			isa = PBXGroup;
 			children = (
-				44E3EB7323EEE76C009402E0 /* FiveCardStudTest.swift */,
+				44E3EB7323EEE76C009402E0 /* PokerGameTest.swift */,
 				44E3EB7523EEE76C009402E0 /* Info.plist */,
 			);
 			path = FiveCardStudTest;
@@ -409,7 +409,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				44B649E923EA75EE00C9F914 /* ViewController.swift in Sources */,
-				44E3EB6C23EEDB20009402E0 /* FiveCardStud.swift in Sources */,
+				44E3EB6C23EEDB20009402E0 /* PokerGame.swift in Sources */,
 				44B649E523EA75EE00C9F914 /* AppDelegate.swift in Sources */,
 				44E3EB6823EED98E009402E0 /* Dealer.swift in Sources */,
 				444F3F1423ED5A380010F74E /* Deck.swift in Sources */,
@@ -423,7 +423,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				44E3EB7423EEE76C009402E0 /* FiveCardStudTest.swift in Sources */,
+				44E3EB7423EEE76C009402E0 /* PokerGameTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
