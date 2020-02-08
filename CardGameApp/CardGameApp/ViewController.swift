@@ -25,6 +25,11 @@ class ViewController: UIViewController {
         
         view.addSubview(cardStackView)
         
+        cardStackView.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor, constant: -10).isActive = true
+        cardStackView.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor, constant: 10).isActive = true
+        cardStackView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: -180).isActive = true
+        cardStackView.heightAnchor.constraint(equalTo: cardStackView.widthAnchor, multiplier: 1.27).isActive = true
+        
         for _ in 1...7 {
             let cardBackImage = UIImageView(image: #imageLiteral(resourceName: "card-back"))
             cardBackImage.contentMode = .scaleAspectFit
