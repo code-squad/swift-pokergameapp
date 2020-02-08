@@ -9,5 +9,5 @@
 import Foundation
 
 class Player {
-    var hand: [Card]?
+    var hand = [Card]()
 }

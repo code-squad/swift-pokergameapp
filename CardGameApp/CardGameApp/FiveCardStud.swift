@@ -23,4 +23,14 @@ class FiveCardStud {
         }
         players.append(dealer)
     }
+    
+    func distributeCards() {
+        players.forEach {
+            dealer.drawCard()
+            guard let drawnCard = dealer.drawnCard else {
+                return
+            }
+            $0.hand.append(drawnCard)
+        }
+    }
 }
