@@ -24,4 +24,12 @@ class FiveCardStudTest: XCTestCase {
         game.addPlayers()
         XCTAssertEqual(game.players.count, 2)
     }
+    
+    func testDistributeCards() {
+        game.addPlayers()
+        game.distributeCards()
+        game.players.forEach {
+            XCTAssertEqual($0.hand.count, 1) 
+        }
+    }
 }
