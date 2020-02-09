@@ -9,11 +9,7 @@
 import Foundation
 
 struct Deck {
-    private var cards = [Card]() {
-        didSet {
-            print("총 \(count)장의 카드가 남아있습니다.")
-        }
-    }
+    private var cards = [Card]()
     var count: Int {
         cards.count
     }
@@ -34,7 +30,6 @@ struct Deck {
     
     mutating func removeOne() -> Card? {
         guard count > 0 else {
-            print("카드가 없어요")
             return nil
         }
         let card = cards.removeLast()
