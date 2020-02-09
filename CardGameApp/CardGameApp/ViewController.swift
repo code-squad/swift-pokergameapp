@@ -9,14 +9,24 @@
 import UIKit
 
 class ViewController: UIViewController {
+    let cardsStack: UIStackView = {
+        let horizontalStackView = UIStackView()
+        horizontalStackView.translatesAutoresizingMaskIntoConstraints = false
+        horizontalStackView.axis = .horizontal
+        horizontalStackView.distribution = .fillEqually
+        horizontalStackView.spacing = 4
+        
+        return horizontalStackView
+    }()
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        let backgroundImage: UIImage = UIImage(named: "bg_pattern.png")!
-        view.backgroundColor = UIColor(patternImage:backgroundImage)
+        view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "bg_pattern"))
+        self.view.addSubview(cardsStack)
     }
 }
-
 
