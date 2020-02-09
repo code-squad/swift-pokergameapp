@@ -19,6 +19,13 @@ class ViewController: UIViewController {
         return horizontalStackView
     }()
     
+    func card() -> UIImageView {
+        let card = UIImageView(image: #imageLiteral(resourceName: "card-back"))
+        card.contentMode = .scaleAspectFit
+        card.heightAnchor.constraint(equalTo: card.widthAnchor, multiplier: 1.27).isActive = true
+        return card
+    }
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
@@ -26,7 +33,6 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "bg_pattern"))
-        self.view.addSubview(cardsStack)
     }
 }
 
