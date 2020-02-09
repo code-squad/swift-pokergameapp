@@ -26,6 +26,12 @@ class ViewController: UIViewController {
         return card
     }
     
+    func addCards() {
+        for _ in 0 ..< 7 {
+            cardsStack.addArrangedSubview(card())
+        }
+    }
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
@@ -33,6 +39,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "bg_pattern"))
+        addCards()
+        self.view.addSubview(cardsStack)
     }
 }
 
