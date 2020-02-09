@@ -41,4 +41,3 @@ class ViewController: UIViewController {
         return .lightContent
     }
 }
-
