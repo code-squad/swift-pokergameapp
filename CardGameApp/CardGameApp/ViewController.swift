@@ -39,10 +39,10 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "bg_pattern"))
-       addCards()
+        addCards()
         self.view.addSubview(cardsStack)
         cardsStack.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 40).isActive = true
-                cardsStack.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -5).isActive = true
+        cardsStack.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -5).isActive = true
         cardsStack.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 5).isActive = true
     }
 }
