@@ -10,4 +10,8 @@ import Foundation
 
 class Player {
     var hand = [Card]()
+    
+    func initHand() {
+        hand = [Card]()
+    }
 }
