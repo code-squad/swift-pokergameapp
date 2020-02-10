@@ -9,7 +9,7 @@
 import Foundation
 
 class CardDeck {
-    private var cards: [Card] = []
+    var cards: [Card] = []
     var count: Int {
         cards.count
     }
