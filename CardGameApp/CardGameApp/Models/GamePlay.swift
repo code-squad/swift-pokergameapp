@@ -24,13 +24,13 @@ class GamePlay {
     private let numberOfPlayers: NumberOfPlayers
     private var cardDeck = CardDeck()
     
-    let dealer = Dealer()
-    let players: [Player]
+    let dealer = Participant()
+    let players: [Participant]
     
     init(rule: Rule, numberOfPlayers: NumberOfPlayers) {
         self.rule = rule
         self.numberOfPlayers = numberOfPlayers
-        self.players = (0..<numberOfPlayers.rawValue).map { _ in Player() }
+        self.players = (0..<numberOfPlayers.rawValue).map { _ in Participant() }
     }
     
     func deal() {
@@ -43,10 +43,6 @@ class GamePlay {
     }
 }
 
-class Player {
-    var cards = [Card]()
-}
-
-class Dealer {
+class Participant {
     var cards = [Card]()
 }
