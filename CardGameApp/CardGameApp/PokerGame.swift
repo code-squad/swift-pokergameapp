@@ -36,10 +36,23 @@ class PokerGame {
         }
     }
     
-    func run() {
-        addPlayers()
+    func initHand() {
+        players.forEach {
+            $0.initHand()
+        }
+    }
+    
+    func play() {
+        initHand()
         for _ in 1...gameType {
             distributeCards()
+        }
+    }
+    
+    func run() {
+        addPlayers()
+        while dealer.deck.count > (numberOfPlayers + 1) * gameType {
+            play()
         }
     }
 }
