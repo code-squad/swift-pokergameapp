@@ -29,7 +29,7 @@ class Card {
         self.rank = rank
     }
     
-    func convertRankToString() -> String{
+    func convertRankValueToString() -> String{
         let rankString: String
         switch self.rank {
         case .one:
@@ -47,7 +47,7 @@ class Card {
     }
     
     func printDescription() {
-        let description = "\(self.suit.rawValue)\(convertRankToString())"
+        let description = "\(self.suit.rawValue)\(convertRankValueToString())"
         print(description)
     }
 }
