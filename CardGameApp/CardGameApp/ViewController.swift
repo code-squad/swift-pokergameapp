@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SnapKit
 
 class ViewController: UIViewController {
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -15,7 +14,6 @@ class ViewController: UIViewController {
     }
     
     override func loadView() {
-        view = FirstView()
+        view = GameTableView()
     }
 }
-
