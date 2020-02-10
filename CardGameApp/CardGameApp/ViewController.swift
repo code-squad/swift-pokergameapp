@@ -32,6 +32,11 @@ class ViewController: UIViewController {
         }
     }
     
+    func printCardDescription(){
+        let trumpCard = Card(suit: .hearts, rank: .eight)
+        print(trumpCard.descripteCard())
+    }
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
@@ -45,8 +50,7 @@ class ViewController: UIViewController {
         cardsStack.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -5).isActive = true
         cardsStack.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 5).isActive = true
         
-        let trumpCard = Card(suit: .hearts, rank: .eight)
-        print(trumpCard.descripteCard())
+        printCardDescription()
     }
 }
 
