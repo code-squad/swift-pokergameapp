@@ -26,7 +26,17 @@ class CardGameAppTests: XCTestCase {
         cardSet.shuffle()
         isSame = (cardSet == beforeShuffledCarset)
         XCTAssert(isSame == false)
-        
+    }
+    
+    func testRemoveOne(){
+        var cardSet=CardDeck()
+        if cardSet.count() == 0{
+            XCTAssertEqual(cardSet.removeOne(),nil)
+        } else{
+            let beforeRemovedCount=cardSet.count()
+            XCTAssertEqual(cardSet.removeOne() is Card?,true)
+            XCTAssertEqual(cardSet.count(), (beforeRemovedCount - 1))
+        }
     }
     
     func testExample() {

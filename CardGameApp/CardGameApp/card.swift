@@ -22,10 +22,7 @@ extension Card:Equatable{
             return false
         }
     }
-    
-    
 }
-
 
 class Card{
     
