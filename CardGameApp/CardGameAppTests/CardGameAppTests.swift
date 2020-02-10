@@ -17,7 +17,7 @@ class CardGameAppTests: XCTestCase {
     override func setUp() {
         super.setUp()
         cardDeck = CardDeck()
-        pokerGame = PokerGame(playerCount: .three, stud: .five)
+        pokerGame = PokerGame(playerCount: .four, stud: .seven)
     }
     
     func testCount() {
@@ -51,7 +51,7 @@ class CardGameAppTests: XCTestCase {
     }
     
     func testAllocateCard() {
-        pokerGame.allocateCards(studNumber: 5)
+        pokerGame.allocateCards()
     }
     
 }
