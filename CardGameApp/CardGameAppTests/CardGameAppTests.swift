@@ -12,10 +12,12 @@ import XCTest
 class CardGameAppTests: XCTestCase {
 
     var cardDeck: CardDeck!
+    var pokerGame: PokerGame!
     
     override func setUp() {
         super.setUp()
         cardDeck = CardDeck()
+        pokerGame = PokerGame(playerCount: .three, stud: .five)
     }
     
     func testCount() {
@@ -46,6 +48,10 @@ class CardGameAppTests: XCTestCase {
         cardDeck.removeOne()
         cardDeck.reset()
         XCTAssertEqual(cardDeck.count(), 52)
+    }
+    
+    func testAllocateCard() {
+        pokerGame.allocateCards(studNumber: 5)
     }
     
 }
