@@ -53,27 +53,4 @@ class CardGameAppTests: XCTestCase {
         XCTAssertEqual(deck.count, 50)
         print("총 \(deck.count)장의 카드가 남아있습니다.\n")
     }
-    
-    func testSevenCardStud() {
-        print("7카드 기준, 참가자 3명일 때")
-        let numberOfPlayers = 3
-        let gameType: GameType = .sevenCardsStud
-        var players: [Player] = []
-        
-        let cardDeck = CardDeck()
-        cardDeck.shuffle()
-        
-        for _ in 0..<numberOfPlayers {
-            players.append(Player())
-        }
-        
-        players.forEach {
-            for _ in 0..<gameType.rawValue {
-                guard let card = cardDeck.removeOne() else { return }
-                $0.hands.append(card)
-            }
-        }
-        
-        players.forEach({ print($0.hands) })
-    }
 }
