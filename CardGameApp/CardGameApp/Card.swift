@@ -29,6 +29,5 @@ class Card {
     func descripteCard() -> String{
         let description = "\(self.suit)\(self.rank)"
         return description
-    }
-    
+    }    
 }
