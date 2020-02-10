@@ -20,8 +20,11 @@ class GamePlay {
         case four = 4
     }
     
-    let rule: Rule
-    let numberOfPlayers: NumberOfPlayers
+    private let rule: Rule
+    private let numberOfPlayers: NumberOfPlayers
+    private var cardDeck = CardDeck()
+    
+    let dealer = Dealer()
     let players: [Player]
     
     init(rule: Rule, numberOfPlayers: NumberOfPlayers) {
@@ -29,8 +32,21 @@ class GamePlay {
         self.numberOfPlayers = numberOfPlayers
         self.players = (0..<numberOfPlayers.rawValue).map { _ in Player() }
     }
+    
+    func deal() {
+        for _ in 0..<rule.rawValue {
+            for player in 0..<players.count {
+                players[player].cards.append(cardDeck.removeOne())
+            }
+            dealer.cards.append(cardDeck.removeOne())
+        }
+    }
 }
 
 class Player {
-    let cards = [Card]()
+    var cards = [Card]()
+}
+
+class Dealer {
+    var cards = [Card]()
 }
