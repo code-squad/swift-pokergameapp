@@ -14,6 +14,18 @@ extension Card:CustomStringConvertible{
     }
 }
 
+extension Card:Equatable{
+    static func == (lhs: Card, rhs: Card) -> Bool {
+        if lhs.description == rhs.description{
+            return true
+        } else{
+            return false
+        }
+    }
+    
+    
+}
+
 
 class Card{
     
