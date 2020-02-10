@@ -25,6 +25,7 @@
 		3894878623F15D46003D2481 /* PokerGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3894878423F15D46003D2481 /* PokerGame.swift */; };
 		3894878823F163BE003D2481 /* Dealer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3894878723F163BE003D2481 /* Dealer.swift */; };
 		3894878923F163BE003D2481 /* Dealer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3894878723F163BE003D2481 /* Dealer.swift */; };
+		3894878D23F165B5003D2481 /* PokerGameUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3894878B23F165B5003D2481 /* PokerGameUnitTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,7 @@
 		385F3AEF23EDBA1D003FA6A2 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		3894878423F15D46003D2481 /* PokerGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokerGame.swift; sourceTree = "<group>"; };
 		3894878723F163BE003D2481 /* Dealer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dealer.swift; sourceTree = "<group>"; };
+		3894878B23F165B5003D2481 /* PokerGameUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokerGameUnitTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +114,7 @@
 			children = (
 				385F3AE323EC466E003FA6A2 /* CardGameAppTests.swift */,
 				385F3AE523EC466E003FA6A2 /* Info.plist */,
+				3894878B23F165B5003D2481 /* PokerGameUnitTests.swift */,
 			);
 			path = CardGameAppTests;
 			sourceTree = "<group>";
@@ -245,6 +248,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				385F3AEB23EC4689003FA6A2 /* CardDeck.swift in Sources */,
+				3894878D23F165B5003D2481 /* PokerGameUnitTests.swift in Sources */,
 				385F3AEC23EC468C003FA6A2 /* Card.swift in Sources */,
 				3894878923F163BE003D2481 /* Dealer.swift in Sources */,
 				385F3AEE23EC4691003FA6A2 /* ViewController.swift in Sources */,
