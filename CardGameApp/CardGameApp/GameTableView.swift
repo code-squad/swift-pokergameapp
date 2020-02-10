@@ -9,7 +9,7 @@
 import UIKit
 import SnapKit
 
-class FirstView: UIView {
+class GameTableView: UIView {
     
     lazy var stackView: UIStackView! = {
         let stackView: UIStackView = UIStackView()
@@ -18,6 +18,8 @@ class FirstView: UIView {
         addSubview(stackView)
         return stackView
     }()
+    private let viewBackground: String = "bg_pattern"
+    private let cardBackground: String = "card-back"
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -26,23 +28,16 @@ class FirstView: UIView {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-}
-
-extension FirstView {
-    private func checkImage(name: String) -> UIImage {
-        guard let image = UIImage(named: name) else { return UIImage() }
-        return image
+        super.init(coder: coder)
     }
     
     private func patternBackground() {
-        backgroundColor = UIColor(patternImage: checkImage(name: "bg_pattern"))
+        backgroundColor = UIColor(patternImage: UIImage(named: viewBackground) ?? UIImage())
     }
     
     private func creatCards(_ stack: UIStackView, amount: Int) {
         (0...amount).forEach { _ in
-            let card = UIImageView(image: checkImage(name: "card-back"))
+            let card = UIImageView(image: UIImage(named: cardBackground) ?? UIImage())
             card.snp.makeConstraints { (make) in
                 make.height.equalTo(card.snp.width).multipliedBy(1.27)
             }
