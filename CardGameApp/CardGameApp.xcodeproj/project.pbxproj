@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A576E12823F0E512004F54FF /* card.swift in Sources */ = {isa = PBXBuildFile; fileRef = A576E12723F0E512004F54FF /* card.swift */; };
+		A576E14C23F190D1004F54FF /* CardDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = A576E14B23F190D1004F54FF /* CardDeck.swift */; };
 		A5E65E7323EC27310033B975 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E65E7223EC27310033B975 /* AppDelegate.swift */; };
 		A5E65E7523EC27310033B975 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E65E7423EC27310033B975 /* SceneDelegate.swift */; };
 		A5E65E7723EC27310033B975 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E65E7623EC27310033B975 /* ViewController.swift */; };
@@ -29,6 +30,7 @@
 
 /* Begin PBXFileReference section */
 		A576E12723F0E512004F54FF /* card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = card.swift; sourceTree = "<group>"; };
+		A576E14B23F190D1004F54FF /* CardDeck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDeck.swift; sourceTree = "<group>"; };
 		A5E65E6F23EC27310033B975 /* CardGameApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CardGameApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5E65E7223EC27310033B975 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5E65E7423EC27310033B975 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 				A5E65E7D23EC27320033B975 /* LaunchScreen.storyboard */,
 				A5E65E8023EC27320033B975 /* Info.plist */,
 				A576E12723F0E512004F54FF /* card.swift */,
+				A576E14B23F190D1004F54FF /* CardDeck.swift */,
 			);
 			path = CardGameApp;
 			sourceTree = "<group>";
@@ -204,6 +207,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5E65E7723EC27310033B975 /* ViewController.swift in Sources */,
+				A576E14C23F190D1004F54FF /* CardDeck.swift in Sources */,
 				A5E65E7323EC27310033B975 /* AppDelegate.swift in Sources */,
 				A5E65E7523EC27310033B975 /* SceneDelegate.swift in Sources */,
 				A576E12823F0E512004F54FF /* card.swift in Sources */,
