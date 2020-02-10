@@ -9,9 +9,12 @@
 import Foundation
 
 class PokerGame {
-    var dealer = Dealer()
+    var dealer: Dealer
     var players = [Player]()
-    var numberOfPlayers: Int
+    enum GameType: Int {
+        case fiveCardStud = 5
+        case sevenCardStud = 7
+    }
     var gameType: GameType
     var resumable: Bool {
         dealer.deck.count > (players.count) * gameType.rawValue
@@ -19,15 +22,7 @@ class PokerGame {
     
     init(gameType: GameType, numberOfPlayers: Int) {
         self.gameType = gameType
-        self.numberOfPlayers = numberOfPlayers
-    }
-    
-    enum GameType: Int {
-        case fiveCardStud = 5
-        case sevenCardStud = 7
-    }
-    
-    func addPlayers() {
+        self.dealer = Dealer()
         for _ in 1...numberOfPlayers {
             players.append(Player())
         }
@@ -58,7 +53,6 @@ class PokerGame {
     }
     
     func run() {
-        addPlayers()
         while resumable {
             play()
         }

@@ -21,14 +21,11 @@ class PokerGameTest: XCTestCase {
     }
     
     func testAddPlayers() {
-        fiveCardStud.addPlayers()
         XCTAssertEqual(fiveCardStud.players.count, 3)
-        sevenCardStud.addPlayers()
         XCTAssertEqual(sevenCardStud.players.count, 4)
     }
     
     func testDistributeCards() {
-        fiveCardStud.addPlayers()
         fiveCardStud.distributeCards()
         fiveCardStud.players.forEach {
             XCTAssertEqual($0.hand.count, 1)
@@ -36,7 +33,6 @@ class PokerGameTest: XCTestCase {
     }
     
     func testInitHand() {
-        fiveCardStud.addPlayers()
         fiveCardStud.distributeCards()
         fiveCardStud.players.forEach {
             XCTAssertEqual($0.hand.count, 1)
