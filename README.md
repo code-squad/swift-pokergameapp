@@ -14,4 +14,6 @@
 
 > 실행 화면
 
+<img width="242" alt="스크린샷 2020-02-10 오후 8 02 39" src="https://user-images.githubusercontent.com/38216027/74144667-81f29c80-4c40-11ea-8081-7a3a66b895ae.png">
+
  
