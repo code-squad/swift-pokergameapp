@@ -53,8 +53,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "44E3EB7023EEE76C009402E0"
-               BuildableName = "FiveCardStudTest.xctest"
-               BlueprintName = "FiveCardStudTest"
+               BuildableName = "PokerGameTest.xctest"
+               BlueprintName = "PokerGameTest"
                ReferencedContainer = "container:CardGameApp.xcodeproj">
             </BuildableReference>
          </TestableReference>

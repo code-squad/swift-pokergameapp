@@ -75,7 +75,7 @@
 		44E3EB6523EED8F7009402E0 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		44E3EB6723EED98E009402E0 /* Dealer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dealer.swift; sourceTree = "<group>"; };
 		44E3EB6B23EEDB20009402E0 /* PokerGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokerGame.swift; sourceTree = "<group>"; };
-		44E3EB7123EEE76C009402E0 /* FiveCardStudTest.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FiveCardStudTest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		44E3EB7123EEE76C009402E0 /* PokerGameTest.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PokerGameTest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		44E3EB7323EEE76C009402E0 /* PokerGameTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokerGameTest.swift; sourceTree = "<group>"; };
 		44E3EB7523EEE76C009402E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		44E3EB7F23EEEA75009402E0 /* DealerTest.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DealerTest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -147,7 +147,7 @@
 				443AEA7B23EEC8C40084A967 /* IntegrationTest */,
 				443AEA8F23EECABB0084A967 /* DeckTest */,
 				44E3EB8023EEEA75009402E0 /* DealerTest */,
-				44E3EB7223EEE76C009402E0 /* FiveCardStudTest */,
+				44E3EB7223EEE76C009402E0 /* PokerGameTest */,
 				44B649E223EA75EE00C9F914 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -158,7 +158,7 @@
 				44B649E123EA75EE00C9F914 /* CardGameApp.app */,
 				443AEA7A23EEC8C40084A967 /* IntegrationTest.xctest */,
 				443AEA8E23EECABB0084A967 /* DeckTest.xctest */,
-				44E3EB7123EEE76C009402E0 /* FiveCardStudTest.xctest */,
+				44E3EB7123EEE76C009402E0 /* PokerGameTest.xctest */,
 				44E3EB7F23EEEA75009402E0 /* DealerTest.xctest */,
 			);
 			name = Products;
@@ -183,13 +183,13 @@
 			path = CardGameApp;
 			sourceTree = "<group>";
 		};
-		44E3EB7223EEE76C009402E0 /* FiveCardStudTest */ = {
+		44E3EB7223EEE76C009402E0 /* PokerGameTest */ = {
 			isa = PBXGroup;
 			children = (
 				44E3EB7323EEE76C009402E0 /* PokerGameTest.swift */,
 				44E3EB7523EEE76C009402E0 /* Info.plist */,
 			);
-			path = FiveCardStudTest;
+			path = PokerGameTest;
 			sourceTree = "<group>";
 		};
 		44E3EB8023EEEA75009402E0 /* DealerTest */ = {
@@ -257,9 +257,9 @@
 			productReference = 44B649E123EA75EE00C9F914 /* CardGameApp.app */;
 			productType = "com.apple.product-type.application";
 		};
-		44E3EB7023EEE76C009402E0 /* FiveCardStudTest */ = {
+		44E3EB7023EEE76C009402E0 /* PokerGameTest */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 44E3EB7823EEE76C009402E0 /* Build configuration list for PBXNativeTarget "FiveCardStudTest" */;
+			buildConfigurationList = 44E3EB7823EEE76C009402E0 /* Build configuration list for PBXNativeTarget "PokerGameTest" */;
 			buildPhases = (
 				44E3EB6D23EEE76C009402E0 /* Sources */,
 				44E3EB6E23EEE76C009402E0 /* Frameworks */,
@@ -270,9 +270,9 @@
 			dependencies = (
 				44E3EB7723EEE76C009402E0 /* PBXTargetDependency */,
 			);
-			name = FiveCardStudTest;
-			productName = FiveCardStudTest;
-			productReference = 44E3EB7123EEE76C009402E0 /* FiveCardStudTest.xctest */;
+			name = PokerGameTest;
+			productName = PokerGameTest;
+			productReference = 44E3EB7123EEE76C009402E0 /* PokerGameTest.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		44E3EB7E23EEEA75009402E0 /* DealerTest */ = {
@@ -340,7 +340,7 @@
 				44B649E023EA75EE00C9F914 /* CardGameApp */,
 				443AEA7923EEC8C40084A967 /* IntegrationTest */,
 				443AEA8D23EECABB0084A967 /* DeckTest */,
-				44E3EB7023EEE76C009402E0 /* FiveCardStudTest */,
+				44E3EB7023EEE76C009402E0 /* PokerGameTest */,
 				44E3EB7E23EEEA75009402E0 /* DealerTest */,
 			);
 		};
@@ -709,13 +709,13 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = FiveCardStudTest/Info.plist;
+				INFOPLIST_FILE = PokerGameTest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ttozzi.FiveCardStudTest;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ttozzi.PokerGameTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -728,13 +728,13 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = FiveCardStudTest/Info.plist;
+				INFOPLIST_FILE = PokerGameTest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ttozzi.FiveCardStudTest;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ttozzi.PokerGameTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -819,7 +819,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		44E3EB7823EEE76C009402E0 /* Build configuration list for PBXNativeTarget "FiveCardStudTest" */ = {
+		44E3EB7823EEE76C009402E0 /* Build configuration list for PBXNativeTarget "PokerGameTest" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				44E3EB7923EEE76C009402E0 /* Debug */,
