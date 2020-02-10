@@ -28,4 +28,21 @@ class Card {
         self.suit = suit
         self.rank = rank
     }
+    
+    func convertRankToString() -> String{
+        let rankString: String
+        switch self.rank {
+        case .one:
+            rankString = "A"
+        case . eleven:
+            rankString = "J"
+        case .twelve:
+            rankString = "Q"
+        case .thirteen:
+            rankString = "K"
+        default:
+            rankString = "\(self.rank.rawValue)"
+        }
+        return rankString
+    }
 }
