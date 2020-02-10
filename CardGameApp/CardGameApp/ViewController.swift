@@ -10,6 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
     private let trump = Trump(suit: .heart, number: .queen)
+    
     private let cardStackView : UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
@@ -27,8 +28,6 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         setupBackground()
         setupCards()
-        
-        trump.printTrumpInfo()
     }
     
     private func setupBackground() {

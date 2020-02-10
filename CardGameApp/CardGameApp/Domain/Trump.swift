@@ -10,22 +10,6 @@ import Foundation
 
 public class Trump {
     
-    public func printTrumpInfo(){
-        print(suit.rawValue, terminator:"")
-        switch number {
-        case .ace:
-            print("A")
-        case .jack:
-            print("J")
-        case .queen:
-            print("Q")
-        case .king:
-            print("K")
-        default:
-            print(number.rawValue)
-        }
-    }
-    
     enum Suit : String {
         case spade = "♠"
         case heart = "♥"
@@ -55,5 +39,26 @@ public class Trump {
     init(suit : Suit, number : Number) {
         self.suit = suit
         self.number = number
+    }
+}
+
+extension Trump : CustomStringConvertible {
+    public var description: String {
+        return suit.rawValue + numberToStr
+    }
+    
+    private var numberToStr : String {
+        switch number {
+        case .ace:
+            return "A"
+        case .jack:
+            return "J"
+        case .queen:
+            return "Q"
+        case .king:
+            return "K"
+        default :
+            return String(number.rawValue)
+        }
     }
 }
