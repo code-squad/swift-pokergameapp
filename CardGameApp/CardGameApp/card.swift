@@ -6,7 +6,6 @@
 //  Copyright © 2020 신한섭. All rights reserved.
 //
 
-
 import Foundation
 
 extension Card:CustomStringConvertible{
@@ -24,14 +23,14 @@ class Card{
      초기에 딕셔너리를 사용하려 했으나, 이 경우 어떤 값이 들어가는지 제한 할 수 없으며, 명확하지 않음
      예를 들어 ace를 0으로 표현할수도, 13으로 표현할 수도 있기 때문에 enum을 사용하여 이 점을 명확히 해줌.
      */
-    enum Suit:Character{
+    enum Suit:Character,CaseIterable{
         case spade = "♠️"
         case clover = "♣️"
         case heart = "♥️"
         case diamond = "♦️"
     }
     
-    enum Rank:Int{
+    enum Rank:Int,CaseIterable{
         case ace=1,two,three,four,five,six,seven,eight,nine,ten,jack,queen,king
     }
     
