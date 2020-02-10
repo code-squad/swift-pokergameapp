@@ -28,15 +28,16 @@ class PokerGame {
         }
     }
     
-    func allocateCards(studNumber: Int) {
-        for player in players {
-            for _ in 0..<studNumber {
+    func allocateCards() {
+        dealer.cardDeck.shuffle()
+        for _ in 0..<studNumber {
+            for player in players {
                 guard let card = dealer.cardDeck.removeOne() else { return }
                 player.cards.append(card)
             }
+            guard let card = dealer.cardDeck.removeOne() else { return }
+            dealer.cards.append(card)
         }
-        guard let card = dealer.cardDeck.removeOne() else { return }
-        dealer.cards.append(card)
     }
     
     func checkLeftCardsNumber() -> Int {
