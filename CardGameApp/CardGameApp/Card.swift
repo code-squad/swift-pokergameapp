@@ -45,4 +45,9 @@ class Card {
         }
         return rankString
     }
+    
+    func printDescription() {
+        let description = "\(self.suit.rawValue)\(convertRankToString())"
+        print(description)
+    }
 }
