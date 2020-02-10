@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Dealer: Player {
+class Dealer {
     var deck = CardDeck()
     let numberOfHands: Int
     let players: [Player]
@@ -17,7 +17,6 @@ class Dealer: Player {
     init(numberOfHands: Int, players: [Player]) {
         self.numberOfHands = numberOfHands
         self.players = players
-        super.init()
         
         setupHands()
         setupCommunityCards()
