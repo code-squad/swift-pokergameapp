@@ -55,8 +55,3 @@ class ViewController: UIViewController {
         return .lightContent
     }
 }
-
-enum GameType: Int {
-    case sevenCardsStud = 7
-    case fiveCardsStud = 5
-}
