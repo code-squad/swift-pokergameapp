@@ -6,11 +6,9 @@
 //  Copyright © 2020 Viet. All rights reserved.
 //
 
-import Foundation
-
-class Card {
+class Card: CustomStringConvertible {
     // 카드는 하나의 suit만 갖기 때문에 enum으로 구현. 또 출력용 값을 따로 처리할 수 있음
-    enum Suit: String {
+    enum Suit: String, CustomStringConvertible {
         case spade = "♠️"
         case diamond = "♦️️️"
         case heart = "♥️"
@@ -22,7 +20,7 @@ class Card {
     }
     
     // 카드는 하나의 rank만 갖기 때문에 enum으로 구현. 또 출력용 값을 따로 처리할 수 있음
-    enum Rank: Int {
+    enum Rank: Int, CustomStringConvertible {
         case ace = 1, two, three, four, five, six, seven, eight, nine, ten, jack, queen, king
         
         var description: String {
@@ -50,7 +48,7 @@ class Card {
     }
     
     var description: String {
-        "\(suit.description) \(rank.description)"
+        "\(suit) \(rank)"
     }
 }
 
