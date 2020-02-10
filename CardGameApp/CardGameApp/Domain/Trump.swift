@@ -26,14 +26,6 @@ public class Trump {
         }
     }
     
-    init(suit : Suit, number : Number) {
-        self.suit = suit
-        self.number = number
-    }
-    
-    private let suit : Suit
-    private let number : Number
-    
     enum Suit : String {
         case spade = "♠"
         case heart = "♥"
@@ -55,5 +47,13 @@ public class Trump {
         case jack
         case queen
         case king
+    }
+    
+    private let suit : Suit
+    private let number : Number
+    
+    init(suit : Suit, number : Number) {
+        self.suit = suit
+        self.number = number
     }
 }
