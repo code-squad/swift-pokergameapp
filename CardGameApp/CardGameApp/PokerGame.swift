@@ -12,14 +12,19 @@ class PokerGame {
     var dealer = Dealer()
     var players = [Player]()
     var numberOfPlayers: Int
-    var gameType: Int
+    var gameType: GameType
     var resumable: Bool {
-        dealer.deck.count > (players.count) * gameType
+        dealer.deck.count > (players.count) * gameType.rawValue
     }
     
-    init(gameType: Int, numberOfPlayers: Int) {
+    init(gameType: GameType, numberOfPlayers: Int) {
         self.gameType = gameType
         self.numberOfPlayers = numberOfPlayers
+    }
+    
+    enum GameType: Int {
+        case fiveCardStud = 5
+        case sevenCardStud = 7
     }
     
     func addPlayers() {
@@ -48,7 +53,7 @@ class PokerGame {
     func play() {
         initHand()
         dealer.shuffle()
-        for _ in 1...gameType {
+        for _ in 1...gameType.rawValue {
             distributeCards()
         }
     }
