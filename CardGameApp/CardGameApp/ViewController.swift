@@ -11,17 +11,6 @@ import UIKit
 class ViewController: UIViewController {
     @IBOutlet var stackView: UIStackView!
 
-    fileprivate func addSubview() {
-        let newImage = #imageLiteral(resourceName: "card-back")
-        let newView = UIImageView(image: newImage)
-        newView.contentMode = .scaleAspectFill
-        newView.backgroundColor = .yellow
-        newView.widthAnchor.constraint(equalToConstant: newImage.size.width).isActive = true
-        newView.heightAnchor.constraint(equalToConstant: newImage.size.width * 1.27).isActive = true
-        
-        stackView.addArrangedSubview(newView)
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -29,9 +18,20 @@ class ViewController: UIViewController {
         
         // 카드 이미지 생성
         for _ in 1...7 {
-            addSubview()
+            stackView.addArrangedSubview(createCardView())
         }
         stackView.distribution = .fillEqually
+    }
+    
+    fileprivate func createCardView() -> UIImageView {
+        let newImage = #imageLiteral(resourceName: "card-back")
+        let newView = UIImageView(image: newImage)
+        newView.contentMode = .scaleAspectFill
+        newView.backgroundColor = .yellow
+        newView.widthAnchor.constraint(equalToConstant: newImage.size.width).isActive = true
+        newView.heightAnchor.constraint(equalToConstant: newImage.size.width * 1.27).isActive = true
+        
+        return newView
     }
 }
 
