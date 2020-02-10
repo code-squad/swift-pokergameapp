@@ -37,7 +37,7 @@ class CardGameAppTests: XCTestCase {
         // When
         let description = card.descripteCard()
         // Then
-        XCTAssertEqual(description, "♥️8", "맞습니다")
+        XCTAssertEqual(description, "♥️8")
     }
 
 }
