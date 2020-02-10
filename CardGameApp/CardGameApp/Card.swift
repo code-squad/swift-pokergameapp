@@ -9,5 +9,23 @@
 import Foundation
 
 class Card {
-
+    enum Suit: Character {
+        case spades = "♠️"
+        case hearts = "♥️"
+        case diamonds = "♦️"
+        case clubs = "♣️"
+    }
+    
+    enum Rank: Int {
+        case two = 2, three, four, five, six, seven, eight, nine, ten
+        case one, eleven, twelve, thirteen
+    }
+    
+    let suit: Suit
+    let rank: Rank
+    
+    init(suit: Suit, rank: Rank) {
+        self.suit = suit
+        self.rank = rank
+    }
 }
