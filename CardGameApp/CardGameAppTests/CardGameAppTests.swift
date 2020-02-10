@@ -33,7 +33,7 @@ class CardGameAppTests: XCTestCase {
     
     func testDescripteCard() {
         // Given
-        let card = Card(suit: "♥️" ,rank: three)
+        let card = Card(suit: "♥️", rank: three)
         // When
         var description = card.descripteCard()
         // Then
