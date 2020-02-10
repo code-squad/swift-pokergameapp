@@ -39,4 +39,8 @@ class PokerGame {
         dealer.cards.append(card)
     }
     
+    func checkLeftCardsNumber() -> Int {
+       return dealer.cardDeck.count()
+    }
+    
 }
