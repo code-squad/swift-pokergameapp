@@ -15,4 +15,8 @@ class Dealer: Player {
     func drawCard() {
         drawnCard = deck.removeOne()
     }
+    
+    func shuffle() {
+        deck.shuffle()
+    }
 }

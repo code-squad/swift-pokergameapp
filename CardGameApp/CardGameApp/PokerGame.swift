@@ -44,6 +44,7 @@ class PokerGame {
     
     func play() {
         initHand()
+        dealer.shuffle()
         for _ in 1...gameType {
             distributeCards()
         }
