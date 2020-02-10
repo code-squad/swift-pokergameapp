@@ -6,6 +6,7 @@
 //  Copyright © 2020 신한섭. All rights reserved.
 //
 
+
 import Foundation
 
 extension Card:CustomStringConvertible{
@@ -14,7 +15,15 @@ extension Card:CustomStringConvertible{
     }
 }
 
+
 class Card{
+    
+    /**
+     enum을 채택한 이유
+     card 클래스를 최초 생성할 때 어떤 값이 들어가는지에 대해 명확히 하고, 값을 제한할 수 있음.
+     초기에 딕셔너리를 사용하려 했으나, 이 경우 어떤 값이 들어가는지 제한 할 수 없으며, 명확하지 않음
+     예를 들어 ace를 0으로 표현할수도, 13으로 표현할 수도 있기 때문에 enum을 사용하여 이 점을 명확히 해줌.
+     */
     enum Suit:Character{
         case spade = "♠️"
         case clover = "♣️"
