@@ -7,3 +7,16 @@
 //
 
 import Foundation
+
+class Card{
+    enum Suit:Character{
+        case spade = "♠️"
+        case clover = "♣️"
+        case heart = "♥️"
+        case diamond = "♦️"
+    }
+    
+    enum Rank:Int{
+        case ace=1,two,three,four,five,six,seven,eight,nine,ten,jack,queen,king
+    }
+}
