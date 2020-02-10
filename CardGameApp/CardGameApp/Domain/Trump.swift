@@ -8,11 +8,23 @@
 
 import Foundation
 
-protocol Parsable {
-    func toString() -> String
-}
-
 public class Trump {
+    
+    func printTrumpInfo(){
+        print(suit.rawValue, terminator:"")
+        switch number {
+        case .ace:
+            print("A")
+        case .jack:
+            print("J")
+        case .queen:
+            print("Q")
+        case .king:
+            print("K")
+        default:
+            print(number.rawValue)
+        }
+    }
     
     init(suit : Suit, number : Number) {
         self.suit = suit
