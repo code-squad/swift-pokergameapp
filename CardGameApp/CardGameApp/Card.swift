@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Card {
+class Card: CustomStringConvertible {
     enum Suit: Character {
         case spades = "♠️"
         case hearts = "♥️"
@@ -17,8 +17,8 @@ class Card {
     }
     
     enum Rank: Int {
-        case two = 2, three, four, five, six, seven, eight, nine, ten
-        case one, eleven, twelve, thirteen
+        case one = 1, two, three, four, five, six, seven, eight, nine, ten
+        case eleven, twelve, thirteen
     }
     
     let suit: Suit
@@ -46,8 +46,9 @@ class Card {
         return rankString
     }
     
-    func printDescription() {
-        let description = "\(self.suit.rawValue)\(convertRankValueToString())"
-        print(description)
+    var description: String {
+        return "\(suit.rawValue)\(convertRankValueToString())"
     }
 }
+
+

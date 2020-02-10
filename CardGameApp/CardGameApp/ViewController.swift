@@ -28,8 +28,10 @@ class ViewController: UIViewController {
         addConstraintsToStack()
         addCardsToStackView()
         
-        _ = Card(suit: .hearts, rank: .twelve).printDescription()
-        _ = Card(suit: .spades, rank: .seven).printDescription()
+        let heartsOfTwelve = Card(suit: .hearts, rank: .twelve)
+        print(heartsOfTwelve.description)
+        let spadesOfSeven = Card(suit: .spades, rank: .seven)
+        print(spadesOfSeven.description)
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
