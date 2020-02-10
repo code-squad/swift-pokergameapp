@@ -44,8 +44,15 @@ struct CardDeck{
     }
     
     mutating func shuffle(){
-        if self.cardSet.count != 1{
+        if count() != 1{
             self.cardSet.shuffle()
         }
+    }
+    
+    mutating func removeOne() -> Card?{
+        guard count() > 0 else{
+            return nil
+        }
+        return cardSet.removeLast()
     }
 }
