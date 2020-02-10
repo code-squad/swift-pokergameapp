@@ -16,6 +16,7 @@ class ViewController: UIViewController {
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.distribution = .fillEqually
         stack.spacing = 10
+        stack.backgroundColor = .yellow
         return stack
     }()
 
@@ -24,20 +25,31 @@ class ViewController: UIViewController {
         self.view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "pattern"))
         
         view.addSubview(cardStackView)
-        
-        cardStackView.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor, constant: -10).isActive = true
-        cardStackView.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor, constant: 10).isActive = true
-        cardStackView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: -180).isActive = true
-        cardStackView.heightAnchor.constraint(equalTo: cardStackView.widthAnchor, multiplier: 1.27).isActive = true
-        
-        for _ in 1...7 {
-            let cardBackImage = UIImageView(image: #imageLiteral(resourceName: "card-back"))
-            cardBackImage.contentMode = .scaleAspectFit
-            cardStackView.addArrangedSubview(cardBackImage)
-        }
+        addConstraintsToStack()
+        addCardsToStackView()
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
+    }
+    
+    func addConstraintsToStack() {
+        cardStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
+        cardStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10).isActive = true
+        cardStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10).isActive = true
+    }
+    
+    func setCardBackImage() -> UIImageView {
+        let cardBackImage = UIImageView(image: #imageLiteral(resourceName: "card-back"))
+        cardBackImage.heightAnchor.constraint(equalTo: cardBackImage.widthAnchor, multiplier: 1.27).isActive = true
+        return cardBackImage
+    }
+    
+    func addCardsToStackView() {
+        for _ in 1...7 {
+            let cardBackImage = setCardBackImage()
+            cardBackImage.contentMode = .scaleAspectFit
+            cardStackView.addArrangedSubview(cardBackImage)
+        }
     }
 }
