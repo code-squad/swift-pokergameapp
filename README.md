@@ -54,3 +54,101 @@
 <img src="https://github.com/corykim0829/swift-pokergameapp/blob/corykim0829/Screenshots/step3-2.png?raw=true" width="380px">
 <br>
 <img src="https://github.com/corykim0829/swift-pokergameapp/blob/corykim0829/Screenshots/step3-3.png?raw=true" width="380px">
+
+
+
+## Step4 - Poker Dealer & Testing Games
+
+2020/Feb/10
+
+- PokerGame, Dealer, Player 모델 생성
+- PokerGame 초기화 -> Players, Dealer 초기화
+- Dealer의 Initializer에서 Player에게 패 전달
+- PokerGame 인스턴스로 게임 진행 테스트
+
+#### class PockerGame
+
+```swift
+class PokerGame {
+    let gameType: GameType
+    let numberOfPlayers: Int
+    var players: [Player] = []
+    let dealer: Dealer
+    
+    init(type gameType: GameType, numberOfPlayers: Int) {
+        self.gameType = gameType
+        self.numberOfPlayers = numberOfPlayers
+        for _ in 0..<numberOfPlayers { players.append(Player()) }
+        self.dealer = Dealer(numberOfHands: gameType.numberOfHands, players: players)
+    }
+    
+    enum GameType: Int {
+        case sevenCardsStud = 7
+        case fiveCardsStud = 5
+        
+        var numberOfHands: Int {
+            self.rawValue
+        }
+    }
+}
+```
+
+#### class Dealer
+
+```swift
+class Dealer {
+    var deck = CardDeck()
+    let numberOfHands: Int
+    let players: [Player]
+    var communityCards: [Card] = []
+    
+    init(numberOfHands: Int, players: [Player]) {
+        self.numberOfHands = numberOfHands
+        self.players = players
+        
+        setupHands()
+        setupCommunityCards()
+    }
+    
+    func setupHands() {
+        players.forEach {
+            passHands(to: $0)
+        }
+    }
+    
+    func setupCommunityCards() {
+        for _ in 0..<numberOfHands {
+            guard let card = deck.removeOne() else { return }
+            communityCards.append(card)
+        }
+    }
+    
+    func passHands(to player: Player) {
+        for _ in 0..<numberOfHands {
+            guard let card = deck.removeOne() else { return }
+            player.hands.append(card)
+        }
+    }
+}
+```
+
+#### Test
+
+PokerGame 객체로 게임을 진행했을 때, Player와 Dealer의 패, 커뮤니티카드 세팅을 정상적으로 작동되는지 테스트
+
+```swift
+    func testFiveCardsStud() {
+        let pokerGame = PokerGame(type: .fiveCardsStud, numberOfPlayers: 4)
+        
+        pokerGame.players.enumerated().forEach { (i, player) in
+            print("참가자#\(i+1) \(player.hands)")
+        }
+        print("딜러 \(pokerGame.dealer.communityCards)")
+    }
+```
+
+<br>
+
+<img src="https://github.com/corykim0829/swift-pokergameapp/blob/corykim0829/Screenshots/step4-1.png?raw=true" width="380px">
+<br>
+<img src="https://github.com/corykim0829/swift-pokergameapp/blob/corykim0829/Screenshots/step4-2.png?raw=true" width="380px">
