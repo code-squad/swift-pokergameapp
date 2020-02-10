@@ -44,6 +44,8 @@ class ViewController: UIViewController {
         cardsStack.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 40).isActive = true
         cardsStack.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -5).isActive = true
         cardsStack.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 5).isActive = true
+        let trumpCard = Card(suit: .hearts, rank: .eight)
+        print(trumpCard.descripteCard())
     }
 }
 

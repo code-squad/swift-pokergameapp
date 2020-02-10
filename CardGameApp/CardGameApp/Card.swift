@@ -10,19 +10,25 @@ import Foundation
 
 class Card {
     
-    let suit : Suit
-    let rank : Rank
+    let suit : Suit.RawValue
+    let rank : Rank.RawValue
     
     init(suit: Suit, rank: Rank) {
-        self.suit = suit
-        self.rank = rank
+        self.suit = suit.rawValue
+        self.rank = rank.rawValue
     }
     
-    enum Suit: Character {// 한글자이기 때문에 캐릭터라고 했는데 String도 됨.
+    enum Suit: Character {  // 한글자이기 때문에 캐릭터라고 했는데 String도 됨.
         case spades = "♠️", hearts = "♥️", diamonds = "♦️", clubs = "♣️"
     }
     
-    enum Rank: Int {
-        case  A=1, two=2,three=3,four=4,five=5,six=6,seven=7,eight=8,nine=9,ten=10,J=11, Q=12, K=13
+    enum Rank: UInt {
+        case A = 1, two, three, four, five, six, seven, eight, nine, ten, J, Q, K
     }
+    
+    func descripteCard() -> String{
+        let description = "\(self.suit)\(self.rank)"
+        return description
+    }
+    
 }
