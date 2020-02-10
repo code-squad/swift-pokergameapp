@@ -27,6 +27,9 @@ class ViewController: UIViewController {
         view.addSubview(cardStackView)
         addConstraintsToStack()
         addCardsToStackView()
+        
+        _ = Card(suit: .hearts, rank: .twelve).printDescription()
+        _ = Card(suit: .spades, rank: .seven).printDescription()
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
