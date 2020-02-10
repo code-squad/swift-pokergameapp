@@ -19,12 +19,9 @@ class CardDeck {
     }
     
     private func setupDeck() {
-        let suits: [Card.Suit] = [.club, .diamond, .heart, .spade]
-        let ranks: [Card.Rank] = [.ace, .two, .three, .four, .five, .six, .seven, .eight, .nine, .ten, .jack, .queen, .king]
-        
-        suits.forEach {
+        Card.Suit.allCases.forEach {
             let suit = $0
-            ranks.forEach {
+            Card.Rank.allCases.forEach {
                 cards.append(Card(suit: suit, rank: $0))
             }
         }
