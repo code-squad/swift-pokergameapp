@@ -255,3 +255,218 @@ class IntegrationTest: XCTestCase {
 }
 ```
 * 각각의 기능을 테스트하기위한 코드와 통합 테스트를 나눠줌
+
+#### 6 - 1. 포커 딜러와 게임
+
+1. Player 클래스
+```swift
+class Player {
+    var hand = [Card]()
+    
+    func initHand() {
+        hand = [Card]()
+    }
+}
+```
+* 카드들을 가지고있을 핸드와 게임을 재시작 할 때 핸드를 초기화해줄 initHand() 를 만들어줌
+
+2. Dealer 클래스
+```swift
+class Dealer: Player {
+    var deck = Deck()
+    var drawnCard: Card?
+    
+    func drawCard() {
+        drawnCard = deck.removeOne()
+    }
+    
+    func shuffle() {
+        deck.shuffle()
+    }
+}
+```
+* 딜러도 게임에 참여하기 때문에 Player 클래스를 상속받게 해줌
+* 딜러가 플레이어들에게 카드를 나눠줘야 하므로 Deck 을 딜러에게 줌
+* 덱에서 카드를 뽑아서 drawnCard 에 담는 drawCard()
+* 덱을 섞어주는 shuffle()
+
+3. PokerGame 클래스
+```swift
+class PokerGame {
+    var dealer = Dealer()
+    var players = [Player]()
+    var numberOfPlayers: Int
+    var gameType: GameType
+    var resumable: Bool {
+        dealer.deck.count > (players.count) * gameType.rawValue
+    }
+    
+    init(gameType: GameType, numberOfPlayers: Int) {
+        self.gameType = gameType
+        self.numberOfPlayers = numberOfPlayers
+    }
+    
+    enum GameType: Int {
+        case fiveCardStud = 5
+        case sevenCardStud = 7
+    }
+    
+    func addPlayers() {
+        for _ in 1...numberOfPlayers {
+            players.append(Player())
+        }
+        players.append(dealer)
+    }
+    
+    func distributeCards() {
+        players.forEach {
+            dealer.drawCard()
+            guard let drawnCard = dealer.drawnCard else {
+                return
+            }
+            $0.hand.append(drawnCard)
+        }
+    }
+    
+    func initHand() {
+        players.forEach {
+            $0.initHand()
+        }
+    }
+    
+    func play() {
+        initHand()
+        dealer.shuffle()
+        for _ in 1...gameType.rawValue {
+            distributeCards()
+        }
+    }
+    
+    func run() {
+        addPlayers()
+        while resumable {
+            play()
+        }
+    }
+}
+```
+* 딜러 한명과 플레이어들을 담을 배열 players
+* 게임 참여 인원수 numberOfPlayers, 7카드스터드와 5카드스터드 구분을 위한 gameType
+* gameType 은 enum 으로 만들어 게임 종류를 제한해줌
+* PokerGame 을 생성할 때 참여인원수와 게임타입을 정해줌
+* addPlayers() - players 에 참여인원수만큼 플레이어를 추가해주고 마지막에 딜러를 추가해줌
+* distributeCards() - 딜러가 카드를 한장씩 뽑아 플레이어들에게 나눠줌
+* initHand() - 플레이어들의 손패를 초기화
+* play() - 플레이어들의 손패를 초기화 한 후 덱을 섞어주고 카드를 게임 타입에 맞게 나눠줌
+* run() - 플레이어를 추가해주고 카드가 부족할때까지 게임을 진행함
+
+출력화면
+
+<img width="410" alt="스크린샷 2020-02-10 오전 11 27 48" src="https://user-images.githubusercontent.com/50410213/74117339-afb4f280-4bfa-11ea-8e44-de6606413077.png">
+
+출력을 위한 임시 코드
+```swift
+func run() {
+    addPlayers()
+    print("\(gameType)카드 기준, 참가자 \(numberOfPlayers)명 일 때\n")
+    while resumable {
+        play()
+        var index = 1
+        players.forEach {
+            if index <= numberOfPlayers {
+                    print("참가자#\(index) \($0.hand)")
+            } else {
+                print("딜러 \($0.hand)")
+            }
+            index += 1
+        }
+    }
+}
+```
+
+#### 6 - 2. 테스트
+
+Dealer 테스트 코드
+```swift
+@testable import CardGameApp
+import XCTest
+
+class DealerTest: XCTestCase {
+
+    var dealer: Dealer!
+    
+    override func setUp() {
+        super.setUp()
+        dealer = Dealer()
+    }
+    
+    func testDrawCard() {
+        XCTAssertEqual(dealer.deck.count, 52)
+        dealer.drawCard()
+        XCTAssertEqual(dealer.deck.count, 51)
+        XCTAssertNotNil(dealer.drawnCard)
+    }
+}
+```
+* 카드를 뽑은 후 덱에서 카드가 잘 뽑혔는지, 딜러가 카드를 잘 들고 있는지 확인해줌
+
+PokerGame 테스트 코드
+```swift
+@testable import CardGameApp
+import XCTest
+
+class PokerGameTest: XCTestCase {
+
+    var fiveCardStud: PokerGame!
+    var sevenCardStud: PokerGame!
+    
+    override func setUp() {
+        super.setUp()
+        fiveCardStud = PokerGame(gameType: .fiveCardStud, numberOfPlayers: 2)
+        sevenCardStud = PokerGame(gameType: .sevenCardStud, numberOfPlayers: 3)
+        
+    }
+    
+    func testAddPlayers() {
+        fiveCardStud.addPlayers()
+        XCTAssertEqual(fiveCardStud.players.count, 3)
+        sevenCardStud.addPlayers()
+        XCTAssertEqual(sevenCardStud.players.count, 4)
+    }
+    
+    func testDistributeCards() {
+        fiveCardStud.addPlayers()
+        fiveCardStud.distributeCards()
+        fiveCardStud.players.forEach {
+            XCTAssertEqual($0.hand.count, 1)
+        }
+    }
+    
+    func testInitHand() {
+        fiveCardStud.addPlayers()
+        fiveCardStud.distributeCards()
+        fiveCardStud.players.forEach {
+            XCTAssertEqual($0.hand.count, 1)
+        }
+        fiveCardStud.initHand()
+        fiveCardStud.players.forEach {
+            XCTAssertEqual($0.hand.count, 0)
+        }
+
+    }
+    
+    func testGame() {
+        fiveCardStud.run()
+        fiveCardStud.players.forEach {
+            XCTAssertEqual($0.hand.count, 5)
+        }
+        XCTAssertLessThan(fiveCardStud.dealer.deck.count, (fiveCardStud.players.count) * fiveCardStud.gameType.rawValue)
+        sevenCardStud.run()
+        sevenCardStud.players.forEach {
+            XCTAssertEqual($0.hand.count, 7)
+        }
+        XCTAssertLessThan(sevenCardStud.dealer.deck.count, (sevenCardStud.players.count) * sevenCardStud.gameType.rawValue)
+    }
+}
+```
+* 테스트 코드를 한 기능만 테스트하도록 하고 싶었지만 카드를 나눠주는건 플레이어가 있어야만 가능하고 핸드를 초기화하는건 플레이어의 손에 카드가 있어야 가능해서 한 기능만 테스트 할 수가 없었음.
