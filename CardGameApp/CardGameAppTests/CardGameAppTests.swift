@@ -30,5 +30,14 @@ class CardGameAppTests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
+    
+    func testDescripteCard() {
+        // Given
+        let card = Card(suit: "♥️" ,rank: three)
+        // When
+        var description = card.descripteCard()
+        // Then
+        XCTAssertEqual(description, "❤️3")
+    }
 
 }
