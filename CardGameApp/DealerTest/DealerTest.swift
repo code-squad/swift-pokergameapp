@@ -21,6 +21,5 @@ class DealerTest: XCTestCase {
         XCTAssertEqual(dealer.deck.count, 52)
         dealer.drawCard()
         XCTAssertEqual(dealer.deck.count, 51)
-        XCTAssertNotNil(dealer.drawnCard)
     }
 }
