@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C2BD177223F1567E00437146 /* GamePlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BD177123F1567E00437146 /* GamePlay.swift */; };
+		C2BD177C23F1771B00437146 /* GamePlayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BD177B23F1771B00437146 /* GamePlayTests.swift */; };
 		C2D9583D23EA7B09002057D6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D9583C23EA7B09002057D6 /* AppDelegate.swift */; };
 		C2D9583F23EA7B09002057D6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D9583E23EA7B09002057D6 /* SceneDelegate.swift */; };
 		C2D9584123EA7B09002057D6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D9584023EA7B09002057D6 /* ViewController.swift */; };
@@ -31,6 +32,7 @@
 
 /* Begin PBXFileReference section */
 		C2BD177123F1567E00437146 /* GamePlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamePlay.swift; sourceTree = "<group>"; };
+		C2BD177B23F1771B00437146 /* GamePlayTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePlayTests.swift; sourceTree = "<group>"; };
 		C2D9583923EA7B09002057D6 /* CardGameApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CardGameApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2D9583C23EA7B09002057D6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C2D9583E23EA7B09002057D6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 			isa = PBXGroup;
 			children = (
 				C2E62B0923ED33C100236059 /* CardDeckTests.swift */,
+				C2BD177B23F1771B00437146 /* GamePlayTests.swift */,
 				C2E62B0B23ED33C100236059 /* Info.plist */,
 			);
 			path = CardGameAppTests;
@@ -231,6 +234,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C2E62B0A23ED33C100236059 /* CardDeckTests.swift in Sources */,
+				C2BD177C23F1771B00437146 /* GamePlayTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
