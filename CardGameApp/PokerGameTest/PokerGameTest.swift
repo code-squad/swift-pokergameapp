@@ -17,12 +17,10 @@ class PokerGameTest: XCTestCase {
         super.setUp()
         fiveCardStud = PokerGame(gameType: .fiveCardStud, numberOfPlayers: 2)
         sevenCardStud = PokerGame(gameType: .sevenCardStud, numberOfPlayers: 3)
-        
     }
     
     func testAddPlayers() {
         XCTAssertEqual(fiveCardStud.players.count, 3)
-        XCTAssertEqual(sevenCardStud.players.count, 4)
     }
     
     func testDistributeCards() {
@@ -32,25 +30,16 @@ class PokerGameTest: XCTestCase {
         }
     }
     
-    func testInitHand() {
-        fiveCardStud.distributeCards()
-        fiveCardStud.players.forEach {
-            XCTAssertEqual($0.hand.count, 1)
-        }
-        fiveCardStud.initHand()
-        fiveCardStud.players.forEach {
-            XCTAssertEqual($0.hand.count, 0)
-        }
-
-    }
-    
-    func testGame() {
-        fiveCardStud.run()
+    func testFiveCardStud() {
+        fiveCardStud.play()
         fiveCardStud.players.forEach {
             XCTAssertEqual($0.hand.count, 5)
         }
         XCTAssertLessThan(fiveCardStud.dealer.deck.count, (fiveCardStud.players.count) * fiveCardStud.gameType.rawValue)
-        sevenCardStud.run()
+    }
+    
+    func testSevenCardStud() {
+        sevenCardStud.play()
         sevenCardStud.players.forEach {
             XCTAssertEqual($0.hand.count, 7)
         }
