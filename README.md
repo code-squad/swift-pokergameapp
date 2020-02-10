@@ -1,11 +1,13 @@
 # swift-pokergameapp
 STEP15 포커게임 앱 저장소
 
-
+<details>
+<summary>step 1 : 게임판 만들기</summary>
+<div markdown="1">
 
 ## step 1 : 게임판 만들기
 
-<img width="538" alt="image" src="https://user-images.githubusercontent.com/37682858/74084348-89d00680-4ab1-11ea-8449-c8de4036aa7e.png">
+<img width="300" alt="image" src="https://user-images.githubusercontent.com/37682858/74084348-89d00680-4ab1-11ea-8449-c8de4036aa7e.png">
 
 ### 추가한 기능
 
@@ -52,11 +54,43 @@ STEP15 포커게임 앱 저장소
     imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor, multiplier: 1.27).isActive=true
     ```
 
-    
-
-    
-
-  
 
 2020.02.08
+
+</div>
+</details>
+
+
+
+## step 2 : 카드 클래스
+
+<img width="1000" alt="image" src="https://user-images.githubusercontent.com/37682858/74120729-e3e2e000-4c07-11ea-81ee-432166f029e1.png">
+
+
+
+### 추가한 기능
+
+* Card class 추가
+
+  * 카드의 모양과 숫자(문자)를 정의하는 enum을 class 내 nested하게 구현
+
+  * 카드의 모양과 숫자(문자)를 저장하는 rank,suit 변수 생성
+
+  * CustomStringConvertible 프로토콜을 채용하여 Card 인스턴스를 문자열로 반환하는 표현 제공 
+
+    ```swift
+    extension Card:CustomStringConvertible{
+        var description: String {
+            return String(self.suit.rawValue)+self.rankString
+        }
+    }
+    ```
+
+  * enum에 CaseIterable 프로토콜을 채용하여 추후 Card 객체 생성 시 enum을 collection으로 반환하여 순환하며 생성 가능
+
+* ViewController 클래스에서 Card 인스턴스 생성 후 출력 함.
+
+
+
+2020.02.10
 
