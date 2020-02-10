@@ -9,23 +9,41 @@
 import Foundation
 
 struct Deck {
+    private var cards = [Card]()
+    
+    init() {
+        self.cards = createAllCards()
+    }
+
+    private func createAllCards() -> [Card] {
+        return Card.Suit.allCases.flatMap {
+            createCards(perSuit: $0)
+        }
+    }
+    
+    private func createCards(perSuit suit: Card.Suit) -> [Card] {
+        return Card.Rank.allCases.map {
+            Card(suit: suit, rank: $0)
+        }
+    }
+    
     /// 갖고 있는 카드 개수를 반환한다.
     var count: Int {
-        0
+        cards.count
     }
     
     /// 전체 카드를 섞는다.
-    func shuffle() {
-        
+    mutating func shuffle() {
+        cards.shuffle()
     }
     
     /// 카드를 하나 반환하고 목록에서 삭제
-    func removeOne() {
-        // 랜덤 추출?
+    mutating func removeOne() -> Card {
+        return cards.removeFirst()
     }
     
     /// 모든 카드를 다시 채워놓는다.
-    func reset() {
-
+    mutating func reset() {
+        self.cards = createAllCards()
     }
 }
