@@ -26,6 +26,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         setupBackground()
         setupCards()
+        print(Trump.Number.queen.rawValue)
     }
     
     private func setupBackground() {
