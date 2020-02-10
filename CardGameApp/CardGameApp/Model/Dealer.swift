@@ -8,10 +8,6 @@
 
 import Foundation
 class Dealer {
-    var cardDeck = CardDeck()
-    var cards = [Card]()
-    
-//    init(cards: [Card]) {
-//        self.cards = cards
-//    }
+    private var cardDeck = CardDeck()
+    private var cards = [Card]()
 }

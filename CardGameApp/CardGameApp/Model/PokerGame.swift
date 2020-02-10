@@ -8,9 +8,9 @@
 
 import Foundation
 class PokerGame {
-    let dealer = Dealer()
-    var players = [Player]()
-    var studNumber: Int
+    private let dealer = Dealer()
+    private var players = [Player]()
+    private var studNumber: Int
     
     enum Stud: Int {
            case five = 5
