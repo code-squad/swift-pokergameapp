@@ -10,7 +10,7 @@ import Foundation
 
 public class Trump {
     
-    func printTrumpInfo(){
+    public func printTrumpInfo(){
         print(suit.rawValue, terminator:"")
         switch number {
         case .ace:
