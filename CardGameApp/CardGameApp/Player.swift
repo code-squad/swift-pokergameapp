@@ -9,9 +9,13 @@
 import Foundation
 
 class Player {
-    var hand = [Card]()
+    var hand: [Card]
     
-    func initHand() {
+    init() {
+        hand = [Card]()
+    }
+    
+    func discard() {
         hand = [Card]()
     }
     
