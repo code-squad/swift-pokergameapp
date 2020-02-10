@@ -15,8 +15,8 @@ class PokerGameTest: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        fiveCardStud = PokerGame(gameType: 5, numberOfPlayers: 2)
-        sevenCardStud = PokerGame(gameType: 7, numberOfPlayers: 3)
+        fiveCardStud = PokerGame(gameType: .fiveCardStud, numberOfPlayers: 2)
+        sevenCardStud = PokerGame(gameType: .sevenCardStud, numberOfPlayers: 3)
         
     }
     
@@ -53,11 +53,11 @@ class PokerGameTest: XCTestCase {
         fiveCardStud.players.forEach {
             XCTAssertEqual($0.hand.count, 5)
         }
-        XCTAssertLessThan(fiveCardStud.dealer.deck.count, (fiveCardStud.numberOfPlayers + 1) * fiveCardStud.gameType)
+        XCTAssertLessThan(fiveCardStud.dealer.deck.count, (fiveCardStud.players.count) * fiveCardStud.gameType.rawValue)
         sevenCardStud.run()
         sevenCardStud.players.forEach {
             XCTAssertEqual($0.hand.count, 7)
         }
-        XCTAssertLessThan(sevenCardStud.dealer.deck.count, (sevenCardStud.numberOfPlayers + 1) * sevenCardStud.gameType)
+        XCTAssertLessThan(sevenCardStud.dealer.deck.count, (sevenCardStud.players.count) * sevenCardStud.gameType.rawValue)
     }
 }
