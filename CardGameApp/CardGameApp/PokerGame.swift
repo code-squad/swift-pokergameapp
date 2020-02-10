@@ -13,6 +13,9 @@ class PokerGame {
     var players = [Player]()
     var numberOfPlayers: Int
     var gameType: Int
+    var resumable: Bool {
+        dealer.deck.count > (players.count) * gameType
+    }
     
     init(gameType: Int, numberOfPlayers: Int) {
         self.gameType = gameType
@@ -52,7 +55,7 @@ class PokerGame {
     
     func run() {
         addPlayers()
-        while dealer.deck.count > (numberOfPlayers + 1) * gameType {
+        while resumable {
             play()
         }
     }
