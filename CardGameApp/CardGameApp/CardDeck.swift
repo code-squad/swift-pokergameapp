@@ -8,6 +8,21 @@
 
 import Foundation
 
+extension CardDeck:Equatable{
+    static func == (lhs: CardDeck, rhs: CardDeck) -> Bool {
+        if lhs.count() == rhs.count(){
+            for index in 0..<lhs.cardSet.count{
+                if lhs.cardSet[index] != rhs.cardSet[index]{
+                    return false
+                }
+            }
+            return true
+        } else{
+            return false
+        }
+    }
+}
+
 struct CardDeck{
     private var cardSet:[Card]
     
@@ -26,5 +41,11 @@ struct CardDeck{
     
     func count() -> Int{
         return cardSet.count
+    }
+    
+    mutating func shuffle(){
+        if self.cardSet.count != 1{
+            self.cardSet.shuffle()
+        }
     }
 }

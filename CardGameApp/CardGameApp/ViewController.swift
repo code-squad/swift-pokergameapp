@@ -17,8 +17,6 @@ class ViewController: UIViewController {
         setUpBackground()
         setUpStackView()
         addCardIntoStackView()
-        let heartSeven=Card(rank: .seven, suit: .heart)
-        print(heartSeven)
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
