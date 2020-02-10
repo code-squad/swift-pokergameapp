@@ -39,18 +39,14 @@ class PokerGame {
     }
         
     func play() {
-        players.forEach {
-            $0.discard()
-        }
-        dealer.shuffle()
-        for _ in 1...gameType.rawValue {
-            distributeCards()
-        }
-    }
-    
-    func run() {
         while resumable {
-            play()
+            players.forEach {
+                $0.discard()
+            }
+            dealer.shuffle()
+            for _ in 1...gameType.rawValue {
+                distributeCards()
+            }
         }
     }
 }
