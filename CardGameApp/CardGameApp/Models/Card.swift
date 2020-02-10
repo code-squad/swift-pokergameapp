@@ -23,14 +23,14 @@ class Card {
         self.rank = rank
     }
     
-    enum Suit: Character {
+    enum Suit: Character, CaseIterable {
         case spade = "♠"
         case heart = "♡"
         case club = "♣"
         case diamond = "⬦"
     }
     
-    enum Rank: Int {
+    enum Rank: Int, CaseIterable {
         case ace = 1, two, three, four, five, six, seven, eight, nine, ten, jack, queen, king
     }
 }
