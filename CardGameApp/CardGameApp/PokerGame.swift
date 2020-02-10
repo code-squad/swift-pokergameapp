@@ -37,15 +37,11 @@ class PokerGame {
             $0.receive(drawnCard)
         }
     }
-    
-    func initHand() {
-        players.forEach {
-            $0.initHand()
-        }
-    }
-    
+        
     func play() {
-        initHand()
+        players.forEach {
+            $0.discard()
+        }
         dealer.shuffle()
         for _ in 1...gameType.rawValue {
             distributeCards()
