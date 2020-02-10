@@ -19,16 +19,22 @@ class ViewController: UIViewController {
         return horizontalStackView
     }()
     
-    func card() -> UIImageView {
-        let card = UIImageView(image: #imageLiteral(resourceName: "card-back"))
+    func makeCard() -> UIImageView {
+        return UIImageView(image: #imageLiteral(resourceName: "card-back"))
+    }
+    
+    func setCard(card: UIImageView) -> UIImageView {
+        var card = card
         card.contentMode = .scaleAspectFit
         card.heightAnchor.constraint(equalTo: card.widthAnchor, multiplier: 1.27).isActive = true
         return card
     }
     
     func addCards() {
+        var card = makeCard()
+        card = setCard(card: card)
         for _ in 0 ..< 7 {
-            cardsStack.addArrangedSubview(card())
+            cardsStack.addArrangedSubview(card)
         }
     }
     
