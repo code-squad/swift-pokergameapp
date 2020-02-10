@@ -14,4 +14,8 @@ class Player {
     func initHand() {
         hand = [Card]()
     }
+    
+    func receive(_ card: Card) {
+        hand.append(card)
+    }
 }

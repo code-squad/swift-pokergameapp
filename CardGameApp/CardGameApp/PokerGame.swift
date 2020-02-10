@@ -34,7 +34,7 @@ class PokerGame {
             guard let drawnCard = dealer.drawCard() else {
                 return
             }
-            $0.hand.append(drawnCard)
+            $0.receive(drawnCard)
         }
     }
     
