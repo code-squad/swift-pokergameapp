@@ -36,8 +36,7 @@ class PokerGame {
     
     func distributeCards() {
         players.forEach {
-            dealer.drawCard()
-            guard let drawnCard = dealer.drawnCard else {
+            guard let drawnCard = dealer.drawCard() else {
                 return
             }
             $0.hand.append(drawnCard)
