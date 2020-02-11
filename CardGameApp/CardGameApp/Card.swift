@@ -9,7 +9,7 @@
 import Foundation
 
 class Card: CustomStringConvertible{
-    enum Suit: Character {
+    enum Suit: String {
         case spades = "♠️"
         case hearts = "♥️"
         case diamonds = "♦️"

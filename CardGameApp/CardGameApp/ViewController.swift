@@ -32,6 +32,8 @@ class ViewController: UIViewController {
         print(heartsOfTwelve.description)
         let spadesOfSeven = Card(suit: .spades, rank: .seven)
         print(spadesOfSeven.description)
+        
+        let cardDeck = CardDeck()
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
