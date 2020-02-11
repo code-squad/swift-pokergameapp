@@ -8,16 +8,16 @@
 
 import Foundation
 
-public class Trump {
-    
-    enum Suit : String {
+public class Card {
+
+    enum Suit : String, CaseIterable {
         case spade = "♠"
         case heart = "♥"
         case diamond = "♦"
         case club = "♣"
     }
     
-    enum Number : Int {
+    enum Number : Int, CaseIterable {
         case ace = 1
         case two
         case three
@@ -42,7 +42,7 @@ public class Trump {
     }
 }
 
-extension Trump : CustomStringConvertible {
+extension Card : CustomStringConvertible {
     public var description: String {
         return suit.rawValue + numberToStr
     }

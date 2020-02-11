@@ -9,7 +9,7 @@
 import UIKit
 
 class ViewController: UIViewController {
-    private let trump = Trump(suit: .heart, number: .queen)
+    private let trump = Card(suit: .heart, number: .queen)
     
     private let cardStackView : UIStackView = {
         let stackView = UIStackView()
@@ -27,20 +27,20 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupBackground()
-        setupCards()
+        setupCardViews()
     }
     
     private func setupBackground() {
         self.view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "bg_pattern"))
     }
     
-    private func setupCards(){
-        addCards(to : cardStackView)
+    private func setupCardViews(){
+        addCardViews(to : cardStackView)
         self.view.addSubview(cardStackView)
         setConstraintCardStackView()
     }
     
-    private func addCards(to cardStackView : UIStackView) {
+    private func addCardViews(to cardStackView : UIStackView) {
         let maxCardNum = 7
         for _ in 0 ..< maxCardNum {
             cardStackView.addArrangedSubview(generateCardImageView())
