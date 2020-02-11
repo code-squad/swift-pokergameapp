@@ -27,4 +27,10 @@ struct CardDeck {
         
     }
 }
-
+extension CardDeck :Equatable{
+    static func == (lhs: CardDeck, rhs: CardDeck) -> Bool {
+        return lhs.cards.count == rhs.cards.count
+        return lhs.cards == rhs.cards
+        
+    }
+}
