@@ -35,6 +35,10 @@ class ViewController: UIViewController {
         resetPokerGame()
     }
     
+    override func motionBegan(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        resetPokerGame()
+    }
+    
     private func setupSegmentActions() {
         gameTypeSegmentedControl.addTarget(self, action: #selector(handleGameTypeSegmentChanged), for: .valueChanged)
         playerCountSegmentedControl.addTarget(self, action: #selector(handlePlayerCountSegmentChanged), for: .valueChanged)
