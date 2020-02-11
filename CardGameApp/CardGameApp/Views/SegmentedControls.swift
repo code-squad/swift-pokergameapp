@@ -35,7 +35,7 @@ class GameTypeSegmentedControl: UISegmentedControl {
     }
 }
 
-class SegnentedControlStackView: UIStackView {
+class SegmentedControlStackView: UIStackView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
