@@ -36,6 +36,10 @@ class PokerGame {
 
 enum GameType: Int {
     case sevenCardsStud = 7, fiveCardsStud = 5
+    
+    func numberOfHands() -> Int {
+        return self.rawValue
+    }
 }
 
 enum PlayerCount: Int {
