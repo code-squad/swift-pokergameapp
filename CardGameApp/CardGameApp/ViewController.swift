@@ -15,8 +15,8 @@ class ViewController: UIViewController {
     let gameTypeTitles = ["7 Cards", "5 Cards"]
     let playerCountTitles = ["2명", "3명", "4명"]
     
-    lazy var gameTypeSegmentedControl = GameTypeSegmentedControl(items: gameTypeTitles)
-    lazy var playerCountSegmentedControl = GameTypeSegmentedControl(items: playerCountTitles)
+    lazy var gameTypeSegmentedControl = TitledSegmentedControl(items: gameTypeTitles)
+    lazy var playerCountSegmentedControl = TitledSegmentedControl(items: playerCountTitles)
     
     lazy var segmentedControlStackView: UIStackView = {
         let stackView = SegmentedControlStackView()
