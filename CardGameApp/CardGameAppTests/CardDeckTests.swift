@@ -13,37 +13,39 @@ class CardDeckTests: XCTestCase {
 
     var cardDeck: CardDeck!
     
+    let fullCardDeck = 52
+    
     override func setUp() {
         cardDeck = CardDeck()
     }
     
     func testCount() {
-        XCTAssertEqual(cardDeck.count, 52)
+        XCTAssertEqual(cardDeck.count, fullCardDeck)
     }
     
     func testRemoveOne() {
         _ = cardDeck.removeOne()
-        XCTAssertEqual(cardDeck.count, 51)
+        XCTAssertEqual(cardDeck.count, fullCardDeck - 1)
         _ = cardDeck.removeOne()
-        XCTAssertEqual(cardDeck.count, 50)
+        XCTAssertEqual(cardDeck.count, fullCardDeck - 2)
     }
     
     func testReset() {
-        XCTAssertEqual(cardDeck.count, 52)
+        XCTAssertEqual(cardDeck.count, fullCardDeck)
         _ = cardDeck.removeOne()
         _ = cardDeck.removeOne()
         cardDeck.reset()
-        XCTAssertEqual(cardDeck.count, 52)
+        XCTAssertEqual(cardDeck.count, fullCardDeck)
     }
     
     func testShuffle() {
         let fixedGenerator = FixedRandomNumberGenerator()
-        let cardsBeforeSuffle = (0..<52).map { _ in cardDeck.removeOne() }
+        let cardsBeforeSuffle = (0..<fullCardDeck).map { _ in cardDeck.removeOne() }
         
         cardDeck.reset()
         cardDeck.shuffle(using: fixedGenerator)
         
-        let cardsAfterSuffle = (0..<52).map { _ in cardDeck.removeOne() }
+        let cardsAfterSuffle = (0..<fullCardDeck).map { _ in cardDeck.removeOne() }
         XCTAssertNotEqual(cardsBeforeSuffle, cardsAfterSuffle)
     }
 }
