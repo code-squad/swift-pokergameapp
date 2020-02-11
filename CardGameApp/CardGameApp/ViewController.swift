@@ -10,6 +10,9 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    private var participantsCount: Int = 0
+    private var studNumber: Int = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
@@ -25,7 +28,7 @@ class ViewController: UIViewController {
     }()
     
     let playerSegmented: UISegmentedControl = {
-        let playerCount = ["2명", "3명", "4명"]
+        let playerCount = ["1명", "2명", "3명", "4명"]
         let segmentedControl = UISegmentedControl(items: playerCount)
         segmentedControl.selectedSegmentIndex = 0
         segmentedControl.layer.borderColor = UIColor.white.cgColor
@@ -103,8 +106,6 @@ class ViewController: UIViewController {
         self.view.addSubview(wholeGameStack)
 
         setStackContraints()
-
-        
     }
     
     func setStackContraints() {
@@ -123,6 +124,9 @@ class ViewController: UIViewController {
         return .lightContent
     }
     
+    func setCardsWithImages() {
+        
+    }
     
 }
 
