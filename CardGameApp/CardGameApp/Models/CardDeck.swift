@@ -23,8 +23,9 @@ struct CardDeck {
         }
     }
     
-    mutating func shuffle<T: RandomNumberGenerator>(using generator: inout T) {
-        cards.shuffle(using: &generator)
+    mutating func shuffle<T: RandomNumberGenerator>(using generator: T) {
+        var randomGenerator = generator
+        cards.shuffle(using: &randomGenerator)
     }
     
     mutating func removeOne() -> Card {
