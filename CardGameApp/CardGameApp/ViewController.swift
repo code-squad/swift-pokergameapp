@@ -13,7 +13,41 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
+        
+        studSegmented.center = CGPoint(x: self.view.frame.width/2, y: 90)
+        self.view.addSubview(studSegmented)
+        self.view.addSubview(playerSegmented)
+
+        playerSegmented.translatesAutoresizingMaskIntoConstraints = false
+        playerSegmented.leadingAnchor.constraint(equalTo: studSegmented.leadingAnchor).isActive = true
+        playerSegmented.trailingAnchor.constraint(equalTo: studSegmented.trailingAnchor).isActive = true
+        playerSegmented.topAnchor.constraint(equalTo: studSegmented.bottomAnchor, constant: 10).isActive = true
+        let titleTextAttributesNormal = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        UISegmentedControl.appearance().setTitleTextAttributes(titleTextAttributesNormal, for: .normal)
+        
+        let titleTextAttributesSelected = [NSAttributedString.Key.foregroundColor: UIColor.black]
+        UISegmentedControl.appearance().setTitleTextAttributes(titleTextAttributesSelected, for: .selected)
+        
+       
     }
+    
+    let studSegmented: UISegmentedControl = {
+        let studs = ["7 Cards", "5 Cards"]
+        let segmentedControl = UISegmentedControl(items: studs)
+        segmentedControl.selectedSegmentIndex = 0
+        segmentedControl.layer.borderColor = UIColor.white.cgColor
+        segmentedControl.layer.borderWidth = 1.0
+        return segmentedControl
+    }()
+    
+    let playerSegmented: UISegmentedControl = {
+        let playerCount = ["2명", "3명", "4명"]
+        let segmentedControl = UISegmentedControl(items: playerCount)
+        segmentedControl.selectedSegmentIndex = 0
+        segmentedControl.layer.borderColor = UIColor.white.cgColor
+        segmentedControl.layer.borderWidth = 1.0
+        return segmentedControl
+    }()
     
     let cardImageStack: UIStackView = {
         let stackView = UIStackView()
@@ -36,8 +70,8 @@ class ViewController: UIViewController {
             cardImageStack.addArrangedSubview(cardImage)
             cardImage.heightAnchor.constraint(equalTo: cardImage.widthAnchor, multiplier: 1.27).isActive = true
         }
-        self.view.addSubview(cardImageStack)
-        setStackContraints()
+        //        self.view.addSubview(cardImageStack)
+        //        setStackContraints()
     }
     
     func setStackContraints() {
