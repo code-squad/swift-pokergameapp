@@ -183,9 +183,26 @@ PokerGame 객체로 게임을 진행했을 때, Player와 Dealer의 패, 커뮤�
 
 ## Step5 - Result View
 
+2020/Feb/11
+
+- Card 객체는 참조가 필요없다고 판단하여 struct로 수정
+- Card 객체와 이미지 파일명은 CustomStringConvertible을 활용하여 매치
 - StackView 3개를 이용한 화면 구성
+- View들을 다른 클래스로 구현하여 분리하려고 노력함
+- Dealer와 Player를 같은 대등한 관계에서 처리할 수 있도록 프로토콜을 만들어 두 클래스가 채택하도록 함
+- shake 모션에 따라 게임 reset
 
+<br>
 
+#### protocol: Playable
+
+```swift
+protocol Playable {
+    var hands: [Card] { get set }
+}
+```
+
+<br>
 
 #### shake
 
