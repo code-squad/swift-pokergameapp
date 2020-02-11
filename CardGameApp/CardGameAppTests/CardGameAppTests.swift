@@ -44,14 +44,14 @@ class CardGameAppTests: XCTestCase {
     
     func testRemoveOne() {
         // 1.given
-        let card = Card.init(suit: .spade, number: .jack)
-//        sut.cards = [card]
+        let card = Card(suit: .spade, number: .ace)
+        sut.cards = [card]
         
         // 2.when
         let result = sut.removeOne()
         
         // 3.then
-//        XCTAssertEqual(card, result)
+        XCTAssertEqual(card , result)
     }
     
     func testReset() {
