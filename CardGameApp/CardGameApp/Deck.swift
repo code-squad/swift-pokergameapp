@@ -10,22 +10,12 @@ import Foundation
 
 struct Deck {
     private var cards = [Card]()
+    private var poppedCards = [Card]()
     
-    init() {
-        self.cards = createAllCards()
+    init(cards: [Card]) {
+        self.cards = cards
     }
 
-    private func createAllCards() -> [Card] {
-        return Card.Suit.allCases.flatMap {
-            createCards(perSuit: $0)
-        }
-    }
-    
-    private func createCards(perSuit suit: Card.Suit) -> [Card] {
-        return Card.Rank.allCases.map {
-            Card(suit: suit, rank: $0)
-        }
-    }
     
     /// 갖고 있는 카드 개수를 반환한다.
     var count: Int {
@@ -38,12 +28,36 @@ struct Deck {
     }
     
     /// 카드를 하나 반환하고 목록에서 삭제
-    mutating func removeOne() -> Card {
-        return cards.removeFirst()
+    mutating func removeOne() -> Card? {
+        guard let card = cards.popLast() else {
+            return nil
+        }
+        poppedCards.append(card)
+        
+        return card
     }
     
     /// 모든 카드를 다시 채워놓는다.
     mutating func reset() {
-        self.cards = createAllCards()
+        self.cards += poppedCards
+        self.poppedCards.removeAll()
+    }
+}
+
+struct DeckFactory {
+    static func create() -> Deck {
+        return Deck(cards: createAllCards())
+    }
+    
+    static func createAllCards() -> [Card] {
+        return Card.Suit.allCases.flatMap {
+            createCards(per: $0)
+        }
+    }
+    
+    static func createCards(per suit: Card.Suit) -> [Card] {
+        return Card.Rank.allCases.map {
+            Card(suit: suit, rank: $0)
+        }
     }
 }
