@@ -50,6 +50,10 @@ class ViewController: UIViewController {
         loadGame()
     }
     
+    override func motionBegan(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        loadGame()
+    }
+    
     func resetGameTable() {
         gameTable.arrangedSubviews.forEach {
             $0.removeFromSuperview()
