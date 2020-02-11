@@ -36,7 +36,7 @@ class ViewController: UIViewController {
     func makeCards() {
         for _ in 0..<7 {
             let card = UIImageView(image: #imageLiteral(resourceName: "card-back"))
-            card.contentMode = .scaleAspectFit
+            card.heightAnchor.constraint(equalTo: card.widthAnchor, multiplier: 1.27).isActive = true
             cardStack.addArrangedSubview(card)
         }
     }
