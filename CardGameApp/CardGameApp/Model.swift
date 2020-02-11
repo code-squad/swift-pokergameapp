@@ -30,15 +30,18 @@ class Card {
     ]
     private var suit: suit
     private var rank: rank
-
     
     init(suit: suit, rank: rank) {
         self.suit = suit
         self.rank = rank
     }
-    
-    func fetchInformation() -> String {
-        let suitValue = self.suit.rawValue
-        return dictionary[self.rank] == nil ? "\(suitValue)\(self.rank.rawValue)" : "\(suitValue)\(dictionary[self.rank] ?? "")"
+}
+
+extension Card: CustomStringConvertible {
+    var description: String {
+        guard let rank = dictionary[self.rank] else {
+            return "\(self.suit.rawValue)\(self.rank.rawValue)"
+        }
+        return "\(self.suit.rawValue)\(rank)"
     }
 }
