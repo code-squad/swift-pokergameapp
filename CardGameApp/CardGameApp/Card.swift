@@ -9,20 +9,18 @@
 import Foundation
 
 class Card {
+    enum Shape: String, CaseIterable {
+        case heart = "♥︎", spade = "♠︎", clover = "♣︎", diamond = "♦︎"
+    }
+    enum Rank: Int, CaseIterable {
+        case A = 1, two, three, four, five, six, seven, eight, nine, ten, J, Q, K
+    }
     private var shape: Shape
     private var rank: Rank
 
     init (shape: Shape, rank: Rank) {
         self.shape = shape
         self.rank = rank
-    }
-    
-    enum Shape: String, CaseIterable {
-        case heart = "♥︎", spade = "♠︎", clover = "♣︎", diamond = "♦︎"
-    }
-    
-    enum Rank: Int, CaseIterable {
-        case A = 1, two, three, four, five, six, seven, eight, nine, ten, J, Q, K
     }
 }
 
