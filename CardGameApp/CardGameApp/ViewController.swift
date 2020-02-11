@@ -48,6 +48,12 @@ class ViewController: UIViewController {
         setPlayerStackLayout()
     }
     
+    func resetPlayerStack() {
+        playerStack.arrangedSubviews.forEach {
+            $0.removeFromSuperview()
+        }
+    }
+    
     func addGameTypeControl() {
         view.addSubview(gameTypeControl)
         gameTypeControl.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 50).isActive = true
