@@ -9,7 +9,7 @@
 import XCTest
 import CardGameApp
 
-class CardGameAppTests: XCTestCase {
+class CardDeckTests: XCTestCase {
 
     var deck: CardDeck!
     
