@@ -11,12 +11,21 @@ import UIKit
 class ViewController: UIViewController {
     
     private var gameType: GameType = .sevenCardsStud
+    private var playerCount: PlayerCount = .two
     
     let gameTypeSegmentedControl: UISegmentedControl = {
         let segmentedControl = UISegmentedControl(items: ["7 Cards", "5 Cards"])
         segmentedControl.selectedSegmentIndex = 0
         segmentedControl.translatesAutoresizingMaskIntoConstraints = false
-        segmentedControl.addTarget(self, action: #selector(handleSegmentChanged), for: .valueChanged)
+        segmentedControl.addTarget(self, action: #selector(handleGameTypeSegmentChanged), for: .valueChanged)
+        return segmentedControl
+    }()
+    
+    let playerCountSegmentedControl: UISegmentedControl = {
+        let segmentedControl = UISegmentedControl(items: ["2명", "3명", "4명"])
+        segmentedControl.selectedSegmentIndex = 0
+        segmentedControl.translatesAutoresizingMaskIntoConstraints = false
+        segmentedControl.addTarget(self, action: #selector(handlePlayerCountSegmentChanged), for: .valueChanged)
         return segmentedControl
     }()
 
@@ -40,11 +49,24 @@ class ViewController: UIViewController {
         setupUI()
     }
     
-    @objc private func handleSegmentChanged(segmentedControl: UISegmentedControl) {
+    @objc private func handleGameTypeSegmentChanged(segmentedControl: UISegmentedControl) {
         if segmentedControl.selectedSegmentIndex == 0 {
             gameType = .sevenCardsStud
         } else {
             gameType = .fiveCardsStud
+        }
+    }
+    
+    @objc private func handlePlayerCountSegmentChanged(segmentedControl: UISegmentedControl) {
+        switch segmentedControl.selectedSegmentIndex {
+        case 0:
+            playerCount = .two
+        case 1:
+            playerCount = .three
+        case 2:
+            playerCount = .three
+        default:
+            break
         }
     }
     
