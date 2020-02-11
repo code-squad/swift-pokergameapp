@@ -165,8 +165,8 @@ class ViewController: UIViewController {
         
         view.addSubview(pokerGameStackView)
         pokerGameStackView.topAnchor.constraint(equalTo: segmentedControlsSV.bottomAnchor, constant: 16).isActive = true
-        pokerGameStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24).isActive = true
-        pokerGameStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24).isActive = true
+        pokerGameStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 48).isActive = true
+        pokerGameStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -48).isActive = true
         pokerGameStackView.bottomAnchor.constraint(lessThanOrEqualTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16).isActive = true
     }
 
