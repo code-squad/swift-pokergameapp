@@ -47,6 +47,8 @@ class ViewController: UIViewController {
         stackView.axis = .vertical
         stackView.spacing = 24
         stackView.translatesAutoresizingMaskIntoConstraints = false
+//        stackView.distribution = .fillProportionally
+        stackView.alignment = .top
         return stackView
     }()
     
@@ -66,6 +68,7 @@ class ViewController: UIViewController {
             let cardStackView = generateCardStackView()
             
             let playerLabel = UILabel()
+            playerLabel.textColor = .white
             playerLabel.text = "Player \(i + 1)"
             
             player.hands.map { $0.description }
@@ -139,7 +142,7 @@ class ViewController: UIViewController {
         pokerGameStackView.topAnchor.constraint(equalTo: segmentedControlsSV.bottomAnchor, constant: 16).isActive = true
         pokerGameStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 8).isActive = true
         pokerGameStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8).isActive = true
-        pokerGameStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -8).isActive = true
+//        pokerGameStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -8).isActive = true
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
