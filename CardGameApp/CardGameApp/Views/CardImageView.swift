@@ -13,18 +13,20 @@ class CardImageView: UIImageView {
     init(named: String) {
         let image = UIImage(named: named)
         super.init(image: image)
-        
-        setupUI()
+        commonInit()
     }
     
-    private func setupUI() {
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        commonInit()
+    }
+    
+    private func commonInit() {
         contentMode = .scaleAspectFill
         translatesAutoresizingMaskIntoConstraints = false
         heightAnchor.constraint(equalTo: widthAnchor, multiplier: 1.27).isActive = true
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    
     
 }
