@@ -8,7 +8,7 @@
 
 import Foundation
 
-class CardDeck {
+struct CardDeck {
     var cards: [Card] = []
     var count: Int {
         cards.count
@@ -18,7 +18,7 @@ class CardDeck {
         setupDeck()
     }
     
-    private func setupDeck() {
+    private mutating func setupDeck() {
         Card.Suit.allCases.forEach {
             let suit = $0
             Card.Rank.allCases.forEach {
@@ -27,16 +27,16 @@ class CardDeck {
         }
     }
     
-    func shuffle() {
+    mutating func shuffle() {
         cards.shuffle()
     }
     
-    func removeOne() -> Card? {
+    mutating func removeOne() -> Card? {
         guard cards.count > 0 else { return nil }
         return cards.removeLast()
     }
     
-    func reset() {
+    mutating func reset() {
         cards.removeAll()
         setupDeck()
     }
