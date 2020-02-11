@@ -9,5 +9,16 @@
 import Foundation
 
 class Dealer{
+    private var cardDeck:CardDeck
+    private var ownCardDeck:[Card]
     
+    init(){
+        self.cardDeck=CardDeck()
+        self.cardDeck.shuffle()
+        self.ownCardDeck=[Card]()
+    }
+    
+    func deal() -> Card?{
+        return self.cardDeck.removeOne()
+    }
 }
