@@ -18,39 +18,39 @@ final class GameTableView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         apply(background: viewBackground)
-        configuration(stackView)
-        makeStackConstraint(stackView)
+        configurate()
+        makeStackConstraint()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         apply(background: viewBackground)
-        configuration(stackView)
-        makeStackConstraint(stackView)
+        configurate()
+        makeStackConstraint()
     }
     
     private func apply(background: String) {
         backgroundColor = UIColor(patternImage: UIImage(named: background) ?? UIImage())
     }
 
-    private func creatCards(_ stack: UIStackView, amount: Int) {
+    private func creatCards(amount: Int) {
         (0...amount).forEach { _ in
             let card = UIImageView(image: UIImage(named: cardBackground) ?? UIImage())
             card.snp.makeConstraints { (make) in
                 make.height.equalTo(card.snp.width).multipliedBy(1.27)
             }
-            stack.addArrangedSubview(card)
+            stackView.addArrangedSubview(card)
         }
     }
     
-    private func configuration(_ stack: UIStackView) {
-        creatCards(stackView, amount: 6)
-        stack.distribution = .equalSpacing
-        stack.spacing = 4
+    private func configurate() {
+        creatCards(amount: 6)
+        stackView.distribution = .equalSpacing
+        stackView.spacing = 4
         addSubview(stackView)
     }
     
-    private func makeStackConstraint(_ stackView: UIStackView) {
+    private func makeStackConstraint() {
         stackView.snp.makeConstraints { (make) in
             make.top.equalTo(safeAreaLayoutGuide).offset(16)
             make.leading.trailing.equalTo(safeAreaLayoutGuide).inset(8)
