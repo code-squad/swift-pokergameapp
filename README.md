@@ -62,8 +62,8 @@
 2020/Feb/10
 
 - PokerGame, Dealer, Player 모델 생성
-- PokerGame 초기화 -> Players, Dealer 초기화
-- Dealer의 Initializer에서 Player에게 패 전달
+- PokerGame 초기화 -> Dealer 초기화 -> Dealer에서 패를 뽑는다.
+- Dealer에서 뽑은 패를 PokerGame에서 Dealer에게 전달
 - PokerGame 인스턴스로 게임 진행 테스트
 
 #### class PockerGame
@@ -75,21 +75,31 @@ class PokerGame {
     var players: [Player] = []
     let dealer: Dealer
     
-    init(type gameType: GameType, numberOfPlayers: Int) {
+    init(game gameType: GameType, numberOfPlayers: Int) {
         self.gameType = gameType
         self.numberOfPlayers = numberOfPlayers
-        for _ in 0..<numberOfPlayers { players.append(Player()) }
-        self.dealer = Dealer(numberOfHands: gameType.numberOfHands, players: players)
+        self.dealer = Dealer(game: gameType)
+        setupHands()
     }
     
-    enum GameType: Int {
-        case sevenCardsStud = 7
-        case fiveCardsStud = 5
-        
-        var numberOfHands: Int {
-            self.rawValue
+    private func setupHands() {
+        setupPlayersHands()
+        dealer.setupCommunityCards()
+    }
+    
+    private func setupPlayersHands() {
+        for _ in 0..<numberOfPlayers {
+            guard let hands = dealer.drawHands() else {
+                print("카드가 부족합니다.")
+                return
+            }
+            players.append(Player(hands: hands))
         }
     }
+}
+
+enum GameType: Int {
+    case sevenCardsStud, fiveCardsStud
 }
 ```
 
@@ -97,37 +107,48 @@ class PokerGame {
 
 ```swift
 class Dealer {
-    var deck = CardDeck()
-    let numberOfHands: Int
-    let players: [Player]
-    var communityCards: [Card] = []
+    private let gameType: GameType
+    private var deck = CardDeck()
+    private var _communityCards: [Card] = []
     
-    init(numberOfHands: Int, players: [Player]) {
-        self.numberOfHands = numberOfHands
-        self.players = players
-        
-        setupHands()
+    var communityCards: [Card] {
+        _communityCards
+    }
+    
+    init(game gameType: GameType) {
+        self.gameType = gameType
+        setupDeck()
         setupCommunityCards()
     }
     
-    func setupHands() {
-        players.forEach {
-            passHands(to: $0)
-        }
+    func setupDeck() {
+        deck.shuffle()
     }
     
     func setupCommunityCards() {
-        for _ in 0..<numberOfHands {
-            guard let card = deck.removeOne() else { return }
-            communityCards.append(card)
+        guard let hands = drawHands() else {
+            print("카드가 부족합니다")
+            return
         }
+        _communityCards = hands
     }
     
-    func passHands(to player: Player) {
-        for _ in 0..<numberOfHands {
-            guard let card = deck.removeOne() else { return }
-            player.hands.append(card)
+    func drawHands() -> [Card]? {
+        var hands: [Card] = []
+        var numberOfHands = 0
+        switch gameType {
+        case .fiveCardsStud:
+            numberOfHands = 5
+        case .sevenCardsStud:
+            numberOfHands = 7
         }
+        
+        for _ in 0..<numberOfHands {
+            guard let card = deck.removeOne() else { return nil }
+            hands.append(card)
+        }
+        
+        return hands
     }
 }
 ```
@@ -137,8 +158,13 @@ class Dealer {
 PokerGame 객체로 게임을 진행했을 때, Player와 Dealer의 패, 커뮤니티카드 세팅을 정상적으로 작동되는지 테스트
 
 ```swift
-    func testFiveCardsStud() {
-        let pokerGame = PokerGame(type: .fiveCardsStud, numberOfPlayers: 4)
+    func testSevenCardsStud() {
+        let pokerGame = PokerGame(game: .sevenCardsStud, numberOfPlayers: 4)
+        
+        XCTAssert(pokerGame.players.count == 4)
+        pokerGame.players.forEach {
+            XCTAssert($0.hands.count == 7)
+        }
         
         pokerGame.players.enumerated().forEach { (i, player) in
             print("참가자#\(i+1) \(player.hands)")
