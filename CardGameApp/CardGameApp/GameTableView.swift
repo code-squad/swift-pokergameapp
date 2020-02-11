@@ -24,6 +24,9 @@ final class GameTableView: UIView {
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+        apply(background: viewBackground)
+        configuration(stackView)
+        makeStackConstraint(stackView)
     }
     
     private func apply(background: String) {
