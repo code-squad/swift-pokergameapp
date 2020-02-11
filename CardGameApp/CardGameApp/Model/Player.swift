@@ -9,4 +9,8 @@
 import Foundation
 class Player {
     private var cards = [Card]()
+    
+    func appendCard(_ card: Card) {
+        cards.append(card)
+    }
 }

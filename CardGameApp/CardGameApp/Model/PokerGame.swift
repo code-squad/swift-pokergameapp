@@ -15,33 +15,41 @@ class PokerGame {
     enum Stud: Int {
            case five = 5
            case seven = 7
+        
+        func getRawValue(stud: Stud) -> Stud.RawValue {
+            return stud.rawValue
+        }
    }
 
     enum PlayerCount: Int {
         case one = 1, two, three, four
+        
+        func getRawValue(playerCount: PlayerCount) -> PlayerCount.RawValue {
+            return playerCount.rawValue
+        }
     }
     
     init(playerCount: PlayerCount, stud: Stud) {
-        self.studNumber = stud.rawValue
-        for _ in 0..<playerCount.rawValue {
+        self.studNumber = stud.getRawValue(stud: stud)
+        for _ in 0..<playerCount.getRawValue(playerCount: playerCount) {
             self.players.append(Player())
         }
     }
     
     func allocateCards() {
-        dealer.cardDeck.shuffle()
+        dealer.shuffle()
         for _ in 0..<studNumber {
             for player in players {
-                guard let card = dealer.cardDeck.removeOne() else { return }
-                player.cards.append(card)
+                guard let card = dealer.removeOne() else { return }
+                player.appendCard(card)
             }
-            guard let card = dealer.cardDeck.removeOne() else { return }
-            dealer.cards.append(card)
+            guard let card = dealer.removeOne() else { return }
+            dealer.appendCard(card)
         }
     }
     
-    func checkLeftCardsNumber() -> Int {
-       return dealer.cardDeck.count()
+    func leftCards() -> Int {
+       return dealer.count()
     }
     
 }

@@ -10,4 +10,20 @@ import Foundation
 class Dealer {
     private var cardDeck = CardDeck()
     private var cards = [Card]()
+    
+    func removeOne() -> Card? {
+        return cardDeck.removeOne()
+    }
+    
+    func count() -> Int {
+        return cardDeck.count()
+    }
+    
+    func appendCard(_ card: Card) {
+        cards.append(card)
+    }
+    
+    func shuffle() {
+        cardDeck.shuffle()
+    }
 }
