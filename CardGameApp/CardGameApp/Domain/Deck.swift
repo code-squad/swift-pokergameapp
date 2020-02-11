@@ -35,8 +35,12 @@ struct Deck {
         cards = cards.shuffled()
     }
     
-    mutating func removeOne() -> Card? {
+    mutating func removeOne() -> Card {
         let indexFirstCard = 0
-        return cards!.remove(at: indexFirstCard)
+        return cards.remove(at: indexFirstCard)
+    }
+    
+    mutating func reset() {
+        cards = initCards()
     }
 }
