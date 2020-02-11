@@ -20,7 +20,13 @@ class ViewController: UIViewController {
         
         return horizontalStackView
     }()
-   
+    
+    func setStackView() {
+        cardsStack.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 40).isActive = true
+        cardsStack.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 5).isActive = true
+        cardsStack.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -5).isActive = true
+    }
+    
     // 스택뷰에 넣을 이미지 뷰 생성
     func makeCard() -> UIImageView {
         let card = UIImageView(image:  #imageLiteral(resourceName: "card-back"))
@@ -44,5 +50,6 @@ class ViewController: UIViewController {
         view.backgroundColor = UIColor(patternImage:  #imageLiteral(resourceName: "bg_pattern"))
         addCards()
         self.view.addSubview(cardsStack)
+        setStackView ()
     }
 }
