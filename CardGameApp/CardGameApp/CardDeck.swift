@@ -17,6 +17,7 @@ struct CardDeck {
     init() {
         cards = [Card]()
         createCardDeck()
+        shuffle()
     }
     
     mutating func createCardDeck() {
@@ -33,8 +34,13 @@ struct CardDeck {
         
     }
     
-    func shuffle() {
-        
+    mutating func shuffle() {
+        for i in 0..<cards.count - 1 {
+            let randomIndex = Int.random(in: i..<cards.count)
+            let temp = cards[i]
+            cards[i] = cards[randomIndex]
+            cards[randomIndex] = temp
+        }
     }
     
     func removeOne() {
