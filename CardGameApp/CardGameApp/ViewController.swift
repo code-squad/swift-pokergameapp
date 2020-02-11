@@ -13,21 +13,8 @@ class ViewController: UIViewController {
     private var playerCount: PlayerCount = .two
     private var pokerGame: PokerGame = PokerGame(game: .sevenCardsStud, numberOfPlayers: .two)
     
-    let gameTypeSegmentedControl: UISegmentedControl = {
-        let segmentedControl = UISegmentedControl(items: ["7 Cards", "5 Cards"])
-        segmentedControl.selectedSegmentIndex = 0
-        segmentedControl.translatesAutoresizingMaskIntoConstraints = false
-        segmentedControl.addTarget(self, action: #selector(handleGameTypeSegmentChanged), for: .valueChanged)
-        return segmentedControl
-    }()
-    
-    let playerCountSegmentedControl: UISegmentedControl = {
-        let segmentedControl = UISegmentedControl(items: ["2명", "3명", "4명"])
-        segmentedControl.selectedSegmentIndex = 0
-        segmentedControl.translatesAutoresizingMaskIntoConstraints = false
-        segmentedControl.addTarget(self, action: #selector(handlePlayerCountSegmentChanged), for: .valueChanged)
-        return segmentedControl
-    }()
+    let gameTypeSegmentedControl = GameTypeSegmentedControl(items: ["7 Cards", "5 Cards"])
+    let playerCountSegmentedControl = GameTypeSegmentedControl(items: ["2명", "3명", "4명"])
     
     lazy var segmentedControlsSV: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [
@@ -47,7 +34,13 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         setupUI()
+        setupSegmentActions()
         resetPokerGame()
+    }
+    
+    private func setupSegmentActions() {
+        gameTypeSegmentedControl.addTarget(self, action: #selector(handleGameTypeSegmentChanged), for: .valueChanged)
+        playerCountSegmentedControl.addTarget(self, action: #selector(handlePlayerCountSegmentChanged), for: .valueChanged)
     }
     
     private func resetPokerGame() {
