@@ -16,15 +16,10 @@ class ViewController: UIViewController {
     let gameTypeSegmentedControl = GameTypeSegmentedControl(items: ["7 Cards", "5 Cards"])
     let playerCountSegmentedControl = GameTypeSegmentedControl(items: ["2명", "3명", "4명"])
     
-    lazy var segmentedControlsSV: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [
-            gameTypeSegmentedControl,
-            playerCountSegmentedControl
-        ])
-        stackView.axis = .vertical
-        stackView.spacing = 8
-        stackView.distribution = .fillEqually
-        stackView.translatesAutoresizingMaskIntoConstraints = false
+    lazy var segnentedControlStackView: UIStackView = {
+        let stackView = SegnentedControlStackView()
+        stackView.addArrangedSubview(gameTypeSegmentedControl)
+        stackView.addArrangedSubview(playerCountSegmentedControl)
         return stackView
     }()
     
@@ -91,15 +86,15 @@ class ViewController: UIViewController {
     private func setupUI() {
         view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "bg_pattern"))
         
-        view.addSubview(segmentedControlsSV)
-        segmentedControlsSV.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8).isActive = true
-        segmentedControlsSV.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 120).isActive = true
-        segmentedControlsSV.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -120).isActive = true
-        segmentedControlsSV.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        segmentedControlsSV.heightAnchor.constraint(equalToConstant: 64).isActive = true
+        view.addSubview(segnentedControlStackView)
+        segnentedControlStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8).isActive = true
+        segnentedControlStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 120).isActive = true
+        segnentedControlStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -120).isActive = true
+        segnentedControlStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        segnentedControlStackView.heightAnchor.constraint(equalToConstant: 64).isActive = true
         
         view.addSubview(pokerGameStackView)
-        pokerGameStackView.topAnchor.constraint(equalTo: segmentedControlsSV.bottomAnchor, constant: 16).isActive = true
+        pokerGameStackView.topAnchor.constraint(equalTo: segnentedControlStackView.bottomAnchor, constant: 16).isActive = true
         pokerGameStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 48).isActive = true
         pokerGameStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -48).isActive = true
         pokerGameStackView.bottomAnchor.constraint(lessThanOrEqualTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16).isActive = true
