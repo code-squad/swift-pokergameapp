@@ -8,14 +8,14 @@
 
 import Foundation
 
-class Player {
-    private var _hands: [Card]
-    
-    var hands: [Card] {
-        _hands
-    }
+class Player: Playable {
+    internal var hands: [Card]
     
     init(hands: [Card]) {
-        self._hands = hands
+        self.hands = hands
     }
+}
+
+protocol Playable {
+    var hands: [Card] { get set }
 }

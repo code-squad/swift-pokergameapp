@@ -8,7 +8,9 @@
 
 import Foundation
 
-class Dealer {
+class Dealer: Playable {
+    var hands: [Card] = []
+    
     private let gameType: GameType
     private var deck = CardDeck()
     private var _communityCards: [Card] = []
@@ -29,7 +31,7 @@ class Dealer {
     
     func setupCommunityCards() {
         guard let hands = drawHands() else { return }
-        _communityCards = hands
+        self.hands = hands
     }
     
     func drawHands() -> [Card]? {
