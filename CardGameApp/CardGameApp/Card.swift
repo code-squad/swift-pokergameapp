@@ -41,4 +41,8 @@ class Card: CustomStringConvertible {
     }
     
 }
-
+extension Card :Equatable{
+    static func == (lhs: Card, rhs: Card) -> Bool {
+        lhs == rhs
+    }
+}
