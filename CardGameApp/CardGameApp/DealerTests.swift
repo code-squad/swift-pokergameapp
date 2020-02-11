@@ -9,12 +9,29 @@
 import XCTest
 
 class DealerTests: XCTestCase {
+    var deck: Deck!
+    var dealer: Dealer!
+    
+    override func setUp() {
+        self.deck = DeckFactory.create()
+        self.dealer = Dealer(deck: deck)
+    }
+    
     func testDealCard() {
-        let dealer = Dealer()
-        let player = Player()
-        var deck = DeckFactory.create()
+        let players = [Player(), Player(), Player(), Player()]
         let card = deck.removeOne()!
 
-        dealer.deal(card, to: player)
+        dealer.give(card: card, to: players.first!)
+    }
+    
+    func testPrepareGame() {
+        self.dealer.prepare()
+    }
+    
+    // 7 stud
+    func testStartGame() {
+        let players = [Player(), Player(), Player(), Player()]
+        dealer.startGame(players: players)
+        
     }
 }
