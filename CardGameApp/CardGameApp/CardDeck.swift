@@ -9,17 +9,24 @@
 import Foundation
 
 struct CardDeck {
-    let cards = [Card]()
+    var cards: [Card]!
     var count: Int {
         return cards.count
     }
     
     init() {
+        cards = [Card]()
         createCardDeck()
     }
     
-    func createCardDeck() {
-        
+    mutating func createCardDeck() {
+        let maxRank = Card.Rank.thirteen.rawValue
+        let suitArray = [Card.Suit.clubs.rawValue, Card.Suit.spades.rawValue, Card.Suit.hearts.rawValue, Card.Suit.diamonds.rawValue]
+        for count in 1...maxRank {
+            for suit in suitArray {
+                cards.append(Card(suit: Card.Suit(rawValue: suit)!, rank: Card.Rank(rawValue: count)!))
+            }
+        }
     }
     
     func reset() {

@@ -35,7 +35,7 @@ class CardGameAppTests: XCTestCase {
         let originCards = deck.cards
         // when
         deck.reset()
-        let totalCount = originCards.count
+        let totalCount = originCards!.count
         // then
         XCTAssertEqual(totalCount, 52, "갯수가 맞지 않습니다")
     }
@@ -52,6 +52,6 @@ class CardGameAppTests: XCTestCase {
         let randomIndex = 5
         deck.removeOne()
         let afterRemovedCards = deck.cards
-        XCTAssertNotEqual(originCards[randomIndex], afterRemovedCards[randomIndex])
+        XCTAssertNotEqual(originCards![randomIndex], afterRemovedCards![randomIndex])
     }
 }
