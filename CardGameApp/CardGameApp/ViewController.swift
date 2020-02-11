@@ -10,7 +10,21 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    var pokerGame = PokerGame(gameType: .fiveCardStud, numberOfPlayers: .two)
+    var pokerGame = PokerGame(gameType: .sevenCardStud, numberOfPlayers: .four)
+    
+    var gameTypeControl: UISegmentedControl = {
+        let segments = UISegmentedControl(items: ["7 Cards", "5 Cards"])
+        segments.selectedSegmentIndex = 0
+        segments.translatesAutoresizingMaskIntoConstraints = false
+        return segments
+    }()
+    
+    var numberOfPlayersControl: UISegmentedControl = {
+        let segments = UISegmentedControl(items: ["2명", "3명", "4명"])
+        segments.selectedSegmentIndex = 0
+        segments.translatesAutoresizingMaskIntoConstraints = false
+        return segments
+    }()
     
     var playerStack: UIStackView = {
         let stack = UIStackView()
@@ -27,9 +41,25 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "bg_pattern"))
+        addGameTypeControl()
+        addNumberOfPlayersControl()
         pokerGame.play()
         makeGame()
         setPlayerStackLayout()
+    }
+    
+    func addGameTypeControl() {
+        view.addSubview(gameTypeControl)
+        gameTypeControl.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 50).isActive = true
+        gameTypeControl.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+    }
+    
+    func addNumberOfPlayersControl() {
+        view.addSubview(numberOfPlayersControl)
+        numberOfPlayersControl.topAnchor.constraint(equalTo: gameTypeControl.bottomAnchor, constant: 10).isActive = true
+        numberOfPlayersControl.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        numberOfPlayersControl.leadingAnchor.constraint(equalTo: gameTypeControl.leadingAnchor).isActive = true
+        numberOfPlayersControl.trailingAnchor.constraint(equalTo: gameTypeControl.trailingAnchor).isActive = true
     }
     
     func makeGame() {
@@ -49,9 +79,9 @@ class ViewController: UIViewController {
     }
     
     func setPlayerStackLayout() {
-        playerStack.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 50).isActive = true
-        playerStack.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 10).isActive = true
-        playerStack.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -10).isActive = true
+        playerStack.topAnchor.constraint(equalTo: gameTypeControl.bottomAnchor, constant: 50).isActive = true
+        playerStack.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 30).isActive = true
+        playerStack.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -30).isActive = true
     }
     
     func makePlayerLabel(playerName: String) -> UILabel {
