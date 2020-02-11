@@ -8,7 +8,6 @@
 
 import XCTest
 @testable import CardGameApp
-
 class CardGameAppTests: XCTestCase {
 
     var sut : Deck!
@@ -32,6 +31,24 @@ class CardGameAppTests: XCTestCase {
         XCTAssertEqual(count,
                        52,
                        "sut.count is wrong")
+    }
+    
+    func testShuffle(){
+        // 1. given
+        let cards : [Card] = {
+            var cards = [Card]()
+            for suit in Card.Suit.allCases {
+                for number in Card.Number.allCases {
+                    cards.append(Card(suit: suit, number: number))
+                }
+            }
+            return cards
+        }()
+        // 2. when
+        sut.shuffle()
+        let result = sut.getCards()
+        // 3. then
+        XCTAssertNotEqual(cards, result)
     }
 
 }
