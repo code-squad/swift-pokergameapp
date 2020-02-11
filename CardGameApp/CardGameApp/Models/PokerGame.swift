@@ -43,5 +43,5 @@ enum GameType: Int {
 }
 
 enum PlayerCount: Int {
-    case one = 1, two, three, four
+    case two = 2, three, four
 }
