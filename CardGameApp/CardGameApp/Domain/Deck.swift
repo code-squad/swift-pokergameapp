@@ -30,4 +30,8 @@ struct Deck {
         }
         return cards
     }
+    
+    mutating func shuffle() {
+        cards = cards.shuffled()
+    }
 }

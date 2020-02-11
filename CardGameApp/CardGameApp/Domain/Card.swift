@@ -8,8 +8,15 @@
 
 import Foundation
 
-public class Card {
 
+public class Card : Equatable {
+    public static func == (lhs: Card, rhs: Card) -> Bool {
+        guard lhs.suit == rhs.suit , lhs.number == rhs.number else {
+            return false
+        }
+        return true
+    }
+    
     enum Suit : String, CaseIterable {
         case spade = "♠"
         case heart = "♥"
