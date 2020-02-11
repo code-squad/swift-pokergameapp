@@ -27,6 +27,7 @@
 		3894878923F163BE003D2481 /* Dealer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3894878723F163BE003D2481 /* Dealer.swift */; };
 		3894878D23F165B5003D2481 /* PokerGameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3894878B23F165B5003D2481 /* PokerGameTests.swift */; };
 		3894879323F2D048003D2481 /* CardImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3894879223F2D048003D2481 /* CardImageView.swift */; };
+		3894879523F2D271003D2481 /* PokerGameStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3894879423F2D271003D2481 /* PokerGameStackView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,7 @@
 		3894878723F163BE003D2481 /* Dealer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dealer.swift; sourceTree = "<group>"; };
 		3894878B23F165B5003D2481 /* PokerGameTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokerGameTests.swift; sourceTree = "<group>"; };
 		3894879223F2D048003D2481 /* CardImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardImageView.swift; sourceTree = "<group>"; };
+		3894879423F2D271003D2481 /* PokerGameStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokerGameStackView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				3894879223F2D048003D2481 /* CardImageView.swift */,
+				3894879423F2D271003D2481 /* PokerGameStackView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -252,6 +255,7 @@
 				385F3AC823EA6FA9003FA6A2 /* SceneDelegate.swift in Sources */,
 				385F3AF023EDBA1D003FA6A2 /* Player.swift in Sources */,
 				385F3ADA23EACB92003FA6A2 /* Card.swift in Sources */,
+				3894879523F2D271003D2481 /* PokerGameStackView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
