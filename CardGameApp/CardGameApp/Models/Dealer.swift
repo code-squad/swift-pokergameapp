@@ -9,36 +9,19 @@
 import Foundation
 
 class Dealer {
-    var deck = CardDeck()
-    let numberOfHands: Int
-    let players: [Player]
-    var communityCards: [Card] = []
+    private var deck = CardDeck()
+    private var communityCards: [Card] = []
     
-    init(numberOfHands: Int, players: [Player]) {
-        self.numberOfHands = numberOfHands
-        self.players = players
-        
-        setupHands()
+    init() {
+        setupDeck()
         setupCommunityCards()
     }
     
-    func setupHands() {
-        players.forEach {
-            passHands(to: $0)
-        }
+    func setupDeck() {
+        deck.shuffle()
     }
     
     func setupCommunityCards() {
-        for _ in 0..<numberOfHands {
-            guard let card = deck.removeOne() else { return }
-            communityCards.append(card)
-        }
-    }
-    
-    func passHands(to player: Player) {
-        for _ in 0..<numberOfHands {
-            guard let card = deck.removeOne() else { return }
-            player.hands.append(card)
-        }
+        
     }
 }

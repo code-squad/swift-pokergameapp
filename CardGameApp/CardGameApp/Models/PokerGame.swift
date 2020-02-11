@@ -17,8 +17,8 @@ class PokerGame {
     init(type gameType: GameType, numberOfPlayers: Int) {
         self.gameType = gameType
         self.numberOfPlayers = numberOfPlayers
+        self.dealer = Dealer()
         for _ in 0..<numberOfPlayers { players.append(Player()) }
-        self.dealer = Dealer(numberOfHands: gameType.numberOfHands, players: players)
     }
     
     enum GameType: Int {
