@@ -19,6 +19,16 @@ class CardGameAppTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
     
+    func testAddCard() {
+        // Given
+        let viewController = ViewController()
+        let cardStack = viewController.cardsStack
+        // When
+        let description = viewController.addCards()
+        let subViewCount = cardStack.subviews.count
+        // Then
+        XCTAssertEqual(subViewCount, 7)
+    }
     
     func testDescripteCard() {
         // Given
