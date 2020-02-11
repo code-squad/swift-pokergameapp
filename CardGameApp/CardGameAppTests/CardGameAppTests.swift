@@ -35,15 +35,7 @@ class CardGameAppTests: XCTestCase {
     
     func testShuffle(){
         // 1. given
-        let cards : [Card] = {
-            var cards = [Card]()
-            for suit in Card.Suit.allCases {
-                for number in Card.Number.allCases {
-                    cards.append(Card(suit: suit, number: number))
-                }
-            }
-            return cards
-        }()
+        
         // 2. when
         sut.shuffle()
 //        let result = sut.getCards()
@@ -59,5 +51,17 @@ class CardGameAppTests: XCTestCase {
         let result = sut.removeOne()
         // 3.then
         XCTAssertEqual(card, result)
+    }
+    
+    func testReset() {
+        // 1.given
+        let other = sut
+        
+        // 2.when
+        sut.shuffle()
+        sut.reset()
+        
+        // 3.then
+        XCTAssertEqual(other?.cards, sut.cards)
     }
 }
