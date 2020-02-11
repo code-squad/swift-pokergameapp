@@ -14,9 +14,9 @@ class PokerGame {
     var players: [Player] = []
     let dealer: Dealer
     
-    init(game gameType: GameType, numberOfPlayers: Int) {
+    init(game gameType: GameType, numberOfPlayers: PlayerCount) {
         self.gameType = gameType
-        self.numberOfPlayers = numberOfPlayers
+        self.numberOfPlayers = numberOfPlayers.rawValue
         self.dealer = Dealer(game: gameType)
         setupHands()
     }

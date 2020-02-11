@@ -16,7 +16,7 @@ class PokerGameTests: XCTestCase {
     }
 
     func testSevenCardsStud() {
-        let pokerGame = PokerGame(game: .sevenCardsStud, numberOfPlayers: 4)
+        let pokerGame = PokerGame(game: .sevenCardsStud, numberOfPlayers: .four)
         
         XCTAssert(pokerGame.players.count == 4)
         pokerGame.players.forEach {
@@ -30,7 +30,7 @@ class PokerGameTests: XCTestCase {
     }
     
     func testFiveCardsStud() {
-        let pokerGame = PokerGame(game: .fiveCardsStud, numberOfPlayers: 3)
+        let pokerGame = PokerGame(game: .fiveCardsStud, numberOfPlayers: .three)
         
         XCTAssert(pokerGame.players.count == 3)
         pokerGame.players.forEach {
