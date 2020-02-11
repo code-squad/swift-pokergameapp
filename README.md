@@ -59,7 +59,7 @@
 
 ## Step4 - Poker Dealer & Testing Games
 
-2020/Feb/10
+2020/Feb/11
 
 - PokerGame, Dealer, Player 모델 생성
 - PokerGame 초기화 -> Dealer 초기화 -> Dealer에서 패를 뽑는다.
@@ -178,3 +178,24 @@ PokerGame 객체로 게임을 진행했을 때, Player와 Dealer의 패, 커뮤�
 <img src="https://github.com/corykim0829/swift-pokergameapp/blob/corykim0829/Screenshots/step4-1.png?raw=true" width="380px">
 <br>
 <img src="https://github.com/corykim0829/swift-pokergameapp/blob/corykim0829/Screenshots/step4-2.png?raw=true" width="380px">
+
+
+
+## Step5 - Result View
+
+- StackView 3개를 이용한 화면 구성
+
+
+
+#### shake
+
+```swift
+override func motionBegan(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        resetPokerGame()
+    }
+```
+
+<img src="https://github.com/corykim0829/swift-pokergameapp/blob/corykim0829/Screenshots/step5-1.png?raw=true" width="380px">
+
+<img src="https://github.com/corykim0829/swift-pokergameapp/blob/corykim0829/Screenshots/step5-2.png?raw=true" width="380px">
+

@@ -9,7 +9,6 @@
 import UIKit
 
 class ViewController: UIViewController {
-    
     private var gameType: GameType = .sevenCardsStud
     private var playerCount: PlayerCount = .two
     private lazy var pokerGame: PokerGame = PokerGame(game: gameType, numberOfPlayers: playerCount)
@@ -63,17 +62,19 @@ class ViewController: UIViewController {
         pokerGameStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
         
         resetPlayers()
-        resetDealer()
     }
     
     private func resetPlayers() {
-        pokerGame.players.enumerated().forEach { (i, player) in
+        var players: [Playable] = pokerGame.players
+        players.append(pokerGame.dealer)
+        players.enumerated().forEach { (i, player) in
             let playerStackView = generatePlayerStackView()
             let cardStackView = generateCardStackView()
             
             let playerLabel = UILabel()
             playerLabel.textColor = .white
             playerLabel.text = "Player \(i + 1)"
+            if i == players.count - 1 { playerLabel.text = "Dealer" }
             
             player.hands.map { $0.description }
                 .forEach {
@@ -84,24 +85,6 @@ class ViewController: UIViewController {
             playerStackView.addArrangedSubview(cardStackView)
             pokerGameStackView.addArrangedSubview(playerStackView)
         }
-    }
-    
-    private func resetDealer() {
-        let dealerStackView = generatePlayerStackView()
-        let cardStackView = generateCardStackView()
-        
-        let dealerLabel = UILabel()
-        dealerLabel.textColor = .white
-        dealerLabel.text = "Dealer"
-        
-        pokerGame.dealer.communityCards.map { $0.description }
-            .forEach {
-                cardStackView.addArrangedSubview(generateCardImageView(named: $0))
-        }
-        
-        dealerStackView.addArrangedSubview(dealerLabel)
-        dealerStackView.addArrangedSubview(cardStackView)
-        pokerGameStackView.addArrangedSubview(dealerStackView)
     }
     
     @objc private func handleGameTypeSegmentChanged(segmentedControl: UISegmentedControl) {
