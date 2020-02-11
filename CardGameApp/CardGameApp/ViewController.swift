@@ -28,6 +28,18 @@ class ViewController: UIViewController {
         segmentedControl.addTarget(self, action: #selector(handlePlayerCountSegmentChanged), for: .valueChanged)
         return segmentedControl
     }()
+    
+    lazy var segmentedControlsSV: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [
+            gameTypeSegmentedControl,
+            playerCountSegmentedControl
+        ])
+        stackView.axis = .vertical
+        stackView.spacing = 8
+        stackView.distribution = .fillEqually
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
 
     let cardStackView: UIStackView = {
         let stackView = UIStackView()
@@ -85,9 +97,13 @@ class ViewController: UIViewController {
             cardStackView.addArrangedSubview(cardImageView())
         }
         
-        view.addSubview(gameTypeSegmentedControl)
-        gameTypeSegmentedControl.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8).isActive = true
-        gameTypeSegmentedControl.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        view.addSubview(segmentedControlsSV)
+        segmentedControlsSV.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8).isActive = true
+        segmentedControlsSV.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 120).isActive = true
+        segmentedControlsSV.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -120).isActive = true
+        segmentedControlsSV.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        segmentedControlsSV.heightAnchor.constraint(equalToConstant: 64).isActive = true
+        
 //        view.addSubview(cardStackView)
 //        cardStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8).isActive = true
 //        cardStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 8).isActive = true
