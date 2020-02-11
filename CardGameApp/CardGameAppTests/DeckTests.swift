@@ -3,14 +3,16 @@ import XCTest
 
 class DeckTests: XCTestCase {
     var deck: Deck!
-    let numberOfCards = 13 * 4
-    
+    let numberOfRank = Card.Rank.allCases.count
+    let numberOfSuit = Card.Suit.allCases.count
+    let numberOfAllCards = Card.Rank.allCases.count * Card.Suit.allCases.count
+
     override func setUp() {
         self.deck = DeckFactory.create()
     }
     
     func testCreateDeck() {
-        XCTAssertEqual(deck.count, numberOfCards)
+        XCTAssertEqual(deck.count, numberOfRank * numberOfSuit)
     }
     
     func testCreateAllCards() {
@@ -21,23 +23,24 @@ class DeckTests: XCTestCase {
             }.count
         }
         
-        XCTAssertEqual(numberPerSuit, [13, 13, 13, 13])
+        let expected = [numberOfRank, numberOfRank, numberOfRank, numberOfRank]
+        XCTAssertEqual(numberPerSuit, expected)
     }
     
     func testCount() {
-        XCTAssertEqual(deck.count, numberOfCards)
+        XCTAssertEqual(deck.count, numberOfAllCards)
     }
     
     func testRemoveOne() {
         deck.removeOne()
-        XCTAssertEqual(deck.count, numberOfCards - 1)
+        XCTAssertEqual(deck.count, numberOfAllCards - 1)
         deck.removeOne()
-        XCTAssertEqual(deck.count, numberOfCards - 2)
+        XCTAssertEqual(deck.count, numberOfAllCards - 2)
         
     }
     
     func testRemoveAllCards() {
-        (1...numberOfCards).forEach { _ in deck.removeOne() }
+        (1...numberOfAllCards).forEach { _ in deck.removeOne() }
         
         let card = deck.removeOne()
         
@@ -47,6 +50,6 @@ class DeckTests: XCTestCase {
     func testReset() {
         deck.removeOne()
         deck.reset()
-        XCTAssertEqual(deck.count, numberOfCards)
+        XCTAssertEqual(deck.count, numberOfAllCards)
     }
 }
