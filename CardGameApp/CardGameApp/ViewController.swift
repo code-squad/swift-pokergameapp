@@ -13,22 +13,6 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
-        
-        studSegmented.center = CGPoint(x: self.view.frame.width/2, y: 90)
-        self.view.addSubview(studSegmented)
-        self.view.addSubview(playerSegmented)
-
-        playerSegmented.translatesAutoresizingMaskIntoConstraints = false
-        playerSegmented.leadingAnchor.constraint(equalTo: studSegmented.leadingAnchor).isActive = true
-        playerSegmented.trailingAnchor.constraint(equalTo: studSegmented.trailingAnchor).isActive = true
-        playerSegmented.topAnchor.constraint(equalTo: studSegmented.bottomAnchor, constant: 10).isActive = true
-        let titleTextAttributesNormal = [NSAttributedString.Key.foregroundColor: UIColor.white]
-        UISegmentedControl.appearance().setTitleTextAttributes(titleTextAttributesNormal, for: .normal)
-        
-        let titleTextAttributesSelected = [NSAttributedString.Key.foregroundColor: UIColor.black]
-        UISegmentedControl.appearance().setTitleTextAttributes(titleTextAttributesSelected, for: .selected)
-        
-       
     }
     
     let studSegmented: UISegmentedControl = {
@@ -47,6 +31,33 @@ class ViewController: UIViewController {
         segmentedControl.layer.borderColor = UIColor.white.cgColor
         segmentedControl.layer.borderWidth = 1.0
         return segmentedControl
+    }()
+    
+    let playerGameStack: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.distribution = .fill
+        stackView.spacing = 5
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+    
+    let playerLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Player 1"
+        label.textColor = .white
+        label.font.withSize(10.0)
+        return label
+    }()
+    
+    let wholeGameStack: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.distribution = .fill
+        stackView.spacing = 10
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        
+        return stackView
     }()
     
     let cardImageStack: UIStackView = {
@@ -70,15 +81,40 @@ class ViewController: UIViewController {
             cardImageStack.addArrangedSubview(cardImage)
             cardImage.heightAnchor.constraint(equalTo: cardImage.widthAnchor, multiplier: 1.27).isActive = true
         }
-        //        self.view.addSubview(cardImageStack)
-        //        setStackContraints()
+        
+        studSegmented.center = CGPoint(x: self.view.frame.width/2, y: 90)
+        self.view.addSubview(studSegmented)
+        self.view.addSubview(playerSegmented)
+        
+        playerSegmented.translatesAutoresizingMaskIntoConstraints = false
+        
+        let titleTextAttributesNormal = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        UISegmentedControl.appearance().setTitleTextAttributes(titleTextAttributesNormal, for: .normal)
+        
+        let titleTextAttributesSelected = [NSAttributedString.Key.foregroundColor: UIColor.black]
+        UISegmentedControl.appearance().setTitleTextAttributes(titleTextAttributesSelected, for: .selected)
+        
+        playerGameStack.addArrangedSubview(playerLabel)
+        playerGameStack.addArrangedSubview(cardImageStack)
+        self.view.addSubview(playerGameStack)
+        
+        wholeGameStack.addArrangedSubview(playerGameStack)
+        wholeGameStack.addArrangedSubview(playerGameStack)
+        self.view.addSubview(wholeGameStack)
+
+        setStackContraints()
+
+        
     }
     
     func setStackContraints() {
         let constraints = [
-            cardImageStack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10.0),
-            cardImageStack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10.0),
-            cardImageStack.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10.0)
+            playerSegmented.leadingAnchor.constraint(equalTo: studSegmented.leadingAnchor),
+            playerSegmented.trailingAnchor.constraint(equalTo: studSegmented.trailingAnchor),
+            playerSegmented.topAnchor.constraint(equalTo: studSegmented.bottomAnchor, constant: 10),
+            wholeGameStack.topAnchor.constraint(equalTo: playerSegmented.bottomAnchor, constant: 30),
+            wholeGameStack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            wholeGameStack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
         ]
         NSLayoutConstraint.activate(constraints)
     }
