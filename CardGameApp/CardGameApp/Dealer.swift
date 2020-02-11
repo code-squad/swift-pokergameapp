@@ -7,7 +7,8 @@
 //
 
 import Foundation
-class Dealer {
+class Dealer: Playable {
+    var cards = [Card]()
     var deck: Deck
     
     init(deck: Deck) {
@@ -15,7 +16,7 @@ class Dealer {
     }
     
     /// playerㅇ에게 한 장의 카드를 건넴
-    func give(card: Card, to player: Player) {
+    func give(card: Card, to player: Playable) {
         
     }
     
@@ -26,7 +27,7 @@ class Dealer {
     }
     
     /// 게임을 시작한다. 자신을 포함해 모든 플레이어에게 카드를 돌린다.
-    func startGame(players: [Player]) {
+    func startGame(players: [Playable]) {
         (players + [self]).forEach { player in
             if let card = deck.removeOne() {
                 self.give(card: card, to: player)
@@ -35,6 +36,10 @@ class Dealer {
     }
 }
 
-class Player {
-    
+class Player: Playable {
+    var cards = [Card]()
+}
+
+protocol Playable {
+    var cards: [Card] { get set }
 }
