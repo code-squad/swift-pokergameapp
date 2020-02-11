@@ -10,35 +10,39 @@ import Foundation
 class PokerGame {
     private let dealer = Dealer()
     private var players = [Player]()
-    private var studNumber: Int
+    private var studNumber: Stud
     
     enum Stud: Int {
            case five = 5
            case seven = 7
         
-        func getRawValue(stud: Stud) -> Stud.RawValue {
-            return stud.rawValue
+        func foreach(_ transform : () -> ()) {
+            for _ in 0..<self.rawValue {
+                transform()
+            }
         }
    }
 
     enum PlayerCount: Int {
         case one = 1, two, three, four
         
-        func getRawValue(playerCount: PlayerCount) -> PlayerCount.RawValue {
-            return playerCount.rawValue
+        func foreach(_ transform : () -> ()) {
+            for _ in 0..<self.rawValue {
+                transform()
+            }
         }
     }
     
     init(playerCount: PlayerCount, stud: Stud) {
-        self.studNumber = stud.getRawValue(stud: stud)
-        for _ in 0..<playerCount.getRawValue(playerCount: playerCount) {
+        self.studNumber = stud
+        playerCount.foreach {
             self.players.append(Player())
         }
     }
     
     func allocateCards() {
         dealer.shuffle()
-        for _ in 0..<studNumber {
+        studNumber.foreach {
             for player in players {
                 guard let card = dealer.removeOne() else { return }
                 player.appendCard(card)
