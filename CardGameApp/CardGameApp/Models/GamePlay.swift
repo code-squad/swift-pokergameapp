@@ -81,3 +81,9 @@ class Participant {
         cards.append(card)
     }
 }
+
+extension Participant: Equatable {
+    static func == (lhs: Participant, rhs: Participant) -> Bool {
+        return lhs.cards == rhs.cards
+    }
+}
