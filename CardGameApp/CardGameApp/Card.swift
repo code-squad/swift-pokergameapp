@@ -13,7 +13,7 @@ class Card: CustomStringConvertible {
     let suit : Suit.RawValue
     let rank : Rank.RawValue
     var description: String {
-        return "(\(suit) \(rank))"
+        return "(\(suit)\(rank))"
     }
     
     init(suit: Suit, rank: Rank) {
