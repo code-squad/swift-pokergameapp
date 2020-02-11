@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		8D32D57E23F0FE7900F82EEC /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D32D57D23F0FE7900F82EEC /* Deck.swift */; };
 		8D32D57F23F0FE7900F82EEC /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D32D57D23F0FE7900F82EEC /* Deck.swift */; };
+		8D6E2A8323F26BC900C473B3 /* Dealer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6E2A8223F26BC900C473B3 /* Dealer.swift */; };
+		8D6E2A8423F26BC900C473B3 /* Dealer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6E2A8223F26BC900C473B3 /* Dealer.swift */; };
+		8D6E2A8623F26BD800C473B3 /* DealerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6E2A8523F26BD800C473B3 /* DealerTests.swift */; };
 		8DB10E0723EA60CB00B3BC0B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB10E0623EA60CB00B3BC0B /* AppDelegate.swift */; };
 		8DB10E0923EA60CB00B3BC0B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB10E0823EA60CB00B3BC0B /* SceneDelegate.swift */; };
 		8DB10E0B23EA60CB00B3BC0B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB10E0A23EA60CB00B3BC0B /* ViewController.swift */; };
@@ -41,6 +44,8 @@
 
 /* Begin PBXFileReference section */
 		8D32D57D23F0FE7900F82EEC /* Deck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = "<group>"; };
+		8D6E2A8223F26BC900C473B3 /* Dealer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dealer.swift; sourceTree = "<group>"; };
+		8D6E2A8523F26BD800C473B3 /* DealerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DealerTests.swift; sourceTree = "<group>"; };
 		8DB10E0323EA60CB00B3BC0B /* CardGameApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CardGameApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DB10E0623EA60CB00B3BC0B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8DB10E0823EA60CB00B3BC0B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -110,6 +115,8 @@
 			children = (
 				8DB10E3723F060B900B3BC0B /* Card.swift */,
 				8D32D57D23F0FE7900F82EEC /* Deck.swift */,
+				8D6E2A8223F26BC900C473B3 /* Dealer.swift */,
+				8D6E2A8523F26BD800C473B3 /* DealerTests.swift */,
 				8DB10E0623EA60CB00B3BC0B /* AppDelegate.swift */,
 				8DB10E0823EA60CB00B3BC0B /* SceneDelegate.swift */,
 				8DB10E0A23EA60CB00B3BC0B /* ViewController.swift */,
@@ -280,6 +287,7 @@
 			files = (
 				8DB10E0B23EA60CB00B3BC0B /* ViewController.swift in Sources */,
 				8DB10E0723EA60CB00B3BC0B /* AppDelegate.swift in Sources */,
+				8D6E2A8323F26BC900C473B3 /* Dealer.swift in Sources */,
 				8D32D57E23F0FE7900F82EEC /* Deck.swift in Sources */,
 				8DB10E0923EA60CB00B3BC0B /* SceneDelegate.swift in Sources */,
 				8DB10E3823F060B900B3BC0B /* Card.swift in Sources */,
@@ -292,7 +300,9 @@
 			files = (
 				8D32D57F23F0FE7900F82EEC /* Deck.swift in Sources */,
 				8DB10E3B23F061E900B3BC0B /* CardTests.swift in Sources */,
+				8D6E2A8623F26BD800C473B3 /* DealerTests.swift in Sources */,
 				8DB10E1E23EA60CF00B3BC0B /* DeckTests.swift in Sources */,
+				8D6E2A8423F26BC900C473B3 /* Dealer.swift in Sources */,
 				8DB10E3923F060B900B3BC0B /* Card.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
