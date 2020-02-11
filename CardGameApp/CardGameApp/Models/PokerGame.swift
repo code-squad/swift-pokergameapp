@@ -9,8 +9,8 @@
 import Foundation
 
 class PokerGame {
-    let gameType: GameType
-    let numberOfPlayers: Int
+    private let gameType: GameType
+    private let numberOfPlayers: Int
     var players: [Player] = []
     let dealer: Dealer
     
