@@ -129,7 +129,6 @@ class ViewController: UIViewController {
     
     private func generateCardStackView() -> UIStackView {
         let stackView = UIStackView()
-        stackView.axis = .horizontal
         stackView.spacing = -8
         stackView.distribution = .fillEqually
         stackView.translatesAutoresizingMaskIntoConstraints = false
