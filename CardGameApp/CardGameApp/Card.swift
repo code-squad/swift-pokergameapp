@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Card: CustomStringConvertible {
+class Card: CustomStringConvertible{
     enum Suit: Character {
         case spades = "♠️"
         case hearts = "♥️"
@@ -51,4 +51,10 @@ class Card: CustomStringConvertible {
     }
 }
 
-
+extension Card: Equatable {
+    static func == (lhs: Card, rhs: Card) -> Bool {
+        return lhs.rank == rhs.rank && lhs.suit == rhs.suit
+    }
+    
+    
+}
