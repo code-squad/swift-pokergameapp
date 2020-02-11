@@ -32,4 +32,35 @@ class PokerGame{
             players.append(Player())
         }
     }
+    
+    func gameStart(){
+        for _ in 0..<stud.rawValue{
+            for player in players{
+                dealCardToPlayer(player: player)
+            }
+            dealCardToPlayer(player: dealer)
+        }
+    }
+    
+    private func dealCardToPlayer(player:Player){
+        let myCard=dealer.deal()
+        if let card = myCard{
+            player.receiveCard(card: card)
+        } else {
+            exit(0)
+        }
+    }
+}
+
+extension PokerGame:CustomStringConvertible{
+    var description: String {
+        var result=""
+        var count=1
+        for player in players{
+            result+="참가자#\(count) \(player)\n"
+            count+=1
+        }
+        result+="딜러 \(dealer)\n"
+        return result
+    }
 }
