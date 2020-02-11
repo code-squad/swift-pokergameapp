@@ -10,12 +10,15 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    var pokerGame = PokerGame(gameType: .sevenCardStud, numberOfPlayers: .four)
+    var gameType: PokerGame.GameType = .sevenCardStud
+    var numberOfPlayers: PokerGame.NumberOfPlayers = .two
+    var pokerGame: PokerGame!
     
     var gameTypeControl: UISegmentedControl = {
         let segments = UISegmentedControl(items: ["7 Cards", "5 Cards"])
         segments.selectedSegmentIndex = 0
         segments.translatesAutoresizingMaskIntoConstraints = false
+        segments.addTarget(self, action: #selector(gameTypeChanged(segControl:)), for: .valueChanged)
         return segments
     }()
     
@@ -23,13 +26,13 @@ class ViewController: UIViewController {
         let segments = UISegmentedControl(items: ["2명", "3명", "4명"])
         segments.selectedSegmentIndex = 0
         segments.translatesAutoresizingMaskIntoConstraints = false
+        segments.addTarget(self, action: #selector(numberOfPlayersChanged(segControl:)), for: .valueChanged)
         return segments
     }()
     
     var playerStack: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
-        stack.spacing = 30
         stack.translatesAutoresizingMaskIntoConstraints = false
         return stack
     }()
@@ -43,9 +46,7 @@ class ViewController: UIViewController {
         view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "bg_pattern"))
         addGameTypeControl()
         addNumberOfPlayersControl()
-        pokerGame.play()
-        makeGame()
-        setPlayerStackLayout()
+        loadGame()
     }
     
     func resetPlayerStack() {
@@ -54,10 +55,32 @@ class ViewController: UIViewController {
         }
     }
     
+    func loadGame() {
+        pokerGame = PokerGame(gameType: gameType, numberOfPlayers: numberOfPlayers)
+        resetPlayerStack()
+        pokerGame.play()
+        makeGame()
+        setPlayerStackLayout()
+        self.view.layoutIfNeeded()
+    }
+    
     func addGameTypeControl() {
         view.addSubview(gameTypeControl)
         gameTypeControl.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 50).isActive = true
         gameTypeControl.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+    }
+    
+    @objc func gameTypeChanged(segControl: UISegmentedControl) {
+        switch segControl.selectedSegmentIndex {
+        case 0:
+            gameType = .sevenCardStud
+            loadGame()
+        case 1:
+            gameType = .fiveCardStud
+            loadGame()
+        default:
+            break
+        }
     }
     
     func addNumberOfPlayersControl() {
@@ -67,6 +90,23 @@ class ViewController: UIViewController {
         numberOfPlayersControl.leadingAnchor.constraint(equalTo: gameTypeControl.leadingAnchor).isActive = true
         numberOfPlayersControl.trailingAnchor.constraint(equalTo: gameTypeControl.trailingAnchor).isActive = true
     }
+    
+    @objc func numberOfPlayersChanged(segControl: UISegmentedControl) {
+        switch segControl.selectedSegmentIndex {
+        case 0:
+            numberOfPlayers = .two
+            loadGame()
+        case 1:
+            numberOfPlayers = .three
+            loadGame()
+        case 2:
+            numberOfPlayers = .four
+            loadGame()
+        default:
+            break
+        }
+    }
+
     
     func makeGame() {
         var index = 1
