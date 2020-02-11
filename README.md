@@ -261,23 +261,37 @@ class IntegrationTest: XCTestCase {
 1. Player 클래스
 ```swift
 class Player {
-    var hand = [Card]()
+    private var hand = [Card]()
+    var handCount: Int {
+        hand.count
+    }
+    var handInfo: [Card] {
+        return hand
+    }
     
-    func initHand() {
+    func discard() {
         hand = [Card]()
+    }
+    
+    func receive(_ card: Card) {
+        hand.append(card)
     }
 }
 ```
-* 카드들을 가지고있을 핸드와 게임을 재시작 할 때 핸드를 초기화해줄 initHand() 를 만들어줌
+* hand 를 private 으로 설정해주고 handInfo 와 handCount 를 통해서 읽기만 가능하도록 해줌
+* 게임 재시작을 위해 핸드의 기존 카드를 버려주는 discard
+* 딜러에게서 카드를 받아 핸드에 추가하기위한 receive
 
 2. Dealer 클래스
 ```swift
 class Dealer: Player {
-    var deck = Deck()
-    var drawnCard: Card?
+    private var deck = Deck()
+    var deckCount: Int {
+        deck.count
+    }
     
-    func drawCard() {
-        drawnCard = deck.removeOne()
+    func drawCard() -> Card? {
+        return deck.removeOne()
     }
     
     func shuffle() {
@@ -287,32 +301,33 @@ class Dealer: Player {
 ```
 * 딜러도 게임에 참여하기 때문에 Player 클래스를 상속받게 해줌
 * 딜러가 플레이어들에게 카드를 나눠줘야 하므로 Deck 을 딜러에게 줌
+* deck 에도 private 을 설정해줘서 직접 접근을 불가능하게 함
 * 덱에서 카드를 뽑아서 drawnCard 에 담는 drawCard()
 * 덱을 섞어주는 shuffle()
 
 3. PokerGame 클래스
 ```swift
 class PokerGame {
-    var dealer = Dealer()
-    var players = [Player]()
-    var numberOfPlayers: Int
-    var gameType: GameType
-    var resumable: Bool {
-        dealer.deck.count > (players.count) * gameType.rawValue
-    }
-    
-    init(gameType: GameType, numberOfPlayers: Int) {
-        self.gameType = gameType
-        self.numberOfPlayers = numberOfPlayers
-    }
-    
     enum GameType: Int {
         case fiveCardStud = 5
         case sevenCardStud = 7
     }
+    enum NumberOfPlayers: Int {
+        case two = 2
+        case three = 3
+        case four = 4
+    }
+    private var dealer: Dealer
+    var players = [Player]()
+    private var gameType: GameType
+    private var resumable: Bool {
+        dealer.deckCount > (players.count) * gameType.rawValue
+    }
     
-    func addPlayers() {
-        for _ in 1...numberOfPlayers {
+    init(gameType: GameType, numberOfPlayers: NumberOfPlayers) {
+        self.gameType = gameType
+        self.dealer = Dealer()
+        for _ in 1...numberOfPlayers.rawValue {
             players.append(Player())
         }
         players.append(dealer)
@@ -320,45 +335,33 @@ class PokerGame {
     
     func distributeCards() {
         players.forEach {
-            dealer.drawCard()
-            guard let drawnCard = dealer.drawnCard else {
+            guard let drawnCard = dealer.drawCard() else {
                 return
             }
-            $0.hand.append(drawnCard)
+            $0.receive(drawnCard)
         }
     }
-    
-    func initHand() {
-        players.forEach {
-            $0.initHand()
-        }
-    }
-    
+        
     func play() {
-        initHand()
-        dealer.shuffle()
-        for _ in 1...gameType.rawValue {
-            distributeCards()
-        }
-    }
-    
-    func run() {
-        addPlayers()
         while resumable {
-            play()
+            players.forEach {
+                $0.discard()
+            }
+            dealer.shuffle()
+            for _ in 1...gameType.rawValue {
+                distributeCards()
+            }
         }
     }
 }
 ```
 * 딜러 한명과 플레이어들을 담을 배열 players
 * 게임 참여 인원수 numberOfPlayers, 7카드스터드와 5카드스터드 구분을 위한 gameType
-* gameType 은 enum 으로 만들어 게임 종류를 제한해줌
+* numberOfPlayers 와 gameType 은 enum 으로 만들어 선택지를 제한해줌
 * PokerGame 을 생성할 때 참여인원수와 게임타입을 정해줌
-* addPlayers() - players 에 참여인원수만큼 플레이어를 추가해주고 마지막에 딜러를 추가해줌
+* 게임을 생성 할 때 입력받은 참여자 수 만큼 플레이어를 추가해줌
 * distributeCards() - 딜러가 카드를 한장씩 뽑아 플레이어들에게 나눠줌
-* initHand() - 플레이어들의 손패를 초기화
-* play() - 플레이어들의 손패를 초기화 한 후 덱을 섞어주고 카드를 게임 타입에 맞게 나눠줌
-* run() - 플레이어를 추가해주고 카드가 부족할때까지 게임을 진행함
+* play() - 플레이어들의 손패의 기존 카드를 버린 후 덱을 섞어주고 카드를 게임 타입에 맞게 나눠줌
 
 출력화면
 
@@ -401,14 +404,13 @@ class DealerTest: XCTestCase {
     }
     
     func testDrawCard() {
-        XCTAssertEqual(dealer.deck.count, 52)
+        XCTAssertEqual(dealer.deckCount, 52)
         dealer.drawCard()
-        XCTAssertEqual(dealer.deck.count, 51)
-        XCTAssertNotNil(dealer.drawnCard)
+        XCTAssertEqual(dealer.deckCount, 51)
     }
 }
 ```
-* 카드를 뽑은 후 덱에서 카드가 잘 뽑혔는지, 딜러가 카드를 잘 들고 있는지 확인해줌
+* 카드를 뽑은 후 덱에서 카드가 잘 뽑혔는지 확인해줌
 
 PokerGame 테스트 코드
 ```swift
@@ -422,51 +424,240 @@ class PokerGameTest: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        fiveCardStud = PokerGame(gameType: .fiveCardStud, numberOfPlayers: 2)
-        sevenCardStud = PokerGame(gameType: .sevenCardStud, numberOfPlayers: 3)
-        
+        fiveCardStud = PokerGame(gameType: .fiveCardStud, numberOfPlayers: .two)
+        sevenCardStud = PokerGame(gameType: .sevenCardStud, numberOfPlayers: .three)
     }
     
     func testAddPlayers() {
-        fiveCardStud.addPlayers()
         XCTAssertEqual(fiveCardStud.players.count, 3)
-        sevenCardStud.addPlayers()
-        XCTAssertEqual(sevenCardStud.players.count, 4)
     }
     
     func testDistributeCards() {
-        fiveCardStud.addPlayers()
         fiveCardStud.distributeCards()
         fiveCardStud.players.forEach {
-            XCTAssertEqual($0.hand.count, 1)
+            XCTAssertEqual($0.handCount, 1)
         }
     }
     
-    func testInitHand() {
-        fiveCardStud.addPlayers()
-        fiveCardStud.distributeCards()
+    func testFiveCardStud() {
+        fiveCardStud.play()
         fiveCardStud.players.forEach {
-            XCTAssertEqual($0.hand.count, 1)
+            XCTAssertEqual($0.handCount, 5)
         }
-        fiveCardStud.initHand()
-        fiveCardStud.players.forEach {
-            XCTAssertEqual($0.hand.count, 0)
-        }
-
     }
     
-    func testGame() {
-        fiveCardStud.run()
-        fiveCardStud.players.forEach {
-            XCTAssertEqual($0.hand.count, 5)
-        }
-        XCTAssertLessThan(fiveCardStud.dealer.deck.count, (fiveCardStud.players.count) * fiveCardStud.gameType.rawValue)
-        sevenCardStud.run()
+    func testSevenCardStud() {
+        sevenCardStud.play()
         sevenCardStud.players.forEach {
-            XCTAssertEqual($0.hand.count, 7)
+            XCTAssertEqual($0.handCount, 7)
         }
-        XCTAssertLessThan(sevenCardStud.dealer.deck.count, (sevenCardStud.players.count) * sevenCardStud.gameType.rawValue)
     }
 }
 ```
-* 테스트 코드를 한 기능만 테스트하도록 하고 싶었지만 카드를 나눠주는건 플레이어가 있어야만 가능하고 핸드를 초기화하는건 플레이어의 손에 카드가 있어야 가능해서 한 기능만 테스트 할 수가 없었음.
+* 생성 후 플레이어가 잘 추가되었는지, 카드를 잘 나눠주는지, 카드 갯수를 게임 타입에 맞게 잘 나눠주는지 확인해줌.
+
+
+#### 7. 카드게임 앱
+
+```swift
+class ViewController: UIViewController {
+
+    var gameType: PokerGame.GameType = .sevenCardStud
+    var numberOfPlayers: PokerGame.NumberOfPlayers = .two
+    var pokerGame: PokerGame!
+    
+    var gameTypeControl: UISegmentedControl!
+    var numberOfPlayersControl: UISegmentedControl!
+    
+    var gameTable: UIStackView = {
+        let stack = UIStackView()
+        stack.axis = .vertical
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        stack.spacing = 30
+        return stack
+    }()
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "bg_pattern"))
+        addGameTypeControl()
+        addNumberOfPlayersControl()
+        loadGame()
+    }
+    
+    override func motionBegan(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        loadGame()
+    }
+    
+    func resetGameTable() {
+        gameTable.arrangedSubviews.forEach {
+            $0.removeFromSuperview()
+        }
+    }
+    
+    func loadGame() {
+        pokerGame = PokerGame(gameType: gameType, numberOfPlayers: numberOfPlayers)
+        resetGameTable()
+        pokerGame.play()
+        makeGame()
+        setGameTableLayout()
+        self.view.layoutIfNeeded()
+    }
+    
+    func makeSegments(items: [String]) -> UISegmentedControl {
+        let segments = UISegmentedControl(items: items)
+        segments.selectedSegmentIndex = 0
+        segments.translatesAutoresizingMaskIntoConstraints = false
+        segments.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .normal)
+        segments.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor(patternImage: #imageLiteral(resourceName: "bg_pattern"))], for: .selected)
+        return segments
+    }
+    
+    func addGameTypeControl() {
+        gameTypeControl = makeSegments(items: ["7 Card", "5 Card"])
+        view.addSubview(gameTypeControl)
+        gameTypeControl.addTarget(self, action: #selector(gameTypeChanged(segControl:)), for: .valueChanged)
+        gameTypeControl.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 50).isActive = true
+        gameTypeControl.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+    }
+    
+    @objc func gameTypeChanged(segControl: UISegmentedControl) {
+        switch segControl.selectedSegmentIndex {
+        case 0:
+            gameType = .sevenCardStud
+            loadGame()
+        case 1:
+            gameType = .fiveCardStud
+            loadGame()
+        default:
+            break
+        }
+    }
+    
+    func addNumberOfPlayersControl() {
+        numberOfPlayersControl = makeSegments(items: ["2명", "3명", "4명"])
+        view.addSubview(numberOfPlayersControl)
+        numberOfPlayersControl.addTarget(self, action: #selector(numberOfPlayersChanged(segControl:)), for: .valueChanged)
+        numberOfPlayersControl.topAnchor.constraint(equalTo: gameTypeControl.bottomAnchor, constant: 10).isActive = true
+        numberOfPlayersControl.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        numberOfPlayersControl.leadingAnchor.constraint(equalTo: gameTypeControl.leadingAnchor).isActive = true
+        numberOfPlayersControl.trailingAnchor.constraint(equalTo: gameTypeControl.trailingAnchor).isActive = true
+    }
+    
+    @objc func numberOfPlayersChanged(segControl: UISegmentedControl) {
+        switch segControl.selectedSegmentIndex {
+        case 0:
+            numberOfPlayers = .two
+            loadGame()
+        case 1:
+            numberOfPlayers = .three
+            loadGame()
+        case 2:
+            numberOfPlayers = .four
+            loadGame()
+        default:
+            break
+        }
+    }
+    
+    func makeGame() {
+        var index = 1
+        pokerGame.players.forEach {
+            let playerLabel = makePlayerLabel(playerName: "Player\(index)")
+            if index == pokerGame.players.count {
+                playerLabel.text = "Dealer"
+            }
+            let playerCard = makePlayerCard($0)
+            let playerStack: UIStackView = {
+                let stack = UIStackView()
+                stack.axis = .vertical
+                return stack
+            }()
+            playerStack.addArrangedSubview(playerLabel)
+            playerStack.addArrangedSubview(playerCard)
+            gameTable.addArrangedSubview(playerStack)
+            playerLabel.bottomAnchor.constraint(equalTo: playerCard.topAnchor).isActive = true
+            index += 1
+        }
+        self.view.addSubview(gameTable)
+    }
+    
+    func setGameTableLayout() {
+        gameTable.topAnchor.constraint(equalTo: gameTypeControl.bottomAnchor, constant: 50).isActive = true
+        gameTable.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 30).isActive = true
+        gameTable.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -30).isActive = true
+    }
+    
+    func makePlayerLabel(playerName: String) -> UILabel {
+        let playerLabel: UILabel = {
+            let label = UILabel()
+            label.text = playerName
+            label.textColor = .white
+            label.translatesAutoresizingMaskIntoConstraints = false
+            return label
+        }()
+        return playerLabel
+    }
+    
+    func makePlayerCard(_ player: Player) -> UIStackView {
+        let cardStack = makeCardStack()
+        player.handInfo.forEach {
+            let card = makeCard($0)
+            cardStack.addArrangedSubview(card)
+            card.heightAnchor.constraint(equalTo: card.widthAnchor, multiplier: 1.27).isActive = true
+        }
+        return cardStack
+    }
+    
+    func makeCardStack() -> UIStackView {
+        let cardStack: UIStackView = {
+            let stack = UIStackView()
+            stack.distribution = .fillEqually
+            stack.spacing = -5
+            return stack
+        }()
+        return cardStack
+    }
+    
+    func makeCard(_ cardInfo: Card) -> UIImageView {
+        let card: UIImageView = {
+            let imageView = UIImageView()
+            imageView.translatesAutoresizingMaskIntoConstraints = false
+            imageView.layer.cornerRadius = 3.0
+            imageView.clipsToBounds = true
+            return imageView
+        }()
+        card.image = UIImage(named: "\(cardInfo).png")
+        return card
+    }
+}
+```
+
+gameTable
+* 먼저 플레이어의 핸드에 맞게 카드를 이미지뷰로 생성해줌 (makeCard)
+* 카드들을 담을 스택뷰를 만들어줌 (makeCardStack)
+* 만들어준 스택뷰에 만든 카드들을 담아줌 (makePlayerCard)
+* makePlayerLabel 로 플레이어에 맞는 라벨을 만들어줌 (makeGame)
+* 만들어준 라벨과 카드를 담은 스택뷰를 playerStack 에 담아줌
+* 만든 스택을 gameTable 스택뷰에 담아줌 
+
+SegmentedControl
+* 먼저 gameTypeControl 을 makeSegments 로 만들어줌 (addGameTypeControl)
+* 뷰에 만들어준 gameTypeControl 을 추가해준 뒤 위치를 잡아주고 target 을 추가해줌
+* gameTypeControl 의 값이 변경되면 변경된 값에 맞게 게임타입을 바꿔준 뒤 게임을 다시 로드해줌 (gameTypeChanged)
+* numberOfPlayersControl 의 추가도 같은 방식으로 동작함
+
+실행
+* 두 segmentedControl 을 추가해주고 loadGame 을 호출해줌
+* loadGame 은 저장된 게임타입과 참가자 수로 pokerGame 을 초기화해주고 gameTable 스택뷰의 기존 뷰들을 지워준 뒤(resetGameTable) 게임을 실행하고(pokerGame.play) 게임의 결과에 맞게 gameTable 에 뷰를 추가해줌(makeGame) 그리고 gameTable 의 위치를 잡아주고(setGameTableLayout) view 를 다시 그려줌 (layoutIfNeeded)
+* shake 이벤트 발생시 loadGame 을 호출해줌 (motionBegan)
+
+##### 출력 결과
+![스크린샷 2020-02-11 오후 9 41 02](https://user-images.githubusercontent.com/50410213/74237614-4c6cb280-4d17-11ea-8e94-b0f3022bb12a.png)
+![스크린샷 2020-02-11 오후 9 41 07](https://user-images.githubusercontent.com/50410213/74237623-52fb2a00-4d17-11ea-878a-5481758ea7d2.png)
+![스크린샷 2020-02-11 오후 9 41 11](https://user-images.githubusercontent.com/50410213/74237629-555d8400-4d17-11ea-835c-1ead83594e66.png)
+![스크린샷 2020-02-11 오후 9 41 15](https://user-images.githubusercontent.com/50410213/74237634-58587480-4d17-11ea-916b-cb9af1e7b8f8.png)
