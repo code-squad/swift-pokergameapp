@@ -9,10 +9,9 @@
 import Foundation
 
 class Player {
-    var hand: [Card]
-    
-    init() {
-        hand = [Card]()
+    private var hand = [Card]()
+    var handCount: Int {
+        hand.count
     }
     
     func discard() {
