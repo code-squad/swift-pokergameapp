@@ -13,33 +13,34 @@ class GamePlay {
         case sevenCardStud = 7
         case fiveCardStud = 5
     }
+    
+    private var cardDeck = CardDeck()
+    let dealer = Participant()
+    
+    private let rule: Rule
+    private let players: Players
+    
+    init(rule: Rule, numberOfPlayers: Players.Number) {
+        self.rule = rule
+        self.players = Players(withNumber: numberOfPlayers)
+    }
+}
 
-    enum NumberOfPlayers: Int {
+class Players {
+    enum Number: Int {
         case two = 2
         case three = 3
         case four = 4
-    }
-    
-    private let rule: Rule
-    private let numberOfPlayers: NumberOfPlayers
-    private var cardDeck = CardDeck()
-    
-    let dealer = Participant()
-    let players: [Participant]
-    
-    init(rule: Rule, numberOfPlayers: NumberOfPlayers) {
-        self.rule = rule
-        self.numberOfPlayers = numberOfPlayers
-        self.players = (0..<numberOfPlayers.rawValue).map { _ in Participant() }
-    }
-    
-    func deal() {
-        for _ in 0..<rule.rawValue {
-            for player in 0..<players.count {
-                players[player].cards.append(cardDeck.removeOne())
-            }
-            dealer.cards.append(cardDeck.removeOne())
+
+        func entrance() -> [Participant] {
+            return (0..<rawValue).map { _ in Participant() }
         }
+    }
+    
+    private let players: [Participant]
+    
+    init(withNumber number: Number) {
+        self.players = number.entrance()
     }
 }
 
