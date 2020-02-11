@@ -17,7 +17,6 @@ class CardGameAppTests: XCTestCase {
     override func setUp() {
         super.setUp()
         cardDeck = CardDeck()
-        pokerGame = PokerGame(playerCount: .four, stud: .seven)
     }
     
     func testCount() {
@@ -50,8 +49,15 @@ class CardGameAppTests: XCTestCase {
         XCTAssertEqual(cardDeck.count(), 52)
     }
     
-    func testAllocateCard() {
+    func testLeftCards() {
+        pokerGame = PokerGame(playerCount: .four, stud: .seven)
         pokerGame.allocateCards()
+        XCTAssertEqual(pokerGame.leftCards(), 17)
+        
+        pokerGame = PokerGame(playerCount: .one, stud: .five)
+        pokerGame.allocateCards()
+        XCTAssertEqual(pokerGame.leftCards(), 42)
+        
     }
     
 }

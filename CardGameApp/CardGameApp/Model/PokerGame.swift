@@ -49,7 +49,7 @@ class PokerGame {
     }
     
     func leftCards() -> Int {
-       return dealer.count()
+       return dealer.leftCards()
     }
     
 }

@@ -15,7 +15,7 @@ class Dealer {
         return cardDeck.removeOne()
     }
     
-    func count() -> Int {
+    func leftCards() -> Int {
         return cardDeck.count()
     }
     
