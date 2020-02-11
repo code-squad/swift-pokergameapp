@@ -9,5 +9,28 @@
 import Foundation
 
 struct CardDeck {
-
+    let cards = [Card]()
+    var count: Int {
+        return cards.count
+    }
+    
+    init() {
+        createCardDeck()
+    }
+    
+    func createCardDeck() {
+        
+    }
+    
+    func reset() {
+        
+    }
+    
+    func shuffle() {
+        
+    }
+    
+    func removeOne() {
+        
+    }
 }
