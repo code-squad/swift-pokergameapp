@@ -10,6 +10,10 @@ import Foundation
 
 class PokerGame{
     private var dealer:Dealer
+    private var players:[Player]
+    private var stud:Stud
+    private var numOfPlayer:NumOfPlayer
+    
     enum Stud:Int{
         case fiveCardStud=5
         case sevenCardStud=7
@@ -20,6 +24,12 @@ class PokerGame{
     }
     
     init(){
-        self.dealer=Dealer()
+        self.stud=Stud.sevenCardStud
+        self.numOfPlayer=NumOfPlayer.four
+        self.dealer=Dealer(stud: stud.rawValue, numOfPlayer: numOfPlayer.rawValue)
+        self.players=[Player]()
+        for _ in 0..<self.numOfPlayer.rawValue{
+            players.append(Player())
+        }
     }
 }

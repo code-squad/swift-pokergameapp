@@ -11,11 +11,15 @@ import Foundation
 class Dealer{
     private var cardDeck:CardDeck
     private var ownCardDeck:[Card]
+    private var stud:Int
+    private var numOfPlayer:Int
     
-    init(){
+    init(stud:Int,numOfPlayer:Int){
         self.cardDeck=CardDeck()
         self.cardDeck.shuffle()
         self.ownCardDeck=[Card]()
+        self.stud=stud
+        self.numOfPlayer=numOfPlayer
     }
     
     func deal() -> Card?{
