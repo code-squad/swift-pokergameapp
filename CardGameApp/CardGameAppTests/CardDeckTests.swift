@@ -37,11 +37,11 @@ class CardDeckTests: XCTestCase {
     }
     
     func testShuffle() {
-        var fixedGenerator = FixedRandomNumberGenerator()
+        let fixedGenerator = FixedRandomNumberGenerator()
         let cardsBeforeSuffle = (0..<52).map { _ in cardDeck.removeOne() }
         
         cardDeck.reset()
-        cardDeck.shuffle(using: &fixedGenerator)
+        cardDeck.shuffle(using: fixedGenerator)
         
         let cardsAfterSuffle = (0..<52).map { _ in cardDeck.removeOne() }
         XCTAssertNotEqual(cardsBeforeSuffle, cardsAfterSuffle)
