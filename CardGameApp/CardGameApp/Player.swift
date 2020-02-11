@@ -13,6 +13,9 @@ class Player {
     var handCount: Int {
         hand.count
     }
+    var handInfo: [Card] {
+        return hand
+    }
     
     func discard() {
         hand = [Card]()
