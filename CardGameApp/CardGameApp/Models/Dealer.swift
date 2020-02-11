@@ -34,15 +34,8 @@ class Dealer {
     
     func drawHands() -> [Card]? {
         var hands: [Card] = []
-        var numberOfHands = 0
-        switch gameType {
-        case .fiveCardsStud:
-            numberOfHands = 5
-        case .sevenCardsStud:
-            numberOfHands = 7
-        }
         
-        for _ in 0..<numberOfHands {
+        for _ in 0..<gameType.rawValue {
             guard let card = deck.removeOne() else { return nil }
             hands.append(card)
         }
