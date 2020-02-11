@@ -55,4 +55,9 @@ struct CardDeck{
         }
         return cardSet.removeLast()
     }
+    
+    mutating func reset(){
+        cardSet=[Card]()
+        setUpCardSet()
+    }
 }
