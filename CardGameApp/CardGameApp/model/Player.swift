@@ -9,5 +9,19 @@
 import Foundation
 
 class Player{
+    private var ownCardDeck:[Card]
     
+    init(){
+        self.ownCardDeck=[Card]()
+    }
+    
+    func receiveCard(card : Card){
+        self.ownCardDeck.append(card)
+    }
+}
+
+extension Player:CustomStringConvertible{
+    var description: String {
+        return "\(self.ownCardDeck)"
+    }
 }
