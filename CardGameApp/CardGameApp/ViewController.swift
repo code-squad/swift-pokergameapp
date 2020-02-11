@@ -130,7 +130,6 @@ class ViewController: UIViewController {
             playerStack.addArrangedSubview(playerLabel)
             playerStack.addArrangedSubview(playerCard)
             gameTable.addArrangedSubview(playerStack)
-            playerLabel.bottomAnchor.constraint(equalTo: playerCard.topAnchor).isActive = true
             index += 1
         }
         self.view.addSubview(gameTable)
