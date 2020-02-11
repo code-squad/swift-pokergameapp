@@ -62,6 +62,10 @@ STEP15 포커게임 앱 저장소
 
 
 
+<details>
+<summary>step 2 : 카드 클래스</summary>
+<div markdown="1">
+
 ## step 2 : 카드 클래스
 
 <img width="1000" alt="image" src="https://user-images.githubusercontent.com/37682858/74120729-e3e2e000-4c07-11ea-81ee-432166f029e1.png">
@@ -93,4 +97,43 @@ STEP15 포커게임 앱 저장소
 
 
 2020.02.10
+
+</div>
+</details>
+
+
+
+## step 3 : 카드덱 구현과 테스트
+
+### 추가한 기능
+
+* CardDeck 구조체 구현
+  * cardSet:[Card]
+  * count() : 현재 가지고있는 카드 개수 반환
+  * shuffle() : 현재 카드를 랜덤하게 섞음, 카드가 2장 이상일 때만 동작함.
+  * removeOne() : 카드 목록의 맨 마지막 인스턴스를 반환하고 목록에서 삭제, 카드가 없는 경우 nil 반환
+  * reset() : 새로운 Card 배열을 cardSet 프로퍼티에 할당해 줌
+* CardDeck, Card 인스턴스를 각각 서로 비교하기 위해 Equatable 프로토콜을 채용함.
+  * Card 끼리 비교할 경우 Card 인스턴스를 문자열로 반환하여 값이 같은지를 비교
+  * CardDeck끼리 비교할 경우 CardDeck 내의 Card의 인덱스별로 값이 같은지 다른지를 비교
+* CardDeck test함수 구현
+  * testShuffle()
+    * 셔플하기 전의 카드 덱과 셔플한 후의 카드덱을 저장하였다가 비교
+  * testRemoveOne()
+    * 카드가 없을 경우 nil을 반환 하는지
+    * 카드가 있다면 반환 전의 카드 개수와 반환 후의 카드 수가 1만큼 차이 나는지
+  * testReset()
+    * reset 후 카드의 수가 52개인지 확인
+
+
+
+### 더 알아 본 것
+
+#### 구조체와 클래스의 차이
+
+#### shuffle 알고리즘
+
+#### 클래스의 메모리 관리 방식
+
+
 
