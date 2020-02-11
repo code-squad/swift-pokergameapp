@@ -9,7 +9,7 @@
 import Foundation
 
 struct Deck {
-    var cards : [Card]!
+    private var cards : [Card]!
     
     var count : Int {
         return cards.count
@@ -48,5 +48,14 @@ struct Deck {
     
     mutating func reset() {
         cards = initCards()
+    }
+}
+
+extension Deck : Equatable {
+    public static func == (lhs: Deck, rhs: Deck) -> Bool {
+        guard lhs.cards == rhs.cards else {
+            return false
+        }
+        return true
     }
 }
