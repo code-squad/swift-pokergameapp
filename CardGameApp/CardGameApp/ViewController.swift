@@ -45,7 +45,7 @@ class ViewController: UIViewController {
     let pokerGameStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
-        stackView.spacing = 24
+        stackView.spacing = 16
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.alignment = .top
         return stackView
@@ -62,6 +62,11 @@ class ViewController: UIViewController {
         self.pokerGame = PokerGame(game: gameType, numberOfPlayers: playerCount)
         pokerGameStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
         
+        resetPlayers()
+        resetDealer()
+    }
+    
+    private func resetPlayers() {
         pokerGame.players.enumerated().forEach { (i, player) in
             let playerStackView = generatePlayerStackView()
             let cardStackView = generateCardStackView()
@@ -79,6 +84,24 @@ class ViewController: UIViewController {
             playerStackView.addArrangedSubview(cardStackView)
             pokerGameStackView.addArrangedSubview(playerStackView)
         }
+    }
+    
+    private func resetDealer() {
+        let dealerStackView = generatePlayerStackView()
+        let cardStackView = generateCardStackView()
+        
+        let dealerLabel = UILabel()
+        dealerLabel.textColor = .white
+        dealerLabel.text = "Dealer"
+        
+        pokerGame.dealer.communityCards.map { $0.description }
+            .forEach {
+                cardStackView.addArrangedSubview(generateCardImageView(named: $0))
+        }
+        
+        dealerStackView.addArrangedSubview(dealerLabel)
+        dealerStackView.addArrangedSubview(cardStackView)
+        pokerGameStackView.addArrangedSubview(dealerStackView)
     }
     
     @objc private func handleGameTypeSegmentChanged(segmentedControl: UISegmentedControl) {
@@ -124,6 +147,7 @@ class ViewController: UIViewController {
     private func generateCardStackView() -> UIStackView {
         let stackView = UIStackView()
         stackView.axis = .horizontal
+        stackView.spacing = -8
         stackView.distribution = .fillEqually
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
@@ -141,8 +165,9 @@ class ViewController: UIViewController {
         
         view.addSubview(pokerGameStackView)
         pokerGameStackView.topAnchor.constraint(equalTo: segmentedControlsSV.bottomAnchor, constant: 16).isActive = true
-        pokerGameStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 8).isActive = true
-        pokerGameStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8).isActive = true
+        pokerGameStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24).isActive = true
+        pokerGameStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24).isActive = true
+        pokerGameStackView.bottomAnchor.constraint(lessThanOrEqualTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16).isActive = true
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
