@@ -12,9 +12,11 @@ class ViewController: UIViewController {
     private var gameType: GameType = .sevenCardsStud
     private var playerCount: PlayerCount = .two
     private var pokerGame: PokerGame = PokerGame(game: .sevenCardsStud, numberOfPlayers: .two)
+    let gameTypeTitles = ["7 Cards", "5 Cards"]
+    let playerCountTitles = ["2명", "3명", "4명"]
     
-    let gameTypeSegmentedControl = GameTypeSegmentedControl(items: ["7 Cards", "5 Cards"])
-    let playerCountSegmentedControl = GameTypeSegmentedControl(items: ["2명", "3명", "4명"])
+    lazy var gameTypeSegmentedControl = GameTypeSegmentedControl(items: gameTypeTitles)
+    lazy var playerCountSegmentedControl = GameTypeSegmentedControl(items: playerCountTitles)
     
     lazy var segnentedControlStackView: UIStackView = {
         let stackView = SegnentedControlStackView()
