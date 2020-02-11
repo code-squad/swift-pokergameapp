@@ -24,10 +24,10 @@ class Card {
     }
     
     enum Suit: Character, CaseIterable {
-        case spade = "♠"
-        case heart = "♡"
-        case club = "♣"
-        case diamond = "⬦"
+        case spade = "♠️"
+        case heart = "♥️"
+        case club = "♣️"
+        case diamond = "♦️"
     }
     
     enum Rank: Int, CaseIterable {
