@@ -26,6 +26,7 @@
 		3894878823F163BE003D2481 /* Dealer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3894878723F163BE003D2481 /* Dealer.swift */; };
 		3894878923F163BE003D2481 /* Dealer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3894878723F163BE003D2481 /* Dealer.swift */; };
 		3894878D23F165B5003D2481 /* PokerGameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3894878B23F165B5003D2481 /* PokerGameTests.swift */; };
+		3894879323F2D048003D2481 /* CardImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3894879223F2D048003D2481 /* CardImageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,7 @@
 		3894878423F15D46003D2481 /* PokerGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokerGame.swift; sourceTree = "<group>"; };
 		3894878723F163BE003D2481 /* Dealer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dealer.swift; sourceTree = "<group>"; };
 		3894878B23F165B5003D2481 /* PokerGameTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokerGameTests.swift; sourceTree = "<group>"; };
+		3894879223F2D048003D2481 /* CardImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +99,7 @@
 		385F3AC423EA6FA9003FA6A2 /* CardGameApp */ = {
 			isa = PBXGroup;
 			children = (
+				3894879123F2D035003D2481 /* Views */,
 				3894878A23F163C5003D2481 /* Models */,
 				385F3AC523EA6FA9003FA6A2 /* AppDelegate.swift */,
 				385F3AC723EA6FA9003FA6A2 /* SceneDelegate.swift */,
@@ -129,6 +132,14 @@
 				3894878723F163BE003D2481 /* Dealer.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		3894879123F2D035003D2481 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3894879223F2D048003D2481 /* CardImageView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -233,6 +244,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3894878523F15D46003D2481 /* PokerGame.swift in Sources */,
+				3894879323F2D048003D2481 /* CardImageView.swift in Sources */,
 				385F3ACA23EA6FA9003FA6A2 /* ViewController.swift in Sources */,
 				385F3ADC23EC3FF6003FA6A2 /* CardDeck.swift in Sources */,
 				385F3AC623EA6FA9003FA6A2 /* AppDelegate.swift in Sources */,

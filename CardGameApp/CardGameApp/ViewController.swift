@@ -78,7 +78,7 @@ class ViewController: UIViewController {
             
             player.hands.map { $0.description }
                 .forEach {
-                    cardStackView.addArrangedSubview(generateCardImageView(named: $0))
+                    cardStackView.addArrangedSubview(CardImageView(named: $0))
                 }
             
             playerStackView.addArrangedSubview(playerLabel)
@@ -108,15 +108,6 @@ class ViewController: UIViewController {
             break
         }
         resetPokerGame()
-    }
-    
-    private func generateCardImageView(named: String) -> UIImageView {
-        let image = UIImage(named: named)
-        let imageView = UIImageView(image: image)
-        imageView.contentMode = .scaleAspectFill
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor, multiplier: 1.27).isActive = true
-        return imageView
     }
     
     private func generatePlayerStackView() -> UIStackView {
