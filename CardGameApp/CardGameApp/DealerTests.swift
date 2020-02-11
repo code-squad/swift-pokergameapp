@@ -20,18 +20,36 @@ class DealerTests: XCTestCase {
     func testDealCard() {
         let players = [Player(), Player(), Player(), Player()]
         let card = deck.removeOne()!
-
-        dealer.give(card: card, to: players.first!)
+        let player = players.first!
+        
+        dealer.give(card: card, to: player)
+        
+        XCTAssertEqual(player.cards.count, 1)
     }
     
     func testPrepareGame() {
+        let numberOfAllCards = 52
         self.dealer.prepare()
+        XCTAssertEqual(dealer.deck.count, numberOfAllCards)
     }
     
     // 7 stud
     func testStartGame() {
+        let numberOfCardsByRule = 7
         let players = [Player(), Player(), Player(), Player()]
+        
+        dealer.prepare()
         dealer.startGame(players: players)
+        
+        print(dealer.cards)
+        XCTAssertEqual(dealer.cards.count, numberOfCardsByRule)
+        
+        let receivedCorrectly = players.filter { player in
+            print(player.cards)
+            return player.cards.count == numberOfCardsByRule
+        }
+        
+        XCTAssertEqual(receivedCorrectly.count, players.count)
         
     }
 }

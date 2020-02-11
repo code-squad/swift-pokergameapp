@@ -48,7 +48,7 @@ class Card: CustomStringConvertible {
     }
     
     var description: String {
-        "\(suit) \(rank)"
+        "\(suit)\(rank)"
     }
 }
 
