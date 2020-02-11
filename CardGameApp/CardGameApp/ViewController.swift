@@ -41,14 +41,7 @@ class ViewController: UIViewController {
         return stackView
     }()
     
-    let pokerGameStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .vertical
-        stackView.spacing = 16
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.alignment = .top
-        return stackView
-    }()
+    let pokerGameStackView: UIStackView = PokerGameStackView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
