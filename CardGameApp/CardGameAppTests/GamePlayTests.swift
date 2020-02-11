@@ -11,21 +11,43 @@ import XCTest
 
 class GamePlayTests: XCTestCase {
     
-    func testSevenCardStudDealing() {
-        let gamePlay = GamePlay(rule: .sevenCardStud, numberOfPlayers: .four)
-        gamePlay.deal()
-        
-        XCTAssertEqual(gamePlay.players.count, 4)
-        gamePlay.players.forEach { XCTAssertEqual($0.cards.count, 7) }
-        XCTAssertEqual(gamePlay.dealer.cards.count, 7)
+    func testParticipantTakesACard() {
+        let participant = Participant()
+        participant.take(card: Card(suit: .club, rank: .ace))
+        XCTAssertEqual(participant.cardsInHand.count, 1)
     }
     
-    func testFiveCardStudDealing() {
-        let gamePlay = GamePlay(rule: .fiveCardStud, numberOfPlayers: .two)
-        gamePlay.deal()
+    func testPlayersEntrance() {
+        let numberOfPlayers = Players.Number.four
+        let expectedPlayers = (0..<4).map { _ in Participant() }
+        XCTAssertEqual(numberOfPlayers.entrance(), expectedPlayers)
+    }
+    
+    func testEachPlayerTakesACard() {
+        let players = Players(withNumber: .three)
+        var cardDeck = CardDeck()
+        players.eachTakesACard { cardDeck.removeOne() }
+        let cards = players.allCards()
         
-        XCTAssertEqual(gamePlay.players.count, 2)
-        gamePlay.players.forEach { XCTAssertEqual($0.cards.count, 5) }
-        XCTAssertEqual(gamePlay.dealer.cards.count, 5)
+        XCTAssertEqual(cards.count, 3)
+        XCTAssertEqual(cards.map { $0.count }, [1, 1, 1])
+    }
+    
+    func testSevenCardStudGamePlayDealing() {
+        let gamePlay = GamePlay(rule: .sevenCardStud, numberOfPlayers: .two)
+        gamePlay.deal()
+        let table = gamePlay.table()
+        
+        XCTAssertEqual(table.count, 3)
+        XCTAssertEqual(table.map { $0.count }, [7, 7, 7])
+    }
+
+    func testFiveCardStudGamePlayDealing() {
+        let gamePlay = GamePlay(rule: .fiveCardStud, numberOfPlayers: .three)
+        gamePlay.deal()
+        let table = gamePlay.table()
+        
+        XCTAssertEqual(table.count, 4)
+        XCTAssertEqual(table.map { $0.count }, [5, 5, 5, 5])
     }
 }
