@@ -18,8 +18,8 @@ class DealerTest: XCTestCase {
     }
     
     func testDrawCard() {
-        XCTAssertEqual(dealer.deck.count, 52)
+        XCTAssertEqual(dealer.deckCount, 52)
         dealer.drawCard()
-        XCTAssertEqual(dealer.deck.count, 51)
+        XCTAssertEqual(dealer.deckCount, 51)
     }
 }
