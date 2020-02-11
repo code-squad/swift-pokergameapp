@@ -60,3 +60,6 @@ class ViewController: UIViewController {
     }
 }
 
+extension UIImageView {
+    
+}
