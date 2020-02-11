@@ -17,7 +17,7 @@ final class GameTableView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        patternBackground()
+        apply(background: viewBackground)
         configuration(stackView)
         makeStackConstraint(stackView)
     }
@@ -26,8 +26,8 @@ final class GameTableView: UIView {
         super.init(coder: coder)
     }
     
-    private func patternBackground() {
-        backgroundColor = UIColor(patternImage: UIImage(named: viewBackground) ?? UIImage())
+    private func apply(background: String) {
+        backgroundColor = UIColor(patternImage: UIImage(named: background) ?? UIImage())
     }
 
     private func creatCards(_ stack: UIStackView, amount: Int) {
