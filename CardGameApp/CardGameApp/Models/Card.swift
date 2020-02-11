@@ -17,16 +17,10 @@ struct Card {
     
     let suit: Suit
     let rank: Rank
-    private var imageFileName: String = ""
     
     init(suit: Suit, rank: Rank) {
         self.suit = suit
         self.rank = rank
-        setupImageName()
-    }
-    
-    private mutating func setupImageName() {
-        self.imageFileName = String(describing: self)
     }
     
     enum Suit: Character, CaseIterable {
@@ -50,7 +44,20 @@ extension Card: Equatable {
 
 extension Card: CustomStringConvertible {
     var description: String {
+        var suitString = ""
         var rank = ""
+        
+        switch self.suit {
+        case .spade:
+            suitString = "s"
+        case .heart:
+            suitString = "h"
+        case .club:
+            suitString = "c"
+        case .diamond:
+            suitString = "d"
+        }
+        
         switch self.rank {
         case .jack:
             rank = "J"
@@ -63,6 +70,7 @@ extension Card: CustomStringConvertible {
         default:
             rank = String(self.rank.rawValue)
         }
-        return "\(suit.rawValue)\(rank)"
+        
+        return "\(suitString)\(rank)"
     }
 }
