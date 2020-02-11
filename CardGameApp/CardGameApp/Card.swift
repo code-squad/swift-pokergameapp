@@ -8,10 +8,13 @@
 
 import Foundation
 
-class Card {
+class Card: CustomStringConvertible {
     
     let suit : Suit.RawValue
     let rank : Rank.RawValue
+    var description: String {
+        return "(\(suit) \(rank))"
+    }
     
     init(suit: Suit, rank: Rank) {
         self.suit = suit.rawValue
@@ -33,8 +36,8 @@ class Card {
         case A = 1, two, three, four, five, six, seven, eight, nine, ten, J, Q, K
     }
     
-    func descripteCard() -> String{
-        let description = "\(self.suit)\(self.rank)"
-        return description
-    }    
+    func descripteCard() -> String {
+        return self.description
+    }
+    
 }
