@@ -11,7 +11,11 @@ import Foundation
 class Dealer {
     private let gameType: GameType
     private var deck = CardDeck()
-    private var communityCards: [Card] = []
+    private var _communityCards: [Card] = []
+    
+    var communityCards: [Card] {
+        _communityCards
+    }
     
     init(game gameType: GameType) {
         self.gameType = gameType
@@ -28,7 +32,7 @@ class Dealer {
             print("카드가 부족합니다")
             return
         }
-        communityCards = hands
+        _communityCards = hands
     }
     
     func drawHands() -> [Card]? {

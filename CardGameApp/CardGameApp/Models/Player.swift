@@ -9,9 +9,17 @@
 import Foundation
 
 class Player {
-    private var hands: [Card]
+    private var _hands: [Card]
+    
+    var hands: [Card] {
+        _hands
+    }
+    
+    var numberOfHands: Int {
+        _hands.count
+    }
     
     init(hands: [Card]) {
-        self.hands = hands
+        self._hands = hands
     }
 }

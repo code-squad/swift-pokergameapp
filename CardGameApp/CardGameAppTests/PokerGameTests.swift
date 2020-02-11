@@ -9,14 +9,19 @@
 import XCTest
 @testable import CardGameApp
 
-class PokerGameUnitTests: XCTestCase {
+class PokerGameTests: XCTestCase {
     
     override func setUp() {
         
     }
 
     func testSevenCardsStud() {
-        let pokerGame = PokerGame(type: .sevenCardsStud, numberOfPlayers: 3)
+        let pokerGame = PokerGame(game: .sevenCardsStud, numberOfPlayers: 4)
+        
+        XCTAssert(pokerGame.players.count == 4)
+        pokerGame.players.forEach {
+            XCTAssert($0.numberOfHands == 7)
+        }
         
         pokerGame.players.enumerated().forEach { (i, player) in
             print("참가자#\(i+1) \(player.hands)")
@@ -25,7 +30,12 @@ class PokerGameUnitTests: XCTestCase {
     }
     
     func testFiveCardsStud() {
-        let pokerGame = PokerGame(type: .fiveCardsStud, numberOfPlayers: 4)
+        let pokerGame = PokerGame(game: .fiveCardsStud, numberOfPlayers: 3)
+        
+        XCTAssert(pokerGame.players.count == 3)
+        pokerGame.players.forEach {
+            XCTAssert($0.numberOfHands == 5)
+        }
         
         pokerGame.players.enumerated().forEach { (i, player) in
             print("참가자#\(i+1) \(player.hands)")
