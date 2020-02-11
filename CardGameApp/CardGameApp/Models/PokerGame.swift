@@ -28,10 +28,7 @@ class PokerGame {
     
     private func setupPlayersHands() {
         for _ in 0..<numberOfPlayers {
-            guard let hands = dealer.drawHands() else {
-                print("카드가 부족합니다.")
-                return
-            }
+            guard let hands = dealer.drawHands() else { return }
             players.append(Player(hands: hands))
         }
     }

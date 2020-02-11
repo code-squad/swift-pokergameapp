@@ -28,10 +28,7 @@ class Dealer {
     }
     
     func setupCommunityCards() {
-        guard let hands = drawHands() else {
-            print("카드가 부족합니다")
-            return
-        }
+        guard let hands = drawHands() else { return }
         _communityCards = hands
     }
     
