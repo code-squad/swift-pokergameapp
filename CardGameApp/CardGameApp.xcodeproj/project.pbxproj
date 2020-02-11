@@ -15,7 +15,7 @@
 		8DB10E0E23EA60CB00B3BC0B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8DB10E0C23EA60CB00B3BC0B /* Main.storyboard */; };
 		8DB10E1023EA60CF00B3BC0B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8DB10E0F23EA60CF00B3BC0B /* Assets.xcassets */; };
 		8DB10E1323EA60CF00B3BC0B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8DB10E1123EA60CF00B3BC0B /* LaunchScreen.storyboard */; };
-		8DB10E1E23EA60CF00B3BC0B /* CardGameAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB10E1D23EA60CF00B3BC0B /* CardGameAppTests.swift */; };
+		8DB10E1E23EA60CF00B3BC0B /* DeckTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB10E1D23EA60CF00B3BC0B /* DeckTests.swift */; };
 		8DB10E2923EA60CF00B3BC0B /* CardGameAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB10E2823EA60CF00B3BC0B /* CardGameAppUITests.swift */; };
 		8DB10E3823F060B900B3BC0B /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB10E3723F060B900B3BC0B /* Card.swift */; };
 		8DB10E3923F060B900B3BC0B /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB10E3723F060B900B3BC0B /* Card.swift */; };
@@ -50,7 +50,7 @@
 		8DB10E1223EA60CF00B3BC0B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8DB10E1423EA60CF00B3BC0B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8DB10E1923EA60CF00B3BC0B /* CardGameAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CardGameAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		8DB10E1D23EA60CF00B3BC0B /* CardGameAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardGameAppTests.swift; sourceTree = "<group>"; };
+		8DB10E1D23EA60CF00B3BC0B /* DeckTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckTests.swift; sourceTree = "<group>"; };
 		8DB10E1F23EA60CF00B3BC0B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8DB10E2423EA60CF00B3BC0B /* CardGameAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CardGameAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DB10E2823EA60CF00B3BC0B /* CardGameAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardGameAppUITests.swift; sourceTree = "<group>"; };
@@ -124,9 +124,9 @@
 		8DB10E1C23EA60CF00B3BC0B /* CardGameAppTests */ = {
 			isa = PBXGroup;
 			children = (
-				8DB10E1D23EA60CF00B3BC0B /* CardGameAppTests.swift */,
-				8DB10E1F23EA60CF00B3BC0B /* Info.plist */,
 				8DB10E3A23F061E900B3BC0B /* CardTests.swift */,
+				8DB10E1D23EA60CF00B3BC0B /* DeckTests.swift */,
+				8DB10E1F23EA60CF00B3BC0B /* Info.plist */,
 			);
 			path = CardGameAppTests;
 			sourceTree = "<group>";
@@ -292,7 +292,7 @@
 			files = (
 				8D32D57F23F0FE7900F82EEC /* Deck.swift in Sources */,
 				8DB10E3B23F061E900B3BC0B /* CardTests.swift in Sources */,
-				8DB10E1E23EA60CF00B3BC0B /* CardGameAppTests.swift in Sources */,
+				8DB10E1E23EA60CF00B3BC0B /* DeckTests.swift in Sources */,
 				8DB10E3923F060B900B3BC0B /* Card.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

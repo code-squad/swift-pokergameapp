@@ -17,21 +17,4 @@ class CardTests: XCTestCase {
         XCTAssertEqual(card2.description, "♠️ 10")
     }
     
-    func testCardDeck() {
-        // count() 테스트
-        var deck = Deck()
-        let numberOfAllCards = 13 * 4
-        XCTAssertEqual(deck.count, numberOfAllCards)
-        
-        // removeOne() 테스트
-        let someCard = deck.removeOne()
-        XCTAssert(someCard is Card)
-        XCTAssertEqual(deck.count, numberOfAllCards - 1)
-        deck.removeOne()
-        XCTAssertEqual(deck.count, numberOfAllCards - 2)
-        
-        // reset() 테스트
-        deck.reset()
-        XCTAssertEqual(deck.count, numberOfAllCards)
-    }
 }
