@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GameTypeSegmentedControl: UISegmentedControl {
+class TitledSegmentedControl: UISegmentedControl {
     private var items: [String]?
     
     init(items: [String]) {
