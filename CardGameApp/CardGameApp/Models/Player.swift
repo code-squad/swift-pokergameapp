@@ -15,10 +15,6 @@ class Player {
         _hands
     }
     
-    var numberOfHands: Int {
-        _hands.count
-    }
-    
     init(hands: [Card]) {
         self._hands = hands
     }
