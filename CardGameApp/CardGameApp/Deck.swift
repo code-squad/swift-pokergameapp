@@ -16,7 +16,6 @@ struct Deck {
         self.cards = cards
     }
 
-    
     /// 갖고 있는 카드 개수를 반환한다.
     var count: Int {
         cards.count
@@ -55,7 +54,7 @@ struct DeckFactory {
         }
     }
     
-    static func createCards(per suit: Card.Suit) -> [Card] {
+    private static func createCards(per suit: Card.Suit) -> [Card] {
         return Card.Rank.allCases.map {
             Card(suit: suit, rank: $0)
         }
