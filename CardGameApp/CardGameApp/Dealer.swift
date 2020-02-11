@@ -8,16 +8,18 @@
 
 import Foundation
 class Dealer: Playable {
+
     var cards = [Card]()
     var deck: Deck
     
     init(deck: Deck) {
         self.deck = deck
     }
-    
+
     /// playerㅇ에게 한 장의 카드를 건넴
     func give(card: Card, to player: Playable) {
-        
+        var player = player
+        player.receive(card: card)
     }
     
     /// 게임 준비. 카드를 섞는다
@@ -26,12 +28,20 @@ class Dealer: Playable {
         self.deck.shuffle()
     }
     
-    /// 게임을 시작한다. 자신을 포함해 모든 플레이어에게 카드를 돌린다.
-    func startGame(players: [Playable]) {
+    fileprivate func dealCardsOfOneRound(_ players: [Playable]) {
         (players + [self]).forEach { player in
             if let card = deck.removeOne() {
                 self.give(card: card, to: player)
             }
+        }
+    }
+    
+    /// 게임을 시작한다. 자신을 포함해 모든 플레이어에게 카드를 돌린다.
+    func startGame(players: [Playable]) {
+        let numberOfCardsByRule = 7
+        
+        (1...numberOfCardsByRule).forEach { _ in
+            dealCardsOfOneRound(players)
         }
     }
 }
@@ -42,4 +52,10 @@ class Player: Playable {
 
 protocol Playable {
     var cards: [Card] { get set }
+}
+
+extension Playable {
+    mutating func receive(card: Card) {
+        self.cards.append(card)
+    }
 }
