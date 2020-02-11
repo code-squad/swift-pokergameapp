@@ -7,8 +7,10 @@
 //
 
 import UIKit
+import UIKit
 
 class ViewController: UIViewController {
+    // 스택 뷰 설정
     let cardsStack: UIStackView = {
         let horizontalStackView = UIStackView()
         horizontalStackView.translatesAutoresizingMaskIntoConstraints = false
@@ -18,29 +20,19 @@ class ViewController: UIViewController {
         
         return horizontalStackView
     }()
-    
+   
+    // 스택뷰에 넣을 이미지 뷰 생성
     func makeCard() -> UIImageView {
-        return UIImageView(image: #imageLiteral(resourceName: "card-back"))
-    }
-    
-    func setCard(card: UIImageView) -> UIImageView {
-        var card = card
+        let card = UIImageView(image:  #imageLiteral(resourceName: "card-back"))
         card.contentMode = .scaleAspectFit
         card.heightAnchor.constraint(equalTo: card.widthAnchor, multiplier: 1.27).isActive = true
         return card
     }
     
     func addCards() {
-        var card = makeCard()
-        card = setCard(card: card)
         for _ in 0 ..< 7 {
-            cardsStack.addArrangedSubview(card)
+            cardsStack.addArrangedSubview(makeCard())
         }
-    }
-    
-    func printCardDescription(){
-        let trumpCard = Card(suit: .hearts, rank: .eight)
-        print(trumpCard.descripteCard())
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -49,17 +41,8 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "bg_pattern"))
+        view.backgroundColor = UIColor(patternImage:  #imageLiteral(resourceName: "bg_pattern"))
         addCards()
         self.view.addSubview(cardsStack)
-        cardsStack.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 40).isActive = true
-        cardsStack.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -5).isActive = true
-        cardsStack.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 5).isActive = true
-        
-        printCardDescription()
     }
-}
-
-extension UIImageView {
-    
 }
