@@ -9,6 +9,16 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    private var gameType: GameType = .sevenCardsStud
+    
+    let segmentedControl: UISegmentedControl = {
+        let segmentedControl = UISegmentedControl(items: ["7 Cards", "5 Cards"])
+        segmentedControl.selectedSegmentIndex = 0
+        segmentedControl.translatesAutoresizingMaskIntoConstraints = false
+        segmentedControl.addTarget(self, action: #selector(handleSegmentChanged), for: .valueChanged)
+        return segmentedControl
+    }()
 
     let cardStackView: UIStackView = {
         let stackView = UIStackView()
@@ -30,6 +40,14 @@ class ViewController: UIViewController {
         setupUI()
     }
     
+    @objc private func handleSegmentChanged(segmentedControl: UISegmentedControl) {
+        if segmentedControl.selectedSegmentIndex == 0 {
+            gameType = .sevenCardsStud
+        } else {
+            gameType = .fiveCardsStud
+        }
+    }
+    
     private func cardImageView() -> UIImageView {
         let imageView = UIImageView(image: #imageLiteral(resourceName: "card-back"))
         imageView.contentMode = .scaleAspectFill
@@ -45,10 +63,13 @@ class ViewController: UIViewController {
             cardStackView.addArrangedSubview(cardImageView())
         }
         
-        view.addSubview(cardStackView)
-        cardStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8).isActive = true
-        cardStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 8).isActive = true
-        cardStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8).isActive = true
+        view.addSubview(segmentedControl)
+        segmentedControl.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8).isActive = true
+        segmentedControl.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+//        view.addSubview(cardStackView)
+//        cardStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8).isActive = true
+//        cardStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 8).isActive = true
+//        cardStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8).isActive = true
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
