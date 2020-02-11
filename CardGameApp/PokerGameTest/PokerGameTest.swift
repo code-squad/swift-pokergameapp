@@ -15,8 +15,8 @@ class PokerGameTest: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        fiveCardStud = PokerGame(gameType: .fiveCardStud, numberOfPlayers: 2)
-        sevenCardStud = PokerGame(gameType: .sevenCardStud, numberOfPlayers: 3)
+        fiveCardStud = PokerGame(gameType: .fiveCardStud, numberOfPlayers: .two)
+        sevenCardStud = PokerGame(gameType: .sevenCardStud, numberOfPlayers: .three)
     }
     
     func testAddPlayers() {
