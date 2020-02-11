@@ -35,5 +35,9 @@ class PokerGame {
 }
 
 enum GameType: Int {
-    case sevenCardsStud, fiveCardsStud
+    case sevenCardsStud = 7, fiveCardsStud = 5
+}
+
+enum PlayerCount: Int {
+    case one = 1, two, three, four
 }
