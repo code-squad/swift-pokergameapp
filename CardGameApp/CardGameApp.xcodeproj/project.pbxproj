@@ -62,6 +62,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A576E15023F2D04C004F54FF /* model */ = {
+			isa = PBXGroup;
+			children = (
+				A576E12723F0E512004F54FF /* card.swift */,
+				A576E14B23F190D1004F54FF /* CardDeck.swift */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
 		A5E65E6623EC27310033B975 = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +92,7 @@
 		A5E65E7123EC27310033B975 /* CardGameApp */ = {
 			isa = PBXGroup;
 			children = (
+				A576E15023F2D04C004F54FF /* model */,
 				A5E65E7223EC27310033B975 /* AppDelegate.swift */,
 				A5E65E7423EC27310033B975 /* SceneDelegate.swift */,
 				A5E65E7623EC27310033B975 /* ViewController.swift */,
@@ -90,8 +100,6 @@
 				A5E65E7B23EC27320033B975 /* Assets.xcassets */,
 				A5E65E7D23EC27320033B975 /* LaunchScreen.storyboard */,
 				A5E65E8023EC27320033B975 /* Info.plist */,
-				A576E12723F0E512004F54FF /* card.swift */,
-				A576E14B23F190D1004F54FF /* CardDeck.swift */,
 			);
 			path = CardGameApp;
 			sourceTree = "<group>";
