@@ -78,3 +78,30 @@
 
    ![image-20200210212217610](/Users/keunnalee/Library/Application Support/typora-user-images/image-20200210212217610.png)
 
+20.02.11 피드백 반영 후 수정한 사항
+
+1. Card 클래스가 CustomStringConvertible프로토콜을 채택한 후 프로퍼티 추가.
+
+   ```swift
+    class Card: CustomStringConvertible {
+       
+       let suit : Suit.RawValue
+       let rank : Rank.RawValue
+       var description: String {
+           return "\(suit)\(rank)"
+       }
+       
+       init(suit: Suit, rank: Rank) {
+           self.suit = suit.rawValue
+           self.rank = rank.rawValue
+       }
+    }
+   ```
+
+   
+
+2. ViewController 클래스에서 makeCard 메소드와 setCard 메소드를 합쳤습니다.
+
+3. ViewController 클래스에서 StackView를 초기화하는 코드를 메소드로 따로 분리해서 구현했습니다.
+
+4. ViewController 클래스의 addCard메소드 실행시 StackView의 subView가 7개가 생성되는지 확인하는 테스트 코드를 추가했습니다. -> (ViewController 테스트 코드는 Unit Test 보다 UITest를 하는 편이라는 걸 알게됐습니다.)
