@@ -65,4 +65,18 @@ class CardGameAppTests: XCTestCase {
         // 3.then
 //        XCTAssertEqual(other?.cards, sut.cards)
     }
+    
+    func testScenario(){
+        let totalCardCounts = 52
+        var other = sut
+        XCTAssertEqual(other?.count, totalCardCounts)
+        
+        other?.shuffle()
+        
+        print(other!.removeOne()!.description)
+        XCTAssertEqual(other?.count, totalCardCounts - 1 )
+        
+        print(other!.removeOne()!.description)
+        XCTAssertEqual(other?.count, totalCardCounts - 2 )
+    }
 }
