@@ -14,21 +14,8 @@ class ViewController: UIViewController {
     var numberOfPlayers: PokerGame.NumberOfPlayers = .two
     var pokerGame: PokerGame!
     
-    var gameTypeControl: UISegmentedControl = {
-        let segments = UISegmentedControl(items: ["7 Cards", "5 Cards"])
-        segments.selectedSegmentIndex = 0
-        segments.translatesAutoresizingMaskIntoConstraints = false
-        segments.addTarget(self, action: #selector(gameTypeChanged(segControl:)), for: .valueChanged)
-        return segments
-    }()
-    
-    var numberOfPlayersControl: UISegmentedControl = {
-        let segments = UISegmentedControl(items: ["2명", "3명", "4명"])
-        segments.selectedSegmentIndex = 0
-        segments.translatesAutoresizingMaskIntoConstraints = false
-        segments.addTarget(self, action: #selector(numberOfPlayersChanged(segControl:)), for: .valueChanged)
-        return segments
-    }()
+    var gameTypeControl: UISegmentedControl!
+    var numberOfPlayersControl: UISegmentedControl!
     
     var gameTable: UIStackView = {
         let stack = UIStackView()
@@ -69,8 +56,19 @@ class ViewController: UIViewController {
         self.view.layoutIfNeeded()
     }
     
+    func makeSegments(items: [String]) -> UISegmentedControl {
+        let segments = UISegmentedControl(items: items)
+        segments.selectedSegmentIndex = 0
+        segments.translatesAutoresizingMaskIntoConstraints = false
+        segments.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .normal)
+        segments.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor(patternImage: #imageLiteral(resourceName: "bg_pattern"))], for: .selected)
+        return segments
+    }
+    
     func addGameTypeControl() {
+        gameTypeControl = makeSegments(items: ["7 Card", "5 Card"])
         view.addSubview(gameTypeControl)
+        gameTypeControl.addTarget(self, action: #selector(gameTypeChanged(segControl:)), for: .valueChanged)
         gameTypeControl.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 50).isActive = true
         gameTypeControl.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
     }
@@ -89,7 +87,9 @@ class ViewController: UIViewController {
     }
     
     func addNumberOfPlayersControl() {
+        numberOfPlayersControl = makeSegments(items: ["2명", "3명", "4명"])
         view.addSubview(numberOfPlayersControl)
+        numberOfPlayersControl.addTarget(self, action: #selector(numberOfPlayersChanged(segControl:)), for: .valueChanged)
         numberOfPlayersControl.topAnchor.constraint(equalTo: gameTypeControl.bottomAnchor, constant: 10).isActive = true
         numberOfPlayersControl.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         numberOfPlayersControl.leadingAnchor.constraint(equalTo: gameTypeControl.leadingAnchor).isActive = true
