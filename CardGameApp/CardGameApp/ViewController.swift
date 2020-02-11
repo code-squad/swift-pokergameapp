@@ -12,6 +12,7 @@ class ViewController: UIViewController {
     
     private var gameType: GameType = .sevenCardsStud
     private var playerCount: PlayerCount = .two
+    private lazy var pokerGame: PokerGame = PokerGame(game: gameType, numberOfPlayers: playerCount)
     
     let gameTypeSegmentedControl: UISegmentedControl = {
         let segmentedControl = UISegmentedControl(items: ["7 Cards", "5 Cards"])
@@ -40,12 +41,11 @@ class ViewController: UIViewController {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
-
-    let cardStackView: UIStackView = {
+    
+    let pokerGameStackView: UIStackView = {
         let stackView = UIStackView()
-        stackView.axis = .horizontal
-        stackView.distribution = .fillEqually
-        stackView.spacing = 4
+        stackView.axis = .vertical
+        stackView.spacing = 24
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
@@ -53,12 +53,30 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let card1 = Card(suit: .heart, rank: .king)
-        print(card1)
-        let card2 = Card(suit: .spade, rank: .ace)
-        print(card2)
-        
         setupUI()
+        setupPokerGame()
+    }
+    
+    private func setupPokerGame() {
+        self.pokerGame = PokerGame(game: gameType, numberOfPlayers: playerCount)
+        pokerGameStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
+        
+        pokerGame.players.enumerated().forEach { (i, player) in
+            let playerStackView = generatePlayerStackView()
+            let cardStackView = generateCardStackView()
+            
+            let playerLabel = UILabel()
+            playerLabel.text = "Player \(i + 1)"
+            
+            player.hands.map { $0.description }
+                .forEach {
+                    cardStackView.addArrangedSubview(generateCardImageView(named: $0))
+                }
+            
+            playerStackView.addArrangedSubview(playerLabel)
+            playerStackView.addArrangedSubview(cardStackView)
+            pokerGameStackView.addArrangedSubview(playerStackView)
+        }
     }
     
     @objc private func handleGameTypeSegmentChanged(segmentedControl: UISegmentedControl) {
@@ -82,20 +100,33 @@ class ViewController: UIViewController {
         }
     }
     
-    private func cardImageView() -> UIImageView {
-        let imageView = UIImageView(image: #imageLiteral(resourceName: "card-back"))
+    private func generateCardImageView(named: String) -> UIImageView {
+        let image = UIImage(named: named)
+        let imageView = UIImageView(image: image)
         imageView.contentMode = .scaleAspectFill
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor, multiplier: 1.27).isActive = true
         return imageView
     }
     
+    private func generatePlayerStackView() -> UIStackView {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.spacing = 4
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }
+    
+    private func generateCardStackView() -> UIStackView {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.distribution = .fillEqually
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }
+    
     private func setupUI() {
         view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "bg_pattern"))
-        
-        for _ in 0..<7 {
-            cardStackView.addArrangedSubview(cardImageView())
-        }
         
         view.addSubview(segmentedControlsSV)
         segmentedControlsSV.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8).isActive = true
@@ -104,10 +135,11 @@ class ViewController: UIViewController {
         segmentedControlsSV.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         segmentedControlsSV.heightAnchor.constraint(equalToConstant: 64).isActive = true
         
-//        view.addSubview(cardStackView)
-//        cardStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8).isActive = true
-//        cardStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 8).isActive = true
-//        cardStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8).isActive = true
+        view.addSubview(pokerGameStackView)
+        pokerGameStackView.topAnchor.constraint(equalTo: segmentedControlsSV.bottomAnchor, constant: 16).isActive = true
+        pokerGameStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 8).isActive = true
+        pokerGameStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8).isActive = true
+        pokerGameStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -8).isActive = true
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
