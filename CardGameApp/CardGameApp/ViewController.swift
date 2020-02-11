@@ -30,10 +30,11 @@ class ViewController: UIViewController {
         return segments
     }()
     
-    var playerStack: UIStackView = {
+    var gameTable: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
         stack.translatesAutoresizingMaskIntoConstraints = false
+        stack.spacing = 30
         return stack
     }()
     
@@ -49,18 +50,18 @@ class ViewController: UIViewController {
         loadGame()
     }
     
-    func resetPlayerStack() {
-        playerStack.arrangedSubviews.forEach {
+    func resetGameTable() {
+        gameTable.arrangedSubviews.forEach {
             $0.removeFromSuperview()
         }
     }
     
     func loadGame() {
         pokerGame = PokerGame(gameType: gameType, numberOfPlayers: numberOfPlayers)
-        resetPlayerStack()
+        resetGameTable()
         pokerGame.play()
         makeGame()
-        setPlayerStackLayout()
+        setGameTableLayout()
         self.view.layoutIfNeeded()
     }
     
@@ -106,7 +107,6 @@ class ViewController: UIViewController {
             break
         }
     }
-
     
     func makeGame() {
         var index = 1
@@ -115,19 +115,25 @@ class ViewController: UIViewController {
             if index == pokerGame.players.count {
                 playerLabel.text = "Dealer"
             }
-            let playerCard = makePlayer($0)
+            let playerCard = makePlayerCard($0)
+            let playerStack: UIStackView = {
+                let stack = UIStackView()
+                stack.axis = .vertical
+                return stack
+            }()
             playerStack.addArrangedSubview(playerLabel)
             playerStack.addArrangedSubview(playerCard)
+            gameTable.addArrangedSubview(playerStack)
             playerLabel.bottomAnchor.constraint(equalTo: playerCard.topAnchor).isActive = true
             index += 1
         }
-        self.view.addSubview(playerStack)
+        self.view.addSubview(gameTable)
     }
     
-    func setPlayerStackLayout() {
-        playerStack.topAnchor.constraint(equalTo: gameTypeControl.bottomAnchor, constant: 50).isActive = true
-        playerStack.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 30).isActive = true
-        playerStack.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -30).isActive = true
+    func setGameTableLayout() {
+        gameTable.topAnchor.constraint(equalTo: gameTypeControl.bottomAnchor, constant: 50).isActive = true
+        gameTable.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 30).isActive = true
+        gameTable.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -30).isActive = true
     }
     
     func makePlayerLabel(playerName: String) -> UILabel {
@@ -141,7 +147,7 @@ class ViewController: UIViewController {
         return playerLabel
     }
     
-    func makePlayer(_ player: Player) -> UIStackView {
+    func makePlayerCard(_ player: Player) -> UIStackView {
         let cardStack = makeCardStack()
         player.handInfo.forEach {
             let card = makeCard($0)
