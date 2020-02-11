@@ -20,7 +20,7 @@ class PokerGameTests: XCTestCase {
         
         XCTAssert(pokerGame.players.count == 4)
         pokerGame.players.forEach {
-            XCTAssert($0.numberOfHands == 7)
+            XCTAssert($0.hands.count == 7)
         }
         
         pokerGame.players.enumerated().forEach { (i, player) in
@@ -34,7 +34,7 @@ class PokerGameTests: XCTestCase {
         
         XCTAssert(pokerGame.players.count == 3)
         pokerGame.players.forEach {
-            XCTAssert($0.numberOfHands == 5)
+            XCTAssert($0.hands.count == 5)
         }
         
         pokerGame.players.enumerated().forEach { (i, player) in

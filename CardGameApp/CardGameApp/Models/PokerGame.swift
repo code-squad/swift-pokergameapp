@@ -19,7 +19,6 @@ class PokerGame {
         self.numberOfPlayers = numberOfPlayers
         self.dealer = Dealer(game: gameType)
         setupHands()
-        setupPlayersHands()
     }
     
     private func setupHands() {
