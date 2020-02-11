@@ -9,15 +9,15 @@
 import Foundation
 
 class PokerGame {
-    var dealer: Dealer
+    private var dealer: Dealer
     var players = [Player]()
     enum GameType: Int {
         case fiveCardStud = 5
         case sevenCardStud = 7
     }
-    var gameType: GameType
-    var resumable: Bool {
-        dealer.deck.count > (players.count) * gameType.rawValue
+    private var gameType: GameType
+    private var resumable: Bool {
+        dealer.deckCount > (players.count) * gameType.rawValue
     }
     
     init(gameType: GameType, numberOfPlayers: Int) {
