@@ -9,5 +9,17 @@
 import Foundation
 
 class PokerGame{
+    private var dealer:Dealer
+    enum Stud:Int{
+        case fiveCardStud=5
+        case sevenCardStud=7
+    }
     
+    enum NumOfPlayer:Int{
+        case one=1,two,three,four
+    }
+    
+    init(){
+        self.dealer=Dealer()
+    }
 }
