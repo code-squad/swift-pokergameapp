@@ -55,7 +55,6 @@ class Players {
     }
     
     private let players: [Participant]
-    private var current: Int = 0
     
     init(withNumber number: Number) {
         self.players = number.entrance()
