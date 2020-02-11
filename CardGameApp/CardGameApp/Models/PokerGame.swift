@@ -20,13 +20,8 @@ class PokerGame {
         self.dealer = Dealer()
         for _ in 0..<numberOfPlayers { players.append(Player()) }
     }
-    
-    enum GameType: Int {
-        case sevenCardsStud = 7
-        case fiveCardsStud = 5
-        
-        var numberOfHands: Int {
-            self.rawValue
-        }
-    }
+}
+
+enum GameType: Int {
+    case sevenCardsStud, fiveCardsStud
 }
