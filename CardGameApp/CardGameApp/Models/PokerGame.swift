@@ -14,11 +14,22 @@ class PokerGame {
     var players: [Player] = []
     let dealer: Dealer
     
-    init(type gameType: GameType, numberOfPlayers: Int) {
+    init(game gameType: GameType, numberOfPlayers: Int) {
         self.gameType = gameType
         self.numberOfPlayers = numberOfPlayers
-        self.dealer = Dealer()
-        for _ in 0..<numberOfPlayers { players.append(Player()) }
+        self.dealer = Dealer(game: gameType)
+        setupPlayersHands()
+        dealer.setupCommunityCards()
+    }
+    
+    private func setupPlayersHands() {
+        for _ in 0..<numberOfPlayers {
+            guard let hands = dealer.drawHands() else {
+                print("카드가 부족합니다.")
+                return
+            }
+            players.append(Player(hands: hands))
+        }
     }
 }
 

@@ -9,10 +9,12 @@
 import Foundation
 
 class Dealer {
+    private let gameType: GameType
     private var deck = CardDeck()
     private var communityCards: [Card] = []
     
-    init() {
+    init(game gameType: GameType) {
+        self.gameType = gameType
         setupDeck()
         setupCommunityCards()
     }
@@ -22,6 +24,29 @@ class Dealer {
     }
     
     func setupCommunityCards() {
+        guard let hands = drawHands() else {
+            print("카드가 부족합니다")
+            return
+        }
+        communityCards = hands
+    }
+    
+    func drawHands() -> [Card]? {
+        var hands: [Card] = []
+        var numberOfHands = 0
+        switch gameType {
+        case .fiveCardsStud:
+            numberOfHands = 5
+        case .sevenCardsStud:
+            numberOfHands = 7
+        }
         
+        for _ in 0..<numberOfHands {
+            guard let card = deck.removeOne() else { return nil }
+            hands.append(card)
+        }
+        
+        return hands
     }
 }
+
