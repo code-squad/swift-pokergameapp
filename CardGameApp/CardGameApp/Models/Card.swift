@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Card {
+struct Card {
     // 카드 객체의 모양을 저장할 suit는 Nested enum type인 Suit이다.
     // 카드 정보를 출력할 때 바로 Character를 반환해주기 위해 raw value는 Character를 사용하였다.
     // 카드 객체의 숫자(값)을 저장할 rank는 Nested enum type인 Rank이다.
@@ -17,10 +17,16 @@ class Card {
     
     let suit: Suit
     let rank: Rank
+    private var imageFileName: String = ""
     
     init(suit: Suit, rank: Rank) {
         self.suit = suit
         self.rank = rank
+        setupImageName()
+    }
+    
+    private mutating func setupImageName() {
+        self.imageFileName = String(describing: self)
     }
     
     enum Suit: Character, CaseIterable {
