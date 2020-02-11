@@ -68,20 +68,12 @@ class ViewController: UIViewController {
         var players: [Playable] = pokerGame.players
         players.append(pokerGame.dealer)
         players.enumerated().forEach { (i, player) in
-            let playerStackView = generatePlayerStackView()
-            let cardStackView = generateCardStackView()
+            var displayName = "Player \(i + 1)"
+            if i == players.count - 1 { displayName = "Dealer" }
             
-            let playerLabel = UILabel()
-            playerLabel.textColor = .white
-            playerLabel.text = "Player \(i + 1)"
-            if i == players.count - 1 { playerLabel.text = "Dealer" }
+            let playerStackView = PlayerStackView(displayName: displayName)
+            let cardStackView = CardStackView(of: player)
             
-            player.hands.map { $0.description }
-                .forEach {
-                    cardStackView.addArrangedSubview(CardImageView(named: $0))
-                }
-            
-            playerStackView.addArrangedSubview(playerLabel)
             playerStackView.addArrangedSubview(cardStackView)
             pokerGameStackView.addArrangedSubview(playerStackView)
         }
@@ -108,22 +100,6 @@ class ViewController: UIViewController {
             break
         }
         resetPokerGame()
-    }
-    
-    private func generatePlayerStackView() -> UIStackView {
-        let stackView = UIStackView()
-        stackView.axis = .vertical
-        stackView.spacing = 4
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        return stackView
-    }
-    
-    private func generateCardStackView() -> UIStackView {
-        let stackView = UIStackView()
-        stackView.spacing = -8
-        stackView.distribution = .fillEqually
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        return stackView
     }
     
     private func setupUI() {
