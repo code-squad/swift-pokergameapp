@@ -62,6 +62,8 @@ class ViewController: UIViewController {
         segments.translatesAutoresizingMaskIntoConstraints = false
         segments.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .normal)
         segments.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor(patternImage: #imageLiteral(resourceName: "bg_pattern"))], for: .selected)
+        segments.layer.borderWidth = 1
+        segments.layer.borderColor = UIColor.white.cgColor
         return segments
     }
     
