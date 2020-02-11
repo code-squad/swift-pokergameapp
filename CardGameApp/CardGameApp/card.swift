@@ -8,22 +8,6 @@
 
 import Foundation
 
-extension Card:CustomStringConvertible{
-    var description: String {
-        return String(self.suit.rawValue)+self.rankString
-    }
-}
-
-extension Card:Equatable{
-    static func == (lhs: Card, rhs: Card) -> Bool {
-        if lhs.description == rhs.description{
-            return true
-        } else{
-            return false
-        }
-    }
-}
-
 class Card{
     
     /**
@@ -32,15 +16,27 @@ class Card{
      초기에 딕셔너리를 사용하려 했으나, 이 경우 어떤 값이 들어가는지 제한 할 수 없으며, 명확하지 않음
      예를 들어 ace를 0으로 표현할수도, 13으로 표현할 수도 있기 때문에 enum을 사용하여 이 점을 명확히 해줌.
      */
-    enum Suit:Character,CaseIterable{
+    enum Suit:String,CaseIterable{
         case spade = "♠️"
         case clover = "♣️"
         case heart = "♥️"
         case diamond = "♦️"
     }
     
-    enum Rank:Int,CaseIterable{
-        case ace=1,two,three,four,five,six,seven,eight,nine,ten,jack,queen,king
+    enum Rank:String,CaseIterable{
+        case ace="A"
+        case two="2"
+        case three="3"
+        case four="4"
+        case five="5"
+        case six="6"
+        case seven="7"
+        case eight="8"
+        case nine="9"
+        case ten="10"
+        case jack="J"
+        case queen="Q"
+        case king="K"
     }
     
     let rank:Rank
@@ -50,19 +46,16 @@ class Card{
         self.rank=rank
         self.suit=suit
     }
-    
-    var rankString:String{
-        switch self.rank {
-        case .ace:
-            return "A"
-        case .jack:
-            return "J"
-        case .queen:
-            return "Q"
-        case .king:
-            return "K"
-        default:
-            return String(self.rank.rawValue)
-        }
+}
+
+extension Card:CustomStringConvertible{
+    var description: String {
+        return self.suit.rawValue+self.rank.rawValue
+    }
+}
+
+extension Card:Equatable{
+    static func == (lhs: Card, rhs: Card) -> Bool {
+        return (lhs.rank == rhs.rank) && (lhs.suit == rhs.suit)
     }
 }
