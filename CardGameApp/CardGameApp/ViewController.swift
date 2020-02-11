@@ -11,7 +11,7 @@ import UIKit
 class ViewController: UIViewController {
     private var gameType: GameType = .sevenCardsStud
     private var playerCount: PlayerCount = .two
-    private lazy var pokerGame: PokerGame = PokerGame(game: gameType, numberOfPlayers: playerCount)
+    private var pokerGame: PokerGame = PokerGame(game: .sevenCardsStud, numberOfPlayers: .two)
     
     let gameTypeSegmentedControl: UISegmentedControl = {
         let segmentedControl = UISegmentedControl(items: ["7 Cards", "5 Cards"])
