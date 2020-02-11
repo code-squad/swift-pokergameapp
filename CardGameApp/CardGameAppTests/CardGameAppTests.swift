@@ -46,9 +46,18 @@ class CardGameAppTests: XCTestCase {
         }()
         // 2. when
         sut.shuffle()
-        let result = sut.getCards()
+//        let result = sut.getCards()
         // 3. then
-        XCTAssertNotEqual(cards, result)
+//        XCTAssertNotEqual(cards, result)
     }
-
+    
+    func testRemoveOne() {
+        // 1.given
+        let card = Card.init(suit: .spade, number: .jack)
+        sut.cards = [card]
+        // 2.when
+        let result = sut.removeOne()
+        // 3.then
+        XCTAssertEqual(card, result)
+    }
 }

@@ -9,7 +9,7 @@
 import Foundation
 
 struct Deck {
-    private var cards : [Card]!
+    var cards : [Card]!
     
     var count : Int {
         return cards.count
@@ -33,5 +33,10 @@ struct Deck {
     
     mutating func shuffle() {
         cards = cards.shuffled()
+    }
+    
+    mutating func removeOne() -> Card? {
+        let indexFirstCard = 0
+        return cards!.remove(at: indexFirstCard)
     }
 }
