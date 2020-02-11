@@ -12,7 +12,7 @@ class ViewController: UIViewController {
     
     private var gameType: GameType = .sevenCardsStud
     
-    let segmentedControl: UISegmentedControl = {
+    let gameTypeSegmentedControl: UISegmentedControl = {
         let segmentedControl = UISegmentedControl(items: ["7 Cards", "5 Cards"])
         segmentedControl.selectedSegmentIndex = 0
         segmentedControl.translatesAutoresizingMaskIntoConstraints = false
@@ -63,9 +63,9 @@ class ViewController: UIViewController {
             cardStackView.addArrangedSubview(cardImageView())
         }
         
-        view.addSubview(segmentedControl)
-        segmentedControl.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8).isActive = true
-        segmentedControl.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        view.addSubview(gameTypeSegmentedControl)
+        gameTypeSegmentedControl.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8).isActive = true
+        gameTypeSegmentedControl.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
 //        view.addSubview(cardStackView)
 //        cardStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8).isActive = true
 //        cardStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 8).isActive = true
