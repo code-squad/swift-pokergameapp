@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4426F8F623F3CD4E00406144 /* Players.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4426F8F523F3CD4E00406144 /* Players.swift */; };
 		443AEA7D23EEC8C40084A967 /* IntegrationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443AEA7C23EEC8C40084A967 /* IntegrationTest.swift */; };
 		443AEA9123EECABB0084A967 /* DeckTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443AEA9023EECABB0084A967 /* DeckTest.swift */; };
 		444F3F1023ED14430010F74E /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444F3F0F23ED14430010F74E /* Card.swift */; };
@@ -56,6 +57,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4426F8F523F3CD4E00406144 /* Players.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Players.swift; sourceTree = "<group>"; };
 		443AEA7A23EEC8C40084A967 /* IntegrationTest.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IntegrationTest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		443AEA7C23EEC8C40084A967 /* IntegrationTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntegrationTest.swift; sourceTree = "<group>"; };
 		443AEA7E23EEC8C40084A967 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 				44E3EB6523EED8F7009402E0 /* Player.swift */,
 				44E3EB6723EED98E009402E0 /* Dealer.swift */,
 				44E3EB6B23EEDB20009402E0 /* PokerGame.swift */,
+				4426F8F523F3CD4E00406144 /* Players.swift */,
 				444F3F1323ED5A380010F74E /* Deck.swift */,
 				44B649EA23EA75EE00C9F914 /* Main.storyboard */,
 				44B649ED23EA75F000C9F914 /* Assets.xcassets */,
@@ -408,6 +411,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4426F8F623F3CD4E00406144 /* Players.swift in Sources */,
 				44B649E923EA75EE00C9F914 /* ViewController.swift in Sources */,
 				44E3EB6C23EEDB20009402E0 /* PokerGame.swift in Sources */,
 				44B649E523EA75EE00C9F914 /* AppDelegate.swift in Sources */,
