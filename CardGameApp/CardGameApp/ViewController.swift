@@ -52,7 +52,26 @@ class ViewController: UIViewController {
         self.view.addSubview(cardsStack)
         setStackView ()
         CardDeck()
+        
+        print("명령어를 입력해주세요 :)")
+        let command = readLine() ?? ""
+        
+        switch command {
+        case InputView.command.reset.rawValue :
+            var cardDeck = CardDeck()
+            cardDeck.reset()
+        case InputView.command.shuffle.rawValue :
+            var cardDeck = CardDeck()
+            cardDeck.shuffle()
+        case InputView.command.count.rawValue :
+            var cardDeck = CardDeck()
+            cardDeck.count()
+        case InputView.command.removeOne.rawValue :
+            var cardDeck = CardDeck()
+            cardDeck.removeOne(of: )
+        default:
+            <#code#>
         }
+        
     }
-    
-//}
+}

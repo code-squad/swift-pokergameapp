@@ -9,7 +9,7 @@
 import Foundation
 
 struct CardDeck {
-    var cards : [Card] = []
+    private var cards : [Card] = []
     
     init() {
         cards = self.reset()

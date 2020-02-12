@@ -122,3 +122,96 @@ RGR(red, green, refactor) & BDD(given, when, then) 시도
 2-1. 테스트 코드에서 XCTAssertEqual 메소드나 XCTAssertNotEqual 메소드를 사용하기 위해 CardDeck 구조체와 Card 클래스에 extension으로 Equatable 프로토콜을 채택 
 2-1. Suit enum과 Rank enum이 CaseIterable 프로토콜 채택
 2-2. CaseIterable 프로토콜의 메소드인 allCases를 활용해 CardDeck 구조체에서 reset 메소드 구현
+
+20.02.12 16: 15
+
+3. 처음처럼 모든 카드를 다시 채워넣는 reset메소드 구현. 
+
+4. 카드 인스턴스 중에 하나를 반환하고 목록에서 삭제하는  removeOne 메소드 구현
+
+3 & 4. CardDeck 구조체가 가지고있는 프로퍼티 cards를 변경하는 메소드(reset, removeOne) 구현하다가 self(CardDeck 구조체)가 immutable하기 때문에 reset, removeOne 메소드 이름 앞에 mutating 키워드를 추가해 변경 가능하도록 바꿨습니다.
+
+5. 전체 카드를 랜덤하게 섞는 Shuffle 메소드 구현
+
+셔플 알고리즘에 대해서 공부했습니다.
+
+5-1. Fisher–Yates shuffle algorithm (original)
+
+```swift
+var items = ["A", "B", "C", "D", "E", "F", "G", "H"]
+var shuffled = [String]();
+
+for i in 0..<items.count
+{
+    let rand = Int(arc4random_uniform(UInt32(items.count)))
+
+    shuffled.append(items[rand])
+
+    items.remove(at: rand)
+}
+
+print(shuffled)
+```
+5-2. Knuth Shuffle: Fisher–Yates shuffle algorithm (modern)
+https://developer.apple.com/videos/play/wwdc2018/406/?time=1289
+(Fisher–Yates shuffle: 23:05 ~ )
+애플의 shuffle 메소드는 이 방식으로 구현됐습니다.
+
+```swift
+var items = ["A", "B", "C", "D", "E", "F", "G", "H"]
+var last = items.count - 1
+
+while(last > 0)
+{
+    let rand = Int(arc4random_uniform(UInt32(last)))
+
+    print("swap items[\(last)] = \(items[last]) with items[\(rand)] = \(items[rand])")
+
+    items.swapAt(last, rand)
+
+    print(items)
+
+    last -= 1
+}
+```
+original과 달리 두 개의 Collection이 필요없습니다.
+5-3. navie shuffle algorithm vs Fisher–Yates shuffle
+https://dyladan.me/abc/2016/01/20/shuffle/
+https://gist.github.com/robertmryan/b002b7d524646fd677bb3979c89ec331 
+
+```swift
+extension Array {
+    
+    /// Simple implementation of Fisher-Yates
+    
+    mutating func shuffle() {
+        for i in 0 ..< count - 1 {
+            let j = i + Int(arc4random_uniform(UInt32(count - i)))
+            swapAt(i, j)
+        }
+    }
+    
+    /// Naive implementation that introduces biases
+    
+    mutating func shuffleBiased() {
+        for i in 0 ..< count {
+            let j = Int(arc4random_uniform(UInt32(count)))
+            swapAt(i, j)
+        }
+    }
+}
+```
+navie shuffle은 편향된 셔플 결과를 보이는 반면 Fisher-Yates shuffle은 항상 비슷한 셔플 결과를 보입니다.
+
+- shuffle()과 shuffled() 공통점과 차이점
+  * 공통점 : Collection의 value들을 섞습니다., 복잡도가 O(n)입니다.
+  * 차이점: shuffled 메소드는 셔플한 Collection을 반환합니다.
+
+6. 갖고 있는 카드 개수를 반환하는 Count 메소드 구현
+
+- count 갖고 있는 카드 개수를 반환합니다.
+- shuffle 기능은 전체 카드를 랜덤하게 섞습니다.
+- removeOne 기능은 카드 인스턴스 중에 하나를 반환하고 목록에서 삭제합니다.
+- reset 처음처럼 모든 카드를 다시 채워넣습니다.
+
+7. 테스트 코드에서 Card 객체 비교시 Thread가 끊임없이 돌아갔습니다 -> Card 클래스의 Equatable 비교 대상을 수정했습니다.
