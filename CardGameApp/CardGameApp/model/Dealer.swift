@@ -10,14 +10,10 @@ import Foundation
 
 class Dealer:Player{
     private var cardDeck:CardDeck
-    private var stud:PokerGame.Stud
-    private var numOfPlayer:PokerGame.NumOfPlayer
     
-    init(stud:PokerGame.Stud, numOfPlayer:PokerGame.NumOfPlayer){
+    override init(){
         self.cardDeck = CardDeck()
         self.cardDeck.shuffle()
-        self.stud = stud
-        self.numOfPlayer = numOfPlayer
     }
     
     func deal() -> Card?{
