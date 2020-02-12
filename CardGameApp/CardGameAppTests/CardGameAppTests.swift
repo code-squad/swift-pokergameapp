@@ -45,36 +45,10 @@ class CardGameAppTests: XCTestCase {
         XCTAssertEqual(cardSet.count(), 52)
     }
     
-    func testPlayer(){
-        let player = Player()
-        player.receiveCard(card: Card(rank: .ace, suit: .clover))
-        XCTAssert(player.getCardCount() == 1)
-    }
-    
-    func testGameStart(){
-        let pokerGame = PokerGame()
-        pokerGame.gameStart()
-        XCTAssertNotNil(pokerGame.getDealer)
-        XCTAssertNotNil(pokerGame.getPlayers)
-        XCTAssertGreaterThan(pokerGame.getPlayers().count,0)
-    }
-    
-    func testSetGameStyle(){
-        let pokerGame = PokerGame()
-        let beforeChangedStud = pokerGame.getStud()
-        pokerGame.setGameStyle(stud: .fiveCardStud, numOfPlayer: pokerGame.getNumOfPlayer())
-        XCTAssertNotEqual(beforeChangedStud, pokerGame.getStud())
-        
-        let beforeChangedNOP = pokerGame.getNumOfPlayer()
-        pokerGame.setGameStyle(stud: pokerGame.getStud(), numOfPlayer: .one)
-        XCTAssertNotEqual(beforeChangedNOP, pokerGame.getNumOfPlayer())
-    }
-    
     func testPerformanceExample() {
         // This is an example of a performance test case.
         self.measure {
             // Put the code you want to measure the time of here.
         }
     }
-    
 }
