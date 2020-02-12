@@ -7,7 +7,7 @@
 //
 
 import Foundation
-class Dealer: Player{
+class Dealer: Playable{
     private var cardDeck = CardDeck()
     private var cards = [Card]()
     
@@ -19,7 +19,7 @@ class Dealer: Player{
         return cardDeck.count()
     }
     
-    override func appendCard(_ card: Card) {
+    func appendCard(_ card: Card) {
         cards.append(card)
     }
     
