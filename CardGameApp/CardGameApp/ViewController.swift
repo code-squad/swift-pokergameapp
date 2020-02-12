@@ -28,10 +28,10 @@ class ViewController: UIViewController {
         addConstraintsToStack()
         addCardsToStackView()
         
-        let heartsOfTwelve = Card(suit: .hearts, rank: .twelve)
-        print(heartsOfTwelve.description)
+        let heartsOfTwelve = Card(suit: .hearts, rank: .queen)
+        print(heartsOfTwelve)
         let spadesOfSeven = Card(suit: .spades, rank: .seven)
-        print(spadesOfSeven.description)
+        print(spadesOfSeven)
         
         let cardDeck = CardDeck()
     }
