@@ -10,10 +10,10 @@ import Foundation
 
 class Dealer:Player{
     private var cardDeck:CardDeck
-    private var stud:Int
-    private var numOfPlayer:Int
+    private var stud:PokerGame.Stud
+    private var numOfPlayer:PokerGame.NumOfPlayer
     
-    init(stud:Int,numOfPlayer:Int){
+    init(stud:PokerGame.Stud,numOfPlayer:PokerGame.NumOfPlayer){
         self.cardDeck=CardDeck()
         self.cardDeck.shuffle()
         self.stud=stud

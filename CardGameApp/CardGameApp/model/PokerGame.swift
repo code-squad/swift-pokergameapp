@@ -9,8 +9,8 @@
 import Foundation
 
 class PokerGame{
-    private var dealer:Dealer
-    private var players:[Player]
+    private var dealer:Dealer=Dealer(stud: .sevenCardStud, numOfPlayer: .four)
+    private var players:[Player]=[Player]()
     private var stud:Stud
     private var numOfPlayer:NumOfPlayer
     
@@ -26,7 +26,11 @@ class PokerGame{
     init(){
         self.stud=Stud.sevenCardStud
         self.numOfPlayer=NumOfPlayer.four
-        self.dealer=Dealer(stud: stud.rawValue, numOfPlayer: numOfPlayer.rawValue)
+        readyPlayer()
+    }
+    
+    private func readyPlayer(){
+        self.dealer=Dealer(stud: self.stud, numOfPlayer: self.numOfPlayer)
         self.players=[Player]()
         for _ in 0..<self.numOfPlayer.rawValue{
             players.append(Player())
@@ -49,6 +53,18 @@ class PokerGame{
         } else {
             exit(0)
         }
+    }
+    
+    func setStud(stud:Stud){
+        self.stud=stud
+        readyPlayer()
+        gameStart()
+    }
+    
+    func setNumOfPlayer(numOfPlayer:NumOfPlayer){
+        self.numOfPlayer=numOfPlayer
+        readyPlayer()
+        gameStart()
     }
 }
 
