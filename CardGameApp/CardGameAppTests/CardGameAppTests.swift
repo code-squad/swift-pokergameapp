@@ -25,9 +25,11 @@ class CardGameAppTests: XCTestCase {
         // Given
         let viewController = ViewController()
         let cardStack = viewController.cardsStack
+        
         // When
         let description = viewController.addCards()
         let subViewCount = cardStack.subviews.count
+        
         // Then
         XCTAssertEqual(subViewCount, 7)
     }
@@ -35,8 +37,10 @@ class CardGameAppTests: XCTestCase {
     func testDescripteCard() {
         // Given
         let card = Card(suit: .hearts , rank: .eight )
+        
         // When
         let description = card.descripteCard()
+        
         // Then
         XCTAssertEqual(description, "♥️8")
     }
@@ -45,6 +49,7 @@ class CardGameAppTests: XCTestCase {
         // given
         let initCardDeckbyReset = CardDeck()
         let cardsCount = initCardDeckbyReset.count()
+        
         // Then
         XCTAssertEqual(cardsCount, 52)
     }
@@ -54,11 +59,12 @@ class CardGameAppTests: XCTestCase {
         let cardGameCardDeck = CardDeck()
         let randomIndex = Int.random(in: 0 ... 52)
         let originalCard = cardGameCardDeck.cards[randomIndex]
+        
         // When
         let shuffledCard = cardGameCardDeck.shuffle()[randomIndex]
+        
         // Then
         XCTAssertNotEqual(originalCard, shuffledCard)
-        //        XCTAssertNotEqual(originalCards.dropLast(), shuffledCards.dropLast())
     }
     
     func testRemoveOne() {
@@ -67,10 +73,12 @@ class CardGameAppTests: XCTestCase {
         let originalCount = cardDeck.cards.count
         var randomCardIndexWillRemove = Int.random(in: 1..<originalCount-1)
         let nextCardFromRemoved = cardDeck.cards[randomCardIndexWillRemove+1]
+        
         // When
         let removedOne = cardDeck.removeOne(of: randomCardIndexWillRemove)
         let movedCardToForward = cardDeck.cards[randomCardIndexWillRemove]
         let changedCount = cardDeck.cards.count
+        
         // Then
         XCTAssertNotEqual(originalCount, changedCount)
         // 삭제 요청된 카드 다음 인덱스에 있던 카드가 삭제 후 삭제된 카드 인덱스에 있는지 확인한다
@@ -103,5 +111,4 @@ class CardGameAppTests: XCTestCase {
         // Then
         XCTAssertNotEqual(removeOneMore, reset)
     }
-    
 }
