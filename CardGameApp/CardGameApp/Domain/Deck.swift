@@ -9,7 +9,7 @@
 import Foundation
 
 struct Deck {
-    private var cards : [Card]!
+    var cards : [Card]!
     var count : Int {
         return cards.count
     }
@@ -34,11 +34,11 @@ struct Deck {
         cards = cards.shuffled()
     }
     
-    mutating func removeOne() -> Card? {
+    @discardableResult
+    mutating func removeOne() throws -> Card {
         let none = 0
         guard count != none else {
-            print("no card")
-            return nil
+            throw DeckError.indexOutOfRangeError
         }
         
         let indexFirstCard = 0
@@ -54,4 +54,8 @@ extension Deck : Equatable {
     public static func == (lhs: Deck, rhs: Deck) -> Bool {
         return lhs.cards == rhs.cards
     }
+}
+
+enum DeckError : Error {
+    case indexOutOfRangeError
 }
