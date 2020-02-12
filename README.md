@@ -13,3 +13,7 @@
 <img width="300" src="https://user-images.githubusercontent.com/49548908/74219027-f08e3380-4cee-11ea-8247-f5d7e73fe3c1.png">
 
 <br>
+
+### step-2
+1. JK 리뷰를 토대로 리팩토링 진행(클래스 프로퍼티에 private사용, 함수를 조금 더 나눠 봄)
+
