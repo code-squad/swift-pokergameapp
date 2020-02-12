@@ -9,7 +9,6 @@
 import UIKit
 
 class CardImageView: UIImageView {
-    
     init(named: String) {
         let image = UIImage(named: named)
         super.init(image: image)
@@ -26,7 +25,4 @@ class CardImageView: UIImageView {
         translatesAutoresizingMaskIntoConstraints = false
         heightAnchor.constraint(equalTo: widthAnchor, multiplier: 1.27).isActive = true
     }
-    
-    
-    
 }
