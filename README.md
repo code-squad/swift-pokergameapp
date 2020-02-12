@@ -101,7 +101,9 @@ STEP15 포커게임 앱 저장소
 </div>
 </details>
 
-
+<details>
+<summary>step 3 : 카드덱 구현과 테스트</summary>
+<div markdown="1">
 
 ## step 3 : 카드덱 구현과 테스트
 
@@ -156,4 +158,32 @@ STEP15 포커게임 앱 저장소
 특정 변수가 참조하고있는 인스턴스의 참조 카운트가 0이 되면 메모리를 해제함.
 
 변수가 인스턴스를 참조하면 인스턴스의 참조 카운트가 1 늘어 나고, 참조를 해제하면 1 줄어들음.
+
+
+
+2020.02.11
+
+</div>
+</details>
+
+
+
+## Step4 : 포커 딜러와 게임 테스트
+
+### 추가한 기능
+
+1. Player 클래스 추가
+   * 자신의 Card를 배열로 저장하는 cardDeck 변수를 가지고 있음
+   * receiveCard()를 통해 Card 인스턴스를 전달받음
+2. Dealer 클래스 추가
+   * Player 클래스를 상속받음
+   * deal() 메소드를 통해 Player들에게 Card 인스턴스를 전달함
+3. PokerGame 클래스 추가
+   * Dealer 인스턴스를 저장하는 dealer 변수를 가지고 있음
+   * Player 인스턴스를 배열로 저장하는 players 변수를 가지고 있음
+   * Stud, NumOfPlayer을 저장하는 stud, numOfPlayer 변수. 초기 값은 7,4
+   * gameStart() 메소드를 통해 딜러와 플레이어를 초기화하고, dealCardToPlayer(player:Player) 메소드를 이용해 카드 인스턴스를 전달
+   * setStud(stud:Stud), setNumOfPlayer(numOfPlayer:NumOfPlayer) 메소드를 통해 stud, numOfPlayer 값을 변경할 수 있음.
+
+2020.02.12
 
