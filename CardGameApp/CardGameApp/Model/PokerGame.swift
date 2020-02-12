@@ -58,7 +58,7 @@ class PokerGame {
         players.forEach(transform)
     }
     
-    func distributeCards() {
+    private func distributeCards() {
         players.forEach {
             guard let drawnCard = dealer.drawCard() else {
                 return

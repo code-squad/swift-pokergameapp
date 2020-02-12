@@ -17,6 +17,7 @@ class Player {
     func forEach(_ transform: (Card) -> ()) {
         hand.forEach(transform)
     }
+    
     func discard() {
         hand = [Card]()
     }

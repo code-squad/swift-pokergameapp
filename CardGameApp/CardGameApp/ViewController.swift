@@ -10,14 +10,14 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    var gameType: PokerGame.GameType = .sevenCardStud
-    var numberOfPlayers: PokerGame.NumberOfPlayers = .two
-    var pokerGame: PokerGame!
+    private var gameType: PokerGame.GameType = .sevenCardStud
+    private var numberOfPlayers: PokerGame.NumberOfPlayers = .two
+    private var pokerGame: PokerGame!
     
-    var gameTypeControl: UISegmentedControl!
-    var numberOfPlayersControl: UISegmentedControl!
+    private var gameTypeControl: UISegmentedControl!
+    private var numberOfPlayersControl: UISegmentedControl!
     
-    var gameTable: UIStackView = {
+    private var gameTable: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
         stack.translatesAutoresizingMaskIntoConstraints = false
@@ -39,13 +39,13 @@ class ViewController: UIViewController {
     
     // MARK: - Make View
     
-    func resetGameTable() {
+    private func resetGameTable() {
         gameTable.arrangedSubviews.forEach {
             $0.removeFromSuperview()
         }
     }
     
-    func loadGame() {
+    private func loadGame() {
         pokerGame = PokerGame(gameType: gameType, numberOfPlayers: numberOfPlayers)
         resetGameTable()
         pokerGame.play()
@@ -54,7 +54,7 @@ class ViewController: UIViewController {
         self.view.layoutIfNeeded()
     }
     
-    func makeSegments(items: [String]) -> UISegmentedControl {
+    private func makeSegments(items: [String]) -> UISegmentedControl {
         let segments = UISegmentedControl(items: items)
         segments.selectedSegmentIndex = 0
         segments.translatesAutoresizingMaskIntoConstraints = false
@@ -65,7 +65,7 @@ class ViewController: UIViewController {
         return segments
     }
     
-    func addGameTypeControl() {
+    private func addGameTypeControl() {
         gameTypeControl = makeSegments(items: ["7 Card", "5 Card"])
         view.addSubview(gameTypeControl)
         gameTypeControl.addTarget(self, action: #selector(gameTypeChanged(segControl:)), for: .valueChanged)
@@ -73,7 +73,7 @@ class ViewController: UIViewController {
         gameTypeControl.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
     }
     
-    func addNumberOfPlayersControl() {
+    private func addNumberOfPlayersControl() {
         numberOfPlayersControl = makeSegments(items: ["2명", "3명", "4명"])
         view.addSubview(numberOfPlayersControl)
         numberOfPlayersControl.addTarget(self, action: #selector(numberOfPlayersChanged(segControl:)), for: .valueChanged)
@@ -83,7 +83,7 @@ class ViewController: UIViewController {
         numberOfPlayersControl.trailingAnchor.constraint(equalTo: gameTypeControl.trailingAnchor).isActive = true
     }
     
-    func makeGame() {
+    private func makeGame() {
         var index = 1
         pokerGame.forEachPlayers {
             let playerLabel = makePlayerLabel(playerName: "Player\(index)")
@@ -104,13 +104,13 @@ class ViewController: UIViewController {
         self.view.addSubview(gameTable)
     }
     
-    func setGameTableLayout() {
+    private func setGameTableLayout() {
         gameTable.topAnchor.constraint(equalTo: gameTypeControl.bottomAnchor, constant: 50).isActive = true
         gameTable.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 30).isActive = true
         gameTable.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -30).isActive = true
     }
     
-    func makePlayerLabel(playerName: String) -> UILabel {
+    private func makePlayerLabel(playerName: String) -> UILabel {
         let playerLabel: UILabel = {
             let label = UILabel()
             label.text = playerName
@@ -121,7 +121,7 @@ class ViewController: UIViewController {
         return playerLabel
     }
     
-    func makePlayerCard(_ player: Player) -> UIStackView {
+    private func makePlayerCard(_ player: Player) -> UIStackView {
         let cardStack = makeCardStack()
         player.forEach {
             let card = makeCard($0)
@@ -131,7 +131,7 @@ class ViewController: UIViewController {
         return cardStack
     }
     
-    func makeCardStack() -> UIStackView {
+    private func makeCardStack() -> UIStackView {
         let cardStack: UIStackView = {
             let stack = UIStackView()
             stack.distribution = .fillEqually
@@ -141,7 +141,7 @@ class ViewController: UIViewController {
         return cardStack
     }
     
-    func makeCard(_ cardInfo: Card) -> UIImageView {
+    private func makeCard(_ cardInfo: Card) -> UIImageView {
         let card: UIImageView = {
             let imageView = UIImageView()
             imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -159,12 +159,12 @@ class ViewController: UIViewController {
         loadGame()
     }
     
-    @objc func gameTypeChanged(segControl: UISegmentedControl) {
+    @objc private func gameTypeChanged(segControl: UISegmentedControl) {
         gameType = PokerGame.GameType(index: segControl.selectedSegmentIndex)
         loadGame()
     }
     
-    @objc func numberOfPlayersChanged(segControl: UISegmentedControl) {
+    @objc private func numberOfPlayersChanged(segControl: UISegmentedControl) {
         numberOfPlayers = PokerGame.NumberOfPlayers(index: segControl.selectedSegmentIndex)
         loadGame()
     }
