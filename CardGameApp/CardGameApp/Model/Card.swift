@@ -46,6 +46,54 @@ extension Card: CustomStringConvertible {
         }
         return "\(pattern.rawValue) \(numberCharacter)"
     }
+    
+    var numberImageMatching: String {
+        var imageNumber = ""
+        switch self.number {
+        case .one:
+            imageNumber = "A"
+        case .two:
+            imageNumber = "2"
+        case .three:
+            imageNumber = "3"
+        case .four:
+            imageNumber = "4"
+        case .five:
+            imageNumber = "5"
+        case .six:
+            imageNumber = "6"
+        case .seven:
+            imageNumber = "7"
+        case .eight:
+            imageNumber = "8"
+        case .nine:
+            imageNumber = "9"
+        case .ten:
+            imageNumber = "10"
+        case .eleven:
+            imageNumber = "J"
+        case .twelve:
+            imageNumber = "Q"
+        case .thirteen:
+            imageNumber = "K"
+        }
+        return imageNumber
+    }
+    
+    var patternImageMatching: String {
+        var imagePattern = ""
+        switch self.pattern {
+        case .clover:
+            imagePattern = "c"
+        case .diamond:
+            imagePattern = "d"
+        case .heart:
+            imagePattern = "h"
+        case .spade:
+            imagePattern = "s"
+        }
+        return imagePattern
+    }
 }
 
 extension Card: Equatable {
