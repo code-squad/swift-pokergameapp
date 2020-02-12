@@ -20,39 +20,39 @@ class CardGameAppTests: XCTestCase {
     }
     
     func testShuffle(){
-        var cardSet=CardDeck()
-        let beforeShuffledCarset=cardSet
-        var isSame=true
+        var cardSet = CardDeck()
+        let beforeShuffledCarset = cardSet
+        var isSame = true
         cardSet.shuffle()
         isSame = (cardSet == beforeShuffledCarset)
         XCTAssert(isSame == false)
     }
     
     func testRemoveOne(){
-        var cardSet=CardDeck()
+        var cardSet = CardDeck()
         if cardSet.count() == 0{
             XCTAssertEqual(cardSet.removeOne(),nil)
         } else{
-            let beforeRemovedCount=cardSet.count()
+            let beforeRemovedCount = cardSet.count()
             cardSet.removeOne()
             XCTAssertEqual(cardSet.count(), (beforeRemovedCount - 1))
         }
     }
     
     func testReset(){
-        var cardSet=CardDeck()
+        var cardSet = CardDeck()
         cardSet.reset()
         XCTAssertEqual(cardSet.count(), 52)
     }
     
     func testPlayer(){
-        let player=Player()
+        let player = Player()
         player.receiveCard(card: Card(rank: .ace, suit: .clover))
         XCTAssert(player.getCardCount() == 1)
     }
     
     func testGameStart(){
-        let pokerGame=PokerGame()
+        let pokerGame = PokerGame()
         pokerGame.gameStart()
         XCTAssertNotNil(pokerGame.getDealer)
         XCTAssertNotNil(pokerGame.getPlayers)
@@ -60,18 +60,18 @@ class CardGameAppTests: XCTestCase {
     }
     
     func testSetStud(){
-        let pokerGame=PokerGame()
-        let originalStud=pokerGame.getStud()
+        let pokerGame = PokerGame()
+        let originalStud = pokerGame.getStud()
         pokerGame.setStud(stud: .fiveCardStud)
-        let changedStud=pokerGame.getStud()
+        let changedStud = pokerGame.getStud()
         XCTAssertNotEqual(originalStud,changedStud)
     }
     
     func testSetNumOfPlayer(){
-        let pokerGame=PokerGame()
-        let originalNumOfPlayer=pokerGame.getNumOfPlayer()
+        let pokerGame = PokerGame()
+        let originalNumOfPlayer = pokerGame.getNumOfPlayer()
         pokerGame.setNumOfPlayer(numOfPlayer: .one)
-        let changedNumOfPlayer=pokerGame.getNumOfPlayer()
+        let changedNumOfPlayer = pokerGame.getNumOfPlayer()
         XCTAssertNotEqual(originalNumOfPlayer,changedNumOfPlayer)
     }
     
