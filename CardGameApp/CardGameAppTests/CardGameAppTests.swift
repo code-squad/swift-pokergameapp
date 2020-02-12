@@ -35,9 +35,16 @@ class CardGameAppTests: XCTestCase {
         // 1. given
         let otherDeck = deck
         // 2. when
-        deck.shuffle()
+        var count = 0
+        let maxTime = 100000
+        for _ in 0 ..< maxTime {
+            deck.shuffle()
+            if otherDeck != deck {
+                count += 1
+            }
+        }
         // 3. then
-        XCTAssertNotEqual(otherDeck, deck)
+        XCTAssertGreaterThanOrEqual(count, maxTime - 1)
     }
     
     func testRemoveOne() {
