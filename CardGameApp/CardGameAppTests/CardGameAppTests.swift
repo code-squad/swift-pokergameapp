@@ -59,22 +59,16 @@ class CardGameAppTests: XCTestCase {
         XCTAssertGreaterThan(pokerGame.getPlayers().count,0)
     }
     
-    func testSetStud(){
+    func testSetGameStyle(){
         let pokerGame = PokerGame()
-        let originalStud = pokerGame.getStud()
-        pokerGame.setStud(stud: .fiveCardStud)
-        let changedStud = pokerGame.getStud()
-        XCTAssertNotEqual(originalStud,changedStud)
+        let beforeChangedStud = pokerGame.getStud()
+        pokerGame.setGameStyle(stud: .fiveCardStud, numOfPlayer: pokerGame.getNumOfPlayer())
+        XCTAssertNotEqual(beforeChangedStud, pokerGame.getStud())
+        
+        let beforeChangedNOP = pokerGame.getNumOfPlayer()
+        pokerGame.setGameStyle(stud: pokerGame.getStud(), numOfPlayer: .one)
+        XCTAssertNotEqual(beforeChangedNOP, pokerGame.getNumOfPlayer())
     }
-    
-    func testSetNumOfPlayer(){
-        let pokerGame = PokerGame()
-        let originalNumOfPlayer = pokerGame.getNumOfPlayer()
-        pokerGame.setNumOfPlayer(numOfPlayer: .one)
-        let changedNumOfPlayer = pokerGame.getNumOfPlayer()
-        XCTAssertNotEqual(originalNumOfPlayer,changedNumOfPlayer)
-    }
-    
     
     func testPerformanceExample() {
         // This is an example of a performance test case.
