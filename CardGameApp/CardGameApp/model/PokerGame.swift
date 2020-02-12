@@ -9,29 +9,29 @@
 import Foundation
 
 class PokerGame{
-    private var dealer:Dealer=Dealer(stud: .sevenCardStud, numOfPlayer: .four)
-    private var players:[Player]=[Player]()
+    private var dealer:Dealer = Dealer(stud: .sevenCardStud, numOfPlayer: .four)
+    private var players:[Player] = [Player]()
     private var stud:Stud
     private var numOfPlayer:NumOfPlayer
     
     enum Stud:Int{
-        case fiveCardStud=5
-        case sevenCardStud=7
+        case fiveCardStud = 5
+        case sevenCardStud = 7
     }
     
     enum NumOfPlayer:Int{
-        case one=1,two,three,four
+        case one=1, two, three, four
     }
     
     init(){
-        self.stud=Stud.sevenCardStud
-        self.numOfPlayer=NumOfPlayer.four
+        self.stud = Stud.sevenCardStud
+        self.numOfPlayer = NumOfPlayer.four
         readyPlayer()
     }
     
     private func readyPlayer(){
-        self.dealer=Dealer(stud: self.stud, numOfPlayer: self.numOfPlayer)
-        self.players=[Player]()
+        self.dealer = Dealer(stud: self.stud, numOfPlayer: self.numOfPlayer)
+        self.players = [Player]()
         for _ in 0..<self.numOfPlayer.rawValue{
             players.append(Player())
         }
@@ -47,7 +47,7 @@ class PokerGame{
     }
     
     private func dealCardToPlayer(player:Player){
-        let myCard=dealer.deal()
+        let myCard = dealer.deal()
         if let card = myCard{
             player.receiveCard(card: card)
         } else {
@@ -56,13 +56,13 @@ class PokerGame{
     }
     
     func setStud(stud:Stud){
-        self.stud=stud
+        self.stud = stud
         readyPlayer()
         gameStart()
     }
     
     func setNumOfPlayer(numOfPlayer:NumOfPlayer){
-        self.numOfPlayer=numOfPlayer
+        self.numOfPlayer = numOfPlayer
         readyPlayer()
         gameStart()
     }
@@ -70,13 +70,13 @@ class PokerGame{
 
 extension PokerGame:CustomStringConvertible{
     var description: String {
-        var result=""
-        var count=1
+        var result = ""
+        var count = 1
         for player in players{
-            result+="참가자#\(count) \(player)\n"
-            count+=1
+            result += "참가자#\(count) \(player)\n"
+            count += 1
         }
-        result+="딜러 \(dealer)\n"
+        result += "딜러 \(dealer)\n"
         return result
     }
 }

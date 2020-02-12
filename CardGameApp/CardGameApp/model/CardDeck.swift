@@ -12,7 +12,7 @@ struct CardDeck{
     private var cardSet:[Card]
     
     init(){
-        cardSet=[Card]()
+        cardSet = [Card]()
         setUpCardSet()
     }
     
@@ -42,7 +42,7 @@ struct CardDeck{
     }
     
     mutating func reset(){
-        cardSet=[Card]()
+        cardSet = [Card]()
         setUpCardSet()
     }
 }

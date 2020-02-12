@@ -12,7 +12,7 @@ class Player{
     private var ownCardDeck:[Card]
     
     init(){
-        self.ownCardDeck=[Card]()
+        self.ownCardDeck = [Card]()
     }
     
     func receiveCard(card : Card){

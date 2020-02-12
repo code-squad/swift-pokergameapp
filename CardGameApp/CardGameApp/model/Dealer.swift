@@ -13,11 +13,11 @@ class Dealer:Player{
     private var stud:PokerGame.Stud
     private var numOfPlayer:PokerGame.NumOfPlayer
     
-    init(stud:PokerGame.Stud,numOfPlayer:PokerGame.NumOfPlayer){
-        self.cardDeck=CardDeck()
+    init(stud:PokerGame.Stud, numOfPlayer:PokerGame.NumOfPlayer){
+        self.cardDeck = CardDeck()
         self.cardDeck.shuffle()
-        self.stud=stud
-        self.numOfPlayer=numOfPlayer
+        self.stud = stud
+        self.numOfPlayer = numOfPlayer
     }
     
     func deal() -> Card?{
