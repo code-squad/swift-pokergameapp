@@ -26,7 +26,7 @@ class GamePlay {
     
     init(rule: Rule, numberOfPlayers: Players.Number) {
         self.rule = rule
-        self.players = Players(withNumber: numberOfPlayers)
+        self.players = Players(with: numberOfPlayers)
     }
     
     func deal() {
@@ -56,7 +56,7 @@ class Players {
     
     private let players: [Participant]
     
-    init(withNumber number: Number) {
+    init(with number: Number) {
         self.players = number.entrance()
     }
     
