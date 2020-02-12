@@ -9,9 +9,13 @@
 import Foundation
 
 class PokerGame {
-    enum GameType: Int {
-        case fiveCardStud = 5
+    enum GameType: Int, CaseIterable {
         case sevenCardStud = 7
+        case fiveCardStud = 5
+        
+        init(index: Int) {
+            self = GameType.allCases[index]
+        }
         
         func forEach(_ transform: () -> ()) {
             for _ in 1...self.rawValue {
@@ -19,10 +23,14 @@ class PokerGame {
             }
         }
     }
-    enum NumberOfPlayers: Int {
+    enum NumberOfPlayers: Int, CaseIterable {
         case two = 2
         case three = 3
         case four = 4
+        
+        init(index: Int) {
+            self = NumberOfPlayers.allCases[index]
+        }
         
         func forEach(_ transform: () -> ()) {
             for _ in 1...self.rawValue {
