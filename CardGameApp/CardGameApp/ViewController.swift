@@ -37,9 +37,7 @@ class ViewController: UIViewController {
         loadGame()
     }
     
-    override func motionBegan(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
-        loadGame()
-    }
+    // MARK: - Make View
     
     func resetGameTable() {
         gameTable.arrangedSubviews.forEach {
@@ -75,11 +73,6 @@ class ViewController: UIViewController {
         gameTypeControl.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
     }
     
-    @objc func gameTypeChanged(segControl: UISegmentedControl) {
-        gameType = PokerGame.GameType(index: segControl.selectedSegmentIndex)
-        loadGame()
-    }
-    
     func addNumberOfPlayersControl() {
         numberOfPlayersControl = makeSegments(items: ["2명", "3명", "4명"])
         view.addSubview(numberOfPlayersControl)
@@ -88,11 +81,6 @@ class ViewController: UIViewController {
         numberOfPlayersControl.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         numberOfPlayersControl.leadingAnchor.constraint(equalTo: gameTypeControl.leadingAnchor).isActive = true
         numberOfPlayersControl.trailingAnchor.constraint(equalTo: gameTypeControl.trailingAnchor).isActive = true
-    }
-    
-    @objc func numberOfPlayersChanged(segControl: UISegmentedControl) {
-        numberOfPlayers = PokerGame.NumberOfPlayers(index: segControl.selectedSegmentIndex)
-        loadGame()
     }
     
     func makeGame() {
@@ -163,6 +151,22 @@ class ViewController: UIViewController {
         }()
         card.image = UIImage(named: "\(cardInfo).png")
         return card
+    }
+    
+    // MARK: - Event Processing
+    
+    override func motionBegan(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        loadGame()
+    }
+    
+    @objc func gameTypeChanged(segControl: UISegmentedControl) {
+        gameType = PokerGame.GameType(index: segControl.selectedSegmentIndex)
+        loadGame()
+    }
+    
+    @objc func numberOfPlayersChanged(segControl: UISegmentedControl) {
+        numberOfPlayers = PokerGame.NumberOfPlayers(index: segControl.selectedSegmentIndex)
+        loadGame()
     }
 }
 
