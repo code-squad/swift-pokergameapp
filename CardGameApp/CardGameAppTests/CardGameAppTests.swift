@@ -9,23 +9,22 @@
 import XCTest
 @testable import CardGameApp
 class CardGameAppTests: XCTestCase {
-    var sut : Deck!
+    var deck : Deck!
     
     override func setUp() {
         super.setUp()
-        sut = Deck()
+        deck = Deck()
     }
 
     override func tearDown() {
-        sut = nil
+        deck = nil
         super.tearDown()
     }
     
     func testDeckCount(){
-        // 1. given
-        sut = Deck()
+        // 1. given is handled by setup
         // 2. when
-        let count = sut.count
+        let count = deck.count
         // 3. then
         XCTAssertEqual(count,
                        52,
@@ -34,20 +33,19 @@ class CardGameAppTests: XCTestCase {
     
     func testShuffle(){
         // 1. given
-        let other = sut
+        let otherDeck = deck
         // 2. when
-        sut.shuffle()
+        deck.shuffle()
         // 3. then
-        XCTAssertNotEqual(other, sut)
+        XCTAssertNotEqual(otherDeck, deck)
     }
     
     func testRemoveOne() {
         // 1.given
-        sut = Deck()
         let card = Card(suit: .spade, number: .ace)
     
         // 2.when
-        let result = sut.removeOne()
+        let result = deck.removeOne()
         
         // 3.then
         XCTAssertEqual(card , result)
@@ -55,27 +53,27 @@ class CardGameAppTests: XCTestCase {
     
     func testReset() {
         // 1.given
-        let other = sut
+        let otherDeck = deck
 
         // 2.when
-        sut.shuffle()
-        sut.reset()
+        deck.shuffle()
+        deck.reset()
         
         // 3.then
-        XCTAssertEqual(other, sut)
+        XCTAssertEqual(otherDeck, deck)
     }
     
     func testScenario(){
         let totalCardCounts = 52
-        var other = sut
-        XCTAssertEqual(other?.count, totalCardCounts)
+        var otherDeck = deck
+        XCTAssertEqual(otherDeck?.count, totalCardCounts)
         
-        other?.shuffle()
+        otherDeck?.shuffle()
         
-        print(other!.removeOne()!.description)
-        XCTAssertEqual(other?.count, totalCardCounts - 1 )
+        print(otherDeck!.removeOne()!.description)
+        XCTAssertEqual(otherDeck?.count, totalCardCounts - 1 )
         
-        print(other!.removeOne()!.description)
-        XCTAssertEqual(other?.count, totalCardCounts - 2 )
+        print(otherDeck!.removeOne()!.description)
+        XCTAssertEqual(otherDeck?.count, totalCardCounts - 2 )
     }
 }
