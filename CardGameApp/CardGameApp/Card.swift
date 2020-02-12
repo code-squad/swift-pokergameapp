@@ -26,7 +26,7 @@ class Card {
 
 extension Card: CustomStringConvertible, Equatable {
     static func == (lhs: Card, rhs: Card) -> Bool {
-        return "\(lhs)" == "\(rhs)"
+        return lhs.shape == rhs.shape && lhs.rank == rhs.rank
     }
     
     var description: String {
