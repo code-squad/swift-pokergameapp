@@ -10,9 +10,11 @@ import XCTest
 @testable import CardGameApp
 
 class CardGameAppTests: XCTestCase {
+    // Given
+    var cardDeck = CardDeck()
+    var cards = CardDeck().cards
     
     override func setUp() {
-        
     }
     
     override func tearDown() {
@@ -40,8 +42,6 @@ class CardGameAppTests: XCTestCase {
     }
     
     func testReset() {
-        // Given
-        let cardDeck = CardDeck()
         // When
         cardDeck.reset()
         let count = cardDeck.cards.count
@@ -50,52 +50,47 @@ class CardGameAppTests: XCTestCase {
     }
     
     func testShuffle() { //
-        // Given
-        let cardDeck = CardDeck().cards
         // When
-        let shuffledCardDeck = cardDeck.shuffle()
+        cardDeck.shuffle()
+        let shuffledCardDeck = cardDeck.cards
         // Then
-        XCTAssertNotEqual(cardDeck, shuffledCardDeck)
+        XCTAssertNotEqual(cards, shuffledCardDeck)
     }
     
-    //    XCTAssertEqual -> 가능하게 하려면??
     func testRemoveOne() {
         // Given
-        let cardDeck = CardDeck().cards
-        let originalCount = cardDeck.cards.count
+        let originalCount = cards.count
         var randomCardIndexWillRemove = Int.random(in: 0 ..< originalCount)
-        let nextCardFromRemoved = cardDeck[randomCardIndexWillRemove+1]
+        let nextCardFromRemoved = cards[randomCardIndexWillRemove+1]
         // When
         let removedOne = cardDeck.removeOne(of: randomCardIndexWillRemove)
-        let movedCardToForward = cardDeck.cards[randomCardIndexWillRemove]
-        let changedCount = cardDeck.cards.count
+        let movedCardToForward = cards[randomCardIndexWillRemove]
+        let changedCount = cards.count
         // Then
-        XCTAssertNotEqual(originalCount != changedCount)
-        // 삭제 요청된 카드 다음에 있던 카드가 삭제 후 삭제된 카드 인덱스에 있어야 한다
-        XCTAssertEqual(nextCardFromRemoved == movedCardToForward)
-        XCTAssertNotEqual(removedOne != movedCardToForward)
+        XCTAssertNotEqual(originalCount, changedCount)
+        // 삭제 요청된 카드 다음 인덱스에 있던 카드가 삭제 후 삭제된 카드 인덱스에 있는지 확인한다
+        XCTAssertEqual(nextCardFromRemoved, movedCardToForward)
+        XCTAssertNotEqual(removedOne, movedCardToForward)
     }
     
     func testCount() {
-        // Given
-        let cardDeck = CardDeck()
         // When 처음값을 삭제했을 때
-        cardDeck.removeOne()
-        var count = cardDeck.count()
+        cardDeck.removeOne(of: 0)
+        var count = cardDeck.cards.count
         // Then
-        XCTAssertEqual(count == 51)
+        XCTAssertEqual(count, 51)
         
         // When 중간값을 삭제했을 때
-        cardDeck.removeOne()
-        count = cardDeck.count()
+        cardDeck.removeOne(of: 27)
+        count = cardDeck.cards.count
         // Then
-        XCTAssertEqual(count == 50)
+        XCTAssertEqual(count, 50)
         
         // When 초기화 했을 때
         cardDeck.reset()
-        count = cardDeck.count()
+        count = cardDeck.cards.count
         // Then
-        XCTAssertEqual(count == 52)
+        XCTAssertEqual(count, 52)
     }
     
 }
