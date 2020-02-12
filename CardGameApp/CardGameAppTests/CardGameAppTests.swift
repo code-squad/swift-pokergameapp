@@ -49,9 +49,12 @@ class CardGameAppTests: XCTestCase {
     
     func testRemoveOne() {
         let originCards = deck.cards
-        let randomIndex = 5
-        deck.removeOne()
-        let afterRemovedCards = deck.cards
-        XCTAssertNotEqual(originCards![randomIndex], afterRemovedCards![randomIndex])
+        let firstRemovedCard = deck.removeOne()!
+        let cardsAfterRemovedOne = deck.cards
+        XCTAssertFalse((cardsAfterRemovedOne!.contains(firstRemovedCard)))
+        
+        let secondRemovedCard = deck.removeOne()!
+        let cardsAfterRmoveOneMore = deck.cards
+        XCTAssertTrue(cardsAfterRmoveOneMore!.contains(secondRemovedCard))
     }
 }
