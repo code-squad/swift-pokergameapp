@@ -13,4 +13,8 @@ class Player {
     func appendCard(_ card: Card) {
         cards.append(card)
     }
+    
+    func cardsInfo() -> [Card] {
+        return cards
+    }
 }

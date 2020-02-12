@@ -13,16 +13,16 @@ class PokerGame {
     private var studNumber: Stud
     
     enum Stud: Int {
-           case five = 5
-           case seven = 7
+        case five = 5
+        case seven = 7
         
         func foreach(_ transform : () -> ()) {
             for _ in 0..<self.rawValue {
                 transform()
             }
         }
-   }
-
+    }
+    
     enum PlayerCount: Int {
         case one = 1, two, three, four
         
@@ -53,7 +53,16 @@ class PokerGame {
     }
     
     func leftCards() -> Int {
-       return dealer.leftCards()
+        return dealer.leftCards()
     }
     
+    func playersCardInfo() -> [Card] {
+//        players.forEach { player in
+//            player.cardsInfo()
+//        }
+        for player in players {
+            return player.cardsInfo()
+        }
+       return []
+    }
 }
