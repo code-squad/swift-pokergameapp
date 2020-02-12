@@ -17,8 +17,8 @@ class Card: CustomStringConvertible{
     }
     
     enum Rank: Int {
-        case one = 1, two, three, four, five, six, seven, eight, nine, ten
-        case eleven, twelve, thirteen
+        case ace = 1, two, three, four, five, six, seven, eight, nine, ten
+        case jack, queen, king
     }
     
     let suit: Suit
@@ -29,25 +29,21 @@ class Card: CustomStringConvertible{
         self.rank = rank
     }
     
-    func convertRankValueToString() -> String{
+    var description: String {
         let rankString: String
         switch self.rank {
-        case .one:
+        case .ace:
             rankString = "A"
-        case . eleven:
+        case .jack:
             rankString = "J"
-        case .twelve:
+        case .queen:
             rankString = "Q"
-        case .thirteen:
+        case .king:
             rankString = "K"
-        default:
+        default :
             rankString = "\(self.rank.rawValue)"
         }
-        return rankString
-    }
-    
-    var description: String {
-        return "\(suit.rawValue)\(convertRankValueToString())"
+        return "\(suit.rawValue)\(rankString)"
     }
 }
 
@@ -55,6 +51,4 @@ extension Card: Equatable {
     static func == (lhs: Card, rhs: Card) -> Bool {
         return lhs.rank == rhs.rank && lhs.suit == rhs.suit
     }
-    
-    
 }

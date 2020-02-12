@@ -20,16 +20,7 @@ class CardGameAppTests: XCTestCase {
 
     override func tearDown() {
     }
-//
-//    func testCard() {
-//        let card = Card(suit: .spades, rank: .seven)
-//        let description = card.description
-//        XCTAssertEqual(description, "♠️7")
-//
-//        let card2 = Card(suit: .hearts, rank: .one)
-//        XCTAssertEqual(card2.description, "♥️A")
-//    }
-    
+
     func testReset() {
         // given
         let originCards = deck.cards
