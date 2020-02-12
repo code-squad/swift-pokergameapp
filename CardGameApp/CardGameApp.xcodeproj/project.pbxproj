@@ -13,6 +13,7 @@
 		AB9C249623F1170500BC552E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB9C249423F1170500BC552E /* Main.storyboard */; };
 		AB9C249823F1170800BC552E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB9C249723F1170800BC552E /* Assets.xcassets */; };
 		AB9C249B23F1170800BC552E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB9C249923F1170800BC552E /* LaunchScreen.storyboard */; };
+		AB9C24E423F39BC000BC552E /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9C24E323F39BC000BC552E /* Card.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		AB9C249723F1170800BC552E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AB9C249A23F1170800BC552E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AB9C249C23F1170800BC552E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AB9C24E323F39BC000BC552E /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 		AB9C248D23F1170500BC552E /* CardGameApp */ = {
 			isa = PBXGroup;
 			children = (
+				AB9C24E523F3DC1C00BC552E /* model */,
 				AB9C248E23F1170500BC552E /* AppDelegate.swift */,
 				AB9C249023F1170500BC552E /* SceneDelegate.swift */,
 				AB9C249223F1170500BC552E /* ViewController.swift */,
@@ -65,6 +68,14 @@
 				AB9C249C23F1170800BC552E /* Info.plist */,
 			);
 			path = CardGameApp;
+			sourceTree = "<group>";
+		};
+		AB9C24E523F3DC1C00BC552E /* model */ = {
+			isa = PBXGroup;
+			children = (
+				AB9C24E323F39BC000BC552E /* Card.swift */,
+			);
+			path = model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -141,6 +152,7 @@
 				AB9C249323F1170500BC552E /* ViewController.swift in Sources */,
 				AB9C248F23F1170500BC552E /* AppDelegate.swift in Sources */,
 				AB9C249123F1170500BC552E /* SceneDelegate.swift in Sources */,
+				AB9C24E423F39BC000BC552E /* Card.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
