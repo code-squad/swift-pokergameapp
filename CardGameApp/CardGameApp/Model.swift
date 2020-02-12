@@ -12,17 +12,17 @@ import Foundation
 class Card {
     
     // class는 더 많은 기능을 사용할때 사용할 거 같았습니다. enum은 작은 범위를 나눌때 유용했습니다.
-    enum suit: String, CaseIterable {
-        case spade = "♤"
-        case hert = "❤"
-        case club = "♧"
-        case diamond = "⬦"
+    enum suit: CaseIterable {
+        case spade
+        case heart
+        case club
+        case diamond
     }
     
     enum rank: Int {
         case one = 1, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve, thirteen
     }
-
+    
     private var suit: suit
     private var rank: rank
     
@@ -75,7 +75,7 @@ struct Deck {
 //MARK: Card
 extension Card: CustomStringConvertible {
     var description: String {
-        return "\(self.suit.rawValue)\(self.rank)"
+        return self.suit.description + self.rank.description
     }
 }
 
@@ -94,6 +94,18 @@ extension Card.rank: CustomStringConvertible {
         case .twelve: return "Q"
         case .thirteen: return "K"
         default: return String(rawValue)
+        }
+    }
+}
+
+//MARK: Card.suit
+extension Card.suit: CustomStringConvertible {
+    var description: String {
+        switch self {
+        case .club: return "♧"
+        case .diamond: return "⬦"
+        case .heart: return "❤"
+        case .spade: return "♤"
         }
     }
 }
