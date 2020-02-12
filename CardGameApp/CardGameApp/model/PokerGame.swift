@@ -58,7 +58,7 @@ class PokerGame{
         }
     }
     
-    private func dealCardToPlayer(player:MustHaveCard){
+    private func dealCardToPlayer(player:Player){
         let myCard = dealer.deal()
         if let card = myCard{
             player.receiveCard(card: card)
