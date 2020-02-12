@@ -64,9 +64,6 @@ extension Card : CustomStringConvertible {
 
 extension Card : Equatable {
     public static func == (lhs: Card, rhs: Card) -> Bool {
-        guard lhs.suit == rhs.suit , lhs.number == rhs.number else {
-            return false
-        }
-        return true
+        return lhs.suit == rhs.suit && lhs.number == rhs.number
     }
 }

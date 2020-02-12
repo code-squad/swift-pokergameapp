@@ -10,7 +10,6 @@ import Foundation
 
 struct Deck {
     private var cards : [Card]!
-    
     var count : Int {
         return cards.count
     }
@@ -53,9 +52,6 @@ struct Deck {
 
 extension Deck : Equatable {
     public static func == (lhs: Deck, rhs: Deck) -> Bool {
-        guard lhs.cards == rhs.cards else {
-            return false
-        }
-        return true
+        return lhs.cards == rhs.cards
     }
 }
