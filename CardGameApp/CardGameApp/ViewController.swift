@@ -154,7 +154,7 @@ class ViewController: UIViewController {
     
     func makePlayerCard(_ player: Player) -> UIStackView {
         let cardStack = makeCardStack()
-        player.handInfo.forEach {
+        player.forEach {
             let card = makeCard($0)
             cardStack.addArrangedSubview(card)
             card.heightAnchor.constraint(equalTo: card.widthAnchor, multiplier: 1.27).isActive = true

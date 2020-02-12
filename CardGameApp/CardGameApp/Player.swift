@@ -13,10 +13,10 @@ class Player {
     var handCount: Int {
         hand.count
     }
-    var handInfo: [Card] {
-        return hand
-    }
     
+    func forEach(_ tramsform: (Card) -> ()) {
+        hand.forEach(tramsform)
+    }
     func discard() {
         hand = [Card]()
     }
