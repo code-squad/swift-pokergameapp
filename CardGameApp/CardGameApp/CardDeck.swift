@@ -32,9 +32,10 @@ struct CardDeck {
         return cards.shuffled()
     }
     
-    func removeOne(of: Int) -> Card {
-        
-        return cards[0]
+    mutating func removeOne(of index: Int) -> Card {
+        let cardToRemove = self.cards[index]
+        self.cards.remove(at: index)
+        return cardToRemove
     }
     
     func count() {
