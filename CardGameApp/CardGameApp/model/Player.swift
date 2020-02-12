@@ -9,20 +9,26 @@
 import Foundation
 
 class Player{
-    private var ownCardDeck:[Card]
+    private var _ownCardDeck:[Card]
     
     init(){
-        self.ownCardDeck = [Card]()
-    }
-    
-    func receiveCard(card : Card){
-        self.ownCardDeck.append(card)
+        self._ownCardDeck = [Card]()
     }
 }
 
 extension Player:CustomStringConvertible{
     var description: String {
-        return "\(self.ownCardDeck)"
+        return "\(self._ownCardDeck)"
+    }
+}
+
+extension Player:MustHaveCard{
+    var ownCardDeck: [Card] {
+        return self._ownCardDeck
+    }
+    
+    func receiveCard(card : Card){
+        self._ownCardDeck.append(card)
     }
 }
 

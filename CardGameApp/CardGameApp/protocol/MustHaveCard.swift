@@ -9,4 +9,7 @@
 import Foundation
 
 protocol MustHaveCard{
+    var ownCardDeck:[Card]{get}
+    
+    func receiveCard(card : Card)
 }
