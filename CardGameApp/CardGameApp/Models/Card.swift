@@ -23,14 +23,42 @@ struct Card {
         self.rank = rank
     }
     
-    enum Suit: Character, CaseIterable {
+    enum Suit: Character, CaseIterable, CustomStringConvertible {
+        var description: String {
+            switch self {
+            case .spade:
+                return "s"
+            case .heart:
+                return "h"
+            case .club:
+                return "c"
+            case .diamond:
+                return "d"
+            }
+        }
+        
         case spade = "♠️"
         case heart = "♥️"
         case club = "♣️"
         case diamond = "♦️"
     }
     
-    enum Rank: Int, CaseIterable {
+    enum Rank: Int, CaseIterable, CustomStringConvertible {
+        var description: String {
+            switch self {
+            case .jack:
+                return "J"
+            case .queen:
+                return "Q"
+            case .king:
+                return "K"
+            case .ace:
+                return "A"
+            default:
+                return String(self.self.rawValue)
+            }
+        }
+        
         case ace = 1, two, three, four, five, six, seven, eight, nine, ten, jack, queen, king
     }
 }
@@ -44,33 +72,6 @@ extension Card: Equatable {
 
 extension Card: CustomStringConvertible {
     var description: String {
-        var suitString = ""
-        var rank = ""
-        
-        switch self.suit {
-        case .spade:
-            suitString = "s"
-        case .heart:
-            suitString = "h"
-        case .club:
-            suitString = "c"
-        case .diamond:
-            suitString = "d"
-        }
-        
-        switch self.rank {
-        case .jack:
-            rank = "J"
-        case .queen:
-            rank = "Q"
-        case .king:
-            rank = "K"
-        case .ace:
-            rank = "A"
-        default:
-            rank = String(self.rank.rawValue)
-        }
-        
-        return "\(suitString)\(rank)"
+        return "\(String(describing: self.suit))\(String(describing: self.rank))"
     }
 }
