@@ -63,7 +63,7 @@ class PokerGame{
         if let card = myCard{
             player.receiveCard(card: card)
         } else {
-            exit(0)
+            print("카드가 없습니다.")
         }
     }
     
