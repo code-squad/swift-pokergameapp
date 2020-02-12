@@ -9,8 +9,8 @@
 import Foundation
 
 struct CardDeck {
-    var cards: [Card]!
-    var count: Int {
+    private var cards: [Card]!
+    private var count: Int {
         return cards.count
     }
     
