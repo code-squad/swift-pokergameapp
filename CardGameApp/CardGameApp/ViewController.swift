@@ -10,10 +10,9 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    let CardStackView = UIStackView()
-    
-    let cardRatio = CGFloat(1.27)
-    let cardCount = 7
+    private let CardStackView = UIStackView()
+    private let cardRatio = CGFloat(1.27)
+    private let cardCount = 7
     
     //status bar 설정
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -26,8 +25,15 @@ class ViewController: UIViewController {
         
         // Background 배경 설정
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "BackgroundPattern")!)
-        
+        drawStackView()
+    }
+    
+    func drawStackView(){
         setUpStackView()
+        for _ in 0 ..< cardCount {
+            addCardOnStackView()
+        }
+        addStackViewOnView()
     }
     
     // stackView 설정 및 view에 등록
@@ -37,18 +43,18 @@ class ViewController: UIViewController {
         self.CardStackView.distribution = .fillEqually
         self.CardStackView.spacing = 5
         self.CardStackView.translatesAutoresizingMaskIntoConstraints = false
-        
-        for _ in 0 ..< 7 {
-            addCard()
-        }
-        
+    }
+    
+    // view에 stackview를 올림
+    func addStackViewOnView(){
         self.view.addSubview(CardStackView)
         self.CardStackView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 10).isActive = true
         self.CardStackView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 5).isActive = true
         self.CardStackView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -5).isActive = true
     }
     
-    func addCard() {
+    // stackview에 card이미지 삽입(카드 이미지 비율도 함께 조정)
+    func addCardOnStackView() {
         let cardImg = UIImageView(image: UIImage(named: "CardBackground")!)
         cardImg.translatesAutoresizingMaskIntoConstraints = false
         cardImg.heightAnchor.constraint(equalTo: cardImg.widthAnchor, multiplier: cardRatio).isActive = true
