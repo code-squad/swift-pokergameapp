@@ -17,10 +17,22 @@ class PokerGame{
     enum Stud:Int{
         case fiveCardStud = 5
         case sevenCardStud = 7
+        
+        func forEach(_ transform : () -> ()) {
+            for _ in 0..<self.rawValue {
+                transform()
+            }
+        }
     }
     
     enum NumOfPlayer:Int{
-        case one=1, two, three, four
+        case one = 1, two, three, four
+        
+        func forEach(_ transform : () -> ()) {
+            for _ in 0..<self.rawValue {
+                transform()
+            }
+        }
     }
     
     init(){
@@ -32,13 +44,13 @@ class PokerGame{
     private func readyPlayer(){
         self.dealer = Dealer()
         self.players = [Player]()
-        for _ in 0..<self.numOfPlayer.rawValue{
+        self.numOfPlayer.forEach {
             players.append(Player())
         }
     }
     
     func gameStart(){
-        for _ in 0..<stud.rawValue{
+        self.stud.forEach {
             for player in players{
                 dealCardToPlayer(player: player)
             }
