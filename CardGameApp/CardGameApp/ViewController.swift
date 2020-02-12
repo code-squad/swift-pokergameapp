@@ -76,16 +76,8 @@ class ViewController: UIViewController {
     }
     
     @objc func gameTypeChanged(segControl: UISegmentedControl) {
-        switch segControl.selectedSegmentIndex {
-        case 0:
-            gameType = .sevenCardStud
-            loadGame()
-        case 1:
-            gameType = .fiveCardStud
-            loadGame()
-        default:
-            break
-        }
+        gameType = PokerGame.GameType(index: segControl.selectedSegmentIndex)
+        loadGame()
     }
     
     func addNumberOfPlayersControl() {
@@ -99,19 +91,8 @@ class ViewController: UIViewController {
     }
     
     @objc func numberOfPlayersChanged(segControl: UISegmentedControl) {
-        switch segControl.selectedSegmentIndex {
-        case 0:
-            numberOfPlayers = .two
-            loadGame()
-        case 1:
-            numberOfPlayers = .three
-            loadGame()
-        case 2:
-            numberOfPlayers = .four
-            loadGame()
-        default:
-            break
-        }
+        numberOfPlayers = PokerGame.NumberOfPlayers(index: segControl.selectedSegmentIndex)
+        loadGame()
     }
     
     func makeGame() {
