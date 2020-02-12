@@ -15,7 +15,7 @@ class CardGameAppTests: XCTestCase {
         super.setUp()
         deck = Deck()
     }
-
+    
     override func tearDown() {
         deck = nil
         super.tearDown()
@@ -43,10 +43,8 @@ class CardGameAppTests: XCTestCase {
     func testRemoveOne() {
         // 1.given
         let card = Card(suit: .spade, number: .ace)
-    
         // 2.when
-        let result = deck.removeOne()
-        
+        let result = try! deck.removeOne()
         // 3.then
         XCTAssertEqual(card , result)
     }
@@ -54,11 +52,9 @@ class CardGameAppTests: XCTestCase {
     func testReset() {
         // 1.given
         let otherDeck = deck
-
         // 2.when
         deck.shuffle()
         deck.reset()
-        
         // 3.then
         XCTAssertEqual(otherDeck, deck)
     }
@@ -70,10 +66,10 @@ class CardGameAppTests: XCTestCase {
         
         otherDeck?.shuffle()
         
-        print(otherDeck!.removeOne()!.description)
+        try! otherDeck!.removeOne()
         XCTAssertEqual(otherDeck?.count, totalCardCounts - 1 )
         
-        print(otherDeck!.removeOne()!.description)
+        try! otherDeck!.removeOne()
         XCTAssertEqual(otherDeck?.count, totalCardCounts - 2 )
     }
 }
