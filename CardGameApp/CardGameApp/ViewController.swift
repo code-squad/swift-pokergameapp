@@ -99,7 +99,7 @@ class ViewController: UIViewController {
         var index = 1
         pokerGame.forEachPlayers {
             let playerLabel = makePlayerLabel(playerName: "Player\(index)")
-            if index == pokerGame.playersCount {
+            if type(of: $0) == type(of: Dealer()) {
                 playerLabel.text = "Dealer"
             }
             let playerCard = makePlayerCard($0)
