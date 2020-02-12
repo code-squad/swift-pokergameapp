@@ -12,11 +12,23 @@ class PokerGame {
     enum GameType: Int {
         case fiveCardStud = 5
         case sevenCardStud = 7
+        
+        func forEach(_ transform: () -> ()) {
+            for _ in 1...self.rawValue {
+                transform()
+            }
+        }
     }
     enum NumberOfPlayers: Int {
         case two = 2
         case three = 3
         case four = 4
+        
+        func forEach(_ transform: () -> ()) {
+            for _ in 1...self.rawValue {
+                transform()
+            }
+        }
     }
     private var dealer: Dealer
     var players = [Player]()
@@ -28,8 +40,8 @@ class PokerGame {
     init(gameType: GameType, numberOfPlayers: NumberOfPlayers) {
         self.gameType = gameType
         self.dealer = Dealer()
-        for _ in 1...numberOfPlayers.rawValue {
-            players.append(Player())
+        numberOfPlayers.forEach {
+            self.players.append(Player())
         }
         players.append(dealer)
     }
@@ -49,7 +61,7 @@ class PokerGame {
                 $0.discard()
             }
             dealer.shuffle()
-            for _ in 1...gameType.rawValue {
+            gameType.forEach {
                 distributeCards()
             }
         }
