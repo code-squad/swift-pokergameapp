@@ -9,7 +9,7 @@
 import Foundation
 
 struct Deck {
-    var cards : [Card]!
+    private var cards : [Card]!
     var count : Int {
         return cards.count
     }
