@@ -11,8 +11,8 @@ import Foundation
 class PokerGame{
     private var dealer:Dealer = Dealer()
     private var players:[Player] = [Player]()
-    private var stud:Stud
-    private var numOfPlayer:NumOfPlayer
+    private var stud:Stud = .sevenCardStud
+    private var numOfPlayer:NumOfPlayer = .four
     
     enum Stud:Int{
         case fiveCardStud = 5
@@ -33,12 +33,6 @@ class PokerGame{
                 transform()
             }
         }
-    }
-    
-    init(){
-        self.stud = Stud.sevenCardStud
-        self.numOfPlayer = NumOfPlayer.four
-        readyPlayer()
     }
     
     private func readyPlayer(){
@@ -72,24 +66,5 @@ class PokerGame{
         self.numOfPlayer = numOfPlayer
         readyPlayer()
         gameStart()
-    }
-    
-    func printPlayersCard() -> String{
-        var result = ""
-        var count = 1
-        for player in players{
-            result += "참가자#\(count) \(player)\n"
-            count += 1
-        }
-        result += "딜러 \(dealer)\n"
-        return result
-    }
-    
-    func getPlayers() -> [Player]{
-        return self.players
-    }
-    
-    func getDealer() -> Dealer{
-        return self.dealer
     }
 }

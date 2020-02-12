@@ -14,7 +14,6 @@ class Dealer:Player{
     override init(){
         self.cardDeck = CardDeck()
         self.cardDeck.shuffle()
-
     }
     
     func deal() -> Card?{
