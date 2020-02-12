@@ -34,14 +34,22 @@ class PokerGame {
     }
 }
 
-enum GameType: Int {
+enum GameType: Int, CaseIterable {
     case sevenCardsStud = 7, fiveCardsStud = 5
+    
+    init(index: Int) {
+        self = GameType.allCases[index]
+    }
     
     func numberOfHands() -> Int {
         return self.rawValue
     }
 }
 
-enum PlayerCount: Int {
+enum PlayerCount: Int, CaseIterable {
     case two = 2, three, four
+    
+    init(index: Int) {
+        self = PlayerCount.allCases[index]
+    }
 }
