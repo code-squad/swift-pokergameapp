@@ -11,7 +11,7 @@ import UIKit
 class ViewController: UIViewController {
     private var gameType: GameType = .sevenCardsStud
     private var playerCount: PlayerCount = .two
-    lazy var pokerGame: PokerGame = PokerGame(game: gameType, numberOfPlayers: playerCount)
+    lazy var pokerGame: PokerGame = PokerGame()
     let gameTypeTitles = ["7 Cards", "5 Cards"]
     let playerCountTitles = ["2명", "3명", "4명"]
     
