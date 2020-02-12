@@ -128,7 +128,7 @@ class ViewController: UIViewController {
     
     private func makePlayerCard(_ player: Player) -> UIStackView {
         let cardStack = makeCardStack()
-        player.forEach {
+        player.forEachCard {
             let card = makeCard($0)
             cardStack.addArrangedSubview(card)
             card.heightAnchor.constraint(equalTo: card.widthAnchor, multiplier: 1.27).isActive = true
@@ -164,12 +164,14 @@ class ViewController: UIViewController {
         loadGame()
     }
     
-    @objc private func gameTypeChanged(segControl: UISegmentedControl) {
+    @objc
+    private func gameTypeChanged(segControl: UISegmentedControl) {
         gameType = PokerGame.GameType(index: segControl.selectedSegmentIndex)
         loadGame()
     }
     
-    @objc private func numberOfPlayersChanged(segControl: UISegmentedControl) {
+    @objc
+    private func numberOfPlayersChanged(segControl: UISegmentedControl) {
         numberOfPlayers = PokerGame.NumberOfPlayers(index: segControl.selectedSegmentIndex)
         loadGame()
     }
