@@ -37,7 +37,6 @@ class CardGameAppTests: XCTestCase {
         let other = sut
         // 2. when
         sut.shuffle()
-
         // 3. then
         XCTAssertNotEqual(other, sut)
     }
