@@ -91,13 +91,7 @@ class ViewController: UIViewController {
                 playerLabel.text = "Dealer"
             }
             let playerCard = makePlayerCard($0)
-            let playerStack: UIStackView = {
-                let stack = UIStackView()
-                stack.axis = .vertical
-                return stack
-            }()
-            playerStack.addArrangedSubview(playerLabel)
-            playerStack.addArrangedSubview(playerCard)
+            let playerStack = makePlayerStack(label: playerLabel, card: playerCard)
             gameTable.addArrangedSubview(playerStack)
             index += 1
         }
@@ -108,6 +102,17 @@ class ViewController: UIViewController {
         gameTable.topAnchor.constraint(equalTo: gameTypeControl.bottomAnchor, constant: 50).isActive = true
         gameTable.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 30).isActive = true
         gameTable.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -30).isActive = true
+    }
+    
+    private func makePlayerStack(label: UILabel, card: UIStackView) -> UIStackView {
+        let playerStack: UIStackView = {
+            let stack = UIStackView()
+            stack.axis = .vertical
+            return stack
+        }()
+        playerStack.addArrangedSubview(label)
+        playerStack.addArrangedSubview(card)
+        return playerStack
     }
     
     private func makePlayerLabel(playerName: String) -> UILabel {
