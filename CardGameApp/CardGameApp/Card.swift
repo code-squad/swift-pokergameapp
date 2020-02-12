@@ -10,8 +10,8 @@ import Foundation
 
 class Card: CustomStringConvertible {
     
-    let suit : Suit.RawValue
-    let rank : Rank.RawValue
+    private var suit : Suit.RawValue
+    private var rank : Rank.RawValue
     var description: String {
         return "\(suit)\(rank)"
     }
