@@ -5,7 +5,8 @@
 ## 목차
 
 - [pokergameapp-step1](#pokergameapp-step1): StackView를 통해 동일한 비율의 7개 카드(뒷면)가 동일한 간격으로 수평으로 나열 
-- [pockerGameApp-step2](#pockerGameApp-step2): 카드 클래스 생성
+- [pockerGameApp-step2](#pockerGameApp-step2): Card 클래스 구현
+- [pockerGameApp-step3](#pockerGameApp-step3): CardDeck 클래스 구현
 
 
 ### pokergameapp-step1
@@ -105,3 +106,19 @@
 3. ViewController 클래스에서 StackView를 초기화하는 코드를 메소드로 따로 분리해서 구현했습니다.
 
 4. ViewController 클래스의 addCard메소드 실행시 StackView의 subView가 7개가 생성되는지 확인하는 테스트 코드를 추가했습니다. -> (ViewController 테스트 코드는 Unit Test 보다 UITest를 하는 편이라는 걸 알게됐습니다.)
+
+### pockerGameApp-step3
+
+20.02.11 18:00
+
+1. 테스트 코드 작성
+1-1. CardDeck 구조체의 reset 메소드를 테스트하는 코드
+1-2. CardDeck 구조체의 shuffle 메소드를 테스트하는 코드
+1-3. CardDeck 구조체의 removeOne 메소드를 테스트하는 코드
+1-4. CardDeck 구조체의 count 메소드를 테스트하는 코드
+
+RGR(red, green, refactor) & BDD(given, when, then) 시도
+2. 테스트 코드가 에러가 나는 상태(Red)에서 Red를 없애면서 구현
+2-1. 테스트 코드에서 XCTAssertEqual 메소드나 XCTAssertNotEqual 메소드를 사용하기 위해 CardDeck 구조체와 Card 클래스에 extension으로 Equatable 프로토콜을 채택 
+2-1. Suit enum과 Rank enum이 CaseIterable 프로토콜 채택
+2-2. CaseIterable 프로토콜의 메소드인 allCases를 활용해 CardDeck 구조체에서 reset 메소드 구현

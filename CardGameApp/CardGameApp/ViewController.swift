@@ -51,5 +51,8 @@ class ViewController: UIViewController {
         addCards()
         self.view.addSubview(cardsStack)
         setStackView ()
+        CardDeck()
+        }
     }
-}
+    
+//}
