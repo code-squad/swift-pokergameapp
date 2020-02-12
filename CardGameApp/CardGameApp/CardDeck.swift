@@ -28,8 +28,8 @@ struct CardDeck {
         return cards
     }
     
-    func shuffle() {
-        
+    func shuffle() -> [Card] {
+        return cards.shuffled()
     }
     
     func removeOne(of: Int) -> Card {
