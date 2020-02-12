@@ -14,6 +14,8 @@ class ViewController: UIViewController {
     private let cardRatio = CGFloat(1.27)
     private let cardCount = 7
     
+    private let cardInfo = Card(suit: .diamond , rank: .J)
+    
     //status bar 설정
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -26,6 +28,7 @@ class ViewController: UIViewController {
         // Background 배경 설정
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "BackgroundPattern")!)
         drawStackView()
+        print(cardInfo)
     }
     
     func drawStackView(){
