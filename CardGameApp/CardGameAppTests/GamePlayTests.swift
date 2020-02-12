@@ -24,7 +24,7 @@ class GamePlayTests: XCTestCase {
     }
     
     func testEachPlayerTakesACard() {
-        let players = Players(withNumber: .three)
+        let players = Players(with: .three)
         var cardDeck = CardDeck()
         players.eachTakesACard { cardDeck.removeOne() }
         let cards = players.allCards()
