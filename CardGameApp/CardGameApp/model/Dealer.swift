@@ -8,14 +8,13 @@
 
 import Foundation
 
-class Dealer{
+class Dealer:Player{
     private var cardDeck:CardDeck
-    private var _ownCardDeck:[Card]
     
-    init(){
+    override init(){
         self.cardDeck = CardDeck()
         self.cardDeck.shuffle()
-        self._ownCardDeck = [Card]()
+
     }
     
     func deal() -> Card?{
@@ -23,18 +22,3 @@ class Dealer{
     }
 }
 
-extension Dealer:CustomStringConvertible{
-    var description: String {
-        return "\(self._ownCardDeck)"
-    }
-}
-
-extension Dealer:MustHaveCard{
-    var ownCardDeck: [Card] {
-        return self._ownCardDeck
-    }
-    
-    func receiveCard(card: Card) {
-        self._ownCardDeck.append(card)
-    }
-}
