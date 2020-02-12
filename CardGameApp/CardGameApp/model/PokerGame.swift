@@ -84,4 +84,12 @@ class PokerGame{
         result += "딜러 \(dealer)\n"
         return result
     }
+    
+    func getPlayers() -> [Player]{
+        return self.players
+    }
+    
+    func getDealer() -> Dealer{
+        return self.dealer
+    }
 }
