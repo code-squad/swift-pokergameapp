@@ -48,19 +48,19 @@ class CardGameAppTests: XCTestCase {
         Card(suit: .diamond, rank: .eleven),
         Card(suit: .diamond, rank: .twelve),
         Card(suit: .diamond, rank: .thirteen),
-        Card(suit: .hert, rank: .one),
-        Card(suit: .hert, rank: .two),
-        Card(suit: .hert, rank: .three),
-        Card(suit: .hert, rank: .four),
-        Card(suit: .hert, rank: .five),
-        Card(suit: .hert, rank: .six),
-        Card(suit: .hert, rank: .seven),
-        Card(suit: .hert, rank: .eight),
-        Card(suit: .hert, rank: .nine),
-        Card(suit: .hert, rank: .ten),
-        Card(suit: .hert, rank: .eleven),
-        Card(suit: .hert, rank: .twelve),
-        Card(suit: .hert, rank: .thirteen),
+        Card(suit: .heart, rank: .one),
+        Card(suit: .heart, rank: .two),
+        Card(suit: .heart, rank: .three),
+        Card(suit: .heart, rank: .four),
+        Card(suit: .heart, rank: .five),
+        Card(suit: .heart, rank: .six),
+        Card(suit: .heart, rank: .seven),
+        Card(suit: .heart, rank: .eight),
+        Card(suit: .heart, rank: .nine),
+        Card(suit: .heart, rank: .ten),
+        Card(suit: .heart, rank: .eleven),
+        Card(suit: .heart, rank: .twelve),
+        Card(suit: .heart, rank: .thirteen),
         Card(suit: .spade, rank: .one),
         Card(suit: .spade, rank: .two),
         Card(suit: .spade, rank: .three),
@@ -109,12 +109,4 @@ class CardGameAppTests: XCTestCase {
 //        deck?.makeDeck()
 //        XCTAssertEqual(deck?.cards, willCompareSuits)
 //    }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
-
 }

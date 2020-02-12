@@ -15,6 +15,7 @@
 		AE40A37523ED4D70009AB61B /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = AE40A37423ED4D70009AB61B /* SnapKit */; };
 		AE40A3AE23F17205009AB61B /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE40A3AD23F17205009AB61B /* Deck.swift */; };
 		AE83CC0E23F3BEE1002635AD /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE83CC0D23F3BEE1002635AD /* Game.swift */; };
+		AE83CC1523F3DE92002635AD /* Dealer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE83CC1423F3DE92002635AD /* Dealer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,6 +40,7 @@
 		AE40A37123ED35B4009AB61B /* GameTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTableView.swift; sourceTree = "<group>"; };
 		AE40A3AD23F17205009AB61B /* Deck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = "<group>"; };
 		AE83CC0D23F3BEE1002635AD /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
+		AE83CC1423F3DE92002635AD /* Dealer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dealer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				AE40A3AD23F17205009AB61B /* Deck.swift */,
+				AE83CC1423F3DE92002635AD /* Dealer.swift */,
 				AE83CC0D23F3BEE1002635AD /* Game.swift */,
 			);
 			path = Model;
@@ -240,6 +243,7 @@
 			files = (
 				AE40A36223ED340A009AB61B /* ViewController.swift in Sources */,
 				AE83CC0E23F3BEE1002635AD /* Game.swift in Sources */,
+				AE83CC1523F3DE92002635AD /* Dealer.swift in Sources */,
 				AE40A3AE23F17205009AB61B /* Deck.swift in Sources */,
 				AE40A37223ED35B4009AB61B /* GameTableView.swift in Sources */,
 				AE40A35E23ED340A009AB61B /* AppDelegate.swift in Sources */,
