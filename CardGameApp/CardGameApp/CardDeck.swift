@@ -17,7 +17,6 @@ struct CardDeck {
     init() {
         cards = [Card]()
         createCardDeck()
-        reset()
     }
     
     mutating func createCardDeck() {
@@ -48,7 +47,7 @@ struct CardDeck {
     mutating func removeOne() -> Card? {
         guard cards.count > 0 else { return nil }
         let pickedCardIndex = Int.random(in: 0..<cards.count)
-        cards.remove(at: pickedCardIndex)
-        return cards[pickedCardIndex]
+        let removedCard = cards.remove(at: pickedCardIndex)
+        return removedCard
     }
 }
