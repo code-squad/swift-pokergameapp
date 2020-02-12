@@ -18,7 +18,7 @@ struct Deck {
         reset()
     }
     
-    mutating func reset() {
+    private mutating func reset() {
         cards = [Card]()
         Card.Shape.allCases.forEach {
             let shape = $0
