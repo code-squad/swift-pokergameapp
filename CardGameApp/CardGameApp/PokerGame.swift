@@ -31,7 +31,10 @@ class PokerGame {
         }
     }
     private var dealer: Dealer
-    var players = [Player]()
+    private var players = [Player]()
+    var playersCount: Int {
+        return players.count
+    }
     private var gameType: GameType
     private var resumable: Bool {
         dealer.deckCount > (players.count) * gameType.rawValue
@@ -44,6 +47,10 @@ class PokerGame {
             self.players.append(Player())
         }
         players.append(dealer)
+    }
+    
+    func forEachPlayers(_ transform: (Player) -> ()) {
+        players.forEach(transform)
     }
     
     func distributeCards() {

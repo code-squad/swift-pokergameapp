@@ -116,9 +116,9 @@ class ViewController: UIViewController {
     
     func makeGame() {
         var index = 1
-        pokerGame.players.forEach {
+        pokerGame.forEachPlayers {
             let playerLabel = makePlayerLabel(playerName: "Player\(index)")
-            if index == pokerGame.players.count {
+            if index == pokerGame.playersCount {
                 playerLabel.text = "Dealer"
             }
             let playerCard = makePlayerCard($0)
