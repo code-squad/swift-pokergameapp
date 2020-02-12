@@ -32,11 +32,3 @@ extension Player:MustHaveCard{
     }
 }
 
-#if DEBUG
-extension Player{
-    public func getCardCount() -> Int{
-        return self.ownCardDeck.count
-    }
-}
-#endif
-

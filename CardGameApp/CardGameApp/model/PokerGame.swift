@@ -85,23 +85,3 @@ class PokerGame{
         return result
     }
 }
-
-#if DEBUG
-extension PokerGame{
-    public func getDealer() -> Dealer{
-        return self.dealer
-    }
-    
-    public func getPlayers() -> [Player]{
-        return self.players
-    }
-    
-    public func getStud() -> Stud{
-        return self.stud
-    }
-    
-    public func getNumOfPlayer() -> NumOfPlayer{
-        return self.numOfPlayer
-    }
-}
-#endif
