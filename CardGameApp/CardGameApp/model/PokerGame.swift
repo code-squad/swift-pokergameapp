@@ -9,7 +9,7 @@
 import Foundation
 
 class PokerGame{
-    private var dealer:Dealer = Dealer(stud: .sevenCardStud, numOfPlayer: .four)
+    private var dealer:Dealer = Dealer()
     private var players:[Player] = [Player]()
     private var stud:Stud
     private var numOfPlayer:NumOfPlayer
@@ -30,7 +30,7 @@ class PokerGame{
     }
     
     private func readyPlayer(){
-        self.dealer = Dealer(stud: self.stud, numOfPlayer: self.numOfPlayer)
+        self.dealer = Dealer()
         self.players = [Player]()
         for _ in 0..<self.numOfPlayer.rawValue{
             players.append(Player())
