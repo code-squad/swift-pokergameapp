@@ -87,7 +87,7 @@ class CardGameAppTests: XCTestCase {
     
     func testShuffle() {
         deck?.shuffle()
-        XCTAssertEqual(deck, Deck())
+        XCTAssertFalse(deck == Deck())
     }
     
     func testRemoveOne() {
