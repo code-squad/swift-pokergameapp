@@ -42,30 +42,35 @@ class CardGameAppTests: XCTestCase {
     }
     
     func testReset() {
-        // When
-        cardDeck.reset()
-        let count = cardDeck.cards.count
+        // given
+        let initCardDeckbyReset = CardDeck()
+        let cardsCount = initCardDeckbyReset.count()
         // Then
-        XCTAssertEqual(count, 52)
+        XCTAssertEqual(cardsCount, 52)
     }
     
-    func testShuffle() { //
+    func testShuffle() {
+        // Given
+        let cardGameCardDeck = CardDeck()
+        let randomIndex = Int.random(in: 0 ... 52)
+        let originalCard = cardGameCardDeck.cards[randomIndex]
         // When
-        cardDeck.shuffle()
-        let shuffledCardDeck = cardDeck.cards
+        let shuffledCard = cardGameCardDeck.shuffle()[randomIndex]
         // Then
-        XCTAssertNotEqual(cards, shuffledCardDeck)
+        XCTAssertNotEqual(originalCard, shuffledCard)
+        //        XCTAssertNotEqual(originalCards.dropLast(), shuffledCards.dropLast())
     }
     
     func testRemoveOne() {
         // Given
-        let originalCount = cards.count
-        var randomCardIndexWillRemove = Int.random(in: 0 ..< originalCount)
-        let nextCardFromRemoved = cards[randomCardIndexWillRemove+1]
+        var cardDeck = CardDeck()
+        let originalCount = cardDeck.cards.count
+        var randomCardIndexWillRemove = Int.random(in: 1..<originalCount-1)
+        let nextCardFromRemoved = cardDeck.cards[randomCardIndexWillRemove+1]
         // When
         let removedOne = cardDeck.removeOne(of: randomCardIndexWillRemove)
-        let movedCardToForward = cards[randomCardIndexWillRemove]
-        let changedCount = cards.count
+        let movedCardToForward = cardDeck.cards[randomCardIndexWillRemove]
+        let changedCount = cardDeck.cards.count
         // Then
         XCTAssertNotEqual(originalCount, changedCount)
         // 삭제 요청된 카드 다음 인덱스에 있던 카드가 삭제 후 삭제된 카드 인덱스에 있는지 확인한다
@@ -74,23 +79,29 @@ class CardGameAppTests: XCTestCase {
     }
     
     func testCount() {
+        // Given
+        var cardDeck = CardDeck()
+        let original = cardDeck.cards
+        
         // When 처음값을 삭제했을 때
         cardDeck.removeOne(of: 0)
-        var count = cardDeck.cards.count
+        let removeOne = cardDeck.cards
+        
         // Then
-        XCTAssertEqual(count, 51)
+        XCTAssertNotEqual(original, removeOne)
         
         // When 중간값을 삭제했을 때
         cardDeck.removeOne(of: 27)
-        count = cardDeck.cards.count
+        let removeOneMore = cardDeck.cards
+        
         // Then
-        XCTAssertEqual(count, 50)
+        XCTAssertNotEqual(removeOne, removeOneMore)
         
         // When 초기화 했을 때
         cardDeck.reset()
-        count = cardDeck.cards.count
+        let reset = cardDeck.cards
         // Then
-        XCTAssertEqual(count, 52)
+        XCTAssertNotEqual(removeOneMore, reset)
     }
     
 }
