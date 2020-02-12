@@ -14,8 +14,8 @@ class Player {
         hand.count
     }
     
-    func forEach(_ tramsform: (Card) -> ()) {
-        hand.forEach(tramsform)
+    func forEach(_ transform: (Card) -> ()) {
+        hand.forEach(transform)
     }
     func discard() {
         hand = [Card]()
