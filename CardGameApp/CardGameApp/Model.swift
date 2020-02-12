@@ -34,7 +34,8 @@ class Card {
 
 //MARK: - Deck
 struct Deck {
-    var cards: [Card] = []
+    
+    private var cards: [Card] = []
     
     var count: Int {
         return cards.count
@@ -54,7 +55,7 @@ struct Deck {
     
     mutating func reset() {
         cards.removeAll()
-        
+        makeDeck()
     }
     
     private func makeSuit(suit: Card.suit) -> [Card] {
@@ -78,6 +79,12 @@ extension Card: CustomStringConvertible {
     }
 }
 
+extension Card: Equatable {
+    static func == (lhs: Card, rhs: Card) -> Bool {
+        return lhs.suit == rhs.suit && lhs.rank == rhs.rank
+    }
+}
+
 //MARK: Card.rank
 extension Card.rank: CustomStringConvertible {
     var description: String {
@@ -88,5 +95,12 @@ extension Card.rank: CustomStringConvertible {
         case .thirteen: return "K"
         default: return String(rawValue)
         }
+    }
+}
+
+//MARK: - Deck
+extension Deck: Equatable {
+    static func == (lhs: Deck, rhs: Deck) -> Bool {
+        return lhs.cards == rhs.cards
     }
 }
