@@ -11,7 +11,7 @@ import Foundation
 class Player {
     private var hand = Hand()
     
-    func forEach(_ transform: (Card) -> ()) {
+    func forEachCard(_ transform: (Card) -> ()) {
         hand.forEach(transform)
     }
     
