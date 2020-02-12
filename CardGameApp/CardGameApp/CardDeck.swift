@@ -17,7 +17,7 @@ struct CardDeck {
     init() {
         cards = [Card]()
         createCardDeck()
-        shuffle()
+        reset()
     }
     
     mutating func createCardDeck() {
@@ -28,10 +28,12 @@ struct CardDeck {
                 cards.append(Card(suit: Card.Suit(rawValue: suit)!, rank: Card.Rank(rawValue: count)!))
             }
         }
+        shuffle()
     }
     
-    func reset() {
-        
+    mutating func reset() {
+        cards.removeAll()
+        createCardDeck()
     }
     
     mutating func shuffle() {
