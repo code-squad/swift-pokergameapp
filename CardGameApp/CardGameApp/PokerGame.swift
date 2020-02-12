@@ -39,7 +39,7 @@ class PokerGame {
         }
     }
     private var dealer: Dealer
-    private var players = [Player]()
+    private var players = Players()
     private var gameType: GameType
     private var resumable: Bool {
         dealer.deckCount > (players.count) * gameType.rawValue
@@ -49,9 +49,9 @@ class PokerGame {
         self.gameType = gameType
         self.dealer = Dealer()
         numberOfPlayers.forEach {
-            self.players.append(Player())
+            self.players.add(player: Player())
         }
-        players.append(dealer)
+        players.add(player: dealer)
     }
     
     func forEachPlayers(_ transform: (Player) -> ()) {
@@ -69,9 +69,7 @@ class PokerGame {
         
     func play() {
         while resumable {
-            players.forEach {
-                $0.discard()
-            }
+            players.discardAll()
             dealer.shuffle()
             gameType.forEach {
                 distributeCards()
