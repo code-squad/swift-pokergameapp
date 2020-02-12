@@ -12,7 +12,7 @@ struct CardDeck {
     var cards : [Card] = []
     
     init() {
-//        cards = self.reset()
+        cards = self.reset()
     }
     
     mutating func reset() -> [Card]{
@@ -29,7 +29,7 @@ struct CardDeck {
     }
     
     func shuffle() -> [Card] {
-        return cards.shuffled()
+        return self.cards.shuffled()
     }
     
     mutating func removeOne(of index: Int) -> Card {
@@ -38,8 +38,8 @@ struct CardDeck {
         return cardToRemove
     }
     
-    func count() {
-        
+    func count() -> Int {
+        return self.cards.count
     }
 }
 extension CardDeck :Equatable{
