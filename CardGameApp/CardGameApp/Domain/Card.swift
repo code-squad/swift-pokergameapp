@@ -43,11 +43,13 @@ public class Card {
 
 extension Card : CustomStringConvertible {
     public var description: String {
-        return suit.rawValue + numberToStr
+        return suit.rawValue + number.description
     }
-    
-    private var numberToStr : String {
-        switch number {
+}
+
+extension Card.Number : CustomStringConvertible {
+    var description: String {
+        switch self {
         case .ace:
             return "A"
         case .jack:
@@ -56,10 +58,11 @@ extension Card : CustomStringConvertible {
             return "Q"
         case .king:
             return "K"
-        default :
-            return String(number.rawValue)
+        default:
+            return String(self.rawValue)
         }
     }
+    
 }
 
 extension Card : Equatable {
