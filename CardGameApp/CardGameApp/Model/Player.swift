@@ -9,20 +9,17 @@
 import Foundation
 
 class Player {
-    private var hand = [Card]()
-    var handCount: Int {
-        hand.count
-    }
+    private var hand = Hand()
     
     func forEach(_ transform: (Card) -> ()) {
         hand.forEach(transform)
     }
     
     func discard() {
-        hand = [Card]()
+        hand = Hand()
     }
     
     func receive(_ card: Card) {
-        hand.append(card)
+        hand.add(card: card)
     }
 }
