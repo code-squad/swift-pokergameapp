@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AE1129C023F3959900003BBA /* CardGameAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1129BF23F3959900003BBA /* CardGameAppTests.swift */; };
 		AE40A35E23ED340A009AB61B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE40A35D23ED340A009AB61B /* AppDelegate.swift */; };
 		AE40A36223ED340A009AB61B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE40A36123ED340A009AB61B /* ViewController.swift */; };
 		AE40A36723ED340B009AB61B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE40A36623ED340B009AB61B /* Assets.xcassets */; };
@@ -15,7 +16,20 @@
 		AE40A3AE23F17205009AB61B /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE40A3AD23F17205009AB61B /* Model.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		AE1129C223F3959900003BBA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AE40A35223ED340A009AB61B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AE40A35923ED340A009AB61B;
+			remoteInfo = CardGameApp;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		AE1129BD23F3959900003BBA /* CardGameAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CardGameAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AE1129BF23F3959900003BBA /* CardGameAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardGameAppTests.swift; sourceTree = "<group>"; };
+		AE1129C123F3959900003BBA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AE40A35A23ED340A009AB61B /* CardGameApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CardGameApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE40A35D23ED340A009AB61B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AE40A36123ED340A009AB61B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -26,6 +40,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		AE1129BA23F3959900003BBA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AE40A35723ED340A009AB61B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -37,10 +58,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AE1129BE23F3959900003BBA /* CardGameAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				AE1129BF23F3959900003BBA /* CardGameAppTests.swift */,
+				AE1129C123F3959900003BBA /* Info.plist */,
+			);
+			path = CardGameAppTests;
+			sourceTree = "<group>";
+		};
 		AE40A35123ED340A009AB61B = {
 			isa = PBXGroup;
 			children = (
 				AE40A35C23ED340A009AB61B /* CardGameApp */,
+				AE1129BE23F3959900003BBA /* CardGameAppTests */,
 				AE40A35B23ED340A009AB61B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -49,6 +80,7 @@
 			isa = PBXGroup;
 			children = (
 				AE40A35A23ED340A009AB61B /* CardGameApp.app */,
+				AE1129BD23F3959900003BBA /* CardGameAppTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -69,6 +101,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		AE1129BC23F3959900003BBA /* CardGameAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AE1129C623F3959900003BBA /* Build configuration list for PBXNativeTarget "CardGameAppTests" */;
+			buildPhases = (
+				AE1129B923F3959900003BBA /* Sources */,
+				AE1129BA23F3959900003BBA /* Frameworks */,
+				AE1129BB23F3959900003BBA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AE1129C323F3959900003BBA /* PBXTargetDependency */,
+			);
+			name = CardGameAppTests;
+			productName = CardGameAppTests;
+			productReference = AE1129BD23F3959900003BBA /* CardGameAppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		AE40A35923ED340A009AB61B /* CardGameApp */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = AE40A36E23ED340B009AB61B /* Build configuration list for PBXNativeTarget "CardGameApp" */;
@@ -99,6 +149,10 @@
 				LastUpgradeCheck = 1130;
 				ORGANIZATIONNAME = Cloud;
 				TargetAttributes = {
+					AE1129BC23F3959900003BBA = {
+						CreatedOnToolsVersion = 11.3.1;
+						TestTargetID = AE40A35923ED340A009AB61B;
+					};
 					AE40A35923ED340A009AB61B = {
 						CreatedOnToolsVersion = 11.3.1;
 					};
@@ -121,11 +175,19 @@
 			projectRoot = "";
 			targets = (
 				AE40A35923ED340A009AB61B /* CardGameApp */,
+				AE1129BC23F3959900003BBA /* CardGameAppTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		AE1129BB23F3959900003BBA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AE40A35823ED340A009AB61B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -137,6 +199,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		AE1129B923F3959900003BBA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AE1129C023F3959900003BBA /* CardGameAppTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AE40A35623ED340A009AB61B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -150,7 +220,55 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		AE1129C323F3959900003BBA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AE40A35923ED340A009AB61B /* CardGameApp */;
+			targetProxy = AE1129C223F3959900003BBA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		AE1129C423F3959900003BBA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6HG325P9V2;
+				INFOPLIST_FILE = CardGameAppTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = cLoud.CardGameAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CardGameApp.app/CardGameApp";
+			};
+			name = Debug;
+		};
+		AE1129C523F3959900003BBA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6HG325P9V2;
+				INFOPLIST_FILE = CardGameAppTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = cLoud.CardGameAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CardGameApp.app/CardGameApp";
+			};
+			name = Release;
+		};
 		AE40A36C23ED340B009AB61B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -304,6 +422,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		AE1129C623F3959900003BBA /* Build configuration list for PBXNativeTarget "CardGameAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AE1129C423F3959900003BBA /* Debug */,
+				AE1129C523F3959900003BBA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		AE40A35523ED340A009AB61B /* Build configuration list for PBXProject "CardGameApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
