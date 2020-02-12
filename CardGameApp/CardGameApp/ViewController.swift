@@ -67,25 +67,12 @@ class ViewController: UIViewController {
     }
     
     @objc private func handleGameTypeSegmentChanged(segmentedControl: UISegmentedControl) {
-        if segmentedControl.selectedSegmentIndex == 0 {
-            gameType = .sevenCardsStud
-        } else {
-            gameType = .fiveCardsStud
-        }
+        gameType = GameType(index: segmentedControl.selectedSegmentIndex)
         resetPokerGame()
     }
     
     @objc private func handlePlayerCountSegmentChanged(segmentedControl: UISegmentedControl) {
-        switch segmentedControl.selectedSegmentIndex {
-        case 0:
-            playerCount = .two
-        case 1:
-            playerCount = .three
-        case 2:
-            playerCount = .four
-        default:
-            break
-        }
+        playerCount = PlayerCount(index: segmentedControl.selectedSegmentIndex)
         resetPokerGame()
     }
     
