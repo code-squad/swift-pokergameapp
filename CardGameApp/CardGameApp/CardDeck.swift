@@ -20,11 +20,9 @@ struct CardDeck {
     }
     
     mutating func createCardDeck() {
-        let maxRank = Card.Rank.king.rawValue
-        let suitArray = [Card.Suit.clubs.rawValue, Card.Suit.spades.rawValue, Card.Suit.hearts.rawValue, Card.Suit.diamonds.rawValue]
-        for count in 1...maxRank {
-            for suit in suitArray {
-                cards.append(Card(suit: Card.Suit(rawValue: suit)!, rank: Card.Rank(rawValue: count)!))
+        for rank in Card.Rank.allCases {
+            for suit in Card.Suit.allCases {
+                cards.append(Card(suit: suit, rank: rank))
             }
         }
         shuffle()
