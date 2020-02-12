@@ -40,9 +40,6 @@ class PokerGame {
     }
     private var dealer: Dealer
     private var players = [Player]()
-    var playersCount: Int {
-        return players.count
-    }
     private var gameType: GameType
     private var resumable: Bool {
         dealer.deckCount > (players.count) * gameType.rawValue
