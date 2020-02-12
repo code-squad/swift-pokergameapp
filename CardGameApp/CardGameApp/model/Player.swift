@@ -26,7 +26,6 @@ extension Player:CustomStringConvertible{
     }
 }
 
-
 #if DEBUG
 extension Player{
     public func getCardCount() -> Int{

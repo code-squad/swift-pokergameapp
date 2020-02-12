@@ -17,6 +17,7 @@ class ViewController: UIViewController {
         setUpBackground()
         setUpStackView()
         addCardIntoStackView()
+        
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {

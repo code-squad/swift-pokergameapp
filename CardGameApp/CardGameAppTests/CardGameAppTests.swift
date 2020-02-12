@@ -51,10 +51,30 @@ class CardGameAppTests: XCTestCase {
         XCTAssert(player.getCardCount() == 1)
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testGameStart(){
+        let pokerGame=PokerGame()
+        pokerGame.gameStart()
+        XCTAssertNotNil(pokerGame.getDealer)
+        XCTAssertNotNil(pokerGame.getPlayers)
+        XCTAssertGreaterThan(pokerGame.getPlayers().count,0)
     }
+    
+    func testSetStud(){
+        let pokerGame=PokerGame()
+        let originalStud=pokerGame.getStud()
+        pokerGame.setStud(stud: .fiveCardStud)
+        let changedStud=pokerGame.getStud()
+        XCTAssertNotEqual(originalStud,changedStud)
+    }
+    
+    func testSetNumOfPlayer(){
+        let pokerGame=PokerGame()
+        let originalNumOfPlayer=pokerGame.getNumOfPlayer()
+        pokerGame.setNumOfPlayer(numOfPlayer: .one)
+        let changedNumOfPlayer=pokerGame.getNumOfPlayer()
+        XCTAssertNotEqual(originalNumOfPlayer,changedNumOfPlayer)
+    }
+    
     
     func testPerformanceExample() {
         // This is an example of a performance test case.
