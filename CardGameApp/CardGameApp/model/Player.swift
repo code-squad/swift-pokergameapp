@@ -25,3 +25,13 @@ extension Player:CustomStringConvertible{
         return "\(self.ownCardDeck)"
     }
 }
+
+
+#if DEBUG
+extension Player{
+    public func getCardCount() -> Int{
+        return self.ownCardDeck.count
+    }
+}
+#endif
+
