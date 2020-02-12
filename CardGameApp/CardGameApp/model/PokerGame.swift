@@ -73,10 +73,8 @@ class PokerGame{
         readyPlayer()
         gameStart()
     }
-}
-
-extension PokerGame:CustomStringConvertible{
-    var description: String {
+    
+    func printPlayersCard() -> String{
         var result = ""
         var count = 1
         for player in players{
