@@ -43,7 +43,22 @@ public class Card {
 
 extension Card : CustomStringConvertible {
     public var description: String {
-        return suit.rawValue + number.description
+        return suit.description + number.description
+    }
+}
+
+extension Card.Suit : CustomStringConvertible {
+    var description: String {
+        switch self {
+        case .spade :
+            return "♠"
+        case .heart :
+            return "♥"
+        case .diamond :
+            return "♦"
+        case .club :
+            return "♣"
+        }
     }
 }
 
