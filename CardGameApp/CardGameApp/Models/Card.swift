@@ -24,12 +24,6 @@ class Card {
     private let suit: Suit
     private let rank: Rank
     
-    private let numberFormattingDictionary: Dictionary<Rank, String> = [
-        .ace: "A",
-        .jack: "J",
-        .queen: "Q",
-        .king: "K"]
-    
     init(suit: Suit, rank: Rank) {
         self.suit = suit
         self.rank = rank
@@ -37,8 +31,14 @@ class Card {
 }
 
 extension Card: CustomStringConvertible {
+    static private let numberFormattingDictionary: Dictionary<Rank, String> = [
+        .ace: "A",
+        .jack: "J",
+        .queen: "Q",
+        .king: "K"]
+    
     var formattedNumber: String {
-        if let string = numberFormattingDictionary[rank] {
+        if let string = Card.numberFormattingDictionary[rank] {
             return string
         }
         return "\(rank.rawValue)"
