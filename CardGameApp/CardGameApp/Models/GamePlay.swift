@@ -13,8 +13,8 @@ class GamePlay {
         case sevenCardStud = 7
         case fiveCardStud = 5
         
-        var cardPerParticipant: Int {
-            return rawValue
+        func repeatByRule(_ block: () -> ()) {
+            (0..<rawValue).forEach { _ in block() }
         }
     }
     
@@ -30,15 +30,15 @@ class GamePlay {
     }
     
     func deal() {
-        (0..<rule.cardPerParticipant).forEach { _ in
-            players.eachTakesACard { cardDeck.removeOne() }
+        rule.repeatByRule {
+            players.everyPlayers { $0.take(card: cardDeck.removeOne()) }
             dealer.take(card: cardDeck.removeOne())
         }
     }
     
     func table() -> [[Card]] {
-        var cards = players.allCards()
-        cards.append(dealer.cardsInHand)
+        var cards = players.everyPlayers { $0.everyCard { $0 } }
+        cards.append(dealer.everyCard { $0 })
         return cards
     }
 }
@@ -49,35 +49,33 @@ class Players {
         case three = 3
         case four = 4
 
-        func entrance() -> [Participant] {
-            return (0..<rawValue).map { _ in Participant() }
+        func repeatForPlayers<T>(_ block: () -> T) -> [T] {
+            return (0..<rawValue).map { _ in block() }
         }
     }
     
     private let players: [Participant]
     
     init(with number: Number) {
-        self.players = number.entrance()
+        self.players = number.repeatForPlayers { Participant() }
     }
     
-    func eachTakesACard(block: () -> Card) {
-        players.forEach { $0.take(card: block()) }
-    }
-    
-    func allCards() -> [[Card]] {
-        return players.map { $0.cardsInHand }
+    @discardableResult
+    func everyPlayers<T>(_ transform: (Participant) -> T) -> [T] {
+        return players.map { transform($0) }
     }
 }
 
 class Participant {
     private var cards = [Card]()
     
-    var cardsInHand: [Card] {
-        return cards
-    }
-    
     func take(card: Card) {
         cards.append(card)
+    }
+    
+    @discardableResult
+    func everyCard<T>(_ transform: (Card) -> T) -> [T] {
+        return cards.map { transform($0) }
     }
 }
 
