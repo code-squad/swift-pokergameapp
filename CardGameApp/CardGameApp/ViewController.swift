@@ -28,7 +28,7 @@ class ViewController: UIViewController {
         // Background 배경 설정
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "BackgroundPattern")!)
         drawStackView()
-        print(cardInfo)
+        cardInfo
     }
     
     func drawStackView(){
