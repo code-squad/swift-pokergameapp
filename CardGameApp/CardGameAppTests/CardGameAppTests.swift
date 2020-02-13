@@ -1,11 +1,3 @@
-//
-//  CardGameAppTests.swift
-//  CardGameAppTests
-//
-//  Created by JW on 2020/02/11.
-//  Copyright © 2020 JW. All rights reserved.
-//
-
 import XCTest
 @testable import CardGameApp
 
