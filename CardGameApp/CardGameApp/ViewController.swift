@@ -11,7 +11,7 @@ import UIKit
 class ViewController: UIViewController {
     private var gameType: GameType = .sevenCardsStud
     private var playerCount: PlayerCount = .two
-    lazy var pokerGame: PokerGame = PokerGame()
+    private var pokerGame: PokerGame = PokerGame()
     let gameTypeTitles = ["7 Cards", "5 Cards"]
     let playerCountTitles = ["2명", "3명", "4명"]
     
@@ -52,18 +52,18 @@ class ViewController: UIViewController {
     }
     
     private func resetPlayers() {
-        var players: [Playable] = pokerGame.players
-        players.append(pokerGame.dealer)
-        players.enumerated().forEach { (i, player) in
-            var displayName = "Player \(i + 1)"
-            if i == players.count - 1 { displayName = "Dealer" }
-            
-            let playerStackView = PlayerStackView(displayName: displayName)
-            let cardStackView = CardStackView(of: player)
-            
-            playerStackView.addArrangedSubview(cardStackView)
-            pokerGameStackView.addArrangedSubview(playerStackView)
-        }
+//        var players: [Player] = pokerGame.players
+//        players.append(pokerGame.dealer)
+//        players.enumerated().forEach { (i, player) in
+//            var displayName = "Player \(i + 1)"
+//            if i == players.count - 1 { displayName = "Dealer" }
+//            
+//            let playerStackView = PlayerStackView(displayName: displayName)
+//            let cardStackView = CardStackView(of: player)
+//            
+//            playerStackView.addArrangedSubview(cardStackView)
+//            pokerGameStackView.addArrangedSubview(playerStackView)
+//        }
     }
     
     @objc private func handleGameTypeSegmentChanged(segmentedControl: UISegmentedControl) {

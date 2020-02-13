@@ -9,9 +9,9 @@
 import UIKit
 
 class CardStackView: UIStackView {
-    private var player: Playable?
+    private var player: Player?
     
-    init(of player: Playable) {
+    init(of player: Player) {
         self.player = player
         super.init(frame: .zero)
         commonInit()
@@ -31,9 +31,8 @@ class CardStackView: UIStackView {
     }
     
     private func setupCards() {
-        player?.hands.map { $0.description }
-            .forEach({ (filename) in
-                addArrangedSubview(CardImageView(named: filename))
-            })
+        player?.forEachCard({ (card) in
+            addArrangedSubview(CardImageView(named: String(describing: card)))
+        })
     }
 }

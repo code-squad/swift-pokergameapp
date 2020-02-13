@@ -25,22 +25,13 @@ struct Card {
     
     enum Suit: Character, CaseIterable, CustomStringConvertible {
         var description: String {
-            switch self {
-            case .spade:
-                return "s"
-            case .heart:
-                return "h"
-            case .club:
-                return "c"
-            case .diamond:
-                return "d"
-            }
+            return String(self.rawValue)
         }
         
-        case spade = "♠️"
-        case heart = "♥️"
-        case club = "♣️"
-        case diamond = "♦️"
+        case spade = "s"
+        case heart = "h"
+        case club = "c"
+        case diamond = "d"
     }
     
     enum Rank: Int, CaseIterable, CustomStringConvertible {

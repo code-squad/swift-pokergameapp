@@ -8,11 +8,8 @@
 
 import Foundation
 
-struct CardDeck {
+struct Deck {
     private var cards: [Card] = []
-    var count: Int {
-        cards.count
-    }
     
     init() {
         setupDeck()

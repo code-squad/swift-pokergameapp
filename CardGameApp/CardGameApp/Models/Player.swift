@@ -8,14 +8,16 @@
 
 import Foundation
 
-class Player: Playable {
-    internal var hands: [Card]
+class Player {
+    private var hand: [Card] = []
     
-    init(hands: [Card]) {
-        self.hands = hands
+    func setupHand(with hand: [Card]) {
+        self.hand = hand
     }
-}
-
-protocol Playable {
-    var hands: [Card] { get set }
+    
+    func forEachCard(_ handler: (Card) -> ()) {
+        for card in hand {
+            handler(card)
+        }
+    }
 }
