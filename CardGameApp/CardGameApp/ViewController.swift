@@ -38,6 +38,8 @@ class ViewController: UIViewController {
         view.addSubview(participantView)
         layoutSelectionView()
         layoutParticipantView()
+        
+        selectionView.delegate = self
     }
     
     private func setBackgroundPattern() {
@@ -57,5 +59,11 @@ class ViewController: UIViewController {
         participantView.topAnchor.constraint(equalTo: selectionView.bottomAnchor).isActive = true
         participantView.leftAnchor.constraint(equalTo: safeArea.leftAnchor, constant: 20).isActive = true
         participantView.rightAnchor.constraint(equalTo: safeArea.rightAnchor, constant: -20).isActive = true
+    }
+}
+
+extension ViewController: PlayModeSelectionViewDelegate {
+    func didModeChanged(to mode: PlayMode) {
+        
     }
 }
