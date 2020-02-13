@@ -9,29 +9,14 @@
 import XCTest
 @testable import CardGameApp
 
-class CardGameAppTests: XCTestCase {
-    // Given
-    var cardDeck = CardDeck()
-    var cards = CardDeck().cards
+class CardGameAppTests: XCTestCase  {
     
     override func setUp() {
+        
     }
     
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-    
-    func testAddCard() {
-        // Given
-        let viewController = ViewController()
-        let cardStack = viewController.cardsStack
-        
-        // When
-        let description = viewController.addCards()
-        let subViewCount = cardStack.subviews.count
-        
-        // Then
-        XCTAssertEqual(subViewCount, 7)
     }
     
     func testDescripteCard() {
@@ -47,68 +32,86 @@ class CardGameAppTests: XCTestCase {
     
     func testReset() {
         // given
-        let initCardDeckbyReset = CardDeck()
-        let cardsCount = initCardDeckbyReset.count()
+        // CardDeck을 초기화할 때 reset() 함수가 호출됩니다.
+        var cardDeck = CardDeck()
+        let cardsCount = cardDeck.count()
         
         // Then
         XCTAssertEqual(cardsCount, 52)
     }
     
-    func testShuffle() {
+    func testCardsShuffled() {
         // Given
-        let cardGameCardDeck = CardDeck()
-        let randomIndex = Int.random(in: 0 ... 52)
-        let originalCard = cardGameCardDeck.cards[randomIndex]
+        var cardGameCardDeck = CardDeck()
+        var seed = SystemRandomNumberGenerator()
+        var randomNumber = ((0 ..< 52).shuffled(using: &seed).first)!
+        let cardBeforeRandom = cardGameCardDeck.pickCard(of: randomNumber)
         
         // When
-        let shuffledCard = cardGameCardDeck.shuffle()[randomIndex]
+        cardGameCardDeck.shuffle()
+        let cardAfterRandom = cardGameCardDeck.pickCard(of: randomNumber)
         
         // Then
-        XCTAssertNotEqual(originalCard, shuffledCard)
+        XCTAssertNotEqual(cardBeforeRandom, cardAfterRandom)
     }
     
-    func testRemoveOne() {
+    func testCountAfterRemoveOne() {
         // Given
         var cardDeck = CardDeck()
-        let originalCount = cardDeck.cards.count
-        var randomCardIndexWillRemove = Int.random(in: 1..<originalCount-1)
-        let nextCardFromRemoved = cardDeck.cards[randomCardIndexWillRemove+1]
+        let originalCount = cardDeck.count()
+        var seed = SystemRandomNumberGenerator()
+        var randomNumber = ((0 ..< 52).shuffled(using: &seed).first)!
         
         // When
-        let removedOne = cardDeck.removeOne(of: randomCardIndexWillRemove)
-        let movedCardToForward = cardDeck.cards[randomCardIndexWillRemove]
-        let changedCount = cardDeck.cards.count
+        cardDeck.removeOne(of: randomNumber)
+        let changedCount = cardDeck.count()
         
         // Then
         XCTAssertNotEqual(originalCount, changedCount)
+    }
+    
+    func testCardInSameSquenceAfterRemoveOne(){
+        //Given
+        var seed = SystemRandomNumberGenerator()
+        var IndexWillRemoveValue = ((0 ..< 52).shuffled(using: &seed).first)!
+        var cardDeck = CardDeck()
+        let cardBeforeRemoveOne = cardDeck.pickCard(of: IndexWillRemoveValue)
+        
+        //When
+        cardDeck.removeOne(of: IndexWillRemoveValue)
+        let cardAfterRemoveOne = cardDeck.pickCard(of: IndexWillRemoveValue)
+        
+        //Then
+        XCTAssertNotEqual(cardBeforeRemoveOne, cardAfterRemoveOne)
+    }
+    
+    func testSquenceIsPulled() {
+        // Given
+        var cardDeck = CardDeck()
+        let originalCount = cardDeck.count()
+        var randomCardIndexWillRemove = Int.random(in: 1..<originalCount-1)
+        let nextCardFromRemoved = cardDeck.pickCard(of: randomCardIndexWillRemove+1)
+        
+        // When
+        let removedOne = cardDeck.removeOne(of: randomCardIndexWillRemove)
+        let movedCardToForward = cardDeck.pickCard(of: randomCardIndexWillRemove)
+        
+        // Then
         // 삭제 요청된 카드 다음 인덱스에 있던 카드가 삭제 후 삭제된 카드 인덱스에 있는지 확인한다
         XCTAssertEqual(nextCardFromRemoved, movedCardToForward)
-        XCTAssertNotEqual(removedOne, movedCardToForward)
     }
     
     func testCount() {
         // Given
         var cardDeck = CardDeck()
-        let original = cardDeck.cards
-        
-        // When 처음값을 삭제했을 때
-        cardDeck.removeOne(of: 0)
-        let removeOne = cardDeck.cards
-        
-        // Then
-        XCTAssertNotEqual(original, removeOne)
-        
-        // When 중간값을 삭제했을 때
-        cardDeck.removeOne(of: 27)
-        let removeOneMore = cardDeck.cards
-        
-        // Then
-        XCTAssertNotEqual(removeOne, removeOneMore)
+        let originalCount = cardDeck.count()
+        var randomNumber = Int.random(in: 1..<originalCount-1)
         
         // When 초기화 했을 때
-        cardDeck.reset()
-        let reset = cardDeck.cards
+        cardDeck.removeOne(of: randomNumber)
+        let changedCount = cardDeck.count()
+        
         // Then
-        XCTAssertNotEqual(removeOneMore, reset)
+        XCTAssertEqual(originalCount, changedCount+1)
     }
 }

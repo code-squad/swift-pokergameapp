@@ -10,15 +10,15 @@ import Foundation
 
 class Card: CustomStringConvertible {
     
-    private var suit : Suit.RawValue
-    private var rank : Rank.RawValue
+    private var suit : Suit
+    private var rank : Rank
     var description: String {
-        return "\(suit)\(rank)"
+        return "\(suit.rawValue)\(rank.rawValue)"
     }
     
     init(suit: Suit, rank: Rank) {
-        self.suit = suit.rawValue
-        self.rank = rank.rawValue
+        self.suit = suit
+        self.rank = rank
     }
     
     //enum을 선택한 이유:
@@ -27,13 +27,19 @@ class Card: CustomStringConvertible {
     //2. 사실 지금 메모리를 고려하는게 맞는지 모르겠지만 클래스 같은 경우에는 인스턴스 생성 후 인스턴스를 해지하지 않으면 메모리에 계속 남아있지만 enum은 사용을 다하면 자동으로 스택에서 사라지기 때문에 enum이 더 낫다고 생각했습니다.
     //
     //3. 프로퍼티를 호출할 때 클래스에서는 프로퍼티를 호출할 때 마다 "Suit().hearts" 이런 식으로 명시해줘야 하지만 enum은 추론 가능할 때 ".eight"과 같이 표현할 수 있어서 더 편하다고 생각했습니다.
-
-    enum Suit: Character, CaseIterable {  // 한글자이기 때문에 캐릭터라고 했는데 String도 됨.
-        case spades = "♠️", hearts = "♥️", diamonds = "♦️", clubs = "♣️"
+    
+    enum Suit: Character, CaseIterable, CustomStringConvertible {
+        case spades = "♠️" , hearts = "♥️", diamonds = "♦️", clubs = "♣️"
+        var description: String {
+            return "\(self.rawValue)"
+        }
     }
-        
-    enum Rank: UInt, CaseIterable {
+    
+    enum Rank: UInt, CaseIterable, CustomStringConvertible {
         case A = 1, two, three, four, five, six, seven, eight, nine, ten, J, Q, K
+        var description: String {
+            return "\(self.rawValue)"
+        }
     }
     
     func descripteCard() -> String {
@@ -43,6 +49,6 @@ class Card: CustomStringConvertible {
 }
 extension Card :Equatable{
     static func == (lhs: Card, rhs: Card) -> Bool {
-        return lhs.description == rhs.description
+        return lhs.suit == rhs.suit && lhs.suit == rhs.suit
     }
 }
