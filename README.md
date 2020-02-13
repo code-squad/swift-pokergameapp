@@ -27,5 +27,6 @@
 ### step-3 (2020.2.13)
 1. step2 리팩토링, Card Class에서 모든 enum에 대한 rawValue를 참조하지 말고 각 enum에서 CustomStringConvertible 프로토콜을 채택해서 description을 return하게 해준다.
 역할을 나눔.
-2.
+2. CardDeck이라는 구조체 생성, 52개의 카드를 배열에 넣어주는 초기화 작업까지 완료.
+3.
 
