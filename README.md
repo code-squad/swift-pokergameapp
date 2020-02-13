@@ -21,3 +21,11 @@
 4. 삽질 중 ```CustomStringConvertible protocol```을 찾아 공식문서 및 기타 블로그 활용하여 어떻게 사용하는지 확인 ~~(삽질 2)~~
 5. Card Class를 확장하여 ```CustomStringConvertible protocol```을 채택 및 description 프로퍼티를 구현하여 준수함.
 6. description 프로퍼티는 suit, rank 순으로 나오도록 정의
+
+<br>
+
+### step-3 (2020.2.13)
+1. step2 리팩토링, Card Class에서 모든 enum에 대한 rawValue를 참조하지 말고 각 enum에서 CustomStringConvertible 프로토콜을 채택해서 description을 return하게 해준다.
+역할을 나눔.
+2.
+

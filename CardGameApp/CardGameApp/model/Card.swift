@@ -58,7 +58,7 @@ class Card {
                 case .J:
                     return "J"
                 case .Q:
-                    return "Q:"
+                    return "Q"
                 case .K:
                     return "K"
                 default:
