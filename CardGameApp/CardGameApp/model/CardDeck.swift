@@ -33,4 +33,9 @@ struct CardDeck {
             }
         }
     }
+    
+    //가지고 있는 카드 개수 반환
+    func count() -> Int{
+        return deck.count
+    }
 }
