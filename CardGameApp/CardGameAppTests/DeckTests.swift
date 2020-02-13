@@ -23,7 +23,7 @@ class DeckTests: XCTestCase {
             }.count
         }
         
-        let expected = [numberOfRank, numberOfRank, numberOfRank, numberOfRank]
+        let expected = [Int](repeating: numberOfRank, count: numberOfSuit)
         XCTAssertEqual(numberPerSuit, expected)
     }
     
