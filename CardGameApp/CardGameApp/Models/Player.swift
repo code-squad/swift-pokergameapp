@@ -10,14 +10,23 @@ import Foundation
 
 class Player {
     private var hand: [Card] = []
+    private var name: String!
     
     func setupHand(with hand: [Card]) {
         self.hand = hand
+    }
+    
+    func setupName(_ name: String) {
+        self.name = name
     }
     
     func forEachCard(_ handler: (Card) -> ()) {
         for card in hand {
             handler(card)
         }
+    }
+    
+    func forEachName(_ handler: (String) -> ()) {
+        handler(name)
     }
 }
