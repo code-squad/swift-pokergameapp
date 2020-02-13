@@ -7,14 +7,12 @@
 //
 
 import XCTest
-import CardGameApp
+@testable import CardGameApp
 
 class CardDeckTests: XCTestCase {
-
-    var deck: CardDeck!
     
     override func setUp() {
-        self.deck = CardDeck()
+        
     }
 
     override func tearDown() {
@@ -23,7 +21,7 @@ class CardDeckTests: XCTestCase {
     
     func testCardDeckInitializer() {
         print("> 카드 초기화")
-        deck = CardDeck()
+        let deck = Deck()
         print("카드 전체를 초기화했습니다.")
         XCTAssertNotNil(deck)
         XCTAssertEqual(deck.count, 52)
@@ -32,15 +30,16 @@ class CardDeckTests: XCTestCase {
     
     func testCardDeckShuffle() {
         print("> 카드 섞기")
-        let initializedCards = deck.cards
+        var deck = Deck()
+        let initializedDeck = deck
         deck.shuffle()
-        let shuffledCards = deck.cards
-        XCTAssertNotEqual(initializedCards, shuffledCards)
+        XCTAssertNotEqual(initializedDeck, deck)
         print("전체 52장의 카드를 섞었습니다.")
     }
     
     func testCardDeckRemoveOne() {
         print("> 카드 하나 뽑기")
+        var deck = Deck()
         deck.shuffle()
         
         guard let card1 = deck.removeOne() else { return }
