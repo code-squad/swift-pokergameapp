@@ -8,12 +8,33 @@
 
 import UIKit
 
+protocol PlayModeSelectionViewDelegate: class {
+    func didModeChanged(to mode: PlayMode)
+}
+
 struct PlayModeSelectionViewDescription {
     let rule: [String]
     let numberOfPlayers: [String]
 }
 
+struct PlayMode {
+    enum Rule: Int {
+        case sevenCardStud = 0
+        case fiveCardStud
+    }
+    
+    enum Number: Int {
+        case two = 0
+        case three, four
+    }
+    
+    let rule: Rule
+    let number: Number
+}
+
 class PlayModeSelectionView: UIView {
+    weak var delegate: PlayModeSelectionViewDelegate?
+    
     private var contents: PlayModeSelectionViewDescription?
     
     private lazy var selectionStackView: UIStackView = {
@@ -66,6 +87,14 @@ class PlayModeSelectionView: UIView {
             segmentedControl.setTitleTextAttributes(
                 [NSAttributedString.Key.foregroundColor: UIColor.black],
                 for: .selected)
+            segmentedControl.addTarget(self, action: #selector(notifyPlayModeDidChange), for: .valueChanged)
+        }
+    }
+    
+    @objc func notifyPlayModeDidChange() {
+        if let rule = PlayMode.Rule(rawValue: ruleSegmentedControl.selectedSegmentIndex),
+            let number = PlayMode.Number(rawValue: playersSegmentedControl.selectedSegmentIndex) {
+                delegate?.didModeChanged(to: PlayMode(rule: rule, number: number))
         }
     }
 }
