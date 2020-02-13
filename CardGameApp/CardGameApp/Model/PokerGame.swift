@@ -63,4 +63,8 @@ class PokerGame {
         }
        return allPlayersCards
     }
+    
+    func dealerCardInfo() -> [Card]{
+        return dealer.cardsInfo()
+    }
 }

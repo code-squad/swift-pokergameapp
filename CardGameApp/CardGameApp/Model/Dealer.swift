@@ -26,4 +26,8 @@ class Dealer: Playable{
     func shuffle() {
         cardDeck.shuffle()
     }
+    
+    func cardsInfo() -> [Card]{
+        return cards
+    }
 }
