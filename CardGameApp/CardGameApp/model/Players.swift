@@ -9,5 +9,19 @@
 import Foundation
 
 class Players{
+    private var players:[Player] = [Player]()
     
+    func append(_ player : Player){
+        players.append(player)
+    }
+    
+    func forEach(_ transform: (Player) -> ()){
+        players.forEach{
+            transform($0)
+        }
+    }
+    
+    func count() -> Int{
+        return players.count
+    }
 }
