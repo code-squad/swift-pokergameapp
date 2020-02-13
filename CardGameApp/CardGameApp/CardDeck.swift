@@ -8,9 +8,9 @@
 
 import Foundation
 
-struct CardDeck {
+struct CardDeck: Equatable {
     private var cards: [Card]!
-    private var count: Int {
+    var count: Int {
         return cards.count
     }
     

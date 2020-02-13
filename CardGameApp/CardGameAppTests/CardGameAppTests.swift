@@ -23,7 +23,7 @@ class CardGameAppTests: XCTestCase {
 
     func testReset() {
         // given
-        let originCards = deck.cards
+        let originCards = deck
         // when
         deck.reset()
         let totalCount = originCards!.count
@@ -32,20 +32,19 @@ class CardGameAppTests: XCTestCase {
     }
     
     func testShuffle() {
-        let originCards = deck.cards
+        let originCards = deck
         deck.shuffle()
-        let shuffledCards = deck.cards
+        let shuffledCards = deck
         XCTAssertNotEqual(originCards, shuffledCards)
     }
     
     func testRemoveOne() {
-        let originCards = deck.cards
-        let firstRemovedCard = deck.removeOne()!
-        let cardsAfterRemovedOne = deck.cards
-        XCTAssertFalse((cardsAfterRemovedOne!.contains(firstRemovedCard)))
+        deck.removeOne()
+        let cardsAfterRemovedOne = deck
+        XCTAssertEqual(cardsAfterRemovedOne!.count,51)
         
-        let secondRemovedCard = deck.removeOne()!
-        let cardsAfterRmoveOneMore = deck.cards
-        XCTAssertTrue(cardsAfterRmoveOneMore!.contains(secondRemovedCard))
+        deck.removeOne()
+        let cardsAfterRmoveOneMore = deck
+        XCTAssertEqual(cardsAfterRmoveOneMore!.count,50)
     }
 }
