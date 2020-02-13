@@ -210,5 +210,8 @@ class ViewController: UIViewController {
         
     }
     
+   override func motionBegan(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+    setPokerGame(playerCount: playerCount, stud: studNumber)
+    }
 }
 
