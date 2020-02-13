@@ -68,4 +68,16 @@ class PokerGame{
         readyPlayer()
         gameStart()
     }
+    
+    func forEachPlayers(_ transform : (Player) -> ()){
+        players.forEach{
+            transform($0)
+        }
+    }
+    
+    func forEachDealer(_ transform : (Card) -> ()){
+        dealer.forEach{
+            transform($0)
+        }
+    }
 }
