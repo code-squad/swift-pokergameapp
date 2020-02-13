@@ -13,7 +13,7 @@ class DealerTests: XCTestCase {
     var dealer: Dealer!
     
     override func setUp() {
-        self.deck = DeckFactory.create()
+        self.deck = CardGameFactory.createDeck()
         self.dealer = Dealer(deck: deck)
     }
     
@@ -36,10 +36,10 @@ class DealerTests: XCTestCase {
     // 7 stud
     func testStartGame() {
         let numberOfCardsByRule = 7
-        let players = [Player(), Player(), Player(), Player()]
+        let players = try! CardGameFactory.createPlayers(count: 4)
         
         dealer.prepare()
-        dealer.startGame(players: players)
+        dealer.startGame(rule: .sevenStud, players: players)
         
         print(dealer.cards)
         XCTAssertEqual(dealer.cards.count, numberOfCardsByRule)
@@ -50,6 +50,5 @@ class DealerTests: XCTestCase {
         }
         
         XCTAssertEqual(receivedCorrectly.count, players.count)
-        
     }
 }

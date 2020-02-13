@@ -121,9 +121,7 @@
 				8DB10E3723F060B900B3BC0B /* Card.swift */,
 				8D32D57D23F0FE7900F82EEC /* Deck.swift */,
 				8D6E2A8223F26BC900C473B3 /* Dealer.swift */,
-				8D6E2A8523F26BD800C473B3 /* DealerTests.swift */,
 				8D6E2A8723F2A14000C473B3 /* Game.swift */,
-				8D6E2A8A23F2A14D00C473B3 /* GameTests.swift */,
 				8DB10E0623EA60CB00B3BC0B /* AppDelegate.swift */,
 				8DB10E0823EA60CB00B3BC0B /* SceneDelegate.swift */,
 				8DB10E0A23EA60CB00B3BC0B /* ViewController.swift */,
@@ -140,6 +138,8 @@
 			children = (
 				8DB10E3A23F061E900B3BC0B /* CardTests.swift */,
 				8DB10E1D23EA60CF00B3BC0B /* DeckTests.swift */,
+				8D6E2A8523F26BD800C473B3 /* DealerTests.swift */,
+				8D6E2A8A23F2A14D00C473B3 /* GameTests.swift */,
 				8DB10E1F23EA60CF00B3BC0B /* Info.plist */,
 			);
 			path = CardGameAppTests;
