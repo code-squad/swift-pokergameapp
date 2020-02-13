@@ -35,16 +35,10 @@ class CardGameAppTests: XCTestCase {
         // 1. given
         let otherDeck = deck
         // 2. when
-        var equalCount = 0
-        let maxTime = 100000
-        for _ in 0 ..< maxTime {
-            deck.shuffle()
-            if otherDeck == deck {
-                equalCount += 1
-            }
-        }
+        let generator = ANSI_C_RandomNumberGenerator()
+        deck.shuffle(using: generator)
         // 3. then
-        XCTAssertLessThanOrEqual(equalCount, 1)
+        XCTAssertNotEqual(deck , otherDeck)
     }
     
     func testRemoveOne() {
@@ -60,7 +54,8 @@ class CardGameAppTests: XCTestCase {
         // 1.given
         let otherDeck = deck
         // 2.when
-        deck.shuffle()
+        let generator = ANSI_C_RandomNumberGenerator()
+        deck.shuffle(using: generator)
         deck.reset()
         // 3.then
         XCTAssertEqual(otherDeck, deck)
@@ -71,7 +66,8 @@ class CardGameAppTests: XCTestCase {
         var otherDeck = deck
         XCTAssertEqual(otherDeck?.count, totalCardCounts)
         
-        otherDeck?.shuffle()
+        let generator = ANSI_C_RandomNumberGenerator()
+        otherDeck?.shuffle(using: generator)
         
         try! otherDeck!.removeOne()
         XCTAssertEqual(otherDeck?.count, totalCardCounts - 1 )
