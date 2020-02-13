@@ -24,7 +24,7 @@ class Card {
     // 개인적으로 깔끔해 보이지 않고 의미가 명확하게 나뉘어서 보이지 않아 묶는게 좋다고 생각하여 Nested Enum을 사용함.
     
     // enum으로 카드모양 선언
-    enum Suit: String, CustomStringConvertible {
+    enum Suit: String, CustomStringConvertible, CaseIterable {
         case spade = "s"
         case diamond = "d"
         case heart = "h"
@@ -33,10 +33,14 @@ class Card {
         var description: String {
             return "\(self.rawValue)"
         }
+        
+        static var allCases: [Suit] {
+            return [.spade, .diamond, .heart, .clover]
+        }
     }
     
     // enum으로 카드숫자 선언
-    enum Rank: Int, CustomStringConvertible {
+    enum Rank: Int, CustomStringConvertible, CaseIterable {
         case A = 1
         case two = 2
         case three = 3
@@ -64,6 +68,10 @@ class Card {
                 default:
                     return "\(self.rawValue)"
             }
+        }
+    
+        static var allCases: [Rank] {
+            return [.A, .two, .three, .four, .five, .six, .seven, .eight, .nine, .ten, .J, .Q, .K]
         }
     }
 }

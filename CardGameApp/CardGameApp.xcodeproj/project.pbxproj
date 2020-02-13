@@ -15,6 +15,7 @@
 		AB9C249B23F1170800BC552E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB9C249923F1170800BC552E /* LaunchScreen.storyboard */; };
 		AB9C24E423F39BC000BC552E /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9C24E323F39BC000BC552E /* Card.swift */; };
 		ABD4542323F531B7005B7ACA /* CardGameAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD4542223F531B7005B7ACA /* CardGameAppTests.swift */; };
+		ABD4542B23F53265005B7ACA /* CardDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD4542A23F53265005B7ACA /* CardDeck.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,7 @@
 		ABD4542023F531B7005B7ACA /* CardGameAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CardGameAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABD4542223F531B7005B7ACA /* CardGameAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardGameAppTests.swift; sourceTree = "<group>"; };
 		ABD4542423F531B7005B7ACA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ABD4542A23F53265005B7ACA /* CardDeck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDeck.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				AB9C24E323F39BC000BC552E /* Card.swift */,
+				ABD4542A23F53265005B7ACA /* CardDeck.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -212,6 +215,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AB9C249323F1170500BC552E /* ViewController.swift in Sources */,
+				ABD4542B23F53265005B7ACA /* CardDeck.swift in Sources */,
 				AB9C248F23F1170500BC552E /* AppDelegate.swift in Sources */,
 				AB9C249123F1170500BC552E /* SceneDelegate.swift in Sources */,
 				AB9C24E423F39BC000BC552E /* Card.swift in Sources */,
