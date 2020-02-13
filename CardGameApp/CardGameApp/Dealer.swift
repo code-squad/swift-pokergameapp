@@ -1,16 +1,6 @@
-//
-//  Dealer.swift
-//  CardGameApp
-//
-//  Created by Viet on 2020/02/11.
-//  Copyright © 2020 Viet. All rights reserved.
-//
-
-import Foundation
 class Dealer: Playable {
-
     var cards = [Card]()
-    var deck: Deck
+    private var deck: Deck
     
     init(deck: Deck) {
         self.deck = deck
@@ -20,6 +10,16 @@ class Dealer: Playable {
     func give(card: Card, to player: Playable) {
         var player = player
         player.receive(card: card)
+    }
+
+    /// 게임을 시작한다. 자신을 포함해 모든 플레이어에게 카드를 돌린다.
+    func startGame(rule: Game.Rule, players: [Playable]) {
+        self.prepare()
+        
+        let numberOfCards = rule.rawValue
+        (1...numberOfCards).forEach { _ in
+            dealCardsOfOneRound(players)
+        }
     }
     
     /// 게임 준비. 카드를 섞는다
@@ -33,16 +33,6 @@ class Dealer: Playable {
             if let card = deck.removeOne() {
                 self.give(card: card, to: player)
             }
-        }
-    }
-    
-    /// 게임을 시작한다. 자신을 포함해 모든 플레이어에게 카드를 돌린다.
-    func startGame(rule: Game.Rule, players: [Playable]) {
-        self.prepare()
-        
-        let numberOfCards = rule.rawValue
-        (1...numberOfCards).forEach { _ in
-            dealCardsOfOneRound(players)
         }
     }
 }

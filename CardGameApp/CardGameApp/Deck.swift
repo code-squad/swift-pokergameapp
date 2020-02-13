@@ -1,13 +1,3 @@
-//
-//  Deck.swift
-//  CardGameApp
-//
-//  Created by Viet on 2020/02/10.
-//  Copyright © 2020 Viet. All rights reserved.
-//
-
-import Foundation
-
 struct Deck {
     private var cards = [Card]()
     private var poppedCards = [Card]()

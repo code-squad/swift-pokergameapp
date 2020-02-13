@@ -1,11 +1,3 @@
-//
-//  GameTests.swift
-//  CardGameAppTests
-//
-//  Created by Viet on 2020/02/11.
-//  Copyright © 2020 Viet. All rights reserved.
-//
-
 import XCTest
 
 class GameTests: XCTestCase {
@@ -17,14 +9,16 @@ class GameTests: XCTestCase {
     
     func testCreateGame() {
         var players = try! CardGameFactory.createPlayers(count: 5)
-        XCTAssertThrowsError(try Game(rule: .fiveStud, players: players))
+        let dealer = CardGameFactory.createDealer()
+        XCTAssertThrowsError(try Game(rule: .fiveStud, dealer: dealer, players: players))
         players = try! CardGameFactory.createPlayers(count: 3)
-        XCTAssertNoThrow(try Game(rule: .fiveStud, players: players))
+        XCTAssertNoThrow(try Game(rule: .fiveStud, dealer: dealer, players: players))
     }
     
     func testSevenStud() {
         let players = try! CardGameFactory.createPlayers(count: 4)
-        let game = try! Game(rule: .sevenStud, players: players)
+        let dealer = CardGameFactory.createDealer()
+        let game = try! Game(rule: .sevenStud, dealer: dealer, players: players)
         
         game.start()
         let cardsPerPlayer = players.map { $0.cards.count }
@@ -34,7 +28,8 @@ class GameTests: XCTestCase {
     
     func testFiveStud() {
         let players = try! CardGameFactory.createPlayers(count: 3)
-        let game = try! Game(rule: .fiveStud, players: players)
+        let dealer = CardGameFactory.createDealer()
+        let game = try! Game(rule: .fiveStud, dealer: dealer, players: players)
         
         game.start()
         let cardsPerPlayer = players.map { $0.cards.count }

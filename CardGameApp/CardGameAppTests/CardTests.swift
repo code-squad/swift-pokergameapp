@@ -1,11 +1,3 @@
-//
-//  CardTests.swift
-//  CardGameAppTests
-//
-//  Created by Viet on 2020/02/10.
-//  Copyright © 2020 Viet. All rights reserved.
-//
-
 import XCTest
 
 class CardTests: XCTestCase {

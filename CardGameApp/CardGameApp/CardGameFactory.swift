@@ -1,6 +1,10 @@
 struct CardGameFactory {
-    static func createDeck() -> Deck {
-        return Deck(cards: createAllCards())
+    static func createDealer(deck: Deck = createDeck()) -> Dealer {
+        return Dealer(deck: deck)
+    }
+    
+    static func createDeck(cards: [Card] = createAllCards()) -> Deck {
+        return Deck(cards: cards)
     }
     
     static func createAllCards() -> [Card] {
