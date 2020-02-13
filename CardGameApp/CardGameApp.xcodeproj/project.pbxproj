@@ -9,8 +9,9 @@
 /* Begin PBXBuildFile section */
 		C2BD177223F1567E00437146 /* GamePlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BD177123F1567E00437146 /* GamePlay.swift */; };
 		C2BD177C23F1771B00437146 /* GamePlayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BD177B23F1771B00437146 /* GamePlayTests.swift */; };
-		C2BD177F23F3F72100437146 /* PlayModeSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BD177E23F3F72100437146 /* PlayModeSelectionView.swift */; };
 		C2BD178123F444CA00437146 /* Descriptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BD178023F444CA00437146 /* Descriptions.swift */; };
+		C2BD178623F544B200437146 /* UIView+FillSuperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BD178523F544B200437146 /* UIView+FillSuperView.swift */; };
+		C2BD178823F544C300437146 /* PlayModeSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BD178723F544C300437146 /* PlayModeSelectionView.swift */; };
 		C2D9583D23EA7B09002057D6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D9583C23EA7B09002057D6 /* AppDelegate.swift */; };
 		C2D9583F23EA7B09002057D6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D9583E23EA7B09002057D6 /* SceneDelegate.swift */; };
 		C2D9584123EA7B09002057D6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D9584023EA7B09002057D6 /* ViewController.swift */; };
@@ -35,8 +36,9 @@
 /* Begin PBXFileReference section */
 		C2BD177123F1567E00437146 /* GamePlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamePlay.swift; sourceTree = "<group>"; };
 		C2BD177B23F1771B00437146 /* GamePlayTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePlayTests.swift; sourceTree = "<group>"; };
-		C2BD177E23F3F72100437146 /* PlayModeSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayModeSelectionView.swift; sourceTree = "<group>"; };
 		C2BD178023F444CA00437146 /* Descriptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Descriptions.swift; sourceTree = "<group>"; };
+		C2BD178523F544B200437146 /* UIView+FillSuperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+FillSuperView.swift"; sourceTree = "<group>"; };
+		C2BD178723F544C300437146 /* PlayModeSelectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayModeSelectionView.swift; sourceTree = "<group>"; };
 		C2D9583923EA7B09002057D6 /* CardGameApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CardGameApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2D9583C23EA7B09002057D6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C2D9583E23EA7B09002057D6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -73,9 +75,17 @@
 		C2BD177D23F3F5E100437146 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				C2BD177E23F3F72100437146 /* PlayModeSelectionView.swift */,
+				C2BD178723F544C300437146 /* PlayModeSelectionView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		C2BD178423F5448F00437146 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				C2BD178523F544B200437146 /* UIView+FillSuperView.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		C2D9583023EA7B09002057D6 = {
@@ -99,6 +109,7 @@
 		C2D9583B23EA7B09002057D6 /* CardGameApp */ = {
 			isa = PBXGroup;
 			children = (
+				C2BD178423F5448F00437146 /* Utils */,
 				C2BD177D23F3F5E100437146 /* Views */,
 				C2D9585023EBB1DE002057D6 /* Models */,
 				C2D9583C23EA7B09002057D6 /* AppDelegate.swift */,
@@ -236,11 +247,12 @@
 			files = (
 				C2D9584123EA7B09002057D6 /* ViewController.swift in Sources */,
 				C2E62B1223ED35C900236059 /* CardDeck.swift in Sources */,
-				C2BD177F23F3F72100437146 /* PlayModeSelectionView.swift in Sources */,
 				C2D9583D23EA7B09002057D6 /* AppDelegate.swift in Sources */,
 				C2BD178123F444CA00437146 /* Descriptions.swift in Sources */,
 				C2D9583F23EA7B09002057D6 /* SceneDelegate.swift in Sources */,
+				C2BD178623F544B200437146 /* UIView+FillSuperView.swift in Sources */,
 				C2D9585223EBB1EE002057D6 /* Card.swift in Sources */,
+				C2BD178823F544C300437146 /* PlayModeSelectionView.swift in Sources */,
 				C2BD177223F1567E00437146 /* GamePlay.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
