@@ -10,6 +10,9 @@ import Foundation
 
 struct Deck {
     private var cards: [Card] = []
+    var count: Int {
+        cards.count
+    }
     
     init() {
         setupDeck()
@@ -36,5 +39,11 @@ struct Deck {
     mutating func reset() {
         cards.removeAll()
         setupDeck()
+    }
+}
+
+extension Deck: Equatable {
+    static func == (lhs: Deck, rhs: Deck) -> Bool {
+        return lhs.cards == rhs.cards
     }
 }
