@@ -17,3 +17,12 @@ STEP15 포커게임 앱 저장소
 
 
 
+## Step5 - 포커게임 결과화면
+
+- 각각의 카드 정보에 맞게 이미지 매칭
+- 선택된 Stud / Player Count 에 따라 출력되는 카드의 갯수와 이미지 변경
+- App의 shake 동작시 카드 섞이도록 구현 
+
+<img src="https://user-images.githubusercontent.com/40784518/74433200-4e637c80-4ea3-11ea-9bf9-33dccf460c26.png" width="50%"></img><img src="https://user-images.githubusercontent.com/40784518/74433246-64713d00-4ea3-11ea-8693-4c97a1508eab.png" width="50%"></img>
+
+ 
