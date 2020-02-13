@@ -56,13 +56,11 @@ class PokerGame {
         return dealer.leftCards()
     }
     
-    func playersCardInfo() -> [Card] {
-//        players.forEach { player in
-//            player.cardsInfo()
-//        }
+    func playersCardInfo() -> [[Card]]{
+        var allPlayersCards: [[Card]] = []
         for player in players {
-            return player.cardsInfo()
+            allPlayersCards.append(player.cardsInfo())
         }
-       return []
+       return allPlayersCards
     }
 }

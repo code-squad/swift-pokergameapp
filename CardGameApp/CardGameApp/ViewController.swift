@@ -10,7 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    private var playerCount = PokerGame.PlayerCount.two
+    private var playerCount = PokerGame.PlayerCount.one
     private var studNumber = PokerGame.Stud.seven
     private var pokerGame: PokerGame!
     
@@ -35,24 +35,8 @@ class ViewController: UIViewController {
         segmentedControl.selectedSegmentIndex = 0
         segmentedControl.layer.borderColor = UIColor.white.cgColor
         segmentedControl.layer.borderWidth = 1.0
+        segmentedControl.addTarget(self, action: #selector(playerCountControl(_:)), for: .valueChanged)
         return segmentedControl
-    }()
-    
-    let playerGameStack: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .vertical
-        stackView.distribution = .fill
-        stackView.spacing = 5
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        return stackView
-    }()
-    
-    let playerLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Player 1"
-        label.textColor = .white
-        label.font.withSize(10.0)
-        return label
     }()
     
     let wholeGameStack: UIStackView = {
@@ -65,21 +49,9 @@ class ViewController: UIViewController {
         return stackView
     }()
     
-    let cardImageStack: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .horizontal
-        stackView.distribution = .fillEqually
-        stackView.spacing = -10
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        return stackView
-    }()
-    
     func setUI() {
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "bg_pattern")!)
         setCardsWithImages(playerCount: playerCount, stud: studNumber)
-//        pokerGame = PokerGame(playerCount: playerCount, stud: studNumber)
-
-        self.view.addSubview(cardImageStack)
         
         studSegmented.center = CGPoint(x: self.view.frame.width/2, y: 90)
         self.view.addSubview(studSegmented)
@@ -93,11 +65,6 @@ class ViewController: UIViewController {
         let titleTextAttributesSelected = [NSAttributedString.Key.foregroundColor: UIColor.black]
         UISegmentedControl.appearance().setTitleTextAttributes(titleTextAttributesSelected, for: .selected)
         
-        playerGameStack.addArrangedSubview(playerLabel)
-        playerGameStack.addArrangedSubview(cardImageStack)
-        self.view.addSubview(playerGameStack)
-        
-        wholeGameStack.addArrangedSubview(playerGameStack)
         self.view.addSubview(wholeGameStack)
         
         setStackContraints()
@@ -124,17 +91,55 @@ class ViewController: UIViewController {
         return image
     }
     
-    func setCardsWithImages(playerCount: PokerGame.PlayerCount, stud: PokerGame.Stud) {
-        pokerGame = PokerGame(playerCount: playerCount, stud: stud)
-        cardImageStack.arrangedSubviews.forEach { $0.removeFromSuperview() }
-        pokerGame.allocateCards()
-        let cards = pokerGame.playersCardInfo()
-        for card in cards {
-           let cardImage = cardImageView(named: "\(card.patternImageMatching)\(card.numberImageMatching)")
-            cardImageStack.addArrangedSubview(cardImage)
-            cardImage.heightAnchor.constraint(equalTo: cardImage.widthAnchor, multiplier: 1.27).isActive = true
-        }
+    func makePlayerLabel(playerNumber: Int) -> UILabel {
+        let label = UILabel()
+        label.text = "Player \(playerNumber)"
+        label.textColor = .white
+        label.font.withSize(10.0)
+        return label
     }
+    
+    func makeGameStack(playerNumber: Int, cardImageStack: UIStackView) -> UIStackView {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.distribution = .fill
+        stackView.spacing = 5
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.addArrangedSubview(makePlayerLabel(playerNumber: playerNumber))
+        stackView.addArrangedSubview(cardImageStack)
+        return stackView
+    }
+    
+    func makeCardImageStack() -> UIStackView{
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.distribution = .fillEqually
+        stackView.spacing = -10
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        
+        return stackView
+    }
+    
+    func setCardsWithImages(playerCount: PokerGame.PlayerCount, stud: PokerGame.Stud) {
+        wholeGameStack.arrangedSubviews.forEach { $0.removeFromSuperview() }
+        pokerGame = PokerGame(playerCount: playerCount, stud: stud)
+        pokerGame.allocateCards()
+        let allCards = pokerGame.playersCardInfo()
+        var number = 1
+        for cards in allCards {
+            let cardImageStack2 = makeCardImageStack()
+            for card in cards {
+                let cardImage = cardImageView(named: "\(card.patternImageMatching)\(card.numberImageMatching)")
+                cardImage.heightAnchor.constraint(equalTo: cardImage.widthAnchor, multiplier: 1.27).isActive = true
+                cardImageStack2.addArrangedSubview(cardImage)
+            }
+            let gameStack = makeGameStack(playerNumber: number, cardImageStack: cardImageStack2)
+            number += 1
+            wholeGameStack.addArrangedSubview(gameStack)
+        }
+        
+    }
+
     
     @objc func studSegmentControl(_ segmentedControl: UISegmentedControl) {
         switch studSegmented.selectedSegmentIndex {
@@ -149,18 +154,20 @@ class ViewController: UIViewController {
     }
     
     @objc func playerCountControl(_ segmentedControl: UISegmentedControl) {
-        switch studSegmented.selectedSegmentIndex {
+        switch playerSegmented.selectedSegmentIndex {
         case 0:
-            playerCount = .two
+            playerCount = .one
         case 1:
-            playerCount = .three
+            playerCount = .two
         case 2:
+            playerCount = .three
+        case 3:
             playerCount = .four
         default:
             break
         }
         setCardsWithImages(playerCount: playerCount, stud: studNumber)
-
+        
     }
     
 }
