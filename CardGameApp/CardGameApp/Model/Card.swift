@@ -17,6 +17,9 @@ class Card {
     }
     private var shape: Shape
     private var rank: Rank
+    var number: Int {
+        rank.rawValue
+    }
 
     init (shape: Shape, rank: Rank) {
         self.shape = shape
