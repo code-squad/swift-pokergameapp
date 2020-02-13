@@ -27,28 +27,31 @@ class DealerTests: XCTestCase {
         XCTAssertEqual(player.cards.count, 1)
     }
     
-    func testPrepareGame() {
-        let numberOfAllCards = 52
-        self.dealer.prepare()
-        XCTAssertEqual(dealer.deck.count, numberOfAllCards)
-    }
-    
-    // 7 stud
-    func testStartGame() {
-        let numberOfCardsByRule = 7
+    func testStartGameOfSevenStud() {
         let players = try! CardGameFactory.createPlayers(count: 4)
+        let numberOfCards = Game.Rule.sevenStud.rawValue
         
-        dealer.prepare()
         dealer.startGame(rule: .sevenStud, players: players)
         
         print(dealer.cards)
-        XCTAssertEqual(dealer.cards.count, numberOfCardsByRule)
+        XCTAssertEqual(dealer.cards.count, numberOfCards)
         
         let receivedCorrectly = players.filter { player in
             print(player.cards)
-            return player.cards.count == numberOfCardsByRule
+            return player.cards.count == numberOfCards
         }
         
         XCTAssertEqual(receivedCorrectly.count, players.count)
+    }
+    
+    func testStartGameOfFiveStud() {
+        let players = try! CardGameFactory.createPlayers(count: 2)
+        let numberOfCards = Game.Rule.fiveStud.rawValue
+        
+        dealer.startGame(rule: .fiveStud, players: players)
+        
+        let receivedCorrectly = players.filter { $0.cards.count == numberOfCards }
+        XCTAssertEqual(receivedCorrectly.count, players.count)
+        XCTAssertEqual(dealer.cards.count, numberOfCards)
     }
 }

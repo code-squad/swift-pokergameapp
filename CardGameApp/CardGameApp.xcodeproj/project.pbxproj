@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		8D32D57E23F0FE7900F82EEC /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D32D57D23F0FE7900F82EEC /* Deck.swift */; };
 		8D32D57F23F0FE7900F82EEC /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D32D57D23F0FE7900F82EEC /* Deck.swift */; };
+		8D4B602023F53A01002E7A4D /* CardGameFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4B601F23F53A01002E7A4D /* CardGameFactory.swift */; };
+		8D4B602123F53A01002E7A4D /* CardGameFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4B601F23F53A01002E7A4D /* CardGameFactory.swift */; };
 		8D6E2A8323F26BC900C473B3 /* Dealer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6E2A8223F26BC900C473B3 /* Dealer.swift */; };
 		8D6E2A8423F26BC900C473B3 /* Dealer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6E2A8223F26BC900C473B3 /* Dealer.swift */; };
 		8D6E2A8623F26BD800C473B3 /* DealerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6E2A8523F26BD800C473B3 /* DealerTests.swift */; };
@@ -47,6 +49,7 @@
 
 /* Begin PBXFileReference section */
 		8D32D57D23F0FE7900F82EEC /* Deck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = "<group>"; };
+		8D4B601F23F53A01002E7A4D /* CardGameFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardGameFactory.swift; sourceTree = "<group>"; };
 		8D6E2A8223F26BC900C473B3 /* Dealer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dealer.swift; sourceTree = "<group>"; };
 		8D6E2A8523F26BD800C473B3 /* DealerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DealerTests.swift; sourceTree = "<group>"; };
 		8D6E2A8723F2A14000C473B3 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
@@ -118,6 +121,7 @@
 		8DB10E0523EA60CB00B3BC0B /* CardGameApp */ = {
 			isa = PBXGroup;
 			children = (
+				8D4B601F23F53A01002E7A4D /* CardGameFactory.swift */,
 				8DB10E3723F060B900B3BC0B /* Card.swift */,
 				8D32D57D23F0FE7900F82EEC /* Deck.swift */,
 				8D6E2A8223F26BC900C473B3 /* Dealer.swift */,
@@ -296,6 +300,7 @@
 				8DB10E0723EA60CB00B3BC0B /* AppDelegate.swift in Sources */,
 				8D6E2A8823F2A14000C473B3 /* Game.swift in Sources */,
 				8D6E2A8323F26BC900C473B3 /* Dealer.swift in Sources */,
+				8D4B602023F53A01002E7A4D /* CardGameFactory.swift in Sources */,
 				8D32D57E23F0FE7900F82EEC /* Deck.swift in Sources */,
 				8DB10E0923EA60CB00B3BC0B /* SceneDelegate.swift in Sources */,
 				8DB10E3823F060B900B3BC0B /* Card.swift in Sources */,
@@ -312,6 +317,7 @@
 				8D6E2A8623F26BD800C473B3 /* DealerTests.swift in Sources */,
 				8DB10E1E23EA60CF00B3BC0B /* DeckTests.swift in Sources */,
 				8D6E2A8423F26BC900C473B3 /* Dealer.swift in Sources */,
+				8D4B602123F53A01002E7A4D /* CardGameFactory.swift in Sources */,
 				8DB10E3923F060B900B3BC0B /* Card.swift in Sources */,
 				8D6E2A8B23F2A14D00C473B3 /* GameTests.swift in Sources */,
 			);

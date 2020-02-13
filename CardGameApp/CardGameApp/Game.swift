@@ -10,8 +10,9 @@ import Foundation
 
 // 플레이어는 1~4명
 struct Game {
-    enum Rule {
-        case fiveStud, sevenStud
+    enum Rule: Int {
+        case fiveStud = 5
+        case sevenStud = 7
     }
 
     let playerRange = 1...4
@@ -38,29 +39,4 @@ struct Game {
 
 enum GameError: Error {
     case playersOutOfRange
-}
-
-struct CardGameFactory {
-    static func createDeck() -> Deck {
-        return Deck(cards: createAllCards())
-    }
-    
-    static func createAllCards() -> [Card] {
-        return Card.Suit.allCases.flatMap {
-            createCards(per: $0)
-        }
-    }
-    
-    static func createPlayers(count: Int) throws -> [Player] {
-        guard count >= 1 else {
-            throw GameError.playersOutOfRange
-        }
-        return (1...count).map { _ in Player() }
-    }
-    
-    private static func createCards(per suit: Card.Suit) -> [Card] {
-        return Card.Rank.allCases.map {
-            Card(suit: suit, rank: $0)
-        }
-    }
 }
