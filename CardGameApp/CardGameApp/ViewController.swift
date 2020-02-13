@@ -51,7 +51,7 @@ class ViewController: UIViewController {
     }
     
     private func resetPlayers() {
-        pokerGame.forEachPlayer { (i, player) in
+        pokerGame.forEachPlayer { (player) in
             player.forEachName { (displayName) in
                 let playerStackView = PlayerStackView(displayName: displayName)
                 let cardStackView = CardStackView(of: player)

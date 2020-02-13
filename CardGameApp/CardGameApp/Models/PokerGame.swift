@@ -28,7 +28,7 @@ class PokerGame {
             players.append(Player())
         }
         
-        forEachPlayer { (index, player) in
+        players.enumerated().forEach { (index, player) in
             player.setupName("Player \(index + 1)")
         }
         
@@ -47,9 +47,9 @@ class PokerGame {
         }
     }
     
-    func forEachPlayer(_ handler: (Int, Player) -> ()) {
-        players.enumerated().forEach { (i, player) in
-            handler(i, player)
+    func forEachPlayer(_ handler: (Player) -> ()) {
+        players.forEach { (player) in
+            handler(player)
         }
     }
 }
