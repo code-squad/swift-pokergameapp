@@ -1,11 +1,3 @@
-//
-//  Card.swift
-//  CardGameApp
-//
-//  Created by Viet on 2020/02/10.
-//  Copyright © 2020 Viet. All rights reserved.
-//
-
 class Card: CustomStringConvertible {
     // 카드는 하나의 suit만 갖기 때문에 enum으로 구현. 또 출력용 값을 따로 처리할 수 있음
     enum Suit: String, CaseIterable, CustomStringConvertible {
@@ -51,4 +43,3 @@ class Card: CustomStringConvertible {
         "\(suit)\(rank)"
     }
 }
-

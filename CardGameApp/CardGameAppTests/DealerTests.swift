@@ -1,11 +1,3 @@
-//
-//  DealerTests.swift
-//  CardGameAppTests
-//
-//  Created by Viet on 2020/02/11.
-//  Copyright © 2020 Viet. All rights reserved.
-//
-
 import XCTest
 
 class DealerTests: XCTestCase {
