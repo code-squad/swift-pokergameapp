@@ -8,41 +8,20 @@
 
 import Foundation
 
-class Dealer: Playable {
-    var hands: [Card] = []
+class Dealer: Player {
+    private var deck = Deck()
     
-    private let gameType: GameType
-    private var deck = CardDeck()
-    private var _communityCards: [Card] = []
-    
-    var communityCards: [Card] {
-        _communityCards
-    }
-    
-    init(game gameType: GameType) {
-        self.gameType = gameType
+    override init() {
+        super.init()
         setupDeck()
-        setupCommunityCards()
     }
     
-    func setupDeck() {
+    private func setupDeck() {
         deck.shuffle()
     }
     
-    func setupCommunityCards() {
-        guard let hands = drawHands() else { return }
-        self.hands = hands
-    }
-    
-    func drawHands() -> [Card]? {
-        var hands: [Card] = []
-        
-        for _ in 0..<gameType.numberOfHands() {
-            guard let card = deck.removeOne() else { return nil }
-            hands.append(card)
-        }
-        
-        return hands
+    func drawCard() -> Card? {
+        return deck.removeOne()
     }
 }
 

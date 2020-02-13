@@ -10,26 +10,34 @@ import Foundation
 
 class PokerGame {
     private let gameType: GameType
-    private let numberOfPlayers: Int
-    var players: [Player] = []
+    private let playerCount: PlayerCount
+    private var players: [Player] = []
     let dealer: Dealer
     
     init(game gameType: GameType = .sevenCardsStud, numberOfPlayers: PlayerCount = .two) {
         self.gameType = gameType
-        self.numberOfPlayers = numberOfPlayers.rawValue
-        self.dealer = Dealer(game: gameType)
-        setupHands()
+        self.playerCount = numberOfPlayers
+        self.dealer = Dealer()
+        
+        setupPlayer()
+        setupPlayersHand()
     }
     
-    private func setupHands() {
-        setupPlayersHands()
-        dealer.setupCommunityCards()
+    private func setupPlayer() {
+        playerCount.forEach {
+            players.append(Player())
+        }
+        players.append(dealer)
     }
     
-    private func setupPlayersHands() {
-        for _ in 0..<numberOfPlayers {
-            guard let hands = dealer.drawHands() else { return }
-            players.append(Player(hands: hands))
+    private func setupPlayersHand() {
+        players.forEach {
+            var hand: [Card] = []
+            gameType.forEachCard {
+                guard let card = dealer.drawCard() else { return }
+                hand.append(card)
+            }
+            $0.setupHand(with: hand)
         }
     }
 }
@@ -41,8 +49,10 @@ enum GameType: Int, CaseIterable {
         self = GameType.allCases[index]
     }
     
-    func numberOfHands() -> Int {
-        return self.rawValue
+    func forEachCard(handler: () -> ()) {
+        for _ in 0..<self.rawValue {
+            handler()
+        }
     }
 }
 
@@ -51,5 +61,11 @@ enum PlayerCount: Int, CaseIterable {
     
     init(index: Int) {
         self = PlayerCount.allCases[index]
+    }
+    
+    func forEach(_ handler: () -> ()) {
+        for _ in 0..<self.rawValue {
+            handler()
+        }
     }
 }
