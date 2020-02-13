@@ -67,4 +67,8 @@ class PokerGame {
     func dealerCardInfo() -> [Card]{
         return dealer.cardsInfo()
     }
+//    
+//    func shuffle() {
+//        dealer.shuffle()
+//    }
 }
