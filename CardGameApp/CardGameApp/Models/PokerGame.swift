@@ -27,7 +27,13 @@ class PokerGame {
         playerCount.forEach {
             players.append(Player())
         }
+        
+        forEachPlayer { (index, player) in
+            player.setupName("Player \(index + 1)")
+        }
+        
         players.append(dealer)
+        dealer.setupName("Dealer")
     }
     
     private func setupPlayersHand() {
@@ -38,6 +44,12 @@ class PokerGame {
                 hand.append(card)
             }
             $0.setupHand(with: hand)
+        }
+    }
+    
+    func forEachPlayer(_ handler: (Int, Player) -> ()) {
+        players.enumerated().forEach { (i, player) in
+            handler(i, player)
         }
     }
 }

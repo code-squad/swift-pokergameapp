@@ -47,23 +47,18 @@ class ViewController: UIViewController {
     private func resetPokerGame() {
         self.pokerGame = PokerGame(game: gameType, numberOfPlayers: playerCount)
         pokerGameStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
-        
         resetPlayers()
     }
     
     private func resetPlayers() {
-//        var players: [Player] = pokerGame.players
-//        players.append(pokerGame.dealer)
-//        players.enumerated().forEach { (i, player) in
-//            var displayName = "Player \(i + 1)"
-//            if i == players.count - 1 { displayName = "Dealer" }
-//            
-//            let playerStackView = PlayerStackView(displayName: displayName)
-//            let cardStackView = CardStackView(of: player)
-//            
-//            playerStackView.addArrangedSubview(cardStackView)
-//            pokerGameStackView.addArrangedSubview(playerStackView)
-//        }
+        pokerGame.forEachPlayer { (i, player) in
+            player.forEachName { (displayName) in
+                let playerStackView = PlayerStackView(displayName: displayName)
+                let cardStackView = CardStackView(of: player)
+                playerStackView.addArrangedSubview(cardStackView)
+                pokerGameStackView.addArrangedSubview(playerStackView)
+            }
+        }
     }
     
     @objc private func handleGameTypeSegmentChanged(segmentedControl: UISegmentedControl) {
