@@ -8,6 +8,20 @@
 
 import Foundation
 
-class Hand(){
+class Hand{
+    private var card:[Card]=[Card]()
     
+    func append(card : Card){
+        self.card.append(card)
+    }
+    
+    func removeAll(){
+        self.card.removeAll()
+    }
+    
+    func forEach(_ transform : (Card) -> ()){
+        card.forEach {
+            transform($0)
+        }
+    }
 }

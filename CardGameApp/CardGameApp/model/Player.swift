@@ -9,20 +9,20 @@
 import Foundation
 
 class Player{
-    private var ownCardDeck:[Card]
-    
-    init(){
-        self.ownCardDeck = [Card]()
-    }
+    private var hand:Hand = Hand()
     
     func receiveCard(card: Card) {
-        self.ownCardDeck.append(card)
+        hand.append(card: card)
     }
-}
-
-extension Player:CustomStringConvertible{
-    var description: String {
-        return "\(self.ownCardDeck)"
+    
+    func removeAll(){
+        hand.removeAll()
+    }
+    
+    func forEach(_ transform : (Card) -> ()){
+        hand.forEach{
+            transform($0)
+        }
     }
 }
 
