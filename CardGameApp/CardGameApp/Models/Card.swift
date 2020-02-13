@@ -57,6 +57,6 @@ extension Card: Equatable {
 
 extension Card: CustomStringConvertible {
     var description: String {
-        return "\(String(describing: self.suit))\(String(describing: self.rank))"
+        return "\(suit)\(rank)"
     }
 }
