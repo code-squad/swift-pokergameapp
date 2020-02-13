@@ -9,7 +9,7 @@
 import Foundation
 
 class Hand{
-    private var card:[Card]=[Card]()
+    private var card:[Card] = [Card]()
     
     func append(card : Card){
         self.card.append(card)
