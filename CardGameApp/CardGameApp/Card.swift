@@ -9,11 +9,15 @@
 import Foundation
 
 class Card: CustomStringConvertible{
-    enum Suit: String, CaseIterable {
+    enum Suit: String, CaseIterable, CustomStringConvertible {
         case spades = "♠️"
         case hearts = "♥️"
         case diamonds = "♦️"
         case clubs = "♣️"
+        
+        var description: String {
+            return "\(self.rawValue)"
+        }
     }
     
     enum Rank: Int, CaseIterable, CustomStringConvertible {
@@ -45,7 +49,7 @@ class Card: CustomStringConvertible{
     }
     
     var description: String {
-        return "\(suit.rawValue)\(rank)"
+        return "\(suit)\(rank)"
     }
 }
 
