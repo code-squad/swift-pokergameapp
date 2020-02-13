@@ -15,15 +15,15 @@ protocol CustomIntegerConvertible {
 //MARK: - Game
 class Game {
     
-    enum style {
+    enum Style {
         case five
         case seven
     }
     
-    var attendies: [Gamer] = []
-    var style: style
+    private var attendies: [Gamer] = []
+    private var style: Style
     
-    init(person: Int, style: style){
+    init(person: Int, style: Style){
         if person < 5 && person > 0 {
             attendies = (1...person).map { name in
                 Gamer(identifier: String(name))
@@ -31,21 +31,37 @@ class Game {
         }
         self.style = style
     }
+    
+    func takeInformation(handler: ([Gamer], Style) -> Void) {
+        handler(attendies, style)
+    }
 }
 
 //MARK: - Gamer
 class Gamer {
-    var identifier: String
-    var cards: [Card] = []
+    
+    var count: Int {
+        return cards.count
+    }
+    private var identifier: String
+    private var cards: [Card] = []
     
     init(identifier: String) {
         self.identifier = identifier
+    }
+    
+    func addCard(card: Card) {
+        cards.append(card)
+    }
+    
+    func printCard(handler: ([Card]) -> Void) {
+        handler(cards)
     }
 }
 
 //MARK: - Extension
 //MARK: Game.style
-extension Game.style: CustomIntegerConvertible {
+extension Game.Style: CustomIntegerConvertible {
     var description: Int {
         switch self {
         case .five: return 5

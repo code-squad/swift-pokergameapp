@@ -109,4 +109,24 @@ class CardGameAppTests: XCTestCase {
 //        deck?.makeDeck()
 //        XCTAssertEqual(deck?.cards, willCompareSuits)
 //    }
+    
+    func testGame() {
+        var game = Game(person: 3, style: .five)
+        var dealer = Dealer(game: game)
+        dealer.pushGame { (ggame) in
+            ggame.takeInformation { (gamer, style) in
+                XCTAssertEqual(gamer.count, 3)
+                XCTAssertEqual(style, Game.Style.five)
+            }
+        }
+        
+        game = Game(person: 4, style: .seven)
+        dealer = Dealer(game: game)
+        dealer.pushGame { (ggame) in
+             ggame.takeInformation { (gamer, style) in
+                 XCTAssertEqual(gamer.count, 4)
+                 XCTAssertEqual(style, Game.Style.seven)
+             }
+         }
+    }
 }
