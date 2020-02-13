@@ -9,27 +9,19 @@
 import UIKit
 
 class ViewController: UIViewController {
-    
-    let numberOfUpturnedCards = 7
-    
-    lazy var cardStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.distribution = .fillEqually
-        stackView.spacing = 4
-        stackView.layoutMargins = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
-        stackView.isLayoutMarginsRelativeArrangement = true
-        (0..<numberOfUpturnedCards).forEach { _ in
-            let upturnedCardImageView = UIImageView(image: UIImage(named: "card-back")!)
-            stackView.addArrangedSubview(upturnedCardImageView)
-        }
-        return stackView
-    }()
-    
     private lazy var selectionView: PlayModeSelectionView = {
         let rule = [RuleDescription.seven, RuleDescription.five]
         let number = [NumberDescription.two, NumberDescription.three, NumberDescription.four]
         let selection = PlayModeSelectionViewDescription(rule: rule, numberOfPlayers: number)
         let view = PlayModeSelectionView(with: selection)
+        return view
+    }()
+    
+    private lazy var participantView: ParticipantView = {
+        let cards = ["c2", "c2", "c2", "c2", "c2", "c2", "c2"]
+        let overlappedCards = OverlappedCardsViewDescription(cards: cards)
+        let participant = ParticipantViewDescription(name: "Player1", cards: overlappedCards)
+        let view = ParticipantView(with: participant)
         return view
     }()
 
@@ -43,7 +35,9 @@ class ViewController: UIViewController {
         setBackgroundPattern()
         
         view.addSubview(selectionView)
+        view.addSubview(participantView)
         layoutSelectionView()
+        layoutParticipantView()
     }
     
     private func setBackgroundPattern() {
@@ -58,17 +52,10 @@ class ViewController: UIViewController {
         selectionView.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor).isActive = true
     }
     
-    private func layoutUpturnedCards() {
+    private func layoutParticipantView() {
         let safeArea = view.safeAreaLayoutGuide
-        cardStackView.translatesAutoresizingMaskIntoConstraints = false
-        cardStackView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
-        cardStackView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
-        cardStackView.topAnchor.constraint(equalTo: safeArea.topAnchor).isActive = true
-        cardStackView.arrangedSubviews.forEach { card in
-            card.translatesAutoresizingMaskIntoConstraints = false
-            card.heightAnchor
-                .constraint(equalTo: card.widthAnchor, multiplier: 1.27)
-                .isActive = true
-        }
+        participantView.topAnchor.constraint(equalTo: selectionView.bottomAnchor).isActive = true
+        participantView.leftAnchor.constraint(equalTo: safeArea.leftAnchor, constant: 20).isActive = true
+        participantView.rightAnchor.constraint(equalTo: safeArea.rightAnchor, constant: -20).isActive = true
     }
 }

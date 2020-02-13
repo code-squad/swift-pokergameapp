@@ -21,7 +21,6 @@ class PlayModeSelectionView: UIView {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.distribution = .fillEqually
-        stackView.alignment = .fill
         stackView.spacing = 4
         return stackView
     }()
