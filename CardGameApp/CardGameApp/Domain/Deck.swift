@@ -30,8 +30,9 @@ struct Deck {
         return cards
     }
     
-    mutating func shuffle() {
-        cards = cards.shuffled()
+    mutating func shuffle<G : RandomNumberGenerator>(using generator : G)  {
+        var g = generator
+        cards = cards.shuffled(using: &g)
     }
     
     @discardableResult
