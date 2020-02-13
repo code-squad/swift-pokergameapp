@@ -16,10 +16,10 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        drawUI()
+        setView()
     }
     
-    func specifyStackViewProperty(of stackView: UIStackView) {
+    private func specifyStackViewProperty(of stackView: UIStackView) {
         stackView.axis = .horizontal
         stackView.distribution = .fillEqually
         stackView.alignment = .fill
@@ -27,7 +27,7 @@ class ViewController: UIViewController {
         stackView.translatesAutoresizingMaskIntoConstraints = false
     }
     
-    func addCardViews() -> UIStackView {
+    private func makeCardViews() -> UIStackView {
         let stackView = UIStackView()
         specifyStackViewProperty(of: stackView)
         
@@ -40,10 +40,10 @@ class ViewController: UIViewController {
         return stackView
     }
     
-    func drawUI() {
+    private func setView() {
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "bg_pattern")!)
         
-        let stackView = addCardViews()
+        let stackView = makeCardViews()
         self.view.addSubview(stackView)
         let constraints = [
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10.0),
