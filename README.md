@@ -215,3 +215,22 @@ navie shuffle은 편향된 셔플 결과를 보이는 반면 Fisher-Yates shuffl
 - reset 처음처럼 모든 카드를 다시 채워넣습니다.
 
 7. 테스트 코드에서 Card 객체 비교시 Thread가 끊임없이 돌아갔습니다 -> Card 클래스의 Equatable 비교 대상을 수정했습니다.
+
+
+
+20.02.13 20:53
+**pockerGameApp-step3 수정한 부분**
+
+1. ViewController에 readLine 삭제했습니다.
+2. Card와 CardDeck의 equatable 비교 대상 수정했습니다. 
+3. 일관성에 대한 피드백을 주셔서 forEach와 For_in을 혼합해서 사용한 부분 forEach로 통일했습니다.
+4. 셔플 메소드를 셔플한 배열을 리턴하지 않고 구조체가 갖고있는 self프로퍼티를 셔플하도록 수정했습니다. (shuffled() 에서 shuffle()로 수정)
+5. 테스트 케이스 수정했습니다.
+5-1. ViewController의 메소드를 테스트하는 메소드를 삭제했습니다.
+5-2. 여러개의 XCTAssert가 있던 메소드를 기능에 따라서 나눈 후 메소드 이름만 보고도 어떤 테스트를 진행하는지 파악할 수 있도록 최대한 수정했습니다.
+6. Card클래스의 프로퍼티를 초기화할 때 enum의 rawValue를 사용하는 부분을 수정했습니다. 처음에는 switch 문으로 바꿔주려고 했으나 타입 문제가 발생하여 CustomStringConvertible 프로토콜을 채택해서 enum Suit(모양)와 Rank(숫자)에  enum의 rawvalue를 직접적으로 참조하는 부분을 수정했습니다.
+7. Card 클래스와 CardDeck 구조체의 프로퍼티를 private로 설정했습니다.
+8. 인스턴스의 프로퍼티를 직접 호출해서 테스트했던 테스트 코드를 수정했습니다.
+8-1. CardDeck 구조체에 CardDeck의 프로퍼티인 Card 배열의 특정 인덱스에 있는 카드를 반환하는 메소드를 추가했습니다. `pickCard()` 
+
+9. 랜덤값을 어떻게 테스트할 것인지 알아보면서 랜덤이 리터럴하게 항상 랜덤은 아니라는 사실을 알았습니다. 그렇다면 랜덤값을 활용해서 어떻게 테스트 코드에 적용할것인지 고민하다가 random seed라는 개념을 알았지만 어떻게 활용해야할지 모르겠습니다. 그래서 테스트 코드에 아직 적용하지는 못했습니다.
