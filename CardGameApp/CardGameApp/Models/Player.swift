@@ -9,14 +9,18 @@
 import Foundation
 
 class Player {
-    private var hand: [Card] = []
+    private var _hand: [Card] = []
+    var hand: [Card] {
+        _hand
+    }
+    
     private var _name: String!
     var name: String {
         _name
     }
     
     func setupHand(with hand: [Card]) {
-        self.hand = hand
+        self._hand = hand
     }
     
     func setupName(_ name: String) {
@@ -24,7 +28,7 @@ class Player {
     }
     
     func forEachCard(_ handler: (Card) -> ()) {
-        for card in hand {
+        for card in _hand {
             handler(card)
         }
     }
