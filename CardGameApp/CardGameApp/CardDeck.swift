@@ -16,11 +16,11 @@ struct CardDeck {
     }
     
     mutating func reset() -> [Card]{
-        var suitsOfCard = Card.Suit.allCases
-        var ranksOfCard = Card.Rank.allCases
+        let suitsOfCard = Card.Suit.allCases
+        let ranksOfCard = Card.Rank.allCases
         
         ranksOfCard.forEach{ rank in
-            for suit in suitsOfCard {
+            suitsOfCard.forEach{ suit in
                 let newCard = Card(suit: suit, rank: rank)
                 cards.append(newCard)
             }
@@ -28,8 +28,8 @@ struct CardDeck {
         return cards
     }
     
-    func shuffle() -> [Card] {
-        return self.cards.shuffled()
+    mutating func shuffle() {
+        self.cards.shuffle()
     }
     
     mutating func removeOne(of index: Int) -> Card {
@@ -41,10 +41,14 @@ struct CardDeck {
     func count() -> Int {
         return self.cards.count
     }
+    
+    func pickCard(of index: Int) -> Card {
+        return self.cards[index]
+    }
+    
 }
 extension CardDeck :Equatable{
     static func == (lhs: CardDeck, rhs: CardDeck) -> Bool {
-        return lhs.cards.count == rhs.cards.count
         return lhs.cards == rhs.cards
     }
 }
