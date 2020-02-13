@@ -1,17 +1,12 @@
 import XCTest
-@testable import CardGameApp
 
 class DeckTests: XCTestCase {
-    var deck: Deck!
     let numberOfRank = Card.Rank.allCases.count
     let numberOfSuit = Card.Suit.allCases.count
     let numberOfAllCards = Card.Rank.allCases.count * Card.Suit.allCases.count
 
-    override func setUp() {
-        self.deck = CardGameFactory.createDeck()
-    }
-    
     func testCreateDeck() {
+        let deck = CardGameFactory.createDeck()
         XCTAssertEqual(deck.count, numberOfRank * numberOfSuit)
     }
     
@@ -28,10 +23,12 @@ class DeckTests: XCTestCase {
     }
     
     func testCount() {
+        let deck = CardGameFactory.createDeck()
         XCTAssertEqual(deck.count, numberOfAllCards)
     }
     
     func testRemoveOne() {
+        var deck = CardGameFactory.createDeck()
         deck.removeOne()
         XCTAssertEqual(deck.count, numberOfAllCards - 1)
         deck.removeOne()
@@ -40,6 +37,7 @@ class DeckTests: XCTestCase {
     }
     
     func testRemoveAllCards() {
+        var deck = CardGameFactory.createDeck()
         (1...numberOfAllCards).forEach { _ in deck.removeOne() }
         
         let card = deck.removeOne()
@@ -48,6 +46,7 @@ class DeckTests: XCTestCase {
     }
     
     func testReset() {
+        var deck = CardGameFactory.createDeck()
         deck.removeOne()
         deck.reset()
         XCTAssertEqual(deck.count, numberOfAllCards)

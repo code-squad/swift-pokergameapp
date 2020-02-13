@@ -23,7 +23,7 @@ class Dealer: Playable {
     }
     
     /// 게임 준비. 카드를 섞는다
-    func prepare() {
+    private func prepare() {
         self.deck.reset()
         self.deck.shuffle()
     }
@@ -40,9 +40,8 @@ class Dealer: Playable {
     func startGame(rule: Game.Rule, players: [Playable]) {
         self.prepare()
         
-        let numberOfCardsByRule = 7
-        
-        (1...numberOfCardsByRule).forEach { _ in
+        let numberOfCards = rule.rawValue
+        (1...numberOfCards).forEach { _ in
             dealCardsOfOneRound(players)
         }
     }

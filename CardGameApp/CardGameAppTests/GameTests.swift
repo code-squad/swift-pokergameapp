@@ -22,14 +22,24 @@ class GameTests: XCTestCase {
         XCTAssertNoThrow(try Game(rule: .fiveStud, players: players))
     }
     
-    func testStartGame() {
+    func testSevenStud() {
         let players = try! CardGameFactory.createPlayers(count: 4)
-        let game = try! Game(rule: .fiveStud, players: players)
+        let game = try! Game(rule: .sevenStud, players: players)
         
         game.start()
         let cardsPerPlayer = players.map { $0.cards.count }
 
-        XCTAssertEqual(cardsPerPlayer, [Int](repeating: 7, count: 4))
+        XCTAssertEqual(cardsPerPlayer, [Int](repeating: 7, count: players.count))
+    }
+    
+    func testFiveStud() {
+        let players = try! CardGameFactory.createPlayers(count: 3)
+        let game = try! Game(rule: .fiveStud, players: players)
+        
+        game.start()
+        let cardsPerPlayer = players.map { $0.cards.count }
+        
+        XCTAssertEqual(cardsPerPlayer, [Int](repeating: 5, count: players.count))
     }
 }
 
