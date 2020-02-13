@@ -51,13 +51,11 @@ class ViewController: UIViewController {
     }
     
     private func resetPlayers() {
-        pokerGame.forEachPlayer { (player) in
-            player.forEachName { (displayName) in
-                let playerStackView = PlayerStackView(displayName: displayName)
-                let cardStackView = CardStackView(of: player)
-                playerStackView.addArrangedSubview(cardStackView)
-                pokerGameStackView.addArrangedSubview(playerStackView)
-            }
+        pokerGame.forEachPlayer {
+            let playerStackView = PlayerStackView(displayName: $0.name)
+            let cardStackView = CardStackView(of: $0)
+            playerStackView.addArrangedSubview(cardStackView)
+            pokerGameStackView.addArrangedSubview(playerStackView)
         }
     }
     
