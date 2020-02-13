@@ -24,6 +24,14 @@ class ViewController: UIViewController {
         }
         return stackView
     }()
+    
+    private lazy var selectionView: PlayModeSelectionView = {
+        let rule = [RuleDescription.seven, RuleDescription.five]
+        let number = [NumberDescription.two, NumberDescription.three, NumberDescription.four]
+        let selection = PlayModeSelectionViewDescription(rule: rule, numberOfPlayers: number)
+        let view = PlayModeSelectionView(with: selection)
+        return view
+    }()
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -32,18 +40,22 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.addSubview(cardStackView)
         setBackgroundPattern()
-        layoutUpturnedCards()
         
-        print(Card(suit: .heart, rank: .queen))
-        print(Card(suit: .spade, rank: .seven))
+        view.addSubview(selectionView)
+        layoutSelectionView()
     }
     
     private func setBackgroundPattern() {
         if let backgroundPatternImage = UIImage(named: "bg_pattern") {
             view.backgroundColor = UIColor(patternImage: backgroundPatternImage)
         }
+    }
+    
+    private func layoutSelectionView() {
+        let safeArea = view.safeAreaLayoutGuide
+        selectionView.topAnchor.constraint(equalTo: safeArea.topAnchor).isActive = true
+        selectionView.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor).isActive = true
     }
     
     private func layoutUpturnedCards() {
