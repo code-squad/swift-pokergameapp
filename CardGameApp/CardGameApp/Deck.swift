@@ -42,21 +42,3 @@ struct Deck {
         self.poppedCards.removeAll()
     }
 }
-
-struct DeckFactory {
-    static func create() -> Deck {
-        return Deck(cards: createAllCards())
-    }
-    
-    static func createAllCards() -> [Card] {
-        return Card.Suit.allCases.flatMap {
-            createCards(per: $0)
-        }
-    }
-    
-    private static func createCards(per suit: Card.Suit) -> [Card] {
-        return Card.Rank.allCases.map {
-            Card(suit: suit, rank: $0)
-        }
-    }
-}

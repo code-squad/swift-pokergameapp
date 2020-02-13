@@ -8,7 +8,7 @@ class DeckTests: XCTestCase {
     let numberOfAllCards = Card.Rank.allCases.count * Card.Suit.allCases.count
 
     override func setUp() {
-        self.deck = DeckFactory.create()
+        self.deck = CardGameFactory.createDeck()
     }
     
     func testCreateDeck() {
@@ -16,7 +16,7 @@ class DeckTests: XCTestCase {
     }
     
     func testCreateAllCards() {
-        let cards = DeckFactory.createAllCards()
+        let cards = CardGameFactory.createAllCards()
         let numberPerSuit = Card.Suit.allCases.map { suit in
             cards.filter {
                 $0.suit == suit

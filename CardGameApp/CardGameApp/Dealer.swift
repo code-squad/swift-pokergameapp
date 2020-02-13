@@ -28,7 +28,7 @@ class Dealer: Playable {
         self.deck.shuffle()
     }
     
-    fileprivate func dealCardsOfOneRound(_ players: [Playable]) {
+    private func dealCardsOfOneRound(_ players: [Playable]) {
         (players + [self]).forEach { player in
             if let card = deck.removeOne() {
                 self.give(card: card, to: player)
@@ -37,7 +37,9 @@ class Dealer: Playable {
     }
     
     /// 게임을 시작한다. 자신을 포함해 모든 플레이어에게 카드를 돌린다.
-    func startGame(players: [Playable]) {
+    func startGame(rule: Game.Rule, players: [Playable]) {
+        self.prepare()
+        
         let numberOfCardsByRule = 7
         
         (1...numberOfCardsByRule).forEach { _ in
