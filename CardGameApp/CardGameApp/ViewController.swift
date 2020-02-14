@@ -146,5 +146,27 @@ class ViewController: UIViewController {
         studSegmentControl.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50).isActive=true
         studSegmentControl.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50).isActive=true
     }
+    
+    func createStackView(spacing : CGFloat, axis : NSLayoutConstraint.Axis, distribution : UIStackView.Distribution, constraintMask : Bool) -> UIStackView{
+        let stackView = UIStackView()
+        stackView.spacing = spacing
+        stackView.axis = axis
+        stackView.distribution = distribution
+        stackView.translatesAutoresizingMaskIntoConstraints = constraintMask
+        return stackView
+    }
+    
+    func createSegmentedControl(items : [String], selectedSegmentIndex: Int, borderWidth : CGFloat, borderColor : CGColor, constraintMask : Bool) -> UISegmentedControl{
+        
+        let control = UISegmentedControl(items: items)
+        control.selectedSegmentIndex = selectedSegmentIndex
+        
+        control.layer.borderWidth = borderWidth
+        control.layer.borderColor = borderColor
+        control.translatesAutoresizingMaskIntoConstraints = constraintMask
+        
+        control.addTarget(self, action: #selector(handleStudControl(_:)), for: .valueChanged)
+        return control
+    }
 }
 
