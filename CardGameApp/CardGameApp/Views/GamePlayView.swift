@@ -80,8 +80,8 @@ class GamePlayView: UIView {
         (0..<contents.cards.count).forEach {
             guard let view = participantsStackView.arrangedSubviews[$0] as? ParticipantView else { return }
             view.contents = ParticipantViewContents(
-            name: names[$0],
-            cards: contents.cards[$0])
+                name: names[$0],
+                cards: contents.cards[$0])
         }
     }
 }

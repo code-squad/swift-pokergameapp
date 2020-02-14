@@ -79,8 +79,8 @@ class ViewController: UIViewController {
     private func layoutGamePlayView() {
         let safeArea = view.safeAreaLayoutGuide
         gamePlayView.topAnchor.constraint(equalTo: selectionView.bottomAnchor).isActive = true
-        gamePlayView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 20).isActive = true
-        gamePlayView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -20).isActive = true
+        gamePlayView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 25).isActive = true
+        gamePlayView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -50).isActive = true
     }
 }
 
