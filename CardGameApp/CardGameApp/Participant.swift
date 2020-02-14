@@ -25,7 +25,7 @@ class Dealer : Participant {
     }
     
     func isCardsFull() -> Bool {
-       
+        return self.cardsInHands.count == cardStudParticipatingIn
     }
     
     
@@ -40,7 +40,7 @@ class Player : Participant {
        }
    
     func isCardsFull() -> Bool {
-       
+        return self.cardsInHands.count == cardStudParticipatingIn
     }
     
     
