@@ -9,13 +9,16 @@
 import UIKit
 
 struct GamePlayViewContents {
-    let playerNames: [String]
     let cards: [[String]]
 }
 
 class GamePlayView: UIView {
     private var maxParticipants: Int?
-    private var contents: GamePlayViewContents?
+    var contents: GamePlayViewContents? {
+        didSet {
+            updateView()
+        }
+    }
     
     private lazy var participantsStackView: UIStackView = {
         let view = UIStackView()
@@ -48,6 +51,36 @@ class GamePlayView: UIView {
         (0..<max).forEach { _ in
             let participantView = ParticipantView(maxCards: Descriptions.shared.maxCards)
             participantsStackView.addArrangedSubview(participantView)
+        }
+    }
+    
+    private func showParticipantView(by number: Int) {
+        let subViewCount = participantsStackView.arrangedSubviews.count
+        guard number > 0, number < subViewCount else { return }
+        (0..<number).forEach {
+            participantsStackView.arrangedSubviews[$0].isHidden = false
+        }
+        (number..<subViewCount).forEach {
+            participantsStackView.arrangedSubviews[$0].isHidden = true
+        }
+    }
+    
+    private func createParticipantNames(by number: Int) -> [String] {
+        var names = (1..<number).map { "\(Descriptions.shared.playerLabel)\($0)" }
+        names.append("\(Descriptions.shared.dealerLabel)")
+        return names
+    }
+    
+    private func updateView() {
+        guard let contents = contents else { return }
+        showParticipantView(by: contents.cards.count)
+        let names = createParticipantNames(by: contents.cards.count)
+        
+        (0..<contents.cards.count).forEach {
+            guard let view = participantsStackView.arrangedSubviews[$0] as? ParticipantView else { return }
+            view.contents = ParticipantViewContents(
+            name: names[$0],
+            cards: contents.cards[$0])
         }
     }
 }

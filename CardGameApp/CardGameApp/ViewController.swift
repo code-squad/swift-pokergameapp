@@ -59,9 +59,9 @@ class ViewController: UIViewController {
         let gamePlay = GamePlay(rule: rule, numberOfPlayers: numberOfPlayers)
         gamePlay.deal()
         let table = gamePlay.table()
-        table.forEach { cards in
-            cards.map { "\($0)" }
-        }
+        let cards = table.map { $0.map { "\($0)" } }
+        
+        gamePlayView.contents = GamePlayViewContents(cards: cards)
     }
     
     private func setBackgroundPattern() {
