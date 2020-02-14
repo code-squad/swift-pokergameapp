@@ -38,14 +38,15 @@ class Hand {
         var straightCount = 1
         var index = 1
         while index < sortedCards.count {
-            guard let nextCard = sortedCards[index].nextCard() else { continue }
-            if nextCard == sortedCards[index - 1] {
-                straightCount += 1
-                if straightCount == 5 {
-                    return true
+            if let nextCard = sortedCards[index].nextCard() {
+                if nextCard == sortedCards[index - 1] {
+                    straightCount += 1
+                    if straightCount == 5 {
+                        return true
+                    }
+                } else {
+                    straightCount = 1
                 }
-            } else {
-                straightCount = 1
             }
             index += 1
         }
@@ -83,7 +84,7 @@ class Hand {
         return result
     }
     
-    private func getScore() -> Score {
+    func getScore() -> Score {
         let info = getInfo()
         if checkStraight() {
             return .straight
