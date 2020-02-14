@@ -1,7 +1,7 @@
 import XCTest
 @testable import CardGameApp
 
-class CardGameAppTests: XCTestCase {
+class CardDeckTests: XCTestCase {
     
     var deck: CardDeck!
     
