@@ -19,6 +19,7 @@ class CardGameAppTests: XCTestCase  {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
     
+    // MARK:- Card 클래스 테스트 케이스
     func testDescripteCard() {
         // Given
         let card = Card(suit: .hearts , rank: .eight )
@@ -30,6 +31,7 @@ class CardGameAppTests: XCTestCase  {
         XCTAssertEqual(description, "♥️8")
     }
     
+    // MARK:- CardDeck 구조체 테스트 케이스
     func testReset() {
         // given
         // CardDeck을 초기화할 때 reset() 함수가 호출됩니다.
@@ -44,7 +46,7 @@ class CardGameAppTests: XCTestCase  {
         // Given
         var cardGameCardDeck = CardDeck()
         var seed = SystemRandomNumberGenerator()
-        var randomNumber = ((0 ..< 52).shuffled(using: &seed).first)!
+        let randomNumber = ((0 ..< 52).shuffled(using: &seed).first)!
         let cardBeforeRandom = cardGameCardDeck.pickCard(of: randomNumber)
         
         // When
@@ -60,7 +62,7 @@ class CardGameAppTests: XCTestCase  {
         var cardDeck = CardDeck()
         let originalCount = cardDeck.count()
         var seed = SystemRandomNumberGenerator()
-        var randomNumber = ((0 ..< 52).shuffled(using: &seed).first)!
+        let randomNumber = ((0 ..< 52).shuffled(using: &seed).first)!
         
         // When
         cardDeck.removeOne(of: randomNumber)
@@ -73,7 +75,7 @@ class CardGameAppTests: XCTestCase  {
     func testCardInSameSquenceAfterRemoveOne(){
         //Given
         var seed = SystemRandomNumberGenerator()
-        var IndexWillRemoveValue = ((0 ..< 52).shuffled(using: &seed).first)!
+        let IndexWillRemoveValue = ((0 ..< 52).shuffled(using: &seed).first)!
         var cardDeck = CardDeck()
         let cardBeforeRemoveOne = cardDeck.pickCard(of: IndexWillRemoveValue)
         
@@ -114,4 +116,24 @@ class CardGameAppTests: XCTestCase  {
         // Then
         XCTAssertEqual(originalCount, changedCount+1)
     }
+    
+    // MARK:-  pokerGame 클래스 테스트 케이스
+    
+    // 플레이어 객체가 참여 인원수 대로 생성 됐는지와 각 플레이어 객체가 스터드 수만큼 카드를 갖고 있는지
+    // 참가자 프로토콜 - cardInHand 랑 isCardFull 메소드 만들기
+    func testIsReady() {
+        // Given
+        var playersCount = Int.random(in: 1 ... 4)
+        let pokerGame = PokerGame() // pokerGame 안에 딜러 객체가 선언되어 있음
+        
+        // When
+        pokerGame.start(stud : .fiveCardStud, with: playersCount)// PokerGame 클래스에 이넘을 가지고 있음.
+        // 스타트하면 입력받은 명수 대로 플레이어 객체를 생성해서 배열을 반환하는 함수가 있고 Game 클래스의 참여인원 배열로 설정함.
+        let setPlayersAndCards = pokerGame.isReady //true, false 반환.
+        
+        // Then
+        XCTAssertTrue(setPlayersAndCards)
+        
+    }
+    
 }
