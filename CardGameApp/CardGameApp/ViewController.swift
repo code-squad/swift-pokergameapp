@@ -58,7 +58,7 @@ class ViewController: UIViewController {
         resetGameTable()
         pokerGame.play()
         makeGame()
-        addWinnerMedal(to: pokerGame.winnerIndex)
+        addWinnerMedal(to: pokerGame.winner)
         setGameTableLayout()
         self.view.layoutIfNeeded()
     }

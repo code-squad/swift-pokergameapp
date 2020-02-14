@@ -28,8 +28,8 @@ class Players {
         list.forEach(transform)
     }
     
-    func whoIsWinner() {
+    func whoIsWinner() -> Int {
         let result = list.sorted { $0 > $1 }
-        result[0].isWinner = true
+        return list.firstIndex(of: result[0])!
     }
 }

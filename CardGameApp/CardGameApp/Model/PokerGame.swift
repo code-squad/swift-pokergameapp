@@ -44,16 +44,8 @@ class PokerGame {
     private var resumable: Bool {
         dealer.deckCount > (players.count) * gameType.rawValue
     }
-    var winnerIndex: Int {
-        var index = 0
-        var winnerIndex = 0
-        players.forEach {
-            if $0.isWinner == true {
-                winnerIndex = index
-            }
-            index += 1
-        }
-        return winnerIndex
+    var winner: Int {
+        players.whoIsWinner()
     }
 
     init(gameType: GameType, numberOfPlayers: NumberOfPlayers) {
@@ -84,6 +76,5 @@ class PokerGame {
         gameType.forEach {
             distributeCards()
         }
-        players.whoIsWinner()
     }
 }

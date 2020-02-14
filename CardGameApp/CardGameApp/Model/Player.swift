@@ -10,7 +10,6 @@ import Foundation
 
 class Player {
     private var hand = Hand()
-    var isWinner = false
     var score: Hand.Score {
         hand.getScore()
     }
