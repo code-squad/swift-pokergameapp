@@ -12,7 +12,7 @@ protocol PlayModeSelectionViewDelegate: class {
     func didModeChanged(to mode: PlayMode)
 }
 
-struct PlayModeSelectionViewDescription {
+struct PlayModeSelectionViewContents {
     let rule: [String]
     let numberOfPlayers: [String]
 }
@@ -35,13 +35,12 @@ struct PlayMode {
 class PlayModeSelectionView: UIView {
     weak var delegate: PlayModeSelectionViewDelegate?
     
-    private var contents: PlayModeSelectionViewDescription?
+    private var contents: PlayModeSelectionViewContents?
     
     private lazy var selectionStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
-        stackView.distribution = .fillEqually
         stackView.spacing = 4
         return stackView
     }()
@@ -66,7 +65,7 @@ class PlayModeSelectionView: UIView {
         setupView()
     }
     
-    required init(with contents: PlayModeSelectionViewDescription) {
+    required init(with contents: PlayModeSelectionViewContents) {
         super.init(frame: .zero)
         self.contents = contents
         setupView()

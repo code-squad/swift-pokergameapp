@@ -8,13 +8,14 @@
 
 import UIKit
 
-struct ParticipantViewDescription {
+struct ParticipantViewContents {
     let name: String
-    let cards: OverlappedCardsViewDescription
+    let cards: [String]
 }
 
 class ParticipantView: UIView {
-    private var contents: ParticipantViewDescription?
+    private var maxCards: Int?
+    private var contents: ParticipantViewContents?
     
     private lazy var participantStackView: UIStackView = {
         let stackView = UIStackView()
@@ -25,15 +26,8 @@ class ParticipantView: UIView {
     
     private lazy var participantLabel: UILabel = {
         let label = UILabel()
-        label.text = contents?.name
         label.textColor = .white
         return label
-    }()
-    
-    private lazy var overlappedCardsView: OverlappedCardsView = {
-        let view = OverlappedCardsView(with: contents?.cards)
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
     }()
     
     override init(frame: CGRect) {
@@ -46,9 +40,9 @@ class ParticipantView: UIView {
         setupView()
     }
     
-    required init(with contents: ParticipantViewDescription) {
+    required init(maxCards: Int) {
         super.init(frame: .zero)
-        self.contents = contents
+        self.maxCards = maxCards
         setupView()
     }
     
@@ -57,6 +51,9 @@ class ParticipantView: UIView {
         addSubview(participantStackView)
         participantStackView.fillSuperView()
         participantStackView.addArrangedSubview(participantLabel)
-        participantStackView.addArrangedSubview(overlappedCardsView)
+        if let max = maxCards {
+            let view = OverlappedCardsView(maxCards: max)
+            participantStackView.addArrangedSubview(view)
+        }
     }
 }

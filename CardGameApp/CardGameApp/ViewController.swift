@@ -12,16 +12,13 @@ class ViewController: UIViewController {
     private lazy var selectionView: PlayModeSelectionView = {
         let rule = ["\(Descriptions.Rule.seven)", "\(Descriptions.Rule.five)"]
         let number = ["\(Descriptions.Number.two)", "\(Descriptions.Number.three)", "\(Descriptions.Number.four)"]
-        let selection = PlayModeSelectionViewDescription(rule: rule, numberOfPlayers: number)
+        let selection = PlayModeSelectionViewContents(rule: rule, numberOfPlayers: number)
         let view = PlayModeSelectionView(with: selection)
         return view
     }()
     
-    private lazy var participantView: ParticipantView = {
-        let cards = ["c2", "c2", "c2", "c2", "c2", "c2", "c2"]
-        let overlappedCards = OverlappedCardsViewDescription(cards: cards)
-        let participant = ParticipantViewDescription(name: "Player1", cards: overlappedCards)
-        let view = ParticipantView(with: participant)
+    private lazy var gamePlayView: GamePlayView = {
+        let view = GamePlayView(maxParticipantNumber: Descriptions.shared.maxPlayers)
         return view
     }()
 
@@ -35,11 +32,36 @@ class ViewController: UIViewController {
         setBackgroundPattern()
         
         view.addSubview(selectionView)
-        view.addSubview(participantView)
         layoutSelectionView()
-        layoutParticipantView()
+        
+        view.addSubview(gamePlayView)
+        layoutGamePlayView()
         
         selectionView.delegate = self
+        playGame(with: PlayMode(rule: .sevenCardStud, number: .two))
+    }
+    
+    private func playGame(with mode: PlayMode) {
+        let rule: GamePlay.Rule
+        let numberOfPlayers: Players.Number
+        
+        switch mode.rule {
+        case .sevenCardStud: rule = .sevenCardStud
+        case .fiveCardStud: rule = .fiveCardStud
+        }
+        
+        switch mode.number {
+        case .two: numberOfPlayers = .two
+        case .three: numberOfPlayers = .three
+        case .four: numberOfPlayers = .four
+        }
+        
+        let gamePlay = GamePlay(rule: rule, numberOfPlayers: numberOfPlayers)
+        gamePlay.deal()
+        let table = gamePlay.table()
+        table.forEach { cards in
+            cards.map { "\($0)" }
+        }
     }
     
     private func setBackgroundPattern() {
@@ -54,16 +76,16 @@ class ViewController: UIViewController {
         selectionView.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor).isActive = true
     }
     
-    private func layoutParticipantView() {
+    private func layoutGamePlayView() {
         let safeArea = view.safeAreaLayoutGuide
-        participantView.topAnchor.constraint(equalTo: selectionView.bottomAnchor).isActive = true
-        participantView.leftAnchor.constraint(equalTo: safeArea.leftAnchor, constant: 20).isActive = true
-        participantView.rightAnchor.constraint(equalTo: safeArea.rightAnchor, constant: -20).isActive = true
+        gamePlayView.topAnchor.constraint(equalTo: selectionView.bottomAnchor).isActive = true
+        gamePlayView.leftAnchor.constraint(equalTo: safeArea.leftAnchor, constant: 20).isActive = true
+        gamePlayView.rightAnchor.constraint(equalTo: safeArea.rightAnchor, constant: -20).isActive = true
     }
 }
 
 extension ViewController: PlayModeSelectionViewDelegate {
     func didModeChanged(to mode: PlayMode) {
-        
+        playGame(with: mode)
     }
 }

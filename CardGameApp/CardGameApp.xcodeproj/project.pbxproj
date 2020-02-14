@@ -14,6 +14,7 @@
 		C2BD178823F544C300437146 /* PlayModeSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BD178723F544C300437146 /* PlayModeSelectionView.swift */; };
 		C2BD178A23F5459E00437146 /* ParticipantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BD178923F5459E00437146 /* ParticipantView.swift */; };
 		C2BD178E23F55B7100437146 /* OverlappedCardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BD178D23F55B7100437146 /* OverlappedCardsView.swift */; };
+		C2BD179023F5815400437146 /* GamePlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BD178F23F5815400437146 /* GamePlayView.swift */; };
 		C2D9583D23EA7B09002057D6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D9583C23EA7B09002057D6 /* AppDelegate.swift */; };
 		C2D9583F23EA7B09002057D6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D9583E23EA7B09002057D6 /* SceneDelegate.swift */; };
 		C2D9584123EA7B09002057D6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D9584023EA7B09002057D6 /* ViewController.swift */; };
@@ -43,6 +44,7 @@
 		C2BD178723F544C300437146 /* PlayModeSelectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayModeSelectionView.swift; sourceTree = "<group>"; };
 		C2BD178923F5459E00437146 /* ParticipantView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParticipantView.swift; sourceTree = "<group>"; };
 		C2BD178D23F55B7100437146 /* OverlappedCardsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverlappedCardsView.swift; sourceTree = "<group>"; };
+		C2BD178F23F5815400437146 /* GamePlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePlayView.swift; sourceTree = "<group>"; };
 		C2D9583923EA7B09002057D6 /* CardGameApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CardGameApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2D9583C23EA7B09002057D6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C2D9583E23EA7B09002057D6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -79,9 +81,10 @@
 		C2BD177D23F3F5E100437146 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				C2BD178D23F55B7100437146 /* OverlappedCardsView.swift */,
 				C2BD178723F544C300437146 /* PlayModeSelectionView.swift */,
+				C2BD178F23F5815400437146 /* GamePlayView.swift */,
 				C2BD178923F5459E00437146 /* ParticipantView.swift */,
+				C2BD178D23F55B7100437146 /* OverlappedCardsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -255,6 +258,7 @@
 				C2E62B1223ED35C900236059 /* CardDeck.swift in Sources */,
 				C2D9583D23EA7B09002057D6 /* AppDelegate.swift in Sources */,
 				C2BD178123F444CA00437146 /* Descriptions.swift in Sources */,
+				C2BD179023F5815400437146 /* GamePlayView.swift in Sources */,
 				C2BD178A23F5459E00437146 /* ParticipantView.swift in Sources */,
 				C2D9583F23EA7B09002057D6 /* SceneDelegate.swift in Sources */,
 				C2BD178623F544B200437146 /* UIView+FillSuperView.swift in Sources */,
