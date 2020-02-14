@@ -132,26 +132,30 @@ class CardGameAppTests: XCTestCase  {
 
     
     // MARK:-  pokerGame 클래스 테스트 케이스
+    //func isAllPlayersReady() -> Bool
+    //func isAllPlayersCardsReady() -> Bool
     
     // 플레이어 객체가 참여 인원수 대로 생성 됐는지
-    func testAllPlayersAreExist() {
+    func testAllPlayersReady() {
         // Given
-        var playersCount = Int.random(in: 1 ... 4)
-        let game = Game() 
+        let playersCount = Int.random(in: 1 ... 4)
+        var seed = SystemRandomNumberGenerator()
+        let cardStud = [5,7]
+        let cardStudNumber = (cardStud.shuffled(using: &seed).first)!
+        let dealer = Dealer(whichcardStud: cardStudNumber)
+        let pokerGame = CardStud(dealer: dealer, playersCount: playersCount, studNumber: cardStudNumber)
         
         // When
-        game.start(stud : .fiveCardStud, with: playersCount)
-        
-        let setPlayersAndCards = game.isReady //true, false 반환.
+        let readyCheck = pokerGame.isAllPlayersReady
         
         // Then
-        XCTAssertTrue(setPlayersAndCards)
-        
-    }
-    //  각 플레이어 객체가 스터드 수만큼 카드를 갖고 있는지
-    func testCardsAreDistributed() {
-        
+        XCTAssertTrue(readyCheck())
     }
     
+    // MARK:-  Player 클래스 테스트 케이스
+    // func isCardsFull() -> Bool
+    
+    // MARK:-  Dealer 클래스 테스트 케이스
+    // func isCardsFull() -> Bool
     
 }
