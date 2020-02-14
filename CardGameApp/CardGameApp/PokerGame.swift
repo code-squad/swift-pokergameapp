@@ -35,7 +35,9 @@ class FiveCardStud: PokerGame {
     }
     
     func start() {
-       
+        // 카드 분배
+        self.dealer.addCard(newCard: self.dealer.distributeCards())
+        self.players.forEach{$0.addCard(newCard: self.dealer.distributeCards())}
     }
     
     func isAllPlayersReady() -> Bool {
@@ -70,6 +72,9 @@ class SevenCardStud: PokerGame {
     }
     
     func start() {
+        // 카드 분배
+        self.dealer.addCard(newCard: self.dealer.distributeCards())
+        self.players.forEach{$0.addCard(newCard: self.dealer.distributeCards())}
     }
     
     func isAllPlayersReady() -> Bool {
@@ -84,7 +89,4 @@ class SevenCardStud: PokerGame {
         let filteredReadycheck = readyCheck.filter{$0 == false}
         return filteredReadycheck.count == 0
     }
-    
-    
-    
 }
