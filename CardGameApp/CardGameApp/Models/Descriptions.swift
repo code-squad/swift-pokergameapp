@@ -8,13 +8,33 @@
 
 import Foundation
 
-struct RuleDescription {
-    static let seven = "7 Cards"
-    static let five = "5 Cards"
-}
+class Descriptions {
+    static let shared = Descriptions()
+    
+    enum Rule: CustomStringConvertible {
+        case seven, five
+        
+        var description: String {
+            switch self {
+            case .seven: return "7 Cards"
+            case .five: return "5 Cards"
+            }
+        }
+        
+    }
 
-struct NumberDescription {
-    static let two = "2명"
-    static let three = "3명"
-    static let four = "4명"
+    enum Number: CustomStringConvertible {
+        case two, three, four
+        
+        var description: String {
+            switch self {
+            case .two: return "2명"
+            case .three: return "3명"
+            case .four: return "4명"
+            }
+        }
+    }
+    
+    static let maxPlayers = 5
+    static let maxCards = 7
 }
