@@ -117,22 +117,7 @@ class CardGameAppTests: XCTestCase  {
         XCTAssertEqual(originalCount, changedCount+1)
     }
     
-    // 플레이어끼리 갖고 있는 카드 중 겹치는게 없는지
-    //    func testAreCardsDuplicated() {
-    //        //Given
-    //        var cardDeck = CardDeck()
-    //
-    //        //When
-    //        let checkResult = cardDeck.areCardsDuplicated
-    //
-    //        //Then
-    //        XCTAssertFalse(checkResult)
-    //
-    //    }
-    
-    
     // MARK:-  pokerGame 클래스 테스트 케이스
-    //func isAllPlayersCardsReady() -> Bool
     
     // 플레이어 객체가 참여 인원수 대로 생성 됐는지 테스트
     func testAllPlayersReady() {
@@ -199,5 +184,4 @@ class CardGameAppTests: XCTestCase  {
         //Then
         XCTAssertTrue(cardReadyCheck)
     }
-    
 }
