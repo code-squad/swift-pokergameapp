@@ -123,7 +123,13 @@ class ViewController: UIViewController {
             pokerStackView.addArrangedSubview(playerStackView)
         }
     }
-
+    
+    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        if motion == .motionShake {
+            redrawPokerStackView()
+        }
+    }
+    
     private func addCardIntoStackView(stackView : UIStackView, cardName: String){
         stackView.addArrangedSubview(createCard(cardName: cardName))
     }
