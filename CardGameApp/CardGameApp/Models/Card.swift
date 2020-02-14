@@ -10,10 +10,10 @@ import Foundation
 
 class Card {
     enum Suit: String, CaseIterable {
-        case heart = "♥️"
-        case diamond = "♦️"
-        case club = "♣️"
-        case spade = "♠️"
+        case heart = "h"
+        case diamond = "d"
+        case club = "c"
+        case spade = "s"
     }
     
     enum Rank: Int, CaseIterable {

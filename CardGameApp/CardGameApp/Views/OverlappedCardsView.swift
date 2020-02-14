@@ -8,12 +8,13 @@
 
 import UIKit
 
-struct OverlappedCardsViewDescription {
+struct OverlappedCardsViewContents {
     let cards: [String]
 }
 
 class OverlappedCardsView: UIView {
-    private var contents: OverlappedCardsViewDescription?
+    private var maxCards: Int?
+    private var contents: OverlappedCardsViewContents?
     
     private lazy var overlappedCardsStackView: UIStackView = {
         let stackView = UIStackView()
@@ -32,9 +33,9 @@ class OverlappedCardsView: UIView {
         setupView()
     }
     
-    required init(with contents: OverlappedCardsViewDescription?) {
+    required init(maxCards: Int) {
         super.init(frame: .zero)
-        self.contents = contents
+        self.maxCards = maxCards
         setupView()
     }
     
@@ -42,8 +43,9 @@ class OverlappedCardsView: UIView {
         translatesAutoresizingMaskIntoConstraints = false
         addSubview(overlappedCardsStackView)
         overlappedCardsStackView.fillSuperView()
-        contents?.cards.forEach {
-            let cardView = UIImageView(image: UIImage(named: $0))
+        guard let max = maxCards else { return }
+        (0..<max).forEach { _ in
+            let cardView = UIImageView(image: nil)
             cardView.translatesAutoresizingMaskIntoConstraints = false
             cardView.heightAnchor.constraint(equalTo: cardView.widthAnchor, multiplier: 1.27).isActive = true
             overlappedCardsStackView.addArrangedSubview(cardView)

@@ -35,6 +35,6 @@ class Descriptions {
         }
     }
     
-    static let maxPlayers = 5
-    static let maxCards = 7
+    let maxPlayers = 5
+    let maxCards = 7
 }
