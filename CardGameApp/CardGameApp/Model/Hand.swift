@@ -47,44 +47,52 @@ class Hand {
         return straightCount == 5
     }
     
-    private func getInfo() -> [Int:Int]{
-        let result = cards.reduce(into: [Int:Int]()) {
+    private func checkPairs(info: [(key: Int, value: Int)]) -> Score {
+        let pairCount = info.filter { $0.value == 2 }.count
+        
+        switch pairCount {
+        case 2...:
+            return .twoPair
+        case 1:
+            return .onePair
+        default:
+            return .none
+        }
+    }
+    
+    private func getInfo() -> [(key: Int, value: Int)]{
+        let info = cards.reduce(into: [Int:Int]()) {
             if $0[$1.number] == nil {
                 $0[$1.number] = 1
             } else {
                 $0[$1.number]! += 1
             }
         }
-        return result
-    }
-    
-    func getScore() -> (Score ,Int) {
-        let result = getInfo()
-        let info = result.sorted { (lhs, rhs) -> Bool in
+        let result = info.sorted { (lhs, rhs) -> Bool in
             if lhs.value == rhs.value {
                 return lhs.key > rhs.key
             } else {
                 return lhs.value > rhs.value
             }
         }
-        let highNumber = info[0].key
+        return result
+    }
+    
+    func getScore() -> Score {
+        let info = getInfo()
         
         if checkStraight() {
-            return (.straight, highNumber)
+            return .straight
         } else if info.contains(where: { $0.value == 4 }) {
-            return (.fourCard, highNumber)
+            return .fourCard
         } else if info.contains(where: { $0.value == 3 }) {
-            return (.triple, highNumber)
+            return .triple
         }
-        
-        let pairs = info.filter { $0.value == 2 }
-        
-        if pairs.count == 2 {
-            return (.twoPair, highNumber)
-        } else if pairs.count == 1 {
-            return (.onePair, highNumber)
-        } else {
-            return (.none, highNumber)
-        }
+        return checkPairs(info: info)
+    }
+    
+    func getNumbers() -> [Int] {
+        let info = getInfo()
+        return info.map { (value) -> Int in value.key }
     }
 }
