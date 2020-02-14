@@ -17,6 +17,13 @@ class PokerGame {
     }
     
     func giveCards() {
-        
+        for _ in 0..<cardsCount {
+            guard let pickedCard = dealer.pickOneCard() else { return }
+            dealer.cards.append(pickedCard)
+            for participant in participants {
+                guard let pickedCard = dealer.pickOneCard() else { return }
+                participant.cards.append(pickedCard)
+            }
+        }
     }
 }
