@@ -53,6 +53,10 @@ extension Card: Equatable {
         return lhs.suit == rhs.suit &&
             lhs.rank == rhs.rank
     }
+    
+    static func < (lhs: Card, rhs: Card) -> Bool {
+        return lhs.rank.rawValue < rhs.rank.rawValue
+    }
 }
 
 extension Card: CustomStringConvertible {

@@ -11,6 +11,7 @@ import Foundation
 class Player {
     private(set) var hand: [Card] = []
     private(set) var name: String!
+    private(set) var handValue: HandValue!
     
     func setupHand(with hand: [Card]) {
         self.hand = hand
@@ -25,4 +26,9 @@ class Player {
             handler(card)
         }
     }
+    
+    func setupHandValue() {
+        handValue = HandValue(hand: hand)
+    }
 }
+
