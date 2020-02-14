@@ -69,7 +69,6 @@ class PokerGame{
     func setGameStyle(stud:Stud, numOfPlayer:NumOfPlayer){
         self.stud = stud
         self.numOfPlayer = numOfPlayer
-        readyPlayer()
         gameStart()
     }
     

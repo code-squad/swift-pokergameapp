@@ -15,39 +15,57 @@ class ViewController: UIViewController {
     private var studSegmentedControl: UISegmentedControl!
     private var numOfPlayerSegmentedControl: UISegmentedControl!
     
+    private let pokerGame = PokerGame()
+    
+    private var stud : PokerGame.Stud = .sevenCardStud
+    private var numOfPlayer : PokerGame.NumOfPlayer = .four
+    
     @objc fileprivate func handleStudControl(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:
+            stud = .sevenCardStud
             break
             
         case 1:
+            stud = .fiveCardStud
             break
             
         default:
+            stud = .sevenCardStud
             break
         }
+        pokerGame.setGameStyle(stud: stud, numOfPlayer: numOfPlayer)
     }
     
     @objc fileprivate func handleNumOfPlayerControl(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:
+            numOfPlayer = .one
             break
             
         case 1:
+            numOfPlayer = .two
             break
             
         case 2:
+            numOfPlayer = .three
+            break
+            
+        case 3 :
+            numOfPlayer = .four
             break
             
         default:
+            numOfPlayer = .four
             break
         }
+        pokerGame.setGameStyle(stud: stud, numOfPlayer: numOfPlayer)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        createViews()
         setupBackground()
+        createViews()
         addViewsIntoSuperView()
         setupViews()
     }
@@ -72,8 +90,8 @@ class ViewController: UIViewController {
     }
     
     func setupViews(){
-        studSegmentedControl.setConstraint(topAnchor: view.topAnchor, top: 70, leadingAnchor: view.leadingAnchor, leading: 120, trailingAnchor: view.trailingAnchor, trailing: -120)
-        numOfPlayerSegmentedControl.setConstraint(topAnchor: studSegmentedControl.bottomAnchor, top: 10, leadingAnchor: view.leadingAnchor, leading: 120, trailingAnchor: view.trailingAnchor, trailing: -120)
+        studSegmentedControl.setConstraint(topAnchor: view.topAnchor, top: 70, leadingAnchor: view.leadingAnchor, leading: 110, trailingAnchor: view.trailingAnchor, trailing: -110)
+        numOfPlayerSegmentedControl.setConstraint(topAnchor: studSegmentedControl.bottomAnchor, top: 10, leadingAnchor: view.leadingAnchor, leading: 110, trailingAnchor: view.trailingAnchor, trailing: -110)
     }
     
     func addCardIntoStackView(){
@@ -90,8 +108,8 @@ class ViewController: UIViewController {
     func createViews(){
         pokerStackView = createStackView(spacing: 4, axis: .vertical)
         cardStackView = createStackView(spacing: 4, axis: .horizontal)
-        studSegmentedControl = createSegmentedControl(items: ["7 Cards","5 Cards"])
-        numOfPlayerSegmentedControl = createSegmentedControl(items: ["2명","3명","4명"])
+        studSegmentedControl = createSegmentedControl(items: ["7 Cards","5 Cards"], selectedSegmentIndex: 0, action: #selector(handleStudControl(_:)))
+        numOfPlayerSegmentedControl = createSegmentedControl(items: ["1명","2명","3명","4명"], selectedSegmentIndex: 3, action : #selector(handleNumOfPlayerControl(_:)))
     }
     
     func createStackView(spacing : CGFloat, axis : NSLayoutConstraint.Axis) -> UIStackView{
@@ -105,15 +123,15 @@ class ViewController: UIViewController {
         return stackView
     }
     
-    func createSegmentedControl(items : [String]) -> UISegmentedControl{
+    func createSegmentedControl(items : [String], selectedSegmentIndex : Int, action : Selector) -> UISegmentedControl{
         let control = UISegmentedControl(items: items)
         
-        control.selectedSegmentIndex = 0
+        control.selectedSegmentIndex = selectedSegmentIndex
         control.layer.borderWidth = 1
         control.layer.borderColor = UIColor.white.cgColor
         control.translatesAutoresizingMaskIntoConstraints = false
         
-        control.addTarget(self, action: #selector(handleStudControl(_:)), for: .valueChanged)
+        control.addTarget(self, action: action, for: .valueChanged)
         
         return control
     }
