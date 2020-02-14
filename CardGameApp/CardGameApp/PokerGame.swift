@@ -1,11 +1,11 @@
 import Foundation
 
 class PokerGame {
-    var participants = [Participant]()
-    var dealer = Dealer()
-    var cardsCount: Int
-    var participantCount: Int
-    var isContinueGame = true
+    private var participants = [Participant]()
+    private var dealer = Dealer()
+    private var cardsCount: Int
+    private var participantCount: Int
+    private var isContinueGame = true
     
     init(gameMode: Mode.GameMode, playerMode: Mode.PlayerMode) {
         cardsCount = gameMode.rawValue
@@ -15,6 +15,14 @@ class PokerGame {
             participants.append(Participant())
             participants[count].role += "#\(count+1)"
         }
+    }
+    
+    func showParticipants() -> [Participant] {
+        return participants
+    }
+    
+    func showDealer() -> Dealer {
+        return dealer
     }
     
     func giveCards() {
