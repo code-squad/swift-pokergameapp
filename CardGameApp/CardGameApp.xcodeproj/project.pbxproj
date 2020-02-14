@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		8D32D57E23F0FE7900F82EEC /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D32D57D23F0FE7900F82EEC /* Deck.swift */; };
 		8D32D57F23F0FE7900F82EEC /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D32D57D23F0FE7900F82EEC /* Deck.swift */; };
+		8D3F259C23F6A83000C37E6F /* StudRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3F259B23F6A83000C37E6F /* StudRule.swift */; };
+		8D3F259D23F6A83000C37E6F /* StudRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3F259B23F6A83000C37E6F /* StudRule.swift */; };
+		8D3F259F23F6A8E600C37E6F /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3F259E23F6A8E600C37E6F /* Player.swift */; };
+		8D3F25A023F6A8E600C37E6F /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3F259E23F6A8E600C37E6F /* Player.swift */; };
 		8D4B602023F53A01002E7A4D /* CardGameFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4B601F23F53A01002E7A4D /* CardGameFactory.swift */; };
 		8D4B602123F53A01002E7A4D /* CardGameFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4B601F23F53A01002E7A4D /* CardGameFactory.swift */; };
 		8D6E2A8323F26BC900C473B3 /* Dealer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6E2A8223F26BC900C473B3 /* Dealer.swift */; };
@@ -49,6 +53,8 @@
 
 /* Begin PBXFileReference section */
 		8D32D57D23F0FE7900F82EEC /* Deck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = "<group>"; };
+		8D3F259B23F6A83000C37E6F /* StudRule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudRule.swift; sourceTree = "<group>"; };
+		8D3F259E23F6A8E600C37E6F /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		8D4B601F23F53A01002E7A4D /* CardGameFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardGameFactory.swift; sourceTree = "<group>"; };
 		8D6E2A8223F26BC900C473B3 /* Dealer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dealer.swift; sourceTree = "<group>"; };
 		8D6E2A8523F26BD800C473B3 /* DealerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DealerTests.swift; sourceTree = "<group>"; };
@@ -124,7 +130,9 @@
 				8DB10E3723F060B900B3BC0B /* Card.swift */,
 				8D32D57D23F0FE7900F82EEC /* Deck.swift */,
 				8D6E2A8223F26BC900C473B3 /* Dealer.swift */,
+				8D3F259E23F6A8E600C37E6F /* Player.swift */,
 				8D6E2A8723F2A14000C473B3 /* Game.swift */,
+				8D3F259B23F6A83000C37E6F /* StudRule.swift */,
 				8D4B601F23F53A01002E7A4D /* CardGameFactory.swift */,
 				8DB10E0623EA60CB00B3BC0B /* AppDelegate.swift */,
 				8DB10E0823EA60CB00B3BC0B /* SceneDelegate.swift */,
@@ -300,9 +308,11 @@
 				8DB10E0723EA60CB00B3BC0B /* AppDelegate.swift in Sources */,
 				8D6E2A8823F2A14000C473B3 /* Game.swift in Sources */,
 				8D6E2A8323F26BC900C473B3 /* Dealer.swift in Sources */,
+				8D3F259C23F6A83000C37E6F /* StudRule.swift in Sources */,
 				8D4B602023F53A01002E7A4D /* CardGameFactory.swift in Sources */,
 				8D32D57E23F0FE7900F82EEC /* Deck.swift in Sources */,
 				8DB10E0923EA60CB00B3BC0B /* SceneDelegate.swift in Sources */,
+				8D3F259F23F6A8E600C37E6F /* Player.swift in Sources */,
 				8DB10E3823F060B900B3BC0B /* Card.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -311,7 +321,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D3F25A023F6A8E600C37E6F /* Player.swift in Sources */,
 				8D32D57F23F0FE7900F82EEC /* Deck.swift in Sources */,
+				8D3F259D23F6A83000C37E6F /* StudRule.swift in Sources */,
 				8DB10E3B23F061E900B3BC0B /* CardTests.swift in Sources */,
 				8D6E2A8923F2A14000C473B3 /* Game.swift in Sources */,
 				8D6E2A8623F26BD800C473B3 /* DealerTests.swift in Sources */,
