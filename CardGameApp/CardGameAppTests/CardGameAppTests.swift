@@ -20,5 +20,4 @@ class CardGameAppTests: XCTestCase {
     func testDeckCount() {
         XCTAssertEqual(cardDeck.count(), 52)
     }
-
 }

@@ -14,7 +14,7 @@ class ViewController: UIViewController {
     private let cardRatio = CGFloat(1.27)
     private let cardCount = 7
     
-    private let cardDeck = CardDeck()
+    private var cardDeck = CardDeck()
     
     //status bar 설정
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -28,9 +28,7 @@ class ViewController: UIViewController {
         // Background 배경 설정
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "BackgroundPattern")!)
         drawStackView()
-        //cardInfo
-        cardDeck
-        
+        cardDeck.shuffle()
     }
     
     func drawStackView(){
