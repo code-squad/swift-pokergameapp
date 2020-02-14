@@ -34,11 +34,21 @@ class CardGameAppTests: XCTestCase {
     func testShuffle(){
         // 1. given
         let otherDeck = deck
+        var otherDeckCards = [Card]()
+        otherDeck?.search { (card : Card ) in
+            otherDeckCards.append(card)
+        }
+        
         // 2. when
-        let generator = ANSI_C_RandomNumberGenerator()
-        deck.shuffle(using: generator)
+        var generator = ANSI_C_RandomNumberGenerator()
+        deck.shuffle(using: &generator)
+        var deckCards = [Card]()
+        deck.search { (card : Card) in
+            deckCards.append(card)
+        }
+        
         // 3. then
-        XCTAssertNotEqual(deck , otherDeck)
+        XCTAssertNotEqual(deckCards, otherDeckCards)
     }
     
     func testRemoveOne() {
@@ -54,8 +64,8 @@ class CardGameAppTests: XCTestCase {
         // 1.given
         let otherDeck = deck
         // 2.when
-        let generator = ANSI_C_RandomNumberGenerator()
-        deck.shuffle(using: generator)
+        var generator = ANSI_C_RandomNumberGenerator()
+        deck.shuffle(using: &generator)
         deck.reset()
         // 3.then
         XCTAssertEqual(otherDeck, deck)
@@ -66,8 +76,8 @@ class CardGameAppTests: XCTestCase {
         var otherDeck = deck
         XCTAssertEqual(otherDeck?.count, totalCardCounts)
         
-        let generator = ANSI_C_RandomNumberGenerator()
-        otherDeck?.shuffle(using: generator)
+        var generator = ANSI_C_RandomNumberGenerator()
+        otherDeck?.shuffle(using: &generator)
         
         try! otherDeck!.removeOne()
         XCTAssertEqual(otherDeck?.count, totalCardCounts - 1 )
