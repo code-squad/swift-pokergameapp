@@ -17,6 +17,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setView()
+        let blackjackCard = BlackjackCard(suit: BlackjackCard.Suit(rawValue: "♥️"), rank: BlackjackCard.Rank(rawValue: 12))
+        blackjackCard.printCard()
     }
     
     /*
