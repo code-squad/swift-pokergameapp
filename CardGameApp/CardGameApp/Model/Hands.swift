@@ -19,4 +19,10 @@ struct Hands {
         guard let card = card else { return }
         cards.append(card)
     }
+    
+    func printCard(handler: ([String]) -> Void) {
+        var result: [String] = []
+        cards.forEach { result.append($0.description) }
+        handler(result)
+    }
 }
