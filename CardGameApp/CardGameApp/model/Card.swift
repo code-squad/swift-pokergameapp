@@ -33,10 +33,6 @@ class Card {
         var description: String {
             return "\(self.rawValue)"
         }
-        
-        static var allCases: [Suit] {
-            return [.spade, .diamond, .heart, .clover]
-        }
     }
     
     // enum으로 카드숫자 선언
@@ -69,16 +65,15 @@ class Card {
                     return "\(self.rawValue)"
             }
         }
-    
-        static var allCases: [Rank] {
-            return [.A, .two, .three, .four, .five, .six, .seven, .eight, .nine, .ten, .J, .Q, .K]
-        }
     }
 }
 
 extension Card: CustomStringConvertible, Equatable {
     public static func == (lhs: Card, rhs: Card) -> Bool {
-        return lhs.description == rhs.description
+        if lhs.suit == rhs.suit && lhs.rank == rhs.rank {
+            return true
+        }
+        return false
     }
     
     var description: String {
