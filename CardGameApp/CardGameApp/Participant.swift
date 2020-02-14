@@ -8,7 +8,6 @@
 
 import Foundation
 
-// 참가자 프로토콜 - cardInHand 랑 isCardFull 메소드 만들기
 protocol Playable {
     init(whichcardStud cardStud: Int)
     
@@ -30,7 +29,6 @@ class Dealer : Playable {
         return self.cardsInHands.count == cardStudParticipatingIn
     }
     
-    // 카드 배열을 반환. 게임 진행하는 곳에서 플레이어 객체에게 넣어주기
     func distributeCards() -> [Card] {
         var newCards = [Card]()
         for cardCounting in 0 ..< self.cardStudParticipatingIn {
@@ -49,7 +47,6 @@ class Dealer : Playable {
     func addCard(newCard: [Card]) {
         newCard.forEach{self.cardsInHands.append($0)}
      }
-    
 }
 
 class Player : Playable {
@@ -67,5 +64,4 @@ class Player : Playable {
      func addCard(newCard: [Card]) {
          newCard.forEach{self.cardsInHands.append($0)}
      }
-    
 }

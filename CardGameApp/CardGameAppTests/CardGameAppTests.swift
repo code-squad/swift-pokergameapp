@@ -118,7 +118,6 @@ class CardGameAppTests: XCTestCase  {
     }
     
     // MARK:-  pokerGame 클래스 테스트 케이스
-    
     // 플레이어 객체가 참여 인원수 대로 생성 됐는지 테스트
     func testAllPlayersReady() {
         // Given
