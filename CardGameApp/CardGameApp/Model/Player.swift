@@ -10,12 +10,6 @@ import Foundation
 
 class Player {
     private var hand = Hand()
-    var score: Hand.Score {
-        hand.getScore()
-    }
-    var numbers: [Int] {
-        hand.getNumbers()
-    }
     
     func forEachCard(_ transform: (Card) -> ()) {
         hand.forEach(transform)
@@ -32,19 +26,10 @@ class Player {
 
 extension Player: Equatable {
     static func == (lhs: Player, rhs: Player) -> Bool {
-        lhs.score == rhs.score
+        lhs.hand == rhs.hand
     }
     
     static func > (lhs: Player, rhs: Player) -> Bool {
-        if lhs == rhs {
-            for index in 0..<lhs.numbers.count {
-                if lhs.numbers[index] == rhs.numbers[index] {
-                    continue
-                } else {
-                    return lhs.numbers[index] > rhs.numbers[index]
-                }
-            }
-        }
-        return lhs.score > rhs.score
+        lhs.hand > rhs.hand
     }
 }

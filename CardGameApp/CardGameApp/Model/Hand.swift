@@ -21,7 +21,8 @@ class Hand {
             return lhs.rawValue > rhs.rawValue
         }
     }
-    
+    private lazy var score = getScore()
+    private lazy var numbers = getNumbers()
     private var cards = [Card]()
     
     func forEach(_ transform: (Card) -> ()) {
@@ -94,5 +95,24 @@ class Hand {
     func getNumbers() -> [Int] {
         let info = getInfo()
         return info.map { (value) -> Int in value.key }
+    }
+}
+
+extension Hand: Equatable {
+    static func == (lhs: Hand, rhs: Hand) -> Bool {
+        lhs.score == rhs.score && lhs.numbers == rhs.numbers
+    }
+    
+    static func > (lhs: Hand, rhs: Hand) -> Bool {
+        if lhs.score == rhs.score {
+            for index in 0..<lhs.numbers.count {
+                if lhs.numbers[index] == rhs.numbers[index] {
+                    continue
+                } else {
+                    return lhs.numbers[index] > rhs.numbers[index]
+                }
+            }
+        }
+        return lhs.score > rhs.score
     }
 }
