@@ -57,7 +57,7 @@ class GamePlayView: UIView {
     
     private func showParticipantView(by number: Int) {
         let subViewCount = participantsStackView.arrangedSubviews.count
-        guard number > 0, number < subViewCount else { return }
+        guard number > 0, number <= subViewCount else { return }
         (0..<number).forEach {
             participantsStackView.arrangedSubviews[$0].isHidden = false
         }
