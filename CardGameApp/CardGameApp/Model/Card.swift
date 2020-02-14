@@ -14,22 +14,33 @@ class Card {
     }
     enum Rank: Int, CaseIterable {
         case A = 1, two, three, four, five, six, seven, eight, nine, ten, J, Q, K
+        
+        var nextRank: Rank? {
+            guard let nextRank = Rank.init(rawValue: self.rawValue + 1) else { return nil }
+            return nextRank
+        }
     }
     private var shape: Shape
     private var rank: Rank
-    var number: Int {
-        rank.rawValue
-    }
-
+    
     init (shape: Shape, rank: Rank) {
         self.shape = shape
         self.rank = rank
     }
+    
+    func nextCard() -> Card? {
+        guard let nextRank = Rank.init(rawValue: self.rank.rawValue + 1) else { return nil }
+        return Card(shape: self.shape, rank: nextRank)
+    }
 }
 
-extension Card: CustomStringConvertible, Equatable {
+extension Card: CustomStringConvertible, Equatable, Hashable {
     static func == (lhs: Card, rhs: Card) -> Bool {
-        return lhs.shape == rhs.shape && lhs.rank == rhs.rank
+        return lhs.rank == rhs.rank
+    }
+    
+    static func > (lhs: Card, rhs: Card) -> Bool {
+        return lhs.rank.rawValue > rhs.rank.rawValue
     }
     
     var description: String {
@@ -39,5 +50,9 @@ extension Card: CustomStringConvertible, Equatable {
         default:
             return "\(shape.rawValue)\(rank.rawValue)"
         }
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(self.rank)
     }
 }
