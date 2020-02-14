@@ -9,14 +9,19 @@
 import Foundation
 
 class Hand {
-    enum Score: Int {
+    enum Score: Int, Equatable {
         case none = 0
         case onePair
         case twoPair
         case triple
         case fourCard
         case straight
+        
+        static func >(lhs: Score, rhs: Score) -> Bool {
+            return lhs.rawValue > rhs.rawValue
+        }
     }
+    
     private var cards = [Card]()
     
     func forEach(_ transform: (Card) -> ()) {
@@ -62,23 +67,24 @@ class Hand {
                 return lhs.value > rhs.value
             }
         }
+        let highNumber = info[0].key
         
         if checkStraight() {
-            return (.straight, info[0].key)
+            return (.straight, highNumber)
         } else if info.contains(where: { $0.value == 4 }) {
-            return (.fourCard, info[0].key)
+            return (.fourCard, highNumber)
         } else if info.contains(where: { $0.value == 3 }) {
-            return (.triple, info[0].key)
+            return (.triple, highNumber)
         }
         
         let pairs = info.filter { $0.value == 2 }
         
         if pairs.count == 2 {
-            return (.twoPair, info[0].key)
+            return (.twoPair, highNumber)
         } else if pairs.count == 1 {
-            return (.onePair, info[0].key)
+            return (.onePair, highNumber)
         } else {
-            return (.none, info[0].key)
+            return (.none, highNumber)
         }
     }
 }
