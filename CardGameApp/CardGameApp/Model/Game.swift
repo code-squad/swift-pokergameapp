@@ -27,6 +27,12 @@ class Game {
         distributeByNubmers()
     }
     
+    func pirntCards() {
+        gamers.forEach { game in
+            game.printCard()
+        }
+    }
+    
     private func distributeByNubmers() {
         (1...style.description).forEach { _ in
             distributeCard()
