@@ -9,14 +9,14 @@
 import Foundation
 
 // 참가자 프로토콜 - cardInHand 랑 isCardFull 메소드 만들기
-protocol Participant {
+protocol Playable {
     init(whichcardStud cardStud: Int)
     
     func isCardsFull() -> Bool
     func addCard(newCard: [Card])
 }
 
-class Dealer : Participant {
+class Dealer : Playable {
     
     let cardStudParticipatingIn : Int
     private var cardDeck = CardDeck()
@@ -50,10 +50,9 @@ class Dealer : Participant {
         newCard.forEach{self.cardsInHands.append($0)}
      }
     
-    
 }
 
-class Player : Participant {
+class Player : Playable {
     let cardStudParticipatingIn : Int
        private var cardsInHands = [Card]()
           
