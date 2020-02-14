@@ -26,6 +26,7 @@ class ViewController: UIViewController {
         print(spadesOfSeven)
         
         let pokerGame = PokerGame(gameMode: .sevenCardStud, playerMode: .three)
+        pokerGame.giveCards()
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
