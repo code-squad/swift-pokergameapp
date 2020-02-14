@@ -18,15 +18,16 @@ class GamePlay {
         }
     }
     
-    private var cardDeck = CardDeck()
     private let dealer = Participant()
     
     private let rule: Rule
     private let players: Players
+    private var cardDeck: CardDeck
     
-    init(rule: Rule, numberOfPlayers: Players.Number) {
+    init(rule: Rule, numberOfPlayers: Players.Number, cardDeck: CardDeck) {
         self.rule = rule
         self.players = Players(with: numberOfPlayers)
+        self.cardDeck = cardDeck
     }
     
     func deal() {

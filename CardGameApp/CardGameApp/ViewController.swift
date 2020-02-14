@@ -9,6 +9,8 @@
 import UIKit
 
 class ViewController: UIViewController {
+    var cardDeck: CardDeck?
+    
     private lazy var selectionView: PlayModeSelectionView = {
         let rule = ["\(Descriptions.Rule.seven)", "\(Descriptions.Rule.five)"]
         let number = ["\(Descriptions.Number.two)", "\(Descriptions.Number.three)", "\(Descriptions.Number.four)"]
@@ -38,7 +40,14 @@ class ViewController: UIViewController {
         layoutGamePlayView()
         
         selectionView.delegate = self
+        
         playGame(with: PlayMode(rule: .sevenCardStud, number: .two))
+    }
+    
+    private func shuffleCardDeck() {
+        cardDeck = CardDeck()
+        let generator = SystemRandomNumberGenerator()
+        cardDeck?.shuffle(using: generator)
     }
     
     private func playGame(with mode: PlayMode) {
@@ -56,7 +65,8 @@ class ViewController: UIViewController {
         case .four: numberOfPlayers = .four
         }
         
-        let gamePlay = GamePlay(rule: rule, numberOfPlayers: numberOfPlayers)
+        shuffleCardDeck()
+        let gamePlay = GamePlay(rule: rule, numberOfPlayers: numberOfPlayers, cardDeck: cardDeck!)
         gamePlay.deal()
         let table = gamePlay.table()
         let cards = table.map { $0.map { "\($0)" } }
