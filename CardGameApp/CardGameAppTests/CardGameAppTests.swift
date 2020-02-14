@@ -138,12 +138,12 @@ class CardGameAppTests: XCTestCase  {
     func testIsReady() {
         // Given
         var playersCount = Int.random(in: 1 ... 4)
-        let pokerGame = PokerGame() // pokerGame 안에 딜러 객체가 선언되어 있음
+        let game = Game() // pokerGame 안에 딜러 객체가 선언되어 있음
         
         // When
-        pokerGame.start(stud : .fiveCardStud, with: playersCount)// PokerGame 클래스에 이넘을 가지고 있음.
+        game.start(stud : .fiveCardStud, with: playersCount)// PokerGame 클래스에 이넘을 가지고 있음.
         // 스타트하면 입력받은 명수 대로 플레이어 객체를 생성해서 배열을 반환하는 함수가 있고 Game 클래스의 참여인원 배열로 설정함.
-        let setPlayersAndCards = pokerGame.isReady //true, false 반환.
+        let setPlayersAndCards = game.isReady //true, false 반환.
         
         // Then
         XCTAssertTrue(setPlayersAndCards)
