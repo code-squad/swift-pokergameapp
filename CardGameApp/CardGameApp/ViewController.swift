@@ -9,62 +9,12 @@
 import UIKit
 
 class ViewController: UIViewController {
+    private var pokerStackView : UIStackView!
+    private var segmentStackView : UIStackView!
+    private var cardStackView : UIStackView!
     
-    private let pokerStackView : UIStackView = {
-        let stackView=UIStackView()
-        stackView.spacing = 4
-        stackView.axis = .vertical
-        stackView.distribution = .fillEqually
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        
-        return stackView
-    }()
-    
-    private let segmentStackView : UIStackView = {
-        let stackView=UIStackView()
-        stackView.spacing = 10
-        stackView.axis = .vertical
-        stackView.distribution = .fillEqually
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        
-        return stackView
-    }()
-    
-    private let cardStackView : UIStackView = {
-        let stackView=UIStackView()
-        stackView.spacing = 4
-        stackView.axis = .horizontal
-        stackView.distribution = .fillEqually
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        
-        return stackView
-    }()
-    
-    private let studSegmentControl: UISegmentedControl = {
-        let items = ["7 Cards","5 Cards"]
-        let control = UISegmentedControl(items: items)
-        control.selectedSegmentIndex = 0
-        
-        control.layer.borderWidth = 1
-        control.layer.borderColor = UIColor.white.cgColor
-        control.translatesAutoresizingMaskIntoConstraints = false
-        
-        control.addTarget(self, action: #selector(handleStudControl(_:)), for: .valueChanged)
-        return control
-    }()
-    
-    private let numOfPlayerSegmentControl: UISegmentedControl = {
-        let items = ["2명","3명","4명"]
-        let control = UISegmentedControl(items: items)
-        control.selectedSegmentIndex = 0
-        
-        control.layer.borderWidth = 1
-        control.layer.borderColor = UIColor.white.cgColor
-        control.translatesAutoresizingMaskIntoConstraints = false
-        
-        control.addTarget(self, action: #selector(handleNumOfPlayerControl(_:)), for: .valueChanged)
-        return control
-    }()
+    private var studSegmentedControl: UISegmentedControl!
+    private var numOfPlayerSegmentedControl: UISegmentedControl!
     
     @objc fileprivate func handleStudControl(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
@@ -97,7 +47,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        createViews()
         setUpBackground()
         view.addSubview(pokerStackView)
         pokerStackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 70).isActive = true
@@ -107,8 +57,8 @@ class ViewController: UIViewController {
         pokerStackView.addArrangedSubview(segmentStackView)
         segmentStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 120).isActive = true
         segmentStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -120).isActive = true
-        segmentStackView.addArrangedSubview(studSegmentControl)
-        segmentStackView.addArrangedSubview(numOfPlayerSegmentControl)
+        segmentStackView.addArrangedSubview(studSegmentedControl)
+        segmentStackView.addArrangedSubview(numOfPlayerSegmentedControl)
         //        setupCardStackViewContraint()
         //        setupViews()
         //        addCardIntoStackView()
@@ -141,32 +91,41 @@ class ViewController: UIViewController {
     }
     
     private func setupViews() {        
-        view.addSubview(studSegmentControl)
-        studSegmentControl.topAnchor.constraint(equalTo: view.topAnchor, constant: 50).isActive=true
-        studSegmentControl.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50).isActive=true
-        studSegmentControl.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50).isActive=true
+        view.addSubview(studSegmentedControl)
+        studSegmentedControl.topAnchor.constraint(equalTo: view.topAnchor, constant: 50).isActive=true
+        studSegmentedControl.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50).isActive=true
+        studSegmentedControl.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50).isActive=true
     }
     
-    func createStackView(spacing : CGFloat, axis : NSLayoutConstraint.Axis, distribution : UIStackView.Distribution, constraintMask : Bool) -> UIStackView{
+    func createViews(){
+        pokerStackView = createStackView(spacing: 4, axis: .vertical)
+        segmentStackView = createStackView(spacing: 10, axis: .vertical)
+        cardStackView = createStackView(spacing: 4, axis: .horizontal)
+        studSegmentedControl = createSegmentedControl(items: ["7 Cards","5 Cards"])
+        numOfPlayerSegmentedControl = createSegmentedControl(items: ["2명","3명","4명"])
+    }
+    
+    func createStackView(spacing : CGFloat, axis : NSLayoutConstraint.Axis) -> UIStackView{
         let stackView = UIStackView()
+        
         stackView.spacing = spacing
         stackView.axis = axis
-        stackView.distribution = distribution
-        stackView.translatesAutoresizingMaskIntoConstraints = constraintMask
+        stackView.distribution = .fillEqually
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        
         return stackView
     }
     
-    func createSegmentedControl(items : [String], selectedSegmentIndex: Int, borderWidth : CGFloat, borderColor : CGColor, constraintMask : Bool) -> UISegmentedControl{
-        
+    func createSegmentedControl(items : [String]) -> UISegmentedControl{
         let control = UISegmentedControl(items: items)
-        control.selectedSegmentIndex = selectedSegmentIndex
         
-        control.layer.borderWidth = borderWidth
-        control.layer.borderColor = borderColor
-        control.translatesAutoresizingMaskIntoConstraints = constraintMask
+        control.selectedSegmentIndex = 0
+        control.layer.borderWidth = 1
+        control.layer.borderColor = UIColor.white.cgColor
+        control.translatesAutoresizingMaskIntoConstraints = false
         
         control.addTarget(self, action: #selector(handleStudControl(_:)), for: .valueChanged)
+        
         return control
     }
 }
-
