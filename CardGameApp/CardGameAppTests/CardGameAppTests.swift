@@ -133,20 +133,23 @@ class CardGameAppTests: XCTestCase  {
     
     // MARK:-  pokerGame 클래스 테스트 케이스
     
-    // 플레이어 객체가 참여 인원수 대로 생성 됐는지와 각 플레이어 객체가 스터드 수만큼 카드를 갖고 있는지
-    // 참가자 프로토콜 - cardInHand 랑 isCardFull 메소드 만들기
-    func testIsReady() {
+    // 플레이어 객체가 참여 인원수 대로 생성 됐는지
+    func testAllPlayersAreExist() {
         // Given
         var playersCount = Int.random(in: 1 ... 4)
-        let game = Game() // pokerGame 안에 딜러 객체가 선언되어 있음
+        let game = Game() 
         
         // When
-        game.start(stud : .fiveCardStud, with: playersCount)// PokerGame 클래스에 이넘을 가지고 있음.
-        // 스타트하면 입력받은 명수 대로 플레이어 객체를 생성해서 배열을 반환하는 함수가 있고 Game 클래스의 참여인원 배열로 설정함.
+        game.start(stud : .fiveCardStud, with: playersCount)
+        
         let setPlayersAndCards = game.isReady //true, false 반환.
         
         // Then
         XCTAssertTrue(setPlayersAndCards)
+        
+    }
+    //  각 플레이어 객체가 스터드 수만큼 카드를 갖고 있는지
+    func testCardsAreDistributed() {
         
     }
     
