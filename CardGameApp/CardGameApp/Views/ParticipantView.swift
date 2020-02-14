@@ -15,7 +15,11 @@ struct ParticipantViewContents {
 
 class ParticipantView: UIView {
     private var maxCards: Int?
-    private var contents: ParticipantViewContents?
+    var contents: ParticipantViewContents? {
+        didSet {
+            updateView()
+        }
+    }
     
     private lazy var participantStackView: UIStackView = {
         let stackView = UIStackView()
@@ -55,5 +59,9 @@ class ParticipantView: UIView {
             let view = OverlappedCardsView(maxCards: max)
             participantStackView.addArrangedSubview(view)
         }
+    }
+    
+    private func updateView() {
+        participantLabel.text = contents?.name
     }
 }

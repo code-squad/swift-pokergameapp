@@ -37,4 +37,7 @@ class Descriptions {
     
     let maxPlayers = 5
     let maxCards = 7
+    
+    let playerLabel = "Player"
+    let dealerLabel = "Dealer"
 }
