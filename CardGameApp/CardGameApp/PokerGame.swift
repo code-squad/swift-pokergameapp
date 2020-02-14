@@ -14,3 +14,27 @@ protocol PokerGame {
     
     func run()
 }
+
+class FiveCardStud: PokerGame {
+    required init(dealer: Dealer, players: [Player]) {
+        
+    }
+    
+    func run() {
+        
+    }
+    
+    
+}
+
+class SevenCardStud: PokerGame {
+    required init(dealer: Dealer, players: [Player]) {
+        
+    }
+    
+    func run() {
+        
+    }
+    
+    
+}
