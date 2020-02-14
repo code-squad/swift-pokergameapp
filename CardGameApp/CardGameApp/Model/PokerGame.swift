@@ -66,14 +66,13 @@ class PokerGame {
             $0.receive(drawnCard)
         }
     }
-        
+    
     func play() {
-        while resumable {
-            players.discardAll()
-            dealer.shuffle()
-            gameType.forEach {
-                distributeCards()
-            }
+        players.discardAll()
+        dealer.shuffle()
+        gameType.forEach {
+            distributeCards()
         }
+        players.whoIsWinner()
     }
 }
