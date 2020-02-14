@@ -35,7 +35,7 @@ class FiveCardStud: PokerGame {
     }
     
     func start() {
-        self.dealer.distributeCards()
+       
     }
     
     func isAllPlayersReady() -> Bool {
@@ -70,7 +70,6 @@ class SevenCardStud: PokerGame {
     }
     
     func start() {
-        self.dealer.distributeCards()
     }
     
     func isAllPlayersReady() -> Bool {

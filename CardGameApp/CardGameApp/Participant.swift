@@ -16,6 +16,7 @@ protocol Participant {
 }
 
 class Dealer : Participant {
+    
     let cardStudParticipatingIn : Int
     private var cardDeck = CardDeck()
     private var cardsInHands = [Card]()
@@ -28,10 +29,21 @@ class Dealer : Participant {
         return self.cardsInHands.count == cardStudParticipatingIn
     }
     
-    func distributeCards() {
-        <#function body#>
+    // 카드 배열을 반환. 게임 진행하는 곳에서 플레이어 객체에게 넣어주기
+    func distributeCards() -> [Card] {
+        var newCards = [Card]()
+        for cardCounting in 0 ..< self.cardStudParticipatingIn {
+            let pickedCard = cardDeck.removeOne(of: cardCounting)
+            newCards.append(pickedCard)
+        }
+        return newCards
     }
     
+    func giveOneCard() -> [Card] {
+         var newCard = [Card]()
+        newCard.append(cardDeck.removeOne(of: 0))
+        return newCard
+    }
     
 }
 
@@ -46,6 +58,4 @@ class Player : Participant {
     func isCardsFull() -> Bool {
         return self.cardsInHands.count == cardStudParticipatingIn
     }
-    
-    
 }
