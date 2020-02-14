@@ -1,11 +1,11 @@
 // 플레이어는 1~4명
 struct Game {
     private let playerRange = 1...4
-    private let rule: Rule
+    private let rule: StudRule
     private let dealer: Dealer
     private let players: [Playable]
 
-    init(rule: Rule, dealer: Dealer, players: [Playable]) throws {
+    init(rule: StudRule, dealer: Dealer, players: [Playable]) throws {
         guard playerRange.contains(players.count) else {
             throw GameError.playersOutOfRange
         }
@@ -27,19 +27,5 @@ struct Game {
 
 enum GameError: Error {
     case playersOutOfRange
-}
-
-enum Rule {
-    case fiveStud
-    case sevenStud
-    
-    var requiredCards: Int {
-        switch self {
-        case .fiveStud:
-            return 5
-        case .sevenStud:
-            return 7
-        }
-    }
 }
 

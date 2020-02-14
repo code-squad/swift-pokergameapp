@@ -10,18 +10,21 @@ class GameTests: XCTestCase {
     func testCreateGame() {
         var players = try! CardGameFactory.createPlayers(count: 5)
         let dealer = CardGameFactory.createDealer()
-        XCTAssertThrowsError(try Game(rule: .fiveStud, dealer: dealer, players: players))
+        let rule = FiveStudRule()
+        
+        XCTAssertThrowsError(try Game(rule: rule, dealer: dealer, players: players))
         players = try! CardGameFactory.createPlayers(count: 3)
-        XCTAssertNoThrow(try Game(rule: .fiveStud, dealer: dealer, players: players))
+        XCTAssertNoThrow(try Game(rule: rule, dealer: dealer, players: players))
     }
     
     func testSevenStud() {
         let players = try! CardGameFactory.createPlayers(count: 4)
         let dealer = CardGameFactory.createDealer()
-        let game = try! Game(rule: .sevenStud, dealer: dealer, players: players)
+        let rule = SevenStudRule()
+        let game = try! Game(rule: rule, dealer: dealer, players: players)
         
         game.start()
-        let requiredCards = Rule.sevenStud.requiredCards
+        let requiredCards = rule.requiredCards
         let playersToReady = players.filter { $0.isReadyToGame(requiredCards: requiredCards) }
 
         XCTAssertEqual(playersToReady.count, players.count)
@@ -30,10 +33,11 @@ class GameTests: XCTestCase {
     func testFiveStud() {
         let players = try! CardGameFactory.createPlayers(count: 3)
         let dealer = CardGameFactory.createDealer()
-        let game = try! Game(rule: .fiveStud, dealer: dealer, players: players)
+        let rule = FiveStudRule()
+        let game = try! Game(rule: rule, dealer: dealer, players: players)
         
         game.start()
-        let requiredCards = Rule.fiveStud.requiredCards
+        let requiredCards = rule.requiredCards
         let playersToReady = players.filter { $0.isReadyToGame(requiredCards: requiredCards) }
 
         XCTAssertEqual(playersToReady.count, players.count)
