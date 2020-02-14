@@ -15,10 +15,12 @@ class Game {
         case seven
     }
     
+    var players: Int {
+        return gamers.count
+    }
     private var gamers: [Gamer] = []
     private var dealer: Dealer = Dealer()
     private var style: Style
-    
     
     init(gamers: [Gamer], style: Style){
         self.gamers = gamers
@@ -26,7 +28,7 @@ class Game {
         self.style = style
         distributeByNubmers()
     }
-    
+
     func pirntCards() {
         gamers.forEach { game in
             game.printCard()
