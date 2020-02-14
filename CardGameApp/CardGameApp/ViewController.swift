@@ -50,11 +50,7 @@ class ViewController: UIViewController {
         gameTable.arrangedSubviews.forEach {
             $0.removeFromSuperview()
         }
-        self.view.subviews.forEach {
-            if type(of: $0) == type(of: UIImageView()) {
-                $0.removeFromSuperview()
-            }
-        }
+        winnerMedal.removeFromSuperview()
     }
     
     private func loadGame() {
