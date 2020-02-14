@@ -118,18 +118,18 @@ class CardGameAppTests: XCTestCase  {
     }
     
     // 플레이어끼리 갖고 있는 카드 중 겹치는게 없는지
-//    func testAreCardsDuplicated() {
-//        //Given
-//        var cardDeck = CardDeck()
-//               
-//        //When
-//        let checkResult = cardDeck.areCardsDuplicated
-//        
-//        //Then
-//        XCTAssertFalse(checkResult)
-//        
-//    }
-
+    //    func testAreCardsDuplicated() {
+    //        //Given
+    //        var cardDeck = CardDeck()
+    //
+    //        //When
+    //        let checkResult = cardDeck.areCardsDuplicated
+    //
+    //        //Then
+    //        XCTAssertFalse(checkResult)
+    //
+    //    }
+    
     
     // MARK:-  pokerGame 클래스 테스트 케이스
     //func isAllPlayersCardsReady() -> Bool
@@ -170,9 +170,28 @@ class CardGameAppTests: XCTestCase  {
     }
     
     // MARK:-  Player 클래스 테스트 케이스
-    // func isCardsFull() -> Bool
+    func testIsPlayerCardsFull(){
+        //Given
+        let studNumber = 5
+        let player = Player(whichcardStud: studNumber)
+        let dealer = Dealer(whichcardStud: studNumber)
+        
+        // When
+        let newCards = dealer.distributeCards()
+        player.addCard(newCard: newCards)
+        let cardReadyCheck = player.isCardsFull()
+        
+        //Then
+        XCTAssertTrue(cardReadyCheck)
+    }
     
     // MARK:-  Dealer 클래스 테스트 케이스
-    // func isCardsFull() -> Bool
+    func testIsDealerCardsFull(){
+        //Given
+        
+        //When
+        
+        //Then
+    }
     
 }
