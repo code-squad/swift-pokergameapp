@@ -26,4 +26,12 @@ class PokerGame {
             }
         }
     }
+    
+    func openCards() {
+        print("-------------------- Card Open --------------------")
+        for index in 0..<participantCount {
+            print("\(participants[index].role) \(participants[index].cards)")
+        }
+        print("\(dealer.role) \(dealer.cards)\n")
+    }
 }

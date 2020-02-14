@@ -20,13 +20,13 @@ class ViewController: UIViewController {
         addConstraintsToStack()
         addCardsToStackView()
         
-        let heartsOfTwelve = Card(suit: .hearts, rank: .queen)
-        print(heartsOfTwelve)
-        let spadesOfSeven = Card(suit: .spades, rank: .seven)
-        print(spadesOfSeven)
-        
         let pokerGame = PokerGame(gameMode: .sevenCardStud, playerMode: .three)
         pokerGame.giveCards()
+        pokerGame.openCards()
+        
+        let pokerGame2 = PokerGame(gameMode: .fiveCardStud, playerMode: .three)
+        pokerGame2.giveCards()
+        pokerGame2.openCards()
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
