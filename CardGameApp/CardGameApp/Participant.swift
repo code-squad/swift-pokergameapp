@@ -13,6 +13,7 @@ protocol Participant {
     init(whichcardStud cardStud: Int)
     
     func isCardsFull() -> Bool
+    func addCard(newCard: [Card])
 }
 
 class Dealer : Participant {
@@ -45,6 +46,11 @@ class Dealer : Participant {
         return newCard
     }
     
+    func addCard(newCard: [Card]) {
+        newCard.forEach{self.cardsInHands.append($0)}
+     }
+    
+    
 }
 
 class Player : Participant {
@@ -58,4 +64,9 @@ class Player : Participant {
     func isCardsFull() -> Bool {
         return self.cardsInHands.count == cardStudParticipatingIn
     }
+
+     func addCard(newCard: [Card]) {
+         newCard.forEach{self.cardsInHands.append($0)}
+     }
+    
 }
