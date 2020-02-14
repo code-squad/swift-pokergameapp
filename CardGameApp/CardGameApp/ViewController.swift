@@ -10,8 +10,8 @@ import UIKit
 
 class ViewController: UIViewController {
     private lazy var selectionView: PlayModeSelectionView = {
-        let rule = [RuleDescription.seven, RuleDescription.five]
-        let number = [NumberDescription.two, NumberDescription.three, NumberDescription.four]
+        let rule = ["\(Descriptions.Rule.seven)", "\(Descriptions.Rule.five)"]
+        let number = ["\(Descriptions.Number.two)", "\(Descriptions.Number.three)", "\(Descriptions.Number.four)"]
         let selection = PlayModeSelectionViewDescription(rule: rule, numberOfPlayers: number)
         let view = PlayModeSelectionView(with: selection)
         return view
