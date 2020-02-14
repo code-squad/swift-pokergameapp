@@ -23,4 +23,10 @@ class Gamer {
     func addCard(card: Card?) {
         cards.add(card)
     }
+    
+    func printCard() {
+        cards.printCard { result in
+            print(result)
+        }
+    }
 }
