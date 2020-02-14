@@ -34,7 +34,6 @@ class ViewController: UIViewController {
             stud = .sevenCardStud
             break
         }
-        pokerGame.setGameStyle(stud: stud, numOfPlayer: numOfPlayer)
     }
     
     @objc fileprivate func handleNumOfPlayerControl(_ sender: UISegmentedControl) {
@@ -60,6 +59,7 @@ class ViewController: UIViewController {
             break
         }
         pokerGame.setGameStyle(stud: stud, numOfPlayer: numOfPlayer)
+
     }
     
     override func viewDidLoad() {
@@ -78,23 +78,31 @@ class ViewController: UIViewController {
         self.view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "bg_pattern"))
     }
     
-    private func setupCardStackViewContraint() {
-        self.cardStackView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 50).isActive = true
-        self.cardStackView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 5).isActive = true
-        self.cardStackView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -5).isActive = true
-    }
-    
     func addViewsIntoSuperView(){
         view.addSubview(studSegmentedControl)
         view.addSubview(numOfPlayerSegmentedControl)
+        view.addSubview(pokerStackView)
     }
     
     func setupViews(){
         studSegmentedControl.setConstraint(topAnchor: view.topAnchor, top: 70, leadingAnchor: view.leadingAnchor, leading: 110, trailingAnchor: view.trailingAnchor, trailing: -110)
         numOfPlayerSegmentedControl.setConstraint(topAnchor: studSegmentedControl.bottomAnchor, top: 10, leadingAnchor: view.leadingAnchor, leading: 110, trailingAnchor: view.trailingAnchor, trailing: -110)
+        pokerStackView.setConstraint(topAnchor: numOfPlayerSegmentedControl.bottomAnchor, top: 15, leadingAnchor: view.leadingAnchor, leading: 20, trailingAnchor: view.trailingAnchor, trailing: -20)
+        setupPokerStackView()
     }
     
-    func addCardIntoStackView(){
+    private func setupPokerStackView(){
+        pokerGame.forEachPlayers{
+            cardStackView = createStackView(spacing: -4, axis: .horizontal)
+            $0.forEach{
+                addCardIntoStackView(stackView: cardStackView, cardName: "\($0)")
+            }
+            pokerStackView.addArrangedSubview(cardStackView)
+        }
+    }
+    
+    private func addCardIntoStackView(stackView : UIStackView, cardName: String){
+        stackView.addArrangedSubview(createCard(cardName: cardName))
     }
     
     private func createCard(cardName: String) -> UIImageView{
@@ -106,8 +114,7 @@ class ViewController: UIViewController {
     }
     
     func createViews(){
-        pokerStackView = createStackView(spacing: 4, axis: .vertical)
-        cardStackView = createStackView(spacing: 4, axis: .horizontal)
+        pokerStackView = createStackView(spacing: 30, axis: .vertical)
         studSegmentedControl = createSegmentedControl(items: ["7 Cards","5 Cards"], selectedSegmentIndex: 0, action: #selector(handleStudControl(_:)))
         numOfPlayerSegmentedControl = createSegmentedControl(items: ["1명","2명","3명","4명"], selectedSegmentIndex: 3, action : #selector(handleNumOfPlayerControl(_:)))
     }
