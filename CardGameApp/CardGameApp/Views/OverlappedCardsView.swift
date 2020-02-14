@@ -56,8 +56,21 @@ class OverlappedCardsView: UIView {
         }
     }
     
+    private func showCardView(by number: Int) {
+        let subViewCount = overlappedCardsStackView.arrangedSubviews.count
+        guard number > 0, number <= subViewCount else { return }
+        (0..<number).forEach {
+            overlappedCardsStackView.arrangedSubviews[$0].isHidden = false
+        }
+        (number..<subViewCount).forEach {
+            overlappedCardsStackView.arrangedSubviews[$0].isHidden = true
+        }
+    }
+    
     private func updateView() {
         guard let cards = contents?.cards else { return }
+        showCardView(by: cards.count)
+        
         cards.enumerated().forEach { (index, card) in
             guard let view = overlappedCardsStackView.arrangedSubviews[index] as? UIImageView else { return }
             view.image = UIImage(named: card)
