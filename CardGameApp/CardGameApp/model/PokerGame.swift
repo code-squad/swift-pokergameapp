@@ -35,6 +35,10 @@ class PokerGame{
         }
     }
     
+    init(){
+        gameStart()
+    }
+    
     private func readyPlayer(){
         self.dealer = Dealer()
         self.players = Players()
