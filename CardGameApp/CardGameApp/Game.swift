@@ -1,10 +1,5 @@
 // 플레이어는 1~4명
 struct Game {
-    enum Rule: Int {
-        case fiveStud = 5
-        case sevenStud = 7
-    }
-        
     private let playerRange = 1...4
     private let rule: Rule
     private let dealer: Dealer
@@ -22,10 +17,9 @@ struct Game {
     
     /// 게임을 시작한다. 자신을 포함해 모든 플레이어에게 카드를 돌린다.
     func start() {
-        dealer.prepare()
+        dealer.prepareDeck()
         
-        let numberOfCards = rule.rawValue
-        (1...numberOfCards).forEach { _ in
+        (1...rule.requiredCards).forEach { _ in
             dealer.dealCardsOfOneRound(players)
         }
     }
@@ -35,16 +29,17 @@ enum GameError: Error {
     case playersOutOfRange
 }
 
-//enum Rule {
-//    case fiveStud
-//    case sevenStud
-//
-//    struct SevenStudRule {
-//        let requiredCard = 7
-//    }
-//
-//    struct FiveStudRule {
-//        let requiredCard = 5
-//    }
-//}
-//
+enum Rule {
+    case fiveStud
+    case sevenStud
+    
+    var requiredCards: Int {
+        switch self {
+        case .fiveStud:
+            return 5
+        case .sevenStud:
+            return 7
+        }
+    }
+}
+

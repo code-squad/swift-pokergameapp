@@ -21,7 +21,7 @@ class GameTests: XCTestCase {
         let game = try! Game(rule: .sevenStud, dealer: dealer, players: players)
         
         game.start()
-        let requiredCards = Game.Rule.sevenStud.rawValue
+        let requiredCards = Rule.sevenStud.requiredCards
         let playersToReady = players.filter { $0.isReadyToGame(requiredCards: requiredCards) }
 
         XCTAssertEqual(playersToReady.count, players.count)
@@ -33,7 +33,7 @@ class GameTests: XCTestCase {
         let game = try! Game(rule: .fiveStud, dealer: dealer, players: players)
         
         game.start()
-        let requiredCards = Game.Rule.fiveStud.rawValue
+        let requiredCards = Rule.fiveStud.requiredCards
         let playersToReady = players.filter { $0.isReadyToGame(requiredCards: requiredCards) }
 
         XCTAssertEqual(playersToReady.count, players.count)

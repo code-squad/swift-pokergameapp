@@ -13,7 +13,5 @@ class DealerTests: XCTestCase {
         let dealer = CardGameFactory.createDealer()
         let players = [Player(), Player()]
         dealer.dealCardsOfOneRound(players)
-        
-        
     }
 }
