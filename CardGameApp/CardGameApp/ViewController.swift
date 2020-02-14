@@ -99,3 +99,13 @@ extension ViewController: PlayModeSelectionViewDelegate {
         playGame(with: mode)
     }
 }
+
+extension ViewController {
+    override func motionBegan(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        if motion == .motionShake {
+            selectionView.invokeByMode { mode in
+                playGame(with: mode)
+            }
+       }
+    }
+}
