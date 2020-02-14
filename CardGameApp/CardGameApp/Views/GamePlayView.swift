@@ -45,6 +45,7 @@ class GamePlayView: UIView {
     }
     
     private func setupView() {
+        translatesAutoresizingMaskIntoConstraints = false
         addSubview(participantsStackView)
         participantsStackView.fillSuperView()
         guard let max = maxParticipants else { return }
