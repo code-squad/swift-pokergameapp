@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7893B6B823F6735D00D924C7 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7893B6B723F6735D00D924C7 /* Card.swift */; };
+		7893B6B923F6735D00D924C7 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7893B6B723F6735D00D924C7 /* Card.swift */; };
 		78971DAC23F27F2400AC81D0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78971DAB23F27F2400AC81D0 /* AppDelegate.swift */; };
 		78971DAE23F27F2400AC81D0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78971DAD23F27F2400AC81D0 /* SceneDelegate.swift */; };
 		78971DB023F27F2400AC81D0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78971DAF23F27F2400AC81D0 /* ViewController.swift */; };
@@ -35,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7893B6B723F6735D00D924C7 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		78971DA823F27F2400AC81D0 /* CardGameApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CardGameApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78971DAB23F27F2400AC81D0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		78971DAD23F27F2400AC81D0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -106,6 +109,7 @@
 				78971DB423F27F2400AC81D0 /* Assets.xcassets */,
 				78971DB623F27F2400AC81D0 /* LaunchScreen.storyboard */,
 				78971DB923F27F2400AC81D0 /* Info.plist */,
+				7893B6B723F6735D00D924C7 /* Card.swift */,
 			);
 			path = CardGameApp;
 			sourceTree = "<group>";
@@ -262,6 +266,7 @@
 				78971DB023F27F2400AC81D0 /* ViewController.swift in Sources */,
 				78971DAC23F27F2400AC81D0 /* AppDelegate.swift in Sources */,
 				78971DAE23F27F2400AC81D0 /* SceneDelegate.swift in Sources */,
+				7893B6B823F6735D00D924C7 /* Card.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -270,6 +275,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				78971DC323F27F2400AC81D0 /* CardGameAppTests.swift in Sources */,
+				7893B6B923F6735D00D924C7 /* Card.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
