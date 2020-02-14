@@ -39,13 +39,10 @@ class ViewController: UIViewController {
     }
     
     func addCardIntoStackView(){
-        for _ in 0...6{
-            self.stackView.addArrangedSubview(createCard())
-        }
     }
     
-    func createCard() -> UIImageView{
-        let imageView=UIImageView(image: #imageLiteral(resourceName: "card-back"))
+    func createCard(cardName: String) -> UIImageView{
+        let imageView = UIImageView(image: UIImage(named: cardName))
         imageView.contentMode = .scaleAspectFill
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor, multiplier: 1.27).isActive = true

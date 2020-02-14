@@ -17,10 +17,10 @@ class Card{
      예를 들어 ace를 0으로 표현할수도, 13으로 표현할 수도 있기 때문에 enum을 사용하여 이 점을 명확히 해줌.
      */
     enum Suit:String,CaseIterable{
-        case spade = "♠️"
-        case clover = "♣️"
-        case heart = "♥️"
-        case diamond = "♦️"
+        case spade = "s"
+        case clover = "c"
+        case heart = "h"
+        case diamond = "d"
     }
     
     enum Rank:String,CaseIterable{
