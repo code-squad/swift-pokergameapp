@@ -34,6 +34,7 @@ class ViewController: UIViewController {
             stud = .sevenCardStud
             break
         }
+        redrawPokerStackView()
     }
     
     @objc fileprivate func handleNumOfPlayerControl(_ sender: UISegmentedControl) {
@@ -58,8 +59,7 @@ class ViewController: UIViewController {
             numOfPlayer = .four
             break
         }
-        pokerGame.setGameStyle(stud: stud, numOfPlayer: numOfPlayer)
-
+        redrawPokerStackView()
     }
     
     override func viewDidLoad() {
@@ -76,6 +76,15 @@ class ViewController: UIViewController {
     
     private func setupBackground(){
         self.view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "bg_pattern"))
+    }
+    
+    func redrawPokerStackView(){
+        pokerGame.setGameStyle(stud: stud, numOfPlayer: numOfPlayer)
+        pokerStackView.removeFromSuperview()
+        pokerStackView = createStackView(spacing: 30, axis: .vertical)
+        view.addSubview(pokerStackView)
+        pokerStackView.setConstraint(topAnchor: numOfPlayerSegmentedControl.bottomAnchor, top: 15, leadingAnchor: view.leadingAnchor, leading: 20, trailingAnchor: view.trailingAnchor, trailing: -20)
+        setupPokerStackView()
     }
     
     func addViewsIntoSuperView(){
