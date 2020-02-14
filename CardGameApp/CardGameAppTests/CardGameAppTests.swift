@@ -14,11 +14,14 @@ class CardGameAppTests: XCTestCase {
     var cardDeck: CardDeck!
     var card: Card!
     
+    
     override func setUp() {
         cardDeck = CardDeck()
-        cardDeck.shuffle()
+        cardDeck.reset()
         card = cardDeck.removeOne()
+        print(card.description)
         card = cardDeck.removeOne()
+        print(card.description)
     }
 
     func testDeckCount() {
