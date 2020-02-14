@@ -30,10 +30,10 @@ class Players {
     
     func whoIsWinner() {
         let result = list.map { $0.score }.sorted { (lhs, rhs) -> Bool in
-            if lhs.0.rawValue == rhs.0.rawValue {
+            if lhs.0 == rhs.0 {
                 return lhs.1 > rhs.1
             } else {
-                return lhs.0.rawValue > rhs.0.rawValue
+                return lhs.0 > rhs.0
             }
         }
         list.forEach {
