@@ -9,20 +9,21 @@
 import Foundation
 
 protocol PokerGame {
-    init(dealer: Dealer, playersCount: Int)
+    init(dealer: Dealer, playersCount: Int, studNumber: Int)
     
     func start()
     func isAllPlayersReady() -> Bool
     func isAllPlayersCardsReady() -> Bool
 }
 
-class FiveCardStud: PokerGame {
-    private let studNumber: Int = 5
+class CardStud: PokerGame {
+    private let studNumber: Int
     private let dealer : Dealer
     private var players : [Player] = []
     private let playersCount : Int
     
-    required init(dealer: Dealer, playersCount: Int) {
+    required init(dealer: Dealer, playersCount: Int, studNumber: Int) {
+        self.studNumber = studNumber
         self.playersCount = playersCount
         self.dealer = dealer
         self.players = {
@@ -54,39 +55,3 @@ class FiveCardStud: PokerGame {
     }
 }
 
-class SevenCardStud: PokerGame {
-    private let studNumber: Int = 7
-    private let dealer : Dealer
-    private var players : [Player] = []
-    private let playersCount : Int
-    
-    required init(dealer: Dealer, playersCount: Int) {
-        self.dealer = dealer
-        self.players = {
-            for _ in 1 ... playersCount {
-                let player = Player(whichcardStud: studNumber)
-                self.players.append(player)
-            }
-            return self.players
-        }()
-    }
-    
-    func start() {
-        // 카드 분배
-        self.dealer.addCard(newCard: self.dealer.distributeCards())
-        self.players.forEach{$0.addCard(newCard: self.dealer.distributeCards())}
-    }
-    
-    func isAllPlayersReady() -> Bool {
-        return self.players.count == self.playersCount
-    }
-    
-    func isAllPlayersCardsReady() -> Bool {
-        var readyCheck = [Bool]()
-        for player in self.players{
-            readyCheck.append(player.isCardsFull())
-        }
-        let filteredReadycheck = readyCheck.filter{$0 == false}
-        return filteredReadycheck.count == 0
-    }
-}
