@@ -29,17 +29,7 @@ class Players {
     }
     
     func whoIsWinner() {
-        let result = list.map { $0.score }.sorted { (lhs, rhs) -> Bool in
-            if lhs.0 == rhs.0 {
-                return lhs.1 > rhs.1
-            } else {
-                return lhs.0 > rhs.0
-            }
-        }
-        list.forEach {
-            if $0.score == result[0] {
-                $0.isWinner = true
-            }
-        }
+        let result = list.sorted { $0 > $1 }
+        result[0].isWinner = true
     }
 }
