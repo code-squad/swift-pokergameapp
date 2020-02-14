@@ -28,6 +28,10 @@ class Dealer : Participant {
         return self.cardsInHands.count == cardStudParticipatingIn
     }
     
+    func distributeCards() {
+        <#function body#>
+    }
+    
     
 }
 
