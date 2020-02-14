@@ -8,14 +8,40 @@
 
 import Foundation
 
+// 참가자 프로토콜 - cardInHand 랑 isCardFull 메소드 만들기
 protocol Participant {
+    init(whichcardStud cardStud: Int)
     
+    func isCardsFull() -> Bool
 }
 
 class Dealer : Participant {
+    let cardStudParticipatingIn : Int
+    private var cardDeck = CardDeck()
+    private var cardsInHands = [Card]()
+       
+    required init(whichcardStud cardStud: Int) {
+        self.cardStudParticipatingIn = cardStud
+    }
+    
+    func isCardsFull() -> Bool {
+       
+    }
+    
     
 }
 
 class Player : Participant {
+    let cardStudParticipatingIn : Int
+       private var cardsInHands = [Card]()
+          
+       required init(whichcardStud cardStud: Int) {
+           self.cardStudParticipatingIn = cardStud
+       }
+   
+    func isCardsFull() -> Bool {
+       
+    }
+    
     
 }

@@ -53,6 +53,5 @@ class ViewController: UIViewController {
         setStackView ()
         CardDeck()
         
-        print(Card(suit: .clubs, rank: .eight))
     }
 }
