@@ -12,12 +12,16 @@ import XCTest
 class CardGameAppTests: XCTestCase {
     
     var cardDeck: CardDeck!
+    var card: Card!
     
     override func setUp() {
         cardDeck = CardDeck()
+        cardDeck.shuffle()
+        card = cardDeck.removeOne()
+        card = cardDeck.removeOne()
     }
 
     func testDeckCount() {
-        XCTAssertEqual(cardDeck.count(), 52)
+        XCTAssertEqual(cardDeck.count(), 50)
     }
 }

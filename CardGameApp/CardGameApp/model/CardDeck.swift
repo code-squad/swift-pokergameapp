@@ -44,4 +44,13 @@ struct CardDeck {
     mutating func shuffle() {
         self.deck.shuffle()
     }
+    
+    // 카드하나 뽑기
+    // 하나 랜덤으로 뽑고 deck에서 제거 -> Equtable protocol 사용
+    mutating func removeOne() -> Card? {
+        let pickCard = self.deck.randomElement()
+        self.deck = self.deck.filter { $0.description != pickCard?.description }
+        
+        return pickCard
+    }
 }
