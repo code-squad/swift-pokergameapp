@@ -96,4 +96,11 @@ class PlayModeSelectionView: UIView {
                 delegate?.didModeChanged(to: PlayMode(rule: rule, number: number))
         }
     }
+    
+    func invokeByMode(block: (PlayMode) -> ()) {
+        if let rule = PlayMode.Rule(rawValue: ruleSegmentedControl.selectedSegmentIndex),
+        let number = PlayMode.Number(rawValue: playersSegmentedControl.selectedSegmentIndex) {
+            block(PlayMode(rule: rule, number: number))
+        }
+    }
 }
