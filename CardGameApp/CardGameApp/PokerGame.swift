@@ -5,6 +5,7 @@ class PokerGame {
     var dealer = Dealer()
     var cardsCount: Int
     var participantCount: Int
+    var isContinueGame = true
     
     init(gameMode: Mode.GameMode, playerMode: Mode.PlayerMode) {
         cardsCount = gameMode.rawValue
@@ -17,6 +18,11 @@ class PokerGame {
     }
     
     func giveCards() {
+        guard dealer.remainingCardsCount > cardsCount * (participantCount + 1) else {
+            isContinueGame = false
+            print("카드 갯수가 부족합니다.")
+            return
+        }
         for _ in 0..<cardsCount {
             guard let pickedCard = dealer.pickOneCard() else { return }
             dealer.cards.append(pickedCard)
@@ -28,10 +34,14 @@ class PokerGame {
     }
     
     func openCards() {
-        print("-------------------- Card Open --------------------")
-        for index in 0..<participantCount {
-            print("\(participants[index].role) \(participants[index].cards)")
+        if isContinueGame {
+            print("-------------------- Current Card Status --------------------")
+            for index in 0..<participantCount {
+                print("\(participants[index].role) \(participants[index].cards)")
+            }
+            print("\(dealer.role) \(dealer.cards)\n")
+        } else {
+            print("게임이 종료되었습니다.\n")
         }
-        print("\(dealer.role) \(dealer.cards)\n")
     }
 }
