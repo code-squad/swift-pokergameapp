@@ -7,7 +7,7 @@ class Dealer: Playable {
     }
 
     /// 게임 준비. 카드를 섞는다
-    func prepare() {
+    func prepareDeck() {
         self.deck.reset()
         self.deck.shuffle()
     }
