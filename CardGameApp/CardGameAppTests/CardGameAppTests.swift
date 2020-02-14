@@ -188,10 +188,16 @@ class CardGameAppTests: XCTestCase  {
     // MARK:-  Dealer 클래스 테스트 케이스
     func testIsDealerCardsFull(){
         //Given
+        let studNumber = 5
+        let dealer = Dealer(whichcardStud: studNumber)
         
         //When
+        let newCards = dealer.distributeCards()
+        dealer.addCard(newCard: newCards)
+        let cardReadyCheck = dealer.isCardsFull()
         
         //Then
+        XCTAssertTrue(cardReadyCheck)
     }
     
 }
