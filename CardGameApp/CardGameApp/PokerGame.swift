@@ -36,7 +36,6 @@ class CardStud: PokerGame {
     }
     
     func start() {
-        // 카드 분배
         self.dealer.addCard(newCard: self.dealer.distributeCards())
         self.players.forEach{$0.addCard(newCard: self.dealer.distributeCards())}
     }
