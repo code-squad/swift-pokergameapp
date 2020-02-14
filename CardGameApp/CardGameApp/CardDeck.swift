@@ -46,6 +46,10 @@ struct CardDeck {
         return self.cards[index]
     }
     
+    func areCardsDuplicated() -> Bool{
+        
+    }
+    
 }
 extension CardDeck :Equatable{
     static func == (lhs: CardDeck, rhs: CardDeck) -> Bool {
