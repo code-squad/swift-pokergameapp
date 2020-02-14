@@ -118,24 +118,23 @@ class CardGameAppTests: XCTestCase  {
     }
     
     // 플레이어끼리 갖고 있는 카드 중 겹치는게 없는지
-    func testAreCardsDuplicated() {
-        //Given
-        var cardDeck = CardDeck()
-               
-        //When
-        let checkResult = cardDeck.areCardsDuplicated
-        
-        //Then
-        XCTAssertFalse(checkResult)
-        
-    }
+//    func testAreCardsDuplicated() {
+//        //Given
+//        var cardDeck = CardDeck()
+//               
+//        //When
+//        let checkResult = cardDeck.areCardsDuplicated
+//        
+//        //Then
+//        XCTAssertFalse(checkResult)
+//        
+//    }
 
     
     // MARK:-  pokerGame 클래스 테스트 케이스
-    //func isAllPlayersReady() -> Bool
     //func isAllPlayersCardsReady() -> Bool
     
-    // 플레이어 객체가 참여 인원수 대로 생성 됐는지
+    // 플레이어 객체가 참여 인원수 대로 생성 됐는지 테스트
     func testAllPlayersReady() {
         // Given
         let playersCount = Int.random(in: 1 ... 4)
@@ -150,6 +149,24 @@ class CardGameAppTests: XCTestCase  {
         
         // Then
         XCTAssertTrue(readyCheck())
+    }
+    
+    // 참가한 모든 플레이어가 스터드 넘버만큼의 카드를 갖고 있는지 테스트
+    func testAllPlayersCardsReady(){
+        // Given
+        let playersCount = Int.random(in: 1 ... 4)
+        var seed = SystemRandomNumberGenerator()
+        let cardStud = [5,7]
+        let cardStudNumber = (cardStud.shuffled(using: &seed).first)!
+        let dealer = Dealer(whichcardStud: cardStudNumber)
+        let pokerGame = CardStud(dealer: dealer, playersCount: playersCount, studNumber: cardStudNumber)
+        
+        // When
+        pokerGame.start()
+        let cardsReadyCheck = pokerGame.isAllPlayersCardsReady()
+        
+        // Then
+        XCTAssertTrue(cardsReadyCheck)
     }
     
     // MARK:-  Player 클래스 테스트 케이스
