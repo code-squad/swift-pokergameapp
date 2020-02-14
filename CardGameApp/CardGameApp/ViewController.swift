@@ -10,7 +10,6 @@ import UIKit
 
 class ViewController: UIViewController {
     private var pokerStackView : UIStackView!
-    private var segmentStackView : UIStackView!
     private var cardStackView : UIStackView!
     
     private var studSegmentedControl: UISegmentedControl!
@@ -49,19 +48,21 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         createViews()
         setUpBackground()
-        view.addSubview(pokerStackView)
-        pokerStackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 70).isActive = true
-        pokerStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
-        pokerStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10).isActive = true
         
-        pokerStackView.addArrangedSubview(segmentStackView)
-        segmentStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 120).isActive = true
-        segmentStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -120).isActive = true
-        segmentStackView.addArrangedSubview(studSegmentedControl)
-        segmentStackView.addArrangedSubview(numOfPlayerSegmentedControl)
-        //        setupCardStackViewContraint()
-        //        setupViews()
-        //        addCardIntoStackView()
+        view.addSubview(studSegmentedControl)
+        studSegmentedControl.topAnchor.constraint(equalTo: view.topAnchor, constant: 70).isActive = true
+        studSegmentedControl.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 120).isActive = true
+        studSegmentedControl.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -120).isActive = true
+        
+        view.addSubview(numOfPlayerSegmentedControl)
+        numOfPlayerSegmentedControl.topAnchor.constraint(equalTo: studSegmentedControl.bottomAnchor, constant: 10).isActive = true
+        numOfPlayerSegmentedControl.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 120).isActive = true
+        numOfPlayerSegmentedControl.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -120).isActive = true
+        
+        view.addSubview(pokerStackView)
+        pokerStackView.topAnchor.constraint(equalTo: numOfPlayerSegmentedControl.bottomAnchor, constant: 10).isActive = true
+        pokerStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
+        pokerStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -70,7 +71,6 @@ class ViewController: UIViewController {
     
     private func setUpBackground(){
         self.view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "bg_pattern"))
-        //        self.view.addSubview(cardStackView)
     }
     
     private func setupCardStackViewContraint() {
@@ -90,16 +90,8 @@ class ViewController: UIViewController {
         return imageView
     }
     
-    private func setupViews() {        
-        view.addSubview(studSegmentedControl)
-        studSegmentedControl.topAnchor.constraint(equalTo: view.topAnchor, constant: 50).isActive=true
-        studSegmentedControl.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50).isActive=true
-        studSegmentedControl.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50).isActive=true
-    }
-    
     func createViews(){
         pokerStackView = createStackView(spacing: 4, axis: .vertical)
-        segmentStackView = createStackView(spacing: 10, axis: .vertical)
         cardStackView = createStackView(spacing: 4, axis: .horizontal)
         studSegmentedControl = createSegmentedControl(items: ["7 Cards","5 Cards"])
         numOfPlayerSegmentedControl = createSegmentedControl(items: ["2명","3명","4명"])
@@ -129,3 +121,4 @@ class ViewController: UIViewController {
         return control
     }
 }
+
