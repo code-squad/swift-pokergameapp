@@ -18,6 +18,7 @@
 		AE83CC3F23F67287002635AD /* Hands.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE83CC3E23F67287002635AD /* Hands.swift */; };
 		AE83CC4123F672DB002635AD /* Gamer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE83CC4023F672DB002635AD /* Gamer.swift */; };
 		AE83CC4323F67341002635AD /* Dealer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE83CC4223F67341002635AD /* Dealer.swift */; };
+		AE83CC4523F67409002635AD /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE83CC4423F67409002635AD /* Game.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +46,7 @@
 		AE83CC3E23F67287002635AD /* Hands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hands.swift; sourceTree = "<group>"; };
 		AE83CC4023F672DB002635AD /* Gamer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gamer.swift; sourceTree = "<group>"; };
 		AE83CC4223F67341002635AD /* Dealer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dealer.swift; sourceTree = "<group>"; };
+		AE83CC4423F67409002635AD /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +124,7 @@
 				AE83CC3E23F67287002635AD /* Hands.swift */,
 				AE83CC4023F672DB002635AD /* Gamer.swift */,
 				AE83CC4223F67341002635AD /* Dealer.swift */,
+				AE83CC4423F67409002635AD /* Game.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -240,6 +243,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AE40A36223ED340A009AB61B /* ViewController.swift in Sources */,
+				AE83CC4523F67409002635AD /* Game.swift in Sources */,
 				AE40A3AE23F17205009AB61B /* Model.swift in Sources */,
 				AE40A37223ED35B4009AB61B /* GameTableView.swift in Sources */,
 				AE40A35E23ED340A009AB61B /* AppDelegate.swift in Sources */,
