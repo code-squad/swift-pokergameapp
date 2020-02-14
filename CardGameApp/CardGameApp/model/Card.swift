@@ -76,8 +76,14 @@ class Card {
     }
 }
 
-extension Card: CustomStringConvertible {
+extension Card: CustomStringConvertible, Equatable {
+    public static func == (lhs: Card, rhs: Card) -> Bool {
+        return lhs.description == rhs.description
+    }
+    
     var description: String {
         return suit.description + rank.description
     }
+    
+    
 }
