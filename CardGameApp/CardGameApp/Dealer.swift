@@ -8,4 +8,8 @@ class Dealer: Player {
     func recieveCard(newCard: Card) {
         cards.append(newCard)
     }
+    
+    func pickOneCard() -> Card? {
+        cardDeck.removeOne()
+    }
 }
