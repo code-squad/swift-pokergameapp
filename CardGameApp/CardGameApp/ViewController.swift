@@ -11,6 +11,7 @@ import UIKit
 class ViewController: UIViewController {
     private var pokerStackView : UIStackView!
     private var cardStackView : UIStackView!
+    private var playerStackView : UIStackView!
     
     private var studSegmentedControl: UISegmentedControl!
     private var numOfPlayerSegmentedControl: UISegmentedControl!
@@ -83,7 +84,7 @@ class ViewController: UIViewController {
         pokerStackView.removeFromSuperview()
         pokerStackView = createStackView(spacing: 30, axis: .vertical)
         view.addSubview(pokerStackView)
-        pokerStackView.setConstraint(topAnchor: numOfPlayerSegmentedControl.bottomAnchor, top: 15, leadingAnchor: view.leadingAnchor, leading: 20, trailingAnchor: view.trailingAnchor, trailing: -20)
+        pokerStackView.setConstraint(topAnchor: numOfPlayerSegmentedControl.bottomAnchor, top: 15, leadingAnchor: view.leadingAnchor, leading: 20, trailingAnchor: view.trailingAnchor, trailing: -60)
         setupPokerStackView()
     }
     
@@ -96,20 +97,33 @@ class ViewController: UIViewController {
     func setupViews(){
         studSegmentedControl.setConstraint(topAnchor: view.topAnchor, top: 70, leadingAnchor: view.leadingAnchor, leading: 110, trailingAnchor: view.trailingAnchor, trailing: -110)
         numOfPlayerSegmentedControl.setConstraint(topAnchor: studSegmentedControl.bottomAnchor, top: 10, leadingAnchor: view.leadingAnchor, leading: 110, trailingAnchor: view.trailingAnchor, trailing: -110)
-        pokerStackView.setConstraint(topAnchor: numOfPlayerSegmentedControl.bottomAnchor, top: 15, leadingAnchor: view.leadingAnchor, leading: 20, trailingAnchor: view.trailingAnchor, trailing: -20)
+        pokerStackView.setConstraint(topAnchor: numOfPlayerSegmentedControl.bottomAnchor, top: 15, leadingAnchor: view.leadingAnchor, leading: 20, trailingAnchor: view.trailingAnchor, trailing: -60)
         setupPokerStackView()
     }
     
     private func setupPokerStackView(){
+        var count = 1
         pokerGame.forEachPlayers{
+            playerStackView = createStackView(spacing: 0, axis: .vertical)
+            let label = UILabel()
+            label.textColor = UIColor.white
+            if $0 is Dealer{
+                label.text = "Dealer"
+            } else{
+                label.text = "Player\(count)"
+                count += 1
+            }
+            playerStackView.addArrangedSubview(label)
+            
             cardStackView = createStackView(spacing: -4, axis: .horizontal)
             $0.forEach{
                 addCardIntoStackView(stackView: cardStackView, cardName: "\($0)")
             }
-            pokerStackView.addArrangedSubview(cardStackView)
+            playerStackView.addArrangedSubview(cardStackView)
+            pokerStackView.addArrangedSubview(playerStackView)
         }
     }
-    
+
     private func addCardIntoStackView(stackView : UIStackView, cardName: String){
         stackView.addArrangedSubview(createCard(cardName: cardName))
     }
@@ -133,7 +147,6 @@ class ViewController: UIViewController {
         
         stackView.spacing = spacing
         stackView.axis = axis
-        stackView.distribution = .fillEqually
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
         return stackView
@@ -141,12 +154,15 @@ class ViewController: UIViewController {
     
     func createSegmentedControl(items : [String], selectedSegmentIndex : Int, action : Selector) -> UISegmentedControl{
         let control = UISegmentedControl(items: items)
+        let normalColor = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        let selectedColor = [NSAttributedString.Key.foregroundColor: UIColor.black]
         
         control.selectedSegmentIndex = selectedSegmentIndex
         control.layer.borderWidth = 1
         control.layer.borderColor = UIColor.white.cgColor
+        control.setTitleTextAttributes(normalColor, for: .normal)
+        control.setTitleTextAttributes(selectedColor, for: .selected)
         control.translatesAutoresizingMaskIntoConstraints = false
-        
         control.addTarget(self, action: action, for: .valueChanged)
         
         return control
