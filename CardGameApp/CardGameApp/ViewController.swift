@@ -25,6 +25,13 @@ class ViewController: UIViewController {
         return stack
     }()
     
+    private var winnerMedal: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "trophy.png")
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
@@ -43,6 +50,11 @@ class ViewController: UIViewController {
         gameTable.arrangedSubviews.forEach {
             $0.removeFromSuperview()
         }
+        self.view.subviews.forEach {
+            if type(of: $0) == type(of: UIImageView()) {
+                $0.removeFromSuperview()
+            }
+        }
     }
     
     private func loadGame() {
@@ -50,6 +62,7 @@ class ViewController: UIViewController {
         resetGameTable()
         pokerGame.play()
         makeGame()
+        addWinnerMedal(to: pokerGame.winnerIndex)
         setGameTableLayout()
         self.view.layoutIfNeeded()
     }
@@ -101,7 +114,15 @@ class ViewController: UIViewController {
     private func setGameTableLayout() {
         gameTable.topAnchor.constraint(equalTo: gameTypeControl.bottomAnchor, constant: 50).isActive = true
         gameTable.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 30).isActive = true
-        gameTable.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -30).isActive = true
+        gameTable.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -60).isActive = true
+    }
+    
+    private func addWinnerMedal(to winnerIndex: Int) {
+        self.view.addSubview(winnerMedal)
+        winnerMedal.topAnchor.constraint(equalTo: gameTable.arrangedSubviews[winnerIndex].topAnchor, constant: 20).isActive = true
+        winnerMedal.leftAnchor.constraint(equalTo: gameTable.rightAnchor, constant: 10).isActive = true
+        winnerMedal.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        winnerMedal.heightAnchor.constraint(equalToConstant: 50).isActive = true
     }
     
     private func makePlayerStack(label: UILabel, card: UIStackView) -> UIStackView {
@@ -176,4 +197,3 @@ class ViewController: UIViewController {
         loadGame()
     }
 }
-
