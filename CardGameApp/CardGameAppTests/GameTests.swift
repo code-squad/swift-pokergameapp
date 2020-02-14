@@ -21,9 +21,10 @@ class GameTests: XCTestCase {
         let game = try! Game(rule: .sevenStud, dealer: dealer, players: players)
         
         game.start()
-        let cardsPerPlayer = players.map { $0.cards.count }
+        let requiredCards = Game.Rule.sevenStud.rawValue
+        let playersToReady = players.filter { $0.isReadyToGame(requiredCards: requiredCards) }
 
-        XCTAssertEqual(cardsPerPlayer, [Int](repeating: 7, count: players.count))
+        XCTAssertEqual(playersToReady.count, players.count)
     }
     
     func testFiveStud() {
@@ -32,9 +33,10 @@ class GameTests: XCTestCase {
         let game = try! Game(rule: .fiveStud, dealer: dealer, players: players)
         
         game.start()
-        let cardsPerPlayer = players.map { $0.cards.count }
-        
-        XCTAssertEqual(cardsPerPlayer, [Int](repeating: 5, count: players.count))
+        let requiredCards = Game.Rule.fiveStud.rawValue
+        let playersToReady = players.filter { $0.isReadyToGame(requiredCards: requiredCards) }
+
+        XCTAssertEqual(playersToReady.count, players.count)
     }
 }
 

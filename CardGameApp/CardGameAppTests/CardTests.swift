@@ -8,5 +8,4 @@ class CardTests: XCTestCase {
         let card2 = Card(suit: .spade, rank: .ten)
         XCTAssertEqual(card2.description, "♠️10")
     }
-    
 }

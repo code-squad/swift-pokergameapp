@@ -1,15 +1,9 @@
 class Dealer: Playable {
-    var cards = [Card]()
+    private var cards = [Card]()
     private var deck: Deck
     
     init(deck: Deck) {
         self.deck = deck
-    }
-
-    /// playerㅇ에게 한 장의 카드를 건넴
-    func give(card: Card, to player: Playable) {
-        var player = player
-        player.receive(card: card)
     }
 
     /// 게임을 시작한다. 자신을 포함해 모든 플레이어에게 카드를 돌린다.
@@ -22,31 +16,43 @@ class Dealer: Playable {
         }
     }
     
+    func receive(card: Card) {
+        self.cards.append(card)
+    }
+
     /// 게임 준비. 카드를 섞는다
     private func prepare() {
         self.deck.reset()
         self.deck.shuffle()
     }
     
+    // 카드를 한 장 뽑아 플레이어들에게 돌린다.
     private func dealCardsOfOneRound(_ players: [Playable]) {
         (players + [self]).forEach { player in
             if let card = deck.removeOne() {
-                self.give(card: card, to: player)
+                player.receive(card: card)
             }
         }
+    }
+    
+    func isReadyToGame(requiredCards: Int) -> Bool {
+        return self.cards.count == requiredCards
     }
 }
 
 class Player: Playable {
-    var cards = [Card]()
+    private var cards = [Card]()
+    
+    func receive(card: Card) {
+        self.cards.append(card)
+    }
+    
+    func isReadyToGame(requiredCards: Int) -> Bool {
+        return self.cards.count == requiredCards
+    }
 }
 
 protocol Playable {
-    var cards: [Card] { get set }
-}
-
-extension Playable {
-    mutating func receive(card: Card) {
-        self.cards.append(card)
-    }
+    func receive(card: Card)
+    func isReadyToGame(requiredCards: Int) -> Bool
 }
