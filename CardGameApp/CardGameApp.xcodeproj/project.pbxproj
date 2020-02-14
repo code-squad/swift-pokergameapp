@@ -14,6 +14,7 @@
 		AE40A37223ED35B4009AB61B /* GameTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE40A37123ED35B4009AB61B /* GameTableView.swift */; };
 		AE40A37523ED4D70009AB61B /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = AE40A37423ED4D70009AB61B /* SnapKit */; };
 		AE40A3AE23F17205009AB61B /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE40A3AD23F17205009AB61B /* Model.swift */; };
+		AE83CC3C23F6720B002635AD /* Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE83CC3B23F6720B002635AD /* Protocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +38,7 @@
 		AE40A36B23ED340B009AB61B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AE40A37123ED35B4009AB61B /* GameTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTableView.swift; sourceTree = "<group>"; };
 		AE40A3AD23F17205009AB61B /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		AE83CC3B23F6720B002635AD /* Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +90,7 @@
 		AE40A35C23ED340A009AB61B /* CardGameApp */ = {
 			isa = PBXGroup;
 			children = (
+				AE83CC3A23F67203002635AD /* Protocol */,
 				AE40A35D23ED340A009AB61B /* AppDelegate.swift */,
 				AE40A37123ED35B4009AB61B /* GameTableView.swift */,
 				AE40A36123ED340A009AB61B /* ViewController.swift */,
@@ -96,6 +99,14 @@
 				AE40A36B23ED340B009AB61B /* Info.plist */,
 			);
 			path = CardGameApp;
+			sourceTree = "<group>";
+		};
+		AE83CC3A23F67203002635AD /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				AE83CC3B23F6720B002635AD /* Protocol.swift */,
+			);
+			path = Protocol;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -215,6 +226,7 @@
 				AE40A3AE23F17205009AB61B /* Model.swift in Sources */,
 				AE40A37223ED35B4009AB61B /* GameTableView.swift in Sources */,
 				AE40A35E23ED340A009AB61B /* AppDelegate.swift in Sources */,
+				AE83CC3C23F6720B002635AD /* Protocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
