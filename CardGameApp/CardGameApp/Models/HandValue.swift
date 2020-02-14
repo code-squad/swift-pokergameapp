@@ -34,7 +34,7 @@ struct HandValue {
     }
     
     private mutating func searchStraight() -> Value {
-        let sortedHand = hand.sorted(by: <)
+        let sortedHand = hand.sorted { $0.rank < $1.rank }
         return .straight
     }
     
