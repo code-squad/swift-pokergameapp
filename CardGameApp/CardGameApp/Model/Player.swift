@@ -10,6 +10,10 @@ import Foundation
 
 class Player {
     private var hand = Hand()
+    var isWinner = false
+    var score: (Hand.Score, Int) {
+        hand.getScore()
+    }
     
     func forEachCard(_ transform: (Card) -> ()) {
         hand.forEach(transform)
