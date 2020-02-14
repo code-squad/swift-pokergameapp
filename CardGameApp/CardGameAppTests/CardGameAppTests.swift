@@ -38,21 +38,12 @@ class CardGameAppTests: XCTestCase {
         XCTAssertEqual(deck, Deck())
     }
     
-//    func testMakeSuit() {
-//        let cards = deck?.makeSuit(suit: .club)
-//        XCTAssertEqual(cards, willCompareCards)
-//    }
-//    
-//    func testMakeDeck() {
-//        deck?.makeDeck()
-//        XCTAssertEqual(deck?.cards, willCompareSuits)
-//    }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        measure {
-            // Put the code you want to measure the time of here.
-        }
+    //
+    func testGame() {
+        let toozi = Gamer(identifier: "tooozi")
+        let gangwoon = Gamer(identifier: "GangWoon")
+        var player = [toozi, gangwoon]
+        var game = Game(gamers: player, style: .seven)
+        XCTAssertEqual(game.players, 3)  
     }
-
 }
