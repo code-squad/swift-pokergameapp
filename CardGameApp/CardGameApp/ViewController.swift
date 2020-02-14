@@ -19,17 +19,18 @@ class ViewController: UIViewController {
         setView()
     }
     
-    private func specifyStackViewProperty(of stackView: UIStackView) {
+    private func specifiedStackView() -> UIStackView {
+        let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.distribution = .fillEqually
         stackView.alignment = .fill
         stackView.spacing = 5
         stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
     }
     
     private func makeCardViews() -> UIStackView {
-        let stackView = UIStackView()
-        specifyStackViewProperty(of: stackView)
+        let stackView = specifiedStackView()
         
         for _ in 0..<7 {
             let cardView = UIImageView(image: UIImage(named: "card-back"))
