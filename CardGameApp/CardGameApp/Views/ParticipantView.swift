@@ -34,6 +34,11 @@ class ParticipantView: UIView {
         return label
     }()
     
+    private lazy var overlappedCardsView: OverlappedCardsView = {
+        let view = OverlappedCardsView(maxCards: maxCards)
+        return view
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
@@ -55,13 +60,13 @@ class ParticipantView: UIView {
         addSubview(participantStackView)
         participantStackView.fillSuperView()
         participantStackView.addArrangedSubview(participantLabel)
-        if let max = maxCards {
-            let view = OverlappedCardsView(maxCards: max)
-            participantStackView.addArrangedSubview(view)
-        }
+        participantStackView.addArrangedSubview(overlappedCardsView)
     }
     
     private func updateView() {
         participantLabel.text = contents?.name
+        if let cards = contents?.cards {
+            overlappedCardsView.contents = OverlappedCardsViewContents(cards: cards)
+        }
     }
 }
