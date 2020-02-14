@@ -117,6 +117,20 @@ class CardGameAppTests: XCTestCase  {
         XCTAssertEqual(originalCount, changedCount+1)
     }
     
+    // 플레이어끼리 갖고 있는 카드 중 겹치는게 없는지
+    func testAreCardsDuplicated() {
+        //Given
+        var cardDeck = CardDeck()
+               
+        //When
+        let checkResult = cardDeck.areCardsDuplicated
+        
+        //Then
+        XCTAssertFalse(checkResult)
+        
+    }
+
+    
     // MARK:-  pokerGame 클래스 테스트 케이스
     
     // 플레이어 객체가 참여 인원수 대로 생성 됐는지와 각 플레이어 객체가 스터드 수만큼 카드를 갖고 있는지
@@ -136,19 +150,5 @@ class CardGameAppTests: XCTestCase  {
         
     }
     
-    // 플레이어끼리 갖고 있는 카드 중 겹치는게 없는지
-    func testIsCardOverlaped() {
-        //Given
-        var playersCount = Int.random(in: 1 ... 4)
-        let pokerGame = PokerGame() // pokerGame 안에 딜러 객체가 선언되어 있음
-               
-        //When
-        pokerGame.start(stud : .fiveCardStud, with: playersCount)
-        
-        //Then
-        // 게임이 시작하면 Dealer가 본인을 포함해서 카드를 나눠갖는다.
-        // Dealer가 카드를 나눠줄 때 중복된 카드가 있는지 체크가한다.
-        // 딜러가 나눠준 카드의 내용을 다 알게 되는거 아닌가...?
-    }
     
 }
