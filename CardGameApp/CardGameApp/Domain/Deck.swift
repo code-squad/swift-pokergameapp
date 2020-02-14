@@ -8,6 +8,10 @@
 
 import Foundation
 
+protocol Searchable {
+    func search(handler : (Card) -> ())
+}
+
 struct Deck {
     private var cards : [Card]!
     var count : Int {
@@ -30,9 +34,8 @@ struct Deck {
         return cards
     }
     
-    mutating func shuffle<G : RandomNumberGenerator>(using generator : G)  {
-        var g = generator
-        cards = cards.shuffled(using: &g)
+    mutating func shuffle<G : RandomNumberGenerator>(using generator : inout G)  {
+        cards = cards.shuffled(using: &generator)
     }
     
     @discardableResult
@@ -54,6 +57,14 @@ struct Deck {
 extension Deck : Equatable {
     public static func == (lhs: Deck, rhs: Deck) -> Bool {
         return lhs.cards == rhs.cards
+    }
+}
+
+extension Deck : Searchable {
+    func search(handler: (Card) -> ()) {
+        for card in cards {
+            handler(card)
+        }
     }
 }
 
