@@ -21,6 +21,7 @@
 		DE0FBF2323F272C5007E1FEA /* CardDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0FBF1023F19DFF007E1FEA /* CardDeck.swift */; };
 		DE0FBF3323F68AC9007E1FEA /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0FBF3223F68AC9007E1FEA /* Player.swift */; };
 		DE0FBF3523F69115007E1FEA /* Participant.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0FBF3423F69115007E1FEA /* Participant.swift */; };
+		DE0FBF3723F691D3007E1FEA /* Dealer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0FBF3623F691D3007E1FEA /* Dealer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +51,7 @@
 		DE0FBF1C23F27048007E1FEA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DE0FBF3223F68AC9007E1FEA /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		DE0FBF3423F69115007E1FEA /* Participant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Participant.swift; sourceTree = "<group>"; };
+		DE0FBF3623F691D3007E1FEA /* Dealer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dealer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +100,7 @@
 				DE0FBF1023F19DFF007E1FEA /* CardDeck.swift */,
 				DE0FBF3223F68AC9007E1FEA /* Player.swift */,
 				DE0FBF3423F69115007E1FEA /* Participant.swift */,
+				DE0FBF3623F691D3007E1FEA /* Dealer.swift */,
 				DE0FBE5623ED299A007E1FEA /* Main.storyboard */,
 				DE0FBE5923ED299C007E1FEA /* Assets.xcassets */,
 				DE0FBE6423ED2D5A007E1FEA /* pattern.png */,
@@ -222,6 +225,7 @@
 				DE0FBF1123F19DFF007E1FEA /* CardDeck.swift in Sources */,
 				DE0FBE5123ED299A007E1FEA /* AppDelegate.swift in Sources */,
 				DE0FBF3523F69115007E1FEA /* Participant.swift in Sources */,
+				DE0FBF3723F691D3007E1FEA /* Dealer.swift in Sources */,
 				DE0FBE5323ED299A007E1FEA /* SceneDelegate.swift in Sources */,
 				DE0FBF3323F68AC9007E1FEA /* Player.swift in Sources */,
 				DE0FBF0F23F12B2E007E1FEA /* Card.swift in Sources */,
