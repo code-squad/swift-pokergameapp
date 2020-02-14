@@ -34,21 +34,24 @@ class Hand {
     }
     
     private func checkStraight() -> Bool {
-        let cardSet = Set<Int>(cards.map { $0.number }).sorted()
+        let sortedCards = cards.sorted { $0 > $1 }
         var straightCount = 1
         var index = 1
-        while index < cardSet.count {
-            if cardSet[index - 1] + 1 == cardSet[index] {
+        while index < sortedCards.count {
+            if sortedCards[index - 1].nextCard() == sortedCards[index] {
                 straightCount += 1
+                if straightCount == 5 {
+                    return true
+                }
             } else {
                 straightCount = 1
             }
             index += 1
         }
-        return straightCount == 5
+        return false
     }
     
-    private func checkPairs(info: [(key: Int, value: Int)]) -> Score {
+    private func checkPairs(info: [(key: Card, value: Int)]) -> Score {
         let pairCount = info.filter { $0.value == 2 }.count
         
         switch pairCount {
@@ -61,12 +64,12 @@ class Hand {
         }
     }
     
-    private func getInfo() -> [(key: Int, value: Int)]{
-        let info = cards.reduce(into: [Int:Int]()) {
-            if $0[$1.number] == nil {
-                $0[$1.number] = 1
+    private func getInfo() -> [(key: Card, value: Int)]{
+        let info = cards.reduce(into: [Card:Int]()) {
+            if $0[$1] == nil {
+                $0[$1] = 1
             } else {
-                $0[$1.number]! += 1
+                $0[$1]! += 1
             }
         }
         let result = info.sorted { (lhs, rhs) -> Bool in
@@ -79,9 +82,8 @@ class Hand {
         return result
     }
     
-    func getScore() -> Score {
+    private func getScore() -> Score {
         let info = getInfo()
-        
         if checkStraight() {
             return .straight
         } else if info.contains(where: { $0.value == 4 }) {
@@ -92,9 +94,9 @@ class Hand {
         return checkPairs(info: info)
     }
     
-    func getNumbers() -> [Int] {
+    private func getNumbers() -> [Card] {
         let info = getInfo()
-        return info.map { (value) -> Int in value.key }
+        return info.map { (value) -> Card in value.key }
     }
 }
 
