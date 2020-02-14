@@ -38,6 +38,8 @@
 		389487DF23F53546003D2481 /* PlayerStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3894879D23F3DCDB003D2481 /* PlayerStackView.swift */; };
 		389487E023F53546003D2481 /* SegmentedControlStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3894879623F2D8F3003D2481 /* SegmentedControlStackView.swift */; };
 		389487E123F53546003D2481 /* TitledSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3894879F23F3DD3D003D2481 /* TitledSegmentedControl.swift */; };
+		389487E523F64CCE003D2481 /* HandValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389487E423F64CCE003D2481 /* HandValue.swift */; };
+		389487E823F64DC4003D2481 /* HandValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389487E423F64CCE003D2481 /* HandValue.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +76,7 @@
 		3894879B23F3DCC1003D2481 /* CardStackVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardStackVIew.swift; sourceTree = "<group>"; };
 		3894879D23F3DCDB003D2481 /* PlayerStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerStackView.swift; sourceTree = "<group>"; };
 		3894879F23F3DD3D003D2481 /* TitledSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitledSegmentedControl.swift; sourceTree = "<group>"; };
+		389487E423F64CCE003D2481 /* HandValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandValue.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +149,7 @@
 				3894878723F163BE003D2481 /* Dealer.swift */,
 				385F3ADB23EC3FF6003FA6A2 /* Deck.swift */,
 				385F3AD923EACB92003FA6A2 /* Card.swift */,
+				389487E423F64CCE003D2481 /* HandValue.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -276,6 +280,7 @@
 				3894879323F2D048003D2481 /* CardImageView.swift in Sources */,
 				385F3ACA23EA6FA9003FA6A2 /* ViewController.swift in Sources */,
 				3894879A23F3DCA0003D2481 /* PokerGameStackView.swift in Sources */,
+				389487E523F64CCE003D2481 /* HandValue.swift in Sources */,
 				389487A023F3DD3D003D2481 /* TitledSegmentedControl.swift in Sources */,
 				385F3ADC23EC3FF6003FA6A2 /* Deck.swift in Sources */,
 				3894879C23F3DCC1003D2481 /* CardStackVIew.swift in Sources */,
@@ -294,6 +299,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				385F3AEB23EC4689003FA6A2 /* Deck.swift in Sources */,
+				389487E823F64DC4003D2481 /* HandValue.swift in Sources */,
 				389487DC23F53546003D2481 /* CardImageView.swift in Sources */,
 				3894878D23F165B5003D2481 /* PokerGameTests.swift in Sources */,
 				385F3AEC23EC468C003FA6A2 /* Card.swift in Sources */,
