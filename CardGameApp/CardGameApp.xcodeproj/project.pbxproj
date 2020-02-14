@@ -40,6 +40,7 @@
 		389487E123F53546003D2481 /* TitledSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3894879F23F3DD3D003D2481 /* TitledSegmentedControl.swift */; };
 		389487E523F64CCE003D2481 /* HandValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389487E423F64CCE003D2481 /* HandValue.swift */; };
 		389487E823F64DC4003D2481 /* HandValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389487E423F64CCE003D2481 /* HandValue.swift */; };
+		389487EA23F65227003D2481 /* HandValueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389487E923F65227003D2481 /* HandValueTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +78,7 @@
 		3894879D23F3DCDB003D2481 /* PlayerStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerStackView.swift; sourceTree = "<group>"; };
 		3894879F23F3DD3D003D2481 /* TitledSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitledSegmentedControl.swift; sourceTree = "<group>"; };
 		389487E423F64CCE003D2481 /* HandValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandValue.swift; sourceTree = "<group>"; };
+		389487E923F65227003D2481 /* HandValueTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandValueTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +139,7 @@
 				385F3AE323EC466E003FA6A2 /* CardDeckTests.swift */,
 				385F3AE523EC466E003FA6A2 /* Info.plist */,
 				3894878B23F165B5003D2481 /* PokerGameTests.swift */,
+				389487E923F65227003D2481 /* HandValueTests.swift */,
 			);
 			path = CardGameAppTests;
 			sourceTree = "<group>";
@@ -308,6 +311,7 @@
 				3894878923F163BE003D2481 /* Dealer.swift in Sources */,
 				385F3AEE23EC4691003FA6A2 /* ViewController.swift in Sources */,
 				389487DF23F53546003D2481 /* PlayerStackView.swift in Sources */,
+				389487EA23F65227003D2481 /* HandValueTests.swift in Sources */,
 				3894878623F15D46003D2481 /* PokerGame.swift in Sources */,
 				3894878323F15A1D003D2481 /* Player.swift in Sources */,
 				389487DE23F53546003D2481 /* CardStackVIew.swift in Sources */,
