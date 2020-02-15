@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		5AB1838F23F637E2007419C4 /* ANSI_C_RandomNumberGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB3F53523F545170021E3A0 /* ANSI_C_RandomNumberGenerator.swift */; };
 		5AB183A323F7E4E4007419C4 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB183A223F7E4E4007419C4 /* Player.swift */; };
+		5AB183A723F7F3C7007419C4 /* PokerGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB183A623F7F3C7007419C4 /* PokerGame.swift */; };
 		5AB3F53423F26AF80021E3A0 /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB3F53323F26AF80021E3A0 /* Deck.swift */; };
 		5AE093BD23EC21670046DA63 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE093BC23EC21670046DA63 /* AppDelegate.swift */; };
 		5AE093BF23EC21670046DA63 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE093BE23EC21670046DA63 /* SceneDelegate.swift */; };
@@ -40,6 +41,7 @@
 
 /* Begin PBXFileReference section */
 		5AB183A223F7E4E4007419C4 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		5AB183A623F7F3C7007419C4 /* PokerGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokerGame.swift; sourceTree = "<group>"; };
 		5AB3F53323F26AF80021E3A0 /* Deck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = "<group>"; };
 		5AB3F53523F545170021E3A0 /* ANSI_C_RandomNumberGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ANSI_C_RandomNumberGenerator.swift; sourceTree = "<group>"; };
 		5AE093B923EC21670046DA63 /* CardGameApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CardGameApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -144,6 +146,7 @@
 				5AB3F53323F26AF80021E3A0 /* Deck.swift */,
 				5AB3F53523F545170021E3A0 /* ANSI_C_RandomNumberGenerator.swift */,
 				5AB183A223F7E4E4007419C4 /* Player.swift */,
+				5AB183A623F7F3C7007419C4 /* PokerGame.swift */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -284,6 +287,7 @@
 				5AE093BD23EC21670046DA63 /* AppDelegate.swift in Sources */,
 				5AB3F53423F26AF80021E3A0 /* Deck.swift in Sources */,
 				5AB183A323F7E4E4007419C4 /* Player.swift in Sources */,
+				5AB183A723F7F3C7007419C4 /* PokerGame.swift in Sources */,
 				5AE0943323F167BB0046DA63 /* Card.swift in Sources */,
 				5AE093BF23EC21670046DA63 /* SceneDelegate.swift in Sources */,
 			);
