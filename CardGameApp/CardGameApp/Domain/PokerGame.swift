@@ -15,11 +15,25 @@ class PokerGame {
     private var players: [Player]!
     private enum GameStut: Int {
         case five = 5, seven = 7
-        func isValid(num : Int) -> Bool {
+        
+        func isValid(num: Int) -> Bool {
             return self.rawValue == num
+        }
+        
+        func forEach(handler: () -> ()) {
+            for _ in 0 ..< self.rawValue {
+                handler()
+            }
         }
     }
     private var gameStut: GameStut!
+    private var stutNum : Int {
+        var stutNum = 0
+        gameStut.forEach {
+            stutNum += 1
+        }
+        return stutNum
+    }
     
     init?(gameStutNumber: Int , playersNumber: Int) throws {
         guard GameStut.five.isValid(num: gameStutNumber) ||
@@ -44,6 +58,10 @@ class PokerGame {
             players.append(Player())
         }
         return players
+    }
+    
+    func hasEnoughCards() -> Bool {
+        return deck.count >= stutNum * players.count
     }
 }
 
