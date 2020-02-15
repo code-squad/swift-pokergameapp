@@ -8,8 +8,17 @@
 
 import Foundation
 
-class Player : Searchable {
+protocol Playerable {
+    func receiveCard(sender : () -> (Card))
+}
+
+class Player : Playerable , Searchable {
+    
     private var cards : [Card]?
+    
+    func receiveCard(sender: () -> (Card)) {
+        cards?.append(sender())
+    }
     
     func search(handler: (Card) -> ()) {
         if let cards = cards {
