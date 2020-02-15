@@ -26,6 +26,12 @@ class PokerGame {
                 handler()
             }
         }
+        
+        func forEach(handler: () throws  -> ()) throws {
+            for _ in 0 ..< self.rawValue {
+                try handler()
+            }
+        }
     }
     private var gameStut: GameStut!
     
@@ -54,13 +60,35 @@ class PokerGame {
         return players
     }
     
-    func startNewRound() {
+    func startNewRound() throws {
         shuffle()
+        try handOutCards()
     }
     
     private var generator = ANSI_C_RandomNumberGenerator()
     private func shuffle() {
         deck.shuffle(using: &generator)
+    }
+    
+    private func handOutCards() throws {
+        try gameStut.forEach {
+            try sendToDealer()
+            try sendToPlayers()
+        }
+    }
+    
+    private func sendToDealer() throws {
+        try dealer.receiveCard {
+            try deck.removeOne()
+        }
+    }
+    
+    private func sendToPlayers() throws {
+        for index in 0 ..< players.count {
+            try players[index].receiveCard{
+                try deck.removeOne()
+            }
+        }
     }
     
     func hasEnoughCards() -> Bool {
