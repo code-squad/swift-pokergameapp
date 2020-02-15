@@ -9,7 +9,7 @@
 import XCTest
 @testable import CardGameApp
 class CardGameAppTests: XCTestCase {
-    var deck : Deck!
+    var deck: Deck!
     
     override func setUp() {
         super.setUp()
@@ -35,7 +35,7 @@ class CardGameAppTests: XCTestCase {
         // 1. given
         let otherDeck = deck
         var otherDeckCards = [Card]()
-        otherDeck?.search { (card : Card ) in
+        otherDeck?.search { (card: Card ) in
             otherDeckCards.append(card)
         }
         
@@ -43,7 +43,7 @@ class CardGameAppTests: XCTestCase {
         var generator = ANSI_C_RandomNumberGenerator()
         deck.shuffle(using: &generator)
         var deckCards = [Card]()
-        deck.search { (card : Card) in
+        deck.search { (card: Card) in
             deckCards.append(card)
         }
         

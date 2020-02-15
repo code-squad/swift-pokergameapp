@@ -9,11 +9,11 @@
 import Foundation
 
 protocol Searchable {
-    func search(handler : (Card) -> ())
+    func search(handler: (Card) -> ())
 }
 
 struct Deck {
-    private let singletonInitCards : [Card] = {
+    private let singletonInitCards: [Card] = {
         var cards = [Card]()
         for suit in Card.Suit.allCases {
             for number in Card.Number.allCases {
@@ -25,7 +25,7 @@ struct Deck {
         return cards
     }()
     
-    private var cards : [Card]!
+    private var cards: [Card]!
     var count : Int {
         return cards.count
     }
@@ -34,7 +34,7 @@ struct Deck {
         self.cards = singletonInitCards
     }
     
-    mutating func shuffle<G : RandomNumberGenerator>(using generator : inout G)  {
+    mutating func shuffle<G: RandomNumberGenerator>(using generator : inout G)  {
         cards = cards.shuffled(using: &generator)
     }
     
@@ -54,13 +54,13 @@ struct Deck {
     }
 }
 
-extension Deck : Equatable {
+extension Deck: Equatable {
     public static func == (lhs: Deck, rhs: Deck) -> Bool {
         return lhs.cards == rhs.cards
     }
 }
 
-extension Deck : Searchable {
+extension Deck: Searchable {
     func search(handler: (Card) -> ()) {
         for card in cards {
             handler(card)
@@ -68,6 +68,6 @@ extension Deck : Searchable {
     }
 }
 
-enum DeckError : Error {
+enum DeckError: Error {
     case indexOutOfRangeError
 }

@@ -11,7 +11,7 @@ import UIKit
 class ViewController: UIViewController {
     private let trump = Card(suit: .heart, number: .queen)
     
-    private let cardStackView : UIStackView = {
+    private let cardStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.distribution = .fillEqually
@@ -35,12 +35,12 @@ class ViewController: UIViewController {
     }
     
     private func setupCardViews(){
-        addCardViews(to : cardStackView)
+        addCardViews(to: cardStackView)
         self.view.addSubview(cardStackView)
         setConstraintCardStackView()
     }
     
-    private func addCardViews(to cardStackView : UIStackView) {
+    private func addCardViews(to cardStackView: UIStackView) {
         let maxCardNum = 7
         for _ in 0 ..< maxCardNum {
             cardStackView.addArrangedSubview(generateCardImageView())
@@ -58,7 +58,7 @@ class ViewController: UIViewController {
     }
     
     private func setConstraintCardStackView() {
-        let boundaryConstant : CGFloat = 8
+        let boundaryConstant: CGFloat = 8
         cardStackView.topAnchor.constraint(
             equalTo: view.safeAreaLayoutGuide.topAnchor,
             constant: boundaryConstant).isActive = true
