@@ -9,14 +9,14 @@
 import Foundation
 
 struct Card {
-    enum Suit : String, CaseIterable {
+    enum Suit: String, CaseIterable {
         case spade = "s"
         case heart = "h"
         case diamond = "d"
         case club = "c"
     }
     
-    enum Number : Int, CaseIterable {
+    enum Number: Int, CaseIterable {
         case ace = 1
         case two
         case three
@@ -32,22 +32,22 @@ struct Card {
         case king
     }
     
-    private let suit : Suit
-    private let number : Number
+    private let suit: Suit
+    private let number: Number
     
-    init(suit : Suit, number : Number) {
+    init(suit: Suit, number: Number) {
         self.suit = suit
         self.number = number
     }
 }
 
-extension Card : CustomStringConvertible {
+extension Card: CustomStringConvertible {
     public var description: String {
         return suit.description + number.description
     }
 }
 
-extension Card.Suit : CustomStringConvertible {
+extension Card.Suit: CustomStringConvertible {
     var description: String {
         switch self {
         case .spade :
@@ -62,7 +62,7 @@ extension Card.Suit : CustomStringConvertible {
     }
 }
 
-extension Card.Number : CustomStringConvertible {
+extension Card.Number: CustomStringConvertible {
     var description: String {
         switch self {
         case .ace:
@@ -80,7 +80,7 @@ extension Card.Number : CustomStringConvertible {
     
 }
 
-extension Card : Equatable {
+extension Card: Equatable {
     public static func == (lhs: Card, rhs: Card) -> Bool {
         return lhs.suit == rhs.suit && lhs.number == rhs.number
     }
