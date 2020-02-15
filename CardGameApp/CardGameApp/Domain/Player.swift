@@ -17,7 +17,8 @@ class Player: Playerable , Searchable {
     private var cards: [Card]?
     
     func receiveCard(sender: () throws -> (Card)) throws {
-        cards?.append(try sender())
+        let card = try sender()
+        cards?.append(card)
     }
     
     func searchCard(handler: (Card) -> ()) {
