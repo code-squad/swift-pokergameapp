@@ -54,6 +54,10 @@ class PokerGame {
         return players
     }
     
+    var generator = ANSI_C_RandomNumberGenerator()
+    private func shuffle() {
+        deck.shuffle(using: &generator)
+    }
     
     func hasEnoughCards() -> Bool {
         return deck.count >= stutNum * players.count
@@ -66,7 +70,6 @@ class PokerGame {
         }
         return stutNum
     }
-    
 }
 
 enum PokerGameError: Error {
