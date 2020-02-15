@@ -8,8 +8,14 @@
 
 import Foundation
 
-class Player {
+class Player : Searchable {
     private var cards : [Card]?
+    
+    func search(handler: (Card) -> ()) {
+        if let cards = cards {
+            _ = cards.map { handler($0) }
+        }
+    }
 }
 
 
