@@ -13,17 +13,28 @@ class PokerGame {
     private let deck = Deck()
     private let dealer = Player()
     private var players: [Player]!
-    enum GameStut : Int {
+    private enum GameStut: Int {
         case five = 5, seven = 7
+        func isValid(num : Int) -> Bool {
+            return self.rawValue == num
+        }
     }
-    private let gameStut : GameStut
+    private var gameStut: GameStut!
     
-    init?(gameStut : GameStut , playersNumber: Int) throws {
+    init?(gameStutNumber: Int , playersNumber: Int) throws {
+        guard GameStut.five.isValid(num: gameStutNumber) ||
+            GameStut.seven.isValid(num: gameStutNumber) else {
+                throw PokerGameError.invalidGameStutNumber
+        }
+        
+        let minPlayersNumber = 1
+        let maxPlayersNumber = 4
         guard playersNumber >= minPlayersNumber,
             playersNumber <= maxPlayersNumber else {
                 throw PokerGameError.invalidPlayersNumber
         }
-        self.gameStut = gameStut
+        
+        self.gameStut = GameStut(rawValue: gameStutNumber)
         players = initPlayers(num: playersNumber)
     }
     
@@ -36,8 +47,7 @@ class PokerGame {
     }
 }
 
-let minPlayersNumber = 1
-let maxPlayersNumber = 4
 enum PokerGameError: Error {
+    case invalidGameStutNumber
     case invalidPlayersNumber
 }
