@@ -8,12 +8,8 @@
 
 import Foundation
 
-protocol Searchable {
-    func search(handler: (Card) -> ())
-}
-
 struct Deck {
-    private let singletonInitCards: [Card] = {
+    private static let singletonInitCards: [Card] = {
         var cards = [Card]()
         for suit in Card.Suit.allCases {
             for number in Card.Number.allCases {
@@ -31,7 +27,7 @@ struct Deck {
     }
     
     init() {
-        self.cards = singletonInitCards
+        self.cards = Deck.singletonInitCards
     }
     
     mutating func shuffle<G: RandomNumberGenerator>(using generator : inout G)  {
@@ -50,7 +46,7 @@ struct Deck {
     }
     
     mutating func reset() {
-        cards = singletonInitCards
+        cards = Deck.singletonInitCards
     }
 }
 
@@ -58,6 +54,10 @@ extension Deck: Equatable {
     public static func == (lhs: Deck, rhs: Deck) -> Bool {
         return lhs.cards == rhs.cards
     }
+}
+
+protocol Searchable {
+    func search(handler: (Card) -> ())
 }
 
 extension Deck: Searchable {
