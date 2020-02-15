@@ -13,6 +13,7 @@ class PokerGame {
     private let deck = Deck()
     private let dealer = Player()
     private var players: [Player]!
+    
     private enum GameStut: Int {
         case five = 5, seven = 7
         
@@ -27,13 +28,6 @@ class PokerGame {
         }
     }
     private var gameStut: GameStut!
-    private var stutNum : Int {
-        var stutNum = 0
-        gameStut.forEach {
-            stutNum += 1
-        }
-        return stutNum
-    }
     
     init?(gameStutNumber: Int , playersNumber: Int) throws {
         guard GameStut.five.isValid(num: gameStutNumber) ||
@@ -60,9 +54,19 @@ class PokerGame {
         return players
     }
     
+    
     func hasEnoughCards() -> Bool {
         return deck.count >= stutNum * players.count
     }
+    
+    private var stutNum : Int {
+        var stutNum = 0
+        gameStut.forEach {
+            stutNum += 1
+        }
+        return stutNum
+    }
+    
 }
 
 enum PokerGameError: Error {
