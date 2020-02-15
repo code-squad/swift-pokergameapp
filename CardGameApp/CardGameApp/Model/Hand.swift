@@ -34,15 +34,11 @@ class Hand {
     }
     
     private func checkStraight() -> Bool {
-        let sortedCards = cards.sorted { $0 > $1 }
+        let sortedCards = cards.sorted { $0 < $1 }
+        var currentCard = sortedCards[0]
         var straightCount = 1
-        var index = 1
-        while index < sortedCards.count {
-            guard let nextCard = sortedCards[index].nextCard() else {
-                index += 1
-                continue
-            }
-            if nextCard == sortedCards[index - 1] {
+        for card in sortedCards {
+            if currentCard.isNextCard(with: card) {
                 straightCount += 1
                 if straightCount == 5 {
                     return true
@@ -50,7 +46,7 @@ class Hand {
             } else {
                 straightCount = 1
             }
-            index += 1
+            currentCard = card
         }
         return false
     }
@@ -86,7 +82,7 @@ class Hand {
         return result
     }
     
-    func getScore() -> Score {
+    private func getScore() -> Score {
         let info = getInfo()
         if checkStraight() {
             return .straight
