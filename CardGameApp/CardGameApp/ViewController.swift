@@ -9,7 +9,6 @@
 import UIKit
 
 class ViewController: UIViewController {
-    private let trump = Card(suit: .heart, number: .queen)
     
     private let cardStackView: UIStackView = {
         let stackView = UIStackView()

@@ -88,6 +88,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5AB183AC23F81456007419C4 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				5AE0943223F167BB0046DA63 /* Card.swift */,
+				5AB3F53323F26AF80021E3A0 /* Deck.swift */,
+				5AB3F53523F545170021E3A0 /* ANSI_C_RandomNumberGenerator.swift */,
+				5AB183A223F7E4E4007419C4 /* Player.swift */,
+				5AB183A623F7F3C7007419C4 /* PokerGame.swift */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
 		5AE093B023EC21670046DA63 = {
 			isa = PBXGroup;
 			children = (
@@ -111,7 +123,7 @@
 		5AE093BB23EC21670046DA63 /* CardGameApp */ = {
 			isa = PBXGroup;
 			children = (
-				5AE0943123F167560046DA63 /* Domain */,
+				5AB183AC23F81456007419C4 /* Domain */,
 				5AE093BC23EC21670046DA63 /* AppDelegate.swift */,
 				5AE093BE23EC21670046DA63 /* SceneDelegate.swift */,
 				5AE093C023EC21670046DA63 /* ViewController.swift */,
@@ -140,18 +152,6 @@
 				5AE093E023EC216B0046DA63 /* Info.plist */,
 			);
 			path = CardGameAppUITests;
-			sourceTree = "<group>";
-		};
-		5AE0943123F167560046DA63 /* Domain */ = {
-			isa = PBXGroup;
-			children = (
-				5AE0943223F167BB0046DA63 /* Card.swift */,
-				5AB3F53323F26AF80021E3A0 /* Deck.swift */,
-				5AB3F53523F545170021E3A0 /* ANSI_C_RandomNumberGenerator.swift */,
-				5AB183A223F7E4E4007419C4 /* Player.swift */,
-				5AB183A623F7F3C7007419C4 /* PokerGame.swift */,
-			);
-			path = Domain;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
