@@ -61,8 +61,22 @@ class PokerGame {
     }
     
     func startNewRound() throws {
+        initParticipantsCards()
         shuffle()
         try handOutCards()
+    }
+    
+    private func initParticipantsCards() {
+        initDealerCards()
+        initPlayersCards()
+    }
+    
+    private func initDealerCards() {
+        dealer.initCards()
+    }
+    
+    private func initPlayersCards() {
+        _ = players.map { $0.initCards() }
     }
     
     private var generator = ANSI_C_RandomNumberGenerator()
