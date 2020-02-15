@@ -14,4 +14,25 @@ class PokerGame {
     let dealer = Player()
     var players : [Player]!
     
+    init?(playersNumber : Int) throws {
+        guard playersNumber >= minPlayersNumber,
+            playersNumber <= maxPlayersNumber else{
+                throw PokerGameError.invalidPlayersNumber
+        }
+        players = initPlayers(num : playersNumber)
+    }
+    
+    private func initPlayers(num : Int) -> [Player] {
+        var players = [Player]()
+        for _ in 0 ..< num {
+            players.append(Player())
+        }
+        return players
+    }
+}
+
+let minPlayersNumber = 1
+let maxPlayersNumber = 4
+enum PokerGameError : Error {
+    case invalidPlayersNumber
 }
