@@ -10,19 +10,19 @@ import Foundation
 
 class PokerGame {
     
-    let deck = Deck()
-    let dealer = Player()
-    var players : [Player]!
+    private let deck = Deck()
+    private let dealer = Player()
+    private var players: [Player]!
     
-    init?(playersNumber : Int) throws {
+    init?(playersNumber: Int) throws {
         guard playersNumber >= minPlayersNumber,
-            playersNumber <= maxPlayersNumber else{
+            playersNumber <= maxPlayersNumber else {
                 throw PokerGameError.invalidPlayersNumber
         }
-        players = initPlayers(num : playersNumber)
+        players = initPlayers(num: playersNumber)
     }
     
-    private func initPlayers(num : Int) -> [Player] {
+    private func initPlayers(num: Int) -> [Player] {
         var players = [Player]()
         for _ in 0 ..< num {
             players.append(Player())
@@ -33,6 +33,6 @@ class PokerGame {
 
 let minPlayersNumber = 1
 let maxPlayersNumber = 4
-enum PokerGameError : Error {
+enum PokerGameError: Error {
     case invalidPlayersNumber
 }
