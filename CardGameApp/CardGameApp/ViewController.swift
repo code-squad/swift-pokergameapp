@@ -30,15 +30,11 @@ class ViewController: UIViewController {
         
         let pokerGame = PokerGame(gameMode: .sevenCardStud, playerMode: .three)
         pokerGame.giveCards()
-        pokerGame.openCards()
         pokerGame.giveCards()
-        pokerGame.openCards()
         
         let pokerGame2 = PokerGame(gameMode: .fiveCardStud, playerMode: .three)
         pokerGame2.giveCards()
-        pokerGame2.openCards()
         pokerGame2.giveCards()
-        pokerGame2.openCards()
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
