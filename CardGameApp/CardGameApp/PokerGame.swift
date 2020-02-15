@@ -29,7 +29,6 @@ class PokerGame {
     func giveCards() {
         guard dealer.remainingCardsCount > cardsCount * (participantCount + 1) else {
             isContinueGame = false
-            print("카드 갯수가 부족합니다.")
             return
         }
         for _ in 0..<cardsCount {
@@ -39,18 +38,6 @@ class PokerGame {
                 guard let pickedCard = dealer.pickOneCard() else { return }
                 participant.recieveCard(newCard: pickedCard)
             }
-        }
-    }
-    
-    func openCards() {
-        if isContinueGame {
-            print("-------------------- Current Card Status --------------------")
-            for index in 0..<participantCount {
-                print("\(participants[index].statusOfRoleAndCards().role) \(participants[index].statusOfRoleAndCards().cards)")
-            }
-            print("\(dealer.statusOfRoleAndCards().role) \(dealer.statusOfRoleAndCards().cards)\n")
-        } else {
-            print("게임이 종료되었습니다.\n")
         }
     }
 }
