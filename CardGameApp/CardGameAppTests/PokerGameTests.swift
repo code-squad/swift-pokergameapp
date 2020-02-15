@@ -12,12 +12,6 @@ class PokerGameTests: XCTestCase {
     let correctStutNum = 5
     let correctPlayersNum = 1
     
-    override func setUp() {
-        game = try! PokerGame(gameStutNumber: correctStutNum,
-                              playersNumber: correctPlayersNum)
-        super.setUp()
-    }
-    
     override func tearDown() {
         game = nil
         super.tearDown()
@@ -40,7 +34,6 @@ class PokerGameTests: XCTestCase {
         let correctNumberSeven = 7
         game = try? PokerGame(gameStutNumber: correctNumberSeven,
                               playersNumber: correctPlayersNum)
-        
         XCTAssertNotNil(game)
     }
     
@@ -65,9 +58,6 @@ class PokerGameTests: XCTestCase {
     }
     
     func testHasEnoughCards() {
-        //3. given
-        XCTAssertTrue(game.hasEnoughCards())
-        
         //1. given
         let seven = 7
         let four = 4
