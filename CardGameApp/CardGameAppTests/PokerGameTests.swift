@@ -64,4 +64,20 @@ class PokerGameTests: XCTestCase {
         }
     }
     
+    func testHasEnoughCards() {
+        //3. given
+        XCTAssertTrue(game.hasEnoughCards())
+        
+        //1. given
+        let seven = 7
+        let four = 4
+        game = try! PokerGame(gameStutNumber: seven, playersNumber: four)
+        
+        //2. when
+        try! game.startNewRound() // remainedCards = 52 - 7 * 5 ( one is dealer) = 17
+        
+        //3. then
+        XCTAssertFalse(game.hasEnoughCards())
+    }
+    
 }
