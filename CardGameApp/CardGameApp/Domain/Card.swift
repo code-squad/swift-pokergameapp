@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Card {
+struct Card {
     enum Suit : String, CaseIterable {
         case spade = "s"
         case heart = "h"
