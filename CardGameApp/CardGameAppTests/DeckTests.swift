@@ -8,7 +8,7 @@
 
 import XCTest
 @testable import CardGameApp
-class CardGameAppTests: XCTestCase {
+class DeckTests: XCTestCase {
     var deck: Deck!
     
     override func setUp() {
@@ -73,7 +73,7 @@ class CardGameAppTests: XCTestCase {
     
     func testScenario(){
         let totalCardCounts = 52
-        var otherDeck = deck
+        let otherDeck = deck
         XCTAssertEqual(otherDeck?.count, totalCardCounts)
         
         var generator = ANSI_C_RandomNumberGenerator()
@@ -85,4 +85,5 @@ class CardGameAppTests: XCTestCase {
         try! otherDeck!.removeOne()
         XCTAssertEqual(otherDeck?.count, totalCardCounts - 2 )
     }
+
 }
