@@ -13,16 +13,7 @@ protocol Searchable {
 }
 
 struct Deck {
-    private var cards : [Card]!
-    var count : Int {
-        return cards.count
-    }
-    
-    init() {
-        self.cards = initCards()
-    }
-    
-    private func initCards() -> [Card] {
+    private let singletonInitCards : [Card] = {
         var cards = [Card]()
         for suit in Card.Suit.allCases {
             for number in Card.Number.allCases {
@@ -32,6 +23,15 @@ struct Deck {
             }
         }
         return cards
+    }()
+    
+    private var cards : [Card]!
+    var count : Int {
+        return cards.count
+    }
+    
+    init() {
+        self.cards = singletonInitCards
     }
     
     mutating func shuffle<G : RandomNumberGenerator>(using generator : inout G)  {
@@ -50,7 +50,7 @@ struct Deck {
     }
     
     mutating func reset() {
-        cards = initCards()
+        cards = singletonInitCards
     }
 }
 
