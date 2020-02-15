@@ -118,6 +118,23 @@ class PokerGame {
     }
 }
 
+extension PokerGame {
+    func searchDeck(handler: (Deck) -> ()) {
+        handler(deck)
+    }
+    
+    func searchDealer(handler : (Player) -> ()) {
+        handler(dealer)
+    }
+    
+    func searchPlayers(handler : (Player) -> ()) {
+        for player in players {
+            handler(player)
+        }
+    }
+    
+}
+
 enum PokerGameError: Error {
     case invalidGameStutNumber
     case invalidPlayersNumber

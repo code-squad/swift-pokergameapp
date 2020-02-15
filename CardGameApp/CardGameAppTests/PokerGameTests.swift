@@ -57,6 +57,40 @@ class PokerGameTests: XCTestCase {
         }
     }
     
+    func testStartNewRound() {
+        //1. given
+        let stutNum = 5
+        let playerNum = 3
+        let dealerCount = 1
+        game = try! PokerGame(gameStutNumber: stutNum, playersNumber: playerNum)
+        var originDeck = [Card]()
+        game.searchDeck { (deck : Deck) in
+            deck.searchCard {
+                originDeck.append($0)
+            }
+        }
+        
+        //2. when
+        try! game.startNewRound()
+        
+        //3. then
+        var handedOutCards = [Card]()
+        game.searchDealer { (dealer: Player) in
+            dealer.searchCard {
+                handedOutCards.append($0)
+            }
+        }
+        game.searchPlayers { (player : Player) in
+            player.searchCard {
+                handedOutCards.append($0)
+            }
+        }
+        XCTAssertEqual(handedOutCards.count, stutNum * (playerNum + dealerCount))
+        game.searchDeck { (remainedDeck: Deck) in
+            XCTAssertEqual(remainedDeck.count , originDeck.count - handedOutCards.count)
+        }
+    }
+    
     func testHasEnoughCards() {
         //1. given
         let seven = 7
