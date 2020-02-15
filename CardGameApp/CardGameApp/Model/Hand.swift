@@ -22,7 +22,7 @@ class Hand {
         }
     }
     private lazy var score = getScore()
-    private lazy var numbers = getNumbers()
+    private lazy var ranks = getInfo().map { (value) -> Card in value.key }
     private var cards = [Card]()
     
     func forEach(_ transform: (Card) -> ()) {
@@ -92,11 +92,6 @@ class Hand {
             return .triple
         }
         return checkPairs(info: info)
-    }
-    
-    private func getNumbers() -> [Card] {
-        let info = getInfo()
-        return info.map { (value) -> Card in value.key }
     }
 }
 
