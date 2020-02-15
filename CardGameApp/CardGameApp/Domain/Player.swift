@@ -9,12 +9,12 @@
 import Foundation
 
 protocol Playerable {
-    func receiveCard(sender : () -> (Card))
+    func receiveCard(sender: () -> (Card))
 }
 
-class Player : Playerable , Searchable {
+class Player: Playerable , Searchable {
     
-    private var cards : [Card]?
+    private var cards: [Card]?
     
     func receiveCard(sender: () -> (Card)) {
         cards?.append(sender())
