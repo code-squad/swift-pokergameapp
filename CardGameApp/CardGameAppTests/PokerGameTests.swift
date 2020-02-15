@@ -33,12 +33,12 @@ class PokerGameTests: XCTestCase {
             anotherRandomIndex = Int.random(in: 0..<self.participants.count)
         }
         
-        let participantCards = self.participants[randomIndex].cards
-        let anotherParticipantCards = self.participants[anotherRandomIndex].cards
+        let participantCards = self.participants[randomIndex].statusOfRoleAndCards().cards
+        let anotherParticipantCards = self.participants[anotherRandomIndex].statusOfRoleAndCards().cards
         
         XCTAssertNotEqual(participantCards, anotherParticipantCards)
         
-        let dealerCards = pokerGame.showDealer().cards
+        let dealerCards = pokerGame.showDealer().statusOfRoleAndCards().cards
         
         XCTAssertNotEqual(participantCards, dealerCards)
     }
