@@ -13,8 +13,9 @@ class PokerGame {
         
         for count in 0..<participantCount {
             participants.append(Participant())
-            participants[count].role += "#\(count+1)"
+            participants[count].giveRoleName(role: "참여자#\(count+1)")
         }
+        dealer.giveRoleName(role: "딜러")
     }
     
     func showParticipants() -> [Participant] {
@@ -33,10 +34,10 @@ class PokerGame {
         }
         for _ in 0..<cardsCount {
             guard let pickedCard = dealer.pickOneCard() else { return }
-            dealer.cards.append(pickedCard)
+            dealer.recieveCard(newCard: pickedCard)
             for participant in participants {
                 guard let pickedCard = dealer.pickOneCard() else { return }
-                participant.cards.append(pickedCard)
+                participant.recieveCard(newCard: pickedCard)
             }
         }
     }
@@ -45,9 +46,9 @@ class PokerGame {
         if isContinueGame {
             print("-------------------- Current Card Status --------------------")
             for index in 0..<participantCount {
-                print("\(participants[index].role) \(participants[index].cards)")
+                print("\(participants[index].statusOfRoleAndCards().role) \(participants[index].statusOfRoleAndCards().cards)")
             }
-            print("\(dealer.role) \(dealer.cards)\n")
+            print("\(dealer.statusOfRoleAndCards().role) \(dealer.statusOfRoleAndCards().cards)\n")
         } else {
             print("게임이 종료되었습니다.\n")
         }
