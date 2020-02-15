@@ -54,7 +54,7 @@ class PokerGame {
         return players
     }
     
-    var generator = ANSI_C_RandomNumberGenerator()
+    private var generator = ANSI_C_RandomNumberGenerator()
     private func shuffle() {
         deck.shuffle(using: &generator)
     }
