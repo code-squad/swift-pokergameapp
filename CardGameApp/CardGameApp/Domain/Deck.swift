@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Deck {
+class Deck {
     private static let singletonInitCards: [Card] = {
         var cards = [Card]()
         for suit in Card.Suit.allCases {
@@ -30,12 +30,12 @@ struct Deck {
         self.cards = Deck.singletonInitCards
     }
     
-    mutating func shuffle<G: RandomNumberGenerator>(using generator : inout G)  {
+    func shuffle<G: RandomNumberGenerator>(using generator : inout G)  {
         cards = cards.shuffled(using: &generator)
     }
     
     @discardableResult
-    mutating func removeOne() throws -> Card {
+    func removeOne() throws -> Card {
         let none = 0
         guard count != none else {
             throw DeckError.indexOutOfRangeError
@@ -45,7 +45,7 @@ struct Deck {
         return cards.remove(at: indexFirstCard)
     }
     
-    mutating func reset() {
+    func reset() {
         cards = Deck.singletonInitCards
     }
 }
