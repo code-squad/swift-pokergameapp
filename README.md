@@ -168,6 +168,10 @@ STEP15 포커게임 앱 저장소
 
 
 
+<details>
+<summary>step 4 : 포커 딜러와 게임 테스트</summary>
+<div markdown="1">
+
 ## Step4 : 포커 딜러와 게임 테스트
 
 ### 추가한 기능
@@ -186,4 +190,45 @@ STEP15 포커게임 앱 저장소
    * setStud(stud:Stud), setNumOfPlayer(numOfPlayer:NumOfPlayer) 메소드를 통해 stud, numOfPlayer 값을 변경할 수 있음.
 
 2020.02.12
+
+</div>
+</details>
+
+
+
+## Step5 : 포커게임 결과 화면
+
+<img width="400" alt="image" src="https://user-images.githubusercontent.com/37682858/74592193-3423cd00-5062-11ea-8260-2f3d149267b2.png">
+
+<img width="400" alt="image" src="https://user-images.githubusercontent.com/37682858/74592256-d17f0100-5062-11ea-96e8-d818ab65d47e.png">
+
+### 추가한 기능
+
+1. Stud와 플레이어 수를 고를 수 있음
+
+   * UISegmentedControl을 추가하여 사용자의 터치에 맞게 해당 정보를 바꿔 줌
+   * redrawPokerStackView() 메소드에서 현재 pokerStackView를 최상위 뷰에서 제거하고, 새로 pokerStackView를 생성 후, 최상위 뷰의 자식 뷰로 설정
+
+2. 고른 Stud와 플레이어 수를 바탕으로 poker game을 view에 그려 줌
+
+   * pokerStackView의 계층은 다음과 같음
+   * pokerStackView : playerStackView를 자식으로 가지는 vertical stackView
+     * playerStackView : player에 대한 정보를 자식으로 가지는 vertical stackView
+       * Label : player의 이름을 표시 함
+       * cardStackView : player의 card에 대한 정보를 자식으로 가지는 horizontal stackView
+         * card 
+
+3. 화면을 흔들면 카드를 섞고 다시 view에 그려줌
+
+   * ```swift
+     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+       if motion == .motionShake {
+         redrawPokerStackView()
+       }
+     }
+     ```
+
+
+
+2020.02.15
 
