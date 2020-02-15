@@ -25,6 +25,7 @@ class Player: Playerable , Searchable {
             _ = cards.map { handler($0) }
         }
     }
+    
 }
 
 
