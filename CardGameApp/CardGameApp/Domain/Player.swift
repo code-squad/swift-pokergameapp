@@ -20,7 +20,7 @@ class Player : Playerable , Searchable {
         cards?.append(sender())
     }
     
-    func search(handler: (Card) -> ()) {
+    func searchCard(handler: (Card) -> ()) {
         if let cards = cards {
             _ = cards.map { handler($0) }
         }

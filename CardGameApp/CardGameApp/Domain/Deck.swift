@@ -57,11 +57,11 @@ extension Deck: Equatable {
 }
 
 protocol Searchable {
-    func search(handler: (Card) -> ())
+    func searchCard(handler: (Card) -> ())
 }
 
 extension Deck: Searchable {
-    func search(handler: (Card) -> ()) {
+    func searchCard(handler: (Card) -> ()) {
         _ = cards.map { handler($0)}
     }
 }
