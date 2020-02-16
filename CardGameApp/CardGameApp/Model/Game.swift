@@ -10,7 +10,7 @@ import Foundation
 
 struct Game {
     
-    private var gamers: Player
+    private var gamers: Players
     private var dealer: Dealer
     private var style: GameStyle
     private var limitCount: Int
@@ -18,7 +18,7 @@ struct Game {
         return gamers.count
     }
     
-    init(gamers: Player, style: GameStyle, limitCount: Int){
+    init(gamers: Players, style: GameStyle, limitCount: Int){
         dealer = Dealer()
         self.gamers = gamers
         self.gamers.addGamers(gamer: dealer)
@@ -48,7 +48,7 @@ struct Game {
 }
 
 extension Game {
-    static func fiveCardStud(gamers: Player) -> Game {
+    static func fiveCardStud(gamers: Players) -> Game {
         return Game (
             gamers: gamers,
             style: .five,
@@ -56,7 +56,7 @@ extension Game {
         )
     }
     
-    static func sevenCardStud(gamers: Player) -> Game {
+    static func sevenCardStud(gamers: Players) -> Game {
         return Game (
             gamers: gamers,
             style: .seven,
