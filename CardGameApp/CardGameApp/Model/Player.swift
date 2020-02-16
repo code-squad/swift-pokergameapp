@@ -16,4 +16,8 @@ struct Player {
             handler(gamer)
         }
     }
+    
+    mutating func addGamers(gamer: Gamer) {
+        cards.append(gamer)
+    }
 }
