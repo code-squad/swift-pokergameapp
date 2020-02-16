@@ -9,15 +9,15 @@
 import Foundation
 
 struct Player {
-    private var gamer: [Gamer] = []
+    private var gamers: [Gamer] = []
     
     func forEach(handler: (Gamer) -> Void) {
-        gamer.forEach { gamer in
+        gamers.forEach { gamer in
             handler(gamer)
         }
     }
     
     mutating func addGamers(gamer: Gamer) {
-        cards.append(gamer)
+        gamers.append(gamer)
     }
 }
