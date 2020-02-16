@@ -14,6 +14,9 @@ struct Game {
     private var dealer: Dealer
     private var style: GameStyle
     private var limitCount: Int
+    var gamersCount: Int {
+        return gamers.count
+    }
     
     init(gamers: Player, style: GameStyle, limitCount: Int){
         dealer = Dealer()
@@ -23,6 +26,7 @@ struct Game {
         self.limitCount = limitCount
         distributeByNubmers()
     }
+    
     
     func pirntCards() {
         gamers.forEach { game in
