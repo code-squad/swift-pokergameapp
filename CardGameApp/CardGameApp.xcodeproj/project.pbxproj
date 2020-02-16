@@ -123,11 +123,11 @@
 			isa = PBXGroup;
 			children = (
 				AE40A3AD23F17205009AB61B /* Model.swift */,
-				AE83CC4623F68B1A002635AD /* Player.swift */,
-				AE83CC3E23F67287002635AD /* Hands.swift */,
-				AE83CC4023F672DB002635AD /* Gamer.swift */,
-				AE83CC4223F67341002635AD /* Dealer.swift */,
 				AE83CC4423F67409002635AD /* Game.swift */,
+				AE83CC4623F68B1A002635AD /* Player.swift */,
+				AE83CC4223F67341002635AD /* Dealer.swift */,
+				AE83CC4023F672DB002635AD /* Gamer.swift */,
+				AE83CC3E23F67287002635AD /* Hands.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";

@@ -23,7 +23,7 @@ struct Game {
         self.limitCount = limitCount
         distributeByNubmers()
     }
-
+    
     func pirntCards() {
         gamers.forEach { game in
             game.printCard()
