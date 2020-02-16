@@ -10,49 +10,31 @@ import Foundation
 
 class Game {
     
-    enum Style {
-        case five
-        case seven
-    }
-    
-    var players: Int {
-        return gamers.count
-    }
-    private var gamers: [Gamer] = []
+    private var gamers: Player
     private var dealer: Dealer = Dealer()
-    private var style: Style
+    private var style: GameStyle
     
-    init(gamers: [Gamer], style: Style){
+    init(gamers: Player, style: GameStyle){
         self.gamers = gamers
-        self.gamers.append(dealer)
         self.style = style
         distributeByNubmers()
     }
 
     func pirntCards() {
-        gamers.forEach { game in
-            game.printCard()
-        }
+//        gamers.forEach { game in
+//            game.printCard()
+//        }
     }
     
     private func distributeByNubmers() {
-        (1...style.description).forEach { _ in
-            distributeCard()
-        }
+//        (1...style.description).forEach { _ in
+//            distributeCard()
+//        }
     }
     
     private func distributeCard() {
-        gamers.forEach { gamer in
-            gamer.addCard(card: dealer.pushCard())
-        }
-    }
-}
-
-extension Game.Style: CustomIntegerConvertible {
-    var description: Int {
-        switch self {
-        case .five: return 5
-        case .seven: return 7
-        }
+//        gamers.forEach { gamer in
+//            gamer.addCard(card: dealer.pushCard())
+//        }
     }
 }
