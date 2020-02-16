@@ -8,7 +8,12 @@
 
 import Foundation
 
-class Player {
+struct Player {
     private var gamer: [Gamer] = []
     
+    func forEach(handler: (Gamer) -> Void) {
+        gamer.forEach { gamer in
+            handler(gamer)
+        }
+    }
 }
