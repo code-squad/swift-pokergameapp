@@ -42,8 +42,13 @@ class CardGameAppTests: XCTestCase {
     func testGame() {
         let toozi = Gamer(identifier: "tooozi")
         let gangwoon = Gamer(identifier: "GangWoon")
-        var player = [toozi, gangwoon]
-        var game = Game(gamers: player, style: .seven)
-        XCTAssertEqual(game.players, 3)  
+        var player = Players()
+        player.addGamers(gamer: toozi)
+        player.addGamers(gamer: gangwoon)
+        
+        let game = Game.fiveCardStud(gamers: player)
+        game.pirntCards()
+        
+        XCTAssertEqual(game.gamersCount, 3)
     }
 }
