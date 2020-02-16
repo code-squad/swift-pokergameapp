@@ -16,29 +16,30 @@ struct Game {
     private var limitCount: Int
     
     init(gamers: Player, style: GameStyle, limitCount: Int){
-        self.gamers = gamers
         dealer = Dealer()
+        self.gamers = gamers
+        self.gamers.addGamers(gamer: dealer)
         self.style = style
         self.limitCount = limitCount
         distributeByNubmers()
     }
 
     func pirntCards() {
-//        gamers.forEach { game in
-//            game.printCard()
-//        }
+        gamers.forEach { game in
+            game.printCard()
+        }
     }
     
     private func distributeByNubmers() {
-//        (1...style.description).forEach { _ in
-//            distributeCard()
-//        }
+        (1...limitCount).forEach { _ in
+            distributeCard()
+        }
     }
     
     private func distributeCard() {
-//        gamers.forEach { gamer in
-//            gamer.addCard(card: dealer.pushCard())
-//        }
+        gamers.forEach { gamer in
+            gamer.addCard(card: dealer.pushCard())
+        }
     }
 }
 
