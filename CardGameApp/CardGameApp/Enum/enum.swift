@@ -6,6 +6,7 @@
 //  Copyright © 2020 Cloud. All rights reserved.
 //
 
-protocol CustomIntegerConvertible {
-    var description: Int { get }
+enum GameStyle {
+    case five
+    case seven
 }
