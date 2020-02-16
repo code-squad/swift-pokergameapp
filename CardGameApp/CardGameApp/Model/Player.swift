@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Player {
+struct Players {
     
     private var gamers: [Gamer] = []
     var count: Int {
