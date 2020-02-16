@@ -8,15 +8,18 @@
 
 import Foundation
 
-class Game {
+struct Game {
     
     private var gamers: Player
-    private var dealer: Dealer = Dealer()
+    private var dealer: Dealer
     private var style: GameStyle
+    private var limitCount: Int
     
-    init(gamers: Player, style: GameStyle){
+    init(gamers: Player, style: GameStyle, limitCount: Int){
         self.gamers = gamers
+        dealer = Dealer()
         self.style = style
+        self.limitCount = limitCount
         distributeByNubmers()
     }
 
@@ -36,5 +39,23 @@ class Game {
 //        gamers.forEach { gamer in
 //            gamer.addCard(card: dealer.pushCard())
 //        }
+    }
+}
+
+extension Game {
+    static func fiveCardStud(gamers: Player) -> Game {
+        return Game (
+            gamers: gamers,
+            style: .five,
+            limitCount: 5
+        )
+    }
+    
+    static func sevenCardStud(gamers: Player) -> Game {
+        return Game (
+            gamers: gamers,
+            style: .seven,
+            limitCount: 7
+        )
     }
 }
