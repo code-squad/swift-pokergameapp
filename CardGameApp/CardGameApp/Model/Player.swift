@@ -11,6 +11,9 @@ import Foundation
 struct Player {
     
     private var gamers: [Gamer] = []
+    var count: Int {
+        return gamers.count
+    }
     
     func forEach(handler: (Gamer) -> Void) {
         gamers.forEach { gamer in
