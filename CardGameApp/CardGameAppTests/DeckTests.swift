@@ -33,10 +33,9 @@ class DeckTests: XCTestCase {
     
     func testShuffle(){
         // 1. given
-        let otherDeck = deck
-        var otherDeckCards = [Card]()
-        otherDeck?.searchCard { (card: Card ) in
-            otherDeckCards.append(card)
+        var originCards = [Card]()
+        deck.searchCard { (card: Card ) in
+            originCards.append(card)
         }
         
         // 2. when
@@ -48,7 +47,7 @@ class DeckTests: XCTestCase {
         }
         
         // 3. then
-        XCTAssertNotEqual(deckCards, otherDeckCards)
+        XCTAssertNotEqual(deckCards, originCards)
     }
     
     func testRemoveOne() {
@@ -62,28 +61,28 @@ class DeckTests: XCTestCase {
     
     func testReset() {
         // 1.given
-        let otherDeck = deck
+        let otherDeck = Deck()
         // 2.when
         var generator = ANSI_C_RandomNumberGenerator()
         deck.shuffle(using: &generator)
         deck.reset()
         // 3.then
         XCTAssertEqual(otherDeck, deck)
+        
     }
     
     func testScenario(){
         let totalCardCounts = 52
-        let otherDeck = deck
-        XCTAssertEqual(otherDeck?.count, totalCardCounts)
+        XCTAssertEqual(deck.count, totalCardCounts)
         
         var generator = ANSI_C_RandomNumberGenerator()
-        otherDeck?.shuffle(using: &generator)
+        deck.shuffle(using: &generator)
         
-        try! otherDeck!.removeOne()
-        XCTAssertEqual(otherDeck?.count, totalCardCounts - 1 )
+        try! deck.removeOne()
+        XCTAssertEqual(deck.count, totalCardCounts - 1 )
         
-        try! otherDeck!.removeOne()
-        XCTAssertEqual(otherDeck?.count, totalCardCounts - 2 )
+        try! deck.removeOne()
+        XCTAssertEqual(deck.count, totalCardCounts - 2 )
     }
 
 }
