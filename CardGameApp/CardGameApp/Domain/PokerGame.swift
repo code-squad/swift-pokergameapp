@@ -10,7 +10,7 @@ import Foundation
 
 class PokerGame {
     
-    private var deck = Deck()
+    private let deck = Deck()
     private let dealer = Player()
     private var players: [Player]!
     
