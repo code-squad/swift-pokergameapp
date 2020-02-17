@@ -81,6 +81,7 @@ class ViewController: UIViewController {
     
     func redrawPokerStackView(){
         pokerGame.setGameStyle(stud: stud, numOfPlayer: numOfPlayer)
+        pokerGame.gameStart()
         pokerStackView.removeFromSuperview()
         pokerStackView = createStackView(spacing: 30, axis: .vertical)
         view.addSubview(pokerStackView)
