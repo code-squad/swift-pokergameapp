@@ -23,24 +23,12 @@ class Card{
         case diamond = "d"
     }
     
-    enum Rank: String, CaseIterable{
-        case ace = "A"
-        case two = "2"
-        case three = "3"
-        case four = "4"
-        case five = "5"
-        case six = "6"
-        case seven = "7"
-        case eight = "8"
-        case nine = "9"
-        case ten = "10"
-        case jack = "J"
-        case queen = "Q"
-        case king = "K"
+    enum Rank: Int, CaseIterable{
+        case ace = 1, two, three, four, five, six, seven, eight, nine, ten, jack, queen, king
     }
     
-    let rank: Rank
-    let suit: Suit
+    private let rank: Rank
+    private let suit: Suit
     
     init(rank: Rank, suit: Suit){
         self.rank = rank
@@ -50,7 +38,21 @@ class Card{
 
 extension Card: CustomStringConvertible{
     var description: String {
-        return self.suit.rawValue + self.rank.rawValue
+        var rankString = ""
+        switch rank.rawValue {
+        case 1:
+            rankString = "A"
+            break
+        case 11:
+            rankString = "J"
+        case 12:
+            rankString = "Q"
+        case 13:
+            rankString = "K"
+        default:
+            rankString = String(rank.rawValue)
+        }
+        return self.suit.rawValue + rankString
     }
 }
 
