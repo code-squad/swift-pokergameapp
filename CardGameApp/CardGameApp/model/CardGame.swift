@@ -9,12 +9,12 @@
 import Foundation
 
 class GameTable {
-    private let playerEntry: GameMode.Entry
-    private let studType: GameMode.StudType
+    private let playerEntry: Entry
+    private let studType: StudType
     private var dealer: Dealer
     private var players: Players
   
-    init(playerEntry: GameMode.Entry, studType: GameMode.StudType) {
+    init(playerEntry: Entry, studType: StudType) {
         self.playerEntry = playerEntry
         self.studType = studType
         self.dealer = Dealer()
@@ -26,10 +26,7 @@ class GameTable {
     
     // 플레이어 세팅
     func settingPlayer() {
-        for _ in 1 ... players.count {
-            players.append(Player())
-        }
-        players.append(dealer)
+        players.participate(entryAmount: playerEntry)
     }
     
     // 플레이어 카드 분배.
@@ -45,5 +42,15 @@ class GameTable {
     func checkEndGame() -> Bool {
         return self.dealer.checkCardAmount() > players.count
     }
-    
+}
+
+enum StudType: Int {
+    case fiveStud = 5
+    case sevenStud = 7
+}
+
+enum Entry: Int {
+    case two = 2
+    case three = 3
+    case four = 4
 }

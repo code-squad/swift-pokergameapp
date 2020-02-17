@@ -11,7 +11,7 @@ import Foundation
 class Player {
     private var handDeck = [Card?]()
     
-    func bringCard(card: Card?){
-        self.handDeck.append(card)
+    func bringCard(card: [Card?]){
+        self.handDeck = card
     }
 }
