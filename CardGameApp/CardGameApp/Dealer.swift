@@ -5,6 +5,10 @@ class Dealer: Playable {
     init(deck: Deck) {
         self.deck = deck
     }
+    
+    convenience init() {
+        self.init(deck: Deck())
+    }
 
     /// 게임 준비. 카드를 섞는다
     func prepareDeck() {
