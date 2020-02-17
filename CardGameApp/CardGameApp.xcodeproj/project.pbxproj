@@ -19,6 +19,7 @@
 		AE83CC4323F67341002635AD /* Dealer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE83CC4223F67341002635AD /* Dealer.swift */; };
 		AE83CC4523F67409002635AD /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE83CC4423F67409002635AD /* Game.swift */; };
 		AE83CC4723F68B1A002635AD /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE83CC4623F68B1A002635AD /* Player.swift */; };
+		AEF5EA6123FA21DD0038D07E /* Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF5EA6023FA21DD0038D07E /* Enum.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		AE83CC4223F67341002635AD /* Dealer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dealer.swift; sourceTree = "<group>"; };
 		AE83CC4423F67409002635AD /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		AE83CC4623F68B1A002635AD /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		AEF5EA6023FA21DD0038D07E /* Enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enum.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +100,7 @@
 		AE40A35C23ED340A009AB61B /* CardGameApp */ = {
 			isa = PBXGroup;
 			children = (
+				AEF5EA5F23FA21BC0038D07E /* Enumeration */,
 				AE83CC3D23F6727B002635AD /* Model */,
 				AE40A35D23ED340A009AB61B /* AppDelegate.swift */,
 				AE40A37123ED35B4009AB61B /* GameTableView.swift */,
@@ -119,6 +122,14 @@
 				AE83CC3E23F67287002635AD /* Hands.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		AEF5EA5F23FA21BC0038D07E /* Enumeration */ = {
+			isa = PBXGroup;
+			children = (
+				AEF5EA6023FA21DD0038D07E /* Enum.swift */,
+			);
+			path = Enumeration;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -242,6 +253,7 @@
 				AE83CC4323F67341002635AD /* Dealer.swift in Sources */,
 				AE83CC3F23F67287002635AD /* Hands.swift in Sources */,
 				AE83CC4123F672DB002635AD /* Gamer.swift in Sources */,
+				AEF5EA6123FA21DD0038D07E /* Enum.swift in Sources */,
 				AE83CC4723F68B1A002635AD /* Player.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
