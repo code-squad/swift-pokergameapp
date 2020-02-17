@@ -43,8 +43,8 @@ class GameTable {
     }
     
     // 카드개수비교해서 게임 속행할지 확인
-    func checkEndGame() -> Bool {
-        return true
+    func isContinue() -> Bool {
+        return dealer.cardDeckCount() > players.count
     }
 }
 
