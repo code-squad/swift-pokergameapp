@@ -9,18 +9,12 @@
 import Foundation
 
 class GameTable {
-    // 플레이어 수 (딜러 제외)
-    // 스터드 타입 (5, 7)
-    // 카드 덱
-    // 참가자 (딜러포함)
-    private let playerCount: Int
     private let studType: Int
     
     private var dealer: Dealer
     private var players: [Player]
   
     init(playerCount: Int, studType: Int) {
-        self.playerCount = playerCount
         self.studType = studType
         self.dealer = Dealer()
         self.players = [Player]()
@@ -31,7 +25,7 @@ class GameTable {
     
     // 플레이어 세팅
     func settingPlayer() {
-        for _ in 1 ... playerCount {
+        for _ in 1 ... players.count {
             players.append(Player())
         }
         players.append(dealer)
@@ -48,7 +42,7 @@ class GameTable {
     
     // 카드개수비교해서 게임 속행할지 확인
     func checkEndGame() -> Bool {
-        return self.dealer.checkCardAmount() > playerCount
+        return self.dealer.checkCardAmount() > players.count
     }
     
 }
