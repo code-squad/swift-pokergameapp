@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C213D77B23FA4E5200066A4E /* Players.swift in Sources */ = {isa = PBXBuildFile; fileRef = C213D77A23FA4E5200066A4E /* Players.swift */; };
 		C2BD177223F1567E00437146 /* GamePlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BD177123F1567E00437146 /* GamePlay.swift */; };
 		C2BD177C23F1771B00437146 /* GamePlayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BD177B23F1771B00437146 /* GamePlayTests.swift */; };
 		C2BD178123F444CA00437146 /* Descriptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BD178023F444CA00437146 /* Descriptions.swift */; };
@@ -37,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C213D77A23FA4E5200066A4E /* Players.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Players.swift; sourceTree = "<group>"; };
 		C2BD177123F1567E00437146 /* GamePlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamePlay.swift; sourceTree = "<group>"; };
 		C2BD177B23F1771B00437146 /* GamePlayTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePlayTests.swift; sourceTree = "<group>"; };
 		C2BD178023F444CA00437146 /* Descriptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Descriptions.swift; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 				C2E62B1123ED35C900236059 /* CardDeck.swift */,
 				C2BD177123F1567E00437146 /* GamePlay.swift */,
 				C2BD178023F444CA00437146 /* Descriptions.swift */,
+				C213D77A23FA4E5200066A4E /* Players.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -256,6 +259,7 @@
 			files = (
 				C2D9584123EA7B09002057D6 /* ViewController.swift in Sources */,
 				C2E62B1223ED35C900236059 /* CardDeck.swift in Sources */,
+				C213D77B23FA4E5200066A4E /* Players.swift in Sources */,
 				C2D9583D23EA7B09002057D6 /* AppDelegate.swift in Sources */,
 				C2BD178123F444CA00437146 /* Descriptions.swift in Sources */,
 				C2BD179023F5815400437146 /* GamePlayView.swift in Sources */,
