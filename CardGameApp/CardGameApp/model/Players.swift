@@ -15,11 +15,20 @@ class Players {
     // player들 세팅을 여기서 해줘야한다...
     // 그럼 참가자가 몇명인지는 어떻게 알수 있을까 게임타입?
     
-    func participate(entryAmount: GameMode.Entry){
+    func participate(entryAmount: GameMode.Entry) {
         let count = Int(entryAmount.description)!
-        for _ in 1 ... count {
+        for _ in 0 ... count {
             let player = Player()
             players.append(player)
         }
+    }
+    
+    func handleCard(studType: GameMode.StudType, dealer: Dealer) {
+        let type = Int(studType.description)!
+        players.forEach{ player in
+            let drawDeck = dealer.drawCard(studType: type)
+            player.bringCard(card: drawDeck)
+        }
+        
     }
 }
