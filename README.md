@@ -72,6 +72,15 @@
 * 불필요한 argument lable 이름 간소화
 * 클로저를 이용하여 열거형의 rawValue나 클래스의 내부 프로퍼티에 대한 의존성 제거
 
+### 더 개선한 내용
+
+* number formatting dictionary를 Rank로 옮기고, Rank 타입을 CustomStringConvertible 프로토콜을 따르도록 구현
+* Suit도 CustomStringConvertible 프로토콜을 따르도록 구현
+* descriptions에서 싱글톤 삭제하고, static 키워드 추가
+* 클로저를 넘기는 메서드들을 동사형태로 네이밍 변경
+* 뷰에서 데이터를 들고 있는 방식이 아니라 데이터를 들고있는 객체에게 물어봐서 업데이트하는 방식으로 변경
+* 불필요한 타입 삭제
+
 ### 실행 결과
 
 ![step5_result](step5-result.png)
