@@ -8,17 +8,9 @@
 
 import UIKit
 
-struct OverlappedCardsViewContents {
-    let cards: [String]
-}
-
 class OverlappedCardsView: UIView {
+    
     private var maxCards: Int?
-    var contents: OverlappedCardsViewContents? {
-        didSet {
-            updateView()
-        }
-    }
     
     private lazy var overlappedCardsStackView: UIStackView = {
         let stackView = UIStackView()
@@ -41,6 +33,15 @@ class OverlappedCardsView: UIView {
         super.init(frame: .zero)
         self.maxCards = maxCards
         setupView()
+    }
+    
+    func updateView(with participant: Participant) {
+        var subViewIndex = 0
+        participant.repeatForEachCard { card in
+            updateSubviewImage(at: subViewIndex, to: UIImage(named: "\(card)"))
+            subViewIndex += 1
+        }
+        showCardView(by: subViewIndex)
     }
     
     private func setupView() {
@@ -67,13 +68,8 @@ class OverlappedCardsView: UIView {
         }
     }
     
-    private func updateView() {
-        guard let cards = contents?.cards else { return }
-        showCardView(by: cards.count)
-        
-        cards.enumerated().forEach { (index, card) in
-            guard let view = overlappedCardsStackView.arrangedSubviews[index] as? UIImageView else { return }
-            view.image = UIImage(named: card)
-        }
+    private func updateSubviewImage(at index: Int, to image: UIImage?) {
+        guard let view = overlappedCardsStackView.arrangedSubviews[index] as? UIImageView else { return }
+        view.image = image
     }
 }

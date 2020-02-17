@@ -8,17 +8,9 @@
 
 import UIKit
 
-struct GamePlayViewContents {
-    let cards: [[String]]
-}
-
 class GamePlayView: UIView {
+    
     private var maxParticipants: Int?
-    var contents: GamePlayViewContents? {
-        didSet {
-            updateView()
-        }
-    }
     
     private lazy var participantsStackView: UIStackView = {
         let view = UIStackView()
@@ -72,16 +64,19 @@ class GamePlayView: UIView {
         return names
     }
     
-    private func updateView() {
-        guard let contents = contents else { return }
-        showParticipantView(by: contents.cards.count)
-        let names = createParticipantNames(by: contents.cards.count)
+    func updateView(with gamePlay: GamePlay, participantsCount: Int) {
+        showParticipantView(by: participantsCount)
+        let names = createParticipantNames(by: participantsCount)
         
-        (0..<contents.cards.count).forEach {
-            guard let view = participantsStackView.arrangedSubviews[$0] as? ParticipantView else { return }
-            view.contents = ParticipantViewContents(
-                name: names[$0],
-                cards: contents.cards[$0])
+        var subViewIndex = 0
+        gamePlay.repeatForEachParticipant { participant in
+            updateSubView(at: subViewIndex, to: participant, participantName: names[subViewIndex])
+            subViewIndex += 1
         }
+    }
+    
+    private func updateSubView(at index: Int, to participant: Participant, participantName: String) {
+        guard let view = participantsStackView.arrangedSubviews[index] as? ParticipantView else { return }
+        view.updateView(name: participantName, participant: participant)
     }
 }

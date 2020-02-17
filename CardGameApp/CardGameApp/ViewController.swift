@@ -68,10 +68,8 @@ class ViewController: UIViewController {
         shuffleCardDeck()
         let gamePlay = GamePlay(rule: rule, numberOfPlayers: numberOfPlayers, cardDeck: cardDeck!)
         gamePlay.deal()
-        let table = gamePlay.table()
-        let cards = table.map { $0.map { "\($0)" } }
         
-        gamePlayView.contents = GamePlayViewContents(cards: cards)
+        gamePlayView.updateView(with: gamePlay, participantsCount: 7)
     }
     
     private func setBackgroundPattern() {

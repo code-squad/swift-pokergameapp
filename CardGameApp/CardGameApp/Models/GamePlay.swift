@@ -37,9 +37,8 @@ class GamePlay {
         }
     }
     
-    func table() -> [[Card]] {
-        var cards = players.repeatForEachPlayer { $0.repeatForEachCard { $0 } }
-        cards.append(dealer.repeatForEachCard { $0 })
-        return cards
+    func repeatForEachParticipant(_ block: (Participant) -> ()) {
+        players.repeatForEachPlayer { block($0) }
+        block(dealer)
     }
 }
