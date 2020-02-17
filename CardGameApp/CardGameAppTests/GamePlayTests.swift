@@ -42,18 +42,32 @@ class GamePlayTests: XCTestCase {
     func testSevenCardStudGamePlayDealing() {
         let gamePlay = GamePlay(rule: .sevenCardStud, numberOfPlayers: .two, cardDeck: cardDeck)
         gamePlay.deal()
-        let table = gamePlay.table()
         
-        XCTAssertEqual(table.count, 3)
-        XCTAssertEqual(table.map { $0.count }, [7, 7, 7])
+        var participantCount = 0
+        gamePlay.repeatForEachParticipant { participant in
+            participantCount += 1
+            var cardCount = 0
+            participant.repeatForEachCard { _ in
+                cardCount += 1
+            }
+            XCTAssertEqual(cardCount, 7)
+        }
+        XCTAssertEqual(participantCount, 3)
     }
 
     func testFiveCardStudGamePlayDealing() {
         let gamePlay = GamePlay(rule: .fiveCardStud, numberOfPlayers: .three, cardDeck: cardDeck)
         gamePlay.deal()
-        let table = gamePlay.table()
         
-        XCTAssertEqual(table.count, 4)
-        XCTAssertEqual(table.map { $0.count }, [5, 5, 5, 5])
+        var participantCount = 0
+        gamePlay.repeatForEachParticipant { participant in
+            participantCount += 1
+            var cardCount = 0
+            participant.repeatForEachCard { _ in
+                cardCount += 1
+            }
+            XCTAssertEqual(cardCount, 5)
+        }
+        XCTAssertEqual(participantCount, 4)
     }
 }
