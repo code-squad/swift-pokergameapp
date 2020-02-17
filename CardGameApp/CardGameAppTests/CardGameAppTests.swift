@@ -118,32 +118,11 @@ class CardGameAppTests: XCTestCase  {
     }
     
     // MARK:-  pokerGame 클래스 테스트 케이스
-    // 플레이어 객체가 참여 인원수 대로 생성 됐는지 테스트
-    func testAllPlayersReady() {
-        // Given
-        let playersCount = Int.random(in: 1 ... 4)
-        var seed = SystemRandomNumberGenerator()
-        let cardStud = [5,7]
-        let cardStudNumber = (cardStud.shuffled(using: &seed).first)!
-        let dealer = Dealer(which: .fiveCardStud)
-        let pokerGame = CardStud(dealer: dealer, playersCount: playersCount, studNumber: cardStudNumber)
-        
-        // When
-        let readyCheck = pokerGame.isAllPlayersReady
-        
-        // Then
-        XCTAssertTrue(readyCheck())
-    }
-    
     // 참가한 모든 플레이어가 스터드 넘버만큼의 카드를 갖고 있는지 테스트
     func testAllPlayersCardsReady(){
         // Given
-        let playersCount = Int.random(in: 1 ... 4)
-        var seed = SystemRandomNumberGenerator()
-        let cardStud = [5,7]
-        let cardStudNumber = (cardStud.shuffled(using: &seed).first)!
-        let dealer = Dealer(which: .sevenCardStud)
-        let pokerGame = CardStud(dealer: dealer, playersCount: playersCount, studNumber: cardStudNumber)
+        let dealer = Dealer(in: .fiveCardStud)
+        let pokerGame = PokerGame(dealer: dealer, numbersOfPlayers: .four, gameMode: .fiveCardStud)
         
         // When
         pokerGame.start()
@@ -156,11 +135,11 @@ class CardGameAppTests: XCTestCase  {
     // MARK:-  Player 클래스 테스트 케이스
     func testIsPlayerCardsFull(){
         //Given
-        let player = Player(which: .fiveCardStud)
-        let dealer = Dealer(which: .fiveCardStud)
+        let player = Player(in: .fiveCardStud)
+        let dealer = Dealer(in: .fiveCardStud)
         
         // When
-        let newCards = dealer.distributeCards()
+        let newCards = dealer.giveOneCard()
         player.addCard(newCard: newCards)
         let cardReadyCheck = player.isCardsFull()
         
@@ -171,10 +150,10 @@ class CardGameAppTests: XCTestCase  {
     // MARK:-  Dealer 클래스 테스트 케이스
     func testIsDealerCardsFull(){
         //Given
-        let dealer = Dealer(which: .fiveCardStud)
+        let dealer = Dealer(in: .fiveCardStud)
         
         //When
-        let newCards = dealer.distributeCards()
+        let newCards = dealer.giveOneCard()
         dealer.addCard(newCard: newCards)
         let cardReadyCheck = dealer.isCardsFull()
         

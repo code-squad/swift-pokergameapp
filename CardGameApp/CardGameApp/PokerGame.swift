@@ -61,7 +61,7 @@ class PokerGame {
         }
     }
     
-    func distributeCards() {
+    private func distributeCards() {
         players.forEach{player in
             var nextCard = dealer.giveOneCard()
             player.addCard(newCard: nextCard)
