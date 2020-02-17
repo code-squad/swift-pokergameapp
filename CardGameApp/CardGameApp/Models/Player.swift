@@ -34,7 +34,7 @@ class Player {
 
 extension Player: Equatable {
     static func == (lhs: Player, rhs: Player) -> Bool {
-        lhs.value < rhs.value
+        return lhs.hand == rhs.hand && lhs.name == rhs.name && lhs.value == rhs.value
     }
     
     static func < (lhs: Player, rhs: Player) -> Bool {

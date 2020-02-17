@@ -26,6 +26,13 @@ class ViewController: UIViewController {
     }()
     
     let pokerGameStackView: UIStackView = PokerGameStackView()
+    let winnerCrownImageView: UIImageView = {
+        let imageView = UIImageView(image: #imageLiteral(resourceName: "winner"))
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.widthAnchor.constraint(equalToConstant: 28).isActive = true
+        imageView.heightAnchor.constraint(equalToConstant: 28).isActive = true
+        return imageView
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,6 +63,9 @@ class ViewController: UIViewController {
             let cardStackView = CardStackView(of: $0)
             playerStackView.addArrangedSubview(cardStackView)
             pokerGameStackView.addArrangedSubview(playerStackView)
+            if $0 == pokerGame.winner {
+                winnerCrownImageView.centerYAnchor.constraint(equalTo: cardStackView.centerYAnchor).isActive = true
+            }
         }
     }
     
@@ -84,6 +94,9 @@ class ViewController: UIViewController {
         pokerGameStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 48).isActive = true
         pokerGameStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -48).isActive = true
         pokerGameStackView.bottomAnchor.constraint(lessThanOrEqualTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16).isActive = true
+        
+        view.addSubview(winnerCrownImageView)
+        winnerCrownImageView.trailingAnchor.constraint(equalTo: pokerGameStackView.leadingAnchor, constant: -8).isActive = true
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {

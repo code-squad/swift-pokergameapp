@@ -12,6 +12,7 @@ class PokerGame {
     private let gameType: GameType
     private let playerCount: PlayerCount
     private var players: [Player] = []
+    private(set) var winner: Player!
     let dealer: Dealer
     
     init(game gameType: GameType = .sevenCardsStud, numberOfPlayers: PlayerCount = .two) {
@@ -21,6 +22,12 @@ class PokerGame {
         
         setupPlayer()
         setupPlayersHand()
+        findWinner()
+    }
+    
+    private func findWinner() {
+        players.forEach{ $0.calculateItsValue() }
+        winner = players.sorted(by: { $0.value > $1.value }).first!
     }
     
     private func setupPlayer() {
