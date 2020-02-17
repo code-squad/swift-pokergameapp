@@ -22,44 +22,12 @@ class ViewController: UIViewController {
     private var numOfPlayer: PokerGame.NumOfPlayer = .four
     
     @objc fileprivate func handleStudControl(_ sender: UISegmentedControl) {
-        switch sender.selectedSegmentIndex {
-        case 0:
-            stud = .sevenCardStud
-            break
-            
-        case 1:
-            stud = .fiveCardStud
-            break
-            
-        default:
-            stud = .sevenCardStud
-            break
-        }
+        stud = PokerGame.Stud(index: sender.selectedSegmentIndex)
         redrawPokerStackView()
     }
     
     @objc fileprivate func handleNumOfPlayerControl(_ sender: UISegmentedControl) {
-        switch sender.selectedSegmentIndex {
-        case 0:
-            numOfPlayer = .one
-            break
-            
-        case 1:
-            numOfPlayer = .two
-            break
-            
-        case 2:
-            numOfPlayer = .three
-            break
-            
-        case 3 :
-            numOfPlayer = .four
-            break
-            
-        default:
-            numOfPlayer = .four
-            break
-        }
+        numOfPlayer = PokerGame.NumOfPlayer(index : sender.selectedSegmentIndex)
         redrawPokerStackView()
     }
     
