@@ -64,9 +64,9 @@ class GamePlayView: UIView {
         return names
     }
     
-    func updateView(with gamePlay: GamePlay, participantsCount: Int) {
-        showParticipantView(by: participantsCount)
-        let names = createParticipantNames(by: participantsCount)
+    func updateView(with gamePlay: GamePlay) {
+        showParticipantView(by: gamePlay.participantCount)
+        let names = createParticipantNames(by: gamePlay.participantCount)
         
         var subViewIndex = 0
         gamePlay.repeatForEachParticipant { participant in

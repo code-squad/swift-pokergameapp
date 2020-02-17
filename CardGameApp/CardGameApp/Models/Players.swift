@@ -21,6 +21,10 @@ class Players {
     
     private let players: [Participant]
     
+    var count: Int {
+        return players.count
+    }
+    
     init(with number: Number) {
         self.players = number.invokePerPlayerCount { Participant() }
     }
