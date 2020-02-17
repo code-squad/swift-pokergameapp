@@ -41,6 +41,7 @@
 		389487EA23F65227003D2481 /* ValueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389487E923F65227003D2481 /* ValueTests.swift */; };
 		389487EC23F9BE7D003D2481 /* Value.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389487EB23F9BE7C003D2481 /* Value.swift */; };
 		389487ED23F9BE7D003D2481 /* Value.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389487EB23F9BE7C003D2481 /* Value.swift */; };
+		389487EF23FA4496003D2481 /* ValueComparisonTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389487EE23FA4496003D2481 /* ValueComparisonTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +80,7 @@
 		3894879F23F3DD3D003D2481 /* TitledSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitledSegmentedControl.swift; sourceTree = "<group>"; };
 		389487E923F65227003D2481 /* ValueTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueTests.swift; sourceTree = "<group>"; };
 		389487EB23F9BE7C003D2481 /* Value.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Value.swift; sourceTree = "<group>"; };
+		389487EE23FA4496003D2481 /* ValueComparisonTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueComparisonTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +142,7 @@
 				385F3AE523EC466E003FA6A2 /* Info.plist */,
 				3894878B23F165B5003D2481 /* PokerGameTests.swift */,
 				389487E923F65227003D2481 /* ValueTests.swift */,
+				389487EE23FA4496003D2481 /* ValueComparisonTest.swift */,
 			);
 			path = CardGameAppTests;
 			sourceTree = "<group>";
@@ -305,6 +308,7 @@
 				389487DC23F53546003D2481 /* CardImageView.swift in Sources */,
 				3894878D23F165B5003D2481 /* PokerGameTests.swift in Sources */,
 				389487ED23F9BE7D003D2481 /* Value.swift in Sources */,
+				389487EF23FA4496003D2481 /* ValueComparisonTest.swift in Sources */,
 				385F3AEC23EC468C003FA6A2 /* Card.swift in Sources */,
 				389487E123F53546003D2481 /* TitledSegmentedControl.swift in Sources */,
 				389487E023F53546003D2481 /* SegmentedControlStackView.swift in Sources */,

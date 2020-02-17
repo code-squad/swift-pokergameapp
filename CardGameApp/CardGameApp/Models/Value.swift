@@ -11,7 +11,6 @@ import Foundation
 struct Value {
     private var hand: [Card] = []
     private(set) var handRanking: HandRanking = .highCard
-    private var combination: [[Card]] = []
     private var restOfHand: [Card] = []
     private var combinationsOf: [HandRanking: [[Card]]] = [:]
     
@@ -104,11 +103,20 @@ extension Value: Equatable {
         let rhsRanks = rhs.restOfHand.map{ $0.rank }
         
         if lhs.handRanking == rhs.handRanking {
+            let lhsCombinationsRepresentationRanks = lhs.combinationsOf[lhs.handRanking]!.map({ $0.first!.rank }).sorted(by: >)
+            let rhsCombinationsRepresentationRanks = rhs.combinationsOf[rhs.handRanking]!.map({ $0.first!.rank }).sorted(by: >)
+            
+            for index in 0..<lhsCombinationsRepresentationRanks.count {
+                if lhsCombinationsRepresentationRanks[index] >  rhsCombinationsRepresentationRanks[index] { return true }
+            }
+            
             for index in 0..<lhs.restOfHand.count {
                 if lhsRanks[index] > rhsRanks[index] { return true }
             }
+            return false
+        } else {
+            return lhs.handRanking > rhs.handRanking
         }
-        return false
     }
     
     static func < (lhs: Value, rhs: Value) -> Bool {
@@ -116,11 +124,20 @@ extension Value: Equatable {
         let rhsRanks = rhs.restOfHand.map{ $0.rank }
         
         if lhs.handRanking == rhs.handRanking {
+            let lhsCombinationsRepresentationRanks = lhs.combinationsOf[lhs.handRanking]!.map({ $0.first!.rank }).sorted(by: >)
+            let rhsCombinationsRepresentationRanks = rhs.combinationsOf[rhs.handRanking]!.map({ $0.first!.rank }).sorted(by: >)
+            
+            for index in 0..<lhsCombinationsRepresentationRanks.count {
+                if lhsCombinationsRepresentationRanks[index] <  rhsCombinationsRepresentationRanks[index] { return true }
+            }
+            
             for index in 0..<lhs.restOfHand.count {
                 if lhsRanks[index] < rhsRanks[index] { return true }
             }
+            return false
+        } else {
+            return lhs.handRanking < rhs.handRanking
         }
-        return false
     }
 }
 
