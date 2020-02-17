@@ -12,10 +12,12 @@ class Participant {
     private let gameMode : GameMode
     private var cardsInHands = [Card]()
     
-    init(which cardStud: Int){}
+    init(which cardStud: GameMode){
+        self.gameMode = cardStud
+    }
     
     func isCardsFull() -> Bool {
-        return gameMode.compareStudNumber(with: self.cardsInHands.count)
+        return self.gameMode.compareStudNumber(with: self.cardsInHands.count)
     }
     func addCard(newCard: [Card]) {
         self.cardsInHands += newCard
