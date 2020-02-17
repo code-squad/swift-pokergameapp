@@ -46,8 +46,11 @@ class PokerGame {
         }()
     }
     
-    func start() { // 수정중
+    func start() {
     // 카드 분배
+        gameMode.setCardPlacement {
+            distributeCards()
+        }
     }
     
     func distributeCards() {
