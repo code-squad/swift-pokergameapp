@@ -9,7 +9,12 @@
 import Foundation
 
 class Hand{
+    enum resultPriority: Int{
+        case noPair = 0, onePair, twoPair, fourCard, straight
+    }
+    
     private var card: [Card] = [Card]()
+    private var result: resultPriority!
     
     func append(card: Card){
         self.card.append(card)
