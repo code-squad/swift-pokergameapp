@@ -11,6 +11,12 @@ import XCTest
 
 class GamePlayTests: XCTestCase {
     
+    var cardDeck: CardDeck!
+    
+    override func setUp() {
+        cardDeck = CardDeck()
+    }
+    
     func testParticipantTakesACard() {
         let participant = Participant()
         participant.take(card: Card(suit: .club, rank: .ace))
@@ -34,7 +40,7 @@ class GamePlayTests: XCTestCase {
     }
     
     func testSevenCardStudGamePlayDealing() {
-        let gamePlay = GamePlay(rule: .sevenCardStud, numberOfPlayers: .two)
+        let gamePlay = GamePlay(rule: .sevenCardStud, numberOfPlayers: .two, cardDeck: cardDeck)
         gamePlay.deal()
         let table = gamePlay.table()
         
@@ -43,7 +49,7 @@ class GamePlayTests: XCTestCase {
     }
 
     func testFiveCardStudGamePlayDealing() {
-        let gamePlay = GamePlay(rule: .fiveCardStud, numberOfPlayers: .three)
+        let gamePlay = GamePlay(rule: .fiveCardStud, numberOfPlayers: .three, cardDeck: cardDeck)
         gamePlay.deal()
         let table = gamePlay.table()
         
