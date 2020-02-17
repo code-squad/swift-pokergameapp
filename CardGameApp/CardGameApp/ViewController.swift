@@ -145,9 +145,8 @@ class ViewController: UIViewController {
     private func makePlayerCard(_ player: Player) -> UIStackView {
         let cardStack = makeCardStack()
         player.forEachCard {
-            let card = makeCard($0)
+            let card = CardImageView(image: UIImage(named: "\($0).png"))
             cardStack.addArrangedSubview(card)
-            card.heightAnchor.constraint(equalTo: card.widthAnchor, multiplier: 1.27).isActive = true
         }
         return cardStack
     }
@@ -160,18 +159,6 @@ class ViewController: UIViewController {
             return stack
         }()
         return cardStack
-    }
-    
-    private func makeCard(_ cardInfo: Card) -> UIImageView {
-        let card: UIImageView = {
-            let imageView = UIImageView()
-            imageView.translatesAutoresizingMaskIntoConstraints = false
-            imageView.layer.cornerRadius = 3.0
-            imageView.clipsToBounds = true
-            return imageView
-        }()
-        card.image = UIImage(named: "\(cardInfo).png")
-        return card
     }
     
     // MARK: - Event Processing
