@@ -61,7 +61,7 @@ class ViewController: UIViewController {
     
     func setUI() {
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "bg_pattern")!)
-        setPokerGame(playerCount: playerCount, stud: studNumber)
+        startPokerGame(playerCount: playerCount, stud: studNumber)
         
         studSegmented.center = CGPoint(x: self.view.frame.width/2, y: 90)
         self.view.addSubview(studSegmented)
@@ -100,11 +100,6 @@ class ViewController: UIViewController {
         return .lightContent
     }
     
-    func cardImageView(named: String) -> UIImageView {
-        let image = UIImageView(image: UIImage(named: named))
-        return image
-    }
-    
     func makePlayerLabel(playerNumber: Int) -> UILabel {
         let label = UILabel()
         label.text = "Player \(playerNumber)"
@@ -134,24 +129,22 @@ class ViewController: UIViewController {
         return stackView
     }
     
-    func setPokerGame(playerCount: PokerGame.PlayerCount, stud: PokerGame.Stud) {
+    func startPokerGame(playerCount: PokerGame.PlayerCount, stud: PokerGame.Stud) {
         pokerGame = PokerGame(playerCount: playerCount, stud: stud)
-        setCardsWithImages()
+        setPlayersCards()
         setDealerCards()
-
     }
     
-    func setCardsWithImages() {
+    func setPlayersCards() {
         wholeGameStack.arrangedSubviews.forEach { $0.removeFromSuperview() }
         pokerGame.allocateCards()
         var number = 1
         pokerGame.forEachPlayer { player in
             let cardImageStack = makeCardImageStack()
             player.forEachCard { (card) in
-                let cardImage = cardImageView(named: card.description)
+                let cardImage = UIImageView(image: UIImage(named: card.description))
                 cardImage.heightAnchor.constraint(equalTo: cardImage.widthAnchor, multiplier: 1.27).isActive = true
                 cardImageStack.addArrangedSubview(cardImage)
-
             }
             let gameStack = makeGameStack(playerNumber: number, cardImageStack: cardImageStack)
             number += 1
@@ -171,7 +164,7 @@ class ViewController: UIViewController {
             return label
         }()
         for card in cards {
-            let cardImage = cardImageView(named: card.description)
+            let cardImage = UIImageView(image: UIImage(named: card.description))
             cardImage.heightAnchor.constraint(equalTo: cardImage.widthAnchor, multiplier: 1.27).isActive = true
             cardImageStack.addArrangedSubview(cardImage)
         }
@@ -183,17 +176,17 @@ class ViewController: UIViewController {
     @objc func studSegmentControl(_ segmentedControl: UISegmentedControl) {
         studNumber = PokerGame.Stud.init(index: segmentedControl.selectedSegmentIndex)
         
-        setPokerGame(playerCount: playerCount, stud: studNumber)
+        startPokerGame(playerCount: playerCount, stud: studNumber)
     }
     
     @objc func playerCountControl(_ segmentedControl: UISegmentedControl) {
         playerCount = PokerGame.PlayerCount.init(index: segmentedControl.selectedSegmentIndex)
        
-        setPokerGame(playerCount: playerCount, stud: studNumber)
+        startPokerGame(playerCount: playerCount, stud: studNumber)
     }
     
    override func motionBegan(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
-    setPokerGame(playerCount: playerCount, stud: studNumber)
+    startPokerGame(playerCount: playerCount, stud: studNumber)
     }
 }
 
