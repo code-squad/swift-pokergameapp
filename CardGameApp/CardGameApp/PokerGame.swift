@@ -8,26 +8,22 @@
 
 import Foundation
 
-
-enum GameMode : Int {
-    case fiveCardStud = 5
-    case sevenCardStud = 7
-    
-    func compareStudNumber(with target : Int) -> Bool {
-        return self.rawValue == target
-    }
-    // 카드를 내려놓는 곳이 몇 개가 필요한지 세팅
-    func setCardPlacement(of gameMode: GameMode) -> Int {
-        switch gameMode {
-        case .fiveCardStud:
-            return 5
-        case .sevenCardStud:
-            return 7
+class PokerGame {
+    enum GameMode : Int {
+        case fiveCardStud = 5
+        case sevenCardStud = 7
+        
+        func compareStudNumber(with target : Int) -> Bool {
+            return self.rawValue == target
+        }
+        
+        // 카드를 내려놓는 곳이 몇 개가 필요한지 세팅
+        func setCardPlacement(of giveCard: ()-> ()) {
+            for _ in 1 ... self.rawValue{ // 여기 바꿔야 함.
+               giveCard()
+            }
         }
     }
-}
-
-class PokerGame {
     private let gameMode: GameMode
     private let dealer : Dealer
     private var players : [Player] = []
@@ -46,9 +42,13 @@ class PokerGame {
         }()
     }
     
-    func start() {
+    func start() { // 수정중
         self.dealer.addCard(newCard: self.dealer.distributeCards())
         self.players.forEach{$0.addCard(newCard: self.dealer.distributeCards())}
+    }
+    
+    func distributeCards() {
+        self.gameMode.setCardPlacement(of: self.dealer.giveOneCard()) // 수정중
     }
     
     func isAllPlayersReady() -> Bool {
