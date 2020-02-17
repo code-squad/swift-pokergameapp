@@ -10,6 +10,11 @@ import Foundation
 
 class Player{
     private var hand: Hand = Hand()
+    private var order: Int
+    
+    init(order: Int){
+        self.order = order
+    }
     
     func receiveCard(card: Card) {
         hand.append(card: card)
@@ -26,3 +31,11 @@ class Player{
     }
 }
 
+extension Player: CustomStringConvertible{
+    var description: String {
+        guard self is Dealer else{
+            return "Player\(order)"
+        }
+        return "Dealer"
+    }
+}

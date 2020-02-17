@@ -122,26 +122,26 @@ class ViewController: UIViewController {
     }
     
     private func setupPokerStackView(){
-        var count = 1
         pokerGame.forEachPlayers{
+            let player = $0
             playerStackView = createStackView(spacing: 0, axis: .vertical)
-            let label = UILabel()
-            label.textColor = UIColor.white
-            if $0 is Dealer{
-                label.text = "Dealer"
-            } else{
-                label.text = "Player\(count)"
-                count += 1
-            }
-            playerStackView.addArrangedSubview(label)
+            playerStackView.addArrangedSubview(createLabel(player: player))
             
             cardStackView = createStackView(spacing: -4, axis: .horizontal)
-            $0.forEach{
+            player.forEach{
                 addCardIntoStackView(stackView: cardStackView, cardName: "\($0)")
             }
             playerStackView.addArrangedSubview(cardStackView)
             pokerStackView.addArrangedSubview(playerStackView)
         }
+    }
+    
+    private func createLabel(player: Player) -> UILabel{
+        let label = UILabel()
+        label.textColor = UIColor.white
+        label.text = "\(player)"
+        
+        return label
     }
     
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {

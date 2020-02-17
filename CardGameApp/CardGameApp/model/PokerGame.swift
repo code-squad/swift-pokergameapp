@@ -40,10 +40,12 @@ class PokerGame{
     }
     
     private func readyPlayer(){
+        var count = 1
         self.dealer = Dealer()
         self.players = Players()
         self.numOfPlayer.forEach {
-            players.append(Player())
+            players.append(Player(order: count))
+            count += 1
         }
     }
     
