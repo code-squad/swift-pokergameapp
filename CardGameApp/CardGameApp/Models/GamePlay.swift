@@ -13,7 +13,7 @@ class GamePlay {
         case sevenCardStud = 7
         case fiveCardStud = 5
         
-        func repeatByRule(_ block: () -> ()) {
+        func invokePerRule(_ block: () -> ()) {
             (0..<rawValue).forEach { _ in block() }
         }
     }
@@ -31,15 +31,15 @@ class GamePlay {
     }
     
     func deal() {
-        rule.repeatByRule {
-            players.everyPlayers { $0.take(card: cardDeck.removeOne()) }
+        rule.invokePerRule {
+            players.repeatForEachPlayer { $0.take(card: cardDeck.removeOne()) }
             dealer.take(card: cardDeck.removeOne())
         }
     }
     
     func table() -> [[Card]] {
-        var cards = players.everyPlayers { $0.everyCard { $0 } }
-        cards.append(dealer.everyCard { $0 })
+        var cards = players.repeatForEachPlayer { $0.repeatForEachCard { $0 } }
+        cards.append(dealer.repeatForEachCard { $0 })
         return cards
     }
 }
@@ -50,7 +50,7 @@ class Players {
         case three = 3
         case four = 4
 
-        func repeatForPlayers<T>(_ block: () -> T) -> [T] {
+        func invokePerPlayerCount<T>(_ block: () -> T) -> [T] {
             return (0..<rawValue).map { _ in block() }
         }
     }
@@ -58,11 +58,11 @@ class Players {
     private let players: [Participant]
     
     init(with number: Number) {
-        self.players = number.repeatForPlayers { Participant() }
+        self.players = number.invokePerPlayerCount { Participant() }
     }
     
     @discardableResult
-    func everyPlayers<T>(_ transform: (Participant) -> T) -> [T] {
+    func repeatForEachPlayer<T>(_ transform: (Participant) -> T) -> [T] {
         return players.map { transform($0) }
     }
 }
@@ -75,7 +75,7 @@ class Participant {
     }
     
     @discardableResult
-    func everyCard<T>(_ transform: (Card) -> T) -> [T] {
+    func repeatForEachCard<T>(_ transform: (Card) -> T) -> [T] {
         return cards.map { transform($0) }
     }
 }
