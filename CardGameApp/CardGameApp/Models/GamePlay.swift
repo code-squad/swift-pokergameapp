@@ -24,6 +24,10 @@ class GamePlay {
     private let players: Players
     private var cardDeck: CardDeck
     
+    var participantCount: Int {
+        return players.count + 1
+    }
+    
     init(rule: Rule, numberOfPlayers: Players.Number, cardDeck: CardDeck) {
         self.rule = rule
         self.players = Players(with: numberOfPlayers)

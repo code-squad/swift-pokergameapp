@@ -55,7 +55,7 @@ class ViewController: UIViewController {
         let gamePlay = GamePlay(rule: rule, numberOfPlayers: playerCount, cardDeck: cardDeck!)
         gamePlay.deal()
         
-        gamePlayView.updateView(with: gamePlay, participantsCount: 7)
+        gamePlayView.updateView(with: gamePlay)
     }
     
     private func setBackgroundPattern() {
