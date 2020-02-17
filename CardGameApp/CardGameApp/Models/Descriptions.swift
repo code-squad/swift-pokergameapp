@@ -9,8 +9,6 @@
 import Foundation
 
 class Descriptions {
-    static let shared = Descriptions()
-    
     enum Rule: CustomStringConvertible {
         case seven, five
         
@@ -34,9 +32,9 @@ class Descriptions {
         }
     }
     
-    let maxPlayers = 5
-    let maxCards = 7
+    static let maxPlayers = 5
+    static let maxCards = 7
     
-    let playerLabel = "Player"
-    let dealerLabel = "Dealer"
+    static let playerLabel = "Player"
+    static let dealerLabel = "Dealer"
 }

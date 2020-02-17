@@ -50,7 +50,7 @@ class GamePlayView: UIView {
         participantsStackView.fillSuperView()
         guard let max = maxParticipants else { return }
         (0..<max).forEach { _ in
-            let participantView = ParticipantView(maxCards: Descriptions.shared.maxCards)
+            let participantView = ParticipantView(maxCards: Descriptions.maxCards)
             participantsStackView.addArrangedSubview(participantView)
         }
     }
@@ -67,8 +67,8 @@ class GamePlayView: UIView {
     }
     
     private func createParticipantNames(by number: Int) -> [String] {
-        var names = (1..<number).map { "\(Descriptions.shared.playerLabel)\($0)" }
-        names.append("\(Descriptions.shared.dealerLabel)")
+        var names = (1..<number).map { "\(Descriptions.playerLabel)\($0)" }
+        names.append("\(Descriptions.dealerLabel)")
         return names
     }
     

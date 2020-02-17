@@ -20,7 +20,7 @@ class ViewController: UIViewController {
     }()
     
     private lazy var gamePlayView: GamePlayView = {
-        let view = GamePlayView(maxParticipantNumber: Descriptions.shared.maxPlayers)
+        let view = GamePlayView(maxParticipantNumber: Descriptions.maxPlayers)
         return view
     }()
 
