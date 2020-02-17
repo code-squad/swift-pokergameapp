@@ -181,32 +181,15 @@ class ViewController: UIViewController {
     
     
     @objc func studSegmentControl(_ segmentedControl: UISegmentedControl) {
-        switch studSegmented.selectedSegmentIndex {
-        case 0:
-            studNumber = .seven
-        case 1:
-            studNumber = .five
-        default:
-            break
-        }
+        studNumber = PokerGame.Stud.init(index: segmentedControl.selectedSegmentIndex)
+        
         setPokerGame(playerCount: playerCount, stud: studNumber)
     }
     
     @objc func playerCountControl(_ segmentedControl: UISegmentedControl) {
-        switch playerSegmented.selectedSegmentIndex {
-        case 0:
-            playerCount = .one
-        case 1:
-            playerCount = .two
-        case 2:
-            playerCount = .three
-        case 3:
-            playerCount = .four
-        default:
-            break
-        }
+        playerCount = PokerGame.PlayerCount.init(index: segmentedControl.selectedSegmentIndex)
+       
         setPokerGame(playerCount: playerCount, stud: studNumber)
-        
     }
     
    override func motionBegan(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
