@@ -13,18 +13,14 @@ class CardGameAppTests: XCTestCase {
     
     var cardDeck: CardDeck!
     var card: Card!
-    
+    var gameTable: GameTable!
     
     override func setUp() {
-        cardDeck = CardDeck()
-        cardDeck.reset()
-        card = cardDeck.removeOne()
-        print(card.description)
-        card = cardDeck.removeOne()
-        print(card.description)
+        gameTable = GameTable(playerCount: 5, studType: 5)
     }
 
-    func testDeckCount() {
-        XCTAssertEqual(cardDeck.count(), 50)
+    func testcheckContinueGame() {
+        XCTAssertFalse(gameTable.checkEndGame())
     }
+    
 }
