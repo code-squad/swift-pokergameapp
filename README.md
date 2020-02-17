@@ -32,3 +32,17 @@
 4. shuffle() 함수, 덱 랜덤으로 섞음
 5. reset() 함수, 덱 초기화
 6. 테스트 코드를 작성 했으나...맞는건지 모르겠음..
+
+### step-4 (2020.2.17)
+1. GameTable Class 생성 (CardGame.swift)
+- 딜러제외 플레이어수
+- 카드 studType
+- 딜러
+- 전체 참가자 배열(딜러도 포함해야함)
+- initializer에서 전체 참가자 세팅 및 studType에 맞게 카드 분배를 해줌.
+2. Player Class를 만듦.
+- 자기 손에 들고있는 카드덱(handDeck)
+- 카드를 가져와 자기 손에 넣는 함수 bringCard 추가 (딜러가 나눠준 카드를 받음.)
+3. Dealer Class를 만듦.
+- Player Class를 상속받음, Player와 같은 속성이나 Dealer가 하는일은 좀 더 추가가 됨.
+- 카드 섞기(shuffle), 카드 나눠주기(drawCard), 카드개수 확인하기(checkCardAmount)

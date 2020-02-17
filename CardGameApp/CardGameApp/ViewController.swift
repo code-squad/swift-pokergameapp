@@ -31,7 +31,7 @@ class ViewController: UIViewController {
         cardDeck.shuffle()
     }
     
-    func drawStackView(){
+    func drawStackView() {
         setUpStackView()
         for _ in 0 ..< cardCount {
             addCardOnStackView()
@@ -40,7 +40,7 @@ class ViewController: UIViewController {
     }
     
     // stackView 설정 및 view에 등록
-    func setUpStackView(){
+    func setUpStackView() {
         self.CardStackView.axis = .horizontal
         self.CardStackView.alignment = .fill
         self.CardStackView.distribution = .fillEqually
@@ -49,7 +49,7 @@ class ViewController: UIViewController {
     }
     
     // view에 stackview를 올림
-    func addStackViewOnView(){
+    func addStackViewOnView() {
         self.view.addSubview(CardStackView)
         self.CardStackView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 10).isActive = true
         self.CardStackView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 5).isActive = true
