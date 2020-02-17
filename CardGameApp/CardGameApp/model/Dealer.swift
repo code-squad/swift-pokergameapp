@@ -20,15 +20,8 @@ class Dealer: Player {
         self.cardDeck.shuffle()
     }
     
-    func drawCard(studType: GameMode.StudType) -> [Card?] {
-        var drawDeck = [Card?]()
-        
-        for _ in 1 ... studType {
-            let card = self.cardDeck.removeOne()
-            drawDeck.append(card)
-        }
-        
-        return drawDeck
+    func drawCard() -> Card? {
+        return cardDeck.removeOne()
     }
     
     func checkCardAmount() -> Int {

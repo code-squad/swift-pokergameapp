@@ -31,16 +31,12 @@ class GameTable {
     
     // 플레이어 카드 분배.
     func initDrawCard() {
-        for player in players {
-            for _ in 1 ... studType {
-                player.bringCard(card: self.dealer.drawCrad())
-            }
-        }
+        
     }
     
     // 카드개수비교해서 게임 속행할지 확인
     func checkEndGame() -> Bool {
-        return self.dealer.checkCardAmount() > players.count
+        return false
     }
 }
 
@@ -53,4 +49,8 @@ enum Entry: Int {
     case two = 2
     case three = 3
     case four = 4
+    
+    func each() {
+        
+    }
 }
