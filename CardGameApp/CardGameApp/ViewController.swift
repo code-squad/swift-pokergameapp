@@ -92,16 +92,10 @@ class ViewController: UIViewController {
     }
     
     private func makeGame() {
-        var index = 1
         pokerGame.forEachPlayers {
-            var playerName = "Player\(index)"
-            if type(of: $0) == type(of: Dealer()) {
-                playerName = "Dealer"
-            }
-            let playerStack = PlayerStackView(playerName: playerName)
+            let playerStack = PlayerStackView(playerName: "\($0)")
             playerStack.addArrangedSubview(makePlayerCard($0))
             gameTable.addArrangedSubview(playerStack)
-            index += 1
         }
         self.view.addSubview(gameTable)
     }
