@@ -28,7 +28,7 @@ class Player {
     }
     
     func calculateItsValue() {
-        value = Value()
+        value = Value(hand: hand)
     }
 }
 

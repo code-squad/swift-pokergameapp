@@ -9,7 +9,7 @@
 import XCTest
 @testable import CardGameApp
 
-class HandValueTests: XCTestCase {
+class ValueTests: XCTestCase {
 
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -25,8 +25,8 @@ class HandValueTests: XCTestCase {
             Card(suit: .club, rank: .five),
             Card(suit: .club, rank: .six)
         ]
-        let handValue = HandValue(hand: hand)
-        XCTAssert(handValue.value == Value.onePair)
+        let value = Value(hand: hand)
+        XCTAssert(value.handRanking == HandRanking.onePair)
     }
     
     func testTwoPairsValue() {
@@ -39,8 +39,8 @@ class HandValueTests: XCTestCase {
             Card(suit: .club, rank: .five),
             Card(suit: .club, rank: .six)
         ]
-        let handValue = HandValue(hand: hand)
-        XCTAssert(handValue.value == Value.twoPairs)
+        let value = Value(hand: hand)
+        XCTAssert(value.handRanking == HandRanking.twoPairs)
     }
     
     func testTripleValue() {
@@ -53,8 +53,8 @@ class HandValueTests: XCTestCase {
             Card(suit: .club, rank: .five),
             Card(suit: .club, rank: .six)
         ]
-        let handValue = HandValue(hand: hand)
-        XCTAssert(handValue.value == Value.triple)
+        let value = Value(hand: hand)
+        XCTAssert(value.handRanking == HandRanking.triple)
     }
     
     func testFourCardsValue() {
@@ -67,7 +67,7 @@ class HandValueTests: XCTestCase {
             Card(suit: .club, rank: .five),
             Card(suit: .club, rank: .six)
         ]
-        let handValue = HandValue(hand: hand)
-        XCTAssert(handValue.value == Value.fourCards)
+        let value = Value(hand: hand)
+        XCTAssert(value.handRanking == HandRanking.fourCards)
     }
 }
