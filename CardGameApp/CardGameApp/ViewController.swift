@@ -25,16 +25,19 @@ class ViewController: UIViewController {
         self.view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "pattern"))
         
         view.addSubview(cardStackView)
+ 
         addConstraintsToStack()
         addCardsToStackView()
         
-        let pokerGame = PokerGame(gameMode: .sevenCardStud, playerMode: .three)
-        pokerGame.giveCards()
-        pokerGame.giveCards()
+//        let pokerGame = PokerGame(gameMode: .sevenCardStud, playerMode: .three)
+//        pokerGame.giveCards()
+//        pokerGame.giveCards()
+//
+//        let pokerGame2 = PokerGame(gameMode: .fiveCardStud, playerMode: .three)
+//        pokerGame2.giveCards()
+//        pokerGame2.giveCards()
         
-        let pokerGame2 = PokerGame(gameMode: .fiveCardStud, playerMode: .three)
-        pokerGame2.giveCards()
-        pokerGame2.giveCards()
+//        view.addSubview(matchImageToCardInfo(suit: .spades, rank: .ten))
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -59,5 +62,25 @@ class ViewController: UIViewController {
             cardBackImage.contentMode = .scaleAspectFit
             cardStackView.addArrangedSubview(cardBackImage)
         }
+    }
+    
+    func matchImageToCardInfo(suit: Card.Suit, rank: Card.Rank) -> UIImageView {
+        let suitString: String
+        let rankString: String
+        
+        switch suit {
+        case .clubs:
+            suitString = "c"
+        case .diamonds:
+            suitString = "d"
+        case .hearts:
+            suitString = "h"
+        case .spades:
+            suitString = "s"
+        }
+        
+        rankString = rank.description
+    
+        return UIImageView(image: UIImage(named: "\(suitString)\(rankString).png")!)
     }
 }
