@@ -31,21 +31,8 @@ class Card {
 }
 
 extension Card: CustomStringConvertible {
-    static private let numberFormattingDictionary: Dictionary<Rank, String> = [
-        .ace: "A",
-        .jack: "J",
-        .queen: "Q",
-        .king: "K"]
-    
-    var formattedNumber: String {
-        if let string = Card.numberFormattingDictionary[rank] {
-            return string
-        }
-        return "\(rank.rawValue)"
-    }
-    
     var description: String {
-        return "\(suit.rawValue)\(formattedNumber)"
+        return "\(suit)\(rank)"
     }
 }
 
@@ -53,5 +40,26 @@ extension Card: Equatable {
     static func == (lhs: Card, rhs: Card) -> Bool {
         return lhs.suit == rhs.suit
             && lhs.rank == rhs.rank
+    }
+}
+
+extension Card.Suit: CustomStringConvertible {
+    var description: String {
+        return self.rawValue
+    }
+}
+
+extension Card.Rank: CustomStringConvertible {
+    static private let numberFormattingDictionary: Dictionary<Card.Rank, String> = [
+        .ace: "A",
+        .jack: "J",
+        .queen: "Q",
+        .king: "K"]
+    
+    var description: String {
+        if let picture = Card.Rank.numberFormattingDictionary[self] {
+            return picture
+        }
+        return "\(rawValue)"
     }
 }

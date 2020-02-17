@@ -20,7 +20,6 @@ class Descriptions {
             case .five: return "5 Cards"
             }
         }
-        
     }
 
     enum Number: CustomStringConvertible {
