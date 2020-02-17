@@ -9,11 +9,11 @@
 import Foundation
 
 class Participant {
-    private let gameMode : GameMode
-    private var cardsInHands = [Card]()
+    let gameMode : GameMode
+    var cardsInHands = [Card]()
     
-    init(which cardStud: GameMode){
-        self.gameMode = cardStud
+    init(in gameMode: GameMode){
+        self.gameMode = gameMode
     }
     
     func isCardsFull() -> Bool {
@@ -27,11 +27,19 @@ class Participant {
 class Dealer : Participant {
     private var cardDeck = CardDeck()
     
-    func distributeCards() -> [Card] {
+//    func distributeCards() -> [Card] {
+//        var newCards = [Card]()
+//        for cardCounting in 0 ..< self.gameMode {
+//            let pickedCard = cardDeck.removeOne(of: cardCounting)
+//            newCards.append(pickedCard)
+//        }
+//        return newCards
+//    }
+    
+    func distributeCards() -> [Card] { //수정중
         var newCards = [Card]()
-        for cardCounting in 0 ..< self.gameMode {
-            let pickedCard = cardDeck.removeOne(of: cardCounting)
-            newCards.append(pickedCard)
+        for _ in 1 ... self.gameMode.setCardPlacement(of: self.gameMode){
+            newCards = giveOneCard()
         }
         return newCards
     }
