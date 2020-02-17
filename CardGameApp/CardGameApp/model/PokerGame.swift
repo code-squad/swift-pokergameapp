@@ -51,14 +51,14 @@ class PokerGame{
         readyPlayer()
         stud.forEach {
             players.forEach{
-                dealCardToPlayer(player: $0)
+                dealCard(to: $0)
             }
-            dealCardToPlayer(player: dealer)
+            dealCard(to: dealer)
         }
         players.append(dealer)
     }
     
-    private func dealCardToPlayer(player: Player){
+    private func dealCard(to player: Player){
         let myCard = dealer.deal()
         if let card = myCard{
             player.receiveCard(card: card)
