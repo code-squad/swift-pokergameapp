@@ -11,7 +11,7 @@ import Foundation
 class Players {
     private var players = [Player]()
     
-    func participate(player: Player){
+    func participate(stud){
         players.append(player)
     }
     

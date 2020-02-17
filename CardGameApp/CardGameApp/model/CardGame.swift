@@ -9,11 +9,13 @@
 import Foundation
 
 class GameTable {
-    private let studType: Int
+    private let playerEntry: GameMode.Entry
+    private let studType: GameMode.StudType
     private var dealer: Dealer
     private var players: Players
   
-    init(studType: Int) {
+    init(playerEntry: GameMode.Entry, studType: GameMode.StudType) {
+        self.playerEntry = playerEntry
         self.studType = studType
         self.dealer = Dealer()
         self.players = Players()
