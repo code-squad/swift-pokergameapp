@@ -24,7 +24,7 @@ class Player{
         hand.removeAll()
     }
     
-    func forEachHandPlayerHas(_ transform: (Card) -> ()){
+    func forEachHand(_ transform: (Card) -> ()){
         hand.forEachCardInHand{
             transform($0)
         }
