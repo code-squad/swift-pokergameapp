@@ -32,6 +32,7 @@ class Card {
 extension Card: CustomStringConvertible {
     var description: String {
         var numberCharacter = ""
+        
         switch self.number {
         case .one:
             numberCharacter = "A"
@@ -47,8 +48,21 @@ extension Card: CustomStringConvertible {
         return "\(pattern.rawValue) \(numberCharacter)"
     }
     
-    var numberImageMatching: String {
+    var imageMatching: String {
         var imageNumber = ""
+        var imagePattern = ""
+
+        switch self.pattern {
+        case .clover:
+            imagePattern = "c"
+        case .diamond:
+            imagePattern = "d"
+        case .heart:
+            imagePattern = "h"
+        case .spade:
+            imagePattern = "s"
+        }
+        
         switch self.number {
         case .one:
             imageNumber = "A"
@@ -77,23 +91,9 @@ extension Card: CustomStringConvertible {
         case .thirteen:
             imageNumber = "K"
         }
-        return imageNumber
+        return imagePattern + imageNumber
     }
-    
-    var patternImageMatching: String {
-        var imagePattern = ""
-        switch self.pattern {
-        case .clover:
-            imagePattern = "c"
-        case .diamond:
-            imagePattern = "d"
-        case .heart:
-            imagePattern = "h"
-        case .spade:
-            imagePattern = "s"
-        }
-        return imagePattern
-    }
+
 }
 
 extension Card: Equatable {
