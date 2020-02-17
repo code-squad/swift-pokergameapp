@@ -18,6 +18,7 @@
 		44B649EC23EA75EE00C9F914 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44B649EA23EA75EE00C9F914 /* Main.storyboard */; };
 		44B649F123EA75F000C9F914 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44B649EF23EA75F000C9F914 /* LaunchScreen.storyboard */; };
 		44BEACE223F65A59005441BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 44BEACE123F65A58005441BC /* Assets.xcassets */; };
+		44CDA49B23FABD4100466A79 /* HandStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CDA49A23FABD4100466A79 /* HandStackView.swift */; };
 		44E3EB6623EED8F7009402E0 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E3EB6523EED8F7009402E0 /* Player.swift */; };
 		44E3EB6823EED98E009402E0 /* Dealer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E3EB6723EED98E009402E0 /* Dealer.swift */; };
 		44E3EB6C23EEDB20009402E0 /* PokerGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E3EB6B23EEDB20009402E0 /* PokerGame.swift */; };
@@ -48,6 +49,7 @@
 		44B649F023EA75F000C9F914 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		44B649F223EA75F000C9F914 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		44BEACE123F65A58005441BC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		44CDA49A23FABD4100466A79 /* HandStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandStackView.swift; sourceTree = "<group>"; };
 		44E3EB6523EED8F7009402E0 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		44E3EB6723EED98E009402E0 /* Dealer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dealer.swift; sourceTree = "<group>"; };
 		44E3EB6B23EEDB20009402E0 /* PokerGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokerGame.swift; sourceTree = "<group>"; };
@@ -112,12 +114,13 @@
 				44B649E423EA75EE00C9F914 /* AppDelegate.swift */,
 				44B649E623EA75EE00C9F914 /* SceneDelegate.swift */,
 				44B649E823EA75EE00C9F914 /* ViewController.swift */,
+				44CDA49A23FABD4100466A79 /* HandStackView.swift */,
+				441679A523FAAD3400CB2E92 /* CardImageView.swift */,
 				44BEACE123F65A58005441BC /* Assets.xcassets */,
 				4426F8F723F3CFA500406144 /* Model */,
 				44B649EA23EA75EE00C9F914 /* Main.storyboard */,
 				44B649EF23EA75F000C9F914 /* LaunchScreen.storyboard */,
 				44B649F223EA75F000C9F914 /* Info.plist */,
-				441679A523FAAD3400CB2E92 /* CardImageView.swift */,
 			);
 			path = CardGameApp;
 			sourceTree = "<group>";
@@ -238,6 +241,7 @@
 				44B649E523EA75EE00C9F914 /* AppDelegate.swift in Sources */,
 				44E3EB6823EED98E009402E0 /* Dealer.swift in Sources */,
 				444F3F1423ED5A380010F74E /* Deck.swift in Sources */,
+				44CDA49B23FABD4100466A79 /* HandStackView.swift in Sources */,
 				44611EE423F3F59A009D3C82 /* Hand.swift in Sources */,
 				441679A623FAAD3400CB2E92 /* CardImageView.swift in Sources */,
 				44B649E723EA75EE00C9F914 /* SceneDelegate.swift in Sources */,
