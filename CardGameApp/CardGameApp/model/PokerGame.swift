@@ -19,7 +19,7 @@ class PokerGame{
         case sevenCardStud = 7
         
         init(index: Int){
-           self = Stud.allCases[index]
+            self = Stud.allCases[index]
         }
         
         func forEach(_ transform: () -> ()) {
@@ -70,11 +70,7 @@ class PokerGame{
     
     private func dealCard(to player: Player){
         let myCard = dealer.deal()
-        if let card = myCard{
-            player.receiveCard(card: card)
-        } else {
-            print("카드가 없습니다.")
-        }
+        player.receiveCard(card: myCard!)
     }
     
     func setGameStyle(stud:Stud, numOfPlayer: NumOfPlayer){
