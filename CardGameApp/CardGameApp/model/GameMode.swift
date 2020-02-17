@@ -17,15 +17,24 @@ class GameMode {
         self.studType = studType
     }
     
-    enum StudType: Int {
+    enum StudType: Int, CustomStringConvertible {
         case fiveStud = 5
         case sevenStud = 7
+        
+        var description: String {
+            return "\(self.rawValue)"
+        }
+        
     }
     
-    enum Entry: Int {
+    enum Entry: Int, CustomStringConvertible {
         case two = 2
         case three = 3
         case four = 4
+        
+        var description: String {
+            return "\(self.rawValue)"
+        }
     }
 
 }
