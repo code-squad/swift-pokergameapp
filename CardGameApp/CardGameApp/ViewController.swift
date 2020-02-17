@@ -143,21 +143,10 @@ class ViewController: UIViewController {
     }
     
     private func makePlayerCard(_ player: Player) -> UIStackView {
-        let cardStack = makeCardStack()
+        let cardStack = HandStackView()
         player.forEachCard {
-            let card = CardImageView(image: UIImage(named: "\($0).png"))
-            cardStack.addArrangedSubview(card)
+            cardStack.addArrangedSubview(CardImageView(image: UIImage(named: "\($0).png")))
         }
-        return cardStack
-    }
-    
-    private func makeCardStack() -> UIStackView {
-        let cardStack: UIStackView = {
-            let stack = UIStackView()
-            stack.distribution = .fillEqually
-            stack.spacing = -5
-            return stack
-        }()
         return cardStack
     }
     
