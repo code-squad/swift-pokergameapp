@@ -144,11 +144,10 @@ class ViewController: UIViewController {
     func setCardsWithImages() {
         wholeGameStack.arrangedSubviews.forEach { $0.removeFromSuperview() }
         pokerGame.allocateCards()
-        let allCards = pokerGame.playersCardInfo()
         var number = 1
-        for cards in allCards {
+        pokerGame.forEachPlayer { player in
             let cardImageStack = makeCardImageStack()
-            for card in cards {
+            player.forEachCard { (card) in
                 let cardImage = cardImageView(named: "\(card.patternImageMatching)\(card.numberImageMatching)")
                 cardImage.heightAnchor.constraint(equalTo: cardImage.widthAnchor, multiplier: 1.27).isActive = true
                 cardImageStack.addArrangedSubview(cardImage)
@@ -157,7 +156,6 @@ class ViewController: UIViewController {
             number += 1
             wholeGameStack.addArrangedSubview(gameStack)
         }
-        
     }
     
     func setDealerCards() {

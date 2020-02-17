@@ -9,7 +9,7 @@
 import Foundation
 class PokerGame {
     private let dealer = Dealer()
-    private var players = [Player]()
+    private var players = Players()
     private var studNumber: Stud
     
     enum Stud: Int {
@@ -36,14 +36,14 @@ class PokerGame {
     init(playerCount: PlayerCount, stud: Stud) {
         self.studNumber = stud
         playerCount.foreach {
-            self.players.append(Player())
+            self.players.append(player: Player())
         }
     }
-    
+      
     func allocateCards() {
         dealer.shuffle()
         studNumber.foreach {
-            for player in players {
+            players.forEachPlayer { (player) in
                 guard let card = dealer.removeOne() else { return }
                 player.appendCard(card)
             }
@@ -58,8 +58,10 @@ class PokerGame {
     
     func playersCardInfo() -> [[Card]]{
         var allPlayersCards: [[Card]] = []
-        for player in players {
-            allPlayersCards.append(player.cardsInfo())
+
+        players.forEachPlayer { (player) in
+                        allPlayersCards.append(player.cardsInfo())
+
         }
        return allPlayersCards
     }
@@ -67,5 +69,10 @@ class PokerGame {
     func dealerCardInfo() -> [Card]{
         return dealer.cardsInfo()
     }
-
+    
+    func forEachPlayer(handler: (Player) -> ()) {
+        players.forEachPlayer { (player) in
+            handler(player)
+        }
+    }
 }

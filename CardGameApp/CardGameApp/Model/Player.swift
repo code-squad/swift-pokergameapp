@@ -17,4 +17,8 @@ class Player: Playable {
     func cardsInfo() -> [Card] {
         return cards
     }
+    
+    func forEachCard(handler: (Card) -> () ) {
+        cards.forEach(handler)
+    }
 }
