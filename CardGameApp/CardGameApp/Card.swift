@@ -9,11 +9,11 @@
 import Foundation
 
 struct Card: CustomStringConvertible {
-    enum Suit: Character {
+    enum Suit: Character, CaseIterable {
         case spades = "♠️", hearts = "♥️", diamonds = "♦️", clubs = "♣️"
     }
 
-    enum Rank: Int {
+    enum Rank: Int, CaseIterable {
         case A = 1, two, three, four, five, six, seven, eight, nine, ten, J, Q, K
     }
 
