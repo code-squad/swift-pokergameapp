@@ -12,9 +12,13 @@ class PokerGame {
     private var players = Players()
     private var studNumber: Stud
     
-    enum Stud: Int {
-        case five = 5
+    enum Stud: Int, CaseIterable {
         case seven = 7
+        case five = 5
+        
+        init(index: Int) {
+            self = Stud.allCases[index]
+        }
         
         func foreach(_ transform : () -> ()) {
             for _ in 0..<self.rawValue {
@@ -23,8 +27,12 @@ class PokerGame {
         }
     }
     
-    enum PlayerCount: Int {
+    enum PlayerCount: Int, CaseIterable {
         case one = 1, two, three, four
+        
+        init(index: Int) {
+            self = PlayerCount.allCases[index]
+        }
         
         func foreach(_ transform : () -> ()) {
             for _ in 0..<self.rawValue {
