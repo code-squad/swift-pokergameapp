@@ -37,7 +37,7 @@ class PokerGame {
     }
     private let gameMode: GameMode
     private let dealer : Dealer
-    private var players : [Player] = []
+    private var players = Players()
     private let numbersOfPlayers : NumbersOfPlayers
     
     init(dealer: Dealer, numbersOfPlayers: NumbersOfPlayers, gameMode: GameMode) {
@@ -46,8 +46,7 @@ class PokerGame {
         self.dealer = dealer
         self.players = {
             numbersOfPlayers.setPlayerSeat(for: {
-                let player = Player(in: gameMode)
-                self.players.append(player)
+                players.addPlayer(newPlayer: Player(in: gameMode))
                 }
             )
             return self.players
@@ -62,15 +61,16 @@ class PokerGame {
     }
     
     private func distributeCards() {
-        players.forEach{player in
-            var nextCard = dealer.giveOneCard()
-            player.addCard(newCard: nextCard)
-        }
+        players.addCard(newCard: dealer.giveOneCard())
+//        players.forEach{player in
+//            var nextCard = dealer.giveOneCard()
+//            player.addCard(newCard: nextCard)
+//        }
     }
     
     func isAllPlayersCardsReady() -> Bool {
         var readyCheck = [Bool]()
-        for player in self.players{
+        for player in players.players{
             readyCheck.append(player.isCardsFull())
         }
         let filteredReadycheck = readyCheck.filter{$0 == false}
