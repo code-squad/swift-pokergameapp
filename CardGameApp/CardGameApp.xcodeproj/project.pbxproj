@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		4426F8F623F3CD4E00406144 /* Players.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4426F8F523F3CD4E00406144 /* Players.swift */; };
-		443AEA7D23EEC8C40084A967 /* IntegrationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443AEA7C23EEC8C40084A967 /* IntegrationTest.swift */; };
-		443AEA9123EECABB0084A967 /* DeckTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443AEA9023EECABB0084A967 /* DeckTest.swift */; };
 		444F3F1023ED14430010F74E /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444F3F0F23ED14430010F74E /* Card.swift */; };
 		444F3F1423ED5A380010F74E /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444F3F1323ED5A380010F74E /* Deck.swift */; };
 		44611EE423F3F59A009D3C82 /* Hand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44611EE323F3F59A009D3C82 /* Hand.swift */; };
@@ -22,49 +20,10 @@
 		44E3EB6623EED8F7009402E0 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E3EB6523EED8F7009402E0 /* Player.swift */; };
 		44E3EB6823EED98E009402E0 /* Dealer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E3EB6723EED98E009402E0 /* Dealer.swift */; };
 		44E3EB6C23EEDB20009402E0 /* PokerGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E3EB6B23EEDB20009402E0 /* PokerGame.swift */; };
-		44E3EB7423EEE76C009402E0 /* PokerGameTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E3EB7323EEE76C009402E0 /* PokerGameTest.swift */; };
-		44E3EB8223EEEA75009402E0 /* DealerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E3EB8123EEEA75009402E0 /* DealerTest.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		443AEA7F23EEC8C40084A967 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 44B649D923EA75EE00C9F914 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 44B649E023EA75EE00C9F914;
-			remoteInfo = CardGameApp;
-		};
-		443AEA9323EECABB0084A967 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 44B649D923EA75EE00C9F914 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 44B649E023EA75EE00C9F914;
-			remoteInfo = CardGameApp;
-		};
-		44E3EB7623EEE76C009402E0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 44B649D923EA75EE00C9F914 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 44B649E023EA75EE00C9F914;
-			remoteInfo = CardGameApp;
-		};
-		44E3EB8423EEEA75009402E0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 44B649D923EA75EE00C9F914 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 44B649E023EA75EE00C9F914;
-			remoteInfo = CardGameApp;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		4426F8F523F3CD4E00406144 /* Players.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Players.swift; sourceTree = "<group>"; };
-		443AEA7A23EEC8C40084A967 /* IntegrationTest.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IntegrationTest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		443AEA7C23EEC8C40084A967 /* IntegrationTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntegrationTest.swift; sourceTree = "<group>"; };
-		443AEA7E23EEC8C40084A967 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		443AEA8E23EECABB0084A967 /* DeckTest.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DeckTest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		443AEA9023EECABB0084A967 /* DeckTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckTest.swift; sourceTree = "<group>"; };
-		443AEA9223EECABB0084A967 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		444F3F0F23ED14430010F74E /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		444F3F1323ED5A380010F74E /* Deck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = "<group>"; };
 		44611EE323F3F59A009D3C82 /* Hand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hand.swift; sourceTree = "<group>"; };
@@ -79,44 +38,10 @@
 		44E3EB6523EED8F7009402E0 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		44E3EB6723EED98E009402E0 /* Dealer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dealer.swift; sourceTree = "<group>"; };
 		44E3EB6B23EEDB20009402E0 /* PokerGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokerGame.swift; sourceTree = "<group>"; };
-		44E3EB7123EEE76C009402E0 /* PokerGameTest.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PokerGameTest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		44E3EB7323EEE76C009402E0 /* PokerGameTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokerGameTest.swift; sourceTree = "<group>"; };
-		44E3EB7523EEE76C009402E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		44E3EB7F23EEEA75009402E0 /* DealerTest.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DealerTest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		44E3EB8123EEEA75009402E0 /* DealerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DealerTest.swift; sourceTree = "<group>"; };
-		44E3EB8323EEEA75009402E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		443AEA7723EEC8C40084A967 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		443AEA8B23EECABB0084A967 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		44B649DE23EA75EE00C9F914 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		44E3EB6E23EEE76C009402E0 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		44E3EB7C23EEEA75009402E0 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -140,32 +65,10 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		443AEA7B23EEC8C40084A967 /* IntegrationTest */ = {
-			isa = PBXGroup;
-			children = (
-				443AEA7C23EEC8C40084A967 /* IntegrationTest.swift */,
-				443AEA7E23EEC8C40084A967 /* Info.plist */,
-			);
-			path = IntegrationTest;
-			sourceTree = "<group>";
-		};
-		443AEA8F23EECABB0084A967 /* DeckTest */ = {
-			isa = PBXGroup;
-			children = (
-				443AEA9023EECABB0084A967 /* DeckTest.swift */,
-				443AEA9223EECABB0084A967 /* Info.plist */,
-			);
-			path = DeckTest;
-			sourceTree = "<group>";
-		};
 		44B649D823EA75EE00C9F914 = {
 			isa = PBXGroup;
 			children = (
 				44B649E323EA75EE00C9F914 /* CardGameApp */,
-				443AEA7B23EEC8C40084A967 /* IntegrationTest */,
-				443AEA8F23EECABB0084A967 /* DeckTest */,
-				44E3EB8023EEEA75009402E0 /* DealerTest */,
-				44E3EB7223EEE76C009402E0 /* PokerGameTest */,
 				44B649E223EA75EE00C9F914 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -174,10 +77,6 @@
 			isa = PBXGroup;
 			children = (
 				44B649E123EA75EE00C9F914 /* CardGameApp.app */,
-				443AEA7A23EEC8C40084A967 /* IntegrationTest.xctest */,
-				443AEA8E23EECABB0084A967 /* DeckTest.xctest */,
-				44E3EB7123EEE76C009402E0 /* PokerGameTest.xctest */,
-				44E3EB7F23EEEA75009402E0 /* DealerTest.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -197,63 +96,9 @@
 			path = CardGameApp;
 			sourceTree = "<group>";
 		};
-		44E3EB7223EEE76C009402E0 /* PokerGameTest */ = {
-			isa = PBXGroup;
-			children = (
-				44E3EB7323EEE76C009402E0 /* PokerGameTest.swift */,
-				44E3EB7523EEE76C009402E0 /* Info.plist */,
-			);
-			path = PokerGameTest;
-			sourceTree = "<group>";
-		};
-		44E3EB8023EEEA75009402E0 /* DealerTest */ = {
-			isa = PBXGroup;
-			children = (
-				44E3EB8123EEEA75009402E0 /* DealerTest.swift */,
-				44E3EB8323EEEA75009402E0 /* Info.plist */,
-			);
-			path = DealerTest;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		443AEA7923EEC8C40084A967 /* IntegrationTest */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 443AEA8323EEC8C40084A967 /* Build configuration list for PBXNativeTarget "IntegrationTest" */;
-			buildPhases = (
-				443AEA7623EEC8C40084A967 /* Sources */,
-				443AEA7723EEC8C40084A967 /* Frameworks */,
-				443AEA7823EEC8C40084A967 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				443AEA8023EEC8C40084A967 /* PBXTargetDependency */,
-			);
-			name = IntegrationTest;
-			productName = IntegrationTest;
-			productReference = 443AEA7A23EEC8C40084A967 /* IntegrationTest.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		443AEA8D23EECABB0084A967 /* DeckTest */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 443AEA9523EECABB0084A967 /* Build configuration list for PBXNativeTarget "DeckTest" */;
-			buildPhases = (
-				443AEA8A23EECABB0084A967 /* Sources */,
-				443AEA8B23EECABB0084A967 /* Frameworks */,
-				443AEA8C23EECABB0084A967 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				443AEA9423EECABB0084A967 /* PBXTargetDependency */,
-			);
-			name = DeckTest;
-			productName = DeckTest;
-			productReference = 443AEA8E23EECABB0084A967 /* DeckTest.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		44B649E023EA75EE00C9F914 /* CardGameApp */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 44B649F523EA75F000C9F914 /* Build configuration list for PBXNativeTarget "CardGameApp" */;
@@ -271,42 +116,6 @@
 			productReference = 44B649E123EA75EE00C9F914 /* CardGameApp.app */;
 			productType = "com.apple.product-type.application";
 		};
-		44E3EB7023EEE76C009402E0 /* PokerGameTest */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 44E3EB7823EEE76C009402E0 /* Build configuration list for PBXNativeTarget "PokerGameTest" */;
-			buildPhases = (
-				44E3EB6D23EEE76C009402E0 /* Sources */,
-				44E3EB6E23EEE76C009402E0 /* Frameworks */,
-				44E3EB6F23EEE76C009402E0 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				44E3EB7723EEE76C009402E0 /* PBXTargetDependency */,
-			);
-			name = PokerGameTest;
-			productName = PokerGameTest;
-			productReference = 44E3EB7123EEE76C009402E0 /* PokerGameTest.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		44E3EB7E23EEEA75009402E0 /* DealerTest */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 44E3EB8623EEEA75009402E0 /* Build configuration list for PBXNativeTarget "DealerTest" */;
-			buildPhases = (
-				44E3EB7B23EEEA75009402E0 /* Sources */,
-				44E3EB7C23EEEA75009402E0 /* Frameworks */,
-				44E3EB7D23EEEA75009402E0 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				44E3EB8523EEEA75009402E0 /* PBXTargetDependency */,
-			);
-			name = DealerTest;
-			productName = DealerTest;
-			productReference = 44E3EB7F23EEEA75009402E0 /* DealerTest.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -317,24 +126,8 @@
 				LastUpgradeCheck = 1130;
 				ORGANIZATIONNAME = TTOzzi;
 				TargetAttributes = {
-					443AEA7923EEC8C40084A967 = {
-						CreatedOnToolsVersion = 11.3.1;
-						TestTargetID = 44B649E023EA75EE00C9F914;
-					};
-					443AEA8D23EECABB0084A967 = {
-						CreatedOnToolsVersion = 11.3.1;
-						TestTargetID = 44B649E023EA75EE00C9F914;
-					};
 					44B649E023EA75EE00C9F914 = {
 						CreatedOnToolsVersion = 11.3.1;
-					};
-					44E3EB7023EEE76C009402E0 = {
-						CreatedOnToolsVersion = 11.3.1;
-						TestTargetID = 44B649E023EA75EE00C9F914;
-					};
-					44E3EB7E23EEEA75009402E0 = {
-						CreatedOnToolsVersion = 11.3.1;
-						TestTargetID = 44B649E023EA75EE00C9F914;
 					};
 				};
 			};
@@ -352,29 +145,11 @@
 			projectRoot = "";
 			targets = (
 				44B649E023EA75EE00C9F914 /* CardGameApp */,
-				443AEA7923EEC8C40084A967 /* IntegrationTest */,
-				443AEA8D23EECABB0084A967 /* DeckTest */,
-				44E3EB7023EEE76C009402E0 /* PokerGameTest */,
-				44E3EB7E23EEEA75009402E0 /* DealerTest */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		443AEA7823EEC8C40084A967 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		443AEA8C23EECABB0084A967 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		44B649DF23EA75EE00C9F914 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -385,39 +160,9 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		44E3EB6F23EEE76C009402E0 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		44E3EB7D23EEEA75009402E0 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		443AEA7623EEC8C40084A967 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				443AEA7D23EEC8C40084A967 /* IntegrationTest.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		443AEA8A23EECABB0084A967 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				443AEA9123EECABB0084A967 /* DeckTest.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		44B649DD23EA75EE00C9F914 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -435,46 +180,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		44E3EB6D23EEE76C009402E0 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				44E3EB7423EEE76C009402E0 /* PokerGameTest.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		44E3EB7B23EEEA75009402E0 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				44E3EB8223EEEA75009402E0 /* DealerTest.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		443AEA8023EEC8C40084A967 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 44B649E023EA75EE00C9F914 /* CardGameApp */;
-			targetProxy = 443AEA7F23EEC8C40084A967 /* PBXContainerItemProxy */;
-		};
-		443AEA9423EECABB0084A967 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 44B649E023EA75EE00C9F914 /* CardGameApp */;
-			targetProxy = 443AEA9323EECABB0084A967 /* PBXContainerItemProxy */;
-		};
-		44E3EB7723EEE76C009402E0 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 44B649E023EA75EE00C9F914 /* CardGameApp */;
-			targetProxy = 44E3EB7623EEE76C009402E0 /* PBXContainerItemProxy */;
-		};
-		44E3EB8523EEEA75009402E0 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 44B649E023EA75EE00C9F914 /* CardGameApp */;
-			targetProxy = 44E3EB8423EEEA75009402E0 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		44B649EA23EA75EE00C9F914 /* Main.storyboard */ = {
@@ -496,82 +202,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		443AEA8123EEC8C40084A967 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = IntegrationTest/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ttozzi.IntegrationTest;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CardGameApp.app/CardGameApp";
-			};
-			name = Debug;
-		};
-		443AEA8223EEC8C40084A967 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = IntegrationTest/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ttozzi.IntegrationTest;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CardGameApp.app/CardGameApp";
-			};
-			name = Release;
-		};
-		443AEA9623EECABB0084A967 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = DeckTest/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ttozzi.DeckTest;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CardGameApp.app/CardGameApp";
-			};
-			name = Debug;
-		};
-		443AEA9723EECABB0084A967 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = DeckTest/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ttozzi.DeckTest;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CardGameApp.app/CardGameApp";
-			};
-			name = Release;
-		};
 		44B649F323EA75F000C9F914 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -720,103 +350,9 @@
 			};
 			name = Release;
 		};
-		44E3EB7923EEE76C009402E0 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = PokerGameTest/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ttozzi.PokerGameTest;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CardGameApp.app/CardGameApp";
-			};
-			name = Debug;
-		};
-		44E3EB7A23EEE76C009402E0 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = PokerGameTest/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ttozzi.PokerGameTest;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CardGameApp.app/CardGameApp";
-			};
-			name = Release;
-		};
-		44E3EB8723EEEA75009402E0 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = DealerTest/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ttozzi.DealerTest;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CardGameApp.app/CardGameApp";
-			};
-			name = Debug;
-		};
-		44E3EB8823EEEA75009402E0 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = DealerTest/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ttozzi.DealerTest;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CardGameApp.app/CardGameApp";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		443AEA8323EEC8C40084A967 /* Build configuration list for PBXNativeTarget "IntegrationTest" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				443AEA8123EEC8C40084A967 /* Debug */,
-				443AEA8223EEC8C40084A967 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		443AEA9523EECABB0084A967 /* Build configuration list for PBXNativeTarget "DeckTest" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				443AEA9623EECABB0084A967 /* Debug */,
-				443AEA9723EECABB0084A967 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		44B649DC23EA75EE00C9F914 /* Build configuration list for PBXProject "CardGameApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -831,24 +367,6 @@
 			buildConfigurations = (
 				44B649F623EA75F000C9F914 /* Debug */,
 				44B649F723EA75F000C9F914 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		44E3EB7823EEE76C009402E0 /* Build configuration list for PBXNativeTarget "PokerGameTest" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				44E3EB7923EEE76C009402E0 /* Debug */,
-				44E3EB7A23EEE76C009402E0 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		44E3EB8623EEEA75009402E0 /* Build configuration list for PBXNativeTarget "DealerTest" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				44E3EB8723EEEA75009402E0 /* Debug */,
-				44E3EB8823EEEA75009402E0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
