@@ -9,6 +9,10 @@
 import Foundation
 
 class PokerGame {
+    enum numbersOfPlayers : Int {
+        case one = 1 , two, three, four
+    }
+    
     enum GameMode : Int {
         case fiveCardStud = 5
         case sevenCardStud = 7

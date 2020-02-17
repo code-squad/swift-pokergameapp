@@ -26,9 +26,9 @@ class Participant {
 
 class Dealer : Participant {
     private var cardDeck = CardDeck()
-    
+
     func giveOneCard() -> Card {
-        return  cardDeck.removeOne(of: 0)
+        return cardDeck.removeOne(of: 0)
     }
     
 }
