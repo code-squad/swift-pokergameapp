@@ -125,7 +125,7 @@ class CardGameAppTests: XCTestCase  {
         var seed = SystemRandomNumberGenerator()
         let cardStud = [5,7]
         let cardStudNumber = (cardStud.shuffled(using: &seed).first)!
-        let dealer = Dealer(whichcardStud: cardStudNumber)
+        let dealer = Dealer(which: .fiveCardStud)
         let pokerGame = CardStud(dealer: dealer, playersCount: playersCount, studNumber: cardStudNumber)
         
         // When
@@ -142,7 +142,7 @@ class CardGameAppTests: XCTestCase  {
         var seed = SystemRandomNumberGenerator()
         let cardStud = [5,7]
         let cardStudNumber = (cardStud.shuffled(using: &seed).first)!
-        let dealer = Dealer(whichcardStud: cardStudNumber)
+        let dealer = Dealer(which: .sevenCardStud)
         let pokerGame = CardStud(dealer: dealer, playersCount: playersCount, studNumber: cardStudNumber)
         
         // When
@@ -156,9 +156,8 @@ class CardGameAppTests: XCTestCase  {
     // MARK:-  Player 클래스 테스트 케이스
     func testIsPlayerCardsFull(){
         //Given
-        let studNumber = 5
-        let player = Player(whichcardStud: studNumber)
-        let dealer = Dealer(whichcardStud: studNumber)
+        let player = Player(which: .fiveCardStud)
+        let dealer = Dealer(which: .fiveCardStud)
         
         // When
         let newCards = dealer.distributeCards()
@@ -172,8 +171,7 @@ class CardGameAppTests: XCTestCase  {
     // MARK:-  Dealer 클래스 테스트 케이스
     func testIsDealerCardsFull(){
         //Given
-        let studNumber = 5
-        let dealer = Dealer(whichcardStud: studNumber)
+        let dealer = Dealer(which: .fiveCardStud)
         
         //When
         let newCards = dealer.distributeCards()

@@ -25,18 +25,11 @@ class Participant {
 }
 
 class Dealer : Participant {
-    
-    let cardStudParticipatingIn : Int
     private var cardDeck = CardDeck()
-    private var cardsInHands = [Card]()
-    
-    required init(whichcardStud cardStud: Int) {
-        self.cardStudParticipatingIn = cardStud
-    }
     
     func distributeCards() -> [Card] {
         var newCards = [Card]()
-        for cardCounting in 0 ..< self.cardStudParticipatingIn {
+        for cardCounting in 0 ..< self.gameMode {
             let pickedCard = cardDeck.removeOne(of: cardCounting)
             newCards.append(pickedCard)
         }
@@ -52,11 +45,5 @@ class Dealer : Participant {
 }
 
 class Player : Participant {
-    let cardStudParticipatingIn : Int
-    private var cardsInHands = [Card]()
-    
-    required init(whichcardStud cardStud: Int) {
-        self.cardStudParticipatingIn = cardStud
-    }
     
 }
