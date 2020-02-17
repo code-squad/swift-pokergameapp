@@ -148,7 +148,7 @@ class ViewController: UIViewController {
         pokerGame.forEachPlayer { player in
             let cardImageStack = makeCardImageStack()
             player.forEachCard { (card) in
-                let cardImage = cardImageView(named: card.imageMatching)
+                let cardImage = cardImageView(named: card.description)
                 cardImage.heightAnchor.constraint(equalTo: cardImage.widthAnchor, multiplier: 1.27).isActive = true
                 cardImageStack.addArrangedSubview(cardImage)
 
@@ -171,7 +171,7 @@ class ViewController: UIViewController {
             return label
         }()
         for card in cards {
-            let cardImage = cardImageView(named: card.imageMatching)
+            let cardImage = cardImageView(named: card.description)
             cardImage.heightAnchor.constraint(equalTo: cardImage.widthAnchor, multiplier: 1.27).isActive = true
             cardImageStack.addArrangedSubview(cardImage)
         }
