@@ -9,6 +9,4 @@
 import Foundation
 protocol Playable {
     func appendCard(_ card: Card)
-    func cardsInfo() -> [Card]
-//    func cardsInfo2(hander: (Int) -> ())
 }
