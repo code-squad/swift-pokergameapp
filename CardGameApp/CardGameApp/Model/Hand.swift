@@ -97,16 +97,16 @@ class Hand {
 
 extension Hand: Equatable {
     static func == (lhs: Hand, rhs: Hand) -> Bool {
-        lhs.score == rhs.score && lhs.numbers == rhs.numbers
+        lhs.score == rhs.score && lhs.ranks == rhs.ranks
     }
     
     static func > (lhs: Hand, rhs: Hand) -> Bool {
         if lhs.score == rhs.score {
-            for index in 0..<lhs.numbers.count {
-                if lhs.numbers[index] == rhs.numbers[index] {
+            for index in 0..<lhs.ranks.count {
+                if lhs.ranks[index] == rhs.ranks[index] {
                     continue
                 } else {
-                    return lhs.numbers[index] > rhs.numbers[index]
+                    return lhs.ranks[index] > rhs.ranks[index]
                 }
             }
         }
