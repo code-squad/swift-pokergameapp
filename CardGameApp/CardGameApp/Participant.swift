@@ -30,10 +30,6 @@ class Dealer : Participant {
         self.cardStudParticipatingIn = cardStud
     }
     
-    func isCardsFull() -> Bool {
-        return self.cardsInHands.count == cardStudParticipatingIn
-    }
-    
     func distributeCards() -> [Card] {
         var newCards = [Card]()
         for cardCounting in 0 ..< self.cardStudParticipatingIn {
@@ -62,10 +58,6 @@ class Player : Participant {
            self.cardStudParticipatingIn = cardStud
        }
    
-    func isCardsFull() -> Bool {
-        return self.cardsInHands.count == cardStudParticipatingIn
-    }
-
      func addCard(newCard: [Card]) {
          newCard.forEach{self.cardsInHands.append($0)}
      }
