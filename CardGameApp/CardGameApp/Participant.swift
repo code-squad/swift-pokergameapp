@@ -17,7 +17,9 @@ class Participant {
     func isCardsFull() -> Bool {
         return gameMode.compareStudNumber(with: self.cardsInHands.count)
     }
-    func addCard(newCard: [Card]) {}
+    func addCard(newCard: [Card]) {
+        self.cardsInHands += newCard
+    }
 }
 
 class Dealer : Participant {
@@ -25,7 +27,7 @@ class Dealer : Participant {
     let cardStudParticipatingIn : Int
     private var cardDeck = CardDeck()
     private var cardsInHands = [Card]()
-       
+    
     required init(whichcardStud cardStud: Int) {
         self.cardStudParticipatingIn = cardStud
     }
@@ -40,25 +42,19 @@ class Dealer : Participant {
     }
     
     func giveOneCard() -> [Card] {
-         var newCard = [Card]()
+        var newCard = [Card]()
         newCard.append(cardDeck.removeOne(of: 0))
         return newCard
     }
     
-    func addCard(newCard: [Card]) {
-        newCard.forEach{self.cardsInHands.append($0)}
-     }
 }
 
 class Player : Participant {
     let cardStudParticipatingIn : Int
-       private var cardsInHands = [Card]()
-          
-       required init(whichcardStud cardStud: Int) {
-           self.cardStudParticipatingIn = cardStud
-       }
-   
-     func addCard(newCard: [Card]) {
-         newCard.forEach{self.cardsInHands.append($0)}
-     }
+    private var cardsInHands = [Card]()
+    
+    required init(whichcardStud cardStud: Int) {
+        self.cardStudParticipatingIn = cardStud
+    }
+    
 }
