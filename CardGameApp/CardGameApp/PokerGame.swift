@@ -47,12 +47,14 @@ class PokerGame {
     }
     
     func start() { // 수정중
-        self.dealer.addCard(newCard: self.dealer.distributeCards())
-        self.players.forEach{$0.addCard(newCard: self.dealer.distributeCards())}
+    // 카드 분배
     }
     
     func distributeCards() {
-        self.gameMode.setCardPlacement(of: self.dealer.giveOneCard()) // 수정중
+        players.forEach{player in
+            var nextCard = dealer.giveOneCard()
+            player.addCard(newCard: nextCard)
+        }
     }
     
     func isAllPlayersReady() -> Bool {
