@@ -30,25 +30,8 @@ class Card {
 }
 
 extension Card: CustomStringConvertible {
+
     var description: String {
-        var numberCharacter = ""
-        
-        switch self.number {
-        case .one:
-            numberCharacter = "A"
-        case .eleven:
-            numberCharacter = "J"
-        case .twelve:
-            numberCharacter = "Q"
-        case .thirteen:
-            numberCharacter = "K"
-        default:
-            numberCharacter = "\(self.number)"
-        }
-        return "\(pattern.rawValue) \(numberCharacter)"
-    }
-    
-    var imageMatching: String {
         var imageNumber = ""
         var imagePattern = ""
 
