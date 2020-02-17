@@ -9,48 +9,64 @@
 import Foundation
 
 class GameTable {
-    private let playerEntry: Entry
+    private let playerEntry: playerEntry
     private let studType: StudType
     private var dealer: Dealer
-    private var players: Players
+    private var players: [Player]
   
-    init(playerEntry: Entry, studType: StudType) {
+    init(playerEntry: playerEntry, studType: StudType) {
         self.playerEntry = playerEntry
         self.studType = studType
         self.dealer = Dealer()
-        self.players = Players()
+        self.players = [Player]()
         
-        settingPlayer()
+        participatePlayer()
         initDrawCard()
     }
     
     // 플레이어 세팅
-    func settingPlayer() {
-        players.participate(entryAmount: playerEntry)
+    func participatePlayer() {
+        playerEntry.each {
+            players.append(Player())
+        }
+        players.append(dealer)
     }
     
     // 플레이어 카드 분배.
     func initDrawCard() {
-        
+        players.forEach { (player) in
+            studType.each {
+                let card = dealer.drawCard()
+                player.bringCard(card: card)
+            }
+        }
     }
     
     // 카드개수비교해서 게임 속행할지 확인
     func checkEndGame() -> Bool {
-        return false
+        return true
     }
 }
 
 enum StudType: Int {
     case fiveStud = 5
     case sevenStud = 7
+    
+    func each( function:() -> Void) {
+        for _ in 1 ... self.rawValue {
+            function()
+        }
+    }
 }
 
-enum Entry: Int {
+enum playerEntry: Int {
     case two = 2
     case three = 3
     case four = 4
     
-    func each() {
-        
+    func each( function:() -> Void) {
+        for _ in 1 ... self.rawValue {
+            function()
+        }
     }
 }

@@ -16,11 +16,11 @@ class CardGameAppTests: XCTestCase {
     var gameTable: GameTable!
     
     override func setUp() {
-        gameTable = GameTable(playerCount: 5, studType: 5)
+        gameTable = GameTable(playerEntry: .three, studType: .fiveStud)
     }
 
     func testcheckContinueGame() {
-        XCTAssertFalse(gameTable.checkEndGame())
+        XCTAssertTrue(gameTable.checkEndGame())
     }
     
 }
