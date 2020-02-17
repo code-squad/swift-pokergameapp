@@ -20,20 +20,20 @@ class GamePlayTests: XCTestCase {
     func testParticipantTakesACard() {
         let participant = Participant()
         participant.take(card: Card(suit: .club, rank: .ace))
-        XCTAssertEqual(participant.everyCard { $0 }.count, 1)
+        XCTAssertEqual(participant.repeatForEachCard { $0 }.count, 1)
     }
     
     func testPlayersEntrance() {
         let numberOfPlayers = Players.Number.four
         let expectedPlayers = (0..<4).map { _ in Participant() }
-        XCTAssertEqual(numberOfPlayers.repeatForPlayers { Participant() }, expectedPlayers)
+        XCTAssertEqual(numberOfPlayers.invokePerPlayerCount { Participant() }, expectedPlayers)
     }
     
     func testEachPlayerTakesACard() {
         let players = Players(with: .three)
         var cardDeck = CardDeck()
-        players.everyPlayers { $0.take(card: cardDeck.removeOne()) }
-        let cards = players.everyPlayers { $0.everyCard { $0 } }
+        players.repeatForEachPlayer { $0.take(card: cardDeck.removeOne()) }
+        let cards = players.repeatForEachPlayer { $0.repeatForEachCard { $0 } }
         
         XCTAssertEqual(cards.count, 3)
         XCTAssertEqual(cards.map { $0.count }, [1, 1, 1])
