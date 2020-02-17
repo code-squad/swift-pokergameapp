@@ -10,12 +10,18 @@ import Foundation
 
 struct Value {
     private var hand: [Card] = []
-    private var handRanking: HandRanking = .highCard
+    private(set) var handRanking: HandRanking = .highCard
     private var combination: [[Card]] = []
-    private var lastOfCards: [Card] = []
-    private var combinationOf: [HandRanking: [[Card]]] = [:]
+    private var restOfHand: [Card] = []
+    private var combinationsOf: [HandRanking: [[Card]]] = [:]
     
-    mutating func setupValue() {
+    init(hand: [Card]) {
+        self.hand = hand
+        setupHandRanking()
+        setupRestOfHand()
+    }
+    
+    mutating func setupHandRanking() {
         var handRankings: [HandRanking] = []
         
         let straight = searchStraight()
@@ -24,16 +30,17 @@ struct Value {
 //        values.append(straight)
         handRankings.append(highestPair)
         handRanking = handRankings.sorted(by: >).first!
-        
-        
+    }
+    
+    mutating func setupRestOfHand() {
         hand.forEach { (cardOfHand) in
-            combinationOf[handRanking]!.forEach { (combination) in
+            combinationsOf[handRanking]!.forEach { (combination) in
                 combination.forEach { (combiCard) in
-                    if cardOfHand != combiCard { lastOfCards.append(cardOfHand) }
+                    if cardOfHand != combiCard { restOfHand.append(cardOfHand) }
                 }
             }
         }
-        lastOfCards.sort(by: <)
+        restOfHand.sort(by: <)
     }
     
     private mutating func searchStraight() -> HandRanking {
@@ -53,7 +60,10 @@ struct Value {
         rankCountDict.forEach { (rank, count) in
             let handRanking = HandRanking(count: count)
             handRankings.append(handRanking)
-            combinationOf[handRanking] = searchCombinations(of: rank)
+            var combinations: [[Card]] = combinationsOf[handRanking] ?? [[Card]]()
+            let combination = searchCombinations(of: rank)
+            combinations.append(combination)
+            combinationsOf[handRanking] = combinations
         }
         
         var onePairCount = 0
@@ -62,25 +72,23 @@ struct Value {
         }
         if onePairCount >= 2 {
             handRankings.append(.twoPairs)
-            var onePairs = combinationOf[.onePair]!
+            var onePairs = combinationsOf[.onePair]!
             onePairs.sort(by: { $0.first! > $1.first! })
             if onePairs.count > 2 { onePairs.removeLast() }
-            combinationOf[.twoPairs] = onePairs
+            combinationsOf[.twoPairs] = onePairs
         }
         
         return handRankings.sorted(by: >).first!
     }
     
-    private mutating func searchCombinations(of rank: Card.Rank) -> [[Card]] {
-        var combinations: [[Card]] = []
+    private mutating func searchCombinations(of rank: Card.Rank) -> [Card] {
+        var combination: [Card] = []
         hand.forEach { (card) in
-            var combination: [Card] = []
             if card.rank == rank {
                 combination.append(card)
             }
-            combinations.append(combination)
         }
-        return combinations
+        return combination
     }
 }
 
@@ -92,11 +100,11 @@ extension Value: Equatable {
     }
     
     static func > (lhs: Value, rhs: Value) -> Bool {
-        let lhsRanks = lhs.lastOfCards.map{ $0.rank }
-        let rhsRanks = rhs.lastOfCards.map{ $0.rank }
+        let lhsRanks = lhs.restOfHand.map{ $0.rank }
+        let rhsRanks = rhs.restOfHand.map{ $0.rank }
         
         if lhs.handRanking == rhs.handRanking {
-            for index in 0..<lhs.lastOfCards.count {
+            for index in 0..<lhs.restOfHand.count {
                 if lhsRanks[index] > rhsRanks[index] { return true }
             }
         }
@@ -104,11 +112,11 @@ extension Value: Equatable {
     }
     
     static func < (lhs: Value, rhs: Value) -> Bool {
-        let lhsRanks = lhs.lastOfCards.map{ $0.rank }
-        let rhsRanks = rhs.lastOfCards.map{ $0.rank }
+        let lhsRanks = lhs.restOfHand.map{ $0.rank }
+        let rhsRanks = rhs.restOfHand.map{ $0.rank }
         
         if lhs.handRanking == rhs.handRanking {
-            for index in 0..<lhs.lastOfCards.count {
+            for index in 0..<lhs.restOfHand.count {
                 if lhsRanks[index] < rhsRanks[index] { return true }
             }
         }

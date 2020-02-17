@@ -38,7 +38,7 @@
 		389487DF23F53546003D2481 /* PlayerStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3894879D23F3DCDB003D2481 /* PlayerStackView.swift */; };
 		389487E023F53546003D2481 /* SegmentedControlStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3894879623F2D8F3003D2481 /* SegmentedControlStackView.swift */; };
 		389487E123F53546003D2481 /* TitledSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3894879F23F3DD3D003D2481 /* TitledSegmentedControl.swift */; };
-		389487EA23F65227003D2481 /* HandValueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389487E923F65227003D2481 /* HandValueTests.swift */; };
+		389487EA23F65227003D2481 /* ValueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389487E923F65227003D2481 /* ValueTests.swift */; };
 		389487EC23F9BE7D003D2481 /* Value.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389487EB23F9BE7C003D2481 /* Value.swift */; };
 		389487ED23F9BE7D003D2481 /* Value.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389487EB23F9BE7C003D2481 /* Value.swift */; };
 /* End PBXBuildFile section */
@@ -77,7 +77,7 @@
 		3894879B23F3DCC1003D2481 /* CardStackVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardStackVIew.swift; sourceTree = "<group>"; };
 		3894879D23F3DCDB003D2481 /* PlayerStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerStackView.swift; sourceTree = "<group>"; };
 		3894879F23F3DD3D003D2481 /* TitledSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitledSegmentedControl.swift; sourceTree = "<group>"; };
-		389487E923F65227003D2481 /* HandValueTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandValueTests.swift; sourceTree = "<group>"; };
+		389487E923F65227003D2481 /* ValueTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueTests.swift; sourceTree = "<group>"; };
 		389487EB23F9BE7C003D2481 /* Value.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Value.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -139,7 +139,7 @@
 				385F3AE323EC466E003FA6A2 /* CardDeckTests.swift */,
 				385F3AE523EC466E003FA6A2 /* Info.plist */,
 				3894878B23F165B5003D2481 /* PokerGameTests.swift */,
-				389487E923F65227003D2481 /* HandValueTests.swift */,
+				389487E923F65227003D2481 /* ValueTests.swift */,
 			);
 			path = CardGameAppTests;
 			sourceTree = "<group>";
@@ -311,7 +311,7 @@
 				3894878923F163BE003D2481 /* Dealer.swift in Sources */,
 				385F3AEE23EC4691003FA6A2 /* ViewController.swift in Sources */,
 				389487DF23F53546003D2481 /* PlayerStackView.swift in Sources */,
-				389487EA23F65227003D2481 /* HandValueTests.swift in Sources */,
+				389487EA23F65227003D2481 /* ValueTests.swift in Sources */,
 				3894878623F15D46003D2481 /* PokerGame.swift in Sources */,
 				3894878323F15A1D003D2481 /* Player.swift in Sources */,
 				389487DE23F53546003D2481 /* CardStackVIew.swift in Sources */,
