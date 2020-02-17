@@ -67,10 +67,6 @@ class PokerGame {
         }
     }
     
-    func isAllPlayersReady() -> Bool {
-        return self.players.count == self.playersCount
-    }
-    
     func isAllPlayersCardsReady() -> Bool {
         var readyCheck = [Bool]()
         for player in self.players{
