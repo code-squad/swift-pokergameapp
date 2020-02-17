@@ -9,8 +9,15 @@
 import Foundation
 
 class PokerGame {
-    enum numbersOfPlayers : Int {
+    enum NumbersOfPlayers : Int {
         case one = 1 , two, three, four
+        
+        // 플레이어의 자리가 몇 개가 필요한지 세팅
+        func setPlayerSeat(for bringPlayer: () -> ()) {
+            for _ in 1 ... self.rawValue {
+                bringPlayer()
+            }
+        }
     }
     
     enum GameMode : Int {
@@ -23,7 +30,7 @@ class PokerGame {
         
         // 카드를 내려놓는 곳이 몇 개가 필요한지 세팅
         func setCardPlacement(of giveCard: ()-> ()) {
-            for _ in 1 ... self.rawValue{ // 여기 바꿔야 함.
+            for _ in 1 ... self.rawValue{
                giveCard()
             }
         }
@@ -31,17 +38,17 @@ class PokerGame {
     private let gameMode: GameMode
     private let dealer : Dealer
     private var players : [Player] = []
-    private let playersCount : Int
+    private let numbersOfPlayers : NumbersOfPlayers
     
-    init(dealer: Dealer, playersCount: Int, gameMode: GameMode) {
+    init(dealer: Dealer, numbersOfPlayers: NumbersOfPlayers, gameMode: GameMode) {
         self.gameMode = gameMode
-        self.playersCount = playersCount
+        self.numbersOfPlayers = numbersOfPlayers
         self.dealer = dealer
         self.players = {
-            for _ in 1 ... playersCount {
-                let player = Player(in: gameMode)
-                self.players.append(player)
-            }
+//            for _ in 1 ... numbersOfPlayers {
+//                let player = Player(in: gameMode)
+//                self.players.append(player)
+//            }
             return self.players
         }()
     }
