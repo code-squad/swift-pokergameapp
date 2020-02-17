@@ -9,6 +9,7 @@
 import Foundation
 
 enum Style: Int {
+    
     case five = 5
     case seven = 7
     
