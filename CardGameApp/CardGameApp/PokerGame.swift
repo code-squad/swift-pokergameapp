@@ -45,10 +45,11 @@ class PokerGame {
         self.numbersOfPlayers = numbersOfPlayers
         self.dealer = dealer
         self.players = {
-//            for _ in 1 ... numbersOfPlayers {
-//                let player = Player(in: gameMode)
-//                self.players.append(player)
-//            }
+            numbersOfPlayers.setPlayerSeat(for: {
+                let player = Player(in: gameMode)
+                self.players.append(player)
+                }
+            )
             return self.players
         }()
     }
