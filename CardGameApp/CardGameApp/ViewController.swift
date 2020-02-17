@@ -128,7 +128,7 @@ class ViewController: UIViewController {
             playerStackView.addArrangedSubview(createLabel(player: player))
             
             cardStackView = createStackView(spacing: -4, axis: .horizontal)
-            player.forEach{
+            player.forEachHandPlayerHas{
                 addCardIntoStackView(stackView: cardStackView, cardName: "\($0)")
             }
             playerStackView.addArrangedSubview(cardStackView)

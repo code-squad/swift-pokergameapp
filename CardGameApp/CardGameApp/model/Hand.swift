@@ -19,7 +19,7 @@ class Hand{
         self.card.removeAll()
     }
     
-    func forEach(_ transform: (Card) -> ()){
+    func forEachCardInHand(_ transform: (Card) -> ()){
         card.forEach {
             transform($0)
         }
