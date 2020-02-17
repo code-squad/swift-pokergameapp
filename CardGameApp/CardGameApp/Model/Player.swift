@@ -9,7 +9,12 @@
 import Foundation
 
 class Player {
+    private var number: Int?
     private var hand = Hand()
+    
+    init(number: Int? = nil) {
+        self.number = number
+    }
     
     func forEachCard(_ transform: (Card) -> ()) {
         hand.forEach(transform)
@@ -24,7 +29,14 @@ class Player {
     }
 }
 
-extension Player: Equatable {
+extension Player: Equatable, CustomStringConvertible {
+    var description: String {
+        guard let number = number else {
+            return "Dealer"
+        }
+        return "Player\(number)"
+    }
+    
     static func == (lhs: Player, rhs: Player) -> Bool {
         lhs.hand == rhs.hand
     }

@@ -52,7 +52,7 @@ class PokerGame {
         self.gameType = gameType
         self.dealer = Dealer()
         numberOfPlayers.forEach {
-            self.players.add(player: Player())
+            self.players.add(player: Player(number: players.count + 1))
         }
         players.add(player: dealer)
     }
