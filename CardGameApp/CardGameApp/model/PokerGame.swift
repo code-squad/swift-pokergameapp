@@ -15,8 +15,8 @@ class PokerGame{
     private var numOfPlayer: NumOfPlayer = .four
     
     enum Stud: Int, CaseIterable{
-        case fiveCardStud = 5
         case sevenCardStud = 7
+        case fiveCardStud = 5
         
         init(index: Int){
             self = Stud.allCases[index]
