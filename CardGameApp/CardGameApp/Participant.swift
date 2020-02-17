@@ -15,7 +15,7 @@ class Participant {
     init(which cardStud: Int){}
     
     func isCardsFull() -> Bool {
-        return self.cardsInHands.count == gameMode
+        return gameMode.compareStudNumber(with: self.cardsInHands.count)
     }
     func addCard(newCard: [Card]) {}
 }
