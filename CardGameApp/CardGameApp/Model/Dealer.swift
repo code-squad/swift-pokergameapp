@@ -39,7 +39,7 @@ class Dealer: Playable{
     
     func cardsWithImageInfo() -> [String] {
        let cardsInfo = cards.map { (card) in
-            "\(card.patternImageMatching)\(card.numberImageMatching)"
+        card.imageMatching
         }
         return cardsInfo
     }

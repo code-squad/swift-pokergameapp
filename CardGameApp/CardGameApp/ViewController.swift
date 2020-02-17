@@ -148,9 +148,10 @@ class ViewController: UIViewController {
         pokerGame.forEachPlayer { player in
             let cardImageStack = makeCardImageStack()
             player.forEachCard { (card) in
-                let cardImage = cardImageView(named: "\(card.patternImageMatching)\(card.numberImageMatching)")
+                let cardImage = cardImageView(named: card.imageMatching)
                 cardImage.heightAnchor.constraint(equalTo: cardImage.widthAnchor, multiplier: 1.27).isActive = true
                 cardImageStack.addArrangedSubview(cardImage)
+
             }
             let gameStack = makeGameStack(playerNumber: number, cardImageStack: cardImageStack)
             number += 1
@@ -170,7 +171,7 @@ class ViewController: UIViewController {
             return label
         }()
         for card in cards {
-            let cardImage = cardImageView(named: "\(card.patternImageMatching)\(card.numberImageMatching)")
+            let cardImage = cardImageView(named: card.imageMatching)
             cardImage.heightAnchor.constraint(equalTo: cardImage.widthAnchor, multiplier: 1.27).isActive = true
             cardImageStack.addArrangedSubview(cardImage)
         }
