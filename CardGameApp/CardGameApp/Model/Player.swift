@@ -14,10 +14,6 @@ class Player: Playable {
         cards.append(card)
     }
     
-    func cardsInfo() -> [Card] {
-        return cards
-    }
-    
     func forEachCard(handler: (Card) -> () ) {
         cards.forEach(handler)
     }
