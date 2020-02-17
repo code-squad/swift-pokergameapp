@@ -15,7 +15,7 @@ class Players{
         players.append(player)
     }
     
-    func forEach(_ transform: (Player) -> ()){
+    func forEachPlayer(_ transform: (Player) -> ()){
         players.forEach{
             transform($0)
         }

@@ -52,7 +52,7 @@ class PokerGame{
     func gameStart(){
         readyPlayer()
         stud.forEach {
-            players.forEach{
+            players.forEachPlayer{
                 dealCard(to: $0)
             }
             dealCard(to: dealer)
@@ -76,7 +76,7 @@ class PokerGame{
     }
     
     func forEachPlayers(_ transform: (Player) -> ()){
-        players.forEach{
+        players.forEachPlayer{
             transform($0)
         }
     }
