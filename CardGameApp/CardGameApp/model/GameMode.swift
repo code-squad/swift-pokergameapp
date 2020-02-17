@@ -9,12 +9,20 @@
 import Foundation
 
 class GameMode {
-    enum studType: Int {
+    private let entry: Entry
+    private let studType: StudType
+    
+    init(entry: Entry, studType: StudType) {
+        self.entry = entry
+        self.studType = studType
+    }
+    
+    enum StudType: Int {
         case fiveStud = 5
         case sevenStud = 7
     }
     
-    enum entry: Int {
+    enum Entry: Int {
         case two = 2
         case three = 3
         case four = 4
