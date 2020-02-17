@@ -11,9 +11,10 @@ import Foundation
 class Dealer: Player{
     private var cardDeck: CardDeck
     
-    override init(){
+    init(){
         self.cardDeck = CardDeck()
         self.cardDeck.shuffle()
+        super.init(order: 0)
     }
     
     func deal() -> Card?{
