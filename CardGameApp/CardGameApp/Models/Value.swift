@@ -12,9 +12,8 @@ struct Value {
     private var hand: [Card] = []
     private var handRanking: HandRanking = .highCard
     private var combination: [[Card]] = []
-    private var cards_last: [Card] = []
-    
-    var combinationOf: [HandRanking: [[Card]]] = [:]
+    private var lastOfCards: [Card] = []
+    private var combinationOf: [HandRanking: [[Card]]] = [:]
     
     mutating func setupValue() {
         var handRankings: [HandRanking] = []
@@ -22,10 +21,19 @@ struct Value {
         let straight = searchStraight()
         let highestPair = searchPairs()
         
-        //        values.append(straight)
+//        values.append(straight)
         handRankings.append(highestPair)
-        
         handRanking = handRankings.sorted(by: >).first!
+        
+        
+        hand.forEach { (cardOfHand) in
+            combinationOf[handRanking]!.forEach { (combination) in
+                combination.forEach { (combiCard) in
+                    if cardOfHand != combiCard { lastOfCards.append(cardOfHand) }
+                }
+            }
+        }
+        lastOfCards.sort(by: <)
     }
     
     private mutating func searchStraight() -> HandRanking {
@@ -54,6 +62,10 @@ struct Value {
         }
         if onePairCount >= 2 {
             handRankings.append(.twoPairs)
+            var onePairs = combinationOf[.onePair]!
+            onePairs.sort(by: { $0.first! > $1.first! })
+            if onePairs.count > 2 { onePairs.removeLast() }
+            combinationOf[.twoPairs] = onePairs
         }
         
         return handRankings.sorted(by: >).first!
@@ -62,7 +74,6 @@ struct Value {
     private mutating func searchCombinations(of rank: Card.Rank) -> [[Card]] {
         var combinations: [[Card]] = []
         hand.forEach { (card) in
-            // 여기서 분리해서 집어 넣으면 되겠다. value인 카드 아닌 카드들 나눠서 ㅇㅇ
             var combination: [Card] = []
             if card.rank == rank {
                 combination.append(card)
@@ -70,6 +81,38 @@ struct Value {
             combinations.append(combination)
         }
         return combinations
+    }
+}
+
+extension Value: Equatable {
+    static func == (lhs: Value, rhs: Value) -> Bool {
+        let sortedLhs = lhs.hand.map{ $0.rank }.sorted(by: <)
+        let sortedRhs = rhs.hand.map{ $0.rank }.sorted(by: <)
+        return sortedLhs == sortedRhs
+    }
+    
+    static func > (lhs: Value, rhs: Value) -> Bool {
+        let lhsRanks = lhs.lastOfCards.map{ $0.rank }
+        let rhsRanks = rhs.lastOfCards.map{ $0.rank }
+        
+        if lhs.handRanking == rhs.handRanking {
+            for index in 0..<lhs.lastOfCards.count {
+                if lhsRanks[index] > rhsRanks[index] { return true }
+            }
+        }
+        return false
+    }
+    
+    static func < (lhs: Value, rhs: Value) -> Bool {
+        let lhsRanks = lhs.lastOfCards.map{ $0.rank }
+        let rhsRanks = rhs.lastOfCards.map{ $0.rank }
+        
+        if lhs.handRanking == rhs.handRanking {
+            for index in 0..<lhs.lastOfCards.count {
+                if lhsRanks[index] < rhsRanks[index] { return true }
+            }
+        }
+        return false
     }
 }
 
@@ -91,5 +134,9 @@ enum HandRanking: Int, Equatable {
     
     static func > (lhs: HandRanking, rhs: HandRanking) -> Bool {
         return lhs.rawValue > rhs.rawValue
+    }
+    
+    static func < (lhs: HandRanking, rhs: HandRanking) -> Bool {
+        return lhs.rawValue < rhs.rawValue
     }
 }

@@ -46,6 +46,10 @@ struct Card {
         
         case ace = 1, two, three, four, five, six, seven, eight, nine, ten, jack, queen, king
         
+        static func == (lhs: Rank, rhs: Rank) -> Bool {
+            return lhs.rawValue == rhs.rawValue
+        }
+        
         static func < (lhs: Rank, rhs: Rank) -> Bool {
             return lhs.rawValue < rhs.rawValue
         }
@@ -60,6 +64,14 @@ extension Card: Equatable {
     static func == (lhs: Card, rhs: Card) -> Bool {
         return lhs.suit == rhs.suit &&
             lhs.rank == rhs.rank
+    }
+    
+    static func > (lhs: Card, rhs: Card) -> Bool {
+        return lhs.rank > rhs.rank
+    }
+    
+    static func < (lhs: Card, rhs: Card) -> Bool {
+        return lhs.rank < rhs.rank
     }
 }
 
