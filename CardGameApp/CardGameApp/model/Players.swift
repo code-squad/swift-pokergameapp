@@ -9,9 +9,9 @@
 import Foundation
 
 class Players{
-    private var players:[Player] = [Player]()
+    private var players: [Player] = [Player]()
     
-    func append(_ player : Player){
+    func append(_ player: Player){
         players.append(player)
     }
     

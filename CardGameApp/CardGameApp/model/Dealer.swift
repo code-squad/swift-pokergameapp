@@ -8,8 +8,8 @@
 
 import Foundation
 
-class Dealer:Player{
-    private var cardDeck:CardDeck
+class Dealer: Player{
+    private var cardDeck: CardDeck
     
     override init(){
         self.cardDeck = CardDeck()

@@ -9,17 +9,17 @@
 import UIKit
 
 class ViewController: UIViewController {
-    private var pokerStackView : UIStackView!
-    private var cardStackView : UIStackView!
-    private var playerStackView : UIStackView!
+    private var pokerStackView: UIStackView!
+    private var cardStackView: UIStackView!
+    private var playerStackView: UIStackView!
     
     private var studSegmentedControl: UISegmentedControl!
     private var numOfPlayerSegmentedControl: UISegmentedControl!
     
     private let pokerGame = PokerGame()
     
-    private var stud : PokerGame.Stud = .sevenCardStud
-    private var numOfPlayer : PokerGame.NumOfPlayer = .four
+    private var stud: PokerGame.Stud = .sevenCardStud
+    private var numOfPlayer: PokerGame.NumOfPlayer = .four
     
     @objc fileprivate func handleStudControl(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
@@ -84,7 +84,12 @@ class ViewController: UIViewController {
         pokerStackView.removeFromSuperview()
         pokerStackView = createStackView(spacing: 30, axis: .vertical)
         view.addSubview(pokerStackView)
-        pokerStackView.setConstraint(topAnchor: numOfPlayerSegmentedControl.bottomAnchor, top: 15, leadingAnchor: view.leadingAnchor, leading: 20, trailingAnchor: view.trailingAnchor, trailing: -60)
+        pokerStackView.setConstraint(topAnchor: numOfPlayerSegmentedControl.bottomAnchor,
+                                     top: 15,
+                                     leadingAnchor: view.leadingAnchor,
+                                     leading: 20,
+                                     trailingAnchor: view.trailingAnchor,
+                                     trailing: -60)
         setupPokerStackView()
     }
     
@@ -95,9 +100,24 @@ class ViewController: UIViewController {
     }
     
     func setupViews(){
-        studSegmentedControl.setConstraint(topAnchor: view.topAnchor, top: 70, leadingAnchor: view.leadingAnchor, leading: 110, trailingAnchor: view.trailingAnchor, trailing: -110)
-        numOfPlayerSegmentedControl.setConstraint(topAnchor: studSegmentedControl.bottomAnchor, top: 10, leadingAnchor: view.leadingAnchor, leading: 110, trailingAnchor: view.trailingAnchor, trailing: -110)
-        pokerStackView.setConstraint(topAnchor: numOfPlayerSegmentedControl.bottomAnchor, top: 15, leadingAnchor: view.leadingAnchor, leading: 20, trailingAnchor: view.trailingAnchor, trailing: -60)
+        studSegmentedControl.setConstraint(topAnchor: view.topAnchor,
+                                           top: 70,
+                                           leadingAnchor: view.leadingAnchor,
+                                           leading: 110,
+                                           trailingAnchor: view.trailingAnchor,
+                                           trailing: -110)
+        numOfPlayerSegmentedControl.setConstraint(topAnchor: studSegmentedControl.bottomAnchor,
+                                                  top: 10,
+                                                  leadingAnchor: view.leadingAnchor,
+                                                  leading: 110,
+                                                  trailingAnchor: view.trailingAnchor,
+                                                  trailing: -110)
+        pokerStackView.setConstraint(topAnchor: numOfPlayerSegmentedControl.bottomAnchor,
+                                     top: 15,
+                                     leadingAnchor: view.leadingAnchor,
+                                     leading: 20,
+                                     trailingAnchor: view.trailingAnchor,
+                                     trailing: -60)
         setupPokerStackView()
     }
     
@@ -130,7 +150,7 @@ class ViewController: UIViewController {
         }
     }
     
-    private func addCardIntoStackView(stackView : UIStackView, cardName: String){
+    private func addCardIntoStackView(stackView: UIStackView, cardName: String){
         stackView.addArrangedSubview(createCard(cardName: cardName))
     }
     
@@ -144,8 +164,12 @@ class ViewController: UIViewController {
     
     func createViews(){
         pokerStackView = createStackView(spacing: 30, axis: .vertical)
-        studSegmentedControl = createSegmentedControl(items: ["7 Cards","5 Cards"], selectedSegmentIndex: 0, action: #selector(handleStudControl(_:)))
-        numOfPlayerSegmentedControl = createSegmentedControl(items: ["1명","2명","3명","4명"], selectedSegmentIndex: 3, action : #selector(handleNumOfPlayerControl(_:)))
+        studSegmentedControl = createSegmentedControl(items: ["7 Cards","5 Cards"],
+                                                      selectedSegmentIndex: 0,
+                                                      action: #selector(handleStudControl(_:)))
+        numOfPlayerSegmentedControl = createSegmentedControl(items: ["1명","2명","3명","4명"],
+                                                             selectedSegmentIndex: 3,
+                                                             action : #selector(handleNumOfPlayerControl(_:)))
     }
     
     func createStackView(spacing : CGFloat, axis : NSLayoutConstraint.Axis) -> UIStackView{
@@ -176,7 +200,12 @@ class ViewController: UIViewController {
 }
 
 extension UIView{
-    func setConstraint(topAnchor : NSLayoutYAxisAnchor, top : CGFloat, leadingAnchor : NSLayoutXAxisAnchor, leading : CGFloat, trailingAnchor : NSLayoutXAxisAnchor, trailing : CGFloat){
+    func setConstraint(topAnchor: NSLayoutYAxisAnchor,
+                       top: CGFloat,
+                       leadingAnchor: NSLayoutXAxisAnchor,
+                       leading: CGFloat,
+                       trailingAnchor: NSLayoutXAxisAnchor,
+                       trailing: CGFloat){
         self.topAnchor.constraint(equalTo: topAnchor, constant: top).isActive = true
         self.leadingAnchor.constraint(equalTo: leadingAnchor, constant: leading).isActive = true
         self.trailingAnchor.constraint(equalTo: trailingAnchor, constant: trailing).isActive = true

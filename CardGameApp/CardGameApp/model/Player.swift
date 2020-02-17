@@ -9,7 +9,7 @@
 import Foundation
 
 class Player{
-    private var hand:Hand = Hand()
+    private var hand: Hand = Hand()
     
     func receiveCard(card: Card) {
         hand.append(card: card)
@@ -19,7 +19,7 @@ class Player{
         hand.removeAll()
     }
     
-    func forEach(_ transform : (Card) -> ()){
+    func forEach(_ transform: (Card) -> ()){
         hand.forEach{
             transform($0)
         }

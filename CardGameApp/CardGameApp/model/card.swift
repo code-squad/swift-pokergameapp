@@ -16,14 +16,14 @@ class Card{
      초기에 딕셔너리를 사용하려 했으나, 이 경우 어떤 값이 들어가는지 제한 할 수 없으며, 명확하지 않음
      예를 들어 ace를 0으로 표현할수도, 13으로 표현할 수도 있기 때문에 enum을 사용하여 이 점을 명확히 해줌.
      */
-    enum Suit:String,CaseIterable{
+    enum Suit: String, CaseIterable{
         case spade = "s"
         case clover = "c"
         case heart = "h"
         case diamond = "d"
     }
     
-    enum Rank:String,CaseIterable{
+    enum Rank: String, CaseIterable{
         case ace = "A"
         case two = "2"
         case three = "3"
@@ -39,22 +39,22 @@ class Card{
         case king = "K"
     }
     
-    let rank:Rank
-    let suit:Suit
+    let rank: Rank
+    let suit: Suit
     
-    init(rank:Rank, suit:Suit){
+    init(rank: Rank, suit: Suit){
         self.rank = rank
         self.suit = suit
     }
 }
 
-extension Card:CustomStringConvertible{
+extension Card: CustomStringConvertible{
     var description: String {
-        return self.suit.rawValue+self.rank.rawValue
+        return self.suit.rawValue + self.rank.rawValue
     }
 }
 
-extension Card:Equatable{
+extension Card: Equatable{
     static func == (lhs: Card, rhs: Card) -> Bool {
         return (lhs.rank == rhs.rank) && (lhs.suit == rhs.suit)
     }

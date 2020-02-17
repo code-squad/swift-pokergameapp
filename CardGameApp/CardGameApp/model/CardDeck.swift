@@ -9,7 +9,7 @@
 import Foundation
 
 struct CardDeck{
-    private var cardSet:[Card]
+    private var cardSet: [Card]
     
     init(){
         cardSet = [Card]()
@@ -47,7 +47,7 @@ struct CardDeck{
     }
 }
 
-extension CardDeck:Equatable{
+extension CardDeck: Equatable{
     static func == (lhs: CardDeck, rhs: CardDeck) -> Bool {
         return lhs.cardSet == rhs.cardSet
     }

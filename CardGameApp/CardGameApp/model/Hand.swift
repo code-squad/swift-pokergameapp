@@ -9,9 +9,9 @@
 import Foundation
 
 class Hand{
-    private var card:[Card] = [Card]()
+    private var card: [Card] = [Card]()
     
-    func append(card : Card){
+    func append(card: Card){
         self.card.append(card)
     }
     
@@ -19,7 +19,7 @@ class Hand{
         self.card.removeAll()
     }
     
-    func forEach(_ transform : (Card) -> ()){
+    func forEach(_ transform: (Card) -> ()){
         card.forEach {
             transform($0)
         }

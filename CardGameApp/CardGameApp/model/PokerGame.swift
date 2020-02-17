@@ -9,26 +9,26 @@
 import Foundation
 
 class PokerGame{
-    private var dealer:Dealer = Dealer()
-    private var players:Players = Players()
-    private var stud:Stud = .sevenCardStud
-    private var numOfPlayer:NumOfPlayer = .four
+    private var dealer: Dealer = Dealer()
+    private var players: Players = Players()
+    private var stud: Stud = .sevenCardStud
+    private var numOfPlayer: NumOfPlayer = .four
     
-    enum Stud:Int{
+    enum Stud: Int{
         case fiveCardStud = 5
         case sevenCardStud = 7
         
-        func forEach(_ transform : () -> ()) {
+        func forEach(_ transform: () -> ()) {
             for _ in 0..<self.rawValue {
                 transform()
             }
         }
     }
     
-    enum NumOfPlayer:Int{
+    enum NumOfPlayer: Int{
         case one = 1, two, three, four
         
-        func forEach(_ transform : () -> ()) {
+        func forEach(_ transform: () -> ()) {
             for _ in 0..<self.rawValue {
                 transform()
             }
@@ -58,7 +58,7 @@ class PokerGame{
         players.append(dealer)
     }
     
-    private func dealCardToPlayer(player:Player){
+    private func dealCardToPlayer(player: Player){
         let myCard = dealer.deal()
         if let card = myCard{
             player.receiveCard(card: card)
@@ -67,13 +67,13 @@ class PokerGame{
         }
     }
     
-    func setGameStyle(stud:Stud, numOfPlayer:NumOfPlayer){
+    func setGameStyle(stud:Stud, numOfPlayer: NumOfPlayer){
         self.stud = stud
         self.numOfPlayer = numOfPlayer
         gameStart()
     }
     
-    func forEachPlayers(_ transform : (Player) -> ()){
+    func forEachPlayers(_ transform: (Player) -> ()){
         players.forEach{
             transform($0)
         }
