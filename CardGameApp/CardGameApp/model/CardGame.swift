@@ -10,14 +10,13 @@ import Foundation
 
 class GameTable {
     private let studType: Int
-    
     private var dealer: Dealer
-    private var players: [Player]
+    private var players: Players
   
-    init(playerCount: Int, studType: Int) {
+    init(studType: Int) {
         self.studType = studType
         self.dealer = Dealer()
-        self.players = [Player]()
+        self.players = Players()
         
         settingPlayer()
         initDrawCard()
