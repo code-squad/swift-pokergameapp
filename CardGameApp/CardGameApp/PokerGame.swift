@@ -16,6 +16,14 @@ protocol PokerGame {
     func isAllPlayersCardsReady() -> Bool
 }
 
+enum GameMode : Int,CustomStringConvertible {
+    var description: String {
+        return "\(self.rawValue)"
+    }
+    case fiveCardStud = 5
+    case sevenCardStud = 7
+}
+
 class CardStud: PokerGame {
     private let studNumber: Int
     private let dealer : Dealer
