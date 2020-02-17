@@ -12,6 +12,7 @@ class ViewController: UIViewController {
     private var pokerStackView: UIStackView!
     private var cardStackView: UIStackView!
     private var playerStackView: UIStackView!
+    private var resultStackView: UIStackView!
     
     private var studSegmentedControl: UISegmentedControl!
     private var numOfPlayerSegmentedControl: UISegmentedControl!
@@ -58,7 +59,7 @@ class ViewController: UIViewController {
                                      leadingAnchor: view.leadingAnchor,
                                      leading: 20,
                                      trailingAnchor: view.trailingAnchor,
-                                     trailing: -60)
+                                     trailing: -10)
         setupPokerStackView()
     }
     
@@ -86,7 +87,7 @@ class ViewController: UIViewController {
                                      leadingAnchor: view.leadingAnchor,
                                      leading: 20,
                                      trailingAnchor: view.trailingAnchor,
-                                     trailing: -60)
+                                     trailing: -10)
         setupPokerStackView()
     }
     
@@ -96,11 +97,14 @@ class ViewController: UIViewController {
             playerStackView = createStackView(spacing: 0, axis: .vertical)
             playerStackView.addArrangedSubview(createLabel(player: player))
             
+            resultStackView = createStackView(spacing: 10, axis: .horizontal)
             cardStackView = createStackView(spacing: -4, axis: .horizontal)
             player.forEachHand{
                 addCardIntoStackView(stackView: cardStackView, cardName: "\($0)")
             }
-            playerStackView.addArrangedSubview(cardStackView)
+            resultStackView.addArrangedSubview(cardStackView)
+            resultStackView.addArrangedSubview(createImageView(imageName: player is Dealer ? "win":""))
+            playerStackView.addArrangedSubview(resultStackView)
             pokerStackView.addArrangedSubview(playerStackView)
         }
     }
@@ -120,11 +124,11 @@ class ViewController: UIViewController {
     }
     
     private func addCardIntoStackView(stackView: UIStackView, cardName: String){
-        stackView.addArrangedSubview(createCard(cardName: cardName))
+        stackView.addArrangedSubview(createImageView(imageName: cardName))
     }
     
-    private func createCard(cardName: String) -> UIImageView{
-        let imageView = UIImageView(image: UIImage(named: cardName))
+    private func createImageView(imageName: String) -> UIImageView{
+        let imageView = UIImageView(image: UIImage(named: imageName))
         imageView.contentMode = .scaleAspectFill
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor, multiplier: 1.27).isActive = true
