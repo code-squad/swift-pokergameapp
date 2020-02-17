@@ -5,6 +5,10 @@ struct Deck {
     init(cards: [Card]) {
         self.cards = cards
     }
+    
+    init() {
+        self.init(cards: Card.createAll())
+    }
 
     /// 갖고 있는 카드 개수를 반환한다.
     var count: Int {

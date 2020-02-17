@@ -42,4 +42,16 @@ class Card: CustomStringConvertible {
     var description: String {
         "\(suit)\(rank)"
     }
+    
+    static func createAll() -> [Card] {
+        return Suit.allCases.flatMap {
+            create(per: $0)
+        }
+    }
+    
+    private static func create(per suit: Card.Suit) -> [Card] {
+        return Rank.allCases.map {
+            Card(suit: suit, rank: $0)
+        }
+    }
 }

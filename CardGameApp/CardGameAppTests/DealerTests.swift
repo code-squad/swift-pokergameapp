@@ -5,12 +5,11 @@ class DealerTests: XCTestCase {
     var dealer: Dealer!
     
     override func setUp() {
-        self.deck = CardGameFactory.createDeck()
+        self.deck = Deck()
         self.dealer = Dealer(deck: deck)
     }
 
     func testDealCardsOfOneRound() {
-        let dealer = CardGameFactory.createDealer()
         let players = [Player(), Player()]
         dealer.dealCardsOfOneRound(players)
     }
