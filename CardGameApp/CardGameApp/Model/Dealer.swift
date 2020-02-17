@@ -30,4 +30,17 @@ class Dealer: Playable{
     func cardsInfo() -> [Card]{
         return cards
     }
+    
+    func cardsInfo2(hander: (Card) -> String) {
+        for card in cards {
+            print(hander(card))
+        }
+    }
+    
+    func cardsWithImageInfo() -> [String] {
+       let cardsInfo = cards.map { (card) in
+            "\(card.patternImageMatching)\(card.numberImageMatching)"
+        }
+        return cardsInfo
+    }
 }
