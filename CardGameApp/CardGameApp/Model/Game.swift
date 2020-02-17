@@ -12,19 +12,18 @@ struct Game {
     
     private var gamers: Players
     private var dealer: Dealer
-    private var limitCount: Int
+    private var style: Style
     var gamersCount: Int {
         return gamers.count
     }
     
-    init(gamers: Players, limitCount: Int){
+    init(gamers: Players, style: Style){
         dealer = Dealer()
         self.gamers = gamers
         self.gamers.addGamers(gamer: dealer)
-        self.limitCount = limitCount
+        self.style = style
         distributeByNubmers()
     }
-    
     
     func pirntCards() {
         gamers.forEach { game in
@@ -33,7 +32,7 @@ struct Game {
     }
     
     private func distributeByNubmers() {
-        (1...limitCount).forEach { _ in
+        style.forEach {
             distributeCard()
         }
     }
@@ -49,14 +48,14 @@ extension Game {
     static func fiveCardStud(gamers: Players) -> Game {
         return Game (
             gamers: gamers,
-            limitCount: 5
+            style: .five
         )
     }
     
     static func sevenCardStud(gamers: Players) -> Game {
         return Game (
             gamers: gamers,
-            limitCount: 7
+            style: .seven
         )
     }
 }
