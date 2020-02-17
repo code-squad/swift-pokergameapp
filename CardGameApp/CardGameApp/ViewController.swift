@@ -41,7 +41,7 @@ class ViewController: UIViewController {
         
         selectionView.delegate = self
         
-        playGame(with: PlayMode(rule: .sevenCardStud, number: .two))
+        playGame(with: .sevenCardStud, playerCount: .two)
     }
     
     private func shuffleCardDeck() {
@@ -50,23 +50,9 @@ class ViewController: UIViewController {
         cardDeck?.shuffle(using: generator)
     }
     
-    private func playGame(with mode: PlayMode) {
-        let rule: GamePlay.Rule
-        let numberOfPlayers: Players.Number
-        
-        switch mode.rule {
-        case .sevenCardStud: rule = .sevenCardStud
-        case .fiveCardStud: rule = .fiveCardStud
-        }
-        
-        switch mode.number {
-        case .two: numberOfPlayers = .two
-        case .three: numberOfPlayers = .three
-        case .four: numberOfPlayers = .four
-        }
-        
+    private func playGame(with rule: GamePlay.Rule, playerCount: Players.Number) {
         shuffleCardDeck()
-        let gamePlay = GamePlay(rule: rule, numberOfPlayers: numberOfPlayers, cardDeck: cardDeck!)
+        let gamePlay = GamePlay(rule: rule, numberOfPlayers: playerCount, cardDeck: cardDeck!)
         gamePlay.deal()
         
         gamePlayView.updateView(with: gamePlay, participantsCount: 7)
@@ -93,16 +79,16 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: PlayModeSelectionViewDelegate {
-    func didModeChanged(to mode: PlayMode) {
-        playGame(with: mode)
+    func didModeChanged(to rule: GamePlay.Rule, playerCount: Players.Number) {
+        playGame(with: rule, playerCount: playerCount)
     }
 }
 
 extension ViewController {
     override func motionBegan(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         if motion == .motionShake {
-            selectionView.invokeByMode { mode in
-                playGame(with: mode)
+            selectionView.invokeByMode { (rule, count) in
+                playGame(with: rule, playerCount: count)
             }
        }
     }
