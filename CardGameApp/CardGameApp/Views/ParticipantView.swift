@@ -8,18 +8,8 @@
 
 import UIKit
 
-struct ParticipantViewContents {
-    let name: String
-    let cards: [String]
-}
-
 class ParticipantView: UIView {
     private var maxCards: Int?
-    var contents: ParticipantViewContents? {
-        didSet {
-            updateView()
-        }
-    }
     
     private lazy var participantStackView: UIStackView = {
         let stackView = UIStackView()
@@ -55,18 +45,16 @@ class ParticipantView: UIView {
         setupView()
     }
     
+    func updateView(name: String, participant: Participant) {
+        participantLabel.text = name
+        overlappedCardsView.updateView(with: participant)
+    }
+    
     private func setupView() {
         translatesAutoresizingMaskIntoConstraints = false
         addSubview(participantStackView)
         participantStackView.fillSuperView()
         participantStackView.addArrangedSubview(participantLabel)
         participantStackView.addArrangedSubview(overlappedCardsView)
-    }
-    
-    private func updateView() {
-        participantLabel.text = contents?.name
-        if let cards = contents?.cards {
-            overlappedCardsView.contents = OverlappedCardsViewContents(cards: cards)
-        }
     }
 }
