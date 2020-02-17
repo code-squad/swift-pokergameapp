@@ -60,7 +60,6 @@ class ViewController: UIViewController {
         makeGame()
         addWinnerMedal(to: pokerGame.winner)
         setGameTableLayout()
-        self.view.layoutIfNeeded()
     }
     
     private func makeSegments(items: [String]) -> UISegmentedControl {
