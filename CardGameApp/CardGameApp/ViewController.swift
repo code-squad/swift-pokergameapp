@@ -94,12 +94,12 @@ class ViewController: UIViewController {
     private func makeGame() {
         var index = 1
         pokerGame.forEachPlayers {
-            let playerLabel = makePlayerLabel(playerName: "Player\(index)")
+            var playerName = "Player\(index)"
             if type(of: $0) == type(of: Dealer()) {
-                playerLabel.text = "Dealer"
+                playerName = "Dealer"
             }
-            let playerCard = makePlayerCard($0)
-            let playerStack = makePlayerStack(label: playerLabel, card: playerCard)
+            let playerStack = PlayerStackView(playerName: playerName)
+            playerStack.addArrangedSubview(makePlayerCard($0))
             gameTable.addArrangedSubview(playerStack)
             index += 1
         }
@@ -118,28 +118,6 @@ class ViewController: UIViewController {
         winnerMedal.leftAnchor.constraint(equalTo: gameTable.rightAnchor, constant: 10).isActive = true
         winnerMedal.widthAnchor.constraint(equalToConstant: 50).isActive = true
         winnerMedal.heightAnchor.constraint(equalToConstant: 50).isActive = true
-    }
-    
-    private func makePlayerStack(label: UILabel, card: UIStackView) -> UIStackView {
-        let playerStack: UIStackView = {
-            let stack = UIStackView()
-            stack.axis = .vertical
-            return stack
-        }()
-        playerStack.addArrangedSubview(label)
-        playerStack.addArrangedSubview(card)
-        return playerStack
-    }
-    
-    private func makePlayerLabel(playerName: String) -> UILabel {
-        let playerLabel: UILabel = {
-            let label = UILabel()
-            label.text = playerName
-            label.textColor = .white
-            label.translatesAutoresizingMaskIntoConstraints = false
-            return label
-        }()
-        return playerLabel
     }
     
     private func makePlayerCard(_ player: Player) -> UIStackView {
