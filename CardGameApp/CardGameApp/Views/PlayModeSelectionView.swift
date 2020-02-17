@@ -9,27 +9,12 @@
 import UIKit
 
 protocol PlayModeSelectionViewDelegate: class {
-    func didModeChanged(to mode: PlayMode)
+    func didModeChanged(to rule: GamePlay.Rule, playerCount: Players.Number)
 }
 
 struct PlayModeSelectionViewContents {
     let rule: [String]
     let numberOfPlayers: [String]
-}
-
-struct PlayMode {
-    enum Rule: Int {
-        case sevenCardStud = 0
-        case fiveCardStud
-    }
-    
-    enum Number: Int {
-        case two = 0
-        case three, four
-    }
-    
-    let rule: Rule
-    let number: Number
 }
 
 class PlayModeSelectionView: UIView {
@@ -71,6 +56,20 @@ class PlayModeSelectionView: UIView {
         setupView()
     }
     
+    func invokeByMode(block: (GamePlay.Rule, Players.Number) -> ()) {
+        if let rule = rule(from: ruleSegmentedControl.selectedSegmentIndex),
+            let count = participantCount(from: playersSegmentedControl.selectedSegmentIndex) {
+            block(rule, count)
+        }
+    }
+    
+    @objc func notifyPlayModeDidChange() {
+        if let rule = rule(from: ruleSegmentedControl.selectedSegmentIndex),
+            let count = participantCount(from: playersSegmentedControl.selectedSegmentIndex) {
+            delegate?.didModeChanged(to: rule, playerCount: count)
+        }
+    }
+    
     private func setupView() {
         translatesAutoresizingMaskIntoConstraints = false
         addSubview(selectionStackView)
@@ -90,17 +89,20 @@ class PlayModeSelectionView: UIView {
         }
     }
     
-    @objc func notifyPlayModeDidChange() {
-        if let rule = PlayMode.Rule(rawValue: ruleSegmentedControl.selectedSegmentIndex),
-            let number = PlayMode.Number(rawValue: playersSegmentedControl.selectedSegmentIndex) {
-                delegate?.didModeChanged(to: PlayMode(rule: rule, number: number))
+    private func rule(from index: Int) -> GamePlay.Rule? {
+        switch index {
+        case 0: return .sevenCardStud
+        case 1: return .fiveCardStud
+        default: return nil
         }
     }
     
-    func invokeByMode(block: (PlayMode) -> ()) {
-        if let rule = PlayMode.Rule(rawValue: ruleSegmentedControl.selectedSegmentIndex),
-        let number = PlayMode.Number(rawValue: playersSegmentedControl.selectedSegmentIndex) {
-            block(PlayMode(rule: rule, number: number))
+    private func participantCount(from index: Int) -> Players.Number? {
+        switch index {
+        case 0: return .two
+        case 1: return .three
+        case 2: return .four
+        default: return nil
         }
     }
 }
