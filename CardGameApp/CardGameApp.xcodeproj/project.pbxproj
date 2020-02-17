@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		78530B6623FA6DB200BABC4E /* CardDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78530B6523FA6DB200BABC4E /* CardDeck.swift */; };
+		78530B6723FA6DB200BABC4E /* CardDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78530B6523FA6DB200BABC4E /* CardDeck.swift */; };
 		7893B6B823F6735D00D924C7 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7893B6B723F6735D00D924C7 /* Card.swift */; };
 		7893B6B923F6735D00D924C7 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7893B6B723F6735D00D924C7 /* Card.swift */; };
 		78971DAC23F27F2400AC81D0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78971DAB23F27F2400AC81D0 /* AppDelegate.swift */; };
@@ -37,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		78530B6523FA6DB200BABC4E /* CardDeck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDeck.swift; sourceTree = "<group>"; };
 		7893B6B723F6735D00D924C7 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		78971DA823F27F2400AC81D0 /* CardGameApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CardGameApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78971DAB23F27F2400AC81D0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -110,6 +113,7 @@
 				78971DB623F27F2400AC81D0 /* LaunchScreen.storyboard */,
 				78971DB923F27F2400AC81D0 /* Info.plist */,
 				7893B6B723F6735D00D924C7 /* Card.swift */,
+				78530B6523FA6DB200BABC4E /* CardDeck.swift */,
 			);
 			path = CardGameApp;
 			sourceTree = "<group>";
@@ -264,6 +268,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				78971DB023F27F2400AC81D0 /* ViewController.swift in Sources */,
+				78530B6623FA6DB200BABC4E /* CardDeck.swift in Sources */,
 				78971DAC23F27F2400AC81D0 /* AppDelegate.swift in Sources */,
 				78971DAE23F27F2400AC81D0 /* SceneDelegate.swift in Sources */,
 				7893B6B823F6735D00D924C7 /* Card.swift in Sources */,
@@ -274,6 +279,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78530B6723FA6DB200BABC4E /* CardDeck.swift in Sources */,
 				78971DC323F27F2400AC81D0 /* CardGameAppTests.swift in Sources */,
 				7893B6B923F6735D00D924C7 /* Card.swift in Sources */,
 			);
