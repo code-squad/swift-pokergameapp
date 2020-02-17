@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		441679A623FAAD3400CB2E92 /* CardImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441679A523FAAD3400CB2E92 /* CardImageView.swift */; };
 		4426F8F623F3CD4E00406144 /* Players.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4426F8F523F3CD4E00406144 /* Players.swift */; };
 		444F3F1023ED14430010F74E /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444F3F0F23ED14430010F74E /* Card.swift */; };
 		444F3F1423ED5A380010F74E /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444F3F1323ED5A380010F74E /* Deck.swift */; };
@@ -34,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		441679A523FAAD3400CB2E92 /* CardImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardImageView.swift; sourceTree = "<group>"; };
 		4426F8F523F3CD4E00406144 /* Players.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Players.swift; sourceTree = "<group>"; };
 		444F3F0F23ED14430010F74E /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		444F3F1323ED5A380010F74E /* Deck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 				44B649EA23EA75EE00C9F914 /* Main.storyboard */,
 				44B649EF23EA75F000C9F914 /* LaunchScreen.storyboard */,
 				44B649F223EA75F000C9F914 /* Info.plist */,
+				441679A523FAAD3400CB2E92 /* CardImageView.swift */,
 			);
 			path = CardGameApp;
 			sourceTree = "<group>";
@@ -236,6 +239,7 @@
 				44E3EB6823EED98E009402E0 /* Dealer.swift in Sources */,
 				444F3F1423ED5A380010F74E /* Deck.swift in Sources */,
 				44611EE423F3F59A009D3C82 /* Hand.swift in Sources */,
+				441679A623FAAD3400CB2E92 /* CardImageView.swift in Sources */,
 				44B649E723EA75EE00C9F914 /* SceneDelegate.swift in Sources */,
 				44E3EB6623EED8F7009402E0 /* Player.swift in Sources */,
 				444F3F1023ED14430010F74E /* Card.swift in Sources */,
