@@ -8,13 +8,6 @@
 
 import Foundation
 
-protocol PokerGame {
-    init(dealer: Dealer, playersCount: Int, studNumber: Int)
-    
-    func start()
-    func isAllPlayersReady() -> Bool
-    func isAllPlayersCardsReady() -> Bool
-}
 
 enum GameMode : Int {
     case fiveCardStud = 5
@@ -23,21 +16,30 @@ enum GameMode : Int {
     func compareStudNumber(with target : Int) -> Bool {
         return self.rawValue == target
     }
+    // 카드를 내려놓는 곳이 몇 개가 필요한지 세팅
+    func setCardPlacement(of gameMode: GameMode) -> Int {
+        switch gameMode {
+        case .fiveCardStud:
+            return 5
+        case .sevenCardStud:
+            return 7
+        }
+    }
 }
 
-class CardStud: PokerGame {
-    private let studNumber: Int
+class PokerGame {
+    private let gameMode: GameMode
     private let dealer : Dealer
     private var players : [Player] = []
     private let playersCount : Int
     
-    required init(dealer: Dealer, playersCount: Int, studNumber: Int) {
-        self.studNumber = studNumber
+    init(dealer: Dealer, playersCount: Int, gameMode: GameMode) {
+        self.gameMode = gameMode
         self.playersCount = playersCount
         self.dealer = dealer
         self.players = {
             for _ in 1 ... playersCount {
-                let player = Player(whichcardStud: studNumber)
+                let player = Player(in: gameMode)
                 self.players.append(player)
             }
             return self.players
@@ -62,4 +64,3 @@ class CardStud: PokerGame {
         return filteredReadycheck.count == 0
     }
 }
-
