@@ -16,12 +16,13 @@ protocol PokerGame {
     func isAllPlayersCardsReady() -> Bool
 }
 
-enum GameMode : Int,CustomStringConvertible {
-    var description: String {
-        return "\(self.rawValue)"
-    }
+enum GameMode : Int {
     case fiveCardStud = 5
     case sevenCardStud = 7
+    
+    func compareStudNumber(with target : Int) -> Bool {
+        return self.rawValue == target
+    }
 }
 
 class CardStud: PokerGame {

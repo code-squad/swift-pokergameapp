@@ -8,14 +8,19 @@
 
 import Foundation
 
-protocol Playable {
-    init(whichcardStud cardStud: Int)
+class Participant {
+    private let gameMode : GameMode
+    private var cardsInHands = [Card]()
     
-    func isCardsFull() -> Bool
-    func addCard(newCard: [Card])
+    init(which cardStud: Int){}
+    
+    func isCardsFull() -> Bool {
+        return self.cardsInHands.count == gameMode
+    }
+    func addCard(newCard: [Card]) {}
 }
 
-class Dealer : Playable {
+class Dealer : Participant {
     
     let cardStudParticipatingIn : Int
     private var cardDeck = CardDeck()
@@ -49,7 +54,7 @@ class Dealer : Playable {
      }
 }
 
-class Player : Playable {
+class Player : Participant {
     let cardStudParticipatingIn : Int
        private var cardsInHands = [Card]()
           
