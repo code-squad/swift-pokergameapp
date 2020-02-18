@@ -62,33 +62,18 @@ class ViewController: UIViewController {
         setGameTableLayout()
     }
     
-    private func makeSegments(items: [String]) -> UISegmentedControl {
-        let segments = UISegmentedControl(items: items)
-        segments.selectedSegmentIndex = 0
-        segments.translatesAutoresizingMaskIntoConstraints = false
-        segments.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .normal)
-        segments.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor(patternImage: #imageLiteral(resourceName: "bg_pattern"))], for: .selected)
-        segments.layer.borderWidth = 1
-        segments.layer.borderColor = UIColor.white.cgColor
-        return segments
-    }
-    
     private func addGameTypeControl() {
-        gameTypeControl = makeSegments(items: ["7 Card", "5 Card"])
+        gameTypeControl = SegmentedControl(items: ["7 Card", "5 Card"])
         view.addSubview(gameTypeControl)
         gameTypeControl.addTarget(self, action: #selector(gameTypeChanged(segControl:)), for: .valueChanged)
         gameTypeControl.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 50).isActive = true
-        gameTypeControl.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
     }
     
     private func addNumberOfPlayersControl() {
-        numberOfPlayersControl = makeSegments(items: ["2명", "3명", "4명"])
+        numberOfPlayersControl = SegmentedControl(items: ["2명", "3명", "4명"])
         view.addSubview(numberOfPlayersControl)
         numberOfPlayersControl.addTarget(self, action: #selector(numberOfPlayersChanged(segControl:)), for: .valueChanged)
         numberOfPlayersControl.topAnchor.constraint(equalTo: gameTypeControl.bottomAnchor, constant: 10).isActive = true
-        numberOfPlayersControl.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        numberOfPlayersControl.leadingAnchor.constraint(equalTo: gameTypeControl.leadingAnchor).isActive = true
-        numberOfPlayersControl.trailingAnchor.constraint(equalTo: gameTypeControl.trailingAnchor).isActive = true
     }
     
     private func makeGame() {
@@ -98,6 +83,14 @@ class ViewController: UIViewController {
             gameTable.addArrangedSubview(playerStack)
         }
         self.view.addSubview(gameTable)
+    }
+    
+    private func makePlayerCard(_ player: Player) -> UIStackView {
+        let cardStack = HandStackView()
+        player.forEachCard {
+            cardStack.addArrangedSubview(CardImageView(image: UIImage(named: "\($0).png")))
+        }
+        return cardStack
     }
     
     private func setGameTableLayout() {
@@ -112,14 +105,6 @@ class ViewController: UIViewController {
         winnerMedal.leftAnchor.constraint(equalTo: gameTable.rightAnchor, constant: 10).isActive = true
         winnerMedal.widthAnchor.constraint(equalToConstant: 50).isActive = true
         winnerMedal.heightAnchor.constraint(equalToConstant: 50).isActive = true
-    }
-    
-    private func makePlayerCard(_ player: Player) -> UIStackView {
-        let cardStack = HandStackView()
-        player.forEachCard {
-            cardStack.addArrangedSubview(CardImageView(image: UIImage(named: "\($0).png")))
-        }
-        return cardStack
     }
     
     // MARK: - Event Processing
