@@ -33,10 +33,6 @@ class Player{
     func result() -> Hand.ResultPriority {
         return hand.result()
     }
-    
-    func sdasd(){
-        print(hand.resultCardInfo)
-    }
 }
 
 extension Player: CustomStringConvertible{
