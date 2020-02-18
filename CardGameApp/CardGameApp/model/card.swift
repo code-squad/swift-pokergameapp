@@ -83,3 +83,9 @@ extension Card.Rank: Comparable{
         return lhs.rawValue - rhs.rawValue
     }
 }
+
+extension Card: Hashable{
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(self.rank)
+    }
+}
