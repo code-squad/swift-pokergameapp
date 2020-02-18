@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Card: CustomStringConvertible {
+struct Card: CustomStringConvertible, Equatable {
     enum Suit: Character, CaseIterable {
         case spades = "♠️", hearts = "♥️", diamonds = "♦️", clubs = "♣️"
     }
