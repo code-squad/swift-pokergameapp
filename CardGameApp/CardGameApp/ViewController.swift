@@ -15,15 +15,9 @@ class ViewController: UIViewController {
     var pokerGame: PokerGame!
     var playersStackView: UIStackView!
     var cardsStackView: UIStackView!
-    
-    func generateStackView(axis: NSLayoutConstraint.Axis, spacing: CGFloat) -> UIStackView {
-        let stackView = UIStackView()
-        stackView.axis = axis
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.distribution = .fillEqually
-        stackView.spacing = spacing
-        return stackView
-    }
+    var gameModeStackView: UIStackView!
+    var studSegmentedControl: UISegmentedControl!
+    var playerSegmentedControl: UISegmentedControl!
         
     var cardImage = UIImageView()
 
@@ -40,16 +34,49 @@ class ViewController: UIViewController {
             addConstraintsToStackViews()
             addCardsToStackView()
         }
+        
+        gameModeStackView = generateStackView(axis: .vertical, spacing: 15)
+        view.addSubview(gameModeStackView)
+        studSegmentedControl = generateSegmentedControl(item: ["7 Cards", "5 Cards"])
+        playerSegmentedControl = generateSegmentedControl(item: ["2명", "3명", "4명"])
+        gameModeStackView.addArrangedSubview(studSegmentedControl)
+        gameModeStackView.addArrangedSubview(playerSegmentedControl)
+        
+        gameModeStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30).isActive = true
+        gameModeStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
     
+    func generateSegmentedControl(item: [Any]) -> UISegmentedControl {
+        let segmentedControl = UISegmentedControl(items: item)
+        segmentedControl.selectedSegmentIndex = 0
+        segmentedControl.translatesAutoresizingMaskIntoConstraints = false
+
+        segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor : UIColor.white], for: .normal)
+        segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor : UIColor.black], for: .selected)
+        
+        segmentedControl.layer.borderColor = UIColor.white.cgColor
+        segmentedControl.layer.borderWidth = 1.0
+        
+        return segmentedControl
+    }
+    
+    func generateStackView(axis: NSLayoutConstraint.Axis, spacing: CGFloat) -> UIStackView {
+        let stackView = UIStackView()
+        stackView.axis = axis
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.distribution = .fillEqually
+        stackView.spacing = spacing
+        return stackView
+    }
+    
     func addConstraintsToStackViews() {
         cardsStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
         cardsStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40).isActive = true
-        playersStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 200).isActive = true
+        playersStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 180).isActive = true
     }
     
     func startPokerGame() {
@@ -73,11 +100,8 @@ class ViewController: UIViewController {
     }
     
     func matchImageToCardInfo(suit: Card.Suit, rank: Card.Rank) -> UIImageView {
-        let suitString: String
-        let rankString: String
-        
-        suitString = suit.description
-        rankString = rank.description
+        let suitString = suit.description
+        let rankString = rank.description
         
         cardImage = UIImageView(image: UIImage(named: "\(suitString)\(rankString).png")!)
         cardImage.contentMode = .scaleAspectFit
