@@ -9,12 +9,11 @@
 import Foundation
 
 class Player {
-    private(set) var hand: [Card] = []
+    private(set) var hand: Hand = Hand()
     private(set) var name: String!
-    private(set) var value: Value!
     
-    func setupHand(with hand: [Card]) {
-        self.hand = hand
+    func takeCard(_ card: Card) {
+        hand.appendCard(card)
     }
     
     func setupName(_ name: String) {
@@ -22,18 +21,12 @@ class Player {
     }
     
     func forEachCard(_ handler: (Card) -> ()) {
-        for card in hand {
-            handler(card)
-        }
-    }
-    
-    func calculateItsValue() {
-        value = Value(hand: hand)
+        hand.forEachCard(handler)
     }
 }
 
 extension Player: Equatable {
     static func == (lhs: Player, rhs: Player) -> Bool {
-        return lhs.hand == rhs.hand && lhs.name == rhs.name
+        return lhs.hand == rhs.hand
     }
 }

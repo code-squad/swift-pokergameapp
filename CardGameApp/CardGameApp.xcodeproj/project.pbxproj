@@ -39,9 +39,9 @@
 		389487E023F53546003D2481 /* SegmentedControlStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3894879623F2D8F3003D2481 /* SegmentedControlStackView.swift */; };
 		389487E123F53546003D2481 /* TitledSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3894879F23F3DD3D003D2481 /* TitledSegmentedControl.swift */; };
 		389487EA23F65227003D2481 /* ValueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389487E923F65227003D2481 /* ValueTests.swift */; };
-		389487EC23F9BE7D003D2481 /* Value.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389487EB23F9BE7C003D2481 /* Value.swift */; };
-		389487ED23F9BE7D003D2481 /* Value.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389487EB23F9BE7C003D2481 /* Value.swift */; };
 		389487EF23FA4496003D2481 /* ValueComparisonTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389487EE23FA4496003D2481 /* ValueComparisonTest.swift */; };
+		38E5709E23FBD7B200310E11 /* Hand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E5709D23FBD7B200310E11 /* Hand.swift */; };
+		38E5709F23FBD7B200310E11 /* Hand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E5709D23FBD7B200310E11 /* Hand.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,8 +79,8 @@
 		3894879D23F3DCDB003D2481 /* PlayerStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerStackView.swift; sourceTree = "<group>"; };
 		3894879F23F3DD3D003D2481 /* TitledSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitledSegmentedControl.swift; sourceTree = "<group>"; };
 		389487E923F65227003D2481 /* ValueTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueTests.swift; sourceTree = "<group>"; };
-		389487EB23F9BE7C003D2481 /* Value.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Value.swift; sourceTree = "<group>"; };
 		389487EE23FA4496003D2481 /* ValueComparisonTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueComparisonTest.swift; sourceTree = "<group>"; };
+		38E5709D23FBD7B200310E11 /* Hand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hand.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,9 +151,9 @@
 			isa = PBXGroup;
 			children = (
 				3894878423F15D46003D2481 /* PokerGame.swift */,
-				385F3AEF23EDBA1D003FA6A2 /* Player.swift */,
-				389487EB23F9BE7C003D2481 /* Value.swift */,
 				3894878723F163BE003D2481 /* Dealer.swift */,
+				385F3AEF23EDBA1D003FA6A2 /* Player.swift */,
+				38E5709D23FBD7B200310E11 /* Hand.swift */,
 				385F3ADB23EC3FF6003FA6A2 /* Deck.swift */,
 				385F3AD923EACB92003FA6A2 /* Card.swift */,
 			);
@@ -282,7 +282,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				389487EC23F9BE7D003D2481 /* Value.swift in Sources */,
+				38E5709E23FBD7B200310E11 /* Hand.swift in Sources */,
 				3894878523F15D46003D2481 /* PokerGame.swift in Sources */,
 				3894879323F2D048003D2481 /* CardImageView.swift in Sources */,
 				385F3ACA23EA6FA9003FA6A2 /* ViewController.swift in Sources */,
@@ -307,7 +307,6 @@
 				385F3AEB23EC4689003FA6A2 /* Deck.swift in Sources */,
 				389487DC23F53546003D2481 /* CardImageView.swift in Sources */,
 				3894878D23F165B5003D2481 /* PokerGameTests.swift in Sources */,
-				389487ED23F9BE7D003D2481 /* Value.swift in Sources */,
 				389487EF23FA4496003D2481 /* ValueComparisonTest.swift in Sources */,
 				385F3AEC23EC468C003FA6A2 /* Card.swift in Sources */,
 				389487E123F53546003D2481 /* TitledSegmentedControl.swift in Sources */,
@@ -318,6 +317,7 @@
 				389487EA23F65227003D2481 /* ValueTests.swift in Sources */,
 				3894878623F15D46003D2481 /* PokerGame.swift in Sources */,
 				3894878323F15A1D003D2481 /* Player.swift in Sources */,
+				38E5709F23FBD7B200310E11 /* Hand.swift in Sources */,
 				389487DE23F53546003D2481 /* CardStackVIew.swift in Sources */,
 				385F3AE423EC466E003FA6A2 /* CardDeckTests.swift in Sources */,
 				389487DD23F53546003D2481 /* PokerGameStackView.swift in Sources */,
