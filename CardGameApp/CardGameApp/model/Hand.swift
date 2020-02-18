@@ -59,15 +59,19 @@ class Hand{
         var preStraightCount = 0
         for cardIndex in 1..<card.count{
             if pre - card[cardIndex] == -1{
+                resultCardInfo.append(pre)
                 straightCount += 1
             } else{
                 if preStraightCount < straightCount{
                     preStraightCount = straightCount
                 }
+                resultCardInfo.removeAll()
                 straightCount = 1
             }
             pre = card[cardIndex]
         }
+        
+        resultCardInfo.reverse()
         return ResultPriority.straight.equal(num: straightCount > preStraightCount ? straightCount : preStraightCount)
     }
     
