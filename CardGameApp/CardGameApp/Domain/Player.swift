@@ -34,7 +34,7 @@ class Player: Playerable , Searchable {
 
     func searchCard(handler: (Card) -> ()) {
         if let cards = cards {
-            _ = cards.map { handler($0) }
+            cards.forEach{ handler($0) }
         }
     }
 }

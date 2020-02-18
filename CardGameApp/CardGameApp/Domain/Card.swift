@@ -41,12 +41,6 @@ struct Card {
     }
 }
 
-extension Card: CustomStringConvertible {
-    public var description: String {
-        return suit.description + number.description
-    }
-}
-
 extension Card.Suit: CustomStringConvertible {
     var description: String {
         switch self {
@@ -78,6 +72,12 @@ extension Card.Number: CustomStringConvertible {
         }
     }
     
+}
+
+extension Card: CustomStringConvertible {
+    public var description: String {
+        return suit.description + number.description
+    }
 }
 
 extension Card: Equatable {
