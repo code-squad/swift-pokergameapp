@@ -29,6 +29,10 @@ class Player{
             transform($0)
         }
     }
+    
+    func result() -> Hand.ResultPriority {
+        return hand.result()
+    }
 }
 
 extension Player: CustomStringConvertible{
