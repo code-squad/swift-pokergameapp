@@ -10,7 +10,11 @@ import Foundation
 
 class Player {
     private(set) var hand: Hand = Hand()
-    private(set) var name: String!
+    private(set) var name: String
+    
+    init(name: String = "") {
+        self.name = name
+    }
     
     func takeCard(_ card: Card) {
         hand.appendCard(card)
