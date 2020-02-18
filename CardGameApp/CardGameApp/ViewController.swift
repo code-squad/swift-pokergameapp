@@ -103,7 +103,7 @@ class ViewController: UIViewController {
                 addCardIntoStackView(stackView: cardStackView, cardName: "\($0)")
             }
             resultStackView.addArrangedSubview(cardStackView)
-            resultStackView.addArrangedSubview(createImageView(imageName: player is Dealer ? "win" : "transparent"))
+            resultStackView.addArrangedSubview(createImageView(imageName: "\(player)" == pokerGame.winner()  ? "win" : "transparent"))
             playerStackView.addArrangedSubview(resultStackView)
             pokerStackView.addArrangedSubview(playerStackView)
         }
