@@ -8,11 +8,15 @@
 
 import Foundation
 
-class Player {
-    private var number: Int?
+class Player: CustomStringConvertible {
+    
+    var description: String {
+        "Player\(number)"
+    }
+    private var number: Int
     private var hand = Hand()
     
-    init(number: Int? = nil) {
+    init(number: Int = 0) {
         self.number = number
     }
     
@@ -29,14 +33,7 @@ class Player {
     }
 }
 
-extension Player: Equatable, CustomStringConvertible {
-    var description: String {
-        guard let number = number else {
-            return "Dealer"
-        }
-        return "Player\(number)"
-    }
-    
+extension Player: Equatable {
     static func == (lhs: Player, rhs: Player) -> Bool {
         lhs.hand == rhs.hand
     }

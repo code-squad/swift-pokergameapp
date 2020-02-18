@@ -9,11 +9,15 @@
 import Foundation
 
 class Dealer: Player {
+    
+    override var description: String {
+        "Dealer"
+    }
     private var deck = Deck()
     var deckCount: Int {
         deck.count
     }
-    
+
     func drawCard() -> Card? {
         return deck.removeOne()
     }
