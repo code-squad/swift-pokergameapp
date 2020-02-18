@@ -36,15 +36,23 @@ extension Card: CustomStringConvertible {
     }
 }
 
-extension Card: Equatable {
+extension Card: Comparable {
     static func == (lhs: Card, rhs: Card) -> Bool {
         return lhs.rank == rhs.rank
     }
-}
-
-extension Card: Comparable {
+    
     static func < (lhs: Card, rhs: Card) -> Bool {
         return lhs.rank < rhs.rank
+    }
+    
+    static func - (lhs: Card, rhs: Card) -> Int {
+        return lhs.rank - rhs.rank
+    }
+}
+
+extension Card: Hashable {
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(rank)
     }
 }
 
@@ -73,10 +81,9 @@ extension Card.Rank: Comparable {
     static func < (lhs: Card.Rank, rhs: Card.Rank) -> Bool {
         return lhs.rawValue < rhs.rawValue
     }
-}
-
-extension Card.Rank {
+    
     static func - (lhs: Card.Rank, rhs: Card.Rank) -> Int {
         return lhs.rawValue - rhs.rawValue
     }
 }
+

@@ -26,3 +26,28 @@ extension Hand: Equatable {
         return lhs.cards == rhs.cards
     }
 }
+
+extension Hand {
+    func isContinuous(for number: Int) -> (Bool, Card?) {
+        let sortedCardSet = Set(cards).sorted(by: >)
+        var continuity = 1
+        var highestCard = sortedCardSet.first
+        var previousCard: Card? = nil
+        
+        sortedCardSet.forEach { card in
+            if let previousCard = previousCard,
+                previousCard - card == 1 {
+                continuity += 1
+            } else {
+                highestCard = card
+                continuity = 1
+            }
+            previousCard = card
+        }
+        
+        if continuity >= number {
+            return (true, highestCard)
+        }
+        return (false, nil)
+    }
+}
