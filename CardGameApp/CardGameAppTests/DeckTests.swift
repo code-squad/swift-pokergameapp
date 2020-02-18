@@ -71,18 +71,4 @@ class DeckTests: XCTestCase {
         
     }
     
-    func testScenario(){
-        let totalCardCounts = 52
-        XCTAssertEqual(deck.count, totalCardCounts)
-        
-        var generator = ANSI_C_RandomNumberGenerator()
-        deck.shuffle(using: &generator)
-        
-        try! deck.removeOne()
-        XCTAssertEqual(deck.count, totalCardCounts - 1 )
-        
-        try! deck.removeOne()
-        XCTAssertEqual(deck.count, totalCardCounts - 2 )
-    }
-
 }
