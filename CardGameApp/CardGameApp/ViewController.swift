@@ -10,7 +10,9 @@ import UIKit
 import UIKit
 
 class ViewController: UIViewController {
-    // 스택 뷰 설정
+    
+    // MARK: - Properties
+    // Stack View
     let cardsStack: UIStackView = {
         let horizontalStackView = UIStackView()
         horizontalStackView.translatesAutoresizingMaskIntoConstraints = false
@@ -21,13 +23,53 @@ class ViewController: UIViewController {
         return horizontalStackView
     }()
     
+    // Segment Control
+    // - GameMode
+    let gameMode: [String] = ["7 Cards", "5 Cards"]
+    
+    lazy var gameModeSegmentControl: UISegmentedControl = {
+        let gameModeSegmentControl: UISegmentedControl = UISegmentedControl(items: gameMode)
+        gameModeSegmentControl.center = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/12)
+        gameModeSegmentControl.backgroundColor = UIColor.gray
+        gameModeSegmentControl.tintColor = UIColor.white
+        gameModeSegmentControl.addTarget(self, action:
+            #selector(gameModeSegmentChanged(segmentControl:)),
+                     for: .valueChanged)
+        gameModeSegmentControl.selectedSegmentIndex = 0
+        return gameModeSegmentControl
+        
+    }()
+    
+    // - Players
+    
+    
+
+    // MARK: - View Life Cycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = UIColor(patternImage:  #imageLiteral(resourceName: "bg_pattern"))
+        
+        //StakcView - 카드 뒷면
+        addCards()
+        self.view.addSubview(cardsStack)
+        setStackView ()
+        
+        //UISegmentedControl - 게임 모드 선택
+        self.view.addSubview(self.gameModeSegmentControl)
+        //UISegmentedControl - 플레이어 인원 선택
+        
+
+    }
+    
+    // MARK: - Configuration
+    // stackView
     func setStackView() {
-        cardsStack.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 40).isActive = true
+        cardsStack.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 140).isActive = true
         cardsStack.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 5).isActive = true
         cardsStack.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -5).isActive = true
     }
     
-    // 스택뷰에 넣을 이미지 뷰 생성
+    // StackView에 넣을 이미지 뷰 생성
     func makeCard() -> UIImageView {
         let card = UIImageView(image:  #imageLiteral(resourceName: "card-back"))
         card.contentMode = .scaleAspectFit
@@ -45,13 +87,30 @@ class ViewController: UIViewController {
         return .lightContent
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = UIColor(patternImage:  #imageLiteral(resourceName: "bg_pattern"))
-        addCards()
-        self.view.addSubview(cardsStack)
-        setStackView ()
-        CardDeck()
+    // segment Control
+    
+    @objc func gameModeSegmentChanged(segmentControl: UISegmentedControl){
+       
         
+    }
+    
+    func titleForSegment(){
+        
+    }
+    
+    func configureSegmentedControl() {
+        // Use a dynamic tinted color (separate one for Light Appearance and separate one for Dark Appearance).
+//        segmentedControl.tintColor = UIColor(ciColor: .red)
+//
+//        segmentedControl.selectedSegmentIndex = 1
+//
+//        segmentedControl.addTarget(self, action: #selector(ViewController.selectedSegmentDidChange(_:)), for: .valueChanged)
+    }
+
+    // MARK: - Actions
+
+    @objc
+    func selectedSegmentDidChange(_ segmentedControl: UISegmentedControl) {
+        print("The selected segment changed for: \(segmentedControl).")
     }
 }
