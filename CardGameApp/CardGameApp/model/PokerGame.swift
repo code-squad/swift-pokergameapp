@@ -80,7 +80,7 @@ class PokerGame{
             if highest == nil{
                 highest = $0
             } else{
-                if highest!.result() < $0.result(){
+                if highest! < $0{
                     highest = $0
                 }
             }
