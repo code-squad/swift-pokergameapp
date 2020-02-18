@@ -12,9 +12,7 @@ class Players {
     var players = [Player]()
     
     func addPlayer(newPlayer : Player) {
-        players.forEach{_ in
             self.players.append(newPlayer)
-        }
     }
     
     func addCard(newCard: Card) {
