@@ -9,7 +9,7 @@
 import Foundation
 class Dealer: Playable{
     private var cardDeck = CardDeck()
-    private var cards = [Card]()
+    private var hands = Hands()
     
     func removeOne() -> Card? {
         return cardDeck.removeOne()
@@ -20,27 +20,14 @@ class Dealer: Playable{
     }
     
     func appendCard(_ card: Card) {
-        cards.append(card)
+        hands.append(card)
     }
     
     func shuffle() {
         cardDeck.shuffle()
     }
     
-    func cardsInfo() -> [Card]{
-        return cards
-    }
-    
-    func cardsInfo2(hander: (Card) -> String) {
-        for card in cards {
-            print(hander(card))
-        }
-    }
-    
-    func cardsWithImageInfo() -> [String] {
-       let cardsInfo = cards.map { (card) in
-        card.description
-        }
-        return cardsInfo
+    func forEach(handler: (Card) -> () ) {
+        hands.forEach(handler)
     }
 }

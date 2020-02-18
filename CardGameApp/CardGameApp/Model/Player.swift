@@ -8,13 +8,13 @@
 
 import Foundation
 class Player: Playable {
-    private var cards = [Card]()
+    private var hands = Hands()
     
     func appendCard(_ card: Card) {
-        cards.append(card)
+        hands.append(card)
     }
     
     func forEachCard(handler: (Card) -> () ) {
-        cards.forEach(handler)
+        hands.forEach(handler)
     }
 }
