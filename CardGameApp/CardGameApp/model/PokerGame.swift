@@ -66,13 +66,16 @@ class PokerGame{
             dealCard(to: dealer)
         }
         players.append(dealer)
-        players.forEachPlayer{
-            print($0.result())
-        }
     }
     
     func winner() -> String{
-        var highest:Player?
+        let highest = findHighest()
+        
+        return "\(highest)"
+    }
+    
+    func findHighest() -> Player{
+        var highest: Player?
         players.forEachPlayer{
             if highest == nil{
                 highest = $0
@@ -82,7 +85,8 @@ class PokerGame{
                 }
             }
         }
-        return "\(highest!)"
+        
+        return highest!
     }
     
     private func dealCard(to player: Player){
