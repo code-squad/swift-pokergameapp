@@ -109,7 +109,7 @@ class ViewController: UIViewController {
     
     @objc
     private func segmentsChanged() {
-        pokerGame = PokerGame(gameType: PokerGame.GameType(index: gameTypeControl.selectedSegmentIndex), numberOfPlayers: PokerGame.NumberOfPlayers(index: numberOfPlayersControl.selectedSegmentIndex))
+        pokerGame = PokerGame(gameType: PokerGame.GameType(index: gameTypeControl.selectedSegmentIndex), numberOfPlayers: Players.NumberOfPlayers(index: numberOfPlayersControl.selectedSegmentIndex))
         loadGame()
     }
     
