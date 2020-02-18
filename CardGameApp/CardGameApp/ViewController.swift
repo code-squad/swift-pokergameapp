@@ -9,9 +9,7 @@
 import UIKit
 
 class ViewController: UIViewController {
-
-    private var gameType: PokerGame.GameType = .sevenCardStud
-    private var numberOfPlayers: PokerGame.NumberOfPlayers = .two
+    
     private var pokerGame: PokerGame!
     
     private var gameTypeControl: SegmentedControl!
@@ -29,6 +27,7 @@ class ViewController: UIViewController {
         view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "bg_pattern"))
         addGameTypeControl()
         addNumberOfPlayersControl()
+        pokerGame = PokerGame()
         loadGame()
     }
     
@@ -42,7 +41,6 @@ class ViewController: UIViewController {
     }
     
     private func loadGame() {
-        pokerGame = PokerGame(gameType: gameType, numberOfPlayers: numberOfPlayers)
         pokerGame.play()
         resetGameTable()
         makeGame()
@@ -52,14 +50,14 @@ class ViewController: UIViewController {
     private func addGameTypeControl() {
         gameTypeControl = SegmentedControl(items: ["7 Card", "5 Card"])
         view.addSubview(gameTypeControl)
-        gameTypeControl.addTarget(self, action: #selector(gameTypeChanged(segControl:)), for: .valueChanged)
+        gameTypeControl.addTarget(self, action: #selector(segmentsChanged), for: .valueChanged)
         gameTypeControl.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 50).isActive = true
     }
     
     private func addNumberOfPlayersControl() {
         numberOfPlayersControl = SegmentedControl(items: ["2명", "3명", "4명"])
         view.addSubview(numberOfPlayersControl)
-        numberOfPlayersControl.addTarget(self, action: #selector(numberOfPlayersChanged(segControl:)), for: .valueChanged)
+        numberOfPlayersControl.addTarget(self, action: #selector(segmentsChanged), for: .valueChanged)
         numberOfPlayersControl.topAnchor.constraint(equalTo: gameTypeControl.bottomAnchor, constant: 10).isActive = true
     }
     
@@ -94,14 +92,8 @@ class ViewController: UIViewController {
     }
     
     @objc
-    private func gameTypeChanged(segControl: UISegmentedControl) {
-        gameType = PokerGame.GameType(index: segControl.selectedSegmentIndex)
-        loadGame()
-    }
-    
-    @objc
-    private func numberOfPlayersChanged(segControl: UISegmentedControl) {
-        numberOfPlayers = PokerGame.NumberOfPlayers(index: segControl.selectedSegmentIndex)
+    private func segmentsChanged() {
+        pokerGame = PokerGame(gameType: PokerGame.GameType(index: gameTypeControl.selectedSegmentIndex), numberOfPlayers: PokerGame.NumberOfPlayers(index: numberOfPlayersControl.selectedSegmentIndex))
         loadGame()
     }
 }
