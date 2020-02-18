@@ -154,7 +154,6 @@ class ViewController: UIViewController {
     
     func setDealerCards() {
         dealerGameStack.arrangedSubviews.forEach { $0.removeFromSuperview() }
-        let cards = pokerGame.dealerCardInfo()
         let cardImageStack = makeCardImageStack()
         let dealerLabel: UILabel = {
           let label = UILabel()
@@ -163,12 +162,12 @@ class ViewController: UIViewController {
             label.font.withSize(10.0)
             return label
         }()
-        for card in cards {
+        pokerGame.forEachDealerCards { (card) in
             let cardImage = UIImageView(image: UIImage(named: card.description))
-            cardImage.heightAnchor.constraint(equalTo: cardImage.widthAnchor, multiplier: 1.27).isActive = true
-            cardImageStack.addArrangedSubview(cardImage)
+                        cardImage.heightAnchor.constraint(equalTo: cardImage.widthAnchor, multiplier: 1.27).isActive = true
+                        cardImageStack.addArrangedSubview(cardImage)
         }
-        dealerGameStack.addArrangedSubview(dealerLabel)
+            dealerGameStack.addArrangedSubview(dealerLabel)
         dealerGameStack.addArrangedSubview(cardImageStack)
     }
     

@@ -64,13 +64,13 @@ class PokerGame {
         return dealer.leftCards()
     }
     
-    func dealerCardInfo() -> [Card]{
-        return dealer.cardsInfo()
-    }
-    
     func forEachPlayer(handler: (Player) -> ()) {
         players.forEachPlayer { (player) in
             handler(player)
         }
+    }
+    
+    func forEachDealerCards(handler: (Card) -> () ) {
+        dealer.forEach(handler: handler)
     }
 }

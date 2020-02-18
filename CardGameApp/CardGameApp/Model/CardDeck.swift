@@ -8,26 +8,26 @@
 
 import Foundation
 struct CardDeck {
-    private var cards :[Card] = []
+    private var hands = Hands()
     
     init() {
         Card.Number.allCases.map { number in
             Card.Pattern.allCases.map{ pattern in
-                cards.append(Card(number: number, pattern: pattern ))
+                hands.append(Card(number: number, pattern: pattern ))
             }
         }
     }
     
     func count() -> Int {
-        return cards.count
+        return hands.count()
     }
     
     mutating func shuffle() {
-        cards.shuffle()
+        hands.shuffle()
     }
     
     mutating func removeOne() -> Card? {
-        return cards.removeFirst()
+        return hands.removeOne()
     }
     
     mutating func reset() {
