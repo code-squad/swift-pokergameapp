@@ -12,15 +12,12 @@ class ViewController: UIViewController {
     var cardDeck: CardDeck?
     
     private lazy var selectionView: PlayModeSelectionView = {
-        let rule = ["\(Descriptions.Rule.seven)", "\(Descriptions.Rule.five)"]
-        let number = ["\(Descriptions.Number.two)", "\(Descriptions.Number.three)", "\(Descriptions.Number.four)"]
-        let selection = PlayModeSelectionViewContents(rule: rule, numberOfPlayers: number)
-        let view = PlayModeSelectionView(with: selection)
+        let view = PlayModeSelectionView()
         return view
     }()
     
     private lazy var gamePlayView: GamePlayView = {
-        let view = GamePlayView(maxParticipantNumber: Descriptions.maxPlayers)
+        let view = GamePlayView()
         return view
     }()
 

@@ -9,7 +9,7 @@
 import Foundation
 
 class Descriptions {
-    enum Rule: CustomStringConvertible {
+    enum Rule: CaseIterable, CustomStringConvertible {
         case seven, five
         
         var description: String {
@@ -20,7 +20,7 @@ class Descriptions {
         }
     }
 
-    enum Number: CustomStringConvertible {
+    enum Number: CaseIterable, CustomStringConvertible {
         case two, three, four
         
         var description: String {
@@ -32,7 +32,7 @@ class Descriptions {
         }
     }
     
-    static let maxPlayers = 5
+    static let maxParticipant = 5
     static let maxCards = 7
     
     static let playerLabel = "Player"
