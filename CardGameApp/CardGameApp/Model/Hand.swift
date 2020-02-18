@@ -33,7 +33,7 @@ class Hand {
         cards.append(card)
     }
     
-    private func checkStraight() -> Bool {
+    private func isStraight() -> Bool {
         let sortedCards = cards.sorted { $0 < $1 }
         var currentCard = sortedCards[0]
         var straightCount = 1
@@ -84,7 +84,7 @@ class Hand {
     
     private func getScore() -> Score {
         let info = getInfo()
-        if checkStraight() {
+        if isStraight() {
             return .straight
         } else if info.contains(where: { $0.value == 4 }) {
             return .fourCard
