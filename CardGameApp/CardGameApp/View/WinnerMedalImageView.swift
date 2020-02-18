@@ -12,16 +12,20 @@ class WinnerMedalImageView: UIImageView {
 
     override init(image: UIImage?) {
         super.init(image: image)
-        self.translatesAutoresizingMaskIntoConstraints = false
+        self.setUp()
     }
     
     required init(coder: NSCoder) {
         super.init(image: nil)
-        self.translatesAutoresizingMaskIntoConstraints = false
+        self.setUp()
     }
     
     convenience init() {
         self.init(image: UIImage(named: "trophy.png"))
+    }
+    
+    private func setUp() {
+        self.translatesAutoresizingMaskIntoConstraints = false
     }
 
     override func updateConstraints() {

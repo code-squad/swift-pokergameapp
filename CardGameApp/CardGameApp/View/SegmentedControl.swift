@@ -12,18 +12,20 @@ class SegmentedControl: UISegmentedControl {
     
     required init(items: [String]) {
         super.init(items: items)
-        self.translatesAutoresizingMaskIntoConstraints = false
-        self.selectedSegmentIndex = 0
+        self.setUp()
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.translatesAutoresizingMaskIntoConstraints = false
-        self.selectedSegmentIndex = 0
+        self.setUp()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+        self.setUp()
+    }
+    
+    private func setUp() {
         self.translatesAutoresizingMaskIntoConstraints = false
         self.selectedSegmentIndex = 0
     }
