@@ -23,21 +23,6 @@ class PokerGame {
             }
         }
     }
-    enum NumberOfPlayers: Int, CaseIterable {
-        case two = 2
-        case three = 3
-        case four = 4
-        
-        init(index: Int) {
-            self = NumberOfPlayers.allCases[index]
-        }
-        
-        func forEach(_ transform: () -> ()) {
-            for _ in 1...self.rawValue {
-                transform()
-            }
-        }
-    }
     private var dealer: Dealer
     private var players = Players()
     private var gameType: GameType
@@ -48,13 +33,10 @@ class PokerGame {
         players.whoIsWinner()
     }
 
-    init(gameType: GameType = .sevenCardStud, numberOfPlayers: NumberOfPlayers = .two) {
+    init(gameType: GameType = .sevenCardStud, numberOfPlayers: Players.NumberOfPlayers = .two) {
         self.gameType = gameType
         self.dealer = Dealer()
-        numberOfPlayers.forEach {
-            self.players.add(player: Player(number: players.count + 1))
-        }
-        players.add(player: dealer)
+        players.addPlayers(count: numberOfPlayers)
     }
     
     func forEachPlayers(_ transform: (Player) -> ()) {
