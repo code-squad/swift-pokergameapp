@@ -78,6 +78,16 @@
                ReferencedContainer = "container:CardGameApp.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "44A4085123FBE49D007995C5"
+               BuildableName = "VersusTest.xctest"
+               BlueprintName = "VersusTest"
+               ReferencedContainer = "container:CardGameApp.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
