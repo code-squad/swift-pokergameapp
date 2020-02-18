@@ -76,4 +76,25 @@ class Hand{
         }
         return same.equal(num: sameCardCount)
     }
+    
+    func checkPair(card: [Card]) -> ResultPriority{
+        var pre = card[0]
+        var sameCardCount = 1
+        var pairCount = 0
+        for cardIndex in 1..<card.count{
+            if pre == card[cardIndex]{
+                sameCardCount += 1
+            } else{
+                sameCardCount = 1
+            }
+            
+            if sameCardCount == 2{
+                pairCount += 1
+                sameCardCount = 1
+            }
+            
+            pre = card[cardIndex]
+        }
+        return ResultPriority.init(rawValue: pairCount) ?? ResultPriority.twoPair
+    }
 }
