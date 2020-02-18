@@ -20,7 +20,6 @@ class CardImageView: UIImageView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        self.translatesAutoresizingMaskIntoConstraints = false
         self.layer.cornerRadius = 3.0
         self.clipsToBounds = true
     }
