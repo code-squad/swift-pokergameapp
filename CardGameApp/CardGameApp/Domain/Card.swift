@@ -9,11 +9,11 @@
 import Foundation
 
 struct Card {
-    enum Suit: String, CaseIterable {
-        case spade = "s"
-        case heart = "h"
-        case diamond = "d"
-        case club = "c"
+    enum Suit: CaseIterable {
+        case spade
+        case heart
+        case diamond
+        case club
     }
     
     enum Number: Int, CaseIterable {
@@ -51,13 +51,13 @@ extension Card.Suit: CustomStringConvertible {
     var description: String {
         switch self {
         case .spade :
-            return "♠"
+            return "s"
         case .heart :
-            return "♥"
+            return "h"
         case .diamond :
-            return "♦"
+            return "d"
         case .club :
-            return "♣"
+            return "c"
         }
     }
 }

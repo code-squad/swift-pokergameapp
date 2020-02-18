@@ -7,7 +7,6 @@
 //
 
 import Foundation
-// Linear Congruential Generator
 struct ANSI_C_RandomNumberGenerator: RandomNumberGenerator {
     var seed = 123456789
     let m = 2 << 30
