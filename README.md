@@ -196,6 +196,10 @@ STEP15 포커게임 앱 저장소
 
 
 
+<details>
+<summary>step 5 : 포커게임 결과 화면</summary>
+<div markdown="1">
+
 ## Step5 : 포커게임 결과 화면
 
 <img width="400" alt="image" src="https://user-images.githubusercontent.com/37682858/74592193-3423cd00-5062-11ea-8260-2f3d149267b2.png">
@@ -232,3 +236,90 @@ STEP15 포커게임 앱 저장소
 
 2020.02.15
 
+</div>
+</details>
+
+
+
+## Step6: 승자 확인하기
+
+<img width="400" alt="image" src="https://user-images.githubusercontent.com/37682858/74728739-a4129d00-5286-11ea-9a93-0de471728156.png">
+
+<img width="400" alt="image" src="https://user-images.githubusercontent.com/37682858/74728852-d7edc280-5286-11ea-8c07-7cd4cb065437.png">
+
+
+
+### 추가한 기능
+
+* 승자에게 트로피 부여
+  * 플레이어가 가지고있는 카드를 바탕으로 트로피 이미지뷰를 넣어줌.
+  * 승자가 아닌 플레이어에게는 투명한 이미지를 가지는 이미지뷰를 넣어줌.
+
+* Comparable 프로토콜을 사용하여 객체를 비교할 수 있는 기준을 주었음.
+
+  * ``` swift
+    extension Hand: Comparable{
+        static func < (lhs: Hand, rhs: Hand) -> Bool {
+            if lhs.result() != rhs.result(){
+                return lhs.result() < rhs.result()
+            } else{
+                for index in 0..<lhs.card.count{
+                    if lhs.card[index] < rhs.card[index]{
+                        return lhs.card[index] < rhs.card[index]
+                    }
+                }
+            }
+            return true
+        }
+        
+        static func == (lhs: Hand, rhs: Hand) -> Bool {
+            for index in 0..<lhs.card.count{
+                if lhs.card[index] != rhs.card[index]{
+                    return false
+                }
+            }
+            return true
+        }
+    }
+    ```
+
+  * ```swift
+    extension Card: Comparable{
+        static func < (lhs: Card, rhs: Card) -> Bool {
+            return lhs.rank < rhs.rank
+        }
+        
+        static func == (lhs: Card, rhs: Card) -> Bool {
+            return lhs.rank == rhs.rank
+        }
+        
+        static func - (lhs: Card, rhs: Card) -> Int {
+            return lhs.rank - rhs.rank
+        }
+    }
+    
+    ```
+
+  * ```swift
+    extension Card.Rank: Comparable{
+        static func < (lhs: Card.Rank, rhs: Card.Rank) -> Bool {
+            return lhs.rawValue < rhs.rawValue
+        }
+        
+        static func == (lhs: Card.Rank, rhs: Card.Rank) -> Bool {
+            return lhs.rawValue == rhs.rawValue
+        }
+        
+        static func - (lhs: Card.Rank, rhs: Card.Rank) -> Int {
+            return lhs.rawValue - rhs.rawValue
+        }
+    }
+    
+    ```
+
+    
+
+2020.02.18
+
+</div>
+</details>
