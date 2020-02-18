@@ -103,6 +103,6 @@ class Hand{
             
             pre = card[cardIndex]
         }
-        return ResultPriority.init(rawValue: pairCount) ?? ResultPriority.twoPair
+        return ResultPriority.init(rawValue: pairCount >= 3 ? 2 : pairCount)!
     }
 }
