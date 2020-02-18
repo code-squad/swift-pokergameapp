@@ -36,14 +36,17 @@ class Hand{
     
     func result() -> ResultPriority{
         if checkStraight(card: card.sorted()){
+            resultCardInfo.sort(by: >)
             return .straight
         }
         
         if checkSameCard(howMany: .fourCard, card: card.sorted()){
+            resultCardInfo.sort(by: >)
             return .fourCard
         }
         
         if checkSameCard(howMany: .triple, card: card.sorted()){
+            resultCardInfo.sort(by: >)
             return .triple
         }
         
@@ -69,21 +72,32 @@ class Hand{
     }
     
     func checkSameCard(howMany same: ResultPriority, card: [Card]) -> Bool{
-        var pre = card[0]
-        var sameCardCount = 1
-        var preSameCardCount = 0
-        for cardIndex in 1..<card.count{
-            if pre == card[cardIndex]{
-                sameCardCount += 1
+        resultCardInfo.removeAll()
+        var howmany = [Card : Int]()
+        card.forEach{
+            if howmany[$0] == nil{
+                howmany[$0] = 1
             } else{
-                if preSameCardCount < sameCardCount{
-                    preSameCardCount = sameCardCount
-                }
-                sameCardCount = 1
+                howmany.updateValue(howmany[$0]! + 1, forKey: $0)
             }
-            pre = card[cardIndex]
         }
-        return same.equal(num: sameCardCount > preSameCardCount ? sameCardCount : preSameCardCount)
+        
+        if howmany.values.contains(4){
+            for (key,value) in howmany{
+                if value == 4{
+                    resultCardInfo.append(key)
+                }
+            }
+            return true
+        } else if howmany.values.contains(3){
+            for (key,value) in howmany{
+                if value == 3{
+                    resultCardInfo.append(key)
+                }
+            }
+            return true
+        }
+        return false
     }
     
     func checkPair(card: [Card]) -> ResultPriority{
