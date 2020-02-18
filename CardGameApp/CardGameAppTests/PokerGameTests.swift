@@ -29,7 +29,7 @@ class PokerGameTests: XCTestCase {
         }
         
         //2. when
-        try! game.startNewRound()
+        game.startNewRound()
         
         //3. then
         var handedOutCards = [Card]()
@@ -45,13 +45,12 @@ class PokerGameTests: XCTestCase {
         }
         
         var gameStutCount = 0
-        try! gameStut.forEach { () -> (Error?) in
+        gameStut.forEach {
             gameStutCount += 1
-            return nil
         }
         
         var playersNumCount = 0
-        playersNum.forEach { () -> (Void) in
+        playersNum.forEach { 
             playersNumCount += 1
         }
         
@@ -67,7 +66,7 @@ class PokerGameTests: XCTestCase {
         game = PokerGame(gameStut: .seven, playersNum: .four)
 
         //2. when
-        try! game.startNewRound() // remainedCards = 52 - 7 * 5 ( one is dealer) = 17
+        game.startNewRound() // remainedCards = 52 - 7 * 5 ( one is dealer) = 17
 
         //3. then
         XCTAssertFalse(game.hasEnoughCards())

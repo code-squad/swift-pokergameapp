@@ -35,13 +35,12 @@ class Deck {
     }
     
     @discardableResult
-    func removeOne() throws -> Card {
+    func removeOne() -> Card? {
         let none = 0
         guard count != none else {
-            throw DeckError.indexOutOfRangeError
+            return nil
         }
-        let card = cards.removeFirst()
-        return card
+        return cards.removeFirst()
     }
     
     func reset() {

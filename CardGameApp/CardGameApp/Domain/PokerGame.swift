@@ -11,11 +11,9 @@ extension PokerGame {
     enum GameStut: Int {
         case five = 5, seven = 7
         
-        func forEach(handler : () -> (Error?)) throws {
+        func forEach(handler : () -> (Void)) {
             for _ in 0 ..< self.rawValue {
-                if let error = handler() {
-                    throw error
-                }
+                handler()
             }
         }
     }
@@ -53,10 +51,10 @@ class PokerGame {
         return players
     }
     
-    func startNewRound() throws {
+    func startNewRound() {
         resetParticipantsCards()
         shuffle()
-        try handOutCards()
+        handOutCards()
     }
     
     private func resetParticipantsCards() {
@@ -77,38 +75,23 @@ class PokerGame {
         deck.shuffle(using: &generator)
     }
     
-    private func handOutCards() throws {
-        try gameStut.forEach { 
-            do {
-                try sendToDealer()
-                try sendToPlayers()
-                return nil
-            } catch {
-                return error
-            }
+    private func handOutCards() {
+        gameStut.forEach {
+            sendToDealer()
+            sendToPlayers()
         }
     }
     
-    private func sendToDealer() throws {
-        try dealer.receiveCard {
-            do {
-                let card = try deck.removeOne()
-                return .success(card)
-            } catch {
-                return .failure(error)
-            }
+    private func sendToDealer() {
+        if let card = deck.removeOne() {
+            dealer.receive(card: card)
         }
     }
     
-    private func sendToPlayers() throws {
+    private func sendToPlayers() {
         for index in 0 ..< players.count {
-            try players[index].receiveCard {
-                do {
-                    let card = try deck.removeOne()
-                    return  .success(card)
-                } catch {
-                    return .failure(error)
-                }
+            if let card = deck.removeOne() {
+                players[index].receive(card: card)
             }
         }
     }
@@ -119,9 +102,9 @@ class PokerGame {
     
     private var stutNum : Int {
         var stutNum = 0
-        try? gameStut.forEach {
+        gameStut.forEach {
             stutNum += 1
-            return nil
+            
         }
         return stutNum
     }
@@ -141,10 +124,5 @@ extension PokerGame {
             handler(player)
         }
     }
-    
 }
 
-enum PokerGameError: Error {
-    case invalidGameStutNumber
-    case invalidPlayersNumber
-}

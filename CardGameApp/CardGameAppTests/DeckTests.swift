@@ -54,7 +54,7 @@ class DeckTests: XCTestCase {
         // 1.given
         let card = Card(suit: .spade, number: .ace)
         // 2.when
-        let result = try! deck.removeOne()
+        let result = deck.removeOne()
         // 3.then
         XCTAssertEqual(card , result)
     }
