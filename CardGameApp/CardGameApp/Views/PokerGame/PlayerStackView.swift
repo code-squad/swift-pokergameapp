@@ -9,23 +9,31 @@
 import UIKit
 
 class PlayerStackView: UIStackView {
-    private var displayName: String = ""
+    let player: Player
     let nameLabel = UILabel()
+    lazy var cardStackView = CardStackView(with: player.hand)
     
-    init(displayName: String) {
-        self.displayName = displayName
+    init(player: Player) {
+        self.player = player
         super.init(frame: .zero)
         commonInit()
     }
     
     override init(frame: CGRect) {
+        self.player = Player()
         super.init(frame: frame)
         commonInit()
     }
     
     required init(coder: NSCoder) {
+        self.player = Player()
         super.init(coder: coder)
         commonInit()
+    }
+    
+    func appendCard() {
+        let card = player.hand.cards.last!
+        cardStackView.appendCard(card)
     }
     
     private func commonInit() {
@@ -34,7 +42,8 @@ class PlayerStackView: UIStackView {
         translatesAutoresizingMaskIntoConstraints = false
         
         nameLabel.textColor = .white
-        nameLabel.text = displayName
+        nameLabel.text = player.name
         addArrangedSubview(nameLabel)
+        addArrangedSubview(cardStackView)
     }
 }

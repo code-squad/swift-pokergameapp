@@ -11,22 +11,22 @@ import Foundation
 class PokerGame {
     private let gameType: GameType
     private let playerCount: PlayerCount
-    private var players: Players!
+    private(set) var players: Players!
     private(set) var winner: Player!
     let dealer = Dealer()
     
     init(game gameType: GameType = .sevenCardsStud, numberOfPlayers: PlayerCount = .two) {
         self.gameType = gameType
         self.playerCount = numberOfPlayers
-        setupPlayers()
     }
     
     func findWinner() {
         winner = players.winner()
     }
     
-    private func setupPlayers() {
-        players.setupPlayers(playerCount: playerCount, with: dealer)
+    func resetPlayers(_ players: [Player] = []) {
+        self.players = Players(players: players)
+        self.players.setupPlayers(playerCount: playerCount, with: dealer)
     }
     
     func passCardToPlayers() {

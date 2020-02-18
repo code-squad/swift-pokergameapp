@@ -9,10 +9,10 @@
 import UIKit
 
 class CardStackView: UIStackView {
-    private var player: Player?
+    private(set) var hand: Hand!
     
-    init(of player: Player) {
-        self.player = player
+    init(with hand: Hand) {
+        self.hand = hand
         super.init(frame: .zero)
         commonInit()
         setupCards()
@@ -35,9 +35,14 @@ class CardStackView: UIStackView {
         translatesAutoresizingMaskIntoConstraints = false
     }
     
-    private func setupCards() {
-        player?.forEachCard({ (card) in
+    func appendCard(_ card: Card) {
+        addArrangedSubview(CardImageView(named: String(describing: card)))
+    }
+    
+    func setupCards() {
+        arrangedSubviews.forEach{ $0.removeFromSuperview() }
+        hand.forEachCard { (card) in
             addArrangedSubview(CardImageView(named: String(describing: card)))
-        })
+        }
     }
 }

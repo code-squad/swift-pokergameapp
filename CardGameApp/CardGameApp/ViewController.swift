@@ -46,20 +46,38 @@ class ViewController: UIViewController {
     
     private func resetPokerGame() {
         self.pokerGame = PokerGame(game: gameType, numberOfPlayers: playerCount)
-        pokerGameStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
-        resetPlayers()
+
+        pokerGame.resetPlayers()
+        resetPokerGameStackView()
+        resetPlayersHand()
     }
     
-    private func resetPlayers() {
-        pokerGame.forEachPlayer {
-            let playerStackView = PlayerStackView(displayName: $0.name)
-            let cardStackView = CardStackView(of: $0)
-            playerStackView.addArrangedSubview(cardStackView)
-            pokerGameStackView.addArrangedSubview(playerStackView)
-            if $0 == pokerGame.winner {
-                winnerCrownImageView.centerYAnchor.constraint(equalTo: cardStackView.centerYAnchor).isActive = true
+    private func resetPlayersHand() {
+        DispatchQueue.main.async {
+            self.gameType.forEachCard {
+                self.pokerGame.passCardToPlayers()
+                self.updateViews()
             }
         }
+    }
+    
+    private func resetPokerGameStackView() {
+        pokerGameStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
+        pokerGame.forEachPlayer{
+            let playerStackView = PlayerStackView(player: $0)
+            pokerGameStackView.addArrangedSubview(playerStackView)
+        }
+    }
+    
+    private func updateViews() {
+        pokerGameStackView.arrangedSubviews.forEach {
+            let playerStackView = $0 as! PlayerStackView
+            playerStackView.appendCard()
+        }
+//
+////            if $0 == pokerGame.winner {
+////                winnerCrownImageView.centerYAnchor.constraint(equalTo: cardStackView.centerYAnchor).isActive = true
+////            }
     }
     
     @objc private func handleGameTypeSegmentChanged(segmentedControl: UISegmentedControl) {
