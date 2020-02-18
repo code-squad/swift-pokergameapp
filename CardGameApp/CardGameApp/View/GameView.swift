@@ -12,11 +12,15 @@ class GameView: UIStackView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.translatesAutoresizingMaskIntoConstraints = false
+        self.setUp()
     }
     
     required init(coder: NSCoder) {
         super.init(coder: coder)
+        self.setUp()
+    }
+    
+    private func setUp() {
         self.translatesAutoresizingMaskIntoConstraints = false
     }
     
