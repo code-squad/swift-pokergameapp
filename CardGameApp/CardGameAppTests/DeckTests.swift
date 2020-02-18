@@ -68,7 +68,6 @@ class DeckTests: XCTestCase {
         deck.reset()
         // 3.then
         XCTAssertEqual(otherDeck, deck)
-        
     }
     
 }
