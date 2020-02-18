@@ -52,29 +52,37 @@ class Hand{
     func checkStraight(card: [Card]) -> Bool{
         var pre = card[0]
         var straightCount = 1
+        var preStraightCount = 0
         for cardIndex in 1..<card.count{
             if pre - card[cardIndex] == -1{
                 straightCount += 1
             } else{
-                straightCount = 1
+                if preStraightCount < straightCount{
+                    preStraightCount = straightCount
+                    straightCount = 1
+                }
             }
             pre = card[cardIndex]
         }
-        return ResultPriority.straight.equal(num: straightCount)
+        return ResultPriority.straight.equal(num: straightCount > preStraightCount ? straightCount : preStraightCount)
     }
     
     func checkSameCard(howMany same: ResultPriority, card: [Card]) -> Bool{
         var pre = card[0]
         var sameCardCount = 1
+        var preSameCardCount = 0
         for cardIndex in 1..<card.count{
             if pre == card[cardIndex]{
                 sameCardCount += 1
             } else{
-                sameCardCount = 1
+                if preSameCardCount < sameCardCount{
+                    preSameCardCount = sameCardCount
+                    sameCardCount = 1
+                }
             }
             pre = card[cardIndex]
         }
-        return same.equal(num: sameCardCount)
+        return same.equal(num: sameCardCount > preSameCardCount ? sameCardCount : preSameCardCount)
     }
     
     func checkPair(card: [Card]) -> ResultPriority{
