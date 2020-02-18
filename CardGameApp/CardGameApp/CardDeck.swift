@@ -9,36 +9,39 @@
 import Foundation
 
 struct CardDeck: Equatable {
-    private var cardDeck: [Card]
+    private var cards = [Card]()
     
     init() {
-        cardDeck = [Card]()
+        makeCardDeck()
+    }
+    
+    static func == (lhs: CardDeck, rhs: CardDeck) -> Bool {
+        return lhs.cards == rhs.cards
+    }
+    
+    private mutating func makeCardDeck() {
         for suit in Card.Suit.allCases {
             for rank in Card.Rank.allCases {
-                cardDeck.append(Card(suit: suit, rank: rank))
+                cards.append(Card(suit: suit, rank: rank))
             }
         }
     }
     
-    static func == (lhs: CardDeck, rhs: CardDeck) -> Bool {
-        return lhs.cardDeck == rhs.cardDeck
-    }
-    
     func count() -> Int {
-        return cardDeck.count
+        return cards.count
     }
     
     mutating func shuffle() {
-        cardDeck.shuffle()
+        cards.shuffle()
     }
     
     mutating func removeOne() -> Card {
-        let index = Int.random(in: 0..<cardDeck.count)
-        let card = cardDeck.remove(at: index)
+        let card = cards.removeLast()
         return card
     }
     
     mutating func reset() {
-        cardDeck = CardDeck().cardDeck
+        cards.removeAll()
+        makeCardDeck()
     }
 }
