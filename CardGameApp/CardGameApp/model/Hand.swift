@@ -59,8 +59,8 @@ class Hand{
             } else{
                 if preStraightCount < straightCount{
                     preStraightCount = straightCount
-                    straightCount = 1
                 }
+                straightCount = 1
             }
             pre = card[cardIndex]
         }
@@ -77,8 +77,8 @@ class Hand{
             } else{
                 if preSameCardCount < sameCardCount{
                     preSameCardCount = sameCardCount
-                    sameCardCount = 1
                 }
+                sameCardCount = 1
             }
             pre = card[cardIndex]
         }
