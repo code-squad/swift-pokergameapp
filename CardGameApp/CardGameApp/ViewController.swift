@@ -96,4 +96,5 @@ class ViewController: UIViewController {
         pokerGame = PokerGame(gameType: PokerGame.GameType(index: gameTypeControl.selectedSegmentIndex), numberOfPlayers: PokerGame.NumberOfPlayers(index: numberOfPlayersControl.selectedSegmentIndex))
         loadGame()
     }
+    
 }
