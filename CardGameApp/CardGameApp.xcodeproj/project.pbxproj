@@ -15,6 +15,7 @@
 		44A4084523FB8C58007995C5 /* SegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A4084423FB8C58007995C5 /* SegmentedControl.swift */; };
 		44A4084723FBA1AA007995C5 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A4084623FBA1AA007995C5 /* GameView.swift */; };
 		44A4084923FBA4D4007995C5 /* WinnerMedalImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A4084823FBA4D4007995C5 /* WinnerMedalImageView.swift */; };
+		44A4084B23FBC76D007995C5 /* Ranks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A4084A23FBC76D007995C5 /* Ranks.swift */; };
 		44B649E523EA75EE00C9F914 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B649E423EA75EE00C9F914 /* AppDelegate.swift */; };
 		44B649E723EA75EE00C9F914 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B649E623EA75EE00C9F914 /* SceneDelegate.swift */; };
 		44B649E923EA75EE00C9F914 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B649E823EA75EE00C9F914 /* ViewController.swift */; };
@@ -48,6 +49,7 @@
 		44A4084423FB8C58007995C5 /* SegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedControl.swift; sourceTree = "<group>"; };
 		44A4084623FBA1AA007995C5 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		44A4084823FBA4D4007995C5 /* WinnerMedalImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinnerMedalImageView.swift; sourceTree = "<group>"; };
+		44A4084A23FBC76D007995C5 /* Ranks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ranks.swift; sourceTree = "<group>"; };
 		44B649E123EA75EE00C9F914 /* CardGameApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CardGameApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		44B649E423EA75EE00C9F914 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		44B649E623EA75EE00C9F914 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 				444F3F0F23ED14430010F74E /* Card.swift */,
 				44E3EB6523EED8F7009402E0 /* Player.swift */,
 				44611EE323F3F59A009D3C82 /* Hand.swift */,
+				44A4084A23FBC76D007995C5 /* Ranks.swift */,
 				44E3EB6723EED98E009402E0 /* Dealer.swift */,
 				44E3EB6B23EEDB20009402E0 /* PokerGame.swift */,
 				4426F8F523F3CD4E00406144 /* Players.swift */,
@@ -264,6 +267,7 @@
 				44E3EB6823EED98E009402E0 /* Dealer.swift in Sources */,
 				444F3F1423ED5A380010F74E /* Deck.swift in Sources */,
 				44CDA49B23FABD4100466A79 /* HandStackView.swift in Sources */,
+				44A4084B23FBC76D007995C5 /* Ranks.swift in Sources */,
 				44A4084923FBA4D4007995C5 /* WinnerMedalImageView.swift in Sources */,
 				44611EE423F3F59A009D3C82 /* Hand.swift in Sources */,
 				44CDA49F23FAC12F00466A79 /* PlayerStackView.swift in Sources */,

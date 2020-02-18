@@ -21,9 +21,9 @@ class Hand {
             return lhs.rawValue > rhs.rawValue
         }
     }
-    private lazy var score = getScore()
-    private lazy var ranks = getRanks()
     private var cards = [Card]()
+    private lazy var score = getScore()
+    private lazy var ranks = Ranks(cards: cards)
     
     func forEach(_ transform: (Card) -> ()) {
         cards.forEach(transform)
@@ -51,7 +51,7 @@ class Hand {
         return false
     }
     
-    private func checkPairs(info: [(key: Card, value: Int)]) -> Score {
+    private func checkPairs(info: [Card:Int]) -> Score {
         let pairCount = info.filter { $0.value == 2 }.count
         
         switch pairCount {
@@ -64,7 +64,7 @@ class Hand {
         }
     }
     
-    private func getInfo() -> [(key: Card, value: Int)]{
+    private func getScore() -> Score {
         let info = cards.reduce(into: [Card:Int]()) {
             if $0[$1] == nil {
                 $0[$1] = 1
@@ -72,18 +72,7 @@ class Hand {
                 $0[$1]! += 1
             }
         }
-        let result = info.sorted { (lhs, rhs) -> Bool in
-            if lhs.value == rhs.value {
-                return lhs.key > rhs.key
-            } else {
-                return lhs.value > rhs.value
-            }
-        }
-        return result
-    }
-    
-    private func getScore() -> Score {
-        let info = getInfo()
+        
         if isStraight() {
             return .straight
         } else if info.contains(where: { $0.value == 4 }) {
@@ -92,10 +81,6 @@ class Hand {
             return .triple
         }
         return checkPairs(info: info)
-    }
-    
-    private func getRanks() -> [Card] {
-        return getInfo().map { (value) -> Card in value.key }
     }
 }
 
@@ -106,13 +91,7 @@ extension Hand: Equatable {
     
     static func > (lhs: Hand, rhs: Hand) -> Bool {
         if lhs.score == rhs.score {
-            for index in 0..<lhs.ranks.count {
-                if lhs.ranks[index] == rhs.ranks[index] {
-                    continue
-                } else {
-                    return lhs.ranks[index] > rhs.ranks[index]
-                }
-            }
+            return lhs.ranks > rhs.ranks
         }
         return lhs.score > rhs.score
     }
