@@ -11,22 +11,18 @@ import Foundation
 enum GameStut: Int {
     case five = 5, seven = 7
     
-    func forEach(handler: () -> ()) {
+    func forEach(handler : () -> (Error?)) throws {
         for _ in 0 ..< self.rawValue {
-            handler()
-        }
-    }
-    
-    func forEach(handler: () throws  -> ()) throws {
-        for _ in 0 ..< self.rawValue {
-            try handler()
+            if let error = handler() {
+                throw error
+            }
         }
     }
 }
 
 enum PlayersNum: Int {
     case one = 1 , two, three, four
-    func forEach(handler : () -> ()) {
+    func forEach(handler : () -> (Void)) {
         for _ in 0 ..< self.rawValue {
             handler()
         }
@@ -82,21 +78,37 @@ class PokerGame {
     
     private func handOutCards() throws {
         try gameStut.forEach {
-            try sendToDealer()
-            try sendToPlayers()
+            do {
+                try sendToDealer()
+                try sendToPlayers()
+                return nil
+            } catch {
+                return error
+            }
+            
         }
     }
     
     private func sendToDealer() throws {
         try dealer.receiveCard {
-            try deck.removeOne()
+            do {
+                let card = try deck.removeOne()
+                return (card: card, error: nil)
+            } catch {
+                return (card: nil, error : error)
+            }
         }
     }
     
     private func sendToPlayers() throws {
         for index in 0 ..< players.count {
             try players[index].receiveCard {
-                try deck.removeOne()
+                do {
+                    let card = try deck.removeOne()
+                    return  (card: card, error : nil)
+                } catch {
+                    return (card: nil, error : error)
+                }
             }
         }
     }
@@ -107,8 +119,9 @@ class PokerGame {
     
     private var stutNum : Int {
         var stutNum = 0
-        gameStut.forEach {
+        try? gameStut.forEach {
             stutNum += 1
+            return nil
         }
         return stutNum
     }
