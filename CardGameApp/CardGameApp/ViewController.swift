@@ -14,6 +14,7 @@ class ViewController: UIViewController {
     private let cardRatio = CGFloat(1.27)
     private let cardCount = 7
     
+    private let studTypeSegementControl = UISegmentedControl(items: StudType.AllCases())
     private var cardDeck = CardDeck()
     
     //status bar 설정
@@ -28,7 +29,7 @@ class ViewController: UIViewController {
         // Background 배경 설정
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "BackgroundPattern")!)
         drawStackView()
-        cardDeck.shuffle()
+        drawSegmentCtrl()
     }
     
     func drawStackView() {
@@ -51,7 +52,7 @@ class ViewController: UIViewController {
     // view에 stackview를 올림
     func addStackViewOnView() {
         self.view.addSubview(CardStackView)
-        self.CardStackView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 10).isActive = true
+        self.CardStackView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 100).isActive = true
         self.CardStackView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 5).isActive = true
         self.CardStackView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -5).isActive = true
     }
@@ -63,6 +64,23 @@ class ViewController: UIViewController {
         cardImg.heightAnchor.constraint(equalTo: cardImg.widthAnchor, multiplier: cardRatio).isActive = true
         
         self.CardStackView.addArrangedSubview(cardImg)
+    }
+    
+    func drawSegmentCtrl() {
+        setUpStudTypeSegment()
+    }
+    
+    func setUpStudTypeSegment() {
+        self.studTypeSegementControl.center = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/10)
+        self.studTypeSegementControl.backgroundColor = .clear
+        self.studTypeSegementControl.tintColor = .white
+        self.view.addSubview(self.studTypeSegementControl)
+        
+        self.studTypeSegementControl.addTarget(self, action: #selector(studTypeChange(handler:)), for: .valueChanged)
+    }
+    
+    @objc func studTypeChange(handler: UISegmentedControl) {
+        
     }
 }
 

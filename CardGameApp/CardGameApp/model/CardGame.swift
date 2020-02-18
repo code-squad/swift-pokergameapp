@@ -48,7 +48,7 @@ class GameTable {
     }
 }
 
-enum StudType: Int {
+enum StudType: Int, CaseIterable {
     case fiveStud = 5
     case sevenStud = 7
     
@@ -59,7 +59,7 @@ enum StudType: Int {
     }
 }
 
-enum playerEntry: Int {
+enum playerEntry: Int, CaseIterable {
     case two = 2
     case three = 3
     case four = 4
