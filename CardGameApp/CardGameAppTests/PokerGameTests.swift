@@ -37,6 +37,8 @@ class PokerGameTests: XCTestCase {
         XCTAssertNotNil(game)
     }
     
+    
+    
     func testInitateForPlayersNumber() {
         // wrong cases
         let wrongNumberZero = 0
