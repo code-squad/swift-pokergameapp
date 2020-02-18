@@ -90,21 +90,7 @@ class ViewController: UIViewController {
     // segment Control
     
     @objc func gameModeSegmentChanged(segmentControl: UISegmentedControl){
-       
         
-    }
-    
-    func titleForSegment(){
-        
-    }
-    
-    func configureSegmentedControl() {
-        // Use a dynamic tinted color (separate one for Light Appearance and separate one for Dark Appearance).
-//        segmentedControl.tintColor = UIColor(ciColor: .red)
-//
-//        segmentedControl.selectedSegmentIndex = 1
-//
-//        segmentedControl.addTarget(self, action: #selector(ViewController.selectedSegmentDidChange(_:)), for: .valueChanged)
     }
 
     // MARK: - Actions
