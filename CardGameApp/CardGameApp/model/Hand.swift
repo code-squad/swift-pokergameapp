@@ -18,6 +18,7 @@ class Hand{
     }
     
     private var card: [Card] = [Card]()
+    var resultCardInfo: [Card] = [Card]()
     
     func append(card: Card){
         self.card.append(card)
@@ -86,15 +87,19 @@ class Hand{
     }
     
     func checkPair(card: [Card]) -> ResultPriority{
+        resultCardInfo.removeAll()
         var pre = card[0]
         var pairCount = 0
         for cardIndex in 1..<card.count{
             if pre == card[cardIndex]{
                 pairCount += 1
+                resultCardInfo.append(pre)
             }
             
             pre = card[cardIndex]
         }
+        
+        resultCardInfo.reverse()
         return ResultPriority.init(rawValue: pairCount >= 3 ? 2 : pairCount)!
     }
 }
@@ -110,6 +115,12 @@ extension Hand: Comparable{
         if lhs.result() != rhs.result(){
             return lhs.result() < rhs.result()
         } else{
+            for index in 0..<lhs.resultCardInfo.count{
+                if lhs.resultCardInfo[index] != rhs.resultCardInfo[index]{
+                    return lhs.resultCardInfo[index] < rhs.resultCardInfo[index]
+                }
+            }
+            
             for index in 0..<lhs.card.count{
                 if lhs.card[index] < rhs.card[index]{
                     return lhs.card[index] < rhs.card[index]
