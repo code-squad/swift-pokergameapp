@@ -46,7 +46,7 @@ class Hand{
             return .triple
         }
         
-        return .noPair
+        return checkPair(card: card.sorted())
     }
     
     func checkStraight(card: [Card]) -> Bool{
