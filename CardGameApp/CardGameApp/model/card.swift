@@ -64,4 +64,8 @@ extension Card: Comparable{
     static func == (lhs: Card, rhs: Card) -> Bool {
         return lhs.rank.rawValue == rhs.rank.rawValue
     }
+    
+    static func - (lhs: Card, rhs: Card) -> Int {
+        return lhs.rank.rawValue - rhs.rank.rawValue
+    }
 }
