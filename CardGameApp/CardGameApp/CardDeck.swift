@@ -8,15 +8,20 @@
 
 import Foundation
 
-struct CardDeck {
-    private var cardDeck = [Card]()
+struct CardDeck: Equatable {
+    private var cardDeck: [Card]
     
     init() {
+        cardDeck = [Card]()
         for suit in Card.Suit.allCases {
             for rank in Card.Rank.allCases {
                 cardDeck.append(Card(suit: suit, rank: rank))
             }
         }
+    }
+    
+    static func == (lhs: CardDeck, rhs: CardDeck) -> Bool {
+        return lhs.cardDeck == rhs.cardDeck
     }
     
     func count() -> Int {
