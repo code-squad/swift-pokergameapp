@@ -8,11 +8,7 @@
 
 import Foundation
 
-protocol Playerable {
-    func receiveCard (sender: () -> (Result<Card,Error>)) throws
-}
-
-class Player: Playerable , Searchable {
+class Player: Searchable {
     
     private var cards = [Card]()
     
@@ -20,15 +16,8 @@ class Player: Playerable , Searchable {
         cards = [Card]()
     }
     
-    func receiveCard(sender: () -> (Result<Card, Error>)) throws {
-        let result = sender()
-        
-        switch result {
-        case .success(let card):
-            cards.append(card)
-        case .failure(let error):
-            throw error
-        }
+    func receive(card : Card) {
+        cards.append(card)
     }
     
     func searchCard(handler: (Card) -> ()) {
