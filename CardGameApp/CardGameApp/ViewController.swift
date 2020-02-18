@@ -14,7 +14,7 @@ class ViewController: UIViewController {
     private let cardRatio = CGFloat(1.27)
     private let cardCount = 7
     
-    private let studTypeSegementControl = UISegmentedControl(items: StudType.AllCases())
+    private let studTypeSegementControl = UISegmentedControl(items: ["7 Cards", "5 Cards"])
     private var cardDeck = CardDeck()
     
     //status bar 설정
@@ -24,12 +24,9 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        
-        // Background 배경 설정
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "BackgroundPattern")!)
+        setUpStudTypeSegment()
         drawStackView()
-        drawSegmentCtrl()
     }
     
     func drawStackView() {
@@ -52,7 +49,7 @@ class ViewController: UIViewController {
     // view에 stackview를 올림
     func addStackViewOnView() {
         self.view.addSubview(CardStackView)
-        self.CardStackView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 100).isActive = true
+        self.CardStackView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 200).isActive = true
         self.CardStackView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 5).isActive = true
         self.CardStackView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -5).isActive = true
     }
@@ -71,10 +68,13 @@ class ViewController: UIViewController {
     }
     
     func setUpStudTypeSegment() {
-        self.studTypeSegementControl.center = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/10)
-        self.studTypeSegementControl.backgroundColor = .clear
-        self.studTypeSegementControl.tintColor = .white
-        self.view.addSubview(self.studTypeSegementControl)
+        self.studTypeSegementControl.center = CGPoint(x: self.view.frame.width/2, y: 100)
+        self.studTypeSegementControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .normal)
+        self.studTypeSegementControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.black], for: .selected)
+        self.studTypeSegementControl.layer.borderWidth = 1
+        self.studTypeSegementControl.layer.borderColor = UIColor.white.cgColor
+        self.studTypeSegementControl.selectedSegmentIndex = 0
+        self.view.addSubview(studTypeSegementControl)
         
         self.studTypeSegementControl.addTarget(self, action: #selector(studTypeChange(handler:)), for: .valueChanged)
     }
