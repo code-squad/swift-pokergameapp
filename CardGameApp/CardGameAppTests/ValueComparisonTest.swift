@@ -140,4 +140,34 @@ class ValueComparisonTest: XCTestCase {
         
         XCTAssert(value1 < value2)
     }
+    
+    func testStraightComparison() {
+        let hand1 = [
+            Card(suit: .club, rank: .ace),
+            Card(suit: .spade, rank: .two),
+            Card(suit: .diamond, rank: .three),
+            Card(suit: .heart, rank: .four),
+            Card(suit: .club, rank: .five),
+            Card(suit: .diamond, rank: .five),
+            Card(suit: .heart, rank: .six)
+        ]
+        
+        let hand2 = [
+            Card(suit: .club, rank: .king),
+            Card(suit: .spade, rank: .king),
+            Card(suit: .diamond, rank: .king),
+            Card(suit: .heart, rank: .king),
+            Card(suit: .club, rank: .jack),
+            Card(suit: .heart, rank: .ten),
+            Card(suit: .club, rank: .seven)
+        ]
+        
+        let value1 = Value(hand: hand1)
+        let value2 = Value(hand: hand2)
+        
+        XCTAssert(value1.handRanking == .straight)
+        XCTAssert(value2.handRanking == .fourCards)
+        
+        XCTAssert(value1 < value2)
+    }
 }

@@ -17,6 +17,10 @@ struct Card {
         self.rank = rank
     }
     
+    func isNext(to nextCard: Card) -> Bool {
+        return self.rank.isNext(to: nextCard.rank)
+    }
+    
     enum Suit: Character, CaseIterable, CustomStringConvertible {
         var description: String {
             return String(self.rawValue)
@@ -45,6 +49,10 @@ struct Card {
         }
         
         case ace = 1, two, three, four, five, six, seven, eight, nine, ten, jack, queen, king
+        
+        func isNext(to nextRank: Rank) -> Bool {
+            return self.rawValue + 1 == nextRank.rawValue
+        }
         
         static func == (lhs: Rank, rhs: Rank) -> Bool {
             return lhs.rawValue == rhs.rawValue

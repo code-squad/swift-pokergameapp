@@ -22,11 +22,10 @@ struct Value {
     
     mutating func setupHandRanking() {
         var handRankings: [HandRanking] = []
-        
-        let straight = searchStraight()
         let highestPair = searchPairs()
-        
-//        values.append(straight)
+        if isStraight() {
+            handRankings.append(.straight)
+        }
         handRankings.append(highestPair)
         handRanking = handRankings.sorted(by: >).first!
     }
@@ -42,10 +41,29 @@ struct Value {
         restOfHand.sort(by: <)
     }
     
-    private mutating func searchStraight() -> HandRanking {
-        let sortedHand = hand.sorted { $0.rank < $1.rank }
-        // rank 설정
-        return .straight
+    private mutating func isStraight() -> Bool {
+        let NUMBER_OF_STRAIGHT_CARDS = 5
+        let sortedHand = hand.sorted{ $0.rank < $1.rank }
+        var combinations: [[Card]] = []
+        var isCombiStraights: [Bool] = []
+        
+        for startIndex in 0...hand.count - NUMBER_OF_STRAIGHT_CARDS {
+            var isThisCombiStraight = true
+            
+            let combination = Array(sortedHand[startIndex..<startIndex + NUMBER_OF_STRAIGHT_CARDS])
+            for i in 0..<NUMBER_OF_STRAIGHT_CARDS - 1 {
+                if !(sortedHand[startIndex + i].isNext(to: sortedHand[startIndex + i + 1])) {
+                    isThisCombiStraight = false
+                }
+            }
+            if isThisCombiStraight { combinations.append(combination) }
+            isCombiStraights.append(isThisCombiStraight)
+        }
+        combinationsOf[.straight] = combinations
+        for isStraight in isCombiStraights {
+            if isStraight { return true }
+        }
+        return false
     }
     
     private mutating func searchPairs() -> HandRanking {
