@@ -11,7 +11,7 @@ import UIKit
 class ViewController: UIViewController {
     private var gameType: GameType = .sevenCardsStud
     private var playerCount: PlayerCount = .two
-    private var pokerGame: PokerGame = PokerGame()
+    private var pokerGame: PokerGame!
     let gameTypeTitles = ["7 Cards", "5 Cards"]
     let playerCountTitles = ["2명", "3명", "4명"]
     
@@ -24,7 +24,6 @@ class ViewController: UIViewController {
         stackView.addArrangedSubview(playerCountSegmentedControl)
         return stackView
     }()
-    
     let pokerGameStackView: UIStackView = PokerGameStackView()
     let winnerCrownImageView: UIImageView = {
         let imageView = UIImageView(image: #imageLiteral(resourceName: "winner"))
