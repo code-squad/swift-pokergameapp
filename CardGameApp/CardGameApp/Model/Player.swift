@@ -9,7 +9,6 @@
 import Foundation
 
 class Player: CustomStringConvertible {
-    
     var description: String {
         "Player\(number)"
     }
