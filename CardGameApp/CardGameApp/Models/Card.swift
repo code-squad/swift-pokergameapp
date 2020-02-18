@@ -38,8 +38,13 @@ extension Card: CustomStringConvertible {
 
 extension Card: Equatable {
     static func == (lhs: Card, rhs: Card) -> Bool {
-        return lhs.suit == rhs.suit
-            && lhs.rank == rhs.rank
+        return lhs.rank == rhs.rank
+    }
+}
+
+extension Card: Comparable {
+    static func < (lhs: Card, rhs: Card) -> Bool {
+        return lhs.rank < rhs.rank
     }
 }
 
@@ -61,5 +66,11 @@ extension Card.Rank: CustomStringConvertible {
             return picture
         }
         return "\(rawValue)"
+    }
+}
+
+extension Card.Rank: Comparable {
+    static func < (lhs: Card.Rank, rhs: Card.Rank) -> Bool {
+        return lhs.rawValue < rhs.rawValue
     }
 }
