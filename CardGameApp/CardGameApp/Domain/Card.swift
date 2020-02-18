@@ -41,6 +41,12 @@ struct Card {
     }
 }
 
+extension Card: Equatable {
+    public static func == (lhs: Card, rhs: Card) -> Bool {
+        return lhs.suit == rhs.suit && lhs.number == rhs.number
+    }
+}
+
 extension Card.Suit: CustomStringConvertible {
     var description: String {
         switch self {
@@ -71,17 +77,10 @@ extension Card.Number: CustomStringConvertible {
             return String(self.rawValue)
         }
     }
-    
 }
 
 extension Card: CustomStringConvertible {
     public var description: String {
         return suit.description + number.description
-    }
-}
-
-extension Card: Equatable {
-    public static func == (lhs: Card, rhs: Card) -> Bool {
-        return lhs.suit == rhs.suit && lhs.number == rhs.number
     }
 }
