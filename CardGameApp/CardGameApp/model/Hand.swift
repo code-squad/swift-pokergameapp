@@ -106,3 +106,9 @@ class Hand{
         return ResultPriority.init(rawValue: pairCount >= 3 ? 2 : pairCount)!
     }
 }
+
+extension Hand.ResultPriority: Comparable{
+    static func < (lhs: Hand.ResultPriority, rhs: Hand.ResultPriority) -> Bool {
+        return lhs.rawValue < rhs.rawValue
+    }
+}
