@@ -15,6 +15,7 @@ class ViewController: UIViewController {
     private let cardCount = 7
     
     private let studTypeSegementControl = UISegmentedControl(items: ["7 Cards", "5 Cards"])
+    private let playerEntrySegmentControl = UISegmentedControl(items: ["2명", "3명", "4명"])
     private var cardDeck = CardDeck()
     
     //status bar 설정
@@ -25,7 +26,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "BackgroundPattern")!)
-        setUpStudTypeSegment()
+        drawSegmentCtrl()
         drawStackView()
     }
     
@@ -65,6 +66,7 @@ class ViewController: UIViewController {
     
     func drawSegmentCtrl() {
         setUpStudTypeSegment()
+        setUpPlayerEntrySegment()
     }
     
     func setUpStudTypeSegment() {
@@ -80,6 +82,23 @@ class ViewController: UIViewController {
     }
     
     @objc func studTypeChange(handler: UISegmentedControl) {
+        
+    }
+    
+    func setUpPlayerEntrySegment() {
+        self.playerEntrySegmentControl.center = CGPoint(x: self.view.frame.width/2, y: 150)
+        self.playerEntrySegmentControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .normal)
+        self.playerEntrySegmentControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.black], for: .selected)
+        self.playerEntrySegmentControl.layer.borderWidth = 1
+        self.playerEntrySegmentControl.layer.borderColor = UIColor.white.cgColor
+        self.playerEntrySegmentControl.selectedSegmentIndex = 0
+        self.view.addSubview(playerEntrySegmentControl)
+        
+        self.playerEntrySegmentControl.addTarget(self, action: #selector(playerEntryChange(handler:)), for: .valueChanged)
+    }
+    
+    @objc func playerEntryChange
+        (handler: UISegmentedControl) {
         
     }
 }
