@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Player: Searchable {
+class Player: CardSearchable {
     
     private var cards = [Card]()
     
@@ -16,7 +16,7 @@ class Player: Searchable {
         cards = [Card]()
     }
     
-    func receive(card : Card) {
+    func receive(card: Card) {
         cards.append(card)
     }
     

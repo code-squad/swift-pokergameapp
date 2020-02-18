@@ -22,7 +22,7 @@ class Deck {
     }()
     
     private var cards: [Card]!
-    var count : Int {
+    var count: Int {
         return cards.count
     }
     
@@ -30,7 +30,7 @@ class Deck {
         self.cards = Deck.singletonInitCards
     }
     
-    func shuffle<G: RandomNumberGenerator>(using generator : inout G)  {
+    func shuffle<G: RandomNumberGenerator>(using generator: inout G)  {
         cards = cards.shuffled(using: &generator)
     }
     
@@ -54,11 +54,7 @@ extension Deck: Equatable {
     }
 }
 
-protocol Searchable {
-    func searchCard(handler: (Card) -> ())
-}
-
-extension Deck: Searchable {
+extension Deck: CardSearchable {
     func searchCard(handler: (Card) -> ()) {
         cards.forEach{ handler($0) }
     }

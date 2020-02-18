@@ -11,16 +11,7 @@ extension PokerGame {
     enum GameStut: Int {
         case five = 5, seven = 7
         
-        func forEach(handler : () -> (Void)) {
-            for _ in 0 ..< self.rawValue {
-                handler()
-            }
-        }
-    }
-    
-    enum PlayersNum: Int {
-        case one = 1 , two, three, four
-        func forEach(handler : () -> (Void)) {
+        func forEach(handler: () -> (Void)) {
             for _ in 0 ..< self.rawValue {
                 handler()
             }
@@ -32,23 +23,12 @@ class PokerGame {
     
     private let deck = Deck()
     private let dealer = Player()
-    private var players: [Player]!
+    private let players: Players
+    private let gameStut: GameStut
     
-    private var gameStut: GameStut
-    private var playersNum : PlayersNum
-    
-    init(gameStut: GameStut , playersNum: PlayersNum){
+    init(gameStut: GameStut , playersNum: Players.PlayersNum){
         self.gameStut = gameStut
-        self.playersNum = playersNum
-        players = initPlayers(num: self.playersNum)
-    }
-    
-    private func initPlayers(num: PlayersNum) -> [Player] {
-        var players = [Player]()
-        num.forEach {
-            players.append(Player())
-        }
-        return players
+        self.players = Players(playersNum: playersNum)
     }
     
     func startNewRound() {
@@ -67,7 +47,9 @@ class PokerGame {
     }
     
     private func resetPlayersCards() {
-        players.forEach{ $0.reset() }
+        players.searchPlayer { (player: Player) -> (Void) in
+            player.reset()
+        }
     }
     
     private var generator = ANSI_C_RandomNumberGenerator()
@@ -89,24 +71,34 @@ class PokerGame {
     }
     
     private func sendToPlayers() {
-        for index in 0 ..< players.count {
+        players.searchPlayer { (player: Player) in
             if let card = deck.removeOne() {
-                players[index].receive(card: card)
+                player.receive(card: card)
             }
         }
     }
     
     func hasEnoughCards() -> Bool {
-        return deck.count >= stutNum * players.count
+        return deck.count >= stutNum * playersNum
     }
     
-    private var stutNum : Int {
+    private var stutNum: Int {
         var stutNum = 0
         gameStut.forEach {
             stutNum += 1
             
         }
         return stutNum
+    }
+    
+    private var playersNum: Int {
+        var playersNumCount = 0
+        players.searchPlayersNum { (playersNum: Players.PlayersNum) in
+            playersNum.forEach {
+                playersNumCount += 1
+            }
+        }
+        return playersNumCount
     }
 }
 
@@ -115,13 +107,13 @@ extension PokerGame {
         handler(deck)
     }
     
-    func searchDealer(handler : (Player) -> ()) {
+    func searchDealer(handler: (Player) -> ()) {
         handler(dealer)
     }
     
-    func searchPlayers(handler : (Player) -> ()) {
-        for player in players {
-            handler(player)
+    func searchPlayers(handler: (Player) -> ()) {
+        players.searchPlayer {
+            handler($0)
         }
     }
 }
