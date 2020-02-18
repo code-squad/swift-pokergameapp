@@ -8,10 +8,6 @@
 
 import Foundation
 
-protocol CardSearchable {
-    func searchCard(handler: (Card) -> ())
-}
-
 struct Card {
     enum Suit: String, CaseIterable {
         case spade = "s"
