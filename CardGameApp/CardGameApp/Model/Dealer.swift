@@ -21,4 +21,8 @@ class Dealer: Player {
     func shuffle() {
         deck.shuffle()
     }
+    
+    func resetDeck() {
+        deck.reset()
+    }
 }
