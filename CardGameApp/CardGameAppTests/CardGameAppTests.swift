@@ -45,6 +45,100 @@ class CardGameAppTests: XCTestCase {
         XCTAssertEqual(cardSet.count(), 52)
     }
     
+    func testCheckStraight(){
+        var cards = [Card]()
+        cards.append(Card(rank: .ace, suit: .clover))
+        cards.append(Card(rank: .two, suit: .clover))
+        cards.append(Card(rank: .three, suit: .clover))
+        cards.append(Card(rank: .four, suit: .clover))
+        cards.append(Card(rank: .five, suit: .clover))
+        cards.append(Card(rank: .seven, suit: .clover))
+        cards.append(Card(rank: .nine, suit: .clover))
+        
+        XCTAssertTrue(Hand().checkStraight(card: cards))
+        
+        cards = [Card]()
+        cards.append(Card(rank: .ace, suit: .clover))
+        cards.append(Card(rank: .seven, suit: .clover))
+        cards.append(Card(rank: .ten, suit: .clover))
+        cards.append(Card(rank: .four, suit: .clover))
+        cards.append(Card(rank: .five, suit: .clover))
+        
+        XCTAssertFalse(Hand().checkStraight(card: cards))
+    }
+    
+    func testSameCard(){
+        var cards = [Card]()
+        cards.append(Card(rank: .ace, suit: .clover))
+        cards.append(Card(rank: .two, suit: .clover))
+        cards.append(Card(rank: .three, suit: .clover))
+        cards.append(Card(rank: .five, suit: .heart))
+        cards.append(Card(rank: .five, suit: .clover))
+        cards.append(Card(rank: .five, suit: .diamond))
+        cards.append(Card(rank: .five, suit: .spade))
+        
+        XCTAssertTrue(Hand().checkSameCard(howMany: .fourCard, card: cards.sorted()))
+        XCTAssertFalse(Hand().checkSameCard(howMany: .triple, card: cards.sorted()))
+        
+        cards = [Card]()
+        cards.append(Card(rank: .ace, suit: .clover))
+        cards.append(Card(rank: .two, suit: .clover))
+        cards.append(Card(rank: .three, suit: .clover))
+        cards.append(Card(rank: .seven, suit: .heart))
+        cards.append(Card(rank: .five, suit: .clover))
+        cards.append(Card(rank: .five, suit: .diamond))
+        cards.append(Card(rank: .five, suit: .spade))
+        
+        XCTAssertFalse(Hand().checkSameCard(howMany: .fourCard, card: cards.sorted()))
+        XCTAssertTrue(Hand().checkSameCard(howMany: .triple, card: cards.sorted()))
+    }
+    
+    func testCheckPair(){
+        var cards = [Card]()
+        cards.append(Card(rank: .ace, suit: .clover))
+        cards.append(Card(rank: .ace, suit: .clover))
+        cards.append(Card(rank: .three, suit: .clover))
+        cards.append(Card(rank: .five, suit: .heart))
+        cards.append(Card(rank: .five, suit: .clover))
+        cards.append(Card(rank: .three, suit: .diamond))
+        cards.append(Card(rank: .seven, suit: .spade))
+        
+        XCTAssert(Hand().checkPair(card: cards.sorted()) == .twoPair)
+        
+        cards = [Card]()
+        cards.append(Card(rank: .ace, suit: .clover))
+        cards.append(Card(rank: .ace, suit: .clover))
+        cards.append(Card(rank: .three, suit: .clover))
+        cards.append(Card(rank: .five, suit: .heart))
+        cards.append(Card(rank: .five, suit: .clover))
+        cards.append(Card(rank: .two, suit: .diamond))
+        cards.append(Card(rank: .seven, suit: .spade))
+        
+        XCTAssert(Hand().checkPair(card: cards.sorted()) == .twoPair)
+        
+        cards = [Card]()
+        cards.append(Card(rank: .queen, suit: .clover))
+        cards.append(Card(rank: .jack, suit: .clover))
+        cards.append(Card(rank: .three, suit: .clover))
+        cards.append(Card(rank: .five, suit: .heart))
+        cards.append(Card(rank: .five, suit: .clover))
+        cards.append(Card(rank: .two, suit: .diamond))
+        cards.append(Card(rank: .seven, suit: .spade))
+        
+        XCTAssert(Hand().checkPair(card: cards.sorted()) == .onePair)
+        
+        cards = [Card]()
+        cards.append(Card(rank: .queen, suit: .clover))
+        cards.append(Card(rank: .jack, suit: .clover))
+        cards.append(Card(rank: .three, suit: .clover))
+        cards.append(Card(rank: .king, suit: .heart))
+        cards.append(Card(rank: .five, suit: .clover))
+        cards.append(Card(rank: .two, suit: .diamond))
+        cards.append(Card(rank: .seven, suit: .spade))
+        
+        XCTAssert(Hand().checkPair(card: cards.sorted()) == .noPair)
+    }
+    
     func testPerformanceExample() {
         // This is an example of a performance test case.
         self.measure {

@@ -20,6 +20,10 @@ class Players{
             transform($0)
         }
     }
+    
+    func count() -> Int{
+        return players.count
+    }
 }
 
 

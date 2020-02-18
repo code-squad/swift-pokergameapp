@@ -112,3 +112,27 @@ extension Hand.ResultPriority: Comparable{
         return lhs.rawValue < rhs.rawValue
     }
 }
+
+extension Hand: Comparable{
+    static func < (lhs: Hand, rhs: Hand) -> Bool {
+        if lhs.result() != rhs.result(){
+            return lhs.result() < rhs.result()
+        } else{
+            for index in 0..<lhs.card.count{
+                if lhs.card[index] < rhs.card[index]{
+                    return lhs.card[index] < rhs.card[index]
+                }
+            }
+        }
+        return true
+    }
+    
+    static func == (lhs: Hand, rhs: Hand) -> Bool {
+        for index in 0..<lhs.card.count{
+            if lhs.card[index] != rhs.card[index]{
+                return false
+            }
+        }
+        return true
+    }
+}
