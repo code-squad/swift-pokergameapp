@@ -25,13 +25,7 @@ class ViewController: UIViewController {
         return stackView
     }()
     let pokerGameStackView: UIStackView = PokerGameStackView()
-    let winnerCrownImageView: UIImageView = {
-        let imageView = UIImageView(image: #imageLiteral(resourceName: "winner"))
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.widthAnchor.constraint(equalToConstant: 28).isActive = true
-        imageView.heightAnchor.constraint(equalToConstant: 28).isActive = true
-        return imageView
-    }()
+    let winnerCrownImageView: UIImageView = WinnerCrownImageView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
