@@ -9,62 +9,18 @@ import XCTest
 @testable import CardGameApp
 class PokerGameTests: XCTestCase {
     var game: PokerGame!
-    let correctStutNum = 5
-    let correctPlayersNum = 1
-    
+
     override func tearDown() {
         game = nil
         super.tearDown()
     }
     
-    func testInitiateForGameStutNumber() {
-        // wrong cases
-        let wrongNumber = 3
-        game = try? PokerGame(gameStutNumber: wrongNumber,
-                              playersNumber: correctPlayersNum)
-        XCTAssertNil(game)
-        
-        
-        // correct cases
-        let correctNumberFive = 5
-        game = try? PokerGame(gameStutNumber: correctNumberFive,
-                              playersNumber: correctPlayersNum)
-        XCTAssertNotNil(game)
-        
-        let correctNumberSeven = 7
-        game = try? PokerGame(gameStutNumber: correctNumberSeven,
-                              playersNumber: correctPlayersNum)
-        XCTAssertNotNil(game)
-    }
-    
-    
-    
-    func testInitateForPlayersNumber() {
-        // wrong cases
-        let wrongNumberZero = 0
-        game = try? PokerGame(gameStutNumber: correctStutNum,
-                              playersNumber: wrongNumberZero)
-        XCTAssertNil(game)
-        
-        let wrongNumberFive = 5
-        game = try? PokerGame(gameStutNumber: correctStutNum,
-                              playersNumber: wrongNumberFive)
-        XCTAssertNil(game)
-        
-        // correct cases
-        for num in 1 ..< wrongNumberFive {
-            game = try? PokerGame(gameStutNumber: correctStutNum,
-                                  playersNumber: num)
-            XCTAssertNotNil(game)
-        }
-    }
-    
     func testStartNewRound() {
         //1. given
-        let stutNum = 5
-        let playerNum = 3
+        let gameStut = GameStut.five
+        let playersNum = PlayersNum.three
         let dealerCount = 1
-        game = try! PokerGame(gameStutNumber: stutNum, playersNumber: playerNum)
+        game = PokerGame(gameStut: gameStut, playersNum: playersNum)
         var originDeck = [Card]()
         game.searchDeck { (deck : Deck) in
             deck.searchCard {
@@ -87,7 +43,20 @@ class PokerGameTests: XCTestCase {
                 handedOutCards.append($0)
             }
         }
-        XCTAssertEqual(handedOutCards.count, stutNum * (playerNum + dealerCount))
+        
+        var gameStutCount = 0
+        try! gameStut.forEach { () -> (Error?) in
+            gameStutCount += 1
+            return nil
+        }
+        
+        var playersNumCount = 0
+        playersNum.forEach { () -> (Void) in
+            playersNumCount += 1
+        }
+        
+        XCTAssertEqual(handedOutCards.count,
+                       gameStutCount * (playersNumCount + dealerCount))
         game.searchDeck { (remainedDeck: Deck) in
             XCTAssertEqual(remainedDeck.count , originDeck.count - handedOutCards.count)
         }
@@ -95,13 +64,11 @@ class PokerGameTests: XCTestCase {
     
     func testHasEnoughCards() {
         //1. given
-        let seven = 7
-        let four = 4
-        game = try! PokerGame(gameStutNumber: seven, playersNumber: four)
-        
+        game = PokerGame(gameStut: .seven, playersNum: .four)
+
         //2. when
         try! game.startNewRound() // remainedCards = 52 - 7 * 5 ( one is dealer) = 17
-        
+
         //3. then
         XCTAssertFalse(game.hasEnoughCards())
     }

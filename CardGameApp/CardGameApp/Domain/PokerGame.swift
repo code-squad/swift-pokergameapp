@@ -38,9 +38,9 @@ class PokerGame {
     private var gameStut: GameStut
     private var playersNum : PlayersNum
     
-    init(gameStut: GameStut , playerNum: PlayersNum){
+    init(gameStut: GameStut , playersNum: PlayersNum){
         self.gameStut = gameStut
-        self.playersNum = playerNum
+        self.playersNum = playersNum
         players = initPlayers(num: self.playersNum)
     }
     
@@ -77,7 +77,7 @@ class PokerGame {
     }
     
     private func handOutCards() throws {
-        try gameStut.forEach {
+        try gameStut.forEach { 
             do {
                 try sendToDealer()
                 try sendToPlayers()
@@ -85,7 +85,6 @@ class PokerGame {
             } catch {
                 return error
             }
-            
         }
     }
     
@@ -93,9 +92,9 @@ class PokerGame {
         try dealer.receiveCard {
             do {
                 let card = try deck.removeOne()
-                return (card: card, error: nil)
+                return .success(card)
             } catch {
-                return (card: nil, error : error)
+                return .failure(error)
             }
         }
     }
@@ -105,9 +104,9 @@ class PokerGame {
             try players[index].receiveCard {
                 do {
                     let card = try deck.removeOne()
-                    return  (card: card, error : nil)
+                    return  .success(card)
                 } catch {
-                    return (card: nil, error : error)
+                    return .failure(error)
                 }
             }
         }

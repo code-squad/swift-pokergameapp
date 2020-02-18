@@ -40,9 +40,8 @@ class Deck {
         guard count != none else {
             throw DeckError.indexOutOfRangeError
         }
-        
-        let indexFirstCard = 0
-        return cards.remove(at: indexFirstCard)
+        let card = cards.removeFirst()
+        return card
     }
     
     func reset() {
