@@ -14,23 +14,11 @@ class ViewController: UIViewController {
     private var numberOfPlayers: PokerGame.NumberOfPlayers = .two
     private var pokerGame: PokerGame!
     
-    private var gameTypeControl: UISegmentedControl!
-    private var numberOfPlayersControl: UISegmentedControl!
+    private var gameTypeControl: SegmentedControl!
+    private var numberOfPlayersControl: SegmentedControl!
     
-    private var gameTable: UIStackView = {
-        let stack = UIStackView()
-        stack.axis = .vertical
-        stack.translatesAutoresizingMaskIntoConstraints = false
-        stack.spacing = 30
-        return stack
-    }()
-    
-    private var winnerMedal: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "trophy.png")
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        return imageView
-    }()
+    private var gameTable = GameView()
+    private var winnerMedal = WinnerMedalImageView()
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -55,11 +43,10 @@ class ViewController: UIViewController {
     
     private func loadGame() {
         pokerGame = PokerGame(gameType: gameType, numberOfPlayers: numberOfPlayers)
-        resetGameTable()
         pokerGame.play()
+        resetGameTable()
         makeGame()
         addWinnerMedal(to: pokerGame.winner)
-        setGameTableLayout()
     }
     
     private func addGameTypeControl() {
@@ -83,6 +70,7 @@ class ViewController: UIViewController {
             gameTable.addArrangedSubview(playerStack)
         }
         self.view.addSubview(gameTable)
+        gameTable.topAnchor.constraint(equalTo: gameTypeControl.bottomAnchor, constant: 50).isActive = true
     }
     
     private func makePlayerCard(_ player: Player) -> UIStackView {
@@ -93,18 +81,10 @@ class ViewController: UIViewController {
         return cardStack
     }
     
-    private func setGameTableLayout() {
-        gameTable.topAnchor.constraint(equalTo: gameTypeControl.bottomAnchor, constant: 50).isActive = true
-        gameTable.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 30).isActive = true
-        gameTable.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -60).isActive = true
-    }
-    
     private func addWinnerMedal(to winnerIndex: Int) {
         self.view.addSubview(winnerMedal)
         winnerMedal.topAnchor.constraint(equalTo: gameTable.arrangedSubviews[winnerIndex].topAnchor, constant: 20).isActive = true
         winnerMedal.leftAnchor.constraint(equalTo: gameTable.rightAnchor, constant: 10).isActive = true
-        winnerMedal.widthAnchor.constraint(equalToConstant: 50).isActive = true
-        winnerMedal.heightAnchor.constraint(equalToConstant: 50).isActive = true
     }
     
     // MARK: - Event Processing
