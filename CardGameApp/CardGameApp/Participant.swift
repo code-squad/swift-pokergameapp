@@ -9,10 +9,10 @@
 import Foundation
 
 class Participant {
-    let gameMode : PokerGame.GameMode
+    let gameMode : GameMode
     var cardsInHands = [Card]()
     
-    init(in gameMode: PokerGame.GameMode){
+    init(in gameMode: GameMode){
         self.gameMode = gameMode
     }
     
