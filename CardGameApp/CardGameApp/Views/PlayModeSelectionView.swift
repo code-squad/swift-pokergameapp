@@ -12,15 +12,8 @@ protocol PlayModeSelectionViewDelegate: class {
     func didModeChanged(to rule: GamePlay.Rule, playerCount: Players.Number)
 }
 
-struct PlayModeSelectionViewContents {
-    let rule: [String]
-    let numberOfPlayers: [String]
-}
-
 class PlayModeSelectionView: UIView {
     weak var delegate: PlayModeSelectionViewDelegate?
-    
-    private var contents: PlayModeSelectionViewContents?
     
     private lazy var selectionStackView: UIStackView = {
         let stackView = UIStackView()
@@ -31,12 +24,14 @@ class PlayModeSelectionView: UIView {
     }()
     
     private lazy var ruleSegmentedControl: UISegmentedControl = {
-        let control = UISegmentedControl(items: self.contents?.rule)
+        let contents = Descriptions.Rule.allCases.map { "\($0)" }
+        let control = UISegmentedControl(items: contents)
         return control
     }()
     
     private lazy var playersSegmentedControl: UISegmentedControl = {
-        let control = UISegmentedControl(items: self.contents?.numberOfPlayers)
+        let contents = Descriptions.Number.allCases.map { "\($0)" }
+        let control = UISegmentedControl(items: contents)
         return control
     }()
     
@@ -50,10 +45,8 @@ class PlayModeSelectionView: UIView {
         setupView()
     }
     
-    required init(with contents: PlayModeSelectionViewContents) {
-        super.init(frame: .zero)
-        self.contents = contents
-        setupView()
+    convenience init() {
+        self.init(frame: .zero)
     }
     
     func invokeByMode(block: (GamePlay.Rule, Players.Number) -> ()) {

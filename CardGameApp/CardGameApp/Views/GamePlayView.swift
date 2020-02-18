@@ -10,8 +10,6 @@ import UIKit
 
 class GamePlayView: UIView {
     
-    private var maxParticipants: Int?
-    
     private lazy var participantsStackView: UIStackView = {
         let view = UIStackView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -30,19 +28,17 @@ class GamePlayView: UIView {
         setupView()
     }
     
-    required init(maxParticipantNumber: Int) {
-        super.init(frame: .zero)
-        self.maxParticipants = maxParticipantNumber
-        setupView()
+    convenience init() {
+        self.init(frame: .zero)
     }
     
     private func setupView() {
         translatesAutoresizingMaskIntoConstraints = false
         addSubview(participantsStackView)
         participantsStackView.fillSuperView()
-        guard let max = maxParticipants else { return }
+        let max = Descriptions.maxParticipant
         (0..<max).forEach { _ in
-            let participantView = ParticipantView(maxCards: Descriptions.maxCards)
+            let participantView = ParticipantView()
             participantsStackView.addArrangedSubview(participantView)
         }
     }

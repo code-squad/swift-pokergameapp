@@ -9,7 +9,6 @@
 import UIKit
 
 class ParticipantView: UIView {
-    private var maxCards: Int?
     
     private lazy var participantStackView: UIStackView = {
         let stackView = UIStackView()
@@ -25,7 +24,7 @@ class ParticipantView: UIView {
     }()
     
     private lazy var overlappedCardsView: OverlappedCardsView = {
-        let view = OverlappedCardsView(maxCards: maxCards)
+        let view = OverlappedCardsView()
         return view
     }()
     
@@ -39,10 +38,8 @@ class ParticipantView: UIView {
         setupView()
     }
     
-    required init(maxCards: Int) {
-        super.init(frame: .zero)
-        self.maxCards = maxCards
-        setupView()
+    convenience init() {
+        self.init(frame: .zero)
     }
     
     func updateView(name: String, participant: Participant) {
