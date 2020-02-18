@@ -20,4 +20,12 @@ class Players {
             player in player.addCard(newCard: newCard)
         }
     }
+    
+    func checkCardsFull() -> [Bool]{
+        var readyCheck = [Bool]()
+        players.forEach{player in
+            readyCheck.append(player.isCardsFull())
+        }
+        return readyCheck
+    }
 }

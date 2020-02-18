@@ -67,9 +67,7 @@ class PokerGame {
     
     func isAllPlayersCardsReady() -> Bool {
         var readyCheck = [Bool]()
-        for player in players.players{
-            readyCheck.append(player.isCardsFull())
-        }
+        readyCheck = players.checkCardStatus()
         let filteredReadycheck = readyCheck.filter{$0 == false}
         return filteredReadycheck.count == 0
     }
