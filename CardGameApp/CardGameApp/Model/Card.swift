@@ -16,10 +16,7 @@ class Card {
         case A = 1, two, three, four, five, six, seven, eight, nine, ten, J, Q, K
         
         func isNextRank(with rank: Rank) -> Bool {
-            if self.rawValue + 1 == rank.rawValue {
-                return true
-            }
-            return false
+            return self.rawValue + 1 == rank.rawValue
         }
     }
     private var shape: Shape
