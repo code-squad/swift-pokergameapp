@@ -7,24 +7,25 @@
 //
 
 import Foundation
-
-enum GameStut: Int {
-    case five = 5, seven = 7
-    
-    func forEach(handler : () -> (Error?)) throws {
-        for _ in 0 ..< self.rawValue {
-            if let error = handler() {
-                throw error
+extension PokerGame {
+    enum GameStut: Int {
+        case five = 5, seven = 7
+        
+        func forEach(handler : () -> (Error?)) throws {
+            for _ in 0 ..< self.rawValue {
+                if let error = handler() {
+                    throw error
+                }
             }
         }
     }
-}
-
-enum PlayersNum: Int {
-    case one = 1 , two, three, four
-    func forEach(handler : () -> (Void)) {
-        for _ in 0 ..< self.rawValue {
-            handler()
+    
+    enum PlayersNum: Int {
+        case one = 1 , two, three, four
+        func forEach(handler : () -> (Void)) {
+            for _ in 0 ..< self.rawValue {
+                handler()
+            }
         }
     }
 }
