@@ -26,16 +26,20 @@ class PokerGame {
         return dealer
     }
     
+    func pickOneCard() -> Card? {
+        return dealer.pickOneCard() ?? nil
+    }
+    
     func giveCards() {
         guard dealer.remainingCardsCount > cardsCount * (participantCount + 1) else {
             isContinueGame = false
             return
         }
         for _ in 0..<cardsCount {
-            guard let pickedCard = dealer.pickOneCard() else { return }
+            guard let pickedCard = pickOneCard() else { return }
             dealer.recieveCard(newCard: pickedCard)
             for participant in participants {
-                guard let pickedCard = dealer.pickOneCard() else { return }
+                guard let pickedCard = pickOneCard() else { return }
                 participant.recieveCard(newCard: pickedCard)
             }
         }

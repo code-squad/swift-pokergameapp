@@ -10,10 +10,10 @@ import Foundation
 
 class Card: CustomStringConvertible{
     enum Suit: String, CaseIterable, CustomStringConvertible {
-        case spades = "♠️"
-        case hearts = "♥️"
-        case diamonds = "♦️"
-        case clubs = "♣️"
+        case spades = "s"
+        case hearts = "h"
+        case diamonds = "d"
+        case clubs = "c"
         
         var description: String {
             return "\(self.rawValue)"

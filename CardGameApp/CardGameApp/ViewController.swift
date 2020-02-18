@@ -10,6 +10,9 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    var gameMode: Mode.GameMode = .sevenCardStud
+    var playerMode: Mode.PlayerMode = .four
+    var pokerGame: PokerGame!
     var playersStackView: UIStackView!
     var cardsStackView: UIStackView!
     
@@ -31,7 +34,7 @@ class ViewController: UIViewController {
         
         playersStackView = generateStackView(axis: .vertical, spacing: 40)
         view.addSubview(playersStackView)
-        for _ in 1...5 {
+        for _ in 1...(playerMode.rawValue + 1) {
             cardsStackView = generateStackView(axis: .horizontal, spacing: -8)
             playersStackView.addArrangedSubview(cardsStackView)
             addConstraintsToStackViews()
@@ -49,16 +52,21 @@ class ViewController: UIViewController {
         playersStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 200).isActive = true
     }
     
-    let pokerGame = PokerGame(gameMode: .sevenCardStud, playerMode: .four)
+    func startPokerGame() {
+        self.pokerGame = PokerGame(gameMode: gameMode, playerMode: playerMode)
+        self.pokerGame.giveCards()
+    }
+
     func setCardImage() -> UIImageView? {
-        guard let pickedCard = pokerGame.showDealer().pickOneCard() else { return nil }
+        startPokerGame()
+        guard let pickedCard = pokerGame.pickOneCard() else { return nil }
         let cardImage = matchImageToCardInfo(suit: pickedCard.suit, rank: pickedCard.rank)
         cardImage.heightAnchor.constraint(equalTo: cardImage.widthAnchor, multiplier: 1.27).isActive = true
         return cardImage
     }
     
     func addCardsToStackView() {
-        for _ in 1...7 {
+        for _ in 1...gameMode.rawValue {
             guard let cardImage = setCardImage() else { return }
             cardsStackView.addArrangedSubview(cardImage)
         }
@@ -68,17 +76,7 @@ class ViewController: UIViewController {
         let suitString: String
         let rankString: String
         
-        switch suit {
-        case .clubs:
-            suitString = "c"
-        case .diamonds:
-            suitString = "d"
-        case .hearts:
-            suitString = "h"
-        case .spades:
-            suitString = "s"
-        }
-        
+        suitString = suit.description
         rankString = rank.description
         
         cardImage = UIImageView(image: UIImage(named: "\(suitString)\(rankString).png")!)
