@@ -17,6 +17,7 @@
 		44A4084923FBA4D4007995C5 /* WinnerMedalImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A4084823FBA4D4007995C5 /* WinnerMedalImageView.swift */; };
 		44A4084B23FBC76D007995C5 /* Ranks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A4084A23FBC76D007995C5 /* Ranks.swift */; };
 		44A4084D23FBCCDC007995C5 /* Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A4084C23FBCCDC007995C5 /* Score.swift */; };
+		44A4085523FBE49D007995C5 /* VersusTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A4085423FBE49D007995C5 /* VersusTest.swift */; };
 		44B649E523EA75EE00C9F914 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B649E423EA75EE00C9F914 /* AppDelegate.swift */; };
 		44B649E723EA75EE00C9F914 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B649E623EA75EE00C9F914 /* SceneDelegate.swift */; };
 		44B649E923EA75EE00C9F914 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B649E823EA75EE00C9F914 /* ViewController.swift */; };
@@ -32,6 +33,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		44A4085723FBE49D007995C5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 44B649D923EA75EE00C9F914 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 44B649E023EA75EE00C9F914;
+			remoteInfo = CardGameApp;
+		};
 		44EE8C6423FA8EE70097DAA3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 44B649D923EA75EE00C9F914 /* Project object */;
@@ -52,6 +60,9 @@
 		44A4084823FBA4D4007995C5 /* WinnerMedalImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinnerMedalImageView.swift; sourceTree = "<group>"; };
 		44A4084A23FBC76D007995C5 /* Ranks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ranks.swift; sourceTree = "<group>"; };
 		44A4084C23FBCCDC007995C5 /* Score.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Score.swift; sourceTree = "<group>"; };
+		44A4085223FBE49D007995C5 /* VersusTest.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VersusTest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		44A4085423FBE49D007995C5 /* VersusTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersusTest.swift; sourceTree = "<group>"; };
+		44A4085623FBE49D007995C5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		44B649E123EA75EE00C9F914 /* CardGameApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CardGameApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		44B649E423EA75EE00C9F914 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		44B649E623EA75EE00C9F914 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -71,6 +82,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		44A4084F23FBE49D007995C5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		44B649DE23EA75EE00C9F914 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -104,11 +122,21 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		44A4085323FBE49D007995C5 /* VersusTest */ = {
+			isa = PBXGroup;
+			children = (
+				44A4085423FBE49D007995C5 /* VersusTest.swift */,
+				44A4085623FBE49D007995C5 /* Info.plist */,
+			);
+			path = VersusTest;
+			sourceTree = "<group>";
+		};
 		44B649D823EA75EE00C9F914 = {
 			isa = PBXGroup;
 			children = (
 				44B649E323EA75EE00C9F914 /* CardGameApp */,
 				44EE8C6023FA8EE70097DAA3 /* ScoreTest */,
+				44A4085323FBE49D007995C5 /* VersusTest */,
 				44B649E223EA75EE00C9F914 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -118,6 +146,7 @@
 			children = (
 				44B649E123EA75EE00C9F914 /* CardGameApp.app */,
 				44EE8C5F23FA8EE70097DAA3 /* ScoreTest.xctest */,
+				44A4085223FBE49D007995C5 /* VersusTest.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -163,6 +192,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		44A4085123FBE49D007995C5 /* VersusTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 44A4085923FBE49D007995C5 /* Build configuration list for PBXNativeTarget "VersusTest" */;
+			buildPhases = (
+				44A4084E23FBE49D007995C5 /* Sources */,
+				44A4084F23FBE49D007995C5 /* Frameworks */,
+				44A4085023FBE49D007995C5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				44A4085823FBE49D007995C5 /* PBXTargetDependency */,
+			);
+			name = VersusTest;
+			productName = VersusTest;
+			productReference = 44A4085223FBE49D007995C5 /* VersusTest.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		44B649E023EA75EE00C9F914 /* CardGameApp */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 44B649F523EA75F000C9F914 /* Build configuration list for PBXNativeTarget "CardGameApp" */;
@@ -208,6 +255,10 @@
 				LastUpgradeCheck = 1130;
 				ORGANIZATIONNAME = TTOzzi;
 				TargetAttributes = {
+					44A4085123FBE49D007995C5 = {
+						CreatedOnToolsVersion = 11.3.1;
+						TestTargetID = 44B649E023EA75EE00C9F914;
+					};
 					44B649E023EA75EE00C9F914 = {
 						CreatedOnToolsVersion = 11.3.1;
 					};
@@ -232,11 +283,19 @@
 			targets = (
 				44B649E023EA75EE00C9F914 /* CardGameApp */,
 				44EE8C5E23FA8EE70097DAA3 /* ScoreTest */,
+				44A4085123FBE49D007995C5 /* VersusTest */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		44A4085023FBE49D007995C5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		44B649DF23EA75EE00C9F914 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -257,6 +316,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		44A4084E23FBE49D007995C5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				44A4085523FBE49D007995C5 /* VersusTest.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		44B649DD23EA75EE00C9F914 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -293,6 +360,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		44A4085823FBE49D007995C5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 44B649E023EA75EE00C9F914 /* CardGameApp */;
+			targetProxy = 44A4085723FBE49D007995C5 /* PBXContainerItemProxy */;
+		};
 		44EE8C6523FA8EE70097DAA3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 44B649E023EA75EE00C9F914 /* CardGameApp */;
@@ -320,6 +392,44 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		44A4085A23FBE49D007995C5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = VersusTest/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ttozzi.VersusTest;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CardGameApp.app/CardGameApp";
+			};
+			name = Debug;
+		};
+		44A4085B23FBE49D007995C5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = VersusTest/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ttozzi.VersusTest;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CardGameApp.app/CardGameApp";
+			};
+			name = Release;
+		};
 		44B649F323EA75F000C9F914 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -509,6 +619,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		44A4085923FBE49D007995C5 /* Build configuration list for PBXNativeTarget "VersusTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				44A4085A23FBE49D007995C5 /* Debug */,
+				44A4085B23FBE49D007995C5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		44B649DC23EA75EE00C9F914 /* Build configuration list for PBXProject "CardGameApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
