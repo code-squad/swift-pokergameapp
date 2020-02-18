@@ -11,12 +11,12 @@ import UIKit
 class ViewController: UIViewController {
     
     private var pokerGame: PokerGame!
-    
     private var gameTypeControl: SegmentedControl!
     private var numberOfPlayersControl: SegmentedControl!
-    
     private var gameTable = GameView()
     private var winnerMedal = WinnerMedalImageView()
+    
+    private var cardStacks: [UIStackView]!
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -44,7 +44,20 @@ class ViewController: UIViewController {
         pokerGame.play()
         resetGameTable()
         makeGame()
-        addWinnerMedal(to: pokerGame.winner)
+        var time = 0.5
+        for index in 0..<cardStacks[0].arrangedSubviews.count {
+            DispatchQueue.main.asyncAfter(deadline: .now() + time) {
+                self.cardStacks.forEach {
+                    $0.arrangedSubviews[index].alpha = 1
+                }
+            }
+            time += 0.5
+            if index == cardStacks[0].arrangedSubviews.count - 1 {
+                DispatchQueue.main.asyncAfter(deadline: .now() + time) {
+                    self.addWinnerMedal(to: self.pokerGame.winner)
+                }
+            }
+        }
     }
     
     private func addGameTypeControl() {
@@ -62,9 +75,12 @@ class ViewController: UIViewController {
     }
     
     private func makeGame() {
+        cardStacks = [UIStackView]()
         pokerGame.forEachPlayers {
             let playerStack = PlayerStackView(playerName: "\($0)")
-            playerStack.addArrangedSubview(makePlayerCard($0))
+            let playerCards = makePlayerCard($0)
+            playerStack.addArrangedSubview(playerCards)
+            cardStacks.append(playerCards)
             gameTable.addArrangedSubview(playerStack)
         }
         self.view.addSubview(gameTable)

@@ -22,6 +22,7 @@ class CardImageView: UIImageView {
         super.layoutSubviews()
         self.layer.cornerRadius = 3.0
         self.clipsToBounds = true
+        self.alpha = 0
     }
     
     override func updateConstraints() {
