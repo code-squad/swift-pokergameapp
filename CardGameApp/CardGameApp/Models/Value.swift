@@ -159,7 +159,7 @@ extension Value: Equatable {
     }
 }
 
-enum HandRanking: Int, Equatable {
+enum HandRanking: Int, Comparable {
     case highCard = 1, onePair, twoPairs, triple, straight, fourCards
     
     init(count: Int) {

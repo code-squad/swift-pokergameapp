@@ -32,7 +32,7 @@ struct Card {
         case diamond = "d"
     }
     
-    enum Rank: Int, CaseIterable, CustomStringConvertible, Equatable {
+    enum Rank: Int, CaseIterable, CustomStringConvertible, Comparable {
         var description: String {
             switch self {
             case .jack:
@@ -68,7 +68,7 @@ struct Card {
     }
 }
 
-extension Card: Equatable {
+extension Card: Comparable {
     static func == (lhs: Card, rhs: Card) -> Bool {
         return lhs.suit == rhs.suit &&
             lhs.rank == rhs.rank
