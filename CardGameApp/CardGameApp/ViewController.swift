@@ -16,7 +16,12 @@ class ViewController: UIViewController {
     
     private let studTypeSegementControl = UISegmentedControl(items: ["7 Cards", "5 Cards"])
     private let playerEntrySegmentControl = UISegmentedControl(items: ["2명", "3명", "4명"])
+    
     private var cardDeck = CardDeck()
+    private var entry = PlayerEntry.two
+    private var studType = StudType.sevenStud
+    
+    private var pokerGame = GameTable(playerEntry: self.entry, studType: self.studType)
     
     //status bar 설정
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -28,6 +33,10 @@ class ViewController: UIViewController {
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "BackgroundPattern")!)
         drawSegmentCtrl()
         drawStackView()
+    }
+    
+    func resetPokerGame() {
+        pokerGame = GameTable(playerEntry: self.entry, studType: self.studType)
     }
     
     func drawStackView() {
@@ -50,7 +59,7 @@ class ViewController: UIViewController {
     // view에 stackview를 올림
     func addStackViewOnView() {
         self.view.addSubview(CardStackView)
-        self.CardStackView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 200).isActive = true
+        self.CardStackView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 150).isActive = true
         self.CardStackView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 5).isActive = true
         self.CardStackView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -5).isActive = true
     }
@@ -82,11 +91,13 @@ class ViewController: UIViewController {
     }
     
     @objc func studTypeChange(handler: UISegmentedControl) {
-        
+        let studTypeArray = Array(StudType.allCases)
+        self.studType = studTypeArray[handler.selectedSegmentIndex]
+        resetPokerGame()
     }
     
     func setUpPlayerEntrySegment() {
-        self.playerEntrySegmentControl.center = CGPoint(x: self.view.frame.width/2, y: 150)
+        self.playerEntrySegmentControl.center = CGPoint(x: self.view.frame.width/2, y: 140)
         self.playerEntrySegmentControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .normal)
         self.playerEntrySegmentControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.black], for: .selected)
         self.playerEntrySegmentControl.layer.borderWidth = 1
@@ -97,9 +108,10 @@ class ViewController: UIViewController {
         self.playerEntrySegmentControl.addTarget(self, action: #selector(playerEntryChange(handler:)), for: .valueChanged)
     }
     
-    @objc func playerEntryChange
-        (handler: UISegmentedControl) {
-        
+    @objc func playerEntryChange(handler: UISegmentedControl) {
+        let entryArray = Array(PlayerEntry.allCases)
+        self.entry = entryArray[handler.selectedSegmentIndex]
+        resetPokerGame()
     }
 }
 

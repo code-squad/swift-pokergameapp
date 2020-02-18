@@ -9,12 +9,12 @@
 import Foundation
 
 class GameTable {
-    private let playerEntry: playerEntry
+    private let playerEntry: PlayerEntry
     private let studType: StudType
     private var dealer: Dealer
     private var players: [Player]
   
-    init(playerEntry: playerEntry, studType: StudType) {
+    init(playerEntry: PlayerEntry, studType: StudType) {
         self.playerEntry = playerEntry
         self.studType = studType
         self.dealer = Dealer()
@@ -49,8 +49,8 @@ class GameTable {
 }
 
 enum StudType: Int, CaseIterable {
-    case fiveStud = 5
     case sevenStud = 7
+    case fiveStud = 5
     
     func each( function:() -> Void) {
         for _ in 1 ... self.rawValue {
@@ -59,7 +59,7 @@ enum StudType: Int, CaseIterable {
     }
 }
 
-enum playerEntry: Int, CaseIterable {
+enum PlayerEntry: Int, CaseIterable {
     case two = 2
     case three = 3
     case four = 4
