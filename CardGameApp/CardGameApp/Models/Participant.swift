@@ -9,20 +9,20 @@
 import Foundation
 
 class Participant {
-    private var cards = [Card]()
+    private var hand = Hand()
     
     func take(card: Card) {
-        cards.append(card)
+        hand.add(card: card)
     }
     
     @discardableResult
     func repeatForEachCard<T>(_ transform: (Card) -> T) -> [T] {
-        return cards.map { transform($0) }
+        return hand.repeatForEachCard { transform($0) }
     }
 }
 
 extension Participant: Equatable {
     static func == (lhs: Participant, rhs: Participant) -> Bool {
-        return lhs.cards == rhs.cards
+        return lhs.hand == rhs.hand
     }
 }
