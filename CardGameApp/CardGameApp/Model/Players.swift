@@ -30,11 +30,11 @@ class Players {
         list.count
     }
     
-    func addPlayers(count: NumberOfPlayers) {
+    func addPlayers(count: NumberOfPlayers, dealer: Dealer) {
         count.forEach {
             list.append(Player(number: list.count + 1))
         }
-        list.append(Dealer())
+        list.append(dealer)
     }
     
     func discardAll() {

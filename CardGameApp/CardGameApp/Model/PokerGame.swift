@@ -36,7 +36,7 @@ class PokerGame {
     init(gameType: GameType = .sevenCardStud, numberOfPlayers: Players.NumberOfPlayers = .two) {
         self.gameType = gameType
         self.dealer = Dealer()
-        players.addPlayers(count: numberOfPlayers)
+        players.addPlayers(count: numberOfPlayers, dealer: dealer)
     }
     
     func forEachPlayers(_ transform: (Player) -> ()) {
