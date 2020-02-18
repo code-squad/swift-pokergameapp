@@ -21,14 +21,13 @@ class PokerGame {
         self.dealer = Dealer()
         
         setupPlayer()
-        setupPlayersHand()
-        findWinner()
+//        findWinner()
     }
     
-    private func findWinner() {
-        players.forEach{ $0.calculateItsValue() }
-        winner = players.sorted(by: { $0.value > $1.value }).first!
-    }
+//    private func findWinner() {
+//        players.forEach{ $0.calculateItsValue() }
+//        winner = players.sorted(by: { $0.value > $1.value }).first!
+//    }
     
     private func setupPlayer() {
         playerCount.forEach {
@@ -43,14 +42,10 @@ class PokerGame {
         dealer.setupName("Dealer")
     }
     
-    private func setupPlayersHand() {
-        players.forEach {
-            var hand: [Card] = []
-            gameType.forEachCard {
-                guard let card = dealer.drawCard() else { return }
-                hand.append(card)
-            }
-            $0.setupHand(with: hand)
+    func passCardToPlayers() {
+        players.forEach { (player) in
+            guard let card = dealer.drawCard() else { return }
+            player.takeCard(card)
         }
     }
     

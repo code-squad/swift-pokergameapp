@@ -1,21 +1,24 @@
 //
-//  Value.swift
+//  Hand.swift
 //  CardGameApp
 //
-//  Created by Cory Kim on 2020/02/17.
+//  Created by Cory Kim on 2020/02/18.
 //  Copyright © 2020 corykim0829. All rights reserved.
 //
 
 import Foundation
 
-struct Value {
-    private var hand: [Card] = []
+struct Hand {
+    private(set) var cards: [Card] = []
     private(set) var handRanking: HandRanking = .highCard
-    private var restOfHand: [Card] = []
     private var combinationsOf: [HandRanking: [[Card]]] = [:]
+    private var restOfHand: [Card] = []
     
-    init(hand: [Card]) {
-        self.hand = hand
+    mutating func appendCard(_ card: Card) {
+        cards.append(card)
+    }
+    
+    mutating func calculate() {
         setupHandRanking()
         setupRestOfHand()
     }
@@ -31,7 +34,7 @@ struct Value {
     }
     
     mutating func setupRestOfHand() {
-        hand.forEach { (cardOfHand) in
+        cards.forEach { (cardOfHand) in
             combinationsOf[handRanking]!.forEach { (combination) in
                 combination.forEach { (combiCard) in
                     if cardOfHand != combiCard { restOfHand.append(cardOfHand) }
@@ -43,11 +46,11 @@ struct Value {
     
     private mutating func isStraight() -> Bool {
         let NUMBER_OF_STRAIGHT_CARDS = 5
-        let sortedHand = hand.sorted{ $0.rank < $1.rank }
+        let sortedHand = cards.sorted{ $0.rank < $1.rank }
         var combinations: [[Card]] = []
         var isCombiStraights: [Bool] = []
         
-        for startIndex in 0...hand.count - NUMBER_OF_STRAIGHT_CARDS {
+        for startIndex in 0...cards.count - NUMBER_OF_STRAIGHT_CARDS {
             var isThisCombiStraight = true
             
             let combination = Array(sortedHand[startIndex..<startIndex + NUMBER_OF_STRAIGHT_CARDS])
@@ -70,7 +73,7 @@ struct Value {
         var handRankings: [HandRanking] = []
         
         var rankCountDict: [Card.Rank: Int] = [:]
-        hand.forEach { (card) in
+        cards.forEach { (card) in
             rankCountDict[card.rank] = (rankCountDict[card.rank] ?? 0) + 1
         }
         
@@ -100,23 +103,27 @@ struct Value {
     
     private mutating func searchCombinations(of rank: Card.Rank) -> [Card] {
         var combination: [Card] = []
-        hand.forEach { (card) in
+        cards.forEach { (card) in
             if card.rank == rank {
                 combination.append(card)
             }
         }
         return combination
     }
+    
+    func forEachCard(_ handler: (Card) -> ()) {
+        cards.forEach{ handler($0) }
+    }
 }
 
-extension Value: Equatable {
-    static func == (lhs: Value, rhs: Value) -> Bool {
-        let sortedLhs = lhs.hand.map{ $0.rank }.sorted(by: <)
-        let sortedRhs = rhs.hand.map{ $0.rank }.sorted(by: <)
+extension Hand: Comparable {
+    static func == (lhs: Hand, rhs: Hand) -> Bool {
+        let sortedLhs = lhs.cards.map{ $0.rank }.sorted(by: <)
+        let sortedRhs = rhs.cards.map{ $0.rank }.sorted(by: <)
         return sortedLhs == sortedRhs
     }
     
-    static func > (lhs: Value, rhs: Value) -> Bool {
+    static func > (lhs: Hand, rhs: Hand) -> Bool {
         let lhsRanks = lhs.restOfHand.map{ $0.rank }
         let rhsRanks = rhs.restOfHand.map{ $0.rank }
         
@@ -137,7 +144,7 @@ extension Value: Equatable {
         }
     }
     
-    static func < (lhs: Value, rhs: Value) -> Bool {
+    static func < (lhs: Hand, rhs: Hand) -> Bool {
         let lhsRanks = lhs.restOfHand.map{ $0.rank }
         let rhsRanks = rhs.restOfHand.map{ $0.rank }
         
@@ -158,6 +165,7 @@ extension Value: Equatable {
         }
     }
 }
+
 
 enum HandRanking: Int, Comparable {
     case highCard = 1, onePair, twoPairs, triple, straight, fourCards
