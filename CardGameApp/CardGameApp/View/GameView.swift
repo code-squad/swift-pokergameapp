@@ -31,5 +31,4 @@ class GameView: UIStackView {
         self.leadingAnchor.constraint(equalTo: superview!.leadingAnchor, constant: 30).isActive = true
         self.trailingAnchor.constraint(equalTo: superview!.trailingAnchor, constant: -60).isActive = true
     }
-    
 }

@@ -23,5 +23,4 @@ class HandStackView: UIStackView {
         self.distribution = .fillEqually
         self.spacing = -5
     }
-    
 }
