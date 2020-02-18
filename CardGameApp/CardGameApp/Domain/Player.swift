@@ -14,9 +14,9 @@ protocol Playerable {
 
 class Player: Playerable , Searchable {
     
-    private var cards : [Card]?
+    private var cards = [Card]()
     
-    func initCards() {
+    func reset() {
         cards = [Card]()
     }
     
@@ -25,16 +25,13 @@ class Player: Playerable , Searchable {
         
         switch result {
         case .success(let card):
-            cards?.append(card)
+            cards.append(card)
         case .failure(let error):
             throw error
         }
-        
     }
-
+    
     func searchCard(handler: (Card) -> ()) {
-        if let cards = cards {
-            cards.forEach{ handler($0) }
-        }
+        cards.forEach{ handler($0) }
     }
 }
