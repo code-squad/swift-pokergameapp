@@ -11,8 +11,8 @@ import Foundation
 class Dealer: Player {
     private var deck = Deck()
     
-    override init() {
-        super.init()
+    override init(name: String = "Dealer") {
+        super.init(name: name)
         setupDeck()
     }
     
