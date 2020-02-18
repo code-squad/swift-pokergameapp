@@ -26,7 +26,6 @@ class ViewController: UIViewController {
         cardStackView.translatesAutoresizingMaskIntoConstraints = false
         cardStackView.distribution = .fillEqually
         cardStackView.spacing = -10
-        cardStackView.backgroundColor = .yellow
         return cardStackView
     }
         
@@ -55,16 +54,18 @@ class ViewController: UIViewController {
         playersStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 180).isActive = true
     }
     
-    func setCardBackImage() -> UIImageView {
-        let cardBackImage = matchImageToCardInfo(suit: .spades, rank: .four)
-        cardBackImage.heightAnchor.constraint(equalTo: cardBackImage.widthAnchor, multiplier: 1.27).isActive = true
-        return cardBackImage
+    let pokerGame = PokerGame(gameMode: .sevenCardStud, playerMode: .four)
+    func setCardImage() -> UIImageView? {
+        guard let pickedCard = pokerGame.showDealer().pickOneCard() else { return nil }
+        let cardImage = matchImageToCardInfo(suit: pickedCard.suit, rank: pickedCard.rank)
+        cardImage.heightAnchor.constraint(equalTo: cardImage.widthAnchor, multiplier: 1.27).isActive = true
+        return cardImage
     }
     
     func addCardsToStackView() {
         for _ in 1...7 {
-            let cardBackImage = setCardBackImage()
-            cardStackView.addArrangedSubview(cardBackImage)
+            guard let cardImage = setCardImage() else { return }
+            cardStackView.addArrangedSubview(cardImage)
         }
     }
     
