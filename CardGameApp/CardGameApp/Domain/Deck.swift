@@ -61,7 +61,7 @@ protocol Searchable {
 
 extension Deck: Searchable {
     func searchCard(handler: (Card) -> ()) {
-        _ = cards.map { handler($0)}
+        cards.forEach{ handler($0) }
     }
 }
 
