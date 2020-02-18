@@ -14,7 +14,7 @@ class GameTable {
     private var dealer: Dealer
     private var players: [Player]
   
-    init(playerEntry: PlayerEntry, studType: StudType) {
+    init(playerEntry: PlayerEntry = .two, studType: StudType = .sevenStud) {
         self.playerEntry = playerEntry
         self.studType = studType
         self.dealer = Dealer()

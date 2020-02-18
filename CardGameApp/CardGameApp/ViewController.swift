@@ -21,7 +21,7 @@ class ViewController: UIViewController {
     private var entry = PlayerEntry.two
     private var studType = StudType.sevenStud
     
-    private var pokerGame = GameTable(playerEntry: self.entry, studType: self.studType)
+    private var pokerGame = GameTable()
     
     //status bar 설정
     override var preferredStatusBarStyle: UIStatusBarStyle {
