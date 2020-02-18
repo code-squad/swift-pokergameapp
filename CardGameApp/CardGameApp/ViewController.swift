@@ -10,23 +10,16 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    let playersStackView: UIStackView = {
-       let stack = UIStackView()
-        stack.axis = .vertical
-        stack.translatesAutoresizingMaskIntoConstraints = false
-        stack.distribution = .fillEqually
-        stack.spacing = 40
-        return stack
-    }()
-
-    var cardStackView: UIStackView!
-    func createCardsStackView() -> UIStackView {
-        cardStackView = UIStackView()
-        cardStackView.axis = .horizontal
-        cardStackView.translatesAutoresizingMaskIntoConstraints = false
-        cardStackView.distribution = .fillEqually
-        cardStackView.spacing = -10
-        return cardStackView
+    var playersStackView: UIStackView!
+    var cardsStackView: UIStackView!
+    
+    func generateStackView(axis: NSLayoutConstraint.Axis, spacing: CGFloat) -> UIStackView {
+        let stackView = UIStackView()
+        stackView.axis = axis
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.distribution = .fillEqually
+        stackView.spacing = spacing
+        return stackView
     }
         
     var cardImage = UIImageView()
@@ -36,10 +29,12 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "pattern"))
         
+        playersStackView = generateStackView(axis: .vertical, spacing: 40)
         view.addSubview(playersStackView)
         for _ in 1...5 {
-            playersStackView.addArrangedSubview(createCardsStackView())
-            addConstraintsToStack()
+            cardsStackView = generateStackView(axis: .horizontal, spacing: -8)
+            playersStackView.addArrangedSubview(cardsStackView)
+            addConstraintsToStackViews()
             addCardsToStackView()
         }
     }
@@ -48,10 +43,10 @@ class ViewController: UIViewController {
         return .lightContent
     }
     
-    func addConstraintsToStack() {
-        cardStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
-        cardStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40).isActive = true
-        playersStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 180).isActive = true
+    func addConstraintsToStackViews() {
+        cardsStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
+        cardsStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40).isActive = true
+        playersStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 200).isActive = true
     }
     
     let pokerGame = PokerGame(gameMode: .sevenCardStud, playerMode: .four)
@@ -65,7 +60,7 @@ class ViewController: UIViewController {
     func addCardsToStackView() {
         for _ in 1...7 {
             guard let cardImage = setCardImage() else { return }
-            cardStackView.addArrangedSubview(cardImage)
+            cardsStackView.addArrangedSubview(cardImage)
         }
     }
     
