@@ -58,14 +58,28 @@ extension Card: CustomStringConvertible{
 
 extension Card: Comparable{
     static func < (lhs: Card, rhs: Card) -> Bool {
-        return lhs.rank.rawValue < rhs.rank.rawValue
+        return lhs.rank < rhs.rank
     }
     
     static func == (lhs: Card, rhs: Card) -> Bool {
-        return lhs.rank.rawValue == rhs.rank.rawValue
+        return lhs.rank == rhs.rank
     }
     
     static func - (lhs: Card, rhs: Card) -> Int {
-        return lhs.rank.rawValue - rhs.rank.rawValue
+        return lhs.rank - rhs.rank
+    }
+}
+
+extension Card.Rank: Comparable{
+    static func < (lhs: Card.Rank, rhs: Card.Rank) -> Bool {
+        return lhs.rawValue < rhs.rawValue
+    }
+    
+    static func == (lhs: Card.Rank, rhs: Card.Rank) -> Bool {
+        return lhs.rawValue == rhs.rawValue
+    }
+    
+    static func - (lhs: Card.Rank, rhs: Card.Rank) -> Int {
+        return lhs.rawValue - rhs.rawValue
     }
 }
