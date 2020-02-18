@@ -21,13 +21,15 @@ class Score {
             return lhs.rawValue > rhs.rawValue
         }
     }
-    private var score: Scores
+    private var cards: [Card]
+    private lazy var score = getScore(cards: cards)
+    private var straightNumber: Card?
     
     init(cards: [Card]) {
-        self.score = Score.getScore(cards: cards)
+        self.cards = cards
     }
     
-    private static func isStraight(cards: [Card]) -> Bool {
+    private func isStraight(cards: [Card]) -> Bool {
         let sortedCards = cards.sorted { $0 < $1 }
         var currentCard = sortedCards[0]
         var straightCount = 1
@@ -35,6 +37,7 @@ class Score {
             if currentCard.isNextCard(with: card) {
                 straightCount += 1
                 if straightCount == 5 {
+                    self.straightNumber = card
                     return true
                 }
             } else {
@@ -45,7 +48,7 @@ class Score {
         return false
     }
     
-    private static func checkPairs(info: [Card:Int]) -> Scores {
+    private func checkPairs(info: [Card:Int]) -> Scores {
         let pairCount = info.filter { $0.value == 2 }.count
         
         switch pairCount {
@@ -58,7 +61,7 @@ class Score {
         }
     }
     
-    private static func getScore(cards: [Card]) -> Scores {
+    private func getScore(cards: [Card]) -> Scores {
         let info = cards.reduce(into: [Card:Int]()) {
             if $0[$1] == nil {
                 $0[$1] = 1
@@ -80,10 +83,16 @@ class Score {
 
 extension Score: Equatable {
     static func == (lhs: Score, rhs: Score) -> Bool {
-        lhs.score == rhs.score
+        if lhs.score == .straight, rhs.score == .straight {
+            return lhs.straightNumber == rhs.straightNumber
+        }
+        return lhs.score == rhs.score
     }
     
     static func > (lhs: Score, rhs: Score) -> Bool {
-        lhs.score > rhs.score
+        if lhs.score == .straight, rhs.score == .straight {
+            return lhs.straightNumber! > rhs.straightNumber!
+        }
+        return lhs.score > rhs.score
     }
 }
