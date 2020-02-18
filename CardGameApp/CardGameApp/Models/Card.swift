@@ -74,3 +74,9 @@ extension Card.Rank: Comparable {
         return lhs.rawValue < rhs.rawValue
     }
 }
+
+extension Card.Rank {
+    static func - (lhs: Card.Rank, rhs: Card.Rank) -> Int {
+        return lhs.rawValue - rhs.rawValue
+    }
+}
