@@ -9,7 +9,6 @@
 import Foundation
 
 class Hand {
-    
     private var cards = [Card]()
     private lazy var score = Score(cards: cards)
     private lazy var ranks = Ranks(cards: cards)
@@ -21,8 +20,6 @@ class Hand {
     func add(card: Card) {
         cards.append(card)
     }
-    
-    
 }
 
 extension Hand: Equatable {

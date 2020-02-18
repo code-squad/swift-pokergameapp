@@ -21,8 +21,7 @@ class Score {
             return lhs.rawValue > rhs.rawValue
         }
     }
-    
-    var score: Scores
+    private var score: Scores
     
     init(cards: [Card]) {
         self.score = Score.getScore(cards: cards)
@@ -87,5 +86,4 @@ extension Score: Equatable {
     static func > (lhs: Score, rhs: Score) -> Bool {
         lhs.score > rhs.score
     }
-    
 }

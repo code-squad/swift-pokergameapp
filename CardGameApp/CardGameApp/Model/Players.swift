@@ -24,7 +24,6 @@ class Players {
             }
         }
     }
-
     private var list = [Player]()
     var count: Int {
         list.count

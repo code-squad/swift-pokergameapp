@@ -9,7 +9,6 @@
 import Foundation
 
 class Ranks {
-    
     private var sortedCards: [Card]
     
     init(cards: [Card]) {

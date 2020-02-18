@@ -19,7 +19,7 @@ class PlayerStackView: UIStackView {
     }
     
     convenience init(playerName: String) {
-        self.init()
+        self.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
         addPlayerLabel(playerName: playerName)
     }
     

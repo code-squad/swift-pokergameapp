@@ -9,7 +9,6 @@
 import Foundation
 
 class Dealer: Player {
-    
     override var description: String {
         "Dealer"
     }
