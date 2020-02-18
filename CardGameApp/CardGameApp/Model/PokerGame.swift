@@ -48,7 +48,7 @@ class PokerGame {
         players.whoIsWinner()
     }
 
-    init(gameType: GameType, numberOfPlayers: NumberOfPlayers) {
+    init(gameType: GameType = .sevenCardStud, numberOfPlayers: NumberOfPlayers = .two) {
         self.gameType = gameType
         self.dealer = Dealer()
         numberOfPlayers.forEach {
@@ -71,6 +71,9 @@ class PokerGame {
     }
     
     func play() {
+        if !resumable {
+            dealer.resetDeck()
+        }
         players.discardAll()
         dealer.shuffle()
         gameType.forEach {
