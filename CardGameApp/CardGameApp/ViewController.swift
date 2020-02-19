@@ -62,7 +62,7 @@ class ViewController: UIViewController {
     private func resetPlayersHand() {
         DispatchQueue.global(qos: .userInitiated).sync {
             self.gameType.forEachCard {
-                self.pokerGame.passCardToPlayers { (players) in
+                self.pokerGame.passCards { (players) in
                     DispatchQueue.main.async {
                         self.updateViews(with: players)
                     }
