@@ -24,10 +24,6 @@ class Player {
         hand.appendCard(card)
     }
     
-    func setupName(_ name: String) {
-        self.name = name
-    }
-    
     func forEachCard(_ handler: (Card) -> ()) {
         hand.forEachCard(handler)
     }
