@@ -35,15 +35,15 @@ class Hand{
     }
     
     func result() -> ResultPriority{
-        if checkStraight(cards: cards.sorted()){
+        if isStraight(cards: cards.sorted()){
             resultCardInfo.sort(by: >)
             return .straight
         }
         
-        return checkSameCard(cards: cards.sorted())
+        return getCardPriority(cards: cards.sorted())
     }
     
-    func checkStraight(cards: [Card]) -> Bool{
+    func isStraight(cards: [Card]) -> Bool{
         var previousCard = cards[0]
         var straightCount = 1
         var previousStraightCount = 0
@@ -66,43 +66,29 @@ class Hand{
         return ResultPriority.straight.equal(num: straightCount > previousStraightCount ? straightCount : previousStraightCount)
     }
     
-    func checkSameCard(cards: [Card]) -> ResultPriority{
+    func getCardPriority(cards: [Card]) -> ResultPriority{
         resultCardInfo.removeAll()
         var howMany = [Card : Int]()
+        
         cards.forEach{
-            if howMany[$0] == nil{
-                howMany[$0] = 1
-            } else{
-                howMany.updateValue(howMany[$0]! + 1, forKey: $0)
-            }
+            let card = $0
+            howMany[card] = cards.filter{card == $0}.count
         }
         
-        if howMany.values.contains(4){
-            for (key,value) in howMany{
-                if value == 4{
-                    resultCardInfo.append(key)
-                }
-            }
-            resultCardInfo.sort(by: >)
-            return .fourCard
-        } else if howMany.values.contains(3){
-            for (key,value) in howMany{
-                if value == 3{
-                    resultCardInfo.append(key)
-                }
-            }
-            resultCardInfo.sort(by: >)
-            return .triple
-        } else if howMany.values.contains(2){
-            for (key,value) in howMany{
-                if value == 2{
-                    resultCardInfo.append(key)
-                }
-            }
-            resultCardInfo.sort(by: >)
-            return resultCardInfo.count == 2 ? .twoPair : .onePair
+        let highestRankFrequency = howMany.values.max()!
+        
+        if highestRankFrequency == 1 {
+            return .noPair
         }
-        return .noPair
+        
+        for (key,value) in howMany{
+            if value == highestRankFrequency{
+                resultCardInfo.append(key)
+            }
+            resultCardInfo.sort(by: >)
+        }
+        
+        return ResultPriority(rawValue: highestRankFrequency == 2 && resultCardInfo.count == 1 ? 1 : highestRankFrequency)!
     }
 }
 
