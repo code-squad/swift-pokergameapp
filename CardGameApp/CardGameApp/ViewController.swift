@@ -28,34 +28,16 @@ class ViewController: UIViewController {
         setupBackground()
         setupCardViews()
     }
-    
+
     private func setupBackground() {
         self.view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "bg_pattern"))
     }
     
     private func setupCardViews(){
-        addCardViews(to: cardStackView)
         self.view.addSubview(cardStackView)
         setConstraintCardStackView()
     }
-    
-    private func addCardViews(to cardStackView: UIStackView) {
-        let maxCardNum = 7
-        for _ in 0 ..< maxCardNum {
-            cardStackView.addArrangedSubview(generateCardImageView())
-        }
-    }
 
-    private func generateCardImageView() -> UIImageView {
-        let cardImageView = UIImageView(image:  #imageLiteral(resourceName: "card-back"))
-        cardImageView.contentMode = .scaleAspectFill
-        cardImageView.translatesAutoresizingMaskIntoConstraints = false
-        cardImageView.heightAnchor.constraint(
-            equalTo: cardImageView.widthAnchor,
-            multiplier: 1.27).isActive = true
-        return cardImageView
-    }
-    
     private func setConstraintCardStackView() {
         let boundaryConstant: CGFloat = 8
         cardStackView.topAnchor.constraint(
@@ -68,5 +50,4 @@ class ViewController: UIViewController {
             equalTo: view.trailingAnchor,
             constant: -boundaryConstant).isActive = true
     }
-
 }

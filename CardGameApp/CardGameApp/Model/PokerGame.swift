@@ -8,13 +8,24 @@
 
 import Foundation
 extension PokerGame {
-    enum GameStut: Int {
+    enum GameStut: Int, CaseIterable {
         case five = 5, seven = 7
         
         func forEach(handler: () -> (Void)) {
             for _ in 0 ..< self.rawValue {
                 handler()
             }
+        }
+    }
+}
+
+extension PokerGame.GameStut: CustomStringConvertible {
+    var description: String {
+        switch self {
+        case .five:
+            return "5 Cards"
+        case .seven:
+            return "7 Cards"
         }
     }
 }
