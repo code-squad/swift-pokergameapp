@@ -40,17 +40,7 @@ class Hand{
             return .straight
         }
         
-        if checkSameCard(howMany: .fourCard, cards: cards.sorted()){
-            resultCardInfo.sort(by: >)
-            return .fourCard
-        }
-        
-        if checkSameCard(howMany: .triple, cards: cards.sorted()){
-            resultCardInfo.sort(by: >)
-            return .triple
-        }
-        
-        return checkPair(cards: cards.sorted())
+        return checkSameCard(cards: cards.sorted())
     }
     
     func checkStraight(cards: [Card]) -> Bool{
@@ -76,7 +66,7 @@ class Hand{
         return ResultPriority.straight.equal(num: straightCount > previousStraightCount ? straightCount : previousStraightCount)
     }
     
-    func checkSameCard(howMany same: ResultPriority, cards: [Card]) -> Bool{
+    func checkSameCard(cards: [Card]) -> ResultPriority{
         resultCardInfo.removeAll()
         var howMany = [Card : Int]()
         cards.forEach{
@@ -93,34 +83,26 @@ class Hand{
                     resultCardInfo.append(key)
                 }
             }
-            return true
+            resultCardInfo.sort(by: >)
+            return .fourCard
         } else if howMany.values.contains(3){
             for (key,value) in howMany{
                 if value == 3{
                     resultCardInfo.append(key)
                 }
             }
-            return true
-        }
-        return false
-    }
-    
-    func checkPair(cards: [Card]) -> ResultPriority{
-        resultCardInfo.removeAll()
-        var previousCard = cards[0]
-        var pairCount = 0
-        for cardIndex in 1..<cards.count{
-            let nextCard = cards[cardIndex]
-            if previousCard == nextCard{
-                pairCount += 1
-                resultCardInfo.append(previousCard)
+            resultCardInfo.sort(by: >)
+            return .triple
+        } else if howMany.values.contains(2){
+            for (key,value) in howMany{
+                if value == 2{
+                    resultCardInfo.append(key)
+                }
             }
-            
-            previousCard = nextCard
+            resultCardInfo.sort(by: >)
+            return resultCardInfo.count == 2 ? .twoPair : .onePair
         }
-        
-        resultCardInfo.reverse()
-        return ResultPriority.init(rawValue: pairCount >= 3 ? 2 : pairCount)!
+        return .noPair
     }
 }
 
