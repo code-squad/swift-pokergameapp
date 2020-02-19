@@ -53,6 +53,11 @@ extension Hand {
     
     func overlapDuplicates() -> [(Card, Int)] {
         let label = zip(cards, (0..<cards.count).map { _ in 1 })
-        return Dictionary().merging(label, uniquingKeysWith: +).sorted { $0.value > $1.value }
+        return Dictionary().merging(label, uniquingKeysWith: +).sorted {
+            if $0.value == $1.value {
+                return $0 > $1
+            }
+            return $0.value > $1.value
+        }
     }
 }
