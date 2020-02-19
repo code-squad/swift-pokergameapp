@@ -19,15 +19,6 @@ class ViewController: UIViewController {
         return stackView
     }()
     
-    private let cardStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .horizontal
-        stackView.distribution = .fillEqually
-        stackView.spacing = 4
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        return stackView
-    }()
-    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
@@ -35,7 +26,6 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupBackground()
-        setupCardViews()
         setupSegmentedControls()
     }
 
@@ -59,22 +49,5 @@ class ViewController: UIViewController {
             equalTo: view.trailingAnchor,
             constant: -boundaryConstant).isActive = true
     }
-
-     private func setupCardViews(){
-         self.view.addSubview(cardStackView)
-         setConstraintCardStackView()
-     }
-
-     private func setConstraintCardStackView() {
-         let boundaryConstant: CGFloat = 8
-         cardStackView.topAnchor.constraint(
-             equalTo: view.safeAreaLayoutGuide.topAnchor,
-             constant: boundaryConstant).isActive = true
-         cardStackView.leadingAnchor.constraint(
-             equalTo: view.leadingAnchor,
-             constant: boundaryConstant).isActive = true
-         cardStackView.trailingAnchor.constraint(
-             equalTo: view.trailingAnchor,
-             constant: -boundaryConstant).isActive = true
-     }
+    
 }
