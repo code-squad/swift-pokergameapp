@@ -15,16 +15,16 @@ class ValueComparisonTest: XCTestCase {
     }
     
     func testOnePairComparison() {
-        let hand1 = [
+        let cards1 = [
             Card(suit: .club, rank: .ace),
             Card(suit: .spade, rank: .ace),
             Card(suit: .club, rank: .two),
-            Card(suit: .club, rank: .three),
+            Card(suit: .club, rank: .seven),
             Card(suit: .club, rank: .four),
             Card(suit: .club, rank: .five),
             Card(suit: .club, rank: .six)
         ]
-        let hand2 = [
+        let cards2 = [
             Card(suit: .heart, rank: .ace),
             Card(suit: .diamond, rank: .ace),
             Card(suit: .diamond, rank: .two),
@@ -33,14 +33,17 @@ class ValueComparisonTest: XCTestCase {
             Card(suit: .heart, rank: .five),
             Card(suit: .heart, rank: .six)
         ]
-        let value1 = Value(hand: hand1)
-        let value2 = Value(hand: hand2)
         
-        XCTAssert(value1 < value2)
+        var hand1 = Hand(cards: cards1)
+        hand1.calculate()
+        var hand2 = Hand(cards: cards2)
+        hand2.calculate()
+        
+        XCTAssert(hand1 < hand2)
     }
 
     func testTwoPairsComparison1() {
-        let hand1 = [
+        let cards1 = [
             Card(suit: .club, rank: .ace),
             Card(suit: .spade, rank: .ace),
             Card(suit: .club, rank: .two),
@@ -49,7 +52,7 @@ class ValueComparisonTest: XCTestCase {
             Card(suit: .club, rank: .five),
             Card(suit: .club, rank: .six)
         ]
-        let hand2 = [
+        let cards2 = [
             Card(suit: .heart, rank: .ace),
             Card(suit: .diamond, rank: .ace),
             Card(suit: .heart, rank: .two),
@@ -58,14 +61,16 @@ class ValueComparisonTest: XCTestCase {
             Card(suit: .heart, rank: .five),
             Card(suit: .heart, rank: .three)
         ]
-        let value1 = Value(hand: hand1)
-        let value2 = Value(hand: hand2)
+        var hand1 = Hand(cards: cards1)
+        hand1.calculate()
+        var hand2 = Hand(cards: cards2)
+        hand2.calculate()
         
-        XCTAssert(value1 > value2)
+        XCTAssert(hand1 > hand2)
     }
     
     func testTwoPairsComparison2() {
-        let hand1 = [
+        let cards1 = [
             Card(suit: .club, rank: .ace),
             Card(suit: .spade, rank: .ace),
             Card(suit: .club, rank: .three),
@@ -74,7 +79,7 @@ class ValueComparisonTest: XCTestCase {
             Card(suit: .club, rank: .five),
             Card(suit: .club, rank: .six)
         ]
-        let hand2 = [
+        let cards2 = [
             Card(suit: .heart, rank: .ace),
             Card(suit: .diamond, rank: .ace),
             Card(suit: .heart, rank: .two),
@@ -83,14 +88,16 @@ class ValueComparisonTest: XCTestCase {
             Card(suit: .heart, rank: .five),
             Card(suit: .heart, rank: .three)
         ]
-        let value1 = Value(hand: hand1)
-        let value2 = Value(hand: hand2)
+        var hand1 = Hand(cards: cards1)
+        hand1.calculate()
+        var hand2 = Hand(cards: cards2)
+        hand2.calculate()
         
-        XCTAssert(value1 > value2)
+        XCTAssert(hand1 > hand2)
     }
     
     func testTripleComparison() {
-        let hand1 = [
+        let cards1 = [
             Card(suit: .club, rank: .ace),
             Card(suit: .spade, rank: .ace),
             Card(suit: .diamond, rank: .ace),
@@ -99,7 +106,7 @@ class ValueComparisonTest: XCTestCase {
             Card(suit: .club, rank: .five),
             Card(suit: .club, rank: .six)
         ]
-        let hand2 = [
+        let cards2 = [
             Card(suit: .club, rank: .two),
             Card(suit: .heart, rank: .two),
             Card(suit: .diamond, rank: .two),
@@ -108,14 +115,16 @@ class ValueComparisonTest: XCTestCase {
             Card(suit: .heart, rank: .five),
             Card(suit: .heart, rank: .six)
         ]
-        let value1 = Value(hand: hand1)
-        let value2 = Value(hand: hand2)
+        var hand1 = Hand(cards: cards1)
+        hand1.calculate()
+        var hand2 = Hand(cards: cards2)
+        hand2.calculate()
         
-        XCTAssert(value1 < value2)
+        XCTAssert(hand1 < hand2)
     }
     
     func testFourCardsValue() {
-        let hand1 = [
+        let cards1 = [
             Card(suit: .club, rank: .ace),
             Card(suit: .spade, rank: .ace),
             Card(suit: .diamond, rank: .ace),
@@ -125,7 +134,7 @@ class ValueComparisonTest: XCTestCase {
             Card(suit: .heart, rank: .six)
         ]
         
-        let hand2 = [
+        let cards2 = [
             Card(suit: .club, rank: .two),
             Card(suit: .spade, rank: .two),
             Card(suit: .diamond, rank: .two),
@@ -135,14 +144,16 @@ class ValueComparisonTest: XCTestCase {
             Card(suit: .club, rank: .seven)
         ]
         
-        let value1 = Value(hand: hand1)
-        let value2 = Value(hand: hand2)
+        var hand1 = Hand(cards: cards1)
+        hand1.calculate()
+        var hand2 = Hand(cards: cards2)
+        hand2.calculate()
         
-        XCTAssert(value1 < value2)
+        XCTAssert(hand1 < hand2)
     }
     
     func testStraightComparison() {
-        let hand1 = [
+        let cards1 = [
             Card(suit: .club, rank: .ace),
             Card(suit: .spade, rank: .two),
             Card(suit: .diamond, rank: .three),
@@ -152,7 +163,7 @@ class ValueComparisonTest: XCTestCase {
             Card(suit: .heart, rank: .six)
         ]
         
-        let hand2 = [
+        let cards2 = [
             Card(suit: .club, rank: .king),
             Card(suit: .spade, rank: .king),
             Card(suit: .diamond, rank: .king),
@@ -162,12 +173,14 @@ class ValueComparisonTest: XCTestCase {
             Card(suit: .club, rank: .seven)
         ]
         
-        let value1 = Value(hand: hand1)
-        let value2 = Value(hand: hand2)
+        var hand1 = Hand(cards: cards1)
+        hand1.calculate()
+        var hand2 = Hand(cards: cards2)
+        hand2.calculate()
         
-        XCTAssert(value1.handRanking == .straight)
-        XCTAssert(value2.handRanking == .fourCards)
+        XCTAssert(hand1.handRanking == .straight)
+        XCTAssert(hand2.handRanking == .fourCards)
         
-        XCTAssert(value1 < value2)
+        XCTAssert(hand1 < hand2)
     }
 }
