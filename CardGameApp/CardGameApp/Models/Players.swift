@@ -31,14 +31,6 @@ class Players {
         return players.sorted(by: { $0.hand > $1.hand }).first!
     }
     
-    func passCards(from dealer: Dealer, completion: (Players) -> ()) {
-        players.forEach { (player) in
-            guard let card = dealer.drawCard() else { return }
-            player.takeCard(card)
-        }
-        completion(self)
-    }
-    
     func forEachPlayer(_ handler: (Player) -> ()) {
         players.forEach { (player) in
             handler(player)

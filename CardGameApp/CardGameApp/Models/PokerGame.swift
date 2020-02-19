@@ -12,7 +12,7 @@ class PokerGame {
     private let gameType: GameType
     private let playerCount: PlayerCount
     private(set) var players: Players!
-    private(set) var winner: Player!
+    private var winner: Player!
     let dealer = Dealer()
     
     init(game gameType: GameType = .sevenCardsStud, numberOfPlayers: PlayerCount = .two) {
@@ -31,7 +31,11 @@ class PokerGame {
     }
     
     func passCards(completion: (Players) -> ()) {
-        players.passCards(from: dealer, completion: completion)
+        players.forEachPlayer { (player) in
+            guard let card = dealer.drawCard() else { return }
+            player.takeCard(card)
+        }
+        completion(players)
     }
     
     func forEachPlayer(_ handler: (Player) -> ()) {
