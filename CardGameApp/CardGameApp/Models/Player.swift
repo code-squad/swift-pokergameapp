@@ -16,6 +16,10 @@ class Player {
         self.name = name
     }
     
+    func calculate() {
+        hand.calculate()
+    }
+    
     func takeCard(_ card: Card) {
         hand.appendCard(card)
     }

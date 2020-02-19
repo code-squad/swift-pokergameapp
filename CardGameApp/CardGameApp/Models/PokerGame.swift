@@ -20,8 +20,9 @@ class PokerGame {
         self.playerCount = numberOfPlayers
     }
     
-    func findWinner() {
+    func findWinner(completion: (Player) -> ()) {
         winner = players.winner()
+        completion(winner)
     }
     
     func resetPlayers(_ players: [Player] = []) {

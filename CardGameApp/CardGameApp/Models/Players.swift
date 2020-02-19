@@ -25,7 +25,9 @@ class Players {
     }
     
     func winner() -> Player {
-//        players.forEach{ $0.calculateItsValue() }
+        players.forEach { (player) in
+            player.calculate()
+        }
         return players.sorted(by: { $0.hand > $1.hand }).first!
     }
     
