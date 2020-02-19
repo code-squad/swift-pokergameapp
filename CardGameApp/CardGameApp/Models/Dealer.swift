@@ -24,4 +24,3 @@ class Dealer: Player {
         return deck.removeOne()
     }
 }
-
