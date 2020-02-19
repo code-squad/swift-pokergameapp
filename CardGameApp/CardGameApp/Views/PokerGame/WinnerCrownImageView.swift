@@ -25,6 +25,8 @@ class WinnerCrownImageView: UIImageView {
     }
     
     private func commonInit() {
+        image = #imageLiteral(resourceName: "winner")
+        alpha = 0
         translatesAutoresizingMaskIntoConstraints = false
         widthAnchor.constraint(equalToConstant: 28).isActive = true
         heightAnchor.constraint(equalToConstant: 28).isActive = true

@@ -14,6 +14,10 @@ struct Hand {
     private var combinationsOf: [HandRanking: [[Card]]] = [:]
     private var restOfHand: [Card] = []
     
+    init(cards: [Card] = []) {
+        self.cards = cards
+    }
+    
     mutating func appendCard(_ card: Card) {
         cards.append(card)
     }

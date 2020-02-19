@@ -46,23 +46,34 @@ class ViewController: UIViewController {
     
     private func resetPokerGame() {
         self.pokerGame = PokerGame(game: gameType, numberOfPlayers: playerCount)
-
         pokerGame.resetPlayers()
         resetPokerGameStackView()
         resetPlayersHand()
     }
     
-    private func resetPlayersHand() {
-        DispatchQueue.main.async {
-            self.gameType.forEachCard {
-                self.pokerGame.passCardToPlayers { (players) in
-                    self.updateViews(with: players)
-                }
+    private func findWinner() {
+        self.pokerGame.findWinner { (winner) in
+            DispatchQueue.main.async {
+                self.updateView(with: winner)
             }
         }
     }
     
+    private func resetPlayersHand() {
+        DispatchQueue.global(qos: .userInitiated).sync {
+            self.gameType.forEachCard {
+                self.pokerGame.passCardToPlayers { (players) in
+                    DispatchQueue.main.async {
+                        self.updateViews(with: players)
+                    }
+                }
+            }
+            findWinner()
+        }
+    }
+    
     private func resetPokerGameStackView() {
+        winnerCrownImageView.alpha = 0
         pokerGameStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
         pokerGame.forEachPlayer{
             let playerStackView = PlayerStackView(player: $0)
@@ -76,10 +87,18 @@ class ViewController: UIViewController {
             let playerStackView = PlayerStackView(player: player)
             pokerGameStackView.addArrangedSubview(playerStackView)
         }
-//
-////            if $0 == pokerGame.winner {
-////                winnerCrownImageView.centerYAnchor.constraint(equalTo: cardStackView.centerYAnchor).isActive = true
-////            }
+    }
+    
+    private func updateView(with winner: Player) {
+        pokerGameStackView.arrangedSubviews.forEach { (stackView) in
+            let playerStackView = stackView as! PlayerStackView
+            if playerStackView.player == winner {
+                winnerCrownImageView.centerYAnchor.constraint(equalTo: playerStackView.centerYAnchor, constant: 4).isActive = true
+                UIView.animate(withDuration: 1) {
+                    self.winnerCrownImageView.alpha = 1
+                }
+            }
+        }
     }
     
     @objc private func handleGameTypeSegmentChanged(segmentedControl: UISegmentedControl) {
@@ -104,12 +123,12 @@ class ViewController: UIViewController {
         
         view.addSubview(pokerGameStackView)
         pokerGameStackView.topAnchor.constraint(equalTo: segmentedControlStackView.bottomAnchor, constant: 16).isActive = true
-        pokerGameStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 48).isActive = true
-        pokerGameStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -48).isActive = true
+        pokerGameStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 54).isActive = true
+        pokerGameStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -44).isActive = true
         pokerGameStackView.bottomAnchor.constraint(lessThanOrEqualTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16).isActive = true
         
         view.addSubview(winnerCrownImageView)
-        winnerCrownImageView.trailingAnchor.constraint(equalTo: pokerGameStackView.leadingAnchor, constant: -8).isActive = true
+        winnerCrownImageView.trailingAnchor.constraint(equalTo: pokerGameStackView.leadingAnchor, constant: -12).isActive = true
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
