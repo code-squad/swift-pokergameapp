@@ -29,8 +29,8 @@ class PokerGame {
         self.players.setupPlayers(playerCount: playerCount, with: dealer)
     }
     
-    func passCardToPlayers() {
-        players.passCardToPlayers(from: dealer)
+    func passCardToPlayers(completion: (Players) -> ()) {
+        players.passCardToPlayers(from: dealer, completion: completion)
     }
     
     func forEachPlayer(_ handler: (Player) -> ()) {
