@@ -18,7 +18,7 @@ class Hand{
     }
     
     private var card: [Card] = [Card]()
-    var resultCardInfo: [Card] = [Card]()
+    private var resultCardInfo: [Card] = [Card]()
     
     func append(card: Card){
         self.card.append(card)
