@@ -34,6 +34,10 @@ class Card{
         self.rank = rank
         self.suit = suit
     }
+    
+    func isSerial(card: Card) -> Bool{
+        return self - card == -1
+    }
 }
 
 extension Card: CustomStringConvertible{
