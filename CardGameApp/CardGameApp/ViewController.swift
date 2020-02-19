@@ -55,8 +55,9 @@ class ViewController: UIViewController {
     private func resetPlayersHand() {
         DispatchQueue.main.async {
             self.gameType.forEachCard {
-                self.pokerGame.passCardToPlayers()
-                self.updateViews()
+                self.pokerGame.passCardToPlayers { (players) in
+                    self.updateViews(with: players)
+                }
             }
         }
     }
@@ -69,10 +70,11 @@ class ViewController: UIViewController {
         }
     }
     
-    private func updateViews() {
-        pokerGameStackView.arrangedSubviews.forEach {
-            let playerStackView = $0 as! PlayerStackView
-            playerStackView.appendCard()
+    private func updateViews(with players: Players) {
+        pokerGameStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
+        players.forEachPlayer { (player) in
+            let playerStackView = PlayerStackView(player: player)
+            pokerGameStackView.addArrangedSubview(playerStackView)
         }
 //
 ////            if $0 == pokerGame.winner {

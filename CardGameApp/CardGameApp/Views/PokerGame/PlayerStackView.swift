@@ -31,11 +31,6 @@ class PlayerStackView: UIStackView {
         commonInit()
     }
     
-    func appendCard() {
-        let card = player.hand.cards.last!
-        cardStackView.appendCard(card)
-    }
-    
     private func commonInit() {
         axis = .vertical
         spacing = 4

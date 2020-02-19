@@ -35,10 +35,6 @@ class CardStackView: UIStackView {
         translatesAutoresizingMaskIntoConstraints = false
     }
     
-    func appendCard(_ card: Card) {
-        addArrangedSubview(CardImageView(named: String(describing: card)))
-    }
-    
     func setupCards() {
         arrangedSubviews.forEach{ $0.removeFromSuperview() }
         hand.forEachCard { (card) in
