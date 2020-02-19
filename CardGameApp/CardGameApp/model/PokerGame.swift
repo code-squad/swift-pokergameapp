@@ -66,6 +66,10 @@ class PokerGame{
             dealCard(to: dealer)
         }
         players.append(dealer)
+        
+        players.forEachPlayer{
+            $0.sortCards()
+        }
     }
     
     func winner() -> String{
