@@ -24,6 +24,10 @@ class Hand{
         self.cards.append(card)
     }
     
+    func sort(){
+        cards.sort()
+    }
+    
     func removeAll(){
         self.cards.removeAll()
     }
@@ -35,12 +39,12 @@ class Hand{
     }
     
     func result() -> ResultPriority{
-        if isStraight(cards: cards.sorted()){
+        if isStraight(cards: cards){
             resultCardInfo.sort(by: >)
             return .straight
         }
         
-        return getCardPriority(cards: cards.sorted())
+        return getCardPriority(cards: cards)
     }
     
     func isStraight(cards: [Card]) -> Bool{

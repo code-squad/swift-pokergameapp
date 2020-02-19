@@ -30,6 +30,10 @@ class Player{
         }
     }
     
+    func sortCards(){
+        hand.sort()
+    }
+    
     func result() -> Hand.ResultPriority {
         return hand.result()
     }
