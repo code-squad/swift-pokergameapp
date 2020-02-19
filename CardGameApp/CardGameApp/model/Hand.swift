@@ -54,25 +54,26 @@ class Hand{
     }
     
     func checkStraight(cards: [Card]) -> Bool{
-        var pre = cards[0]
+        var previousCard = cards[0]
         var straightCount = 1
-        var preStraightCount = 0
+        var previousStraightCount = 0
         for cardIndex in 1..<cards.count{
-            if pre - cards[cardIndex] == -1{
-                resultCardInfo.append(pre)
+            let nextCard = cards[cardIndex]
+            if previousCard.isSerial(card: nextCard){
+                resultCardInfo.append(previousCard)
                 straightCount += 1
             } else{
-                if preStraightCount < straightCount{
-                    preStraightCount = straightCount
+                if previousStraightCount < straightCount{
+                    previousStraightCount = straightCount
                 }
                 resultCardInfo.removeAll()
                 straightCount = 1
             }
-            pre = cards[cardIndex]
+            previousCard = nextCard
         }
         
         resultCardInfo.reverse()
-        return ResultPriority.straight.equal(num: straightCount > preStraightCount ? straightCount : preStraightCount)
+        return ResultPriority.straight.equal(num: straightCount > previousStraightCount ? straightCount : previousStraightCount)
     }
     
     func checkSameCard(howMany same: ResultPriority, cards: [Card]) -> Bool{
@@ -106,15 +107,16 @@ class Hand{
     
     func checkPair(cards: [Card]) -> ResultPriority{
         resultCardInfo.removeAll()
-        var pre = cards[0]
+        var previousCard = cards[0]
         var pairCount = 0
         for cardIndex in 1..<cards.count{
-            if pre == cards[cardIndex]{
+            let nextCard = cards[cardIndex]
+            if previousCard == nextCard{
                 pairCount += 1
-                resultCardInfo.append(pre)
+                resultCardInfo.append(previousCard)
             }
             
-            pre = cards[cardIndex]
+            previousCard = nextCard
         }
         
         resultCardInfo.reverse()
