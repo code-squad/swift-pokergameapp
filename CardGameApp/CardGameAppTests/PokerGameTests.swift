@@ -14,8 +14,14 @@ class PokerGameTests: XCTestCase {
     func testSevenCardsStud() {
         let pokerGame = PokerGame(game: .sevenCardsStud, numberOfPlayers: .three)
         var hands: [[Card]] = []
-        pokerGame.forEachPlayer {
-            hands.append($0.hand)
+        
+        pokerGame.resetPlayers()
+        GameType.sevenCardsStud.forEachCard {
+            pokerGame.passCardToPlayers { (_) in
+            }
+        }
+        pokerGame.forEachPlayer { (player) in
+            hands.append(player.hand.cards)
         }
         
         XCTAssert(hands.count == 4)
@@ -27,8 +33,14 @@ class PokerGameTests: XCTestCase {
     func testFiveCardsStud() {
         let pokerGame = PokerGame(game: .fiveCardsStud, numberOfPlayers: .four)
         var hands: [[Card]] = []
-        pokerGame.forEachPlayer {
-            hands.append($0.hand)
+        
+        pokerGame.resetPlayers()
+        GameType.fiveCardsStud.forEachCard {
+            pokerGame.passCardToPlayers { (_) in
+            }
+        }
+        pokerGame.forEachPlayer { (player) in
+            hands.append(player.hand.cards)
         }
         
         XCTAssert(hands.count == 5)

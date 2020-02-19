@@ -16,21 +16,22 @@ class ValueTests: XCTestCase {
     }
 
     func testOnePairValue() {
-        let hand = [
+        let cards = [
             Card(suit: .club, rank: .ace),
             Card(suit: .spade, rank: .ace),
             Card(suit: .club, rank: .two),
-            Card(suit: .club, rank: .three),
+            Card(suit: .club, rank: .seven),
             Card(suit: .club, rank: .four),
             Card(suit: .club, rank: .five),
             Card(suit: .club, rank: .six)
         ]
-        let value = Value(hand: hand)
-        XCTAssert(value.handRanking == HandRanking.onePair)
+        var hand = Hand(cards: cards)
+        hand.calculate()
+        XCTAssert(hand.handRanking == HandRanking.onePair)
     }
     
     func testTwoPairsValue() {
-        let hand = [
+        let cards = [
             Card(suit: .club, rank: .ace),
             Card(suit: .spade, rank: .ace),
             Card(suit: .club, rank: .two),
@@ -39,12 +40,13 @@ class ValueTests: XCTestCase {
             Card(suit: .club, rank: .five),
             Card(suit: .club, rank: .six)
         ]
-        let value = Value(hand: hand)
-        XCTAssert(value.handRanking == HandRanking.twoPairs)
+        var hand = Hand(cards: cards)
+        hand.calculate()
+        XCTAssert(hand.handRanking == HandRanking.twoPairs)
     }
     
     func testTripleValue() {
-        let hand = [
+        let cards = [
             Card(suit: .club, rank: .ace),
             Card(suit: .spade, rank: .ace),
             Card(suit: .diamond, rank: .ace),
@@ -53,12 +55,13 @@ class ValueTests: XCTestCase {
             Card(suit: .club, rank: .five),
             Card(suit: .club, rank: .six)
         ]
-        let value = Value(hand: hand)
-        XCTAssert(value.handRanking == HandRanking.triple)
+        var hand = Hand(cards: cards)
+        hand.calculate()
+        XCTAssert(hand.handRanking == HandRanking.triple)
     }
     
     func testFourCardsValue() {
-        let hand = [
+        let cards = [
             Card(suit: .club, rank: .ace),
             Card(suit: .spade, rank: .ace),
             Card(suit: .diamond, rank: .ace),
@@ -67,7 +70,8 @@ class ValueTests: XCTestCase {
             Card(suit: .club, rank: .five),
             Card(suit: .club, rank: .six)
         ]
-        let value = Value(hand: hand)
-        XCTAssert(value.handRanking == HandRanking.fourCards)
+        var hand = Hand(cards: cards)
+        hand.calculate()
+        XCTAssert(hand.handRanking == HandRanking.fourCards)
     }
 }
