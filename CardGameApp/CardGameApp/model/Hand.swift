@@ -78,24 +78,24 @@ class Hand{
     
     func checkSameCard(howMany same: ResultPriority, cards: [Card]) -> Bool{
         resultCardInfo.removeAll()
-        var howmany = [Card : Int]()
+        var howMany = [Card : Int]()
         cards.forEach{
-            if howmany[$0] == nil{
-                howmany[$0] = 1
+            if howMany[$0] == nil{
+                howMany[$0] = 1
             } else{
-                howmany.updateValue(howmany[$0]! + 1, forKey: $0)
+                howMany.updateValue(howMany[$0]! + 1, forKey: $0)
             }
         }
         
-        if howmany.values.contains(4){
-            for (key,value) in howmany{
+        if howMany.values.contains(4){
+            for (key,value) in howMany{
                 if value == 4{
                     resultCardInfo.append(key)
                 }
             }
             return true
-        } else if howmany.values.contains(3){
-            for (key,value) in howmany{
+        } else if howMany.values.contains(3){
+            for (key,value) in howMany{
                 if value == 3{
                     resultCardInfo.append(key)
                 }
