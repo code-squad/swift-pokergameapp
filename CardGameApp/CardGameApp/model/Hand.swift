@@ -69,7 +69,6 @@ class Hand{
     func getCardPriority(cards: [Card]) -> ResultPriority{
         resultCardInfo.removeAll()
         var howMany = [Card : Int]()
-        
         cards.forEach{
             let card = $0
             howMany[card] = cards.filter{card == $0}.count
