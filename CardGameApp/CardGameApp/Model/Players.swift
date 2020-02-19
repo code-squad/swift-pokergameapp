@@ -9,7 +9,7 @@
 import Foundation
 
 class Players {
-    enum PlayersNum: Int {
+    enum PlayersNum: Int, CaseIterable {
         case one = 1 , two, three, four
         func forEach(handler: () -> (Void)) {
             for _ in 0 ..< self.rawValue {
@@ -29,6 +29,14 @@ class Players {
         playersNum.forEach {
             players.append(Player())
         }
+    }
+}
+
+extension Players.PlayersNum : CustomStringConvertible {
+    var description: String {
+        let num = String(self.rawValue)
+        let people = "명"
+        return num + people
     }
 }
 
