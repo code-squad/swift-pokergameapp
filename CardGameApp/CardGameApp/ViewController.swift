@@ -10,6 +10,15 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    private let segmentedControlsStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.distribution = .fillEqually
+        stackView.spacing = 8
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+    
     private let cardStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
@@ -27,27 +36,45 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         setupBackground()
         setupCardViews()
+        setupSegmentedControls()
     }
 
     private func setupBackground() {
         self.view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "bg_pattern"))
     }
     
-    private func setupCardViews(){
-        self.view.addSubview(cardStackView)
-        setConstraintCardStackView()
+    private func setupSegmentedControls() {
+        self.view.addSubview(segmentedControlsStackView)
+        setConstraintControlsStackView()
     }
-
-    private func setConstraintCardStackView() {
+    private func setConstraintControlsStackView() {
         let boundaryConstant: CGFloat = 8
-        cardStackView.topAnchor.constraint(
+        segmentedControlsStackView.topAnchor.constraint(
             equalTo: view.safeAreaLayoutGuide.topAnchor,
             constant: boundaryConstant).isActive = true
-        cardStackView.leadingAnchor.constraint(
+        segmentedControlsStackView.leadingAnchor.constraint(
             equalTo: view.leadingAnchor,
             constant: boundaryConstant).isActive = true
-        cardStackView.trailingAnchor.constraint(
+        segmentedControlsStackView.trailingAnchor.constraint(
             equalTo: view.trailingAnchor,
             constant: -boundaryConstant).isActive = true
     }
+
+     private func setupCardViews(){
+         self.view.addSubview(cardStackView)
+         setConstraintCardStackView()
+     }
+
+     private func setConstraintCardStackView() {
+         let boundaryConstant: CGFloat = 8
+         cardStackView.topAnchor.constraint(
+             equalTo: view.safeAreaLayoutGuide.topAnchor,
+             constant: boundaryConstant).isActive = true
+         cardStackView.leadingAnchor.constraint(
+             equalTo: view.leadingAnchor,
+             constant: boundaryConstant).isActive = true
+         cardStackView.trailingAnchor.constraint(
+             equalTo: view.trailingAnchor,
+             constant: -boundaryConstant).isActive = true
+     }
 }
