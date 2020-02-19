@@ -24,6 +24,21 @@ class Players{
     func count() -> Int{
         return players.count
     }
+    
+    func findHighest() -> Player{
+        var highest: Player?
+        players.forEach{
+            if highest == nil{
+                highest = $0
+            } else{
+                if highest! < $0{
+                    highest = $0
+                }
+            }
+        }
+        
+        return highest!
+    }
 }
 
 
