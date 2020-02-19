@@ -10,7 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    private let CardStackView = UIStackView()
+    private var GameStackView = UIStackView()
     private let cardRatio = CGFloat(1.27)
     private let cardCount = 7
     
@@ -27,6 +27,12 @@ class ViewController: UIViewController {
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
+    // 스택뷰 하나 생성(horizontal) -> 카드를 studType만큼 집어넣음 -> 한개 플레이어 스택 뷰 완성
+    // 스택뷰 하나 생성(vertical)   -> 플레이어 엔트리만큼 플레이어 카드스텍뷰를 하나씩 집어넣음
+    
+    // 세그먼트 변경시 포커게임 객체를 다시 생성하고
+    // 스택뷰들을 다시 걷어내고 뷰를 entry와 studType에 맞게 다시 그려줌
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,41 +42,53 @@ class ViewController: UIViewController {
     }
     
     func resetPokerGame() {
-        pokerGame = GameTable(playerEntry: self.entry, studType: self.studType)
+        self.pokerGame = GameTable(playerEntry: self.entry, studType: self.studType)
+        self.GameStackView.arrangedSubviews.forEach { (subCardStackView) in
+            self.GameStackView.removeArrangedSubview(subCardStackView)
+            subCardStackView.removeFromSuperview()
+        }
+        drawStackView()
     }
     
     func drawStackView() {
-        setUpStackView()
-        for _ in 0 ..< cardCount {
-            addCardOnStackView()
+        self.GameStackView = createStackView(axis: .vertical, spacing: 10)
+        self.entry.each {
+            let cardStackView = createStackView(axis: .horizontal, spacing: -5)
+            self.studType.each {
+                addCardOnStackView(stackView: cardStackView)
+            }
+            self.GameStackView.addArrangedSubview(cardStackView)
         }
-        addStackViewOnView()
+        addStackViewOnView(stackView: GameStackView)
     }
     
-    // stackView 설정 및 view에 등록
-    func setUpStackView() {
-        self.CardStackView.axis = .horizontal
-        self.CardStackView.alignment = .fill
-        self.CardStackView.distribution = .fillEqually
-        self.CardStackView.spacing = 5
-        self.CardStackView.translatesAutoresizingMaskIntoConstraints = false
+    // stackview 유동적으로 생성해주도록 해야한다.
+    func createStackView(axis: NSLayoutConstraint.Axis, spacing: CGFloat) -> UIStackView {
+        let stackView = UIStackView()
+        stackView.axis = axis
+        stackView.alignment = .fill
+        stackView.distribution = .fillEqually
+        stackView.spacing = spacing
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        
+        return stackView
     }
     
     // view에 stackview를 올림
-    func addStackViewOnView() {
-        self.view.addSubview(CardStackView)
-        self.CardStackView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 150).isActive = true
-        self.CardStackView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 5).isActive = true
-        self.CardStackView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -5).isActive = true
+    func addStackViewOnView(stackView: UIStackView) {
+        self.view.addSubview(stackView)
+        stackView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 150).isActive = true
+        stackView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 5).isActive = true
+        stackView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -5).isActive = true
     }
     
     // stackview에 card이미지 삽입(카드 이미지 비율도 함께 조정)
-    func addCardOnStackView() {
+    func addCardOnStackView(stackView: UIStackView) {
         let cardImg = UIImageView(image: UIImage(named: "CardBackground")!)
         cardImg.translatesAutoresizingMaskIntoConstraints = false
         cardImg.heightAnchor.constraint(equalTo: cardImg.widthAnchor, multiplier: cardRatio).isActive = true
         
-        self.CardStackView.addArrangedSubview(cardImg)
+        stackView.addArrangedSubview(cardImg)
     }
     
     func drawSegmentCtrl() {
