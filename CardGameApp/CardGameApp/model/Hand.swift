@@ -17,48 +17,48 @@ class Hand{
         }
     }
     
-    private var card: [Card] = [Card]()
+    private var cards: [Card] = [Card]()
     private var resultCardInfo: [Card] = [Card]()
     
     func append(card: Card){
-        self.card.append(card)
+        self.cards.append(card)
     }
     
     func removeAll(){
-        self.card.removeAll()
+        self.cards.removeAll()
     }
     
     func forEachCardInHand(_ transform: (Card) -> ()){
-        card.forEach {
+        cards.forEach {
             transform($0)
         }
     }
     
     func result() -> ResultPriority{
-        if checkStraight(card: card.sorted()){
+        if checkStraight(cards: cards.sorted()){
             resultCardInfo.sort(by: >)
             return .straight
         }
         
-        if checkSameCard(howMany: .fourCard, card: card.sorted()){
+        if checkSameCard(howMany: .fourCard, cards: cards.sorted()){
             resultCardInfo.sort(by: >)
             return .fourCard
         }
         
-        if checkSameCard(howMany: .triple, card: card.sorted()){
+        if checkSameCard(howMany: .triple, cards: cards.sorted()){
             resultCardInfo.sort(by: >)
             return .triple
         }
         
-        return checkPair(card: card.sorted())
+        return checkPair(cards: cards.sorted())
     }
     
-    func checkStraight(card: [Card]) -> Bool{
-        var pre = card[0]
+    func checkStraight(cards: [Card]) -> Bool{
+        var pre = cards[0]
         var straightCount = 1
         var preStraightCount = 0
-        for cardIndex in 1..<card.count{
-            if pre - card[cardIndex] == -1{
+        for cardIndex in 1..<cards.count{
+            if pre - cards[cardIndex] == -1{
                 resultCardInfo.append(pre)
                 straightCount += 1
             } else{
@@ -68,17 +68,17 @@ class Hand{
                 resultCardInfo.removeAll()
                 straightCount = 1
             }
-            pre = card[cardIndex]
+            pre = cards[cardIndex]
         }
         
         resultCardInfo.reverse()
         return ResultPriority.straight.equal(num: straightCount > preStraightCount ? straightCount : preStraightCount)
     }
     
-    func checkSameCard(howMany same: ResultPriority, card: [Card]) -> Bool{
+    func checkSameCard(howMany same: ResultPriority, cards: [Card]) -> Bool{
         resultCardInfo.removeAll()
         var howmany = [Card : Int]()
-        card.forEach{
+        cards.forEach{
             if howmany[$0] == nil{
                 howmany[$0] = 1
             } else{
@@ -104,17 +104,17 @@ class Hand{
         return false
     }
     
-    func checkPair(card: [Card]) -> ResultPriority{
+    func checkPair(cards: [Card]) -> ResultPriority{
         resultCardInfo.removeAll()
-        var pre = card[0]
+        var pre = cards[0]
         var pairCount = 0
-        for cardIndex in 1..<card.count{
-            if pre == card[cardIndex]{
+        for cardIndex in 1..<cards.count{
+            if pre == cards[cardIndex]{
                 pairCount += 1
                 resultCardInfo.append(pre)
             }
             
-            pre = card[cardIndex]
+            pre = cards[cardIndex]
         }
         
         resultCardInfo.reverse()
@@ -139,9 +139,9 @@ extension Hand: Comparable{
                 }
             }
             
-            for index in 0..<lhs.card.count{
-                if lhs.card[index] < rhs.card[index]{
-                    return lhs.card[index] < rhs.card[index]
+            for index in 0..<lhs.cards.count{
+                if lhs.cards[index] < rhs.cards[index]{
+                    return lhs.cards[index] < rhs.cards[index]
                 }
             }
         }
@@ -149,8 +149,8 @@ extension Hand: Comparable{
     }
     
     static func == (lhs: Hand, rhs: Hand) -> Bool {
-        for index in 0..<lhs.card.count{
-            if lhs.card[index] != rhs.card[index]{
+        for index in 0..<lhs.cards.count{
+            if lhs.cards[index] != rhs.cards[index]{
                 return false
             }
         }

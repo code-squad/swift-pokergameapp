@@ -55,7 +55,7 @@ class CardGameAppTests: XCTestCase {
         cards.append(Card(rank: .seven, suit: .clover))
         cards.append(Card(rank: .nine, suit: .clover))
         
-        XCTAssertTrue(Hand().checkStraight(card: cards))
+        XCTAssertTrue(Hand().checkStraight(cards: cards))
         
         cards = [Card]()
         cards.append(Card(rank: .ace, suit: .clover))
@@ -64,7 +64,7 @@ class CardGameAppTests: XCTestCase {
         cards.append(Card(rank: .four, suit: .clover))
         cards.append(Card(rank: .five, suit: .clover))
         
-        XCTAssertFalse(Hand().checkStraight(card: cards))
+        XCTAssertFalse(Hand().checkStraight(cards: cards))
     }
     
     func testSameCard(){
@@ -77,8 +77,8 @@ class CardGameAppTests: XCTestCase {
         cards.append(Card(rank: .five, suit: .diamond))
         cards.append(Card(rank: .five, suit: .spade))
         
-        XCTAssertTrue(Hand().checkSameCard(howMany: .fourCard, card: cards.sorted()))
-        XCTAssertFalse(Hand().checkSameCard(howMany: .triple, card: cards.sorted()))
+        XCTAssertTrue(Hand().checkSameCard(howMany: .fourCard, cards: cards.sorted()))
+        XCTAssertFalse(Hand().checkSameCard(howMany: .triple, cards: cards.sorted()))
         
         cards = [Card]()
         cards.append(Card(rank: .ace, suit: .clover))
@@ -89,8 +89,8 @@ class CardGameAppTests: XCTestCase {
         cards.append(Card(rank: .five, suit: .diamond))
         cards.append(Card(rank: .five, suit: .spade))
         
-        XCTAssertFalse(Hand().checkSameCard(howMany: .fourCard, card: cards.sorted()))
-        XCTAssertTrue(Hand().checkSameCard(howMany: .triple, card: cards.sorted()))
+        XCTAssertFalse(Hand().checkSameCard(howMany: .fourCard, cards: cards.sorted()))
+        XCTAssertTrue(Hand().checkSameCard(howMany: .triple, cards: cards.sorted()))
     }
     
     func testCheckPair(){
@@ -103,7 +103,7 @@ class CardGameAppTests: XCTestCase {
         cards.append(Card(rank: .three, suit: .diamond))
         cards.append(Card(rank: .seven, suit: .spade))
         
-        XCTAssert(Hand().checkPair(card: cards.sorted()) == .twoPair)
+        XCTAssert(Hand().checkPair(cards: cards.sorted()) == .twoPair)
         
         cards = [Card]()
         cards.append(Card(rank: .ace, suit: .clover))
@@ -114,7 +114,7 @@ class CardGameAppTests: XCTestCase {
         cards.append(Card(rank: .two, suit: .diamond))
         cards.append(Card(rank: .seven, suit: .spade))
         
-        XCTAssert(Hand().checkPair(card: cards.sorted()) == .twoPair)
+        XCTAssert(Hand().checkPair(cards: cards.sorted()) == .twoPair)
         
         cards = [Card]()
         cards.append(Card(rank: .queen, suit: .clover))
@@ -125,7 +125,7 @@ class CardGameAppTests: XCTestCase {
         cards.append(Card(rank: .two, suit: .diamond))
         cards.append(Card(rank: .seven, suit: .spade))
         
-        XCTAssert(Hand().checkPair(card: cards.sorted()) == .onePair)
+        XCTAssert(Hand().checkPair(cards: cards.sorted()) == .onePair)
         
         cards = [Card]()
         cards.append(Card(rank: .queen, suit: .clover))
@@ -136,7 +136,7 @@ class CardGameAppTests: XCTestCase {
         cards.append(Card(rank: .two, suit: .diamond))
         cards.append(Card(rank: .seven, suit: .spade))
         
-        XCTAssert(Hand().checkPair(card: cards.sorted()) == .noPair)
+        XCTAssert(Hand().checkPair(cards: cards.sorted()) == .noPair)
     }
     
     func testPerformanceExample() {
