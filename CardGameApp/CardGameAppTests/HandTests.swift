@@ -54,4 +54,62 @@ class HandTests: XCTestCase {
         XCTAssertTrue(continuity)
         XCTAssertEqual(highestCard, Card(suit: .diamond, rank: .ten))
     }
+    
+    func testWholeDuplicates() {
+        hand.add(card: Card(suit: .heart, rank: .jack))
+        hand.add(card: Card(suit: .diamond, rank: .jack))
+        hand.add(card: Card(suit: .spade, rank: .jack))
+        hand.add(card: Card(suit: .club, rank: .jack))
+        hand.add(card: Card(suit: .diamond, rank: .jack))
+        
+        let overlappedCards = hand.overlapDuplicates().map { OverlappedCard($0) }
+        let expectedCards = [(Card(suit: .heart, rank: .jack), 5)].map { OverlappedCard($0) }
+        
+        XCTAssertEqual(overlappedCards, expectedCards)
+    }
+    
+    func testDoubleDuplicates() {
+        hand.add(card: Card(suit: .heart, rank: .seven))
+        hand.add(card: Card(suit: .diamond, rank: .ace))
+        hand.add(card: Card(suit: .spade, rank: .jack))
+        hand.add(card: Card(suit: .club, rank: .ace))
+        hand.add(card: Card(suit: .diamond, rank: .jack))
+        hand.add(card: Card(suit: .club, rank: .jack))
+        hand.add(card: Card(suit: .diamond, rank: .ten))
+        
+        let overlappedCards = hand.overlapDuplicates().map { OverlappedCard($0) }
+        let expectedCards = [(Card(suit: .heart, rank: .jack), 3),
+                             (Card(suit: .heart, rank: .ace), 2),
+                             (Card(suit: .heart, rank: .ten), 1),
+                             (Card(suit: .heart, rank: .seven), 1)].map { OverlappedCard($0) }
+        
+        XCTAssertEqual(overlappedCards, expectedCards)
+    }
+    
+    func testNoDuplicates() {
+        hand.add(card: Card(suit: .heart, rank: .seven))
+        hand.add(card: Card(suit: .diamond, rank: .ace))
+        hand.add(card: Card(suit: .spade, rank: .jack))
+        hand.add(card: Card(suit: .club, rank: .six))
+        hand.add(card: Card(suit: .diamond, rank: .king))
+        
+        let overlappedCards = hand.overlapDuplicates().map { OverlappedCard($0) }
+        let expectedCards = [(Card(suit: .heart, rank: .king), 1),
+                             (Card(suit: .heart, rank: .jack), 1),
+                             (Card(suit: .heart, rank: .seven), 1),
+                             (Card(suit: .heart, rank: .six), 1),
+                             (Card(suit: .heart, rank: .ace), 1)].map { OverlappedCard($0) }
+        
+        XCTAssertEqual(overlappedCards, expectedCards)
+    }
+}
+
+struct OverlappedCard: Equatable {
+    let card: Card
+    let count: Int
+    
+    init(_ cards: (Card, Int)) {
+        self.card = cards.0
+        self.count = cards.1
+    }
 }
