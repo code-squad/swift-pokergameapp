@@ -19,6 +19,18 @@ class ViewController: UIViewController {
         return stackView
     }()
     
+    private let stutSegmentedControl : UISegmentedControl = {
+        let items = PokerGame.GameStut.allCases.map { $0.description }
+        let controls = UISegmentedControl(items: items)
+        return controls
+    }()
+    
+    private let playersSegmentedControl : UISegmentedControl = {
+        let items = Players.PlayersNum.allCases.map { $0.description }
+        let controls = UISegmentedControl(items: items)
+        return controls
+    }()
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
@@ -28,7 +40,7 @@ class ViewController: UIViewController {
         setupBackground()
         setupSegmentedControls()
     }
-
+    
     private func setupBackground() {
         self.view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "bg_pattern"))
     }
@@ -36,18 +48,25 @@ class ViewController: UIViewController {
     private func setupSegmentedControls() {
         self.view.addSubview(segmentedControlsStackView)
         setConstraintControlsStackView()
-    }
-    private func setConstraintControlsStackView() {
-        let boundaryConstant: CGFloat = 8
-        segmentedControlsStackView.topAnchor.constraint(
-            equalTo: view.safeAreaLayoutGuide.topAnchor,
-            constant: boundaryConstant).isActive = true
-        segmentedControlsStackView.leadingAnchor.constraint(
-            equalTo: view.leadingAnchor,
-            constant: boundaryConstant).isActive = true
-        segmentedControlsStackView.trailingAnchor.constraint(
-            equalTo: view.trailingAnchor,
-            constant: -boundaryConstant).isActive = true
+        addSegmentedControls()
     }
     
+    private func addSegmentedControls() {
+        segmentedControlsStackView.addArrangedSubview(stutSegmentedControl)
+        segmentedControlsStackView.addArrangedSubview(playersSegmentedControl)
+    }
+    
+    private func setConstraintControlsStackView() {
+        let topConstant: CGFloat = 10
+        let sideConstant: CGFloat = 100
+        segmentedControlsStackView.topAnchor.constraint(
+            equalTo: view.safeAreaLayoutGuide.topAnchor,
+            constant: topConstant).isActive = true
+        segmentedControlsStackView.leadingAnchor.constraint(
+            equalTo: view.leadingAnchor,
+            constant: sideConstant).isActive = true
+        segmentedControlsStackView.trailingAnchor.constraint(
+            equalTo: view.trailingAnchor,
+            constant: -sideConstant).isActive = true
+    }
 }
