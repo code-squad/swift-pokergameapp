@@ -9,7 +9,7 @@
 import UIKit
 
 class CardStackView: UIStackView {
-    private(set) var hand: Hand!
+    private var hand: Hand!
     
     init(with hand: Hand) {
         self.hand = hand
