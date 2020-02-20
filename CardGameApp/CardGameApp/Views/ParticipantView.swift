@@ -23,8 +23,22 @@ class ParticipantView: UIView {
         return label
     }()
     
+    private lazy var participantStateStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+    
     private lazy var overlappedCardsView: OverlappedCardsView = {
         let view = OverlappedCardsView()
+        return view
+    }()
+    
+    private lazy var winnerImageView: UIImageView = {
+        let view = UIImageView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.widthAnchor.constraint(equalToConstant: 40).isActive = true
+        view.contentMode = .scaleAspectFit
         return view
     }()
     
@@ -52,6 +66,8 @@ class ParticipantView: UIView {
         addSubview(participantStackView)
         participantStackView.fillSuperView()
         participantStackView.addArrangedSubview(participantLabel)
-        participantStackView.addArrangedSubview(overlappedCardsView)
+        participantStackView.addArrangedSubview(participantStateStackView)
+        participantStateStackView.addArrangedSubview(overlappedCardsView)
+        participantStateStackView.addArrangedSubview(winnerImageView)
     }
 }
