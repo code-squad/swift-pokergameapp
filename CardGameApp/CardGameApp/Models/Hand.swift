@@ -25,30 +25,28 @@ struct Hand {
     mutating func calculate() {
         setupHandRanking()
         setupRestOfHand()
+        print(self)
     }
     
     mutating func setupHandRanking() {
-        var handRankings: [HandRanking] = []
-        let highestPair = searchPairs()
-        if isStraight() {
-            handRankings.append(.straight)
-        }
-        handRankings.append(highestPair)
-        handRanking = handRankings.sorted(by: >).first!
+        searchPairs()
+        searchStraight()
     }
     
     mutating func setupRestOfHand() {
-        cards.forEach { (cardOfHand) in
+        var restOfHandSet: Set<Card> = []
+        cards.forEach { (handCard) in
             combinationsOf[handRanking]!.forEach { (combination) in
                 combination.forEach { (combiCard) in
-                    if cardOfHand != combiCard { restOfHand.append(cardOfHand) }
+                    if handCard != combiCard { restOfHandSet.insert(handCard) }
                 }
             }
         }
-        restOfHand.sort(by: <)
+        restOfHand = Array(restOfHandSet).sorted(by: >)
     }
     
-    private mutating func isStraight() -> Bool {
+    private mutating func searchStraight() {
+        guard handRanking < .straight else { return }
         let NUMBER_OF_STRAIGHT_CARDS = 5
         let sortedHand = cards.sorted{ $0.rank < $1.rank }
         var combinations: [[Card]] = []
@@ -63,56 +61,50 @@ struct Hand {
                     isThisCombiStraight = false
                 }
             }
-            if isThisCombiStraight { combinations.append(combination) }
+            
+            if isThisCombiStraight {
+                combinations.append(combination)
+                combinationsOf[.straight] = combinations
+            }
             isCombiStraights.append(isThisCombiStraight)
         }
-        combinationsOf[.straight] = combinations
-        for isStraight in isCombiStraights {
-            if isStraight { return true }
-        }
-        return false
+        isCombiStraights.forEach{ if $0 { handRanking = .straight } }
     }
     
-    private mutating func searchPairs() -> HandRanking {
-        var handRankings: [HandRanking] = []
-        
+    private mutating func searchPairs() {
         var rankCountDict: [Card.Rank: Int] = [:]
-        cards.forEach { (card) in
-            rankCountDict[card.rank] = (rankCountDict[card.rank] ?? 0) + 1
-        }
-        
-        rankCountDict.forEach { (rank, count) in
-            let handRanking = HandRanking(count: count)
-            handRankings.append(handRanking)
-            var combinations: [[Card]] = combinationsOf[handRanking] ?? [[Card]]()
-            let combination = searchCombinations(of: rank)
-            combinations.append(combination)
-            combinationsOf[handRanking] = combinations
-        }
+        cards.forEach{ rankCountDict[$0.rank] = (rankCountDict[$0.rank] ?? 0) + 1 }
         
         var onePairCount = 0
-        handRankings.forEach {
-            if $0 == .onePair { onePairCount += 1 }
+        rankCountDict.forEach { (rank, count) in
+            let currentHandRanking = HandRanking(count: count)
+            if count == 2 { onePairCount += 1 }
+            setCombinations(for: rank, for: currentHandRanking)
+            guard currentHandRanking > handRanking else { return }
+            handRanking = currentHandRanking
         }
+        
         if onePairCount >= 2 {
-            handRankings.append(.twoPairs)
+            guard handRanking < .twoPairs else { return }
+            handRanking = .twoPairs
+            
             var onePairs = combinationsOf[.onePair]!
             onePairs.sort(by: { $0.first! > $1.first! })
             if onePairs.count > 2 { onePairs.removeLast() }
             combinationsOf[.twoPairs] = onePairs
         }
-        
-        return handRankings.sorted(by: >).first!
     }
     
-    private mutating func searchCombinations(of rank: Card.Rank) -> [Card] {
+    private mutating func setCombinations(for rank: Card.Rank, for handRanking: HandRanking) {
+        var combinations: [[Card]] = combinationsOf[handRanking] ?? [[Card]]()
         var combination: [Card] = []
         cards.forEach { (card) in
             if card.rank == rank {
                 combination.append(card)
             }
         }
-        return combination
+        combinations.append(combination)
+        combinationsOf[handRanking] = combinations
     }
     
     func forEachCard(_ handler: (Card) -> ()) {
