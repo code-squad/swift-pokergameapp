@@ -28,6 +28,23 @@ enum Score {
         case .none: return 7
         }
     }
+    
+    var highestCard: Card? {
+        switch self {
+        case let .fourOfAKind(highestCard: card),
+             let .straight(highestCard: card),
+             let .threeOfAKind(highestCard: card),
+             let .twoPairs(highestCard: card),
+             let .pair(highestCard: card),
+             let .highcard(highestCard: card):
+            return card
+        default: return nil
+        }
+    }
+    
+    func isSamePriority(with score: Score) -> Bool {
+        return priority == score.priority
+    }
 }
 
 extension Score: Comparable {
