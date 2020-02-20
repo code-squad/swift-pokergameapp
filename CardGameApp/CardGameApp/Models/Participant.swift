@@ -27,6 +27,38 @@ extension Participant: Equatable {
     }
 }
 
+extension Participant {
+    func score() -> Score {
+        let (isContinuous, highestCard) = hand.isContinuous(for: 5)
+        if isContinuous, let card = highestCard {
+            return .straight(highestCard: card)
+        }
+        
+        var overlappedCard = hand.overlapDuplicates()
+        guard let (card, count) = overlappedCard.popFirst() else { return .none }
+        
+        switch count {
+        case 4...: return .fourOfAKind(highestCard: card)
+        case 3: return .threeOfAKind(highestCard: card)
+        case 1: return .highcard(highestCard: card)
+        default: break
+        }
+        
+        if count == 2, let (_, secondCardCount) = overlappedCard.popFirst() {
+            if secondCardCount == 2 { return .twoPairs(highestCard: card) }
+            return .highcard(highestCard: card)
+        }
+        return .none
+    }
+}
+
+extension BidirectionalCollection {
+    mutating func popFirst() -> Self.Element? {
+        guard let firstElement = self.first else { return nil }
+        return firstElement
+    }
+}
+
 enum Score {
     case fourOfAKind(highestCard: Card)
     case straight(highestCard: Card)
