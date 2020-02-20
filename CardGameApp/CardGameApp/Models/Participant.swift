@@ -46,15 +46,15 @@ extension Participant {
         
         if count == 2, let (_, secondCardCount) = overlappedCard.popFirst() {
             if secondCardCount == 2 { return .twoPairs(highestCard: card) }
-            return .highcard(highestCard: card)
+            return .pair(highestCard: card)
         }
         return .none
     }
 }
 
-extension BidirectionalCollection {
+extension Array {
     mutating func popFirst() -> Self.Element? {
-        guard let firstElement = self.first else { return nil }
-        return firstElement
+        guard let _ = self.first else { return nil }
+        return self.removeFirst()
     }
 }
