@@ -216,3 +216,15 @@ override func motionBegan(_ motion: UIEvent.EventSubtype, with event: UIEvent?) 
 
 <img src="https://github.com/corykim0829/swift-pokergameapp/blob/corykim0829/Screenshots/step5-2.png?raw=true" width="380px">
 
+## Step6 - Who is the winner?
+
+2020/Feb/20
+
+- 7카드, 5카드에서 **원페어, 투페어, 트리플, 포카드, 스트레이트 규칙**만 판단
+- 구조 변경, 되도록 하위객체에서 일을 처리하도록 (OOP)
+- 카드를 한장씩 받아서 모든 플레이어들이 카드를 한장씩 받은 후 view를 업데이트 하도록 처리 (closure 사용)
+- 승자를 눈으로 확인할 수 있게 왕관 이미지 추가
+- 관계를 확인해 특정 뷰는 다른 뷰 클래스에서 선언
+- 테스트코드 작성
+
+<img src="https://github.com/corykim0829/swift-pokergameapp/blob/corykim0829/Screenshots/step6.png?raw=true" width="380px">
