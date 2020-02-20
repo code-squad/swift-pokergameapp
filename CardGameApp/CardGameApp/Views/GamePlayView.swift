@@ -60,7 +60,7 @@ class GamePlayView: UIView {
         return names
     }
     
-    func updateView(with gamePlay: GamePlay) {
+    func updateGamePlayView(with gamePlay: GamePlay) {
         showParticipantView(by: gamePlay.participantCount)
         let names = createParticipantNames(by: gamePlay.participantCount)
         
@@ -71,8 +71,21 @@ class GamePlayView: UIView {
         }
     }
     
+    func updateWinnerView(with gamePlay: GamePlay) {
+        var subViewIndex = 0
+        gamePlay.showdown { winnerOrNot in
+            updateSubView(at: subViewIndex, to: winnerOrNot)
+            subViewIndex += 1
+        }
+    }
+    
     private func updateSubView(at index: Int, to participant: Participant, participantName: String) {
         guard let view = participantsStackView.arrangedSubviews[index] as? ParticipantView else { return }
         view.updateView(name: participantName, participant: participant)
+    }
+    
+    private func updateSubView(at index: Int, to winnerOrNot: Bool) {
+        guard let view = participantsStackView.arrangedSubviews[index] as? ParticipantView else { return }
+        view.updateView(to: winnerOrNot)
     }
 }
