@@ -14,20 +14,20 @@ class TitledSegmentedControl: UISegmentedControl {
     init(items: [String]) {
         self.items = items
         super.init(frame: .zero)
-        commonInit()
+        configure()
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        commonInit()
+        configure()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        commonInit()
+        configure()
     }
     
-    private func commonInit() {
+    private func configure() {
         setupItems()
         selectedSegmentIndex = 0
         translatesAutoresizingMaskIntoConstraints = false

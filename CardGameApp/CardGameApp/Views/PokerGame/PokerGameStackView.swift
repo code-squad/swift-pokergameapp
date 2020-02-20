@@ -11,15 +11,15 @@ import UIKit
 class PokerGameStackView: UIStackView {
     override init(frame: CGRect) {
         super.init(frame: frame)
-        commonInit()
+        configure()
     }
     
     required init(coder: NSCoder) {
         super.init(coder: coder)
-        commonInit()
+        configure()
     }
     
-    private func commonInit() {
+    private func configure() {
         axis = .vertical
         spacing = 16
         translatesAutoresizingMaskIntoConstraints = false
