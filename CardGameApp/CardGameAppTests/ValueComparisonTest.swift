@@ -41,6 +41,30 @@ class ValueComparisonTest: XCTestCase {
         
         XCTAssert(hand1 < hand2)
     }
+    
+    func testOnePairComparison2() {
+        let cards1 = [
+            Card(suit: .club, rank: .ten),
+            Card(suit: .spade, rank: .ten),
+            Card(suit: .club, rank: .two),
+            Card(suit: .club, rank: .seven),
+            Card(suit: .club, rank: .four)
+        ]
+        let cards2 = [
+            Card(suit: .heart, rank: .nine),
+            Card(suit: .diamond, rank: .nine),
+            Card(suit: .diamond, rank: .two),
+            Card(suit: .heart, rank: .king),
+            Card(suit: .heart, rank: .four),
+        ]
+        
+        var hand1 = Hand(cards: cards1)
+        hand1.calculate()
+        var hand2 = Hand(cards: cards2)
+        hand2.calculate()
+        
+        XCTAssert(hand1 > hand2)
+    }
 
     func testTwoPairsComparison1() {
         let cards1 = [
