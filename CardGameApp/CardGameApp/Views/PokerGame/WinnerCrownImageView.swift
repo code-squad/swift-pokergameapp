@@ -11,20 +11,20 @@ import UIKit
 class WinnerCrownImageView: UIImageView {
     init() {
         super.init(frame: .zero)
-        commonInit()
+        configure()
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        commonInit()
+        configure()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        commonInit()
+        configure()
     }
     
-    private func commonInit() {
+    private func configure() {
         image = #imageLiteral(resourceName: "winner")
         alpha = 0
         translatesAutoresizingMaskIntoConstraints = false

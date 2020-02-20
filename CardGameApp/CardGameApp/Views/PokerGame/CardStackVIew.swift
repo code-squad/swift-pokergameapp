@@ -14,22 +14,21 @@ class CardStackView: UIStackView {
     init(with hand: Hand) {
         self.hand = hand
         super.init(frame: .zero)
-        commonInit()
+        configure()
         setupCards()
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        commonInit()
+        configure()
     }
     
     required init(coder: NSCoder) {
         super.init(coder: coder)
-        commonInit()
-        setupCards()
+        configure()
     }
     
-    private func commonInit() {
+    private func configure() {
         spacing = -8
         distribution = .fillEqually
         translatesAutoresizingMaskIntoConstraints = false

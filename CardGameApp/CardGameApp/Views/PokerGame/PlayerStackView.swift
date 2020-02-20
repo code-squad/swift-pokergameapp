@@ -16,22 +16,22 @@ class PlayerStackView: UIStackView {
     init(player: Player) {
         self.player = player
         super.init(frame: .zero)
-        commonInit()
+        configure()
     }
     
     override init(frame: CGRect) {
         self.player = Player()
         super.init(frame: frame)
-        commonInit()
+        configure()
     }
     
     required init(coder: NSCoder) {
         self.player = Player()
         super.init(coder: coder)
-        commonInit()
+        configure()
     }
     
-    private func commonInit() {
+    private func configure() {
         axis = .vertical
         spacing = 4
         translatesAutoresizingMaskIntoConstraints = false

@@ -12,20 +12,20 @@ class CardImageView: UIImageView {
     init(named: String) {
         let image = UIImage(named: named)
         super.init(image: image)
-        commonInit()
+        configure()
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        commonInit()
+        configure()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        commonInit()
+        configure()
     }
     
-    private func commonInit() {
+    private func configure() {
         contentMode = .scaleAspectFill
         translatesAutoresizingMaskIntoConstraints = false
         heightAnchor.constraint(equalTo: widthAnchor, multiplier: 1.27).isActive = true
