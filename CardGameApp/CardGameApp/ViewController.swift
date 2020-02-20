@@ -54,22 +54,18 @@ class ViewController: UIViewController {
     private func findWinner() {
         self.pokerGame.findWinner { (winner) in
             DispatchQueue.main.async {
-                self.updateView(with: winner)
+                self.updateWinnerCrownImageView(with: winner)
             }
         }
     }
     
     private func resetPlayersHand() {
-        DispatchQueue.global(qos: .userInitiated).sync {
-            self.gameType.forEachCard {
-                self.pokerGame.passCards { (players) in
-                    DispatchQueue.main.async {
-                        self.updateViews(with: players)
-                    }
-                }
+        gameType.forEachCard {
+            pokerGame.passCards { (players) in
+                updateViews(with: players)
             }
-            findWinner()
         }
+        findWinner()
     }
     
     private func resetPokerGameStackView() {
@@ -89,14 +85,13 @@ class ViewController: UIViewController {
         }
     }
     
-    private func updateView(with winner: Player) {
+    private func updateWinnerCrownImageView(with winner: Player) {
         pokerGameStackView.arrangedSubviews.forEach { (stackView) in
             let playerStackView = stackView as! PlayerStackView
-            if playerStackView.player == winner {
-                winnerCrownImageView.centerYAnchor.constraint(equalTo: playerStackView.centerYAnchor, constant: 4).isActive = true
-                UIView.animate(withDuration: 1) {
-                    self.winnerCrownImageView.alpha = 1
-                }
+            guard playerStackView.player == winner else { return }
+            winnerCrownImageView.centerYAnchor.constraint(equalTo: playerStackView.centerYAnchor, constant: 4).isActive = true
+            UIView.animate(withDuration: 1) {
+                self.winnerCrownImageView.alpha = 1
             }
         }
     }
