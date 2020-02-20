@@ -61,6 +61,11 @@ class ParticipantView: UIView {
         overlappedCardsView.updateView(with: participant)
     }
     
+    func updateView(to winner: Bool) {
+        if winner { winnerImageView.image = UIImage(named: "winner") }
+        else { winnerImageView.image = nil }
+    }
+    
     private func setupView() {
         translatesAutoresizingMaskIntoConstraints = false
         addSubview(participantStackView)

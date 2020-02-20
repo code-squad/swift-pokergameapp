@@ -51,8 +51,10 @@ class ViewController: UIViewController {
         shuffleCardDeck()
         let gamePlay = GamePlay(rule: rule, numberOfPlayers: playerCount, cardDeck: cardDeck!)
         gamePlay.deal()
+        gamePlay.decideWinner()
         
-        gamePlayView.updateView(with: gamePlay)
+        gamePlayView.updateGamePlayView(with: gamePlay)
+        gamePlayView.updateWinnerView(with: gamePlay)
     }
     
     private func setBackgroundPattern() {
@@ -71,7 +73,7 @@ class ViewController: UIViewController {
         let safeArea = view.safeAreaLayoutGuide
         gamePlayView.topAnchor.constraint(equalTo: selectionView.bottomAnchor).isActive = true
         gamePlayView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 25).isActive = true
-        gamePlayView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -50).isActive = true
+        gamePlayView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -25).isActive = true
     }
 }
 
