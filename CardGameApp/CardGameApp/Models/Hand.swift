@@ -25,7 +25,6 @@ struct Hand {
     mutating func calculate() {
         setupHandRanking()
         setupRestOfHand()
-        print(self)
     }
     
     mutating func setupHandRanking() {
