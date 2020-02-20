@@ -73,4 +73,26 @@ class PokerGame {
     func forEachDealerCards(handler: (Card) -> () ) {
         dealer.forEach(handler: handler)
     }
+    
+    func compareResults() -> Playable {
+        var winnerResult = Player().result()
+        var winner: Playable = Player()
+        
+        players.forEachPlayer { (player) in
+            let result = player.result()
+            if winnerResult.rawValue < result.rawValue {
+                winnerResult = result
+                winner = player
+            }
+        }
+        
+        let dealerResult = dealer.result()
+        if winnerResult.rawValue < dealerResult.rawValue {
+            winner = dealer
+        }
+        
+        return winner
+    }
+    
+    
 }

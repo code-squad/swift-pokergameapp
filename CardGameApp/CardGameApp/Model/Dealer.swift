@@ -30,4 +30,9 @@ class Dealer: Playable{
     func forEach(handler: (Card) -> () ) {
         hands.forEach(handler)
     }
+    
+    func result() -> Hands.GameResult {
+        guard let result = hands.judgeResult() else { return Hands.GameResult.none }
+        return result
+    }
 }
