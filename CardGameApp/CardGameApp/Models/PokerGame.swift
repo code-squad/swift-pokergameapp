@@ -11,7 +11,7 @@ import Foundation
 class PokerGame {
     private let gameType: GameType
     private let playerCount: PlayerCount
-    private(set) var players: Players!
+    private var players: Players!
     private var winner: Player!
     let dealer = Dealer()
     
