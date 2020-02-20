@@ -17,12 +17,6 @@ class GamePlayTests: XCTestCase {
         cardDeck = CardDeck()
     }
     
-    func testParticipantTakesACard() {
-        let participant = Participant()
-        participant.take(card: Card(suit: .club, rank: .ace))
-        XCTAssertEqual(participant.repeatForEachCard { $0 }.count, 1)
-    }
-    
     func testPlayersEntrance() {
         let numberOfPlayers = Players.Number.four
         let expectedPlayers = (0..<4).map { _ in Participant() }
@@ -31,7 +25,6 @@ class GamePlayTests: XCTestCase {
     
     func testEachPlayerTakesACard() {
         let players = Players(with: .three)
-        var cardDeck = CardDeck()
         players.repeatForEachPlayer { $0.take(card: cardDeck.removeOne()) }
         let cards = players.repeatForEachPlayer { $0.repeatForEachCard { $0 } }
         
