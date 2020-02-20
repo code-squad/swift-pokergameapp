@@ -34,13 +34,10 @@ struct Hand {
     }
     
     mutating func setupRestOfHand() {
-        var restOfHandSet: Set<Card> = []
-        cards.forEach { (handCard) in
-            combinationsOf[handRanking]!.forEach { (combination) in
-                combination.forEach { (combiCard) in
-                    if handCard != combiCard { restOfHandSet.insert(handCard) }
-                }
-            }
+        var restOfHandSet: Set<Card> = Set(cards)
+        guard let combinations = combinationsOf[handRanking] else { return }
+        combinations.forEach { (cards) in
+            cards.forEach{ restOfHandSet.remove($0) }
         }
         restOfHand = Array(restOfHandSet).sorted(by: >)
     }
