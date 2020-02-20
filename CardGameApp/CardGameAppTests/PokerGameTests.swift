@@ -17,7 +17,7 @@ class PokerGameTests: XCTestCase {
         
         pokerGame.resetPlayers()
         GameType.sevenCardsStud.forEachCard {
-            pokerGame.passCardToPlayers { (_) in
+            pokerGame.passCards { (_) in
             }
         }
         pokerGame.forEachPlayer { (player) in
@@ -36,7 +36,7 @@ class PokerGameTests: XCTestCase {
         
         pokerGame.resetPlayers()
         GameType.fiveCardsStud.forEachCard {
-            pokerGame.passCardToPlayers { (_) in
+            pokerGame.passCards { (_) in
             }
         }
         pokerGame.forEachPlayer { (player) in
