@@ -19,18 +19,6 @@ class ViewController: UIViewController {
         return stackView
     }()
     
-    private let stutSegmentedControl : UISegmentedControl = {
-        let items = PokerGame.GameStut.allCases.map { $0.description }
-        let controls = UISegmentedControl(items: items)
-        return controls
-    }()
-    
-    private let playersSegmentedControl : UISegmentedControl = {
-        let items = Players.PlayersNum.allCases.map { $0.description }
-        let controls = UISegmentedControl(items: items)
-        return controls
-    }()
-    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
@@ -51,11 +39,6 @@ class ViewController: UIViewController {
         addSegmentedControls()
     }
     
-    private func addSegmentedControls() {
-        segmentedControlsStackView.addArrangedSubview(stutSegmentedControl)
-        segmentedControlsStackView.addArrangedSubview(playersSegmentedControl)
-    }
-    
     private func setConstraintControlsStackView() {
         let topConstant: CGFloat = 10
         let sideConstant: CGFloat = 100
@@ -68,5 +51,28 @@ class ViewController: UIViewController {
         segmentedControlsStackView.trailingAnchor.constraint(
             equalTo: view.trailingAnchor,
             constant: -sideConstant).isActive = true
+    }
+    
+    private func addSegmentedControls() {
+        addStutSegmentedControl()
+        addPlayersSegmentedControl()
+    }
+    
+    private func addStutSegmentedControl() {
+        let stutSegmentedControl: GameSegmentedControl = {
+            let control = GameSegmentedControl(items:
+                   PokerGame.GameStut.allCases.map{ $0.description })
+            return control
+        }()
+        segmentedControlsStackView.addArrangedSubview(stutSegmentedControl)
+    }
+    
+    private func addPlayersSegmentedControl() {
+        let playersSegmentedControl: GameSegmentedControl = {
+            let control = GameSegmentedControl(items:
+                    Players.PlayersNum.allCases.map{ $0.description })
+            return control
+        }()
+        segmentedControlsStackView.addArrangedSubview(playersSegmentedControl)
     }
 }

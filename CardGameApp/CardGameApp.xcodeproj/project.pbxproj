@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5A6D163723FBD68300348A81 /* Players.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6D163623FBD68300348A81 /* Players.swift */; };
+		5A6D173F23FEA20800348A81 /* GameSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6D173E23FEA20800348A81 /* GameSegmentedControl.swift */; };
 		5AB1838F23F637E2007419C4 /* ANSI_C_RandomNumberGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB3F53523F545170021E3A0 /* ANSI_C_RandomNumberGenerator.swift */; };
 		5AB183A323F7E4E4007419C4 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB183A223F7E4E4007419C4 /* Player.swift */; };
 		5AB183A723F7F3C7007419C4 /* PokerGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB183A623F7F3C7007419C4 /* PokerGame.swift */; };
@@ -43,6 +44,7 @@
 
 /* Begin PBXFileReference section */
 		5A6D163623FBD68300348A81 /* Players.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Players.swift; sourceTree = "<group>"; };
+		5A6D173E23FEA20800348A81 /* GameSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSegmentedControl.swift; sourceTree = "<group>"; };
 		5AB183A223F7E4E4007419C4 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		5AB183A623F7F3C7007419C4 /* PokerGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokerGame.swift; sourceTree = "<group>"; };
 		5AB183A823F804D5007419C4 /* PokerGameTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokerGameTests.swift; sourceTree = "<group>"; };
@@ -90,6 +92,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5A6D173D23FEA1E500348A81 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				5A6D173E23FEA20800348A81 /* GameSegmentedControl.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		5AB183AC23F81456007419C4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -126,6 +136,7 @@
 		5AE093BB23EC21670046DA63 /* CardGameApp */ = {
 			isa = PBXGroup;
 			children = (
+				5A6D173D23FEA1E500348A81 /* View */,
 				5AB183AC23F81456007419C4 /* Model */,
 				5AE093BC23EC21670046DA63 /* AppDelegate.swift */,
 				5AE093BE23EC21670046DA63 /* SceneDelegate.swift */,
@@ -289,6 +300,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5A6D163723FBD68300348A81 /* Players.swift in Sources */,
+				5A6D173F23FEA20800348A81 /* GameSegmentedControl.swift in Sources */,
 				5AB1838F23F637E2007419C4 /* ANSI_C_RandomNumberGenerator.swift in Sources */,
 				5AE093C123EC21670046DA63 /* ViewController.swift in Sources */,
 				5AE093BD23EC21670046DA63 /* AppDelegate.swift in Sources */,
