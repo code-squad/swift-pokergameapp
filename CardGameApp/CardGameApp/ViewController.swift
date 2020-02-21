@@ -11,15 +11,9 @@ import UIKit
 class ViewController: UIViewController {
     var cardDeck: CardDeck?
     
-    private lazy var selectionView: PlayModeSelectionView = {
-        let view = PlayModeSelectionView()
-        return view
-    }()
+    private var selectionView = PlayModeSelectionView()
     
-    private lazy var gamePlayView: GamePlayView = {
-        let view = GamePlayView()
-        return view
-    }()
+    private var gamePlayView = GamePlayView()
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
