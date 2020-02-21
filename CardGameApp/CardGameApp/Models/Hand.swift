@@ -36,7 +36,7 @@ extension Hand {
         
         sortedCardSet.forEach { card in
             if let previousCard = previousCard,
-                previousCard - card == 1 {
+                previousCard.isNext(to: card) {
                 continuity += 1
             } else {
                 highestCard = card
