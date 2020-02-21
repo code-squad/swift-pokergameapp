@@ -9,7 +9,12 @@
 import Foundation
 
 class Player {
+    private(set) var name: String
     private(set) var handDeck = [Card?]()
+    
+    init(name: String) {
+        self.name = name
+    }
     
     func bringCard(card: Card?){
         self.handDeck.append(card)

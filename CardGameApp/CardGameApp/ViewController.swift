@@ -52,13 +52,18 @@ class ViewController: UIViewController {
     
     func drawStackView() {
         self.GameStackView = createStackView(axis: .vertical, spacing: 40)
-        for player in pokerGame.players {
+        pokerGame.players.forEach({ (player) in
+            let playerInfoStackView = createStackView(axis: .vertical, spacing: 1)
+            let playerInfoLabel = createLabel(name: player.name)
             let cardStackView = createStackView(axis: .horizontal, spacing: -7)
-            for card in player.handDeck {
+            
+            player.handDeck.forEach { (card) in
                 addCardOnStackView(stackView: cardStackView, card: card)
             }
-            self.GameStackView.addArrangedSubview(cardStackView)
-        }
+            
+            playerInfoStackView.addArrangedSubview(cardStackView)
+            self.GameStackView.addArrangedSubview(playerInfoStackView)
+        })
         addStackViewOnView(stackView: GameStackView)
     }
     
@@ -88,6 +93,12 @@ class ViewController: UIViewController {
         cardImg.heightAnchor.constraint(equalTo: cardImg.widthAnchor, multiplier: cardRatio).isActive = true
         
         stackView.addArrangedSubview(cardImg)
+    }
+    
+    func createLabel(name: String) -> UILabel {
+        let playerLabel = UILabel()
+        
+        return playerLabel
     }
     
     func drawSegmentCtrl() {

@@ -11,9 +11,9 @@ import Foundation
 class Dealer: Player {
     private var cardDeck: CardDeck
     
-    override init() {
+    override init(name: String) {
         self.cardDeck = CardDeck()
-        super.init()
+        super.init(name: name)
     }
     
     func shuffle() {
