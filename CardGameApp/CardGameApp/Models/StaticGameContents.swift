@@ -9,7 +9,7 @@
 import Foundation
 
 class StaticGameContents {
-    enum Rule: CaseIterable, CustomStringConvertible {
+    enum GameRule: CaseIterable, CustomStringConvertible {
         case seven, five
         
         var description: String {
@@ -20,7 +20,7 @@ class StaticGameContents {
         }
     }
 
-    enum Number: CaseIterable, CustomStringConvertible {
+    enum AvailablePlayerNumber: CaseIterable, CustomStringConvertible {
         case two, three, four
         
         var description: String {
