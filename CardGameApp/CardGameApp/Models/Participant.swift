@@ -49,17 +49,17 @@ extension Participant {
         switch count {
         case 4...: return .fourOfAKind(highestCard: card)
         case 3: return .threeOfAKind(highestCard: card)
+        case 2: return determineHowManyPairs(with: overlappedCard.popFirst(), highestCard: card)
         case 1: return .highcard(highestCard: card)
-        default: break
+        default: return .none
         }
-        
-        if count == 2 {
-            if let (_, secondCardCount) = overlappedCard.popFirst(), secondCardCount == 2 {
-                return .twoPairs(highestCard: card)
-            }
-            return .pair(highestCard: card)
+    }
+    
+    private func determineHowManyPairs(with overlappedCard: (Card, Int)?, highestCard: Card) -> Score {
+        if let (_, count) = overlappedCard, count == 2 {
+            return .twoPairs(highestCard: highestCard)
         }
-        return .none
+        return .pair(highestCard: highestCard)
     }
 }
 
