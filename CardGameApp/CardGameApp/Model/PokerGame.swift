@@ -74,6 +74,7 @@ class PokerGame {
         dealer.forEach(handler: handler)
     }
     
+    //플레이어의 결과가 중복될 때, 카드의 숫자가 높은 사람이 위너가 되도록 로직 수정 필요
     func compareResults() -> Playable {
         var winnerResult = Player().result()
         var winner: Playable = Player()

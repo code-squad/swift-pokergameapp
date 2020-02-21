@@ -27,6 +27,16 @@ class Card {
         case one = 1, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve, thirteen
     }
     
+//    func judgeNoneInterrupted(firstCard: Card, lastCard: Card, count: Int) -> Bool {
+//        var firstValue = firstCard.number.rawValue
+//        firstValue = firstValue + count - 1
+//
+//        if firstValue == lastCard.number.rawValue {
+//            return true
+//        }
+//        return false
+//    }
+    
 }
 
 extension Card: CustomStringConvertible {
@@ -79,7 +89,19 @@ extension Card: CustomStringConvertible {
 
 }
 
-extension Card: Equatable {
+extension Card: Equatable, Comparable {
+    static func < (lhs: Card, rhs: Card) -> Bool {
+        return lhs.number.rawValue < rhs.number.rawValue
+    }
+    
+    static func > (lhs: Card, rhs: Card) -> Bool {
+        return lhs.number.rawValue > rhs.number.rawValue
+    }
+    
+    static func >> (lhs: Card, rhs: Card) -> Bool {
+        return lhs.number.rawValue + 1 != rhs.number.rawValue
+    }
+    
     static func == (lhs: Card, rhs: Card) -> Bool {
         return lhs.number == rhs.number && lhs.pattern == rhs.pattern
     }
