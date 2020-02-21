@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, GameSegmentedControlDelegate {
     
     private let segmentedControlsStackView: UIStackView = {
         let stackView = UIStackView()
@@ -41,7 +41,7 @@ class ViewController: UIViewController {
     
     private func setConstraintControlsStackView() {
         let topConstant: CGFloat = 10
-        let sideConstant: CGFloat = 100
+        let sideConstant: CGFloat = 120
         segmentedControlsStackView.topAnchor.constraint(
             equalTo: view.safeAreaLayoutGuide.topAnchor,
             constant: topConstant).isActive = true
@@ -59,20 +59,20 @@ class ViewController: UIViewController {
     }
     
     private func addStutSegmentedControl() {
-        let stutSegmentedControl: GameSegmentedControl = {
-            let control = GameSegmentedControl(items:
-                   PokerGame.GameStut.allCases.map{ $0.description })
-            return control
-        }()
+        let stutSegmentedControl = GameSegmentedControl(items:
+            PokerGame.GameStut.allCases.map{ $0.description},
+                                                        delegate: self)
         segmentedControlsStackView.addArrangedSubview(stutSegmentedControl)
     }
     
     private func addPlayersSegmentedControl() {
-        let playersSegmentedControl: GameSegmentedControl = {
-            let control = GameSegmentedControl(items:
-                    Players.PlayersNum.allCases.map{ $0.description })
-            return control
-        }()
+        let playersSegmentedControl = GameSegmentedControl(items:
+            Players.PlayersNum.allCases.map{ $0.description },
+                                                           delegate: self)
         segmentedControlsStackView.addArrangedSubview(playersSegmentedControl)
+    }
+    
+    func indexChanged(index: Int) {
+        print(index)
     }
 }
