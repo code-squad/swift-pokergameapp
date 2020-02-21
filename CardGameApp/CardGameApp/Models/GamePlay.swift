@@ -23,7 +23,6 @@ class GamePlay {
     private let rule: Rule
     private let players: Players
     private var cardDeck: CardDeck
-    private var winOrLose: [Bool]?
     
     var participantCount: Int {
         return players.count + 1
@@ -43,24 +42,13 @@ class GamePlay {
     }
     
     func decideWinner() {
-        var scores = players.repeatForEachPlayer { $0.score() }
-        scores.append(dealer.score())
+        var scores = players.repeatForEachPlayer { $0.score() } + [dealer.score()]
+        let (highestScore, highestCard) = players.theHighest(in: scores)
         
-        let maxScore = scores.max() ?? Score.none
-        let highestCardOfSemiWinners: [Card?] = scores.map { score in
-            if score.isSamePriority(with: maxScore) { return score.highestCard }
-            return nil
+        players.repeatForEachPlayer { player in
+            player.markIfWinner { scores.popFirst()!.isSame(with: highestScore, card: highestCard) }
         }
-        
-        let highestCard = highestCardOfSemiWinners.compactMap { $0 }.max()
-        winOrLose = highestCardOfSemiWinners.map {
-            if let card = $0, card == highestCard { return true }
-            return false
-        }
-    }
-    
-    func showdown(_ block: (Bool) -> ()) {
-        winOrLose?.forEach { block($0) }
+        dealer.markIfWinner { scores.last!.isSame(with: highestScore, card: highestCard) }
     }
     
     func repeatForEachParticipant(_ block: (Participant) -> ()) {

@@ -34,3 +34,14 @@ class Players {
         return players.map { transform($0) }
     }
 }
+
+extension Players {
+    func theHighest(in scores: [Score]) -> (Score, Card) {
+        let highestScore = scores.max() ?? Score.none
+        let highestCard = scores.filter { $0 == highestScore }
+            .map { $0.highestCard }
+            .compactMap { $0 }
+            .max()!
+        return (highestScore, highestCard)
+    }
+}

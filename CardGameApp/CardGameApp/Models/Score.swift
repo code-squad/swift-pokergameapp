@@ -45,6 +45,10 @@ enum Score {
     func isSamePriority(with score: Score) -> Bool {
         return priority == score.priority
     }
+    
+    func isSame(with score: Score, card: Card) -> Bool {
+        return self.isSamePriority(with: score) && self.highestCard == card
+    }
 }
 
 extension Score: Comparable {
