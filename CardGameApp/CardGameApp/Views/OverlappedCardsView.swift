@@ -44,7 +44,7 @@ class OverlappedCardsView: UIView {
         translatesAutoresizingMaskIntoConstraints = false
         addSubview(overlappedCardsStackView)
         overlappedCardsStackView.fillSuperView()
-        let max = Descriptions.maxCards
+        let max = StaticGameContents.maxCards
         (0..<max).forEach { _ in
             let cardView = UIImageView(image: nil)
             cardView.translatesAutoresizingMaskIntoConstraints = false
