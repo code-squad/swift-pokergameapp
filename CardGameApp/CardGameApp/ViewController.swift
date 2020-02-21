@@ -38,7 +38,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "BackgroundPattern")!)
         drawSegmentCtrl()
-        resetPokerGame()
+        drawStackView()
     }
     
     func resetPokerGame() {
@@ -52,10 +52,10 @@ class ViewController: UIViewController {
     
     func drawStackView() {
         self.GameStackView = createStackView(axis: .vertical, spacing: 40)
-        for _ in pokerGame.players {
-            let cardStackView = createStackView(axis: .horizontal, spacing: -5)
-            self.studType.each {
-                addCardOnStackView(stackView: cardStackView)
+        for player in pokerGame.players {
+            let cardStackView = createStackView(axis: .horizontal, spacing: -7)
+            for card in player.handDeck {
+                addCardOnStackView(stackView: cardStackView, card: card)
             }
             self.GameStackView.addArrangedSubview(cardStackView)
         }
@@ -82,8 +82,8 @@ class ViewController: UIViewController {
     }
     
     // stackview에 card이미지 삽입(카드 이미지 비율도 함께 조정)
-    func addCardOnStackView(stackView: UIStackView) {
-        let cardImg = UIImageView(image: UIImage(named: "CardBackground")!)
+    func addCardOnStackView(stackView: UIStackView, card: Card?) {
+        let cardImg = UIImageView(image: UIImage(named: "\(card!)"))
         cardImg.translatesAutoresizingMaskIntoConstraints = false
         cardImg.heightAnchor.constraint(equalTo: cardImg.widthAnchor, multiplier: cardRatio).isActive = true
         
