@@ -51,7 +51,7 @@ class ViewController: UIViewController {
     }
     
     func drawStackView() {
-        self.GameStackView = createStackView(axis: .vertical, spacing: 40)
+        self.GameStackView = createStackView(axis: .vertical, spacing: 20)
         pokerGame.players.forEach({ (player) in
             let playerInfoStackView = createStackView(axis: .vertical, spacing: 1)
             let playerInfoLabel = createLabel(name: player.name)
@@ -61,6 +61,7 @@ class ViewController: UIViewController {
                 addCardOnStackView(stackView: cardStackView, card: card)
             }
             
+            playerInfoStackView.addArrangedSubview(playerInfoLabel)
             playerInfoStackView.addArrangedSubview(cardStackView)
             self.GameStackView.addArrangedSubview(playerInfoStackView)
         })
@@ -81,9 +82,9 @@ class ViewController: UIViewController {
     // view에 stackview를 올림
     func addStackViewOnView(stackView: UIStackView) {
         self.view.addSubview(stackView)
-        stackView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 150).isActive = true
-        stackView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 30).isActive = true
-        stackView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -30).isActive = true
+        stackView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 130).isActive = true
+        stackView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 40).isActive = true
+        stackView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -40).isActive = true
     }
     
     // stackview에 card이미지 삽입(카드 이미지 비율도 함께 조정)
@@ -97,6 +98,10 @@ class ViewController: UIViewController {
     
     func createLabel(name: String) -> UILabel {
         let playerLabel = UILabel()
+        playerLabel.translatesAutoresizingMaskIntoConstraints = false
+        playerLabel.text = name
+        playerLabel.textAlignment = .left
+        playerLabel.textColor = .white
         
         return playerLabel
     }
