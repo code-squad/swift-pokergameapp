@@ -56,3 +56,13 @@ class GamePlay {
         block(dealer)
     }
 }
+
+extension GamePlay.Rule: CaseIterable, Comparable {
+    static func < (lhs: GamePlay.Rule, rhs: GamePlay.Rule) -> Bool {
+        return lhs.rawValue < rhs.rawValue
+    }
+
+    static var max: Int {
+        self.allCases.max()!.rawValue
+    }
+}
