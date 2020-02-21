@@ -105,6 +105,22 @@
 
 * 어떤 생성자를 통해 뷰 인스턴스가 만들어져도 동일하게 동작하도록 수정.
 
+### 더 개선한 내용
+
+* Card의 빼기 연산자를 더 구체적으로 isNext로 변경.
+* GamePlay의 승자 결정 로직의 역할을 분산시킴
+    * 스코어의 priority 및 highest를 비교하는 역할을 Score에서 수행하도록 분산
+    * [Score]에서 가장 높은 스코어와 가장 높은 카드를 구하는 역할을 Players에서 수행하도록 분산
+    * winner 여부는 각 participant에서 갖고도록 변경
+    * GamePlay에서는 가장 높은 스코어와 카드를 구하는 메서드와 score 비교 메서드를 이용하여 승자만 표시
+* Players의 [Score]에서 가장 높은 스코어와 가장 높은 카드를 구하는 기능 테스트
+* Gameplay의 승자 결정 테스트
+* Participant에서 score 계산 시 switch문 간소화
+* Descriptions를 StaticGameContents로 변경
+* StaticGameContents에 상수 선언한 내용을 지움.
+    * 이미 의미가 있는 것을 활용(이미 선언된 것을 활용)하기 위해 각 타입의 max값을 활용하도록 수정.
+* 읽을 때(호출할 때)도 어떤 역할을 하는 상수인지 의도를 드러내기 위한 이름으로 수정
+
 ### 실행 결과
 
 ![step6_result](step6-result.png)
