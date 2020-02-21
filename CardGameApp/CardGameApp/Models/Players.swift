@@ -13,7 +13,7 @@ class Players {
         case two = 2
         case three = 3
         case four = 4
-
+        
         func invokePerPlayerCount<T>(_ block: () -> T) -> [T] {
             return (0..<rawValue).map { _ in block() }
         }
@@ -43,5 +43,15 @@ extension Players {
             .compactMap { $0 }
             .max()!
         return (highestScore, highestCard)
+    }
+}
+
+extension Players.Number: CaseIterable, Comparable {
+    static func < (lhs: Players.Number, rhs: Players.Number) -> Bool {
+        return lhs.rawValue < rhs.rawValue
+    }
+
+    static var max: Int {
+        self.allCases.max()!.rawValue
     }
 }

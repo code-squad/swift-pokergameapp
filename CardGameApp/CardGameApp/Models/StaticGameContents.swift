@@ -32,9 +32,6 @@ class StaticGameContents {
         }
     }
     
-    static let maxParticipant = 5
-    static let maxCards = 7
-    
     static let playerLabel = "Player"
     static let dealerLabel = "Dealer"
 }
