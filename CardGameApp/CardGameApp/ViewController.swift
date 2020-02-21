@@ -48,8 +48,6 @@ class ViewController: UIViewController {
             subCardStackView.removeFromSuperview()
         }
         drawStackView()
-        GameStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30).isActive = true
-        GameStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30).isActive = true
     }
     
     func drawStackView() {
@@ -79,8 +77,8 @@ class ViewController: UIViewController {
     func addStackViewOnView(stackView: UIStackView) {
         self.view.addSubview(stackView)
         stackView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 150).isActive = true
-        stackView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 5).isActive = true
-        stackView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -5).isActive = true
+        stackView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 30).isActive = true
+        stackView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -30).isActive = true
     }
     
     // stackview에 card이미지 삽입(카드 이미지 비율도 함께 조정)
