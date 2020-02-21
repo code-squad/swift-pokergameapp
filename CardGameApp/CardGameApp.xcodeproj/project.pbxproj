@@ -16,7 +16,7 @@
 		C224B7492400042F00D80B80 /* PlayersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C224B7482400042F00D80B80 /* PlayersTests.swift */; };
 		C2BD177223F1567E00437146 /* GamePlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BD177123F1567E00437146 /* GamePlay.swift */; };
 		C2BD177C23F1771B00437146 /* GamePlayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BD177B23F1771B00437146 /* GamePlayTests.swift */; };
-		C2BD178123F444CA00437146 /* Descriptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BD178023F444CA00437146 /* Descriptions.swift */; };
+		C2BD178123F444CA00437146 /* StaticGameContents.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BD178023F444CA00437146 /* StaticGameContents.swift */; };
 		C2BD178623F544B200437146 /* UIView+FillSuperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BD178523F544B200437146 /* UIView+FillSuperView.swift */; };
 		C2BD178823F544C300437146 /* PlayModeSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BD178723F544C300437146 /* PlayModeSelectionView.swift */; };
 		C2BD178A23F5459E00437146 /* ParticipantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BD178923F5459E00437146 /* ParticipantView.swift */; };
@@ -53,7 +53,7 @@
 		C224B7482400042F00D80B80 /* PlayersTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayersTests.swift; sourceTree = "<group>"; };
 		C2BD177123F1567E00437146 /* GamePlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamePlay.swift; sourceTree = "<group>"; };
 		C2BD177B23F1771B00437146 /* GamePlayTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePlayTests.swift; sourceTree = "<group>"; };
-		C2BD178023F444CA00437146 /* Descriptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Descriptions.swift; sourceTree = "<group>"; };
+		C2BD178023F444CA00437146 /* StaticGameContents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticGameContents.swift; sourceTree = "<group>"; };
 		C2BD178523F544B200437146 /* UIView+FillSuperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+FillSuperView.swift"; sourceTree = "<group>"; };
 		C2BD178723F544C300437146 /* PlayModeSelectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayModeSelectionView.swift; sourceTree = "<group>"; };
 		C2BD178923F5459E00437146 /* ParticipantView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParticipantView.swift; sourceTree = "<group>"; };
@@ -152,7 +152,7 @@
 				C2D9585123EBB1EE002057D6 /* Card.swift */,
 				C2E62B1123ED35C900236059 /* CardDeck.swift */,
 				C2BD177123F1567E00437146 /* GamePlay.swift */,
-				C2BD178023F444CA00437146 /* Descriptions.swift */,
+				C2BD178023F444CA00437146 /* StaticGameContents.swift */,
 				C213D77A23FA4E5200066A4E /* Players.swift */,
 				C213D7AC23FBE5A800066A4E /* Participant.swift */,
 				C213D7AE23FC0B9C00066A4E /* Hand.swift */,
@@ -281,7 +281,7 @@
 				C213D77B23FA4E5200066A4E /* Players.swift in Sources */,
 				C213D7AD23FBE5A900066A4E /* Participant.swift in Sources */,
 				C2D9583D23EA7B09002057D6 /* AppDelegate.swift in Sources */,
-				C2BD178123F444CA00437146 /* Descriptions.swift in Sources */,
+				C2BD178123F444CA00437146 /* StaticGameContents.swift in Sources */,
 				C2BD179023F5815400437146 /* GamePlayView.swift in Sources */,
 				C2BD178A23F5459E00437146 /* ParticipantView.swift in Sources */,
 				C2D9583F23EA7B09002057D6 /* SceneDelegate.swift in Sources */,

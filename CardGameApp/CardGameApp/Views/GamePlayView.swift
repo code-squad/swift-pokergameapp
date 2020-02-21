@@ -36,7 +36,7 @@ class GamePlayView: UIView {
         translatesAutoresizingMaskIntoConstraints = false
         addSubview(participantsStackView)
         participantsStackView.fillSuperView()
-        let max = Descriptions.maxParticipant
+        let max = StaticGameContents.maxParticipant
         (0..<max).forEach { _ in
             let participantView = ParticipantView()
             participantsStackView.addArrangedSubview(participantView)
@@ -55,8 +55,8 @@ class GamePlayView: UIView {
     }
     
     private func createParticipantNames(by number: Int) -> [String] {
-        var names = (1..<number).map { "\(Descriptions.playerLabel)\($0)" }
-        names.append("\(Descriptions.dealerLabel)")
+        var names = (1..<number).map { "\(StaticGameContents.playerLabel)\($0)" }
+        names.append("\(StaticGameContents.dealerLabel)")
         return names
     }
     

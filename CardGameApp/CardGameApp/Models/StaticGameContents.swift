@@ -1,5 +1,5 @@
 //
-//  Descriptions.swift
+//  StaticGameContents.swift
 //  CardGameApp
 //
 //  Created by Chaewan Park on 2020/02/12.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Descriptions {
+class StaticGameContents {
     enum Rule: CaseIterable, CustomStringConvertible {
         case seven, five
         

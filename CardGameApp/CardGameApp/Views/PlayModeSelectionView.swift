@@ -24,13 +24,13 @@ class PlayModeSelectionView: UIView {
     }()
     
     private lazy var ruleSegmentedControl: UISegmentedControl = {
-        let contents = Descriptions.Rule.allCases.map { "\($0)" }
+        let contents = StaticGameContents.Rule.allCases.map { "\($0)" }
         let control = UISegmentedControl(items: contents)
         return control
     }()
     
     private lazy var playersSegmentedControl: UISegmentedControl = {
-        let contents = Descriptions.Number.allCases.map { "\($0)" }
+        let contents = StaticGameContents.Number.allCases.map { "\($0)" }
         let control = UISegmentedControl(items: contents)
         return control
     }()
