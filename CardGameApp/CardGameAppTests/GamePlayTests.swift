@@ -47,7 +47,7 @@ class GamePlayTests: XCTestCase {
         }
         XCTAssertEqual(participantCount, 3)
     }
-
+    
     func testFiveCardStudGamePlayDealing() {
         let gamePlay = GamePlay(rule: .fiveCardStud, numberOfPlayers: .three, cardDeck: cardDeck)
         gamePlay.deal()
@@ -62,5 +62,22 @@ class GamePlayTests: XCTestCase {
             XCTAssertEqual(cardCount, 5)
         }
         XCTAssertEqual(participantCount, 4)
+    }
+    
+    func testDecidingWinner() {
+        let gamePlay = GamePlay(rule: .fiveCardStud, numberOfPlayers: .two, cardDeck: cardDeck)
+        var cards = [Card(suit: .club, rank: .ten),
+                     Card(suit: .heart, rank: .ten),
+                     Card(suit: .spade, rank: .ten),
+                     Card(suit: .heart, rank: .nine),
+                     Card(suit: .diamond, rank: .ten),
+                     Card(suit: .heart, rank: .nine)]
+        gamePlay.repeatForEachParticipant { $0.take(card: cards.popFirst()!) }
+        gamePlay.repeatForEachParticipant { $0.take(card: cards.popFirst()!) }
+        gamePlay.decideWinner()
+        
+        var winners = [Bool]()
+        gamePlay.repeatForEachParticipant { $0.informWinner { winners.append($0) } }
+        XCTAssertEqual(winners, [false, true, false])
     }
 }
