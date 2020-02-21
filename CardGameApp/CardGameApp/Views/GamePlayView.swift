@@ -73,9 +73,11 @@ class GamePlayView: UIView {
     
     func updateWinnerView(with gamePlay: GamePlay) {
         var subViewIndex = 0
-        gamePlay.showdown { winnerOrNot in
-            updateSubView(at: subViewIndex, to: winnerOrNot)
-            subViewIndex += 1
+        gamePlay.repeatForEachParticipant { participant in
+            participant.informWinner { isWinner in
+                updateSubView(at: subViewIndex, to: isWinner)
+                subViewIndex += 1
+            }
         }
     }
     

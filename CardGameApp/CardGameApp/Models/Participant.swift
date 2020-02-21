@@ -10,6 +10,7 @@ import Foundation
 
 class Participant {
     private var hand = Hand()
+    private var isWinner = false
     
     func take(card: Card) {
         hand.add(card: card)
@@ -18,6 +19,14 @@ class Participant {
     @discardableResult
     func repeatForEachCard<T>(_ transform: (Card) -> T) -> [T] {
         return hand.repeatForEachCard { transform($0) }
+    }
+    
+    func markIfWinner(_ block: () -> Bool) {
+        isWinner = block()
+    }
+    
+    func informWinner(_ block: (Bool) -> ()) {
+        block(isWinner)
     }
 }
 
