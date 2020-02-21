@@ -17,7 +17,7 @@ class GameTable {
     init(playerEntry: PlayerEntry = .two, studType: StudType = .sevenStud) {
         self.playerEntry = playerEntry
         self.studType = studType
-        self.dealer = Dealer()
+        self.dealer = Dealer(name: "Dealer")
         self.players = [Player]()
         
         participatePlayer()
@@ -26,8 +26,10 @@ class GameTable {
     
     // 플레이어 세팅
     func participatePlayer() {
+        var index = 1
         playerEntry.each {
-            players.append(Player())
+            players.append(Player(name: "Player\(index)"))
+            index += 1
         }
         players.append(dealer)
     }
