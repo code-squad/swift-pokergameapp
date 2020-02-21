@@ -52,16 +52,16 @@ class Hands {
     
     func judgeStraight() -> Bool {
         hands.sort { (first, second) -> Bool in
-            return first.number.rawValue > second.number.rawValue
+             first > second
         }
-        let first = hands[0]
-        var firstValue = first.number.rawValue
-        firstValue = firstValue + hands.count - 1
-
-        if firstValue == hands[hands.count - 1].number.rawValue {
-            return true
+        
+        for index in 0..<hands.count {
+            if hands[index] >> hands[index+1] {
+                return false
+            }
         }
-        return false
+        return true
+        
     }
     
     func judgeMuchCard() -> (cardsCount: Int, twoPairs: [Card.Number]) {
