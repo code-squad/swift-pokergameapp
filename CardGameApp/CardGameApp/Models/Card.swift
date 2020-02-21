@@ -28,6 +28,10 @@ class Card {
         self.suit = suit
         self.rank = rank
     }
+    
+    func isNext(to card: Card) -> Bool {
+        return rank - card.rank == 1
+    }
 }
 
 extension Card: CustomStringConvertible {
@@ -43,10 +47,6 @@ extension Card: Comparable {
     
     static func < (lhs: Card, rhs: Card) -> Bool {
         return lhs.rank < rhs.rank
-    }
-    
-    static func - (lhs: Card, rhs: Card) -> Int {
-        return lhs.rank - rhs.rank
     }
 }
 
