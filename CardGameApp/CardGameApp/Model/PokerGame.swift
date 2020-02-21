@@ -37,6 +37,30 @@ class PokerGame {
     private let players: Players
     private let gameStut: GameStut
     
+    var stutNum: Int {
+        var stutNum = 0
+        gameStut.forEach {
+            stutNum += 1
+            
+        }
+        return stutNum
+    }
+    
+    var participantsNum:Int {
+        let dealerCount = 1
+        return dealerCount + playersNum
+    }
+    
+    private var playersNum: Int {
+        var playersNumCount = 0
+        players.searchPlayersNum { (playersNum: Players.PlayersNum) in
+            playersNum.forEach {
+                playersNumCount += 1
+            }
+        }
+        return playersNumCount
+    }
+    
     init(gameStut: GameStut , playersNum: Players.PlayersNum){
         self.gameStut = gameStut
         self.players = Players(playersNum: playersNum)
@@ -91,25 +115,6 @@ class PokerGame {
     
     func hasEnoughCards() -> Bool {
         return deck.count >= stutNum * playersNum
-    }
-    
-    private var stutNum: Int {
-        var stutNum = 0
-        gameStut.forEach {
-            stutNum += 1
-            
-        }
-        return stutNum
-    }
-    
-    private var playersNum: Int {
-        var playersNumCount = 0
-        players.searchPlayersNum { (playersNum: Players.PlayersNum) in
-            playersNum.forEach {
-                playersNumCount += 1
-            }
-        }
-        return playersNumCount
     }
 }
 

@@ -32,7 +32,7 @@ class Players {
     }
 }
 
-extension Players.PlayersNum : CustomStringConvertible {
+extension Players.PlayersNum: CustomStringConvertible {
     var description: String {
         let num = String(self.rawValue)
         let people = "명"
