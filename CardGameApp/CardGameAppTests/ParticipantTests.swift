@@ -87,7 +87,8 @@ class ParticipantTests: XCTestCase {
     func testScoreNone() {
         participant.take(card: Card(suit: .diamond, rank: .jack))
         participant.take(card: Card(suit: .spade, rank: .jack))
-        XCTAssertEqual(participant.score(), Score.none)
+        let expectedScore = Score.pair(highestCard: Card(suit: .spade, rank: .jack))
+        XCTAssertEqual(participant.score(), expectedScore)
     }
     
     func testScoreWhenNoCard() {

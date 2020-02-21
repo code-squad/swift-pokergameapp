@@ -53,8 +53,10 @@ extension Participant {
         default: break
         }
         
-        if count == 2, let (_, secondCardCount) = overlappedCard.popFirst() {
-            if secondCardCount == 2 { return .twoPairs(highestCard: card) }
+        if count == 2 {
+            if let (_, secondCardCount) = overlappedCard.popFirst(), secondCardCount == 2 {
+                return .twoPairs(highestCard: card)
+            }
             return .pair(highestCard: card)
         }
         return .none
