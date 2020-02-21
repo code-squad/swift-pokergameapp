@@ -38,7 +38,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "BackgroundPattern")!)
         drawSegmentCtrl()
-        drawStackView()
+        resetPokerGame()
     }
     
     func resetPokerGame() {
@@ -48,11 +48,13 @@ class ViewController: UIViewController {
             subCardStackView.removeFromSuperview()
         }
         drawStackView()
+        GameStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30).isActive = true
+        GameStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30).isActive = true
     }
     
     func drawStackView() {
-        self.GameStackView = createStackView(axis: .vertical, spacing: 10)
-        self.entry.each {
+        self.GameStackView = createStackView(axis: .vertical, spacing: 40)
+        for _ in pokerGame.players {
             let cardStackView = createStackView(axis: .horizontal, spacing: -5)
             self.studType.each {
                 addCardOnStackView(stackView: cardStackView)
@@ -66,8 +68,7 @@ class ViewController: UIViewController {
     func createStackView(axis: NSLayoutConstraint.Axis, spacing: CGFloat) -> UIStackView {
         let stackView = UIStackView()
         stackView.axis = axis
-        stackView.alignment = .fill
-        stackView.distribution = .fillEqually
+        stackView.distribution = .fill
         stackView.spacing = spacing
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
