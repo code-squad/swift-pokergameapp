@@ -15,25 +15,15 @@ class ViewController: UIViewController {
     var pokerGame: PokerGame!
     var playersStackView: UIStackView!
     var cardsStackView: UIStackView!
+    var labelStackView: UIStackView!
     var gameModeStackView: UIStackView!
     var studSegmentedControl: UISegmentedControl!
     var playerSegmentedControl: UISegmentedControl!
         
-    var cardImage = UIImageView()
-
     // MARK: ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "pattern"))
-        
-        playersStackView = generateStackView(axis: .vertical, spacing: 40)
-        view.addSubview(playersStackView)
-        for _ in 1...(playerMode.rawValue + 1) {
-            cardsStackView = generateStackView(axis: .horizontal, spacing: -8)
-            playersStackView.addArrangedSubview(cardsStackView)
-            addConstraintsToStackViews()
-            addCardsToStackView()
-        }
         
         gameModeStackView = generateStackView(axis: .vertical, spacing: 15)
         view.addSubview(gameModeStackView)
@@ -42,8 +32,10 @@ class ViewController: UIViewController {
         gameModeStackView.addArrangedSubview(studSegmentedControl)
         gameModeStackView.addArrangedSubview(playerSegmentedControl)
         
-        gameModeStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30).isActive = true
-        gameModeStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        playersStackView = generateStackView(axis: .vertical, spacing: 40)
+        view.addSubview(playersStackView)
+        showCardImages()
+        addConstraintsToStackViews()
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -70,13 +62,19 @@ class ViewController: UIViewController {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.distribution = .fillEqually
         stackView.spacing = spacing
+        
         return stackView
     }
     
     func addConstraintsToStackViews() {
+        gameModeStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30).isActive = true
+        gameModeStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        
         cardsStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
         cardsStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40).isActive = true
-        playersStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 180).isActive = true
+
+        playersStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 150).isActive = true
+        playersStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20).isActive = true
     }
     
     func startPokerGame() {
@@ -84,26 +82,33 @@ class ViewController: UIViewController {
         self.pokerGame.giveCards()
     }
 
-    func setCardImage() -> UIImageView? {
+    func showCardImages() {
         startPokerGame()
-        guard let pickedCard = pokerGame.pickOneCard() else { return nil }
-        let cardImage = matchImageToCardInfo(suit: pickedCard.suit, rank: pickedCard.rank)
-        cardImage.heightAnchor.constraint(equalTo: cardImage.widthAnchor, multiplier: 1.27).isActive = true
-        return cardImage
-    }
-    
-    func addCardsToStackView() {
-        for _ in 1...gameMode.rawValue {
-            guard let cardImage = setCardImage() else { return }
-            cardsStackView.addArrangedSubview(cardImage)
+        for particiapnt in pokerGame.showParticipants() {
+            cardsStackView = generateStackView(axis: .horizontal, spacing: -7)
+            for card in particiapnt.statusOfRoleAndCards().cards {
+                let matchedCard: UIImageView = matchImageToCardInfo(suit: card.suit, rank: card.rank)
+                matchedCard.heightAnchor.constraint(equalTo: matchedCard.widthAnchor, multiplier: 1.27).isActive = true
+                cardsStackView.addArrangedSubview(matchedCard)
+                playersStackView.addArrangedSubview(cardsStackView)
+            }
+        }
+
+        cardsStackView = generateStackView(axis: .horizontal, spacing: -5)
+        let dealerOwnCard = pokerGame.showDealer().statusOfRoleAndCards().cards
+        for card in dealerOwnCard {
+            let matchedCard: UIImageView = matchImageToCardInfo(suit: card.suit, rank: card.rank)
+            matchedCard.heightAnchor.constraint(equalTo: matchedCard.widthAnchor, multiplier: 1.27).isActive = true
+            cardsStackView.addArrangedSubview(matchedCard)
+            playersStackView.addArrangedSubview(cardsStackView)
         }
     }
     
     func matchImageToCardInfo(suit: Card.Suit, rank: Card.Rank) -> UIImageView {
-        let suitString = suit.description
-        let rankString = rank.description
+        let suitString = suit
+        let rankString = rank
         
-        cardImage = UIImageView(image: UIImage(named: "\(suitString)\(rankString).png")!)
+        let cardImage = UIImageView(image: UIImage(named: "\(suitString)\(rankString).png")!)
         cardImage.contentMode = .scaleAspectFit
         cardImage.layer.cornerRadius = 5
         cardImage.clipsToBounds = true
