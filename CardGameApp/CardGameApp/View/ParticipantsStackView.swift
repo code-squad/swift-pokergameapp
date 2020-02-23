@@ -32,14 +32,30 @@ class ParticipantsStackView: UIStackView {
     
     private func setupView() {
         let dealerCount = 1
-        var maxNum = 0
+        var maxNum = dealerCount
         Players.Number.four.forEach {
             maxNum += 1
         }
-        maxNum += dealerCount
         
         for _ in 0 ..< maxNum {
             addArrangedSubview(ParticipantStackView())
+        }
+    }
+    
+    func updateView(gameStut: PokerGame.GameStut, playersNum: Players.Number) {
+        arrangedSubviews.forEach {
+            $0.isHidden = true
+        }
+        
+        let dealerCount = 1
+        var playersNumCount = dealerCount
+        playersNum.forEach {
+            playersNumCount += 1
+        }
+        for index in 0 ..< playersNumCount {
+            let participantStackView = arrangedSubviews[index] as! ParticipantStackView
+            participantStackView.isHidden = false
+            participantStackView.updateView(gameStut: gameStut)
         }
     }
 }

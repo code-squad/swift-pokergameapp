@@ -41,7 +41,7 @@ class CardsStackView: UIStackView {
             addArrangedSubview(generateCardImageView())
         }
     }
-
+    
     private func generateCardImageView() -> UIImageView {
         let cardImageView = UIImageView(image:  #imageLiteral(resourceName: "card-back"))
         cardImageView.contentMode = .scaleAspectFill
@@ -50,5 +50,17 @@ class CardsStackView: UIStackView {
             equalTo: cardImageView.widthAnchor,
             multiplier: 1.27).isActive = true
         return cardImageView
+    }
+    
+    func updateView(gameStut: PokerGame.GameStut) {
+        arrangedSubviews.forEach{ $0.isHidden = true}
+        
+        var stutCount = 0
+        gameStut.forEach {
+            stutCount += 1
+        }
+        for index in 0 ..< stutCount {
+            arrangedSubviews[index].isHidden = false
+        }
     }
 }

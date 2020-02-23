@@ -28,6 +28,8 @@ class ViewController: UIViewController {
         setupBackground()
         setupSegmentedControlsStackView()
         setupPaticipantsStackView()
+        startGame(gameStut: .seven,
+                  playersNum: .one)
     }
     
     private func setupBackground() {
@@ -77,5 +79,10 @@ class ViewController: UIViewController {
         participantsStackView.trailingAnchor.constraint(
             equalTo: view.trailingAnchor,
             constant: -trailingConstant).isActive = true
+    }
+    
+    private func startGame(gameStut: PokerGame.GameStut, playersNum: Players.Number) {
+        let game = PokerGame(gameStut: gameStut, playersNum: playersNum)
+        participantsStackView.updateView(gameStut: gameStut, playersNum: playersNum)
     }
 }

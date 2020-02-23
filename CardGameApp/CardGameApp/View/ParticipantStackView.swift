@@ -39,4 +39,9 @@ class ParticipantStackView: UIStackView {
         addArrangedSubview(CardsStackView())
     }
     
+    func updateView(gameStut: PokerGame.GameStut) {
+        let cardStackIndex = 1
+        let cardsStackView = arrangedSubviews[cardStackIndex] as! CardsStackView
+        cardsStackView.updateView(gameStut: gameStut)
+    }
 }
