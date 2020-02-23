@@ -28,8 +28,8 @@ class ViewController: UIViewController {
         
         gameModeStackView = generateStackView(axis: .vertical, spacing: 15)
         view.addSubview(gameModeStackView)
-        studSegmentedControl = generateSegmentedControl(item: ["7 Cards", "5 Cards"])
-        playerSegmentedControl = generateSegmentedControl(item: ["2명", "3명", "4명"])
+        studSegmentedControl = generateSegmentedControl(item: ["7 Cards", "5 Cards"], seletecIndex: 0)
+        playerSegmentedControl = generateSegmentedControl(item: ["2명", "3명", "4명"], seletecIndex: 2)
         gameModeStackView.addArrangedSubview(studSegmentedControl)
         gameModeStackView.addArrangedSubview(playerSegmentedControl)
         
@@ -42,9 +42,9 @@ class ViewController: UIViewController {
         return .lightContent
     }
     
-    func generateSegmentedControl(item: [Any]) -> UISegmentedControl {
+    func generateSegmentedControl(item: [Any], seletecIndex: Int) -> UISegmentedControl {
         let segmentedControl = UISegmentedControl(items: item)
-        segmentedControl.selectedSegmentIndex = 0
+        segmentedControl.selectedSegmentIndex = seletecIndex
         segmentedControl.translatesAutoresizingMaskIntoConstraints = false
 
         segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor : UIColor.white], for: .normal)
@@ -53,7 +53,30 @@ class ViewController: UIViewController {
         segmentedControl.layer.borderColor = UIColor.white.cgColor
         segmentedControl.layer.borderWidth = 1.0
         
+        segmentedControl.addTarget(self, action: #selector(handleSegmentChanges), for: .valueChanged)
+        
         return segmentedControl
+    }
+    
+    @objc func handleSegmentChanges() {
+        if studSegmentedControl.selectedSegmentIndex == 0 {
+            gameMode = .sevenCardStud
+        } else if studSegmentedControl.selectedSegmentIndex == 1 {
+            gameMode = .fiveCardStud
+        }
+        
+        if playerSegmentedControl.selectedSegmentIndex == 0 {
+            playerMode = .two
+        } else if playerSegmentedControl.selectedSegmentIndex == 1 {
+            playerMode = .three
+        } else if playerSegmentedControl.selectedSegmentIndex == 2 {
+            playerMode = .four
+        }
+        
+        gameBoardStackView.removeFromSuperview()
+        gameBoardStackView = generateStackView(axis: .vertical, spacing: 40)
+        view.addSubview(gameBoardStackView)
+        startPokerGame()
     }
     
     func generateStackView(axis: NSLayoutConstraint.Axis, spacing: CGFloat) -> UIStackView {
