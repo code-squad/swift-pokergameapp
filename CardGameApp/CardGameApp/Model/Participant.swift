@@ -12,7 +12,7 @@ class Participant {
         return self.role += role
     }
     
-    func statusOfRoleAndCards() -> (role: String, cards: [Card]) {
-        return (self.role, self.cards)
+    func statusOfOwnCards() -> [Card] {
+        return self.cards
     }
 }
