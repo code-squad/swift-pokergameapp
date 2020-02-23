@@ -10,8 +10,9 @@ import UIKit
 
 class ViewController: UIViewController {
     
-   var pokerGame = PokerGame(numbersOfPlayers: .two, gameMode: .fiveCardStud)
-    
+    private var pokerGame = PokerGame(numbersOfPlayers: .two, gameMode: .fiveCardStud)
+    private var gameMode = GameMode.sevenCardStud // segmentedControl에서 선택 받은 값에 따라 변경시키기
+    private var numbersOfPlayers = NumbersOfPlayers.four
     // MARK: - Properties
     // StackView
     let cardsStack: UIStackView = {
@@ -25,7 +26,7 @@ class ViewController: UIViewController {
     }()
     
     // [추가한 부분] - 참여한 플레이어들의 카드가 쌓이는 StackView
-    let playersCardsStackView: UIStackView = {
+    func playersStackView() ->  UIStackView {
         let playersCardsStackView = UIStackView()
         playersCardsStackView.translatesAutoresizingMaskIntoConstraints = false
         playersCardsStackView.axis = .vertical
@@ -33,14 +34,14 @@ class ViewController: UIViewController {
         playersCardsStackView.spacing = 4
         
         return playersCardsStackView
-    }()
+    }
     
     // SegmentedControl
     // - GameMode
-    let gameMode: [String] = ["7 Cards", "5 Cards"]
+    let gameModes: [String] = ["7 Cards", "5 Cards"]
     
     lazy var gameModeSegmentControl: UISegmentedControl = {
-        let gameModeSegmentControl: UISegmentedControl = UISegmentedControl(items: gameMode)
+        let gameModeSegmentControl: UISegmentedControl = UISegmentedControl(items: gameModes)
         
         gameModeSegmentControl.center = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/12)
         gameModeSegmentControl.backgroundColor = UIColor.gray
@@ -53,10 +54,10 @@ class ViewController: UIViewController {
     }()
     
     // - Players
-    let numbersOfPlayers: [String] = ["2명", "3명", "4명"]
+    let numbersOfPlayersList: [String] = ["2명", "3명", "4명"]
     
     lazy var numbersOfPlayersSegmentControl: UISegmentedControl = {
-        let numbersOfPlayersSegmentControl: UISegmentedControl = UISegmentedControl(items: numbersOfPlayers)
+        let numbersOfPlayersSegmentControl: UISegmentedControl = UISegmentedControl(items: numbersOfPlayersList)
         numbersOfPlayersSegmentControl.center = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/7-10)
         numbersOfPlayersSegmentControl.backgroundColor = UIColor.gray
         numbersOfPlayersSegmentControl.tintColor = UIColor.white
@@ -73,14 +74,31 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = UIColor(patternImage:  #imageLiteral(resourceName: "bg_pattern"))
         
-        //StakcView - 카드 뒷면
-        addCards()
-        self.view.addSubview(cardsStack)
-        setStackView ()
         //UISegmentedControl - 게임 모드 선택
         self.view.addSubview(self.gameModeSegmentControl)
         //UISegmentedControl - 플레이어 인원 선택
         self.view.addSubview(self.numbersOfPlayersSegmentControl)
+        
+        pokerGame.start() // 게임 시작 : 카드 셔플 후 분배
+        
+        var playersStack = playersStackView()
+        numbersOfPlayers.setPlayerSeat{ // 4명
+           var playerNumber = 1
+           pokerGame.shuffleWholeCardDeck()
+            // playersStack에 UILabel을 subView로 추가하기
+            playersStack.addArrangedSubview(makePlayersLabel(of: "Player\(playerNumber)"))
+            playersStack.addArrangedSubview(makePlayersCardsStack())
+
+            self.view.addSubview(playersStack)
+            setStackView(of: playersStack)
+            playerNumber += 1
+        }
+// 기존 (수정 전)
+//        //StakcView - 카드 뒷면
+//        addCards()
+//        self.view.addSubview(cardsStack)
+//        setStackView ()
+        
     }
     
     // MARK: - Configuration
@@ -104,23 +122,23 @@ class ViewController: UIViewController {
             cardsStack.addArrangedSubview(makeCard())
         }
     }
-//
-//    func makeCardDeck() -> [UIImageView] {
-//        for card in 1 ... 7 {
-//            GameMode.setCardPlacement({
-//
-//            })
-//            CardDeck.pickCard()
-//        }
-//    }
-//
-//    func makePlayersCards() -> UIImageView {
-//        let card = UIImageview(image: # #imageLiteral(resourceName: "card-back"))
-//        // 랜덤하게 카드를 받아오려면 CardDeck에세 카드를 랜덤하게 뽑아와야하는데
-//        // 그럴려면 CardDeck에 이미지를 갖고있는 랜덤한 카드가 세팅되어있어야 하지 않을까?
-//
-//        return card
-//    }
+    //
+    //    func makeCardDeck() -> [UIImageView] {
+    //        for card in 1 ... 7 {
+    //            GameMode.setCardPlacement({
+    //
+    //            })
+    //            CardDeck.pickCard()
+    //        }
+    //    }
+    //
+    //    func makePlayersCards() -> UIImageView {
+    //        let card = UIImageview(image: # #imageLiteral(resourceName: "card-back"))
+    //        // 랜덤하게 카드를 받아오려면 CardDeck에세 카드를 랜덤하게 뽑아와야하는데
+    //        // 그럴려면 CardDeck에 이미지를 갖고있는 랜덤한 카드가 세팅되어있어야 하지 않을까?
+    //
+    //        return card
+    //    }
     
     func addPlayers() {
         for _ in 2 ... 4 {
@@ -136,7 +154,7 @@ class ViewController: UIViewController {
     @objc func gameModeSegmentChanged(segmentedControl: UISegmentedControl){
         // 게임 모드 선택에 따른 내용 구현 예정
         switch segmentedControl.selectedSegmentIndex {
-        //        case 0: // 5 cards
+            //        case 0: // 5 cards
         //        case 1: // 7 cards
         default: return
         }
@@ -145,10 +163,9 @@ class ViewController: UIViewController {
     @objc func numbersOfPlayersSegmentChanged(segmentedControl: UISegmentedControl){
         // 플레이어 인원 선택에 따른 내용 구현 예정
         switch segmentedControl.selectedSegmentIndex {
-            //        case 0: // 1 명
-            //        case 1: // 2 명
-            //        case 2: // 3 명
-        //        case 3: // 4 명
+        case 0: startPokerGame()// 2 명
+        case 1: startPokerGame()// 3 명
+        case 2: startPokerGame()// 4 명
         default: return
         }
     }

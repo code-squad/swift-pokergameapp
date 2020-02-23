@@ -21,11 +21,11 @@ class Players {
         }
     }
     
-    func checkCardsFull() -> [Bool]{
-        var readyCheck = [Bool]()
-        players.forEach{player in
-            readyCheck.append(player.isCardsFull())
-        }
-        return readyCheck
-    }
+//    func checkCardsFull() -> [Bool]{
+//        var readyCheck = [Bool]()
+//        players.forEach{player in
+//            readyCheck.append(player.isCardsFull())
+//        }
+//        return readyCheck
+//    }
 }
