@@ -38,11 +38,11 @@ class CardsStackView: UIStackView {
         }
         
         for _ in 0 ..< maxNum {
-            addArrangedSubview(generateCardImageView())
+            addArrangedSubview(generateCardImageViewDefault())
         }
     }
     
-    private func generateCardImageView() -> UIImageView {
+    private func generateCardImageViewDefault() -> UIImageView {
         let cardImageView = UIImageView(image:  #imageLiteral(resourceName: "card-back"))
         cardImageView.contentMode = .scaleAspectFill
         cardImageView.translatesAutoresizingMaskIntoConstraints = false
@@ -52,9 +52,17 @@ class CardsStackView: UIStackView {
         return cardImageView
     }
     
-    func updateView(gameStut: PokerGame.GameStut) {
+    func updateView(player: Player) {
         setAllCardsViewsNotHidden()
-        setNotCardsViewHidden(gameStut: gameStut)
+        var cardsIndex = 0
+        player.searchCard { (card) in
+            updateSelectedCardView(at: cardsIndex,
+                                   cardImage: UIImage(named:"\(card.description)"))
+            cardsIndex += 1
+        }
+        
+        let cardsCount = cardsIndex
+        setNotCardsViewHidden(cardsCount: cardsCount)
     }
     
     private func setAllCardsViewsNotHidden() {
@@ -63,13 +71,15 @@ class CardsStackView: UIStackView {
         }
     }
     
-    private func setNotCardsViewHidden(gameStut: PokerGame.GameStut) {
-        var stutCount = 0
-        gameStut.forEach {
-            stutCount += 1
+    private func updateSelectedCardView(at index: Int, cardImage: UIImage?) {
+        let imageView = arrangedSubviews[index] as! UIImageView
+        if let image = cardImage {
+            imageView.image = image
         }
-        
-        for index in stutCount ..< arrangedSubviews.count {
+    }
+    
+    private func setNotCardsViewHidden(cardsCount: Int) {
+        for index in cardsCount ..< arrangedSubviews.count {
             arrangedSubviews[index].isHidden = true
         }
     }

@@ -104,7 +104,7 @@ class PokerGame {
         return stutNum
     }
     
-    private var participantsNum: Int {
+    var participantsNum: Int {
         let dealerCount = 1
         return dealerCount + playersNumCount
     }
