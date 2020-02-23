@@ -68,6 +68,12 @@ class PokerGame {
         dealer.shuffleCardDeck()
     }
     
+    func forEachParticipant(behavior: (Player) -> ()) {
+        players.showParticipantsCards(behavior: ) { (player) in
+            behavior(player)
+        }
+    }
+    
 //    func isAllPlayersCardsReady() -> Bool {
 //        var readyCheck = [Bool]()
 //        readyCheck = players.checkCardsFull()
