@@ -21,7 +21,6 @@ class ViewController: UIViewController {
         horizontalStackView.axis = .horizontal
         horizontalStackView.distribution = .fillEqually
         horizontalStackView.spacing = -5
-        
         return horizontalStackView
     }
     
@@ -88,8 +87,6 @@ class ViewController: UIViewController {
         self.view.addSubview(self.gameModeSegmentControl)
         //UISegmentedControl - 플레이어 인원 선택
         self.view.addSubview(self.numbersOfPlayersSegmentControl)
-        //gameStackView - 딜러와 플레이어들을 담고 있는 StackView
-        self.view.addSubview(gameStackView)
         
         pokerGame.start() // 게임 시작 : 카드 셔플 후 분배
         pokerGame.shuffleWholeCardDeck()
@@ -106,11 +103,10 @@ class ViewController: UIViewController {
             setStackView(of: playersStack)
             playerNumber += 1
         }
-        // 기존 (수정 전)
-        //        //StakcView - 카드 뒷면
-        //        addCards()
-        //        self.view.addSubview(cardsStack)
-        //        setStackView ()
+      
+        //딜러 추가
+        playersStack.addArrangedSubview (makePlayersLabel(of: "Dealer"))
+        playersStack.addArrangedSubview(makePlayersCardsStack())
         
     }
     
