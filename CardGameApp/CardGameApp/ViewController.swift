@@ -107,7 +107,10 @@ class ViewController: UIViewController {
         //딜러 추가
         playersStack.addArrangedSubview (makePlayersLabel(of: "Dealer"))
         playersStack.addArrangedSubview(makePlayersCardsStack())
-        
+        //gameStackView - 딜러와 플레이어들을 담고 있는 StackView에 추가
+        gameStackView.addArrangedSubview(playersStack)
+        self.view.addSubview(gameStackView)
+        setStackView(of: gameStackView)
     }
     
     func makePlayersLabel(of player: String) -> UILabel{
