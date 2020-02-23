@@ -38,7 +38,7 @@ extension Participant: Equatable {
 
 extension Participant {
     func score() -> Score {
-        let (isContinuous, highestCard) = hand.isContinuous(for: 5)
+        let (isContinuous, highestCard) = highestCardIfHandisStraight()
         if isContinuous, let card = highestCard {
             return .straight(highestCard: card)
         }
@@ -53,6 +53,11 @@ extension Participant {
         case 1: return .highcard(highestCard: card)
         default: return .none
         }
+    }
+    
+    private func highestCardIfHandisStraight() -> (Bool, Card?) {
+        let straightCountOfTexasHoldem = 5
+        return hand.isContinuous(for: straightCountOfTexasHoldem)
     }
     
     private func determineHowManyPairs(with overlappedCard: (Card, Int)?, highestCard: Card) -> Score {
