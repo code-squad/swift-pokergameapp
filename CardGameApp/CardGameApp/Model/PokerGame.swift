@@ -47,7 +47,7 @@ class PokerGame {
         self.numbersOfPlayers = numbersOfPlayers
         self.players = {
             numbersOfPlayers.setPlayerSeat(for: {
-                players.addPlayer(newPlayer: Player()
+                players.addPlayer(newPlayer: Player())
             })
             return self.players
         }()
@@ -64,10 +64,14 @@ class PokerGame {
         players.addCard(newCard: dealer.giveOneCard())
     }
     
-    func isAllPlayersCardsReady() -> Bool {
-        var readyCheck = [Bool]()
-        readyCheck = players.checkCardsFull()
-        let filteredReadycheck = readyCheck.filter{$0 == false}
-        return filteredReadycheck.count == 0
+    func shuffleWholeCardDeck(){
+        dealer.shuffleCardDeck()
     }
+    
+//    func isAllPlayersCardsReady() -> Bool {
+//        var readyCheck = [Bool]()
+//        readyCheck = players.checkCardsFull()
+//        let filteredReadycheck = readyCheck.filter{$0 == false}
+//        return filteredReadycheck.count == 0
+//    }
 }

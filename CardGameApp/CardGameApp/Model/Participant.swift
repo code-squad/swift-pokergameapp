@@ -11,7 +11,7 @@ import Foundation
 class Participant {
     var cardsInHands = [Card]()
     
-//
+//   
 //    func isCardsFull() -> Bool {
 //        return self.gameMode.compareStudNumber(with: self.cardsInHands.count)
 //    }
@@ -25,6 +25,10 @@ class Dealer : Participant {
 
     func giveOneCard() -> Card {
         return cardDeck.removeOne(of: 0)
+    }
+    
+    func shuffleCardDeck() {
+        self.cardDeck.shuffle()
     }
     
 }
