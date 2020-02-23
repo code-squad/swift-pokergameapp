@@ -16,11 +16,7 @@ extension ViewController: GameSegmentedControlDelegate {
 
 class ViewController: UIViewController {
     
-    private lazy var gameSegmentedControlStackView: GameSegmentedControlStackView = {
-        let stackView = GameSegmentedControlStackView()
-        stackView.delegate = self
-        return stackView
-    }()
+    private var gameSegmentedControlStackView: GameSegmentedControlStackView!
     
     private let verticalCardsStackView: UIStackView = {
         let stackView = UIStackView()
@@ -40,7 +36,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupBackground()
-        setupSegmentedControls()
+        setupSegmentedControlsStackView()
         setupCards()
     }
     
@@ -48,7 +44,12 @@ class ViewController: UIViewController {
         self.view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "bg_pattern"))
     }
     
-    private func setupSegmentedControls() {
+    private func setupSegmentedControlsStackView() {
+        gameSegmentedControlStackView = {
+           let stackView = GameSegmentedControlStackView()
+            stackView.delegate = self
+           return stackView
+        }()
         self.view.addSubview(gameSegmentedControlStackView)
         setConstraintControlsStackView()
     }
