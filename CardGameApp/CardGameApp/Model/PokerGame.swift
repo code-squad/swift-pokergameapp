@@ -36,9 +36,11 @@ class PokerGame {
     private let dealer = Player()
     private let players: Players
     private let gameStut: GameStut
+    private let playersNum: Players.Number
     
-    init(gameStut: GameStut , playersNum: Players.PlayersNum){
+    init(gameStut: GameStut , playersNum: Players.Number){
         self.gameStut = gameStut
+        self.playersNum = playersNum
         self.players = Players(playersNum: playersNum)
     }
     
@@ -104,12 +106,12 @@ class PokerGame {
     
     private var participantsNum: Int {
         let dealerCount = 1
-        return dealerCount + playersNum
+        return dealerCount + playersNumCount
     }
     
-    private var playersNum: Int {
+    private var playersNumCount: Int {
         var playersNumCount = 0
-        players.searchPlayersNum { (playersNum: Players.PlayersNum) in
+        players.searchPlayersNum { (playersNum: Players.Number) in
             playersNum.forEach {
                 playersNumCount += 1
             }

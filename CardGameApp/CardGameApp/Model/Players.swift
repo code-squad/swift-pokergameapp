@@ -9,7 +9,7 @@
 import Foundation
 
 class Players {
-    enum PlayersNum: Int, CaseIterable {
+    enum Number: Int, CaseIterable {
         case one = 1 , two, three, four
         func forEach(handler: () -> (Void)) {
             for _ in 0 ..< self.rawValue {
@@ -18,21 +18,21 @@ class Players {
         }
     }
     private var players = [Player]()
-    private let playersNum: PlayersNum
+    private let playersNum: Number
     
-    init(playersNum: PlayersNum) {
+    init(playersNum: Number) {
         self.playersNum = playersNum
         initPlayers(playersNum: playersNum)
     }
     
-    private func initPlayers(playersNum: PlayersNum) {
+    private func initPlayers(playersNum: Number) {
         playersNum.forEach {
             players.append(Player())
         }
     }
 }
 
-extension Players.PlayersNum: CustomStringConvertible {
+extension Players.Number: CustomStringConvertible {
     var description: String {
         let num = String(self.rawValue)
         let people = "명"
@@ -45,7 +45,7 @@ extension Players {
         players.forEach{ handler($0) }
     }
 
-    func searchPlayersNum(handler: (PlayersNum) -> ()) {
+    func searchPlayersNum(handler: (Number) -> ()) {
         handler(playersNum)
     }
 }
