@@ -149,4 +149,15 @@ class ViewController: UIViewController {
         cardImage.heightAnchor.constraint(equalTo: cardImage.widthAnchor, multiplier: 1.27).isActive = true
         return cardImage
     }
+    
+    override func becomeFirstResponder() -> Bool {
+        return true
+    }
+    
+    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        if motion == .motionShake {
+            gameBoardStackView.removeFromSuperview()
+            startPokerGame()
+        }
+    }
 }
