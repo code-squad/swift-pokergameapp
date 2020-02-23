@@ -21,6 +21,12 @@ class Players {
         }
     }
     
+    func showParticipantsCards(behavior: (Player) -> ()) {
+        players.forEach {
+            behavior($0)
+        }
+    }
+    
 //    func checkCardsFull() -> [Bool]{
 //        var readyCheck = [Bool]()
 //        players.forEach{player in

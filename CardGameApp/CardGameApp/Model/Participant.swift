@@ -18,6 +18,10 @@ class Participant {
     func addCard(newCard: Card) {
         self.cardsInHands.append(newCard)
     }
+    
+    func showEachCardInHand(behavior: (Card) -> () ) {
+        cardsInHand.forEach(behavior)
+    }
 }
 
 class Dealer : Participant {
