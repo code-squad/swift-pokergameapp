@@ -1,5 +1,5 @@
 //
-//  CardsStackView.swift
+//  ParticipantsStackView.swift
 //  CardGameApp
 //
 //  Created by kimdo2297 on 2020/02/23.
@@ -8,8 +8,7 @@
 
 import UIKit
 
-class CardsStackView: UIStackView {
-    
+class ParticipantsStackView: UIStackView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
@@ -25,30 +24,22 @@ class CardsStackView: UIStackView {
     }
     
     private func setup() {
-        axis = .horizontal
+        axis = .vertical
         distribution = .fillEqually
-        spacing = -15
+        spacing = 40
         translatesAutoresizingMaskIntoConstraints = false
     }
     
     private func setupView() {
+        let dealerCount = 1
         var maxNum = 0
-        PokerGame.GameStut.seven.forEach {
+        Players.PlayersNum.four.forEach {
             maxNum += 1
         }
+        maxNum += dealerCount
         
         for _ in 0 ..< maxNum {
-            addArrangedSubview(generateCardImageView())
+            addArrangedSubview(ParticipantStackView())
         }
-    }
-
-    private func generateCardImageView() -> UIImageView {
-        let cardImageView = UIImageView(image:  #imageLiteral(resourceName: "card-back"))
-        cardImageView.contentMode = .scaleAspectFill
-        cardImageView.translatesAutoresizingMaskIntoConstraints = false
-        cardImageView.heightAnchor.constraint(
-            equalTo: cardImageView.widthAnchor,
-            multiplier: 1.27).isActive = true
-        return cardImageView
     }
 }
