@@ -24,7 +24,7 @@ class ViewController: UIViewController {
         return horizontalStackView
     }
     
-    // [추가한 부분] - 참여한 플레이어들의 카드가 쌓이는 StackView
+    // 참여한 플레이어들의 카드가 쌓이는 StackView
     func playersStackView() ->  UIStackView {
         let playersCardsStackView = UIStackView()
         playersCardsStackView.translatesAutoresizingMaskIntoConstraints = false
@@ -89,7 +89,6 @@ class ViewController: UIViewController {
         self.view.addSubview(self.numbersOfPlayersSegmentControl)
         
         pokerGame.start() // 게임 시작 : 카드 셔플 후 분배
-        pokerGame.shuffleWholeCardDeck()
         var playersStack = playersStackView()
 
         var playerNumber = 1
@@ -166,7 +165,7 @@ class ViewController: UIViewController {
     @objc func gameModeSegmentChanged(segmentedControl: UISegmentedControl){
         // 게임 모드 선택에 따른 내용 구현 예정
         switch segmentedControl.selectedSegmentIndex {
-            //        case 0: // 5 cards
+        //        case 0: // 5 cards
         //        case 1: // 7 cards
         default: return
         }
