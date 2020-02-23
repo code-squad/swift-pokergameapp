@@ -17,17 +17,7 @@ extension ViewController: GameSegmentedControlDelegate {
 class ViewController: UIViewController {
     
     private var gameSegmentedControlStackView: GameSegmentedControlStackView!
-    
-    private let verticalCardsStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .vertical
-        stackView.distribution = .fillEqually
-        stackView.spacing = 40
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        return stackView
-    }()
-    
-    private let game = PokerGame(gameStut: .five, playersNum: .one)
+    private var participantsStackView: ParticipantsStackView!
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -37,7 +27,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         setupBackground()
         setupSegmentedControlsStackView()
-        setupCards()
+        setupPaticipantsStackView()
     }
     
     private func setupBackground() {
@@ -68,63 +58,23 @@ class ViewController: UIViewController {
             constant: -sideConstant).isActive = true
     }
     
-    private func setupCards() {
-        addHorizontalCardsStackViewAndCards()
-        self.view.addSubview(verticalCardsStackView)
-        setConstraintCardsStackView()
+    private func setupPaticipantsStackView() {
+        participantsStackView = ParticipantsStackView()
+        self.view.addSubview(participantsStackView)
+        setConstraintParticipantsStackView()
     }
     
-    private func addHorizontalCardsStackViewAndCards() {
-        let participantsNum = game.participantsNum
-        for _ in 0 ..< participantsNum {
-            verticalCardsStackView.addArrangedSubview(
-                generateHorizontalCardsStackViewAndCards())
-        }
-    }
-    
-    private func generateHorizontalCardsStackViewAndCards() -> UIStackView {
-        let horizontalStackView : UIStackView = {
-            let stackView = UIStackView()
-            stackView.axis = .horizontal
-            stackView.spacing = -100
-            stackView.distribution = .fillEqually
-            stackView.translatesAutoresizingMaskIntoConstraints = false
-            return stackView
-        }()
-        addCardViews(to: horizontalStackView)
-        return horizontalStackView
-    }
-    
-    private func addCardViews(to cardStackView: UIStackView) {
-        let stutNum = game.stutNum
-        for _ in 0 ..< stutNum {
-            cardStackView.addArrangedSubview(
-                generateCardImageView())
-        }
-    }
-    
-    private func generateCardImageView() -> UIImageView {
-        let cardImageView = UIImageView(image:  #imageLiteral(resourceName: "card-back"))
-        cardImageView.contentMode = .scaleAspectFill
-        cardImageView.translatesAutoresizingMaskIntoConstraints = false
-        cardImageView.heightAnchor.constraint(
-            equalTo: cardImageView.widthAnchor,
-            multiplier: 1.27).isActive = true
-        return cardImageView
-    }
-    
-    
-    private func setConstraintCardsStackView() {
+    private func setConstraintParticipantsStackView() {
         let topConstant: CGFloat = 40
-        let leadingConstant: CGFloat = 20
-        let trailingConstant: CGFloat = 40
-        verticalCardsStackView.topAnchor.constraint(
+        let leadingConstant: CGFloat = 30
+        let trailingConstant: CGFloat = 50
+        participantsStackView.topAnchor.constraint(
             equalTo: gameSegmentedControlStackView.bottomAnchor,
             constant: topConstant).isActive = true
-        verticalCardsStackView.leadingAnchor.constraint(
+        participantsStackView.leadingAnchor.constraint(
             equalTo: view.leadingAnchor,
             constant: leadingConstant).isActive = true
-        verticalCardsStackView.trailingAnchor.constraint(
+        participantsStackView.trailingAnchor.constraint(
             equalTo: view.trailingAnchor,
             constant: -trailingConstant).isActive = true
     }
