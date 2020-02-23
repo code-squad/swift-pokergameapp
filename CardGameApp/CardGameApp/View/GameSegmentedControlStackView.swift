@@ -8,13 +8,13 @@
 
 import UIKit
 
-protocol GameSegmentedControlDelegate: class {
-    func segmentedControlIndexChanged(stut: PokerGame.GameStut,
-                                      players: Players.Number)
+protocol GameSegmentedControlStackViewDelegate: class {
+    func segmentedControlIndexChanged(gameStut: PokerGame.GameStut,
+                                      playersNum: Players.Number)
 }
 
 class GameSegmentedControlStackView: UIStackView {
-    weak var delegate: GameSegmentedControlDelegate?
+    weak var delegate: GameSegmentedControlStackViewDelegate?
     
     let stutSegmentedControl = GameSegmentedControl(items:
         PokerGame.GameStut.allCases.map { $0.description })
@@ -58,19 +58,19 @@ class GameSegmentedControlStackView: UIStackView {
     }
     
     @objc private func indexChanged(_ sender: UISegmentedControl) {
-        guard let stut = stut() , let playersNum = playersNum() else {
+        guard let gameStut = gameStut() , let playersNum = playersNum() else {
             return
         }
-        delegate?.segmentedControlIndexChanged(stut: stut, players: playersNum)
+        delegate?.segmentedControlIndexChanged(gameStut: gameStut, playersNum: playersNum)
     }
     
-    private func stut() -> PokerGame.GameStut? {
+    private func gameStut() -> PokerGame.GameStut? {
         let index = stutSegmentedControl.selectedSegmentIndex
         switch index {
         case 0:
-            return PokerGame.GameStut.five
-        case 1:
             return PokerGame.GameStut.seven
+        case 1:
+            return PokerGame.GameStut.five
         default:
             return nil
         }

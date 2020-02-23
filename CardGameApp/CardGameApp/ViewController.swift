@@ -8,9 +8,9 @@
 
 import UIKit
 
-extension ViewController: GameSegmentedControlDelegate {
-    func segmentedControlIndexChanged(stut: PokerGame.GameStut, players: Players.Number) {
-        
+extension ViewController: GameSegmentedControlStackViewDelegate {
+    func segmentedControlIndexChanged(gameStut: PokerGame.GameStut, playersNum: Players.Number) {
+        startGame(gameStut: gameStut, playersNum: playersNum)
     }
 }
 
