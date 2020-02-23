@@ -11,10 +11,6 @@ import Foundation
 class Participant {
     var cardsInHand = [Card]()
     
-//   
-//    func isCardsFull() -> Bool {
-//        return self.gameMode.compareStudNumber(with: self.cardsInHands.count)
-//    }
     func addCard(newCard: Card) {
         self.cardsInHand.append(newCard)
     }

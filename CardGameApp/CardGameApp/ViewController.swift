@@ -20,7 +20,7 @@ class ViewController: UIViewController {
         horizontalStackView.translatesAutoresizingMaskIntoConstraints = false
         horizontalStackView.axis = .horizontal
         horizontalStackView.distribution = .fillEqually
-        horizontalStackView.spacing = 4
+        horizontalStackView.spacing = -5
         
         return horizontalStackView
     }
@@ -35,6 +35,16 @@ class ViewController: UIViewController {
         
         return playersCardsStackView
     }
+    
+    let gameStackView : UIStackView = {
+           let gameStackView = UIStackView()
+           gameStackView.translatesAutoresizingMaskIntoConstraints = false
+           gameStackView.axis = .vertical
+           gameStackView.distribution = .fillEqually
+           gameStackView.alignment = .fill
+           gameStackView.spacing = 0
+           return gameStackView
+       }()
     
     // SegmentedControl
     // - GameMode
@@ -78,6 +88,8 @@ class ViewController: UIViewController {
         self.view.addSubview(self.gameModeSegmentControl)
         //UISegmentedControl - 플레이어 인원 선택
         self.view.addSubview(self.numbersOfPlayersSegmentControl)
+        //gameStackView - 딜러와 플레이어들을 담고 있는 StackView
+        self.view.addSubview(gameStackView)
         
         pokerGame.start() // 게임 시작 : 카드 셔플 후 분배
         pokerGame.shuffleWholeCardDeck()
@@ -117,7 +129,7 @@ class ViewController: UIViewController {
     
     func makePlayersCards(of stackView: UIStackView) {
         
-        pokerGame.forEachParticipant(behavior: ){
+        pokerGame.forEachPlayer(behavior: ){
             player in
             let playersCardsStack = cardsStackView()
             player.showEachCardInHand(behavior: ){
@@ -146,35 +158,6 @@ class ViewController: UIViewController {
         card.heightAnchor.constraint(equalTo: card.widthAnchor, multiplier: 1.27).isActive = true
         return card
     }
-    
-//    func addCards() {
-//        for _ in 0 ..< 7 {
-//            cardsStack.addArrangedSubview(makeCard())
-//        }
-//    }
-    //
-    //    func makeCardDeck() -> [UIImageView] {
-    //        for card in 1 ... 7 {
-    //            GameMode.setCardPlacement({
-    //
-    //            })
-    //            CardDeck.pickCard()
-    //        }
-    //    }
-    //
-    //    func makePlayersCards() -> UIImageView {
-    //        let card = UIImageview(image: # #imageLiteral(resourceName: "card-back"))
-    //        // 랜덤하게 카드를 받아오려면 CardDeck에세 카드를 랜덤하게 뽑아와야하는데
-    //        // 그럴려면 CardDeck에 이미지를 갖고있는 랜덤한 카드가 세팅되어있어야 하지 않을까?
-    //
-    //        return card
-    //    }
-    
-//    func addPlayers() {
-//        for _ in 2 ... 4 {
-//            playersCardsStackView.addArrangedSubview(makeCard())
-//        }
-//    }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent

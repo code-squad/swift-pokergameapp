@@ -70,16 +70,10 @@ class PokerGame {
         dealer.shuffleCardDeck()
     }
     
-    func forEachParticipant(behavior: (Player) -> ()) {
+    func forEachPlayer(behavior: (Player) -> ()) {
         players.showParticipantsCards(behavior: ) { (player) in
             behavior(player)
         }
     }
     
-//    func isAllPlayersCardsReady() -> Bool {
-//        var readyCheck = [Bool]()
-//        readyCheck = players.checkCardsFull()
-//        let filteredReadycheck = readyCheck.filter{$0 == false}
-//        return filteredReadycheck.count == 0
-//    }
 }
