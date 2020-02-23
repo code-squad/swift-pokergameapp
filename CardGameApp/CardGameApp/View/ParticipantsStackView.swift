@@ -43,17 +43,18 @@ class ParticipantsStackView: UIStackView {
     }
     
     func updateView(gameStut: PokerGame.GameStut, playersNum: Players.Number) {
-        setAllParticipantViewsHidden()
-        setSelectedParticipantViewsNotHidden(gameStut: gameStut, playersNum: playersNum)
+        setAllParticipantViewsNotHidden()
+        updateSelectedParticipantViews(gameStut: gameStut, playersNum: playersNum)
+        setNotParticipantViewsHidden(playersNum: playersNum)
     }
     
-    private func setAllParticipantViewsHidden() {
+    private func setAllParticipantViewsNotHidden() {
         arrangedSubviews.forEach {
-            $0.isHidden = true
+            $0.isHidden = false
         }
     }
     
-    private func setSelectedParticipantViewsNotHidden(gameStut: PokerGame.GameStut,playersNum: Players.Number) {
+    private func updateSelectedParticipantViews(gameStut: PokerGame.GameStut,playersNum: Players.Number) {
         var playersNumCount = 0
         playersNum.forEach {
             playersNumCount += 1
@@ -62,11 +63,22 @@ class ParticipantsStackView: UIStackView {
         updateDealer(gameStut: gameStut, playersNumCount: playersNumCount)
     }
     
+    private func setNotParticipantViewsHidden(playersNum: Players.Number) {
+        let dealerCount = 1
+        var participantsCount = dealerCount
+        playersNum.forEach {
+            participantsCount += 1
+        }
+        
+        for index in participantsCount ..< arrangedSubviews.count {
+            arrangedSubviews[index].isHidden = true
+        }
+    }
+    
     private func updatePlayers(gameStut: PokerGame.GameStut, playersNumCount: Int) {
         for index in 0 ..< playersNumCount {
             let participantStackView = arrangedSubviews[index] as! ParticipantStackView
-            participantStackView.isHidden = false
-            participantStackView.updateView(name: "Player\(index + 1)", gameStut: gameStut)
+            participantStackView.updateView(name: "Players\(index + 1)", gameStut: gameStut)
         }
     }
     
@@ -75,6 +87,5 @@ class ParticipantsStackView: UIStackView {
         let dealerIndex = playersNumCount + dealerCount - 1
         let dealerStackView = arrangedSubviews[dealerIndex] as! ParticipantStackView
         dealerStackView.updateView(name: "Dealer", gameStut: gameStut)
-        dealerStackView.isHidden = false
     }
 }

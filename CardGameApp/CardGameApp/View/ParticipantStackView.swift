@@ -9,7 +9,8 @@
 import UIKit
 
 class ParticipantStackView: UIStackView {
-    let participantLabel : UILabel = {
+
+    private let participantLabel : UILabel = {
         let label = UILabel()
         label.textColor = .white
         return label
@@ -39,7 +40,7 @@ class ParticipantStackView: UIStackView {
         addArrangedSubview(CardsStackView())
     }
     
-    func updateView(name : String, gameStut: PokerGame.GameStut) {
+    func updateView(name: String, gameStut: PokerGame.GameStut) {
         participantLabel.text = name
         
         let cardStackIndex = 1

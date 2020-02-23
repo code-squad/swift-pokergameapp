@@ -53,24 +53,24 @@ class CardsStackView: UIStackView {
     }
     
     func updateView(gameStut: PokerGame.GameStut) {
-        setAllCardsViewsHidden()
-        setSelectedCardsViewNotHidden(gameStut: gameStut)
+        setAllCardsViewsNotHidden()
+        setNotCardsViewHidden(gameStut: gameStut)
     }
     
-    private func setAllCardsViewsHidden() {
+    private func setAllCardsViewsNotHidden() {
         arrangedSubviews.forEach {
-            $0.isHidden = true
+            $0.isHidden = false
         }
     }
     
-    private func setSelectedCardsViewNotHidden(gameStut: PokerGame.GameStut) {
+    private func setNotCardsViewHidden(gameStut: PokerGame.GameStut) {
         var stutCount = 0
         gameStut.forEach {
             stutCount += 1
         }
         
-        for index in 0 ..< stutCount {
-            arrangedSubviews[index].isHidden = false
+        for index in stutCount ..< arrangedSubviews.count {
+            arrangedSubviews[index].isHidden = true
         }
     }
 }
