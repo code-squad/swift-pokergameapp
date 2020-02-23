@@ -11,11 +11,9 @@ class PokerGame {
         cardsCount = gameMode.rawValue
         participantCount = playerMode.rawValue
         
-        for count in 0..<participantCount {
+        for _ in 0..<participantCount {
             participants.append(Participant())
-            participants[count].giveRoleName(role: "참여자#\(count+1)")
         }
-        dealer.giveRoleName(role: "딜러")
     }
     
     func showParticipants() -> [Participant] {
