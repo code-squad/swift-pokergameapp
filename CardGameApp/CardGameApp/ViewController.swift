@@ -23,7 +23,6 @@ extension ViewController {
             guard let playersNum = gameSegmentedControlStackView.playersNum() else {
                 return
             }
-            
             startGame(gameStut: gameStut, playersNum: playersNum)
         }
     }
@@ -31,6 +30,7 @@ extension ViewController {
 
 class ViewController: UIViewController {
     
+    private var deck = Deck()
     private var gameSegmentedControlStackView: GameSegmentedControlStackView!
     private var participantsStackView: ParticipantsStackView!
     
@@ -53,9 +53,9 @@ class ViewController: UIViewController {
     
     private func setupSegmentedControlsStackView() {
         gameSegmentedControlStackView = {
-           let stackView = GameSegmentedControlStackView()
+            let stackView = GameSegmentedControlStackView()
             stackView.delegate = self
-           return stackView
+            return stackView
         }()
         self.view.addSubview(gameSegmentedControlStackView)
         setConstraintControlsStackView()
@@ -97,8 +97,19 @@ class ViewController: UIViewController {
     }
     
     private func startGame(gameStut: PokerGame.GameStut, playersNum: Players.Number) {
-        let game = PokerGame(gameStut: gameStut, playersNum: playersNum)
+        shuffleDeck()
+        var game = PokerGame(gameStut: gameStut, playersNum: playersNum, deck: deck)
+        if !game.hasEnoughCards() {
+            deck.reset()
+            shuffleDeck()
+            game = PokerGame(gameStut: gameStut, playersNum: playersNum, deck: deck)
+        }
         game.startNewRound()
         participantsStackView.updateView(game: game)
+    }
+    
+    private var generator = ANSI_C_RandomNumberGenerator()
+    private func shuffleDeck() {
+        deck.shuffle(using: &generator)
     }
 }
