@@ -101,6 +101,13 @@ class ViewController: UIViewController {
         
     }
     
+    func makePlayersLabel(of player: String) -> UILabel{
+        var participantLabel = UILabel()
+            participantLabel.text = "\(player)"
+            participantLabel.textColor = .white
+        return participantLabel
+    }
+    
     // MARK: - Configuration
     // StackView
     func setStackView() {
