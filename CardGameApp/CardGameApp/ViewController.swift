@@ -83,36 +83,52 @@ class ViewController: UIViewController {
         
         var playersStack = playersStackView()
         numbersOfPlayers.setPlayerSeat{ // 4명
-           var playerNumber = 1
-           pokerGame.shuffleWholeCardDeck()
+            var playerNumber = 1
+            pokerGame.shuffleWholeCardDeck()
             // playersStack에 UILabel을 subView로 추가하기
             playersStack.addArrangedSubview(makePlayersLabel(of: "Player\(playerNumber)"))
             playersStack.addArrangedSubview(makePlayersCardsStack())
-
+            
             self.view.addSubview(playersStack)
             setStackView(of: playersStack)
             playerNumber += 1
         }
-// 기존 (수정 전)
-//        //StakcView - 카드 뒷면
-//        addCards()
-//        self.view.addSubview(cardsStack)
-//        setStackView ()
+        // 기존 (수정 전)
+        //        //StakcView - 카드 뒷면
+        //        addCards()
+        //        self.view.addSubview(cardsStack)
+        //        setStackView ()
         
     }
     
     func makePlayersLabel(of player: String) -> UILabel{
         var participantLabel = UILabel()
-            participantLabel.text = "\(player)"
-            participantLabel.textColor = .white
+        participantLabel.text = "\(player)"
+        participantLabel.textColor = .white
         return participantLabel
     }
     
     func makePlayersCardsStack() -> UIStackView {
-            let playerCardStack = cardsStackView()
-            makePlayersCards(of: playerCardStack)
-            return playerCardStack
+        let playerCardStack = cardsStackView()
+        makePlayersCards(of: playerCardStack)
+        return playerCardStack
+    }
+    
+    func makePlayersCards(of stackView: UIStackView) {
+        
+        pokerGame.forEachParticipant(behavior: ){
+            player in
+            let playersCardsStack = cardsStackView()
+            player.showEachCardInHand(behavior: ){
+                (card) in
+                let card = UIImageView(image: UIImage(named: card.description))
+                // 카드 이미지 세팅
+                card.contentMode = .scaleAspectFit
+                card.heightAnchor.constraint(equalTo: card.widthAnchor, multiplier: 1.27).isActive = true
+                stackView.addArrangedSubview(card)
+            }
         }
+    }
     
     // MARK: - Configuration
     // StackView
@@ -130,11 +146,11 @@ class ViewController: UIViewController {
         return card
     }
     
-    func addCards() {
-        for _ in 0 ..< 7 {
-            cardsStack.addArrangedSubview(makeCard())
-        }
-    }
+//    func addCards() {
+//        for _ in 0 ..< 7 {
+//            cardsStack.addArrangedSubview(makeCard())
+//        }
+//    }
     //
     //    func makeCardDeck() -> [UIImageView] {
     //        for card in 1 ... 7 {
@@ -153,11 +169,11 @@ class ViewController: UIViewController {
     //        return card
     //    }
     
-    func addPlayers() {
-        for _ in 2 ... 4 {
-            playersCardsStackView.addArrangedSubview(makeCard())
-        }
-    }
+//    func addPlayers() {
+//        for _ in 2 ... 4 {
+//            playersCardsStackView.addArrangedSubview(makeCard())
+//        }
+//    }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
