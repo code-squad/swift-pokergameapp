@@ -20,11 +20,11 @@ class CardsStackView: UIStackView {
     }
     
     private func configure() {
-        setup()
+        setupStack()
         setupView()
     }
     
-    private func setup() {
+    private func setupStack() {
         axis = .horizontal
         distribution = .fillEqually
         spacing = -15
@@ -53,12 +53,22 @@ class CardsStackView: UIStackView {
     }
     
     func updateView(gameStut: PokerGame.GameStut) {
-        arrangedSubviews.forEach{ $0.isHidden = true}
-        
+        setAllCardsViewsHidden()
+        setSelectedCardsViewNotHidden(gameStut: gameStut)
+    }
+    
+    private func setAllCardsViewsHidden() {
+        arrangedSubviews.forEach {
+            $0.isHidden = true
+        }
+    }
+    
+    private func setSelectedCardsViewNotHidden(gameStut: PokerGame.GameStut) {
         var stutCount = 0
         gameStut.forEach {
             stutCount += 1
         }
+        
         for index in 0 ..< stutCount {
             arrangedSubviews[index].isHidden = false
         }

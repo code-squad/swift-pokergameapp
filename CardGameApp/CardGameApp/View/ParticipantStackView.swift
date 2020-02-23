@@ -25,11 +25,11 @@ class ParticipantStackView: UIStackView {
     }
     
     private func configure() {
-        setup()
+        setupStack()
         setupView()
     }
     
-    private func setup() {
+    private func setupStack() {
         axis = .vertical
         translatesAutoresizingMaskIntoConstraints = false
     }
@@ -39,7 +39,9 @@ class ParticipantStackView: UIStackView {
         addArrangedSubview(CardsStackView())
     }
     
-    func updateView(gameStut: PokerGame.GameStut) {
+    func updateView(name : String, gameStut: PokerGame.GameStut) {
+        participantLabel.text = name
+        
         let cardStackIndex = 1
         let cardsStackView = arrangedSubviews[cardStackIndex] as! CardsStackView
         cardsStackView.updateView(gameStut: gameStut)
