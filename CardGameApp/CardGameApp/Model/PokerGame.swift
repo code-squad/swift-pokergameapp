@@ -38,17 +38,16 @@ enum GameMode : Int {
 class PokerGame {
     
     private let gameMode: GameMode
-    private let dealer : Dealer
+    private let dealer = Dealer()
     private var players = Players()
     private let numbersOfPlayers : NumbersOfPlayers
     
-    init(dealer: Dealer, numbersOfPlayers: NumbersOfPlayers, gameMode: GameMode) {
+    init(numbersOfPlayers: NumbersOfPlayers, gameMode: GameMode) {
         self.gameMode = gameMode
         self.numbersOfPlayers = numbersOfPlayers
-        self.dealer = dealer
         self.players = {
             numbersOfPlayers.setPlayerSeat(for: {
-                players.addPlayer(newPlayer: Player(in: gameMode))
+                players.addPlayer(newPlayer: Player()
             })
             return self.players
         }()

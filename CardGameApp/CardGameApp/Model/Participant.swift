@@ -9,16 +9,12 @@
 import Foundation
 
 class Participant {
-    let gameMode : GameMode
     var cardsInHands = [Card]()
     
-    init(in gameMode: GameMode){
-        self.gameMode = gameMode
-    }
-    
-    func isCardsFull() -> Bool {
-        return self.gameMode.compareStudNumber(with: self.cardsInHands.count)
-    }
+//
+//    func isCardsFull() -> Bool {
+//        return self.gameMode.compareStudNumber(with: self.cardsInHands.count)
+//    }
     func addCard(newCard: Card) {
         self.cardsInHands.append(newCard)
     }
