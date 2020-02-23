@@ -83,6 +83,7 @@ class ViewController: UIViewController {
     
     private func startGame(gameStut: PokerGame.GameStut, playersNum: Players.Number) {
         let game = PokerGame(gameStut: gameStut, playersNum: playersNum)
-        participantsStackView.updateView(gameStut: gameStut, playersNum: playersNum)
+        game.startNewRound()
+        participantsStackView.updateView(game: game)
     }
 }
