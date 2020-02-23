@@ -14,6 +14,21 @@ extension ViewController: GameSegmentedControlStackViewDelegate {
     }
 }
 
+extension ViewController {
+    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        if motion == .motionShake {
+            guard let gameStut = gameSegmentedControlStackView.gameStut() else {
+                return
+            }
+            guard let playersNum = gameSegmentedControlStackView.playersNum() else {
+                return
+            }
+            
+            startGame(gameStut: gameStut, playersNum: playersNum)
+        }
+    }
+}
+
 class ViewController: UIViewController {
     
     private var gameSegmentedControlStackView: GameSegmentedControlStackView!

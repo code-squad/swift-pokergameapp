@@ -64,7 +64,7 @@ class GameSegmentedControlStackView: UIStackView {
         delegate?.segmentedControlIndexChanged(gameStut: gameStut, playersNum: playersNum)
     }
     
-    private func gameStut() -> PokerGame.GameStut? {
+    func gameStut() -> PokerGame.GameStut? {
         let index = stutSegmentedControl.selectedSegmentIndex
         switch index {
         case 0:
@@ -76,7 +76,7 @@ class GameSegmentedControlStackView: UIStackView {
         }
     }
     
-    private func playersNum() -> Players.Number? {
+    func playersNum() -> Players.Number? {
         let index = playersSegmentedControl.selectedSegmentIndex
         switch index {
         case 0:
