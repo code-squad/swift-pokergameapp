@@ -19,14 +19,14 @@ class ParticipantsStackView: UIStackView {
     }
     
     private func configure() {
-        setup()
+        setupStack()
         setupView()
     }
     
-    private func setup() {
+    private func setupStack() {
         axis = .vertical
         distribution = .fillEqually
-        spacing = 40
+        spacing = 20
         translatesAutoresizingMaskIntoConstraints = false
     }
     
@@ -43,19 +43,38 @@ class ParticipantsStackView: UIStackView {
     }
     
     func updateView(gameStut: PokerGame.GameStut, playersNum: Players.Number) {
+        setAllParticipantViewsHidden()
+        setSelectedParticipantViewsNotHidden(gameStut: gameStut, playersNum: playersNum)
+    }
+    
+    private func setAllParticipantViewsHidden() {
         arrangedSubviews.forEach {
             $0.isHidden = true
         }
-        
-        let dealerCount = 1
-        var playersNumCount = dealerCount
+    }
+    
+    private func setSelectedParticipantViewsNotHidden(gameStut: PokerGame.GameStut,playersNum: Players.Number) {
+        var playersNumCount = 0
         playersNum.forEach {
             playersNumCount += 1
         }
+        updatePlayers(playersNumCount: playersNumCount, gameStut: gameStut)
+        updateDealer(playersNumCount: playersNumCount, gameStut: gameStut)
+    }
+    
+    private func updatePlayers(playersNumCount: Int, gameStut: PokerGame.GameStut) {
         for index in 0 ..< playersNumCount {
             let participantStackView = arrangedSubviews[index] as! ParticipantStackView
             participantStackView.isHidden = false
-            participantStackView.updateView(gameStut: gameStut)
+            participantStackView.updateView(name: "Player\(index + 1)", gameStut: gameStut)
         }
+    }
+    
+    private func updateDealer(playersNumCount: Int, gameStut: PokerGame.GameStut) {
+        let dealerCount = 1
+        let dealerIndex = playersNumCount + dealerCount - 1
+        let dealerStackView = arrangedSubviews[dealerIndex] as! ParticipantStackView
+        dealerStackView.isHidden = false
+        dealerStackView.updateView(name: "Dealer", gameStut: gameStut)
     }
 }
