@@ -80,10 +80,11 @@ class ViewController: UIViewController {
         self.view.addSubview(self.numbersOfPlayersSegmentControl)
         
         pokerGame.start() // 게임 시작 : 카드 셔플 후 분배
-        
+        pokerGame.shuffleWholeCardDeck()
         var playersStack = playersStackView()
+
+        var playerNumber = 1
         numbersOfPlayers.setPlayerSeat{ // 4명
-            var playerNumber = 1
             pokerGame.shuffleWholeCardDeck()
             // playersStack에 UILabel을 subView로 추가하기
             playersStack.addArrangedSubview(makePlayersLabel(of: "Player\(playerNumber)"))
@@ -192,9 +193,9 @@ class ViewController: UIViewController {
     @objc func numbersOfPlayersSegmentChanged(segmentedControl: UISegmentedControl){
         // 플레이어 인원 선택에 따른 내용 구현 예정
         switch segmentedControl.selectedSegmentIndex {
-        case 0: startPokerGame()// 2 명
-        case 1: startPokerGame()// 3 명
-        case 2: startPokerGame()// 4 명
+//        case 0: startPokerGame()// 2 명
+//        case 1: startPokerGame()// 3 명
+//        case 2: startPokerGame()// 4 명
         default: return
         }
     }

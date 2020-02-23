@@ -29,7 +29,7 @@ class Card: CustomStringConvertible {
     //3. 프로퍼티를 호출할 때 클래스에서는 프로퍼티를 호출할 때 마다 "Suit().hearts" 이런 식으로 명시해줘야 하지만 enum은 추론 가능할 때 ".eight"과 같이 표현할 수 있어서 더 편하다고 생각했습니다.
     
     enum Suit: Character, CaseIterable, CustomStringConvertible {
-        case spades = "♠️" , hearts = "♥️", diamonds = "♦️", clubs = "♣️"
+        case spades = "s" , hearts = "h", diamonds = "d", clubs = "c"
         var description: String {
             return "\(self.rawValue)"
         }

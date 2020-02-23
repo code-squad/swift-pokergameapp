@@ -9,14 +9,14 @@
 import Foundation
 
 class Participant {
-    var cardsInHands = [Card]()
+    var cardsInHand = [Card]()
     
 //   
 //    func isCardsFull() -> Bool {
 //        return self.gameMode.compareStudNumber(with: self.cardsInHands.count)
 //    }
     func addCard(newCard: Card) {
-        self.cardsInHands.append(newCard)
+        self.cardsInHand.append(newCard)
     }
     
     func showEachCardInHand(behavior: (Card) -> () ) {
