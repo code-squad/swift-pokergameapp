@@ -32,15 +32,16 @@ extension PokerGame.GameStut: CustomStringConvertible {
 
 class PokerGame {
     
-    private let deck = Deck()
     private let dealer = Player()
     private let players: Players
     private let gameStut: GameStut
     private let playersNum: Players.Number
+    private let deck: Deck
     
-    init(gameStut: GameStut , playersNum: Players.Number){
+    init(gameStut: GameStut , playersNum: Players.Number, deck: Deck){
         self.gameStut = gameStut
         self.playersNum = playersNum
+        self.deck = deck
         self.players = Players(playersNum: playersNum)
     }
     

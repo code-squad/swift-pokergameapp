@@ -63,7 +63,7 @@ class ParticipantsStackView: UIStackView {
         
         let playersCount = playersIndex
         game.searchDealer { (dealer) in
-            updateDealer(playersCount: playersCount,dealer: dealer)
+            updateDealer(playersCount: playersCount, dealer: dealer)
         }
     }
     
