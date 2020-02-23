@@ -15,7 +15,7 @@ class ViewController: UIViewController {
     private var numbersOfPlayers = NumbersOfPlayers.four
     // MARK: - Properties
     // StackView
-    let cardsStack: UIStackView = {
+    func cardsStackView() -> UIStackView {
         let horizontalStackView = UIStackView()
         horizontalStackView.translatesAutoresizingMaskIntoConstraints = false
         horizontalStackView.axis = .horizontal
@@ -23,7 +23,7 @@ class ViewController: UIViewController {
         horizontalStackView.spacing = 4
         
         return horizontalStackView
-    }()
+    }
     
     // [추가한 부분] - 참여한 플레이어들의 카드가 쌓이는 StackView
     func playersStackView() ->  UIStackView {
@@ -108,12 +108,18 @@ class ViewController: UIViewController {
         return participantLabel
     }
     
+    func makePlayersCardsStack() -> UIStackView {
+            let playerCardStack = cardsStackView()
+            makePlayersCards(of: playerCardStack)
+            return playerCardStack
+        }
+    
     // MARK: - Configuration
     // StackView
-    func setStackView() {
-        cardsStack.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 140).isActive = true
-        cardsStack.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 5).isActive = true
-        cardsStack.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -5).isActive = true
+    func setStackView(of stackView : UIStackView) {
+        stackView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 140).isActive = true
+        stackView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 5).isActive = true
+        stackView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -5).isActive = true
     }
     
     // StackView에 넣을 이미지 뷰 생성
