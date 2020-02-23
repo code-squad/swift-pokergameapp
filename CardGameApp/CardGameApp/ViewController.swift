@@ -8,16 +8,17 @@
 
 import UIKit
 
-class ViewController: UIViewController, GameSegmentedControlDelegate {
+extension ViewController: GameSegmentedControlDelegate {
+    func segmentedControlIndexChanged(stut: PokerGame.GameStut, players: Players.PlayersNum) {
+        
+    }
+}
+
+class ViewController: UIViewController {
     
-    private let game = PokerGame(gameStut: .five, playersNum: .one)
-    
-    private let segmentedControlsStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .vertical
-        stackView.distribution = .fillEqually
-        stackView.spacing = 8
-        stackView.translatesAutoresizingMaskIntoConstraints = false
+    private lazy var gameSegmentedControlStackView: GameSegmentedControlStackView = {
+        let stackView = GameSegmentedControlStackView()
+        stackView.delegate = self
         return stackView
     }()
     
@@ -29,6 +30,8 @@ class ViewController: UIViewController, GameSegmentedControlDelegate {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
+    
+    private let game = PokerGame(gameStut: .five, playersNum: .one)
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -46,48 +49,22 @@ class ViewController: UIViewController, GameSegmentedControlDelegate {
     }
     
     private func setupSegmentedControls() {
-        addSegmentedControls()
-        self.view.addSubview(segmentedControlsStackView)
+        self.view.addSubview(gameSegmentedControlStackView)
         setConstraintControlsStackView()
     }
     
     private func setConstraintControlsStackView() {
         let topConstant: CGFloat = 10
         let sideConstant: CGFloat = 120
-        segmentedControlsStackView.topAnchor.constraint(
+        gameSegmentedControlStackView.topAnchor.constraint(
             equalTo: view.safeAreaLayoutGuide.topAnchor,
             constant: topConstant).isActive = true
-        segmentedControlsStackView.leadingAnchor.constraint(
+        gameSegmentedControlStackView.leadingAnchor.constraint(
             equalTo: view.leadingAnchor,
             constant: sideConstant).isActive = true
-        segmentedControlsStackView.trailingAnchor.constraint(
+        gameSegmentedControlStackView.trailingAnchor.constraint(
             equalTo: view.trailingAnchor,
             constant: -sideConstant).isActive = true
-    }
-    
-    private func addSegmentedControls() {
-        addStutSegmentedControl()
-        addPlayersSegmentedControl()
-    }
-    
-    private func addStutSegmentedControl() {
-        let stutSegmentedControl = GameSegmentedControl(items:
-            PokerGame.GameStut.allCases.map{ $0.description},
-                                                        delegate: self)
-        segmentedControlsStackView.addArrangedSubview(
-            stutSegmentedControl)
-    }
-    
-    private func addPlayersSegmentedControl() {
-        let playersSegmentedControl = GameSegmentedControl(items:
-            Players.PlayersNum.allCases.map{ $0.description },
-                                                           delegate: self)
-        segmentedControlsStackView.addArrangedSubview(
-            playersSegmentedControl)
-    }
-    
-    func indexChanged(index: Int) {
-        print(index)
     }
     
     private func setupCards() {
@@ -108,6 +85,7 @@ class ViewController: UIViewController, GameSegmentedControlDelegate {
         let horizontalStackView : UIStackView = {
             let stackView = UIStackView()
             stackView.axis = .horizontal
+            stackView.spacing = -100
             stackView.distribution = .fillEqually
             stackView.translatesAutoresizingMaskIntoConstraints = false
             return stackView
@@ -123,7 +101,7 @@ class ViewController: UIViewController, GameSegmentedControlDelegate {
                 generateCardImageView())
         }
     }
-
+    
     private func generateCardImageView() -> UIImageView {
         let cardImageView = UIImageView(image:  #imageLiteral(resourceName: "card-back"))
         cardImageView.contentMode = .scaleAspectFill
@@ -140,7 +118,7 @@ class ViewController: UIViewController, GameSegmentedControlDelegate {
         let leadingConstant: CGFloat = 20
         let trailingConstant: CGFloat = 40
         verticalCardsStackView.topAnchor.constraint(
-            equalTo: segmentedControlsStackView.bottomAnchor,
+            equalTo: gameSegmentedControlStackView.bottomAnchor,
             constant: topConstant).isActive = true
         verticalCardsStackView.leadingAnchor.constraint(
             equalTo: view.leadingAnchor,

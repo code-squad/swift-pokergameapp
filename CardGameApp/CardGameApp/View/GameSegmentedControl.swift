@@ -8,20 +8,7 @@
 
 import UIKit
 
-protocol GameSegmentedControlDelegate: class {
-    func indexChanged(index : Int)
-}
-
-
 class GameSegmentedControl: UISegmentedControl {
-    
-    weak var delegate: GameSegmentedControlDelegate?
-    
-    init(items: [String], delegate: GameSegmentedControlDelegate) {
-        super.init(items : items)
-        self.delegate = delegate
-        configure()
-    }
     
     override init(items: [Any]?) {
         super.init(items: items)
@@ -40,7 +27,6 @@ class GameSegmentedControl: UISegmentedControl {
     private func configure() {
         setupSegmentIndex()
         setupTitle()
-        setAddTarget()
     }
     
     private func setupSegmentIndex() {
@@ -53,13 +39,5 @@ class GameSegmentedControl: UISegmentedControl {
         
         let selectedTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
         setTitleTextAttributes(selectedTextAttributes, for: .selected)
-    }
-    
-    private func setAddTarget() {
-        addTarget(self, action: #selector(indexChanged), for: .valueChanged)
-    }
-    
-    @objc private func indexChanged(_ sender: UISegmentedControl) {
-        delegate?.indexChanged(index: sender.selectedSegmentIndex)
     }
 }
