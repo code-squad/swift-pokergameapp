@@ -69,7 +69,7 @@ class ParticipantsStackView: UIStackView {
     
     private func updatePlayer(at index: Int, player: Player) {
         let participantStackView = arrangedSubviews[index] as! ParticipantStackView
-        participantStackView.updateView(name: "Players\(index + 1)", player: player)
+        participantStackView.updateView(name: "Player\(index + 1)", player: player)
     }
     
     private func updateDealer(playersCount: Int, dealer: Player) {
