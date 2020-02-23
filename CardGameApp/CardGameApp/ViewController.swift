@@ -9,7 +9,7 @@
 import UIKit
 
 extension ViewController: GameSegmentedControlDelegate {
-    func segmentedControlIndexChanged(stut: PokerGame.GameStut, players: Players.PlayersNum) {
+    func segmentedControlIndexChanged(stut: PokerGame.GameStut, players: Players.Number) {
         
     }
 }
