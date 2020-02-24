@@ -12,9 +12,9 @@ enum NumbersOfPlayers : Int {
     case one = 1 , two, three, four
     
     // 플레이어의 자리가 몇 개가 필요한지 세팅
-    func setPlayerSeat(for bringPlayer: () -> ()) {
+    func setPlayerSeat(for behavior: () -> ()) {
         for _ in 1 ... self.rawValue {
-            bringPlayer()
+            behavior()
         }
     }
 }
@@ -28,9 +28,9 @@ enum GameMode : Int {
     }
     
     // 카드를 내려놓는 곳이 몇 개가 필요한지 세팅
-    func setCardPlacement(of giveCard: ()-> ()) {
+    func setCardPlacement(of behavior: ()-> ()) {
         for _ in 1 ... self.rawValue{
-            giveCard()
+            behavior()
         }
     }
 }
@@ -57,7 +57,7 @@ class PokerGame {
         // 카드 분배
         gameMode.setCardPlacement {
             distributeCards()
-        }
+            }
     }
     
     private func distributeCards() {
