@@ -84,9 +84,11 @@ final class GameTableView: UIView {
     @objc private func translateGameStyle() {
         datasource?.stackForAt(gameStyle)
         gameStyle.toggle()
+        layoutIfNeeded()
     }
     
     @objc private func translateNumberOfPlayers() {
         datasource?.numberOfRow(selectedItem: numberOfPlayerSegementedControl.selectedSegmentIndex)
+        layoutIfNeeded()
     }
 }

@@ -9,7 +9,7 @@
 import Foundation
 
 @objcMembers class DataManager: NSObject {
-    dynamic var game = Game.fiveCardStud(gamers: Players())
+    var game: Game = Game.fiveCardStud(gamers: Players())
 }
 
 extension DataManager: StackViewDataSource {
