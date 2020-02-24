@@ -24,9 +24,7 @@ class Player {
         cards.add(card)
     }
     
-    func printCard() {
-        cards.printCard { result in
-            print(result)
-        }
+    func removeLast() {
+        cards.removeLast()
     }
 }

@@ -20,9 +20,7 @@ struct Hands {
         cards.append(card)
     }
     
-    func printCard(handler: ([String]) -> Void) {
-        var result: [String] = []
-        cards.forEach { result.append($0.description) }
-        handler(result)
+    mutating func removeLast() {
+        cards.removeLast()
     }
 }

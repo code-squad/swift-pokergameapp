@@ -10,6 +10,6 @@ import Foundation
 
 protocol StackViewDataSource: NSObject {
     func stackForAt(_ fact: Bool)
-    func numberOfRow(row: Int)
+    func numberOfRow(selectedItem: Int)
 }
 
