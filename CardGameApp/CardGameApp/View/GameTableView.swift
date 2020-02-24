@@ -34,6 +34,10 @@ final class GameTableView: UIView {
         super.init(coder: coder)
         configure()
     }
+
+    func fetchGame(game: Game?) {
+        stackView.fetchGame(game: game)
+    }
     
     private func configure() {
         apply(background: viewBackground)
