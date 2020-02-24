@@ -10,18 +10,18 @@ import Foundation
 
 struct Players {
     
-    private var gamers: [Player] = []
+    private var players: [Player] = []
     var count: Int {
-        return gamers.count
+        return players.count
     }
     
     func forEach(handler: (Player) -> Void) {
-        gamers.forEach { gamer in
+        players.forEach { gamer in
             handler(gamer)
         }
     }
     
     mutating func addGamers(gamer: Player) {
-        gamers.append(gamer)
+        players.append(gamer)
     }
 }
