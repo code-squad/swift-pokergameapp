@@ -19,3 +19,17 @@ enum Style: Int {
         }
     }
 }
+
+enum Peoples: Int, CaseIterable {
+    case two = 2
+    case three = 3
+    case four = 4
+    
+    init(index: Int) {
+        self = Peoples.allCases[index]
+    }
+    
+    func some(handler: (Int) -> Void) {
+        (1...self.rawValue).forEach { handler($0) }
+    }
+}
