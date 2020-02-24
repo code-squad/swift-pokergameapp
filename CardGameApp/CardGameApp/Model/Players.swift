@@ -42,8 +42,4 @@ extension Players {
     func searchPlayer(handler: (Player) -> (Void)) {
         players.forEach{ handler($0) }
     }
-    
-    func searchPlayersNum(handler: (Number) -> ()) {
-        handler(playersNum)
-    }
 }
