@@ -99,6 +99,8 @@
 		86788CD923F2961D00D64D1A /* CardGameApp */ = {
 			isa = PBXGroup;
 			children = (
+				86932FBC23FE8B8800E93382 /* Views */,
+				86932FBB23FE8B6D00E93382 /* Model */,
 				86788CDA23F2961D00D64D1A /* AppDelegate.swift */,
 				86788CDC23F2961D00D64D1A /* SceneDelegate.swift */,
 				86788CDE23F2961D00D64D1A /* ViewController.swift */,
@@ -126,6 +128,20 @@
 				86788CFE23F2962100D64D1A /* Info.plist */,
 			);
 			path = CardGameAppUITests;
+			sourceTree = "<group>";
+		};
+		86932FBB23FE8B6D00E93382 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		86932FBC23FE8B8800E93382 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
