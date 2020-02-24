@@ -90,6 +90,9 @@ class ViewController: UIViewController {
         self.view.addSubview(self.numbersOfPlayersSegmentControl)
         
         pokerGame.start() // 게임 시작 : 카드 셔플 후 분배
+//        pokerGame.forEachPlayer(behavior: ){ (player) in
+//            print(player.cardsInHand.count)
+//        }
         var playersStack = makePlayersStackView()
 
         var playerNumber = 1
@@ -106,7 +109,7 @@ class ViewController: UIViewController {
       
         //딜러 추가
         playersStack.addArrangedSubview (makePlayersLabel(of: "Dealer"))
-        playersStack.addArrangedSubview(makePlayersCardsStack())
+        playersStack.addArrangedSubview(makeDealerCardsStack())
         //gameStackView - 딜러와 플레이어들을 담고 있는 StackView에 추가
         gameStackView.addArrangedSubview(playersStack)
         self.view.addSubview(gameStackView)
@@ -130,14 +133,35 @@ class ViewController: UIViewController {
         
         pokerGame.forEachPlayer(behavior: ){
             player in
-            player.showEachCardInHand(behavior: ){
-                (card) in
-                let card = UIImageView(image: UIImage(named: card.description))
+            // 여기서 여러번 추가 됨. // 여기가 문제임.
+//            print(player.cardsInHand.count)
+//            print("얏")
+        print("ViewController에서 addPlayersCards 에서 pokerGame.forEachPlayer(behavior: )하고 player.cardsInHand.count :  \(player.cardsInHand.count)")
+            for card in player.cardsInHand {
+//            player.showEachCardInHand(behavior: ){
+//                (card) in
+                let cardImage = UIImageView(image: UIImage(named: card.description))
                 // 카드 이미지 세팅
-                card.contentMode = .scaleAspectFit
-                card.heightAnchor.constraint(equalTo: card.widthAnchor, multiplier: 1.27).isActive = true
-                stackView.addArrangedSubview(card)
+                cardImage.contentMode = .scaleAspectFit
+                cardImage.heightAnchor.constraint(equalTo: cardImage.widthAnchor, multiplier: 1.27).isActive = true
+                stackView.addArrangedSubview(cardImage)
             }
+        }
+    }
+    
+    func makeDealerCardsStack() -> UIStackView {
+           let dealerCardStack = makeCardsStackView()
+           addDealerCards(of: dealerCardStack)
+           return dealerCardStack
+       }
+    
+    func addDealerCards(of stackView: UIStackView) {
+        pokerGame.showDealerCards(behavior: ){ card in
+            let cardImage = UIImageView(image: UIImage(named: card.description))
+            // 카드 이미지 세팅
+            cardImage.contentMode = .scaleAspectFit
+            cardImage.heightAnchor.constraint(equalTo: cardImage.widthAnchor, multiplier: 1.27).isActive = true
+            stackView.addArrangedSubview(cardImage)
         }
     }
     

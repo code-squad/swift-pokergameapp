@@ -32,6 +32,7 @@ class Players {
     }
     
     func showParticipantsCards(behavior: (Player) -> ()) {
+        print("Players에서 showParticipantsCards 에서 players.count :  \(self.players.count)")
         players.forEach {
             behavior($0)
         }

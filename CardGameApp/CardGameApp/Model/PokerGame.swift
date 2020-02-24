@@ -68,8 +68,16 @@ class PokerGame {
     }
     
     func forEachPlayer(behavior: (Player) -> ()) {
+        
         players.showParticipantsCards(behavior: ) { (player) in
+            print("PokerGame에서 forEachPlayer 에서 players.players.count :  \(self.players.players.count)")
             behavior(player)
+        }
+    }
+    
+    func showDealerCards(behavior: (Card)->()){
+        dealer.showEachCardInHand(behavior: ){ (card) in
+            behavior(card)
         }
     }
     
