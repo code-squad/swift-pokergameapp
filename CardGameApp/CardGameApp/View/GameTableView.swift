@@ -83,6 +83,6 @@ final class GameTableView: UIView {
     }
     
     @objc private func translateNumberOfPlayers() {
-        datasource?.numberOfRow(row: numberOfPlayerSegementedControl.selectedSegmentIndex)
+        datasource?.numberOfRow(selectedItem: numberOfPlayerSegementedControl.selectedSegmentIndex)
     }
 }

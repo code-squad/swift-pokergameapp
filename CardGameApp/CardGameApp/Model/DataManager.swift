@@ -14,10 +14,14 @@ import Foundation
 
 extension DataManager: StackViewDataSource {
     func stackForAt(_ fact: Bool) {
-        
+        fact == true ? game.translateStyle(style: .five) : game.translateStyle(style: .seven)
+        let new = game
+        game = new
     }
     
-    func numberOfRow(row: Int) {
-        
+    func numberOfRow(selectedItem: Int) {
+        game.configure(index: selectedItem)
+        let new = game
+        game = new
     }
 }

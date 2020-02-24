@@ -18,6 +18,10 @@ enum Style: Int {
             handler()
         }
     }
+    
+    func isEqual(_ compare: Int) -> Bool {
+        (self.rawValue - compare) > 0 ? true : false
+    }
 }
 
 enum Peoples: Int, CaseIterable {
@@ -29,7 +33,7 @@ enum Peoples: Int, CaseIterable {
         self = Peoples.allCases[index]
     }
     
-    func some(handler: (Int) -> Void) {
+    func forEach(handler: (Int) -> Void) {
         (1...self.rawValue).forEach { handler($0) }
     }
 }
