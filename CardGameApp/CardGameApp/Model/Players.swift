@@ -29,7 +29,11 @@ struct Players {
         }
     }
     
-    mutating func addGamers(gamer: Player) {
-        players.append(gamer)
+    mutating func addGamer(player: Player) {
+        players.append(player)
+    }
+    
+    mutating func addGamers(players: [Player]) {
+        self.players.append(contentsOf: players)
     }
 }

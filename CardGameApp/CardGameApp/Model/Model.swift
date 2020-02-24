@@ -6,7 +6,7 @@
 //  Copyright © 2020 Cloud. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 //MARK: - Card
 class Card {
@@ -25,10 +25,16 @@ class Card {
     
     private var suit: suit
     private var rank: rank
-    
+    private var image: UIImage?
+
     init(suit: suit, rank: rank) {
         self.suit = suit
         self.rank = rank
+        image = UIImage(named: self.description)
+    }
+    
+    func apply(imageView: UIImageView) {
+        imageView.image = image
     }
 }
 
@@ -102,10 +108,10 @@ extension Card.rank: CustomStringConvertible {
 extension Card.suit: CustomStringConvertible {
     var description: String {
         switch self {
-        case .club: return "♧"
-        case .diamond: return "⬦"
-        case .heart: return "❤"
-        case .spade: return "♤"
+        case .club: return "c"
+        case .diamond: return "d"
+        case .heart: return "h"
+        case .spade: return "s"
         }
     }
 }

@@ -11,7 +11,7 @@ import Foundation
 class Player {
     
     private var cards: Hands = Hands()
-    private var identifier: String
+    var identifier: String
     var count: Int {
         return cards.count
     }

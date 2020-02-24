@@ -22,10 +22,11 @@ class Game {
     init(players: Players, style: Style, peoples: Peoples){
         dealer = Dealer()
         self.players = players
-        self.players.addGamers(gamer: dealer)
+        self.players.addGamer(player: dealer)
         self.style = style
         self.peoples = peoples
         configure(index: peoples.rawValue)
+        dealer.shuffle()
     }
 
     func configure(index: Int) {
@@ -38,6 +39,18 @@ class Game {
         self.style = style
         players.forEach { player in
             style.isEqual(players.count) ? popCard(player: player) : pushCard(player: player)
+        }
+    }
+    
+    func pushCardToView(handler: (Card?) -> Void) {
+        style.forEach {
+            handler(dealer.pushCard())
+        }
+    }
+    
+    func pushPlayerToView(handler: (Player) -> Void) {
+        players.forEach { player in
+            handler(player)
         }
     }
     
@@ -58,7 +71,7 @@ class Game {
             distribute(player: player)
         }
         distribute(player: dealer)
-        players.addGamers(gamer: dealer)
+        players.addGamer(player: dealer)
     }
     
     private func distribute(player: Player) {
