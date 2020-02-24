@@ -14,6 +14,7 @@
 		AE40A37223ED35B4009AB61B /* GameTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE40A37123ED35B4009AB61B /* GameTableView.swift */; };
 		AE40A37523ED4D70009AB61B /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = AE40A37423ED4D70009AB61B /* SnapKit */; };
 		AE40A3AE23F17205009AB61B /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE40A3AD23F17205009AB61B /* Model.swift */; };
+		AE5643FC2403F29800BA989E /* StackViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5643FB2403F29800BA989E /* StackViewDataSource.swift */; };
 		AE83CC3F23F67287002635AD /* Hands.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE83CC3E23F67287002635AD /* Hands.swift */; };
 		AE83CC4123F672DB002635AD /* Gamer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE83CC4023F672DB002635AD /* Gamer.swift */; };
 		AE83CC4323F67341002635AD /* Dealer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE83CC4223F67341002635AD /* Dealer.swift */; };
@@ -43,6 +44,7 @@
 		AE40A36B23ED340B009AB61B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AE40A37123ED35B4009AB61B /* GameTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTableView.swift; sourceTree = "<group>"; };
 		AE40A3AD23F17205009AB61B /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		AE5643FB2403F29800BA989E /* StackViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackViewDataSource.swift; sourceTree = "<group>"; };
 		AE83CC3E23F67287002635AD /* Hands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hands.swift; sourceTree = "<group>"; };
 		AE83CC4023F672DB002635AD /* Gamer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gamer.swift; sourceTree = "<group>"; };
 		AE83CC4223F67341002635AD /* Dealer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dealer.swift; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 		AE40A35C23ED340A009AB61B /* CardGameApp */ = {
 			isa = PBXGroup;
 			children = (
+				AE5643FA2403F28700BA989E /* Protocol */,
 				AEF5EA5F23FA21BC0038D07E /* Enumeration */,
 				AE83CC3D23F6727B002635AD /* Model */,
 				AE40A35D23ED340A009AB61B /* AppDelegate.swift */,
@@ -109,6 +112,14 @@
 				AE40A36B23ED340B009AB61B /* Info.plist */,
 			);
 			path = CardGameApp;
+			sourceTree = "<group>";
+		};
+		AE5643FA2403F28700BA989E /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				AE5643FB2403F29800BA989E /* StackViewDataSource.swift */,
+			);
+			path = Protocol;
 			sourceTree = "<group>";
 		};
 		AE83CC3D23F6727B002635AD /* Model */ = {
@@ -247,6 +258,7 @@
 			files = (
 				AE40A36223ED340A009AB61B /* ViewController.swift in Sources */,
 				AE83CC4523F67409002635AD /* Game.swift in Sources */,
+				AE5643FC2403F29800BA989E /* StackViewDataSource.swift in Sources */,
 				AE40A3AE23F17205009AB61B /* Model.swift in Sources */,
 				AE40A37223ED35B4009AB61B /* GameTableView.swift in Sources */,
 				AE40A35E23ED340A009AB61B /* AppDelegate.swift in Sources */,
