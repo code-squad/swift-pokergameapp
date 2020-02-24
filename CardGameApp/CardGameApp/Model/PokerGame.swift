@@ -61,7 +61,6 @@ class PokerGame {
     }
     
     private func distributeCards() {
-        shuffleWholeCardDeck()
         players.addCard(newCard: dealer.giveOneCard())
         dealer.addCard(newCard: dealer.giveOneCard())
     }
