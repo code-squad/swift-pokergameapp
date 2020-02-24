@@ -21,6 +21,7 @@
 		78971DCE23F27F2500AC81D0 /* CardGameAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78971DCD23F27F2500AC81D0 /* CardGameAppUITests.swift */; };
 		78E049B124043DF6005BB4D5 /* Poker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E049B024043DF6005BB4D5 /* Poker.swift */; };
 		78E049B324043E16005BB4D5 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E049B224043E16005BB4D5 /* Player.swift */; };
+		78E049B524043E31005BB4D5 /* Dealer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E049B424043E31005BB4D5 /* Dealer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		78971DCF23F27F2500AC81D0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		78E049B024043DF6005BB4D5 /* Poker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Poker.swift; sourceTree = "<group>"; };
 		78E049B224043E16005BB4D5 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		78E049B424043E31005BB4D5 /* Dealer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dealer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +122,7 @@
 				78530B6523FA6DB200BABC4E /* CardDeck.swift */,
 				78E049B024043DF6005BB4D5 /* Poker.swift */,
 				78E049B224043E16005BB4D5 /* Player.swift */,
+				78E049B424043E31005BB4D5 /* Dealer.swift */,
 			);
 			path = CardGameApp;
 			sourceTree = "<group>";
@@ -277,6 +280,7 @@
 				78E049B124043DF6005BB4D5 /* Poker.swift in Sources */,
 				78530B6623FA6DB200BABC4E /* CardDeck.swift in Sources */,
 				78971DAC23F27F2400AC81D0 /* AppDelegate.swift in Sources */,
+				78E049B524043E31005BB4D5 /* Dealer.swift in Sources */,
 				78E049B324043E16005BB4D5 /* Player.swift in Sources */,
 				78971DAE23F27F2400AC81D0 /* SceneDelegate.swift in Sources */,
 				7893B6B823F6735D00D924C7 /* Card.swift in Sources */,
