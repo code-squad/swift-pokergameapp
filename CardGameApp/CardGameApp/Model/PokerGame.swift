@@ -47,15 +47,20 @@ class PokerGame {
     }
     
     func start() {
-        // 카드 분배
-        gameMode.setCardPlacement {
+//        gameMode.setCardPlacement {
             distributeCards()
-            }
+//            }
     }
     
     private func distributeCards() {
-        players.addCard(newCard: dealer.giveOneCard())
-        dealer.addCard(newCard: dealer.giveOneCard())
+        // players
+        
+        gameMode.setCardPlacement {
+        var newCard = dealer.giveOneCard()
+         players.addCard(newCard: newCard)
+       }
+        var newCard = dealer.giveOneCard()
+        dealer.addCard(newCard: newCard)
     }
     
     func shuffleWholeCardDeck(){
