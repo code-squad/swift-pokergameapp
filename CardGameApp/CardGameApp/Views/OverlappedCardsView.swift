@@ -44,8 +44,7 @@ class OverlappedCardsView: UIView {
         translatesAutoresizingMaskIntoConstraints = false
         addSubview(overlappedCardsStackView)
         overlappedCardsStackView.fillSuperView()
-        let max = GamePlay.Rule.max
-        (0..<max).forEach { _ in
+        GamePlay.Rule.invokePerMaxParticipantNumber {
             let cardView = UIImageView(image: nil)
             cardView.translatesAutoresizingMaskIntoConstraints = false
             cardView.heightAnchor.constraint(equalTo: cardView.widthAnchor, multiplier: 1.27).isActive = true

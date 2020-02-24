@@ -62,7 +62,7 @@ extension GamePlay.Rule: CaseIterable, Comparable {
         return lhs.rawValue < rhs.rawValue
     }
 
-    static var max: Int {
-        self.allCases.max()!.rawValue
+    static func invokePerMaxParticipantNumber(_ block: () -> ()) {
+        return (0..<allCases.max()!.rawValue).forEach { _ in block() }
     }
 }

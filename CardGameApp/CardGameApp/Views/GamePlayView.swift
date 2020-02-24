@@ -36,8 +36,7 @@ class GamePlayView: UIView {
         translatesAutoresizingMaskIntoConstraints = false
         addSubview(participantsStackView)
         participantsStackView.fillSuperView()
-        let max = Players.Number.max + 1
-        (0..<max).forEach { _ in
+        Players.Number.invokePerMaxParticipantNumber {
             let participantView = ParticipantView()
             participantsStackView.addArrangedSubview(participantView)
         }
