@@ -50,8 +50,8 @@ extension Players.Number: CaseIterable, Comparable {
     static func < (lhs: Players.Number, rhs: Players.Number) -> Bool {
         return lhs.rawValue < rhs.rawValue
     }
-
-    static var max: Int {
-        self.allCases.max()!.rawValue
+    
+    static func invokePerMaxParticipantNumber(_ block: () -> ()) {
+        return (0..<allCases.max()!.rawValue + 1).forEach { _ in block() }
     }
 }
