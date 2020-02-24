@@ -7,9 +7,10 @@
 //
 
 import Foundation
-class Dealer: Playable{
+class Dealer: Player {
     private var cardDeck = CardDeck()
     private var hands = Hands()
+    private var isWinner = false
     
     func removeOne() -> Card? {
         return cardDeck.removeOne()
@@ -19,7 +20,7 @@ class Dealer: Playable{
         return cardDeck.count()
     }
     
-    func appendCard(_ card: Card) {
+    override func appendCard(_ card: Card) {
         hands.append(card)
     }
     
@@ -31,8 +32,16 @@ class Dealer: Playable{
         hands.forEach(handler)
     }
     
-    func result() -> Hands.GameResult {
-        guard let result = hands.judgeResult() else { return Hands.GameResult.none }
-        return result
+   override func result() -> Hands.GameResult {
+        return hands.judgeResult()
     }
+
+   override func winGame() {
+        isWinner = true
+    }
+
+   override func sortCards() -> [Card] {
+           return hands.sortCards()
+    }
+       
 }

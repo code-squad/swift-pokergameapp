@@ -10,4 +10,6 @@ import Foundation
 protocol Playable {
     func appendCard(_ card: Card)
     func result() -> Hands.GameResult
+    func winGame()
+    func sortCards() -> [Card]
 }
