@@ -85,6 +85,14 @@
 			path = CardGameAppTests;
 			sourceTree = "<group>";
 		};
+		AE2CA74D2404119E0082BD21 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				AE40A36123ED340A009AB61B /* ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		AE40A35123ED340A009AB61B = {
 			isa = PBXGroup;
 			children = (
@@ -106,12 +114,12 @@
 		AE40A35C23ED340A009AB61B /* CardGameApp */ = {
 			isa = PBXGroup;
 			children = (
+				AE2CA74D2404119E0082BD21 /* Controller */,
 				AE5643FD2403F38100BA989E /* View */,
 				AE5643FA2403F28700BA989E /* Protocol */,
 				AEF5EA5F23FA21BC0038D07E /* Enumeration */,
 				AE83CC3D23F6727B002635AD /* Model */,
 				AE40A35D23ED340A009AB61B /* AppDelegate.swift */,
-				AE40A36123ED340A009AB61B /* ViewController.swift */,
 				AE40A36623ED340B009AB61B /* Assets.xcassets */,
 				AE40A36B23ED340B009AB61B /* Info.plist */,
 			);
