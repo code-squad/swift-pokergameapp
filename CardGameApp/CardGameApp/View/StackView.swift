@@ -31,13 +31,17 @@ class StackView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setup() {
+    func fetchGame(game: Game?) {
+        self.game = game
+    }
+    
+    private func setup() {
         var players = Players()
         players.addGamers(players: (1...3).map { Player(identifier: "player\($0)") })
         game = .fiveCardStud(gamers: players)
     }
     
-    func configuerStackView() {
+    private func configuerStackView() {
         initPlayersStackView()
         stackView.snp.makeConstraints { (make) in
             make.edges.equalTo(safeAreaLayoutGuide)
@@ -47,7 +51,7 @@ class StackView: UIView {
         
     }
     
-    func initCardStackView() -> UIStackView {
+    private func initCardStackView() -> UIStackView {
         let stack = UIStackView()
         game.pushCardToView { card in
             let cardView = UIImageView()
@@ -61,7 +65,7 @@ class StackView: UIView {
         return stack
     }
     
-    func initPlayerStackView(identifier: String) -> UIStackView {
+    private func initPlayerStackView(identifier: String) -> UIStackView {
         let stack = UIStackView()
         let playerIdentifier = UILabel()
         playerIdentifier.text = identifier
@@ -74,7 +78,7 @@ class StackView: UIView {
         return stack
     }
     
-    func initPlayersStackView() {
+    private func initPlayersStackView() {
         game.pushPlayerToView { player in
             stackView.addArrangedSubview(initPlayerStackView(identifier: player.identifier))
         }
