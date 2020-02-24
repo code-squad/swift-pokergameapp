@@ -21,12 +21,7 @@ extension PokerGame {
 
 extension PokerGame.GameStut: CustomStringConvertible {
     var description: String {
-        switch self {
-        case .seven:
-            return "7 Cards"
-        case .five:
-            return "5 Cards"
-        }
+        return String(self.rawValue)
     }
 }
 

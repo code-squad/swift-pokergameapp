@@ -17,9 +17,9 @@ class GameSegmentedControlStackView: UIStackView {
     weak var delegate: GameSegmentedControlStackViewDelegate?
     
     let stutSegmentedControl = GameSegmentedControl(items:
-        PokerGame.GameStut.allCases.map { $0.description })
+        PokerGame.GameStut.allCases.map { $0.description + " Cards"})
     let playersSegmentedControl = GameSegmentedControl(items:
-        Players.Number.allCases.map{ $0.description })
+        Players.Number.allCases.map{ $0.description + "명"})
     
     override init(frame: CGRect) {
         super.init(frame: frame)
