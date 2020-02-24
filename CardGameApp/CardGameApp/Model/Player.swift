@@ -1,5 +1,5 @@
 //
-//  Player.swift
+//  Gamer.swift
 //  CardGameApp
 //
 //  Created by Cloud on 2020/02/14.
@@ -8,20 +8,25 @@
 
 import Foundation
 
-struct Players {
+class Player {
     
-    private var gamers: [Gamer] = []
+    private var cards: Hands = Hands()
+    private var identifier: String
     var count: Int {
-        return gamers.count
+        return cards.count
     }
     
-    func forEach(handler: (Gamer) -> Void) {
-        gamers.forEach { gamer in
-            handler(gamer)
+    init(identifier: String) {
+        self.identifier = identifier
+    }
+    
+    func addCard(card: Card?) {
+        cards.add(card)
+    }
+    
+    func printCard() {
+        cards.printCard { result in
+            print(result)
         }
-    }
-    
-    mutating func addGamers(gamer: Gamer) {
-        gamers.append(gamer)
     }
 }

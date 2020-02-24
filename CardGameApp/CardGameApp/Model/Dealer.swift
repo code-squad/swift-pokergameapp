@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Dealer: Gamer {
+class Dealer: Player {
     
     private var deck: Deck = Deck()
     
