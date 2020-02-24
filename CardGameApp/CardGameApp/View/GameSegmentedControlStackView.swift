@@ -66,29 +66,11 @@ class GameSegmentedControlStackView: UIStackView {
     
     func gameStut() -> PokerGame.GameStut? {
         let index = stutSegmentedControl.selectedSegmentIndex
-        switch index {
-        case 0:
-            return PokerGame.GameStut.seven
-        case 1:
-            return PokerGame.GameStut.five
-        default:
-            return nil
-        }
+        return PokerGame.GameStut.allCases[index]
     }
     
     func playersNum() -> Players.Number? {
         let index = playersSegmentedControl.selectedSegmentIndex
-        switch index {
-        case 0:
-            return Players.Number.one
-        case 1:
-            return Players.Number.two
-        case 2:
-            return Players.Number.three
-        case 3:
-            return Players.Number.four
-        default:
-            return nil
-        }
+        return Players.Number.allCases[index]
     }
 }
