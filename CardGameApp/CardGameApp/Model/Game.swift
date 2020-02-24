@@ -10,23 +10,23 @@ import Foundation
 
 struct Game {
     
-    private var gamers: Players
+    private var players: Players
     private var dealer: Dealer
     private var style: Style
     var gamersCount: Int {
-        return gamers.count
+        return players.count
     }
     
-    init(gamers: Players, style: Style){
+    init(players: Players, style: Style){
         dealer = Dealer()
-        self.gamers = gamers
-        self.gamers.addGamers(gamer: dealer)
+        self.players = players
+        self.players.addGamers(gamer: dealer)
         self.style = style
         distributeByNubmers()
     }
     
     func pirntCards() {
-        gamers.forEach { game in
+        players.forEach { game in
             game.printCard()
         }
     }
@@ -38,7 +38,7 @@ struct Game {
     }
     
     private func distributeCard() {
-        gamers.forEach { gamer in
+        players.forEach { gamer in
             gamer.addCard(card: dealer.pushCard())
         }
     }
@@ -47,14 +47,14 @@ struct Game {
 extension Game {
     static func fiveCardStud(gamers: Players) -> Game {
         return Game (
-            gamers: gamers,
+            players: gamers,
             style: .five
         )
     }
     
     static func sevenCardStud(gamers: Players) -> Game {
         return Game (
-            gamers: gamers,
+            players: gamers,
             style: .seven
         )
     }
