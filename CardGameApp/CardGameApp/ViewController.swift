@@ -18,12 +18,13 @@ class ViewController: UIViewController {
     var observer: NSKeyValueObservation?
     
     override func loadView() {
-        view = GameTableView()
+        view = gameView
+        gameView.datasource = manager
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        gameView.datasource = manager
+        
         observer = manager.observe(\.game, changeHandler: { (datamanager, value) in
             self.gameView.fetchGame(game: value.newValue)
         })

@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Game {
+@objcMembers class Game: NSObject {
     
     private var players: Players
     private var dealer: Dealer
@@ -25,6 +25,7 @@ class Game {
         self.players.addGamer(player: dealer)
         self.style = style
         self.peoples = peoples
+        super.init()
         configure(index: peoples.rawValue)
         dealer.shuffle()
     }
