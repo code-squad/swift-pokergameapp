@@ -10,12 +10,13 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    private var pokerGame = PokerGame(numbersOfPlayers: .two, gameMode: .fiveCardStud)
-    private var gameMode = GameMode.sevenCardStud // segmentedControl에서 선택 받은 값에 따라 변경시키기
+    private var gameMode = GameMode.fiveCardStud
     private var numbersOfPlayers = NumbersOfPlayers.four
+    private var pokerGame = PokerGame(numbersOfPlayers: .four, gameMode: .fiveCardStud)
+   
     // MARK: - Properties
     // StackView
-    func cardsStackView() -> UIStackView {
+    func makeCardsStackView() -> UIStackView {
         let horizontalStackView = UIStackView()
         horizontalStackView.translatesAutoresizingMaskIntoConstraints = false
         horizontalStackView.axis = .horizontal
@@ -25,7 +26,7 @@ class ViewController: UIViewController {
     }
     
     // 참여한 플레이어들의 카드가 쌓이는 StackView
-    func playersStackView() ->  UIStackView {
+    func makePlayersStackView() ->  UIStackView {
         let playersCardsStackView = UIStackView()
         playersCardsStackView.translatesAutoresizingMaskIntoConstraints = false
         playersCardsStackView.axis = .vertical
@@ -89,7 +90,7 @@ class ViewController: UIViewController {
         self.view.addSubview(self.numbersOfPlayersSegmentControl)
         
         pokerGame.start() // 게임 시작 : 카드 셔플 후 분배
-        var playersStack = playersStackView()
+        var playersStack = makePlayersStackView()
 
         var playerNumber = 1
         numbersOfPlayers.setPlayerSeat{ // 4명
@@ -120,16 +121,16 @@ class ViewController: UIViewController {
     }
     
     func makePlayersCardsStack() -> UIStackView {
-        let playerCardStack = cardsStackView()
-        makePlayersCards(of: playerCardStack)
+        let playerCardStack = makeCardsStackView()
+        addPlayersCards(of: playerCardStack)
         return playerCardStack
     }
     
-    func makePlayersCards(of stackView: UIStackView) {
+    func addPlayersCards(of stackView: UIStackView) {
         
         pokerGame.forEachPlayer(behavior: ){
             player in
-            let playersCardsStack = cardsStackView()
+            let playersCardsStack = makeCardsStackView()
             player.showEachCardInHand(behavior: ){
                 (card) in
                 let card = UIImageView(image: UIImage(named: card.description))
