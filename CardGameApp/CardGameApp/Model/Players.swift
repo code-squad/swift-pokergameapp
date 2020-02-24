@@ -34,9 +34,7 @@ class Players {
 
 extension Players.Number: CustomStringConvertible {
     var description: String {
-        let num = String(self.rawValue)
-        let people = "명"
-        return num + people
+        return String(self.rawValue)
     }
 }
 
@@ -44,7 +42,7 @@ extension Players {
     func searchPlayer(handler: (Player) -> (Void)) {
         players.forEach{ handler($0) }
     }
-
+    
     func searchPlayersNum(handler: (Number) -> ()) {
         handler(playersNum)
     }
