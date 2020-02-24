@@ -12,9 +12,6 @@ struct CardDeck {
     // 카드덱
     private var deck = [Card]()
     
-    // 카드 52개를 카드덱에 초기화 해줘야함.
-    // 여기서 CaseIterable을 써서 모든 case를 가져와서 조합
-    // 그다음 덱에 똑같은 카드가 있는지 비교해 줘야 하나? 어차피 이중 for문 돌려서 하면?
     init() {
         for suit in Card.Suit.allCases {
             for rank in Card.Rank.allCases {

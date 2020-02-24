@@ -27,12 +27,6 @@ class ViewController: UIViewController {
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
-    // 스택뷰 하나 생성(horizontal) -> 카드를 studType만큼 집어넣음 -> 한개 플레이어 스택 뷰 완성
-    // 스택뷰 하나 생성(vertical)   -> 플레이어 엔트리만큼 플레이어 카드스텍뷰를 하나씩 집어넣음
-    
-    // 세그먼트 변경시 포커게임 객체를 다시 생성하고
-    // 스택뷰들을 다시 걷어내고 뷰를 entry와 studType에 맞게 다시 그려줌
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()

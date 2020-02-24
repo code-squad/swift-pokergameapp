@@ -19,10 +19,6 @@ class Card {
         self.rank = rank
     }
     
-    // 특징이 있는 것들을 묶기 위해 Nested Enum 사용.
-    // let spade = "" let diamond = "" .... 으로도 할 수 있으나,
-    // 개인적으로 깔끔해 보이지 않고 의미가 명확하게 나뉘어서 보이지 않아 묶는게 좋다고 생각하여 Nested Enum을 사용함.
-    
     // enum으로 카드모양 선언
     enum Suit: String, CustomStringConvertible, CaseIterable {
         case spade = "s"
