@@ -8,12 +8,12 @@
 
 import Foundation
 
-struct Game {
+@objcMembers class Game {
     
     private var players: Players
     private var dealer: Dealer
     private var style: Style
-    var gamersCount: Int {
+    var playersCount: Int {
         return players.count
     }
     
