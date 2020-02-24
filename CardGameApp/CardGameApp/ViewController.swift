@@ -130,7 +130,6 @@ class ViewController: UIViewController {
         
         pokerGame.forEachPlayer(behavior: ){
             player in
-            let playersCardsStack = makeCardsStackView()
             player.showEachCardInHand(behavior: ){
                 (card) in
                 let card = UIImageView(image: UIImage(named: card.description))

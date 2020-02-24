@@ -43,7 +43,12 @@ class Card: CustomStringConvertible {
     }
     
     func descripteCard() -> String {
-        return self.description
+        
+        if rank == Card.Rank.A || rank == Card.Rank.J || rank == Card.Rank.Q || rank == Card.Rank.K {
+        return "\(suit.rawValue)\(rank)"
+        } else {
+            return self.description
+        }
     }
     
 }
