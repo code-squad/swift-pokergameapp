@@ -95,7 +95,6 @@ class PokerGame {
         var stutNum = 0
         gameStut.forEach {
             stutNum += 1
-            
         }
         return stutNum
     }
@@ -107,10 +106,8 @@ class PokerGame {
     
     private var playersNumCount: Int {
         var playersNumCount = 0
-        players.searchPlayersNum { (playersNum: Players.Number) in
-            playersNum.forEach {
-                playersNumCount += 1
-            }
+        playersNum.forEach {
+            playersNumCount += 1
         }
         return playersNumCount
     }
