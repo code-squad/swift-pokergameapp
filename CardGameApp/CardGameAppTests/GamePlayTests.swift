@@ -66,14 +66,14 @@ class GamePlayTests: XCTestCase {
     
     func testDecidingWinner() {
         let gamePlay = GamePlay(rule: .fiveCardStud, numberOfPlayers: .two, cardDeck: cardDeck)
-        var cards = [Card(suit: .club, rank: .ten),
-                     Card(suit: .heart, rank: .ten),
-                     Card(suit: .spade, rank: .ten),
-                     Card(suit: .heart, rank: .nine),
-                     Card(suit: .diamond, rank: .ten),
-                     Card(suit: .heart, rank: .nine)]
-        gamePlay.repeatForEachParticipant { $0.take(card: cards.popFirst()!) }
-        gamePlay.repeatForEachParticipant { $0.take(card: cards.popFirst()!) }
+        var cardsOnFirstTurn = [Card(suit: .club, rank: .ten),
+                                Card(suit: .heart, rank: .ten),
+                                Card(suit: .spade, rank: .ten)]
+        var cardsOnSecondTurn = [Card(suit: .heart, rank: .nine),
+                                 Card(suit: .diamond, rank: .ten),
+                                 Card(suit: .heart, rank: .nine)]
+        gamePlay.repeatForEachParticipant { $0.take(card: cardsOnFirstTurn.popFirst()!) }
+        gamePlay.repeatForEachParticipant { $0.take(card: cardsOnSecondTurn.popFirst()!) }
         gamePlay.decideWinner()
         
         var winners = [Bool]()
