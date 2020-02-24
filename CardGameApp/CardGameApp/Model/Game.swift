@@ -8,7 +8,7 @@
 
 import Foundation
 
-@objcMembers class Game {
+struct Game {
     
     private var players: Players
     private var dealer: Dealer
