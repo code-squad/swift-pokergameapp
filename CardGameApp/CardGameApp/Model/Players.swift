@@ -11,8 +11,18 @@ import Foundation
 class Players {
     var players = [Player]()
     
+    init(with numbersOfPlayers : NumbersOfPlayers?) {
+        do {
+            try numbersOfPlayers?.setPlayerSeat(for: ) {
+                self.addPlayer(newPlayer: Player())
+            }
+        } catch {
+            return
+        }
+    }
+    
     func addPlayer(newPlayer : Player) {
-            self.players.append(newPlayer)
+        self.players.append(newPlayer)
     }
     
     func addCard(newCard: Card) {
@@ -26,5 +36,7 @@ class Players {
             behavior($0)
         }
     }
+    
+    
     
 }
