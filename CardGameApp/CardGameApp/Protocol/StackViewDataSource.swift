@@ -6,7 +6,9 @@
 //  Copyright © 2020 Cloud. All rights reserved.
 //
 
-protocol StackViewDataSource {
+import Foundation
+
+protocol StackViewDataSource: NSObject {
     func stackForAt(_ fact: Bool)
     func numberOfRow(row: Int)
 }

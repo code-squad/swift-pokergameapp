@@ -11,6 +11,7 @@ import SnapKit
 
 final class GameTableView: UIView {
     
+    weak var datasource: StackViewDataSource?
     private var gameStyleSegementedTitle: [String] = ["5 cards", "7 cards"]
     private var numberofPlayerSegementedTitle: [String] = ["2 peoples", "3 peoples", "4 peoples"]
     private let viewBackground: String = "bg_pattern"

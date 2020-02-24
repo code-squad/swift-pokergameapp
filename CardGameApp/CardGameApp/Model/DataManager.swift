@@ -9,5 +9,16 @@
 import Foundation
 
 class DataManager: NSObject {
+    
     var game = Game.fiveCardStud(gamers: Players())
+}
+
+extension DataManager: StackViewDataSource {
+    func stackForAt(_ fact: Bool) {
+        
+    }
+    
+    func numberOfRow(row: Int) {
+        
+    }
 }
