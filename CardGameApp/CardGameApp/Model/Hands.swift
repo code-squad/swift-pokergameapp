@@ -7,17 +7,37 @@
 //
 
 import Foundation
-class Hands {
-    private var hands = [Card]()
-    private var cardCounts = Dictionary<Card.Number, Int>()
+class Hands: Equatable {
+    static func == (lhs: Hands, rhs: Hands) -> Bool {
+        return lhs.hands == rhs.hands
+    }
     
-    enum GameResult: Int {
+    private var hands = [Card]()
+    
+    enum GameResult: Int, Comparable, Equatable {
         case none = 0
         case onePair
         case twoPair
         case tripple
         case fourCard
         case straight
+        
+        static func < (lhs: Hands.GameResult, rhs: Hands.GameResult) -> Bool {
+            return lhs.rawValue < rhs.rawValue
+        }
+        
+        static func > (lhs: Hands.GameResult, rhs: Hands.GameResult) -> Bool {
+            return lhs.rawValue > rhs.rawValue
+        }
+        
+        static func >= (lhs: Hands.GameResult, rhs: Hands.GameResult) -> Bool {
+            return lhs.rawValue >= rhs.rawValue
+        }
+        
+        static func == (lhs: Hands.GameResult, rhs: Hands.GameResult) -> Bool {
+            return lhs.rawValue == rhs.rawValue
+        }
+        
     }
     
     func append(_ card: Card) {
@@ -41,11 +61,11 @@ class Hands {
     }
     
     func countPairNumber() -> [Int] {
-        let cards = sortCards(hands)
+        let cards = sortCards()
         var pairCount = 1
         var pairs: [Int] = []
-        for index in 0..<cards.count {
-            if cards[index] == cards[index + 1] {
+        for index in 0 ..< (cards.count - 1) {
+            if cards[index].number == cards[index + 1].number {
                 pairCount += 1
             } else {
                 pairCount = 1
@@ -58,16 +78,15 @@ class Hands {
         return pairs
     }
     
-    func sortCards(_ hands: [Card] ) -> [Card] {
-        var cards = hands
-        cards.sort { (first, second) -> Bool in
+    func sortCards() -> [Card] {
+        hands.sort { (first, second) -> Bool in
             first > second
         }
-        return cards
+        return hands
     }
     
     func judgeStraight() -> Bool {
-        let cards = sortCards(hands)
+        let cards = sortCards()
         for index in 0..<cards.count {
             if cards[index] >> cards[index+1] {
                 return false
@@ -77,11 +96,10 @@ class Hands {
         
     }
     
-    func judgeResult() -> GameResult? {
+    func judgeResult() -> GameResult {
         var result = GameResult.none
         let pairs = countPairNumber()
         var twoPairCount = 0
-        
         if judgeStraight() {
             return GameResult.straight
         }else if pairs.count == 0 {
@@ -108,5 +126,5 @@ class Hands {
 
         return result
     }
-    
+
 }

@@ -7,8 +7,9 @@
 //
 
 import Foundation
-class Player: Playable {
+class Player: Equatable {
     private var hands = Hands()
+    private var isWinner = false
     
     func appendCard(_ card: Card) {
         hands.append(card)
@@ -19,7 +20,19 @@ class Player: Playable {
     }
     
     func result() -> Hands.GameResult {
-        guard let result = hands.judgeResult() else { return Hands.GameResult.none }
-        return result
+        return hands.judgeResult()
     }
+    
+    func winGame() {
+        isWinner = true
+    }
+    
+    func sortCards() -> [Card] {
+        return hands.sortCards()
+    }
+    
+    static func == (lhs: Player, rhs: Player) -> Bool {
+        return lhs.hands == rhs.hands
+      }
+    
 }

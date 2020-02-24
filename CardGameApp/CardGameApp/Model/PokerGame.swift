@@ -47,7 +47,7 @@ class PokerGame {
             self.players.append(player: Player())
         }
     }
-      
+    
     func allocateCards() {
         dealer.shuffle()
         studNumber.foreach {
@@ -74,26 +74,59 @@ class PokerGame {
         dealer.forEach(handler: handler)
     }
     
-    //플레이어의 결과가 중복될 때, 카드의 숫자가 높은 사람이 위너가 되도록 로직 수정 필요
-    func compareResults() -> Playable {
-        var winnerResult = Player().result()
-        var winner: Playable = Player()
+    func compareResults() {
+        var gameResult = Hands.GameResult.none
+        var equalParticipants: [Player] = []
+        let dealerResult = dealer.result()
         
         players.forEachPlayer { (player) in
             let result = player.result()
-            if winnerResult.rawValue < result.rawValue {
-                winnerResult = result
-                winner = player
+            if result > gameResult {
+                gameResult = result
+                equalParticipants.removeAll()
+                equalParticipants.append(player)
+            }else if result == gameResult {
+                equalParticipants.append(player)
             }
         }
         
-        let dealerResult = dealer.result()
-        if winnerResult.rawValue < dealerResult.rawValue {
-            winner = dealer
+        if dealerResult > gameResult {
+            equalParticipants.removeAll()
+            equalParticipants.append(dealer)
+        }else if dealerResult == gameResult {
+            equalParticipants.append(dealer)
         }
         
-        return winner
+        if equalParticipants.count > 1 {
+            compareParticipantsCardNumber(equalParticipants: equalParticipants)
+        }else {
+            equalParticipants[0].winGame()
+
+        }
+    }
+    
+    func compareParticipantsCardNumber(equalParticipants: [Player]) {
+        var equalParticipants = equalParticipants
+        var biggestCard = Card(number: .one, pattern: .clover)
+        
+        while equalParticipants.count > 1 {
+            for participant in equalParticipants {
+                var cards = participant.sortCards()
+                let lastCard = cards.removeFirst()
+                if biggestCard <= lastCard {
+                    biggestCard = lastCard
+                }else {
+                    if let index = equalParticipants.firstIndex(of: participant){
+                        equalParticipants.remove(at: index)
+                    }
+                }
+            }
+        }
+        
+        equalParticipants[0].winGame()
     }
     
     
+    
 }
+

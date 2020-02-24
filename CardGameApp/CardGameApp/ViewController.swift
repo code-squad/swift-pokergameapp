@@ -169,6 +169,7 @@ class ViewController: UIViewController {
         }
             dealerGameStack.addArrangedSubview(dealerLabel)
         dealerGameStack.addArrangedSubview(cardImageStack)
+        pokerGame.compareResults()
     }
     
     
