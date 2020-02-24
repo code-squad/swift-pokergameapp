@@ -32,12 +32,7 @@ class CardsStackView: UIStackView {
     }
     
     private func setupView() {
-        var maxNum = 0
         PokerGame.GameStut.seven.forEach {
-            maxNum += 1
-        }
-        
-        for _ in 0 ..< maxNum {
             addArrangedSubview(generateCardImageViewDefault())
         }
     }

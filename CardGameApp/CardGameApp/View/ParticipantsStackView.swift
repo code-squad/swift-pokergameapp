@@ -9,6 +9,7 @@
 import UIKit
 
 class ParticipantsStackView: UIStackView {
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
