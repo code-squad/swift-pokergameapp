@@ -7,3 +7,10 @@
 //
 
 import Foundation
+
+class Players {
+    private var players = [Player]()
+    func addPlayer(_ player: Player) {
+        players.append(player)
+    }
+}

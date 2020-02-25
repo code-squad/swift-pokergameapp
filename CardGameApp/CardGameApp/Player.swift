@@ -18,10 +18,3 @@ class Player: Playable {
         hands.append(hand)
     }
 }
-
-class Players {
-    private var players = [Player]()
-    func addPlayer(_ player: Player) {
-        players.append(player)
-    }
-}
