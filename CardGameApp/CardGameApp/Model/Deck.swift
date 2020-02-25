@@ -60,7 +60,7 @@ extension Deck: Equatable {
 
 extension Deck: CardSearchable {
     
-    func searchCard(handler: (Card) -> ()) {
+    func searchCard(handler: (Card) -> (Void)) {
         cards.forEach{ handler($0) }
     }
     
