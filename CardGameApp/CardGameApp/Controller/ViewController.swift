@@ -24,9 +24,9 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        observer = manager.observe(\.game) { [weak self] datamanager, value in
+        observer = manager.observe(\.game) { [weak self] datamanager, _ in
             guard let self = self else { return }
-            self.gameView.fetchGame(game: value.newValue)
+            self.gameView.fetchGame(game: datamanager.game)
         }
     }
 }
