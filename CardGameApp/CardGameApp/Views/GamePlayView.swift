@@ -98,7 +98,9 @@ extension GamePlayView {
         let shownViews = participantsStackView.arrangedSubviews.filter { $0.isHidden == false }
         shownViews.enumerated().forEach { index, view in
             guard let view = view as? ParticipantView else { return }
-            view.animateDealing(after: TimeInterval(index), period: TimeInterval(shownViews.count))
+            view.animateDealing(after: TimeInterval(index),
+                                period: TimeInterval(shownViews.count),
+                                speed: 5)
         }
     }
 }
