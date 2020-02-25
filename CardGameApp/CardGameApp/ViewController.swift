@@ -9,8 +9,10 @@
 import UIKit
 
 extension ViewController: GameSegmentedControlStackViewDelegate {
-    func segmentedControlIndexChanged(gameStut: PokerGame.GameStut, playersNum: PokerGame.PlayersNum) {
-        startGame(gameStut: gameStut, playersNum: playersNum)
+    func segmentedControlIndexChanged(gameStut: PokerGame.GameStut,
+                                      playersNum: PokerGame.ParticipantsNum.PlayersNum) {
+        startGame(gameStut: gameStut,
+                  participantsNum: PokerGame.ParticipantsNum(playersNum: playersNum))
     }
 }
 
@@ -23,7 +25,8 @@ extension ViewController {
             guard let playersNum = gameSegmentedControlStackView.playersNum() else {
                 return
             }
-            startGame(gameStut: gameStut, playersNum: playersNum)
+            startGame(gameStut: gameStut,
+                      participantsNum: PokerGame.ParticipantsNum(playersNum: playersNum))
         }
     }
 }
@@ -44,7 +47,7 @@ class ViewController: UIViewController {
         setupSegmentedControlsStackView()
         setupPaticipantsStackView()
         startGame(gameStut: .seven,
-                  playersNum: .one)
+                  participantsNum: PokerGame.ParticipantsNum(playersNum: .one) )
     }
     
     private func setupBackground() {
@@ -96,13 +99,13 @@ class ViewController: UIViewController {
             constant: -trailingConstant).isActive = true
     }
     
-    private func startGame(gameStut: PokerGame.GameStut, playersNum: PokerGame.PlayersNum) {
+    private func startGame(gameStut: PokerGame.GameStut, participantsNum: PokerGame.ParticipantsNum) {
         shuffleDeck()
-        var game = PokerGame(gameStut: gameStut, playersNum: playersNum, deck: deck)
+        var game = PokerGame(gameStut: gameStut, participantsNum: participantsNum, deck: deck)
         if !game.hasEnoughCards() {
             deck.reset()
             shuffleDeck()
-            game = PokerGame(gameStut: gameStut, playersNum: playersNum, deck: deck)
+            game = PokerGame(gameStut: gameStut, participantsNum: participantsNum, deck: deck)
         }
         game.startNewRound()
         participantsStackView.updateView(game: game)

@@ -8,6 +8,7 @@
 
 import Foundation
 extension PokerGame {
+    
     enum GameStut: Int, CaseIterable {
         case seven = 7, five = 5
         
@@ -18,12 +19,41 @@ extension PokerGame {
         }
     }
     
-    enum PlayersNum: Int, CaseIterable {
-        case one = 1 , two, three, four
-        func forEach(handler: () -> (Void)) {
-            for _ in 0 ..< self.rawValue {
+    struct ParticipantsNum {
+        enum PlayersNum: Int, CaseIterable {
+            case one = 1 , two, three, four
+            func forEach(handler: () -> (Void)) {
+                for _ in 0 ..< self.rawValue {
+                    handler()
+                }
+            }
+        }
+        let playersNum: PlayersNum
+        static let dealerCount = 1
+    }
+}
+
+extension PokerGame.ParticipantsNum.PlayersNum: Comparable {
+    static func < (lhs: PokerGame.ParticipantsNum.PlayersNum, rhs: PokerGame.ParticipantsNum.PlayersNum) -> Bool {
+        return lhs.rawValue < rhs.rawValue
+    }
+}
+
+extension PokerGame.ParticipantsNum {
+    static func forEachMaxCase(handler : () -> (Void)) {
+        if let max = PokerGame.ParticipantsNum.PlayersNum.allCases.max() {
+            let maxCount = max.rawValue + PokerGame.ParticipantsNum.dealerCount
+            for _ in 0 ..< maxCount {
                 handler()
             }
+        }
+    }
+    
+    func forEach(handler : () -> (Void)) {
+        let participantsNum = playersNum.rawValue +
+            PokerGame.ParticipantsNum.dealerCount
+        for _ in 0 ..< participantsNum {
+            handler()
         }
     }
 }
@@ -34,7 +64,7 @@ extension PokerGame.GameStut: CustomStringConvertible {
     }
 }
 
-extension PokerGame.PlayersNum: CustomStringConvertible {
+extension PokerGame.ParticipantsNum.PlayersNum: CustomStringConvertible {
     var description: String {
         return String(self.rawValue)
     }
@@ -44,15 +74,15 @@ extension PokerGame.PlayersNum: CustomStringConvertible {
 class PokerGame {
     
     private let participants: Participants
-    private let gameStut: GameStut
-    private let playersNum: PokerGame.PlayersNum
     private let deck: Deck
+    let gameStut: GameStut
+    let participantsNum: PokerGame.ParticipantsNum
     
-    init(gameStut: GameStut , playersNum: PokerGame.PlayersNum, deck: Deck){
+    init(gameStut: GameStut , participantsNum: PokerGame.ParticipantsNum, deck: Deck){
         self.gameStut = gameStut
-        self.playersNum = playersNum
+        self.participantsNum = participantsNum
         self.deck = deck
-        self.participants = Participants(playersNum: playersNum)
+        self.participants = Participants(participantsNum: participantsNum)
     }
     
     func startNewRound() {
@@ -87,29 +117,17 @@ class PokerGame {
     }
     
     func hasEnoughCards() -> Bool {
-        return deck.count >= stutNum * participantsNum
-    }
-    
-    private var stutNum: Int {
         var stutNum = 0
         gameStut.forEach {
             stutNum += 1
         }
-        return stutNum
-    }
-    
-    var participantsNum: Int {
-        let dealerCount = 1
-        return dealerCount + playersNumCount
-    }
-    
-    private var playersNumCount: Int {
-        var playersNumCount = 0
-        playersNum.forEach {
-            playersNumCount += 1
+        var participantsCount = 0
+        participantsNum.forEach {
+            participantsCount += 1
         }
-        return playersNumCount
+        return deck.count >= stutNum * participantsCount
     }
+    
 }
 
 extension PokerGame {
