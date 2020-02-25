@@ -14,38 +14,28 @@ import Foundation
     private var dealer: Dealer
     private var style: Style
     private var peoples: Peoples
-
-    var playersCount: Int {
-        return players.count
-    }
     
     init(players: Players, style: Style, peoples: Peoples){
         dealer = Dealer()
         self.players = players
-        self.players.addGamer(player: dealer)
         self.style = style
         self.peoples = peoples
         super.init()
-        configure(index: peoples.rawValue)
+        configure()
         dealer.shuffle()
     }
 
-    func configure(index: Int) {
-        dealer = Dealer()
+    func configure(index: Int = 0) {
+        dealer.newGame()
         peoples = Peoples(index: index)
         distributePlayers()
     }
     
     func translateStyle(style: Style) {
+        dealer.newGame()
         self.style = style
         players.forEach { player in
             style.isEqual(players.count) ? popCard(player: player) : pushCard(player: player)
-        }
-    }
-    
-    func pushCardToView(handler: (Card?) -> Void) {
-        style.forEach {
-            handler(dealer.pushCard())
         }
     }
     
@@ -71,6 +61,7 @@ import Foundation
         players.replacingPlayers(peoples: peoples) { player in
             distribute(player: player)
         }
+        dealer.clearCards()
         distribute(player: dealer)
         players.addGamer(player: dealer)
     }

@@ -23,5 +23,9 @@ class Dealer: Player {
     func pushCard() -> Card? {
         return deck.removeOne()
     }
+    
+    func newGame() {
+        deck = Deck()
+    }
 }
 

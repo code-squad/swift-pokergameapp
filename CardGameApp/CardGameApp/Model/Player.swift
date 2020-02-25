@@ -31,4 +31,14 @@ class Player {
     func removeLast() {
         cards.removeLast()
     }
+    
+    func clearCards() {
+        cards.clearCards()
+    }
+    
+    func forEach(handler: (Card) -> Void) {
+        cards.forEach { (carad) in
+            handler(carad)
+        }
+    }
 }

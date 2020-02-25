@@ -16,24 +16,20 @@ struct Players {
     }
     
     func forEach(handler: (Player) -> Void) {
-        players.forEach { gamer in
-            handler(gamer)
-        }
+        players.forEach { handler($0) }
     }
     
     mutating func replacingPlayers(peoples: Peoples, handler: (Player) -> Void) {
         players = []
         peoples.forEach { players.append(Player(identifier: "players\($0)")) }
-        players.forEach { player in
-            handler(player)
-        }
+        players.forEach { handler($0) }
     }
     
     mutating func addGamer(player: Player) {
         players.append(player)
     }
     
-    mutating func addGamers(players: [Player]) {
+    mutating func addGamers(contentsOf: [Player]) {
         self.players.append(contentsOf: players)
     }
 }

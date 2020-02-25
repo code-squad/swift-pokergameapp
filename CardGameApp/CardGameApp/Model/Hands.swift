@@ -23,4 +23,12 @@ struct Hands {
     mutating func removeLast() {
         cards.removeLast()
     }
+    
+    func forEach(handler: (Card) -> Void) {
+        cards.forEach { handler($0) }
+    }
+    
+    mutating func clearCards() {
+        cards = []
+    }
 }
