@@ -7,3 +7,24 @@
 //
 
 import Foundation
+
+class Dealer: Playable {
+    private var hands = [Card]()
+    private var cards = CardDeck()
+    
+    func receive(_ hand: Card) {
+        hands.append(hand)
+    }
+    
+    func shuffle() {
+        cards.shuffle()
+    }
+    
+    func card() -> Card {
+        return cards.removeOne()
+    }
+    
+    func reset() {
+        cards.reset()
+    }
+}
