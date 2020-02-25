@@ -15,6 +15,10 @@ struct Hands {
         cards.count
     }
     
+    func forEach(handler: (Card) -> Void) {
+        cards.forEach { handler($0) }
+    }
+    
     mutating func add(_ card: Card?) {
         guard let card = card else { return }
         cards.append(card)
@@ -23,11 +27,7 @@ struct Hands {
     mutating func removeLast() {
         cards.removeLast()
     }
-    
-    func forEach(handler: (Card) -> Void) {
-        cards.forEach { handler($0) }
-    }
-    
+
     mutating func clearCards() {
         cards = []
     }

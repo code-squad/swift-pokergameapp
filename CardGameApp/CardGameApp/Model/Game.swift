@@ -34,15 +34,11 @@ import Foundation
     func translateStyle(style: Style) {
         dealer.newGame()
         self.style = style
-        players.forEach { player in
-            style.isEqual(players.count) ? popCard(player: player) : pushCard(player: player)
-        }
+        players.forEach { style.isEqual($0.count) ? popCard(player: $0) : pushCard(player: $0) }
     }
     
     func pushPlayerToView(handler: (Player) -> Void) {
-        players.forEach { player in
-            handler(player)
-        }
+        players.forEach { handler($0) }
     }
     
     private func pushCard(player: Player) {
@@ -58,9 +54,7 @@ import Foundation
     }
     
     private func distributePlayers() {
-        players.replacingPlayers(peoples: peoples) { player in
-            distribute(player: player)
-        }
+        players.replacingPlayers(peoples: peoples) { distribute(player: $0) }
         dealer.clearCards()
         distribute(player: dealer)
         players.addGamer(player: dealer)

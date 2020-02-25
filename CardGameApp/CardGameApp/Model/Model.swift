@@ -43,10 +43,6 @@ struct Deck {
     
     private var cards: [Card] = []
     
-    var count: Int {
-        return cards.count
-    }
-    
     init() {
         makeDeck()
     }
@@ -57,11 +53,6 @@ struct Deck {
     
     mutating func removeOne() -> Card? {
         cards.popLast()
-    }
-    
-    mutating func reset() {
-        cards.removeAll()
-        makeDeck()
     }
     
     private func makeSuit(suit: Card.suit) -> [Card] {

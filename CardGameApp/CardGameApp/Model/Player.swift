@@ -37,8 +37,6 @@ class Player {
     }
     
     func forEach(handler: (Card) -> Void) {
-        cards.forEach { (carad) in
-            handler(carad)
-        }
+        cards.forEach { handler($0) }
     }
 }
