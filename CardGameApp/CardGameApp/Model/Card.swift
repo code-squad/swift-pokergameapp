@@ -9,10 +9,13 @@
 import Foundation
 
 protocol CardSearchable {
+    
     func searchCard(handler: (Card) -> ())
+    
 }
 
 struct Card {
+    
     enum Suit: CaseIterable {
         case spade
         case heart
@@ -43,15 +46,19 @@ struct Card {
         self.suit = suit
         self.number = number
     }
+    
 }
 
 extension Card: Equatable {
+    
     public static func == (lhs: Card, rhs: Card) -> Bool {
         return lhs.suit == rhs.suit && lhs.number == rhs.number
     }
+    
 }
 
 extension Card.Suit: CustomStringConvertible {
+    
     var description: String {
         switch self {
         case .spade :
@@ -64,9 +71,11 @@ extension Card.Suit: CustomStringConvertible {
             return "c"
         }
     }
+    
 }
 
 extension Card.Number: CustomStringConvertible {
+    
     var description: String {
         switch self {
         case .ace:
@@ -81,10 +90,13 @@ extension Card.Number: CustomStringConvertible {
             return String(self.rawValue)
         }
     }
+    
 }
 
 extension Card: CustomStringConvertible {
+    
     public var description: String {
         return suit.description + number.description
     }
+    
 }

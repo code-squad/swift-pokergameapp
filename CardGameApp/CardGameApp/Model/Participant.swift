@@ -28,4 +28,5 @@ class Participant: CardSearchable {
     func searchCard(handler: (Card) -> ()) {
         cards.forEach{ handler($0) }
     }
+    
 }

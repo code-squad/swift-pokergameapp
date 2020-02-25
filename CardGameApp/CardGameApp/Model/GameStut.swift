@@ -9,6 +9,7 @@
 import Foundation
 
 enum GameStut: Int, CaseIterable {
+    
      case seven = 7, five = 5
      
      func forEach(handler: () -> (Void)) {
@@ -16,10 +17,13 @@ enum GameStut: Int, CaseIterable {
              handler()
          }
      }
+    
  }
 
 extension GameStut: CustomStringConvertible {
+    
     var description: String {
         return String(self.rawValue)
     }
+    
 }

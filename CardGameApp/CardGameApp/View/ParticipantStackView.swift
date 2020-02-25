@@ -55,4 +55,5 @@ class ParticipantStackView: UIStackView {
         let cardsStackView = arrangedSubviews[cardStackIndex] as! CardsStackView
         cardsStackView.updateView(participant: participant)
     }
+    
 }

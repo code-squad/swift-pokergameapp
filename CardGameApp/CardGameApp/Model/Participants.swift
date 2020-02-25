@@ -12,16 +12,15 @@ class Participants {
     
     enum PlayersNum: Int, CaseIterable {
         case one = 1 , two, three, four
+        
         func forEach(handler: () -> (Void)) {
             for _ in 0 ..< self.rawValue {
                 handler()
             }
         }
     }
-
     let playersNum: PlayersNum
     private var players = [Participant]()
-    
     private static let dealerCount = 1
     private let dealer = Participant(name: "Dealer")
     

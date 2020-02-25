@@ -9,6 +9,7 @@
 import Foundation
 
 struct ANSI_C_RandomNumberGenerator: RandomNumberGenerator {
+    
     var seed = 123456789
     let m = 2 << 30
     let a = 1103515245
@@ -18,4 +19,5 @@ struct ANSI_C_RandomNumberGenerator: RandomNumberGenerator {
         seed = (a * seed + c) % m
         return T(seed)
     }
+    
 }

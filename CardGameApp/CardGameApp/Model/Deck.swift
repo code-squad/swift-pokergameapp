@@ -9,6 +9,7 @@
 import Foundation
 
 class Deck {
+    
     private static let singletonInitCards: [Card] = {
         var cards = [Card]()
         for suit in Card.Suit.allCases {
@@ -46,20 +47,21 @@ class Deck {
     func reset() {
         cards = Deck.singletonInitCards
     }
+    
 }
 
 extension Deck: Equatable {
+    
     public static func == (lhs: Deck, rhs: Deck) -> Bool {
         return lhs.cards == rhs.cards
     }
+    
 }
 
 extension Deck: CardSearchable {
+    
     func searchCard(handler: (Card) -> ()) {
         cards.forEach{ handler($0) }
     }
-}
-
-enum DeckError: Error {
-    case indexOutOfRangeError
+    
 }

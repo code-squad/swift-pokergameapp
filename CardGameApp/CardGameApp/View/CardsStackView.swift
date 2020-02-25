@@ -79,4 +79,5 @@ class CardsStackView: UIStackView {
             arrangedSubviews[index].isHidden = true
         }
     }
+    
 }

@@ -73,4 +73,5 @@ class ParticipantsStackView: UIStackView {
             arrangedSubviews[index].isHidden = true
         }
     }
+    
 }
