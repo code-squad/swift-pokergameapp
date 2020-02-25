@@ -10,7 +10,12 @@ import Foundation
 
 class Participant: CardSearchable {
     
+    let name: String
     private var cards = [Card]()
+
+    init(name: String) {
+        self.name = name
+    }
     
     func reset() {
         cards = [Card]()

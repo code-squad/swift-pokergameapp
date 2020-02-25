@@ -11,15 +11,17 @@ import Foundation
 class Participants {
 
     private var players = [Participant]()
-    private let dealer = Participant()
+    private let dealer = Participant(name: "Dealer")
     
     init(participantsNum: ParticipantsNum) {
         initPlayers(participantsNum: participantsNum)
     }
     
     private func initPlayers(participantsNum: ParticipantsNum) {
+        var number = 1
         participantsNum.playersNum.forEach {
-            players.append(Participant())
+            players.append(Participant(name: "Player\(number)"))
+            number += 1
         }
     }
 }
