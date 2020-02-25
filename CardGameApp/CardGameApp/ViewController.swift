@@ -73,6 +73,7 @@ class ViewController: UIViewController {
 
 extension ViewController: PlayModeSelectionViewDelegate {
     func didModeChanged(to rule: GamePlay.Rule, playerCount: Players.Number) {
+        gamePlayView.stopAnimation()
         playGame(with: rule, playerCount: playerCount)
     }
 }

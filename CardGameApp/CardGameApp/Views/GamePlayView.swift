@@ -103,4 +103,11 @@ extension GamePlayView {
                                 speed: 5)
         }
     }
+    
+    func stopAnimation() {
+        participantsStackView.arrangedSubviews.forEach { view in
+            guard let view = view as? ParticipantView else { return }
+            view.stopAnimation()
+        }
+    }
 }
