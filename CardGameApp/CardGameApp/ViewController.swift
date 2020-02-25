@@ -11,10 +11,6 @@ import UIKit
 class ViewController: UIViewController {
     
     private var gameStackView = GameStackView(pokerGame: GameTable())
-    
-    private let studTypeSegementControl = UISegmentedControl(items: ["7 Cards", "5 Cards"])
-    private let playerEntrySegmentControl = UISegmentedControl(items: ["2명", "3명", "4명"])
-    
     private var entry = PlayerEntry.two
     private var studType = StudType.sevenStud
     
@@ -52,15 +48,12 @@ class ViewController: UIViewController {
     }
     
     func setUpStudTypeSegment() {
-        self.studTypeSegementControl.center = CGPoint(x: self.view.frame.width/2, y: 100)
-        self.studTypeSegementControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .normal)
-        self.studTypeSegementControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.black], for: .selected)
-        self.studTypeSegementControl.layer.borderWidth = 1
-        self.studTypeSegementControl.layer.borderColor = UIColor.white.cgColor
-        self.studTypeSegementControl.selectedSegmentIndex = 0
-        self.view.addSubview(studTypeSegementControl)
+        let studTypeSegmentedControl = StudTypeSegmentedControl(items: ["7 Cards", "5 Cards"])
+        studTypeSegmentedControl.center = CGPoint(x: self.view.frame.width/2, y: 100)
+       
+        self.view.addSubview(studTypeSegmentedControl)
         
-        self.studTypeSegementControl.addTarget(self, action: #selector(studTypeChange(handler:)), for: .valueChanged)
+        studTypeSegmentedControl.addTarget(self, action: #selector(studTypeChange(handler:)), for: .valueChanged)
     }
     
     @objc func studTypeChange(handler: UISegmentedControl) {
@@ -70,15 +63,12 @@ class ViewController: UIViewController {
     }
     
     func setUpPlayerEntrySegment() {
-        self.playerEntrySegmentControl.center = CGPoint(x: self.view.frame.width/2, y: 140)
-        self.playerEntrySegmentControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .normal)
-        self.playerEntrySegmentControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.black], for: .selected)
-        self.playerEntrySegmentControl.layer.borderWidth = 1
-        self.playerEntrySegmentControl.layer.borderColor = UIColor.white.cgColor
-        self.playerEntrySegmentControl.selectedSegmentIndex = 0
-        self.view.addSubview(playerEntrySegmentControl)
+        let playerEntrySegmentedControl = PlayerEntrySegmentedControl(items: ["2명", "3명", "4명"])
+        playerEntrySegmentedControl.center = CGPoint(x: self.view.frame.width/2, y: 140)
         
-        self.playerEntrySegmentControl.addTarget(self, action: #selector(playerEntryChange(handler:)), for: .valueChanged)
+        self.view.addSubview(playerEntrySegmentedControl)
+        
+        playerEntrySegmentedControl.addTarget(self, action: #selector(playerEntryChange(handler:)), for: .valueChanged)
     }
     
     @objc func playerEntryChange(handler: UISegmentedControl) {
