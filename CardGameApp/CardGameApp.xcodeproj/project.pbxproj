@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		78530B6623FA6DB200BABC4E /* CardDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78530B6523FA6DB200BABC4E /* CardDeck.swift */; };
 		78530B6723FA6DB200BABC4E /* CardDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78530B6523FA6DB200BABC4E /* CardDeck.swift */; };
+		787B82A124053E4F007BAB29 /* Players.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787B82A024053E4F007BAB29 /* Players.swift */; };
 		7893B6B823F6735D00D924C7 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7893B6B723F6735D00D924C7 /* Card.swift */; };
 		7893B6B923F6735D00D924C7 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7893B6B723F6735D00D924C7 /* Card.swift */; };
 		78971DAC23F27F2400AC81D0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78971DAB23F27F2400AC81D0 /* AppDelegate.swift */; };
@@ -43,6 +44,7 @@
 
 /* Begin PBXFileReference section */
 		78530B6523FA6DB200BABC4E /* CardDeck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDeck.swift; sourceTree = "<group>"; };
+		787B82A024053E4F007BAB29 /* Players.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Players.swift; sourceTree = "<group>"; };
 		7893B6B723F6735D00D924C7 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		78971DA823F27F2400AC81D0 /* CardGameApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CardGameApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78971DAB23F27F2400AC81D0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 				78530B6523FA6DB200BABC4E /* CardDeck.swift */,
 				78E049B024043DF6005BB4D5 /* Poker.swift */,
 				78E049B224043E16005BB4D5 /* Player.swift */,
+				787B82A024053E4F007BAB29 /* Players.swift */,
 				78E049B424043E31005BB4D5 /* Dealer.swift */,
 			);
 			path = CardGameApp;
@@ -276,6 +279,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				787B82A124053E4F007BAB29 /* Players.swift in Sources */,
 				78971DB023F27F2400AC81D0 /* ViewController.swift in Sources */,
 				78E049B124043DF6005BB4D5 /* Poker.swift in Sources */,
 				78530B6623FA6DB200BABC4E /* CardDeck.swift in Sources */,
