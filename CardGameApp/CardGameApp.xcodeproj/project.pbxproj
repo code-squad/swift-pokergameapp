@@ -19,7 +19,6 @@
 		5AB183A923F804D5007419C4 /* PokerGameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB183A823F804D5007419C4 /* PokerGameTests.swift */; };
 		5AB3F53423F26AF80021E3A0 /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB3F53323F26AF80021E3A0 /* Deck.swift */; };
 		5ABC6AFE2404DBAC00EEAC46 /* GameStut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ABC6AFD2404DBAC00EEAC46 /* GameStut.swift */; };
-		5ABC6B002404DD2200EEAC46 /* ParticipantsNum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ABC6AFF2404DD2200EEAC46 /* ParticipantsNum.swift */; };
 		5AE093BD23EC21670046DA63 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE093BC23EC21670046DA63 /* AppDelegate.swift */; };
 		5AE093BF23EC21670046DA63 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE093BE23EC21670046DA63 /* SceneDelegate.swift */; };
 		5AE093C123EC21670046DA63 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE093C023EC21670046DA63 /* ViewController.swift */; };
@@ -61,7 +60,6 @@
 		5AB3F53323F26AF80021E3A0 /* Deck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = "<group>"; };
 		5AB3F53523F545170021E3A0 /* ANSI_C_RandomNumberGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ANSI_C_RandomNumberGenerator.swift; sourceTree = "<group>"; };
 		5ABC6AFD2404DBAC00EEAC46 /* GameStut.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStut.swift; sourceTree = "<group>"; };
-		5ABC6AFF2404DD2200EEAC46 /* ParticipantsNum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantsNum.swift; sourceTree = "<group>"; };
 		5AE093B923EC21670046DA63 /* CardGameApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CardGameApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5AE093BC23EC21670046DA63 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5AE093BE23EC21670046DA63 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -126,7 +124,6 @@
 				5A6D163623FBD68300348A81 /* Participants.swift */,
 				5AB183A623F7F3C7007419C4 /* PokerGame.swift */,
 				5ABC6AFD2404DBAC00EEAC46 /* GameStut.swift */,
-				5ABC6AFF2404DD2200EEAC46 /* ParticipantsNum.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -319,7 +316,6 @@
 			files = (
 				5A6D163723FBD68300348A81 /* Participants.swift in Sources */,
 				5A6D173F23FEA20800348A81 /* GameSegmentedControl.swift in Sources */,
-				5ABC6B002404DD2200EEAC46 /* ParticipantsNum.swift in Sources */,
 				5AB1838F23F637E2007419C4 /* ANSI_C_RandomNumberGenerator.swift in Sources */,
 				5AE093C123EC21670046DA63 /* ViewController.swift in Sources */,
 				5A6D174B2402429D00348A81 /* ParticipantStackView.swift in Sources */,

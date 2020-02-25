@@ -10,16 +10,15 @@ import Foundation
 
 class PokerGame {
     
-    private let participants: Participants
     private let deck: Deck
     let gameStut: GameStut
-    let participantsNum: ParticipantsNum
+    let participants: Participants
+
     
-    init(gameStut: GameStut , participantsNum: ParticipantsNum, deck: Deck){
+    init(gameStut: GameStut , participants: Participants, deck: Deck){
         self.gameStut = gameStut
-        self.participantsNum = participantsNum
+        self.participants = participants
         self.deck = deck
-        self.participants = Participants(participantsNum: participantsNum)
     }
     
     func startNewRound() {
@@ -59,7 +58,7 @@ class PokerGame {
             stutNum += 1
         }
         var participantsCount = 0
-        participantsNum.forEach {
+        participants.forEach {
             participantsCount += 1
         }
         return deck.count >= stutNum * participantsCount

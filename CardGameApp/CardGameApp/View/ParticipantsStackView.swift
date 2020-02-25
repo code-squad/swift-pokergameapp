@@ -33,7 +33,7 @@ class ParticipantsStackView: UIStackView {
     }
     
     private func setupView() {
-        ParticipantsNum.forEachMaxCase {
+        Participants.forEachMaxCase {
             addArrangedSubview(ParticipantStackView())
         }
     }
@@ -65,7 +65,7 @@ class ParticipantsStackView: UIStackView {
     
     private func setNotParticipantViewsHidden(game: PokerGame) {
         var participantsCount = 0
-        game.participantsNum.forEach {
+        game.participants.forEach {
             participantsCount += 1
         }
         
