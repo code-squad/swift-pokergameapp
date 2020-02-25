@@ -16,6 +16,10 @@ class Dealer: Playable {
         hands.append(hand)
     }
     
+    func count() -> Int {
+        return cards.count()
+    }
+    
     func shuffle() {
         cards.shuffle()
     }

@@ -27,10 +27,18 @@ class Poker {
         }
     }
     
+    private var stud: Stud
+    private var numberOfPlayers: NumberOfPlayers
     private var players = Players()
     private var dealer = Dealer()
     
     init(stud: Stud, numberOfPlayers: NumberOfPlayers) {
+        self.stud = stud
+        self.numberOfPlayers = numberOfPlayers
+        start()
+    }
+    
+    func start() {
         dealer.shuffle()
         numberOfPlayers.forEach {
             let player = Player()
@@ -42,5 +50,11 @@ class Poker {
         stud.forEach {
             dealer.receive(dealer.card())
         }
+    }
+    
+    func canContinue() -> Bool {
+        let numberOfRemainingCards = dealer.count()
+        let numberOfRequiredCards = stud.rawValue * (numberOfPlayers.rawValue + 1)
+        return numberOfRemainingCards > numberOfRequiredCards
     }
 }
