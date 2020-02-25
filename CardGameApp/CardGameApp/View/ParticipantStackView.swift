@@ -10,7 +10,7 @@ import UIKit
 
 class ParticipantStackView: UIStackView {
 
-    private let participantLabel : UILabel = {
+    private let participantLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
         return label

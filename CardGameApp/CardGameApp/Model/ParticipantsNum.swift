@@ -28,7 +28,7 @@ extension ParticipantsNum.PlayersNum: Comparable {
 }
 
 extension ParticipantsNum {
-    static func forEachMaxCase(handler : () -> (Void)) {
+    static func forEachMaxCase(handler: () -> (Void)) {
         if let max = ParticipantsNum.PlayersNum.allCases.max() {
             let maxCount = max.rawValue + ParticipantsNum.dealerCount
             for _ in 0 ..< maxCount {
@@ -37,7 +37,7 @@ extension ParticipantsNum {
         }
     }
     
-    func forEach(handler : () -> (Void)) {
+    func forEach(handler: () -> (Void)) {
         let participantsNum = playersNum.rawValue +
             ParticipantsNum.dealerCount
         for _ in 0 ..< participantsNum {
