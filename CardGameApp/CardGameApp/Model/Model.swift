@@ -74,6 +74,7 @@ struct Deck {
         Card.suit.allCases.forEach {
             cards.append(contentsOf: makeSuit(suit: $0))
         }
+        cards.shuffle()
     }
 }
 
