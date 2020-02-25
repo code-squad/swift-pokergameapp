@@ -19,6 +19,8 @@ class ViewController: UIViewController {
         setUI()
     }
     
+    // MARK:- Segmented Contoll
+    
     let studSegmented: UISegmentedControl = {
         let studs = ["7 Cards", "5 Cards"]
         let segmentedControl = UISegmentedControl(items: studs)
@@ -39,6 +41,8 @@ class ViewController: UIViewController {
         return segmentedControl
     }()
     
+    // MARK:- Stack Views
+    
     let wholeGameStack: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
@@ -55,7 +59,7 @@ class ViewController: UIViewController {
         stackView.distribution = .fill
         stackView.spacing = 10
         stackView.translatesAutoresizingMaskIntoConstraints = false
-      
+        
         return stackView
     }()
     
@@ -86,12 +90,12 @@ class ViewController: UIViewController {
             playerSegmented.leadingAnchor.constraint(equalTo: studSegmented.leadingAnchor),
             playerSegmented.trailingAnchor.constraint(equalTo: studSegmented.trailingAnchor),
             playerSegmented.topAnchor.constraint(equalTo: studSegmented.bottomAnchor, constant: 10),
-            wholeGameStack.topAnchor.constraint(equalTo: playerSegmented.bottomAnchor, constant: 30),
-            wholeGameStack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            wholeGameStack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            wholeGameStack.topAnchor.constraint(equalTo: playerSegmented.bottomAnchor, constant: 20),
+            wholeGameStack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
+            wholeGameStack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40),
             dealerGameStack.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -30),
-            dealerGameStack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            dealerGameStack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20)
+            dealerGameStack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
+            dealerGameStack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30)
         ]
         NSLayoutConstraint.activate(constraints)
     }
@@ -109,12 +113,24 @@ class ViewController: UIViewController {
     }
     
     func makeGameStack(playerNumber: Int, cardImageStack: UIStackView) -> UIStackView {
+        let medalImage = UIImageView(image: UIImage(named: "medal.png"))
+        let labelStack = UIStackView()
+        labelStack.axis = .horizontal
+        labelStack.distribution = .fillProportionally
+        labelStack.spacing = 5
+        labelStack.translatesAutoresizingMaskIntoConstraints = false
+        labelStack.addArrangedSubview(makePlayerLabel(playerNumber: playerNumber))
+        labelStack.addArrangedSubview(medalImage)
+        medalImage.widthAnchor.constraint(equalToConstant: 30).isActive = true
+        medalImage.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        medalImage.isHidden = true
+
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.distribution = .fill
         stackView.spacing = 5
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.addArrangedSubview(makePlayerLabel(playerNumber: playerNumber))
+        stackView.addArrangedSubview(labelStack)
         stackView.addArrangedSubview(cardImageStack)
         return stackView
     }
@@ -129,10 +145,12 @@ class ViewController: UIViewController {
         return stackView
     }
     
+    
     func startPokerGame(playerCount: PokerGame.PlayerCount, stud: PokerGame.Stud) {
         pokerGame = PokerGame(playerCount: playerCount, stud: stud)
         setPlayersCards()
         setDealerCards()
+        checkWinner()
     }
     
     func setPlayersCards() {
@@ -146,32 +164,76 @@ class ViewController: UIViewController {
                 cardImage.heightAnchor.constraint(equalTo: cardImage.widthAnchor, multiplier: 1.27).isActive = true
                 cardImageStack.addArrangedSubview(cardImage)
             }
-            let gameStack = makeGameStack(playerNumber: number, cardImageStack: cardImageStack)
+            let labelImageStack = makeGameStack(playerNumber: number, cardImageStack: cardImageStack)
             number += 1
-            wholeGameStack.addArrangedSubview(gameStack)
+            wholeGameStack.addArrangedSubview(labelImageStack)
         }
     }
     
     func setDealerCards() {
         dealerGameStack.arrangedSubviews.forEach { $0.removeFromSuperview() }
         let cardImageStack = makeCardImageStack()
+        
         let dealerLabel: UILabel = {
-          let label = UILabel()
+            let label = UILabel()
             label.text = "Dealer"
             label.textColor = .white
             label.font.withSize(10.0)
             return label
         }()
+        
+        let medalImage = UIImageView(image: UIImage(named: "medal.png"))
+        let labelStack = UIStackView()
+        labelStack.axis = .horizontal
+        labelStack.distribution = .fillProportionally
+        labelStack.spacing = 5
+        labelStack.translatesAutoresizingMaskIntoConstraints = false
+        labelStack.addArrangedSubview(dealerLabel)
+        labelStack.addArrangedSubview(medalImage)
+        medalImage.widthAnchor.constraint(equalToConstant: 30).isActive = true
+        medalImage.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        medalImage.isHidden = true
+        
+        
         pokerGame.forEachDealerCards { (card) in
             let cardImage = UIImageView(image: UIImage(named: card.description))
-                        cardImage.heightAnchor.constraint(equalTo: cardImage.widthAnchor, multiplier: 1.27).isActive = true
-                        cardImageStack.addArrangedSubview(cardImage)
+            cardImage.heightAnchor.constraint(equalTo: cardImage.widthAnchor, multiplier: 1.27).isActive = true
+            cardImageStack.addArrangedSubview(cardImage)
         }
-            dealerGameStack.addArrangedSubview(dealerLabel)
+        dealerGameStack.addArrangedSubview(labelStack)
         dealerGameStack.addArrangedSubview(cardImageStack)
-        pokerGame.compareResults()
     }
     
+    func checkWinner() {
+        var isPlayerWin = false
+        pokerGame.compareResults()
+        var playerNumber = 0
+        
+        pokerGame.forEachPlayer { (player) in
+            player.checkWinner { (isWinner) in
+                if isWinner {
+                    isPlayerWin = true
+                    let eachPlayerStack = wholeGameStack.arrangedSubviews[playerNumber] as! UIStackView
+                    let labelStack = eachPlayerStack.arrangedSubviews[0] as! UIStackView
+                    let medalImage = labelStack.arrangedSubviews[1]
+                    medalImage.isHidden = false
+                }
+            }
+            playerNumber += 1
+        }
+        
+        guard !isPlayerWin else { return }
+        pokerGame.dealerGameResult { (dealer) in
+            dealer.checkWinner { (isWinner) in
+                if isWinner {
+                    let labelStack = dealerGameStack.arrangedSubviews[0] as! UIStackView
+                    let medalImage = labelStack.arrangedSubviews[1]
+                    medalImage.isHidden = false
+                }
+            }
+        }
+        
+    }
     
     @objc func studSegmentControl(_ segmentedControl: UISegmentedControl) {
         studNumber = PokerGame.Stud.init(index: segmentedControl.selectedSegmentIndex)
@@ -181,12 +243,12 @@ class ViewController: UIViewController {
     
     @objc func playerCountControl(_ segmentedControl: UISegmentedControl) {
         playerCount = PokerGame.PlayerCount.init(index: segmentedControl.selectedSegmentIndex)
-       
+        
         startPokerGame(playerCount: playerCount, stud: studNumber)
     }
     
-   override func motionBegan(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
-    startPokerGame(playerCount: playerCount, stud: studNumber)
+    override func motionBegan(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        startPokerGame(playerCount: playerCount, stud: studNumber)
     }
 }
 
