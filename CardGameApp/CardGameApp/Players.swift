@@ -10,7 +10,16 @@ import Foundation
 
 class Players {
     private var players = [Player]()
-    func addPlayer(_ player: Player) {
-        players.append(player)
+    
+    init(with numberOfPlayers: Poker.NumberOfPlayers) {
+        for _ in 1...numberOfPlayers.rawValue {
+            players.append(Player())
+        }
+    }
+    
+    func receive(_ card: () -> (Card)) {
+        for index in 0..<players.count {
+            players[index].receive(card())
+        }
     }
 }

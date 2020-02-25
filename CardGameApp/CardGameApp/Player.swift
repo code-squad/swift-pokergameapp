@@ -14,6 +14,7 @@ protocol Playable {
 
 class Player: Playable {
     private var hands = [Card]()
+    
     func receive(_ hand: Card) {
         hands.append(hand)
     }
