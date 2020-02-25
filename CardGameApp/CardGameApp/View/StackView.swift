@@ -10,77 +10,66 @@ import UIKit
 
 class StackView: UIView {
     
-    var game: Game!
-    private var stackView: UIStackView = UIStackView()
+    private var game: Game? = .fiveCardStud(gamers: Players())
+    private var stackView: UIStackView
     
     override init(frame: CGRect) {
+        stackView = UIStackView()
         super.init(frame: frame)
-        addSubview(stackView)
-        setup()
         configuerStackView()
-    }
-    
-    
-    init(game: Game) {
-        super.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
-        self.game = game
-        initPlayersStackView()
+        initCardStackView()
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        stackView = UIStackView()
+        super.init(coder: coder)
+        configuerStackView()
+        initCardStackView()
     }
     
     func fetchGame(game: Game?) {
         self.game = game
-    }
-    
-    private func setup() {
-        var players = Players()
-        players.addGamers(players: (1...3).map { Player(identifier: "player\($0)") })
-        game = .fiveCardStud(gamers: players)
+        stackView.subviews.forEach {
+            stackView.removeArrangedSubview($0)
+            $0.removeFromSuperview()
+        }
+        initCardStackView()
+        layoutIfNeeded()
     }
     
     private func configuerStackView() {
-        initPlayersStackView()
+        addSubview(stackView)
         stackView.snp.makeConstraints { (make) in
             make.edges.equalTo(safeAreaLayoutGuide)
         }
         stackView.distribution = .fillEqually
         stackView.axis = .vertical
-        
     }
     
-    private func initCardStackView() -> UIStackView {
-        let stack = UIStackView()
-        game.pushCardToView { card in
-            let cardView = UIImageView()
-            card?.apply(imageView: cardView)
-            cardView.snp.makeConstraints { (make) in
-                make.height.equalTo(cardView.snp.width).multipliedBy(1.27)
-                stack.addArrangedSubview(cardView)
-            }
-        }
-        stack.spacing = -8
-        return stack
+    private func initCardStackView()  {
+        game?.pushPlayerToView { stackView.addArrangedSubview(initPlayerStackView($0)) }
     }
     
-    private func initPlayerStackView(identifier: String) -> UIStackView {
-        let stack = UIStackView()
-        let playerIdentifier = UILabel()
-        playerIdentifier.text = identifier
-        stack.addArrangedSubview(playerIdentifier)
-        stack.addArrangedSubview(initCardStackView())
-        playerIdentifier.snp.makeConstraints { (make) in
-            make.height.equalTo(stack.snp.height).multipliedBy(0.2)
+    private func initCardsStackVieew(_ stackView: UIStackView, card: Card) {
+        stackView.spacing = -8
+        let cardView = UIImageView()
+        card.apply(imageView: cardView)
+        cardView.snp.makeConstraints { (make) in
+            make.height.equalTo(cardView.snp.width).multipliedBy(1.27)
+            stackView.addArrangedSubview(cardView)
         }
-        stack.axis = .vertical
-        return stack
     }
     
-    private func initPlayersStackView() {
-        game.pushPlayerToView { player in
-            stackView.addArrangedSubview(initPlayerStackView(identifier: player.identifier))
-        }
+    private func initPlayerStackView(_ player: Player) -> UIStackView {
+        let playerStack = UIStackView()
+        let cardStack = UIStackView()
+        let identifierLabel = UILabel()
+        player.applyIdentifier(label: identifierLabel)
+        identifierLabel.textColor = .white
+        player.forEach { initCardsStackVieew(cardStack, card: $0) }
+        playerStack.addArrangedSubview(identifierLabel)
+        playerStack.addArrangedSubview(cardStack)
+        playerStack.axis = .vertical
+        return playerStack
     }
 }
