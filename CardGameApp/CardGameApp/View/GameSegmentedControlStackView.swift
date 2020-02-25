@@ -9,13 +9,15 @@
 import UIKit
 
 protocol GameSegmentedControlStackViewDelegate: class {
+    
     func segmentedControlIndexChanged(gameStut: GameStut,
                                       playersNum: Participants.PlayersNum)
+    
 }
 
 class GameSegmentedControlStackView: UIStackView {
-    weak var delegate: GameSegmentedControlStackViewDelegate?
     
+    weak var delegate: GameSegmentedControlStackViewDelegate?
     let stutSegmentedControl = GameSegmentedControl(items:
         GameStut.allCases.map { $0.description + " Cards"})
     let playersSegmentedControl = GameSegmentedControl(items:
@@ -74,4 +76,5 @@ class GameSegmentedControlStackView: UIStackView {
         let index = playersSegmentedControl.selectedSegmentIndex
         return Participants.PlayersNum.allCases[index]
     }
+    
 }

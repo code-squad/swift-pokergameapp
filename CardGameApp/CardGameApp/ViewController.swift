@@ -9,14 +9,17 @@
 import UIKit
 
 extension ViewController: GameSegmentedControlStackViewDelegate {
+    
     func segmentedControlIndexChanged(gameStut: GameStut,
                                       playersNum: Participants.PlayersNum) {
         startGame(gameStut: gameStut,
                   participants: Participants(playersNum: playersNum))
     }
+    
 }
 
 extension ViewController {
+    
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         if motion == .motionShake {
             guard let gameStut = gameSegmentedControlStackView.gameStut() else {
@@ -29,6 +32,7 @@ extension ViewController {
                       participants: Participants(playersNum: playersNum))
         }
     }
+    
 }
 
 class ViewController: UIViewController {
@@ -47,7 +51,7 @@ class ViewController: UIViewController {
         setupSegmentedControlsStackView()
         setupPaticipantsStackView()
         startGame(gameStut: .seven,
-                  participants: Participants(playersNum: .one) )
+                  participants: Participants(playersNum: .one))
     }
     
     private func setupBackground() {
@@ -67,6 +71,7 @@ class ViewController: UIViewController {
     private func setConstraintControlsStackView() {
         let topConstant: CGFloat = 10
         let sideConstant: CGFloat = 120
+        
         gameSegmentedControlStackView.topAnchor.constraint(
             equalTo: view.safeAreaLayoutGuide.topAnchor,
             constant: topConstant).isActive = true
@@ -88,6 +93,7 @@ class ViewController: UIViewController {
         let topConstant: CGFloat = 40
         let leadingConstant: CGFloat = 30
         let trailingConstant: CGFloat = 50
+        
         participantsStackView.topAnchor.constraint(
             equalTo: gameSegmentedControlStackView.bottomAnchor,
             constant: topConstant).isActive = true
@@ -115,4 +121,5 @@ class ViewController: UIViewController {
     private func shuffleDeck() {
         deck.shuffle(using: &generator)
     }
+    
 }

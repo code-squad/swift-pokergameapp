@@ -9,6 +9,7 @@
 import XCTest
 @testable import CardGameApp
 class DeckTests: XCTestCase {
+    
     var deck: Deck!
     
     override func setUp() {

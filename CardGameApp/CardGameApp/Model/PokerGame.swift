@@ -66,6 +66,7 @@ class PokerGame {
 }
 
 extension PokerGame {
+    
     func searchDeck(handler: (Deck) -> (Void)) {
         handler(deck)
     }
@@ -75,5 +76,6 @@ extension PokerGame {
             handler($0)
         }
     }
+    
 }
 

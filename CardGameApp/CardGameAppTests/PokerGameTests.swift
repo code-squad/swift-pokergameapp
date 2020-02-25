@@ -8,6 +8,7 @@
 import XCTest
 @testable import CardGameApp
 class PokerGameTests: XCTestCase {
+    
     var game: PokerGame!
 
     override func tearDown() {
@@ -58,9 +59,11 @@ class PokerGameTests: XCTestCase {
             XCTAssertEqual(remainedDeck.count ,
                            originDeck.count - handedOutCards.count)
         }
+        
     }
     
     func testHasEnoughCards() {
+        
         //1. given
         game = PokerGame(gameStut: .seven,
                          participants: Participants(playersNum: .four),
@@ -70,6 +73,7 @@ class PokerGameTests: XCTestCase {
 
         //3. then
         XCTAssertFalse(game.hasEnoughCards())
+        
     }
     
 }
