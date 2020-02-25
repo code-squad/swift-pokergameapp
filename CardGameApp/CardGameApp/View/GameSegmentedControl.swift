@@ -41,4 +41,5 @@ class GameSegmentedControl: UISegmentedControl {
         let selectedTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
         setTitleTextAttributes(selectedTextAttributes, for: .selected)
     }
+    
 }

@@ -14,7 +14,6 @@ class PokerGame {
     let gameStut: GameStut
     let participants: Participants
 
-    
     init(gameStut: GameStut , participants: Participants, deck: Deck){
         self.gameStut = gameStut
         self.participants = participants

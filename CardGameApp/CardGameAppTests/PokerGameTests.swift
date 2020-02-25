@@ -17,10 +17,12 @@ class PokerGameTests: XCTestCase {
     
     func testStartNewRound() {
         //1. given
-        let gameStut = PokerGame.GameStut.five
-        let playersNum = Participants.Number.three
-        let dealerCount = 1
-        game = PokerGame(gameStut: gameStut, playersNum: playersNum)
+        let gameStut = GameStut.five
+        let participants = Participants(playersNum: .three)
+        game = PokerGame(gameStut: gameStut,
+                         participants: participants,
+                         deck: Deck())
+        
         var originDeck = [Card]()
         game.searchDeck { (deck : Deck) in
             deck.searchCard {
@@ -33,14 +35,9 @@ class PokerGameTests: XCTestCase {
         
         //3. then
         var handedOutCards = [Card]()
-        game.searchDealer { (dealer: Participant) in
-            dealer.searchCard {
-                handedOutCards.append($0)
-            }
-        }
-        game.searchPlayers { (player : Participant) in
-            player.searchCard {
-                handedOutCards.append($0)
+        game.participants.searchParticipants { (participant) -> (Void) in
+            participant.searchCard { (card) in
+                handedOutCards.append(card)
             }
         }
         
@@ -49,24 +46,27 @@ class PokerGameTests: XCTestCase {
             gameStutCount += 1
         }
         
-        var playersNumCount = 0
-        playersNum.forEach { 
-            playersNumCount += 1
+        var participantsCount = 0
+        game.participants.forEach {
+            participantsCount += 1
         }
         
         XCTAssertEqual(handedOutCards.count,
-                       gameStutCount * (playersNumCount + dealerCount))
+                       gameStutCount * participantsCount)
+        
         game.searchDeck { (remainedDeck: Deck) in
-            XCTAssertEqual(remainedDeck.count , originDeck.count - handedOutCards.count)
+            XCTAssertEqual(remainedDeck.count ,
+                           originDeck.count - handedOutCards.count)
         }
     }
     
     func testHasEnoughCards() {
         //1. given
-        game = PokerGame(gameStut: .seven, playersNum: .four)
-
+        game = PokerGame(gameStut: .seven,
+                         participants: Participants(playersNum: .four),
+                         deck: Deck())
         //2. when
-        game.startNewRound() // remainedCards = 52 - 7 * 5 ( one is dealer) = 17
+        game.startNewRound()
 
         //3. then
         XCTAssertFalse(game.hasEnoughCards())
