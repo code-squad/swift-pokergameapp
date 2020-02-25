@@ -32,7 +32,7 @@ class ParticipantsStackView: UIStackView {
     }
     
     private func setupView() {
-        PokerGame.ParticipantsNum.forEachMaxCase {
+        ParticipantsNum.forEachMaxCase {
             addArrangedSubview(ParticipantStackView())
         }
     }
