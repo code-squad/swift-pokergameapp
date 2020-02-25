@@ -19,10 +19,8 @@ class Participants {
     }
     private var players = [Participant]()
     private let dealer = Participant()
-    private let playersNum: Number
     
     init(playersNum: Number) {
-        self.playersNum = playersNum
         initPlayers(playersNum: playersNum)
     }
     
