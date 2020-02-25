@@ -4,7 +4,7 @@
 ### step-1
 1. StatusBar LightContent로 변경
 2. 배경이미지 Assets에 등록 후 BackgroundPattern이라고 명명
-3. 배경을 이미지패턴으로 지정   
+3. 배경을 이미지패턴으로 지정    
 <img width="200" src="https://user-images.githubusercontent.com/49548908/74218125-c0459580-4cec-11ea-9cf9-00422815ef5c.png">
 
 4. 카드 뒷면 이미지 Assets에 등록 후 CardBackground라고 명명
@@ -46,3 +46,32 @@
 3. Dealer Class를 만듦.
 - Player Class를 상속받음, Player와 같은 속성이나 Dealer가 하는일은 좀 더 추가가 됨.
 - 카드 섞기(shuffle), 카드 나눠주기(drawCard), 카드개수 확인하기(checkCardAmount)
+
+### step-5 (2020.2.25)
+
+1. SegmentedControl 추가
+   - studType, playerEntry을 선택 할 수 있는 SegmentedControl 2개 추가.
+   - 선택하면 text색을 검정색, 선택하지 않았을때 흰색으로 설정.
+   - border 흰색으로 설정
+   - 초기선택은 0번째 index로 설정
+   - ViewController에서 설정 및 생성을 해줬으나 너무 커지는것 같아 studType, playerEntry SegmentedControl을 각각 분리함.
+   - 분리하고 보니 코드가 같아 CustomSegmentedControl로 통합하여 해당 객체를 생성하여 사용. 
+
+3. Label
+   - Label에 들어가는 text를 viewController에서 만들어준다음 넣어주려고 했으나, viewController에서 해주는게 맞지 않다고 판단.
+   - Player 프로퍼티에 이름을 넣어서 객체가 생성될때 player name을 넣어주도록 변경(ex. player1, player2.....)
+   - Dealer는 "Dealer"가 이름이 되도록 한다.
+   - label로 불러와야 하므로 private(set) 으로 접근제어 하도록 변경
+
+4. StackView
+   - 현재 최상위 스택뷰(GameStackView)안에 PlayerInfoStackView가 플레이어 수만큼 들어가있고, PlayerInfoStackView안에는 Label과 CardImg들을 가지고있는 CardGameStackView 이렇게 구성되어 있음.
+   - SegmentedControl 과 마찬가지로 ViewController에서 설정 및 생성하였으나 View 객체를 만들어 내부에서 Label 생성, 카드이미지를 넣는 스택뷰, Label과 카드이미지스택뷰를 묶는 플레이어스택뷰, 마지막으로 플레이어수만큼 플레이어스택뷰를 가지고 있는 최상위 스택뷰를 만듦.
+   - ViewController에서는 단지 해당 UIStackView객체를 가지고 view에 추가, 제약사항만 추가해주면 된다.
+
+5. Players
+   - 기존 GameTable에서 players를 Player타입의 배열로 생성하여 사용하였으나 Players라는 객체를 만들어서 사용하도록 변경
+   - GameTable에서 player 추가, 초기 카드 세팅은 Players에서 이루어지도록 변경
+   - 배열 다루는건 Players에서 이루어지도록 한다.
+
+6. 동작 확인
+<img width="250" src="https://user-images.githubusercontent.com/49548908/75263064-cbdaa580-5830-11ea-88ab-fc7f57447ec9.gif">
