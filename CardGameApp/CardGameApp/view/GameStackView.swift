@@ -41,10 +41,9 @@ class GameStackView: UIStackView {
         self.spacing = 20
         self.translatesAutoresizingMaskIntoConstraints = false
         
-        pokerGame.players.forEach { (player) in
+        pokerGame.participants.players.forEach { (player) in
             self.addArrangedSubview(playerInfoStackView(player: player))
         }
-       
     }
     
     // 플레이어 정보 스택뷰 (라벨 + 카드스택뷰)
