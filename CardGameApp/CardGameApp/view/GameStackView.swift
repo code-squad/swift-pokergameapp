@@ -62,7 +62,7 @@ class GameStackView: UIStackView {
     }
     
     // 카드 스택뷰
-    private func cardStackView(cardDeck: [Card?]) -> UIStackView {
+    private func cardStackView(cardDeck: [Card]) -> UIStackView {
         let playerCardStackView = UIStackView()
         playerCardStackView.axis = .horizontal
         playerCardStackView.distribution = .fill
@@ -70,7 +70,7 @@ class GameStackView: UIStackView {
         playerCardStackView.translatesAutoresizingMaskIntoConstraints = false
         
         cardDeck.forEach { (card) in
-            let cardImg = UIImageView(image: UIImage(named: "\(card!)"))
+            let cardImg = UIImageView(image: UIImage(named: "\(card)"))
             cardImg.translatesAutoresizingMaskIntoConstraints = false
             cardImg.heightAnchor.constraint(equalTo: cardImg.widthAnchor, multiplier: 1.27).isActive = true
             playerCardStackView.addArrangedSubview(cardImg)

@@ -20,7 +20,7 @@ class Dealer: Player {
         self.cardDeck.shuffle()
     }
     
-    func drawCard() -> Card? {
+    func drawCard() -> Card {
         return cardDeck.removeOne()
     }
     
