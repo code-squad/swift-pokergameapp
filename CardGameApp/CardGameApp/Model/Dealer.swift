@@ -44,4 +44,7 @@ class Dealer: Player {
            return hands.sortCards()
     }
        
+    override func checkWinner(_ hander: (Bool) -> ()) {
+        hander(isWinner)
+    }
 }

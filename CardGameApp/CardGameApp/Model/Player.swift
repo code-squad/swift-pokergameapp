@@ -33,6 +33,9 @@ class Player: Equatable {
     
     static func == (lhs: Player, rhs: Player) -> Bool {
         return lhs.hands == rhs.hands
-      }
+    }
     
+    func checkWinner(_ hander: (Bool) -> ()) {
+        hander(isWinner)
+    }
 }
