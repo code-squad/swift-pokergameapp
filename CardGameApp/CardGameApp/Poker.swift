@@ -20,41 +20,29 @@ class Poker {
     
     enum NumberOfPlayers: Int {
         case one = 1, two, three, four
-        func forEach(_ closure: () -> ()) {
-            for _ in 1...self.rawValue {
-                closure()
-            }
-        }
     }
     
     private var stud: Stud
     private var numberOfPlayers: NumberOfPlayers
-    private var players = Players()
-    private var dealer = Dealer()
+    private var players: Players
+    private var dealer: Dealer
     
     init(stud: Stud, numberOfPlayers: NumberOfPlayers) {
         self.stud = stud
         self.numberOfPlayers = numberOfPlayers
-        start()
+        self.players = Players(with: numberOfPlayers)
+        self.dealer = Dealer()
     }
     
     func start() {
         dealer.shuffle()
-        numberOfPlayers.forEach {
-            let player = Player()
-            stud.forEach {
-                player.receive(dealer.card())
-            }
-            players.addPlayer(player)
-        }
         stud.forEach {
+            players.receive(dealer.card)
             dealer.receive(dealer.card())
         }
     }
     
     func canContinue() -> Bool {
-        let numberOfRemainingCards = dealer.count()
-        let numberOfRequiredCards = stud.rawValue * (numberOfPlayers.rawValue + 1)
-        return numberOfRemainingCards > numberOfRequiredCards
+        return dealer.canContinue(stud: stud, numberOfPlayers: numberOfPlayers)
     }
 }
