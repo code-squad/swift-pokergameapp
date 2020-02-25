@@ -10,9 +10,9 @@ import UIKit
 
 extension ViewController: GameSegmentedControlStackViewDelegate {
     func segmentedControlIndexChanged(gameStut: GameStut,
-                                      playersNum: ParticipantsNum.PlayersNum) {
+                                      playersNum: Participants.PlayersNum) {
         startGame(gameStut: gameStut,
-                  participantsNum: ParticipantsNum(playersNum: playersNum))
+                  participants: Participants(playersNum: playersNum))
     }
 }
 
@@ -26,7 +26,7 @@ extension ViewController {
                 return
             }
             startGame(gameStut: gameStut,
-                      participantsNum: ParticipantsNum(playersNum: playersNum))
+                      participants: Participants(playersNum: playersNum))
         }
     }
 }
@@ -47,7 +47,7 @@ class ViewController: UIViewController {
         setupSegmentedControlsStackView()
         setupPaticipantsStackView()
         startGame(gameStut: .seven,
-                  participantsNum: ParticipantsNum(playersNum: .one) )
+                  participants: Participants(playersNum: .one) )
     }
     
     private func setupBackground() {
@@ -99,13 +99,13 @@ class ViewController: UIViewController {
             constant: -trailingConstant).isActive = true
     }
     
-    private func startGame(gameStut: GameStut, participantsNum: ParticipantsNum) {
+    private func startGame(gameStut: GameStut, participants: Participants) {
         shuffleDeck()
-        var game = PokerGame(gameStut: gameStut, participantsNum: participantsNum, deck: deck)
+        var game = PokerGame(gameStut: gameStut, participants: participants, deck: deck)
         if !game.hasEnoughCards() {
             deck.reset()
             shuffleDeck()
-            game = PokerGame(gameStut: gameStut, participantsNum: participantsNum, deck: deck)
+            game = PokerGame(gameStut: gameStut, participants: participants, deck: deck)
         }
         game.startNewRound()
         participantsStackView.updateView(game: game)
