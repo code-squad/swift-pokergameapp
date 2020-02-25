@@ -41,8 +41,15 @@ class ParticipantStackView: UIStackView {
     }
     
     func updateView(name: String, participant: Participant) {
+        updateName(with: name)
+        updateCardsStackView(participant: participant)
+    }
+    
+    private func updateName(with name: String) {
         participantLabel.text = name
-        
+    }
+    
+    private func updateCardsStackView(participant: Participant) {
         let cardStackIndex = 1
         let cardsStackView = arrangedSubviews[cardStackIndex] as! CardsStackView
         cardsStackView.updateView(player: participant)
