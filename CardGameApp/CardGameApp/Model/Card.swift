@@ -10,7 +10,7 @@ import Foundation
 
 protocol CardSearchable {
     
-    func searchCard(handler: (Card) -> ())
+    func searchCard(handler: (Card) -> (Void))
     
 }
 
