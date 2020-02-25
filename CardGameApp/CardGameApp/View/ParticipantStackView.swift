@@ -52,6 +52,6 @@ class ParticipantStackView: UIStackView {
     private func updateCardsStackView(participant: Participant) {
         let cardStackIndex = 1
         let cardsStackView = arrangedSubviews[cardStackIndex] as! CardsStackView
-        cardsStackView.updateView(player: participant)
+        cardsStackView.updateView(participant: participant)
     }
 }
