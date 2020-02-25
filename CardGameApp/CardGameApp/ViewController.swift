@@ -21,16 +21,12 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "BackgroundPattern")!)
-        drawSegmentCtrl()
-        drawStackView()
+        setUI()
     }
     
-    func resetPokerGame() {
-        self.gameStackView.arrangedSubviews.forEach { (subCardStackView) in
-            self.gameStackView.removeArrangedSubview(subCardStackView)
-            subCardStackView.removeFromSuperview()
-        }
+    func setUI() {
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "BackgroundPattern")!)
+        drawSegmentCtrl()
         drawStackView()
     }
     
@@ -45,6 +41,14 @@ class ViewController: UIViewController {
     func drawSegmentCtrl() {
         setUpStudTypeSegment()
         setUpPlayerEntrySegment()
+    }
+    
+    func resetPokerGame() {
+        self.gameStackView.arrangedSubviews.forEach { (subCardStackView) in
+            self.gameStackView.removeArrangedSubview(subCardStackView)
+            subCardStackView.removeFromSuperview()
+        }
+        drawStackView()
     }
     
     func setUpStudTypeSegment() {
@@ -77,4 +81,3 @@ class ViewController: UIViewController {
         resetPokerGame()
     }
 }
-
