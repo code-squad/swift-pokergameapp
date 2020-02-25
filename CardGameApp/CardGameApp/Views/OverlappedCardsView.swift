@@ -86,6 +86,10 @@ extension OverlappedCardsView {
         dealAnimator?.startAnimation(afterDelay: delay / speed)
     }
     
+    func stopAnimation() {
+        dealAnimator?.stopAnimation(true)
+    }
+    
     private func successiveDealingAnimation(for views: [UIView], dutyCycle: Double) {
         let cardAppearingDuration = 1 / Double(views.count) * dutyCycle
         var startTimes = stride(from: 0, to: 1, by: 1 / Double(views.count)).map { $0 }
