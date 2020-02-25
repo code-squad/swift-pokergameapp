@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PlayerEntrySegmentedControl: UISegmentedControl {
+class CustomSegmentedControl: UISegmentedControl {
     
     override init(items: [Any]?) {
         super.init(items: items)

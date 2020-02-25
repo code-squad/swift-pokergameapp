@@ -52,7 +52,7 @@ class ViewController: UIViewController {
     }
     
     func setUpStudTypeSegment() {
-        let studTypeSegmentedControl = StudTypeSegmentedControl(items: ["7 Cards", "5 Cards"])
+        let studTypeSegmentedControl = CustomSegmentedControl(items: ["7 Cards", "5 Cards"])
         studTypeSegmentedControl.center = CGPoint(x: self.view.frame.width/2, y: 100)
        
         self.view.addSubview(studTypeSegmentedControl)
@@ -67,7 +67,7 @@ class ViewController: UIViewController {
     }
     
     func setUpPlayerEntrySegment() {
-        let playerEntrySegmentedControl = PlayerEntrySegmentedControl(items: ["2명", "3명", "4명"])
+        let playerEntrySegmentedControl = CustomSegmentedControl(items: ["2명", "3명", "4명"])
         playerEntrySegmentedControl.center = CGPoint(x: self.view.frame.width/2, y: 140)
         
         self.view.addSubview(playerEntrySegmentedControl)
