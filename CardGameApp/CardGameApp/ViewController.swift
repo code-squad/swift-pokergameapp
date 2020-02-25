@@ -10,9 +10,9 @@ import UIKit
 
 extension ViewController: GameSegmentedControlStackViewDelegate {
     func segmentedControlIndexChanged(gameStut: GameStut,
-                                      playersNum: PokerGame.ParticipantsNum.PlayersNum) {
+                                      playersNum: ParticipantsNum.PlayersNum) {
         startGame(gameStut: gameStut,
-                  participantsNum: PokerGame.ParticipantsNum(playersNum: playersNum))
+                  participantsNum: ParticipantsNum(playersNum: playersNum))
     }
 }
 
@@ -26,7 +26,7 @@ extension ViewController {
                 return
             }
             startGame(gameStut: gameStut,
-                      participantsNum: PokerGame.ParticipantsNum(playersNum: playersNum))
+                      participantsNum: ParticipantsNum(playersNum: playersNum))
         }
     }
 }
@@ -47,7 +47,7 @@ class ViewController: UIViewController {
         setupSegmentedControlsStackView()
         setupPaticipantsStackView()
         startGame(gameStut: .seven,
-                  participantsNum: PokerGame.ParticipantsNum(playersNum: .one) )
+                  participantsNum: ParticipantsNum(playersNum: .one) )
     }
     
     private func setupBackground() {
@@ -99,7 +99,7 @@ class ViewController: UIViewController {
             constant: -trailingConstant).isActive = true
     }
     
-    private func startGame(gameStut: GameStut, participantsNum: PokerGame.ParticipantsNum) {
+    private func startGame(gameStut: GameStut, participantsNum: ParticipantsNum) {
         shuffleDeck()
         var game = PokerGame(gameStut: gameStut, participantsNum: participantsNum, deck: deck)
         if !game.hasEnoughCards() {

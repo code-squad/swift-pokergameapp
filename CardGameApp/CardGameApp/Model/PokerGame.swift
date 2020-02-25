@@ -7,52 +7,7 @@
 //
 
 import Foundation
-extension PokerGame {
-    
-    struct ParticipantsNum {
-        enum PlayersNum: Int, CaseIterable {
-            case one = 1 , two, three, four
-            func forEach(handler: () -> (Void)) {
-                for _ in 0 ..< self.rawValue {
-                    handler()
-                }
-            }
-        }
-        let playersNum: PlayersNum
-        static let dealerCount = 1
-    }
-}
 
-extension PokerGame.ParticipantsNum.PlayersNum: Comparable {
-    static func < (lhs: PokerGame.ParticipantsNum.PlayersNum, rhs: PokerGame.ParticipantsNum.PlayersNum) -> Bool {
-        return lhs.rawValue < rhs.rawValue
-    }
-}
-
-extension PokerGame.ParticipantsNum {
-    static func forEachMaxCase(handler : () -> (Void)) {
-        if let max = PokerGame.ParticipantsNum.PlayersNum.allCases.max() {
-            let maxCount = max.rawValue + PokerGame.ParticipantsNum.dealerCount
-            for _ in 0 ..< maxCount {
-                handler()
-            }
-        }
-    }
-    
-    func forEach(handler : () -> (Void)) {
-        let participantsNum = playersNum.rawValue +
-            PokerGame.ParticipantsNum.dealerCount
-        for _ in 0 ..< participantsNum {
-            handler()
-        }
-    }
-}
-
-extension PokerGame.ParticipantsNum.PlayersNum: CustomStringConvertible {
-    var description: String {
-        return String(self.rawValue)
-    }
-}
 
 
 class PokerGame {
@@ -60,9 +15,9 @@ class PokerGame {
     private let participants: Participants
     private let deck: Deck
     let gameStut: GameStut
-    let participantsNum: PokerGame.ParticipantsNum
+    let participantsNum: ParticipantsNum
     
-    init(gameStut: GameStut , participantsNum: PokerGame.ParticipantsNum, deck: Deck){
+    init(gameStut: GameStut , participantsNum: ParticipantsNum, deck: Deck){
         self.gameStut = gameStut
         self.participantsNum = participantsNum
         self.deck = deck

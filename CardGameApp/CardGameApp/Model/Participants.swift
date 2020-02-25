@@ -13,11 +13,11 @@ class Participants {
     private var players = [Participant]()
     private let dealer = Participant()
     
-    init(participantsNum: PokerGame.ParticipantsNum) {
+    init(participantsNum: ParticipantsNum) {
         initPlayers(participantsNum: participantsNum)
     }
     
-    private func initPlayers(participantsNum: PokerGame.ParticipantsNum) {
+    private func initPlayers(participantsNum: ParticipantsNum) {
         participantsNum.playersNum.forEach {
             players.append(Participant())
         }
