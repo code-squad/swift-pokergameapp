@@ -67,6 +67,7 @@ class ParticipantsStackView: UIStackView {
         game.participantsNum.forEach {
             participantsCount += 1
         }
+        
         for index in participantsCount ..< arrangedSubviews.count {
             arrangedSubviews[index].isHidden = true
         }
