@@ -10,7 +10,7 @@ import UIKit
 
 protocol GameSegmentedControlStackViewDelegate: class {
     func segmentedControlIndexChanged(gameStut: PokerGame.GameStut,
-                                      playersNum: PokerGame.PlayersNum)
+                                      playersNum: PokerGame.ParticipantsNum.PlayersNum)
 }
 
 class GameSegmentedControlStackView: UIStackView {
@@ -19,7 +19,7 @@ class GameSegmentedControlStackView: UIStackView {
     let stutSegmentedControl = GameSegmentedControl(items:
         PokerGame.GameStut.allCases.map { $0.description + " Cards"})
     let playersSegmentedControl = GameSegmentedControl(items:
-        PokerGame.PlayersNum.allCases.map{ $0.description + "명"})
+        PokerGame.ParticipantsNum.PlayersNum.allCases.map{ $0.description + "명"})
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -69,8 +69,8 @@ class GameSegmentedControlStackView: UIStackView {
         return PokerGame.GameStut.allCases[index]
     }
     
-    func playersNum() -> PokerGame.PlayersNum? {
+    func playersNum() -> PokerGame.ParticipantsNum.PlayersNum? {
         let index = playersSegmentedControl.selectedSegmentIndex
-        return PokerGame.PlayersNum.allCases[index]
+        return PokerGame.ParticipantsNum.PlayersNum.allCases[index]
     }
 }
