@@ -32,13 +32,7 @@ class ParticipantsStackView: UIStackView {
     }
     
     private func setupView() {
-        let dealerCount = 1
-        var maxNum = dealerCount
-        PokerGame.ParticipantsNum.PlayersNum.four.forEach {
-            maxNum += 1
-        }
-        
-        for _ in 0 ..< maxNum {
+        PokerGame.ParticipantsNum.forEachMaxCase {
             addArrangedSubview(ParticipantStackView())
         }
     }
