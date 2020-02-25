@@ -59,7 +59,7 @@ class ParticipantsStackView: UIStackView {
     
     private func updateParticipant(at index: Int, participant: Participant) {
         let participantStackView = arrangedSubviews[index] as! ParticipantStackView
-        participantStackView.updateView(name: "Player\(index + 1)", participant: participant)
+        participantStackView.updateView(name: participant.name, participant: participant)
     }
     
     private func setNotParticipantViewsHidden(game: PokerGame) {
