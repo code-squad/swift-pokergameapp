@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Players {
+class Participants {
     enum Number: Int, CaseIterable {
         case one = 1 , two, three, four
         func forEach(handler: () -> (Void)) {
@@ -17,7 +17,8 @@ class Players {
             }
         }
     }
-    private var players = [Player]()
+    private var players = [Participant]()
+    private let dealer = Participant()
     private let playersNum: Number
     
     init(playersNum: Number) {
@@ -27,19 +28,23 @@ class Players {
     
     private func initPlayers(playersNum: Number) {
         playersNum.forEach {
-            players.append(Player())
+            players.append(Participant())
         }
     }
 }
 
-extension Players.Number: CustomStringConvertible {
+extension Participants.Number: CustomStringConvertible {
     var description: String {
         return String(self.rawValue)
     }
 }
 
-extension Players {
-    func searchPlayer(handler: (Player) -> (Void)) {
-        players.forEach{ handler($0) }
+extension Participants {
+    
+    func searchParticipants(handler: (Participant) -> (Void)) {
+        var participants = players
+        participants.append(dealer)
+        
+        participants.forEach { handler($0) }
     }
 }

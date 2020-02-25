@@ -27,17 +27,16 @@ extension PokerGame.GameStut: CustomStringConvertible {
 
 class PokerGame {
     
-    private let dealer = Player()
-    private let players: Players
+    private let participants: Participants
     private let gameStut: GameStut
-    private let playersNum: Players.Number
+    private let playersNum: Participants.Number
     private let deck: Deck
     
-    init(gameStut: GameStut , playersNum: Players.Number, deck: Deck){
+    init(gameStut: GameStut , playersNum: Participants.Number, deck: Deck){
         self.gameStut = gameStut
         self.playersNum = playersNum
         self.deck = deck
-        self.players = Players(playersNum: playersNum)
+        self.participants = Participants(playersNum: playersNum)
     }
     
     func startNewRound() {
@@ -47,17 +46,8 @@ class PokerGame {
     }
     
     private func resetParticipantsCards() {
-        resetDealerCards()
-        resetPlayersCards()
-    }
-    
-    private func resetDealerCards() {
-        dealer.reset()
-    }
-    
-    private func resetPlayersCards() {
-        players.searchPlayer { (player: Player) -> (Void) in
-            player.reset()
+        participants.searchParticipants {
+            $0.reset()
         }
     }
     
@@ -68,21 +58,14 @@ class PokerGame {
     
     private func handOutCards() {
         gameStut.forEach {
-            sendToDealer()
-            sendToPlayers()
+            sendToParticipants()
         }
     }
     
-    private func sendToDealer() {
-        if let card = deck.removeOne() {
-            dealer.receive(card: card)
-        }
-    }
-    
-    private func sendToPlayers() {
-        players.searchPlayer { (player: Player) in
+    private func sendToParticipants() {
+        participants.searchParticipants {
             if let card = deck.removeOne() {
-                player.receive(card: card)
+                $0.receive(card: card)
             }
         }
     }
@@ -114,16 +97,12 @@ class PokerGame {
 }
 
 extension PokerGame {
-    func searchDeck(handler: (Deck) -> ()) {
+    func searchDeck(handler: (Deck) -> (Void)) {
         handler(deck)
     }
     
-    func searchDealer(handler: (Player) -> ()) {
-        handler(dealer)
-    }
-    
-    func searchPlayers(handler: (Player) -> ()) {
-        players.searchPlayer {
+    func searchParticipants(handler: (Participant) -> (Void)) {
+        participants.searchParticipants {
             handler($0)
         }
     }

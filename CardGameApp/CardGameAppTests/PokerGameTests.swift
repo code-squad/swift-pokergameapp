@@ -18,7 +18,7 @@ class PokerGameTests: XCTestCase {
     func testStartNewRound() {
         //1. given
         let gameStut = PokerGame.GameStut.five
-        let playersNum = Players.Number.three
+        let playersNum = Participants.Number.three
         let dealerCount = 1
         game = PokerGame(gameStut: gameStut, playersNum: playersNum)
         var originDeck = [Card]()
@@ -33,12 +33,12 @@ class PokerGameTests: XCTestCase {
         
         //3. then
         var handedOutCards = [Card]()
-        game.searchDealer { (dealer: Player) in
+        game.searchDealer { (dealer: Participant) in
             dealer.searchCard {
                 handedOutCards.append($0)
             }
         }
-        game.searchPlayers { (player : Player) in
+        game.searchPlayers { (player : Participant) in
             player.searchCard {
                 handedOutCards.append($0)
             }
