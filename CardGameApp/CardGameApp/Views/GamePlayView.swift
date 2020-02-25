@@ -68,6 +68,7 @@ class GamePlayView: UIView {
             updateSubView(at: subViewIndex, to: participant, participantName: names[subViewIndex])
             subViewIndex += 1
         }
+        animateGamePlayView()
     }
     
     func updateWinnerView(with gamePlay: GamePlay) {
@@ -88,5 +89,16 @@ class GamePlayView: UIView {
     private func updateSubView(at index: Int, to winnerOrNot: Bool) {
         guard let view = participantsStackView.arrangedSubviews[index] as? ParticipantView else { return }
         view.updateView(to: winnerOrNot)
+    }
+}
+
+extension GamePlayView {
+    
+    func animateGamePlayView() {
+        let shownViews = participantsStackView.arrangedSubviews.filter { $0.isHidden == false }
+        shownViews.enumerated().forEach { index, view in
+            guard let view = view as? ParticipantView else { return }
+            view.animateDealing(after: TimeInterval(index), period: TimeInterval(shownViews.count))
+        }
     }
 }

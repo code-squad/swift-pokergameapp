@@ -29,10 +29,7 @@ class ParticipantView: UIView {
         return stackView
     }()
     
-    private lazy var overlappedCardsView: OverlappedCardsView = {
-        let view = OverlappedCardsView()
-        return view
-    }()
+    private var overlappedCardsView = OverlappedCardsView()
     
     private lazy var winnerImageView: UIImageView = {
         let view = UIImageView()
@@ -74,5 +71,12 @@ class ParticipantView: UIView {
         participantStackView.addArrangedSubview(participantStateStackView)
         participantStateStackView.addArrangedSubview(overlappedCardsView)
         participantStateStackView.addArrangedSubview(winnerImageView)
+    }
+}
+
+extension ParticipantView {
+    
+    func animateDealing(after delay: TimeInterval, period: TimeInterval) {
+        overlappedCardsView.animateDealing(after: delay, period: period)
     }
 }

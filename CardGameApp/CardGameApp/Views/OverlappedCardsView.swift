@@ -40,32 +40,6 @@ class OverlappedCardsView: UIView {
             subViewIndex += 1
         }
         showCardView(by: subViewIndex)
-        showDealingAnimation()
-    }
-    
-    private func showDealingAnimation() {
-        let shownViews = overlappedCardsStackView.arrangedSubviews.filter { $0.isHidden == false }
-        shownViews.forEach { $0.alpha = 0 }
-        
-        dealAnimator = UIViewPropertyAnimator(duration: TimeInterval(shownViews.count), curve: .linear)
-        dealAnimator?.addAnimations {
-            UIView.animateKeyframes(
-                withDuration: 7,
-                delay: 0,
-                animations: { self.successiveDealingAnimation(for: shownViews) })
-        }
-        dealAnimator?.startAnimation()
-    }
-    
-    private func successiveDealingAnimation(for views: [UIView]) {
-        let interval = 1 / Double(views.count)
-        var startTimes = stride(from: 0, to: 1, by: interval).map { $0 }
-        
-        views.forEach { view in
-            UIView.addKeyframe(withRelativeStartTime: startTimes.popFirst()!, relativeDuration: interval) {
-                view.alpha = 1
-            }
-        }
     }
     
     private func setupView() {
@@ -94,5 +68,31 @@ class OverlappedCardsView: UIView {
     private func updateSubviewImage(at index: Int, to image: UIImage?) {
         guard let view = overlappedCardsStackView.arrangedSubviews[index] as? UIImageView else { return }
         view.image = image
+    }
+}
+
+extension OverlappedCardsView {
+    
+    func animateDealing(after delay: TimeInterval, period: TimeInterval) {
+        let shownViews = overlappedCardsStackView.arrangedSubviews.filter { $0.isHidden == false }
+        shownViews.forEach { $0.alpha = 0 }
+        let duration = period * Double(shownViews.count)
+        
+        dealAnimator = UIViewPropertyAnimator(duration: duration, curve: .linear)
+        dealAnimator?.addAnimations {
+            UIView.animateKeyframes(withDuration: duration, delay: 0, animations: { [weak self] in
+                self?.successiveDealingAnimation(for: shownViews, dutyCycle: 1 / period) })
+        }
+        dealAnimator?.startAnimation(afterDelay: delay)
+    }
+    
+    private func successiveDealingAnimation(for views: [UIView], dutyCycle: Double) {
+        let cardAppearingDuration = 1 / Double(views.count) * dutyCycle
+        var startTimes = stride(from: 0, to: 1, by: 1 / Double(views.count)).map { $0 }
+        
+        views.forEach { view in
+            UIView.addKeyframe(withRelativeStartTime: startTimes.popFirst()!,
+                               relativeDuration: cardAppearingDuration) { view.alpha = 1 }
+        }
     }
 }
