@@ -47,7 +47,7 @@ class CardsStackView: UIStackView {
         return cardImageView
     }
     
-    func updateView(player: Player) {
+    func updateView(player: Participant) {
         setAllCardsViewsNotHidden()
         var cardsIndex = 0
         player.searchCard { (card) in

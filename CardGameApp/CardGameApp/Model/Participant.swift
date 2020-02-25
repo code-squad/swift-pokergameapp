@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Player: CardSearchable {
+class Participant: CardSearchable {
     
     private var cards = [Card]()
     

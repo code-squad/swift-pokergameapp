@@ -34,7 +34,7 @@ class ParticipantsStackView: UIStackView {
     private func setupView() {
         let dealerCount = 1
         var maxNum = dealerCount
-        Players.Number.four.forEach {
+        Participants.Number.four.forEach {
             maxNum += 1
         }
         
@@ -56,28 +56,16 @@ class ParticipantsStackView: UIStackView {
     }
     
     private func updateSelectedParticipantViews(game: PokerGame) {
-        var playersIndex = 0
-        game.searchPlayers { (player) in
-            updatePlayer(at: playersIndex, player: player)
-            playersIndex += 1
-        }
-        
-        let playersCount = playersIndex
-        game.searchDealer { (dealer) in
-            updateDealer(playersCount: playersCount, dealer: dealer)
+        var participantsIndex = 0
+        game.searchParticipants { (participant) in
+            updateParticipant(at: participantsIndex, participant: participant)
+            participantsIndex += 1
         }
     }
     
-    private func updatePlayer(at index: Int, player: Player) {
+    private func updateParticipant(at index: Int, participant: Participant) {
         let participantStackView = arrangedSubviews[index] as! ParticipantStackView
-        participantStackView.updateView(name: "Player\(index + 1)", player: player)
-    }
-    
-    private func updateDealer(playersCount: Int, dealer: Player) {
-        let dealerCount = 1
-        let dealerIndex = playersCount + dealerCount - 1
-        let dealerStackView = arrangedSubviews[dealerIndex] as! ParticipantStackView
-        dealerStackView.updateView(name: "Dealer", player: dealer)
+        participantStackView.updateView(name: "Player\(index + 1)", participant: participant)
     }
     
     private func setNotParticipantViewsHidden(participantsNum: Int) {
