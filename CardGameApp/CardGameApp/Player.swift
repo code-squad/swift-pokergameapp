@@ -7,3 +7,21 @@
 //
 
 import Foundation
+
+protocol Playable {
+    func receive(_ hand: Card)
+}
+
+class Player: Playable {
+    private var hands = [Card]()
+    func receive(_ hand: Card) {
+        hands.append(hand)
+    }
+}
+
+class Players {
+    private var players = [Player]()
+    func addPlayer(_ player: Player) {
+        players.append(player)
+    }
+}
