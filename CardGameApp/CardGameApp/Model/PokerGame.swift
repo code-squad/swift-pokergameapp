@@ -17,6 +17,15 @@ extension PokerGame {
             }
         }
     }
+    
+    enum PlayersNum: Int, CaseIterable {
+        case one = 1 , two, three, four
+        func forEach(handler: () -> (Void)) {
+            for _ in 0 ..< self.rawValue {
+                handler()
+            }
+        }
+    }
 }
 
 extension PokerGame.GameStut: CustomStringConvertible {
@@ -25,14 +34,21 @@ extension PokerGame.GameStut: CustomStringConvertible {
     }
 }
 
+extension PokerGame.PlayersNum: CustomStringConvertible {
+    var description: String {
+        return String(self.rawValue)
+    }
+}
+
+
 class PokerGame {
     
     private let participants: Participants
     private let gameStut: GameStut
-    private let playersNum: Participants.Number
+    private let playersNum: PokerGame.PlayersNum
     private let deck: Deck
     
-    init(gameStut: GameStut , playersNum: Participants.Number, deck: Deck){
+    init(gameStut: GameStut , playersNum: PokerGame.PlayersNum, deck: Deck){
         self.gameStut = gameStut
         self.playersNum = playersNum
         self.deck = deck

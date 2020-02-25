@@ -9,31 +9,18 @@
 import Foundation
 
 class Participants {
-    enum Number: Int, CaseIterable {
-        case one = 1 , two, three, four
-        func forEach(handler: () -> (Void)) {
-            for _ in 0 ..< self.rawValue {
-                handler()
-            }
-        }
-    }
+
     private var players = [Participant]()
     private let dealer = Participant()
     
-    init(playersNum: Number) {
+    init(playersNum: PokerGame.PlayersNum) {
         initPlayers(playersNum: playersNum)
     }
     
-    private func initPlayers(playersNum: Number) {
+    private func initPlayers(playersNum: PokerGame.PlayersNum) {
         playersNum.forEach {
             players.append(Participant())
         }
-    }
-}
-
-extension Participants.Number: CustomStringConvertible {
-    var description: String {
-        return String(self.rawValue)
     }
 }
 
@@ -42,7 +29,7 @@ extension Participants {
     func searchParticipants(handler: (Participant) -> (Void)) {
         var participants = players
         participants.append(dealer)
-        
         participants.forEach { handler($0) }
     }
+    
 }
