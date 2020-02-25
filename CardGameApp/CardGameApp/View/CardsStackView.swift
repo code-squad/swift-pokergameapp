@@ -32,7 +32,7 @@ class CardsStackView: UIStackView {
     }
     
     private func setupView() {
-        PokerGame.GameStut.seven.forEach {
+        GameStut.seven.forEach {
             addArrangedSubview(generateCardImageViewDefault())
         }
     }

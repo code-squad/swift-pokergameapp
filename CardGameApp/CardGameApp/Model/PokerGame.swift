@@ -9,16 +9,6 @@
 import Foundation
 extension PokerGame {
     
-    enum GameStut: Int, CaseIterable {
-        case seven = 7, five = 5
-        
-        func forEach(handler: () -> (Void)) {
-            for _ in 0 ..< self.rawValue {
-                handler()
-            }
-        }
-    }
-    
     struct ParticipantsNum {
         enum PlayersNum: Int, CaseIterable {
             case one = 1 , two, three, four
@@ -55,12 +45,6 @@ extension PokerGame.ParticipantsNum {
         for _ in 0 ..< participantsNum {
             handler()
         }
-    }
-}
-
-extension PokerGame.GameStut: CustomStringConvertible {
-    var description: String {
-        return String(self.rawValue)
     }
 }
 
