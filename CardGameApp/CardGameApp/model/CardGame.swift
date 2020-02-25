@@ -25,7 +25,7 @@ class GameTable {
     }
     
     // 플레이어 세팅
-    func participatePlayer() {
+    private func participatePlayer() {
         var index = 1
         playerEntry.each {
             players.append(Player(name: "Player\(index)"))
@@ -35,7 +35,7 @@ class GameTable {
     }
     
     // 플레이어 카드 분배.
-    func initDrawCard() {
+    private func initDrawCard() {
         players.forEach { (player) in
             studType.each {
                 let card = dealer.drawCard()
