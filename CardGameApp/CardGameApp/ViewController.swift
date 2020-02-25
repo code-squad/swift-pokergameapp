@@ -10,18 +10,13 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    private var GameStackView = UIStackView()
-    private let cardRatio = CGFloat(1.27)
-    private let cardCount = 7
+    private var gameStackView = GameStackView(pokerGame: GameTable())
     
     private let studTypeSegementControl = UISegmentedControl(items: ["7 Cards", "5 Cards"])
     private let playerEntrySegmentControl = UISegmentedControl(items: ["2명", "3명", "4명"])
     
-    private var cardDeck = CardDeck()
     private var entry = PlayerEntry.two
     private var studType = StudType.sevenStud
-    
-    private var pokerGame = GameTable()
     
     //status bar 설정
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -36,68 +31,19 @@ class ViewController: UIViewController {
     }
     
     func resetPokerGame() {
-        self.pokerGame = GameTable(playerEntry: self.entry, studType: self.studType)
-        self.GameStackView.arrangedSubviews.forEach { (subCardStackView) in
-            self.GameStackView.removeArrangedSubview(subCardStackView)
+        self.gameStackView.arrangedSubviews.forEach { (subCardStackView) in
+            self.gameStackView.removeArrangedSubview(subCardStackView)
             subCardStackView.removeFromSuperview()
         }
         drawStackView()
     }
     
     func drawStackView() {
-        self.GameStackView = createStackView(axis: .vertical, spacing: 20)
-        pokerGame.players.forEach({ (player) in
-            let playerInfoStackView = createStackView(axis: .vertical, spacing: 1)
-            let playerInfoLabel = createLabel(name: player.name)
-            let cardStackView = createStackView(axis: .horizontal, spacing: -7)
-            
-            player.handDeck.forEach { (card) in
-                addCardOnStackView(stackView: cardStackView, card: card)
-            }
-            
-            playerInfoStackView.addArrangedSubview(playerInfoLabel)
-            playerInfoStackView.addArrangedSubview(cardStackView)
-            self.GameStackView.addArrangedSubview(playerInfoStackView)
-        })
-        addStackViewOnView(stackView: GameStackView)
-    }
-    
-    // stackview 유동적으로 생성해주도록 해야한다.
-    func createStackView(axis: NSLayoutConstraint.Axis, spacing: CGFloat) -> UIStackView {
-        let stackView = UIStackView()
-        stackView.axis = axis
-        stackView.distribution = .fill
-        stackView.spacing = spacing
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        
-        return stackView
-    }
-    
-    // view에 stackview를 올림
-    func addStackViewOnView(stackView: UIStackView) {
-        self.view.addSubview(stackView)
-        stackView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 130).isActive = true
-        stackView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 40).isActive = true
-        stackView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -40).isActive = true
-    }
-    
-    // stackview에 card이미지 삽입(카드 이미지 비율도 함께 조정)
-    func addCardOnStackView(stackView: UIStackView, card: Card?) {
-        let cardImg = UIImageView(image: UIImage(named: "\(card!)"))
-        cardImg.translatesAutoresizingMaskIntoConstraints = false
-        cardImg.heightAnchor.constraint(equalTo: cardImg.widthAnchor, multiplier: cardRatio).isActive = true
-        
-        stackView.addArrangedSubview(cardImg)
-    }
-    
-    func createLabel(name: String) -> UILabel {
-        let playerLabel = UILabel()
-        playerLabel.translatesAutoresizingMaskIntoConstraints = false
-        playerLabel.text = name
-        playerLabel.textAlignment = .left
-        playerLabel.textColor = .white
-        
-        return playerLabel
+        self.gameStackView = GameStackView(pokerGame: GameTable(playerEntry: self.entry, studType: self.studType))
+        self.view.addSubview(gameStackView)
+        gameStackView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 130).isActive = true
+        gameStackView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 40).isActive = true
+        gameStackView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -40).isActive = true
     }
     
     func drawSegmentCtrl() {

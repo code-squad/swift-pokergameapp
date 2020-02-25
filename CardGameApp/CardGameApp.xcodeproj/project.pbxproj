@@ -19,6 +19,7 @@
 		ABD4543223F68825005B7ACA /* CardGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD4543123F68825005B7ACA /* CardGame.swift */; };
 		ABD4543423F68F98005B7ACA /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD4543323F68F98005B7ACA /* Player.swift */; };
 		ABD4543623F95092005B7ACA /* Dealer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD4543523F95092005B7ACA /* Dealer.swift */; };
+		ABD4547324037EAD005B7ACA /* GameStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD4547224037EAD005B7ACA /* GameStackView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,7 @@
 		ABD4543123F68825005B7ACA /* CardGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardGame.swift; sourceTree = "<group>"; };
 		ABD4543323F68F98005B7ACA /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		ABD4543523F95092005B7ACA /* Dealer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dealer.swift; sourceTree = "<group>"; };
+		ABD4547224037EAD005B7ACA /* GameStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStackView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +91,7 @@
 		AB9C248D23F1170500BC552E /* CardGameApp */ = {
 			isa = PBXGroup;
 			children = (
+				ABD454742403B630005B7ACA /* view */,
 				AB9C24E523F3DC1C00BC552E /* model */,
 				AB9C248E23F1170500BC552E /* AppDelegate.swift */,
 				AB9C249023F1170500BC552E /* SceneDelegate.swift */,
@@ -120,6 +123,14 @@
 				ABD4542423F531B7005B7ACA /* Info.plist */,
 			);
 			path = CardGameAppTests;
+			sourceTree = "<group>";
+		};
+		ABD454742403B630005B7ACA /* view */ = {
+			isa = PBXGroup;
+			children = (
+				ABD4547224037EAD005B7ACA /* GameStackView.swift */,
+			);
+			path = view;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -228,6 +239,7 @@
 				AB9C248F23F1170500BC552E /* AppDelegate.swift in Sources */,
 				AB9C249123F1170500BC552E /* SceneDelegate.swift in Sources */,
 				ABD4543623F95092005B7ACA /* Dealer.swift in Sources */,
+				ABD4547324037EAD005B7ACA /* GameStackView.swift in Sources */,
 				ABD4543423F68F98005B7ACA /* Player.swift in Sources */,
 				AB9C24E423F39BC000BC552E /* Card.swift in Sources */,
 				ABD4543223F68825005B7ACA /* CardGame.swift in Sources */,
