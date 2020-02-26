@@ -13,7 +13,7 @@ class Card: CustomStringConvertible {
     private var suit : Suit
     private var rank : Rank
     var description: String {
-        return "\(suit.rawValue)\(rank.rawValue)"
+            return "\(suit.description)\(descripteAlphabetRank(rank: rank))"
     }
     
     init(suit: Suit, rank: Rank) {
@@ -42,12 +42,14 @@ class Card: CustomStringConvertible {
         }
     }
     
-    func descripteCard() -> String {
-        
-        if rank == Card.Rank.A || rank == Card.Rank.J || rank == Card.Rank.Q || rank == Card.Rank.K {
-        return "\(suit.rawValue)\(rank)"
-        } else {
-            return self.description
+    func descripteAlphabetRank(rank: Rank) -> String {
+        switch rank {
+        case .A : return "A"
+        case .J : return "J"
+        case .Q : return "Q"
+        case .K : return "K"
+        default :
+            return rank.description
         }
     }
     
