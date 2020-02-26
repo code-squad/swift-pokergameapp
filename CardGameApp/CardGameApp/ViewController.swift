@@ -48,7 +48,6 @@ class ViewController: UIViewController {
         gamePlay.decideWinner()
         
         gamePlayView.updateGamePlayView(with: gamePlay)
-        gamePlayView.updateWinnerView(with: gamePlay)
     }
     
     private func setBackgroundPattern() {
