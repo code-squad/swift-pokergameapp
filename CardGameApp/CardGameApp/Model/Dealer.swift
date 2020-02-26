@@ -9,9 +9,7 @@
 import Foundation
 class Dealer: Player {
     private var cardDeck = CardDeck()
-    private var hands = Hands()
-    private var isWinner = false
-    
+
     func removeOne() -> Card? {
         return cardDeck.removeOne()
     }
@@ -20,31 +18,8 @@ class Dealer: Player {
         return cardDeck.count()
     }
     
-    override func appendCard(_ card: Card) {
-        hands.append(card)
-    }
-    
     func shuffle() {
         cardDeck.shuffle()
     }
-    
-    func forEach(handler: (Card) -> () ) {
-        hands.forEach(handler)
-    }
-    
-   override func result() -> Hands.GameResult {
-        return hands.judgeResult()
-    }
 
-   override func winGame() {
-        isWinner = true
-    }
-
-   override func sortCards() -> [Card] {
-           return hands.sortCards()
-    }
-       
-    override func checkWinner(_ hander: (Bool) -> ()) {
-        hander(isWinner)
-    }
 }
