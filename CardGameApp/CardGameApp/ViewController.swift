@@ -231,8 +231,9 @@ class ViewController: UIViewController {
             let medalImage = labelStack.arrangedSubviews[1]
             medalImage.isHidden = false
         }
-        
     }
+    
+    
     
     @objc func studSegmentControl(_ segmentedControl: UISegmentedControl) {
         studNumber = PokerGame.Stud.init(index: segmentedControl.selectedSegmentIndex)
