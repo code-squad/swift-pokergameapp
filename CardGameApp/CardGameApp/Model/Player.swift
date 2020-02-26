@@ -36,7 +36,7 @@ class Player: Equatable {
         return hands.sortCards()
     }
     
-    func checkWinner(_ hander: (Bool) -> ()) {
+    func findWinner(_ hander: (Bool) -> ()) {
         hander(isWinner)
     }
 }

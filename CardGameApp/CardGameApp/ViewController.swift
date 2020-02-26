@@ -150,7 +150,7 @@ class ViewController: UIViewController {
         pokerGame = PokerGame(playerCount: playerCount, stud: stud)
         setPlayersCards()
         setDealerCards()
-        checkWinner()
+        findWinner()
     }
     
     func setPlayersCards() {
@@ -204,13 +204,13 @@ class ViewController: UIViewController {
         dealerGameStack.addArrangedSubview(cardImageStack)
     }
     
-    func checkWinner() {
+    func findWinner() {
         var isPlayerWin = false
         pokerGame.compareResults()
         var playerNumber = 0
         
         pokerGame.forEachPlayer { (player) in
-            player.checkWinner { (isWinner) in
+            player.findWinner { (isWinner) in
                 if isWinner {
                     isPlayerWin = true
                     let eachPlayerStack = wholeGameStack.arrangedSubviews[playerNumber] as! UIStackView
@@ -224,7 +224,7 @@ class ViewController: UIViewController {
         
         guard !isPlayerWin else { return }
         pokerGame.dealerGameResult { (dealer) in
-            dealer.checkWinner { (isWinner) in
+            dealer.findWinner { (isWinner) in
                 if isWinner {
                     let labelStack = dealerGameStack.arrangedSubviews[0] as! UIStackView
                     let medalImage = labelStack.arrangedSubviews[1]
