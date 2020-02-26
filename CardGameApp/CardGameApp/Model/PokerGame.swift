@@ -48,19 +48,15 @@ class PokerGame {
     
     func start() {
 //        gameMode.setCardPlacement {
-            distributeCards()
+            destributeCards()
 //            }
     }
     
-    private func distributeCards() {
-        // players
-        
-        gameMode.setCardPlacement {
-        var newCard = dealer.giveOneCard()
-            players.addCard(newCard: newCard)
-       }
-        var newCard = dealer.giveOneCard()
-        dealer.addCard(newCard: newCard)
+    func destributeCards() {
+        self.forEachPlayer(behavior: ){ player in
+            player.addCard(newCard: dealer.giveOneCard())
+        }
+        dealer.addCard(newCard: dealer.giveOneCard())
     }
     
     func shuffleWholeCardDeck(){
