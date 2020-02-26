@@ -108,13 +108,22 @@ class ViewController: UIViewController {
                 let card = UIImageView(image: UIImage(named: card.description))
                 setCardImage(of: card)
                 cardsStack.addArrangedSubview(card)
-                
             }
             onePlayerInfoStack.addArrangedSubview(cardsStack)
            
             gameStackView.addArrangedSubview(onePlayerInfoStack)
             playerNumber += 1
         }
+    }
+    
+    func addDealerCards(of stackView: UIStackView) -> UIStackView {
+        let dealerStack = stackView
+        pokerGame.showDealerCards(behavior: ){ card in
+        let card = UIImageView(image: UIImage(named: card.description))
+        setCardImage(of: card)
+        dealerStack.addArrangedSubview(card)
+        }
+        return dealerStack
     }
     
     func setCardImage(of card: UIImageView){
