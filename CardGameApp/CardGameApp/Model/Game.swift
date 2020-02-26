@@ -8,7 +8,7 @@
 
 import Foundation
 
-@objcMembers class Game: NSObject {
+@objcMembers class Game: NSObject, Playable {
     
     enum Style: Int {
         case five = 5
@@ -25,13 +25,13 @@ import Foundation
         }
     }
 
-    enum Peoples: Int, CaseIterable {
+    enum NumberOfPlayers: Int, CaseIterable {
         case two = 2
         case three = 3
         case four = 4
         
         init(index: Int) {
-            self = Peoples.allCases[safe: index] ?? .two
+            self = NumberOfPlayers.allCases[safe: index] ?? .two
         }
         
         func forEach(handler: (Int) -> Void) {
@@ -42,13 +42,13 @@ import Foundation
     private var players: Players
     private var dealer: Dealer
     private var style: Style
-    private var peoples: Peoples
+    private var numberOfPlayers: NumberOfPlayers
     
-    init(players: Players, style: Style, peoples: Peoples){
+    init(players: Players, style: Style, peoples: NumberOfPlayers){
         dealer = Dealer()
         self.players = players
         self.style = style
-        self.peoples = peoples
+        self.numberOfPlayers = peoples
         super.init()
         configure()
         dealer.shuffle()
@@ -56,7 +56,7 @@ import Foundation
 
     func configure(index: Int = 0) {
         dealer.newGame()
-        peoples = Peoples(index: index)
+        numberOfPlayers = NumberOfPlayers(index: index)
         distributePlayers()
     }
     
@@ -83,7 +83,7 @@ import Foundation
     }
     
     private func distributePlayers() {
-        players.replacingPlayers(peoples: peoples) { distribute(to: $0) }
+        players.replacingPlayers(peoples: numberOfPlayers) { distribute(to: $0) }
         dealer.clearCards()
         distribute(to: dealer)
         players.addGamer(player: dealer)

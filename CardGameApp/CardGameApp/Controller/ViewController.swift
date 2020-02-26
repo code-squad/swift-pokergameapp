@@ -15,7 +15,7 @@ class ViewController: UIViewController {
     }
     private var gameView = GameTableView()
     private var manager = DataManager()
-    var observer: NSKeyValueObservation?
+    private var observer: NSKeyValueObservation?
     
     override func loadView() {
         view = gameView

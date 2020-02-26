@@ -13,3 +13,8 @@ protocol StackViewDataSource: NSObject {
     func numberOfRow(selectedItem: Int)
 }
 
+protocol GameData {
+    var style: Game.Style { get set }
+    var players: Players { get set }
+    var numberOfPlayers: Game.NumberOfPlayers { get set }
+}

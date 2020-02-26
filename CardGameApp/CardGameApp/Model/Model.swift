@@ -11,7 +11,6 @@ import Foundation
 //MARK: - Card
 class Card {
     
-    // class는 더 많은 기능을 사용할때 사용할 거 같았습니다. enum은 작은 범위를 나눌때 유용했습니다.
     enum suit: CaseIterable {
         case spade
         case heart

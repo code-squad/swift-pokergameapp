@@ -16,7 +16,7 @@ struct Players {
         players.forEach { handler($0) }
     }
     
-    mutating func replacingPlayers(peoples: Game.Peoples, handler: (Player) -> Void) {
+    mutating func replacingPlayers(peoples: Game.NumberOfPlayers, handler: (Player) -> Void) {
         players = []
         peoples.forEach { players.append(Player(identifier: "players\($0)")) }
         players.forEach { handler($0) }

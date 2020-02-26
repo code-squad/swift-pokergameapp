@@ -14,7 +14,7 @@
 		AE40A37223ED35B4009AB61B /* GameTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE40A37123ED35B4009AB61B /* GameTableView.swift */; };
 		AE40A37523ED4D70009AB61B /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = AE40A37423ED4D70009AB61B /* SnapKit */; };
 		AE40A3AE23F17205009AB61B /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE40A3AD23F17205009AB61B /* Model.swift */; };
-		AE5643FC2403F29800BA989E /* StackViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5643FB2403F29800BA989E /* StackViewDataSource.swift */; };
+		AE5643FC2403F29800BA989E /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5643FB2403F29800BA989E /* Protocols.swift */; };
 		AE5643FF2403F38D00BA989E /* StackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5643FE2403F38D00BA989E /* StackView.swift */; };
 		AE5644012403F7B700BA989E /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5644002403F7B700BA989E /* DataManager.swift */; };
 		AE83CC3F23F67287002635AD /* Hands.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE83CC3E23F67287002635AD /* Hands.swift */; };
@@ -22,7 +22,7 @@
 		AE83CC4323F67341002635AD /* Dealer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE83CC4223F67341002635AD /* Dealer.swift */; };
 		AE83CC4523F67409002635AD /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE83CC4423F67409002635AD /* Game.swift */; };
 		AE83CC4723F68B1A002635AD /* Players.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE83CC4623F68B1A002635AD /* Players.swift */; };
-		AEF5EA6123FA21DD0038D07E /* Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF5EA6023FA21DD0038D07E /* Enum.swift */; };
+		AEF5EA6123FA21DD0038D07E /* Array++.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF5EA6023FA21DD0038D07E /* Array++.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,7 +46,7 @@
 		AE40A36B23ED340B009AB61B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AE40A37123ED35B4009AB61B /* GameTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTableView.swift; sourceTree = "<group>"; };
 		AE40A3AD23F17205009AB61B /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
-		AE5643FB2403F29800BA989E /* StackViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackViewDataSource.swift; sourceTree = "<group>"; };
+		AE5643FB2403F29800BA989E /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		AE5643FE2403F38D00BA989E /* StackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackView.swift; sourceTree = "<group>"; };
 		AE5644002403F7B700BA989E /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		AE83CC3E23F67287002635AD /* Hands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hands.swift; sourceTree = "<group>"; };
@@ -54,7 +54,7 @@
 		AE83CC4223F67341002635AD /* Dealer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dealer.swift; sourceTree = "<group>"; };
 		AE83CC4423F67409002635AD /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		AE83CC4623F68B1A002635AD /* Players.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Players.swift; sourceTree = "<group>"; };
-		AEF5EA6023FA21DD0038D07E /* Enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enum.swift; sourceTree = "<group>"; };
+		AEF5EA6023FA21DD0038D07E /* Array++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array++.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,7 +117,7 @@
 				AE2CA74D2404119E0082BD21 /* Controller */,
 				AE5643FD2403F38100BA989E /* View */,
 				AE5643FA2403F28700BA989E /* Protocol */,
-				AEF5EA5F23FA21BC0038D07E /* Enumeration */,
+				AEF5EA5F23FA21BC0038D07E /* Extension */,
 				AE83CC3D23F6727B002635AD /* Model */,
 				AE40A35D23ED340A009AB61B /* AppDelegate.swift */,
 				AE40A36623ED340B009AB61B /* Assets.xcassets */,
@@ -129,7 +129,7 @@
 		AE5643FA2403F28700BA989E /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
-				AE5643FB2403F29800BA989E /* StackViewDataSource.swift */,
+				AE5643FB2403F29800BA989E /* Protocols.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -157,12 +157,12 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		AEF5EA5F23FA21BC0038D07E /* Enumeration */ = {
+		AEF5EA5F23FA21BC0038D07E /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				AEF5EA6023FA21DD0038D07E /* Enum.swift */,
+				AEF5EA6023FA21DD0038D07E /* Array++.swift */,
 			);
-			path = Enumeration;
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -281,14 +281,14 @@
 				AE40A36223ED340A009AB61B /* ViewController.swift in Sources */,
 				AE5643FF2403F38D00BA989E /* StackView.swift in Sources */,
 				AE83CC4523F67409002635AD /* Game.swift in Sources */,
-				AE5643FC2403F29800BA989E /* StackViewDataSource.swift in Sources */,
+				AE5643FC2403F29800BA989E /* Protocols.swift in Sources */,
 				AE40A3AE23F17205009AB61B /* Model.swift in Sources */,
 				AE40A37223ED35B4009AB61B /* GameTableView.swift in Sources */,
 				AE40A35E23ED340A009AB61B /* AppDelegate.swift in Sources */,
 				AE83CC4323F67341002635AD /* Dealer.swift in Sources */,
 				AE83CC3F23F67287002635AD /* Hands.swift in Sources */,
 				AE83CC4123F672DB002635AD /* Player.swift in Sources */,
-				AEF5EA6123FA21DD0038D07E /* Enum.swift in Sources */,
+				AEF5EA6123FA21DD0038D07E /* Array++.swift in Sources */,
 				AE5644012403F7B700BA989E /* DataManager.swift in Sources */,
 				AE83CC4723F68B1A002635AD /* Players.swift in Sources */,
 			);
