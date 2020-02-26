@@ -76,11 +76,8 @@ class ParticipantView: UIView {
 
 extension ParticipantView {
     
-    func animateDealing(after delay: TimeInterval, period: TimeInterval, speed: Double) {
-        overlappedCardsView.animateDealing(after: delay, period: period, speed: speed)
-    }
-    
-    func stopAnimation() {
-        overlappedCardsView.stopAnimation()
+    func createDealingAnimation(period: TimeInterval,
+                                speed: Double) -> (() -> Void, TimeInterval) {
+        return overlappedCardsView.createDealingAnimation(period: period, speed: speed)
     }
 }
