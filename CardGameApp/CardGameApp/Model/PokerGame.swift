@@ -47,9 +47,10 @@ class PokerGame {
     }
     
     func start() {
-//        gameMode.setCardPlacement {
+        shuffleWholeCardDeck()
+        gameMode.setCardPlacement {
             destributeCards()
-//            }
+        }
     }
     
     func destributeCards() {
