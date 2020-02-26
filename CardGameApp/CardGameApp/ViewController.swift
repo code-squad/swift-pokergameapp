@@ -124,7 +124,7 @@ class ViewController: UIViewController {
         medalImage.widthAnchor.constraint(equalToConstant: 30).isActive = true
         medalImage.heightAnchor.constraint(equalToConstant: 30).isActive = true
         medalImage.isHidden = true
-
+        
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.distribution = .fill
@@ -210,27 +210,22 @@ class ViewController: UIViewController {
         var playerNumber = 0
         
         pokerGame.forEachPlayer { (player) in
-            player.findWinner { (isWinner) in
-                if isWinner {
-                    isPlayerWin = true
-                    let eachPlayerStack = wholeGameStack.arrangedSubviews[playerNumber] as! UIStackView
-                    let labelStack = eachPlayerStack.arrangedSubviews[0] as! UIStackView
-                    let medalImage = labelStack.arrangedSubviews[1]
-                    medalImage.isHidden = false
-                }
+            if player.isWinner {
+                isPlayerWin = true
+                let eachPlayerStack = wholeGameStack.arrangedSubviews[playerNumber] as! UIStackView
+                let labelStack = eachPlayerStack.arrangedSubviews[0] as! UIStackView
+                let medalImage = labelStack.arrangedSubviews[1]
+                medalImage.isHidden = false
             }
             playerNumber += 1
         }
         
         guard !isPlayerWin else { return }
-        pokerGame.dealerGameResult { (dealer) in
-            dealer.findWinner { (isWinner) in
-                if isWinner {
-                    let labelStack = dealerGameStack.arrangedSubviews[0] as! UIStackView
-                    let medalImage = labelStack.arrangedSubviews[1]
-                    medalImage.isHidden = false
-                }
-            }
+        
+        if pokerGame.judgeDealerWin() {
+            let labelStack = dealerGameStack.arrangedSubviews[0] as! UIStackView
+            let medalImage = labelStack.arrangedSubviews[1]
+            medalImage.isHidden = false
         }
         
     }

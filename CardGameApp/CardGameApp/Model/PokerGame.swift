@@ -118,8 +118,8 @@ class PokerGame {
         equalParticipants[0].winGame()
     }
     
-    func dealerGameResult(_ handler: (Dealer) -> ()){
-        handler(dealer)
+    func judgeDealerWin() -> Bool {
+        return dealer.isWinner
     }
 }
 

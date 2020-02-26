@@ -9,7 +9,7 @@
 import Foundation
 class Player: Equatable {
     private var hands = Hands()
-    private var isWinner = false
+    var isWinner = false
     
     static func == (lhs: Player, rhs: Player) -> Bool {
         return lhs.hands == rhs.hands
@@ -34,9 +34,5 @@ class Player: Equatable {
     
     func sortCards() -> [Card] {
         return hands.sortCards()
-    }
-    
-    func findWinner(_ hander: (Bool) -> ()) {
-        hander(isWinner)
     }
 }
