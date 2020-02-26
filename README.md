@@ -124,3 +124,25 @@
 ### 실행 결과
 
 ![step6_result](step6-result.png)
+
+## STEP6.1 카드 Dealing 애니메이션 구현
+
+* View Programming Guide for iOS의 Animation 파트 읽기
+* Property Animator와 Key Frame Animation을 이용하여 한 hand를 animate
+* 플레이어 순서대로 한장씩 나눠주도록 변경
+* 모드 변경 시 애니메이션 정지
+* 애니메이션 시작 전 뷰 투명하게 안되는 버그 수정하기
+* 애니메이션이 끝난 후 승자 마크 업데이트
+    * 전체 애니메이션이 끝나는 시점을 알기 위해 전체 애니메이션을 GamePlayView에서 관리하도록 변경
+    * completion으로 승자 마크 업데이트하는 메서드 전달
+* 애니메이션 시작 전 승자 마크 숨기기
+
+### 개선한 내용
+
+* Players.Number과 GamePlay.Rule의 max를 rawValue를 그대로 넘겨주지 않고 클로저를 넘겨받아 invoke하도록 수정
+* 테스트 코드의 가독성 개선
+
+### 실행 결과
+
+![step6-animation-result](step6-animation-result.gif)
+
