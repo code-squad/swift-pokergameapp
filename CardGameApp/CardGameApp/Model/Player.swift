@@ -6,22 +6,21 @@
 //  Copyright © 2020 Cloud. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 class Player {
     
     private var cards: Hands = Hands()
     private var identifier: String
+    var description: String {
+        return identifier
+    }
     var count: Int {
         return cards.count
     }
     
     init(identifier: String) {
         self.identifier = identifier
-    }
-    
-    func applyIdentifier(label: UILabel) {
-        label.text = identifier
     }
     
     func addCard(card: Card?) {
