@@ -10,6 +10,8 @@ import UIKit
 
 class GamePlayView: UIView {
     
+    private var dealAnimators = [UIViewPropertyAnimator]()
+    
     private lazy var participantsStackView: UIStackView = {
         let view = UIStackView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -68,7 +70,7 @@ class GamePlayView: UIView {
             updateSubView(at: subViewIndex, to: participant, participantName: names[subViewIndex])
             subViewIndex += 1
         }
-        animateGamePlayView()
+        animateGamePlayView(speed: 10)
     }
     
     func updateWinnerView(with gamePlay: GamePlay) {
@@ -94,20 +96,28 @@ class GamePlayView: UIView {
 
 extension GamePlayView {
     
-    func animateGamePlayView() {
+    func animateGamePlayView(speed: Double) {
         let shownViews = participantsStackView.arrangedSubviews.filter { $0.isHidden == false }
+        var animations = [() -> Void]()
+        var durations = [TimeInterval]()
+        
         shownViews.enumerated().forEach { index, view in
             guard let view = view as? ParticipantView else { return }
-            view.animateDealing(after: TimeInterval(index),
-                                period: TimeInterval(shownViews.count),
-                                speed: 5)
+            let (animation, duration) = view.createDealingAnimation(period: TimeInterval(shownViews.count),
+                                                                    speed: speed)
+            animations.append(animation)
+            durations.append(duration)
+        }
+        
+        dealAnimators.removeAll()
+        durations.forEach { dealAnimators.append(UIViewPropertyAnimator(duration: $0, curve: .linear)) }
+        dealAnimators.forEach { $0.addAnimations { animations.popFirst()!() } }
+        dealAnimators.enumerated().forEach { index, animator in
+            animator.startAnimation(afterDelay: TimeInterval(index) / speed)
         }
     }
     
     func stopAnimation() {
-        participantsStackView.arrangedSubviews.forEach { view in
-            guard let view = view as? ParticipantView else { return }
-            view.stopAnimation()
-        }
+        dealAnimators.forEach { $0.stopAnimation(true) }
     }
 }

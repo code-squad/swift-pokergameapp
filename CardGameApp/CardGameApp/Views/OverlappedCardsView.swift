@@ -10,8 +10,6 @@ import UIKit
 
 class OverlappedCardsView: UIView {
     
-    private var dealAnimator: UIViewPropertyAnimator?
-    
     private lazy var overlappedCardsStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -73,22 +71,16 @@ class OverlappedCardsView: UIView {
 
 extension OverlappedCardsView {
     
-    func animateDealing(after delay: TimeInterval, period: TimeInterval, speed: Double) {
+    func createDealingAnimation(period: TimeInterval, speed: Double) -> (() -> Void, TimeInterval) {
         let shownViews = overlappedCardsStackView.arrangedSubviews.filter { $0.isHidden == false }
         let duration = period * Double(shownViews.count) / speed
-        
-        dealAnimator = UIViewPropertyAnimator(duration: duration, curve: .linear)
-        dealAnimator?.addAnimations {
+        let animation = {
             UIView.animateKeyframes(withDuration: duration, delay: 0, animations: { [weak self] in
                 self?.instantViewTransparentingAnimation(for: shownViews)
                 self?.successiveDealingAnimation(for: shownViews, dutyCycle: 1 / period)
             })
         }
-        dealAnimator?.startAnimation(afterDelay: delay / speed)
-    }
-    
-    func stopAnimation() {
-        dealAnimator?.stopAnimation(true)
+        return (animation, duration)
     }
     
     private func successiveDealingAnimation(for views: [UIView], dutyCycle: Double) {
