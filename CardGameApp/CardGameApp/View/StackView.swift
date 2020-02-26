@@ -8,36 +8,42 @@
 
 import UIKit
 
-class StackView: UIView {
+class StackView: UIStackView {
     
     private var game: Game? = .fiveCardStud(gamers: Players())
-    private var stackView: UIStackView
+    private var stackView: UIStackView!
     
     override init(frame: CGRect) {
-        stackView = UIStackView()
         super.init(frame: frame)
-        configuerStackView()
-        initCardStackView()
+        configure()
     }
     
-    required init?(coder: NSCoder) {
-        stackView = UIStackView()
+    required init(coder: NSCoder) {
         super.init(coder: coder)
-        configuerStackView()
-        initCardStackView()
+        configure()
     }
     
     func fetchGame(game: Game?) {
         self.game = game
-        stackView.subviews.forEach {
-            stackView.removeArrangedSubview($0)
-            $0.removeFromSuperview()
-        }
+        removeContents()
         initCardStackView()
         layoutIfNeeded()
     }
     
+    private func configure() {
+        configuerStackView()
+        initCardStackView()
+    }
+    
+    private func removeContents() {
+        stackView.subviews.forEach {
+            stackView.removeArrangedSubview($0)
+            $0.removeFromSuperview()
+        }
+    }
+    
     private func configuerStackView() {
+        stackView = UIStackView()
         addSubview(stackView)
         stackView.snp.makeConstraints { (make) in
             make.edges.equalTo(safeAreaLayoutGuide)
@@ -53,7 +59,7 @@ class StackView: UIView {
     private func initCardsStackVieew(_ stackView: UIStackView, card: Card) {
         stackView.spacing = -8
         let cardView = UIImageView()
-        card.apply(imageView: cardView)
+        cardView.image = UIImage(named: card.description)
         cardView.snp.makeConstraints { (make) in
             make.height.equalTo(cardView.snp.width).multipliedBy(1.27)
             stackView.addArrangedSubview(cardView)
@@ -64,7 +70,7 @@ class StackView: UIView {
         let playerStack = UIStackView()
         let cardStack = UIStackView()
         let identifierLabel = UILabel()
-        player.applyIdentifier(label: identifierLabel)
+        identifierLabel.text = player.description
         identifierLabel.textColor = .white
         player.forEach { initCardsStackVieew(cardStack, card: $0) }
         playerStack.addArrangedSubview(identifierLabel)
