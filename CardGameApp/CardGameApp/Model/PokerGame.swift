@@ -78,17 +78,9 @@ class PokerGame {
         var gameResult = GameResult.none
         var equalParticipants: [Player] = []
         let dealerResult = dealer.result()
-        
-        players.forEachPlayer { (player) in
-            let result = player.result()
-            if result > gameResult {
-                gameResult = result
-                equalParticipants.removeAll()
-                equalParticipants.append(player)
-            }else if result == gameResult {
-                equalParticipants.append(player)
-            }
-        }
+        let resultWithEqaulParticipants = players.compare()
+        equalParticipants = resultWithEqaulParticipants.equalParticipants
+        gameResult = resultWithEqaulParticipants.result
         
         if dealerResult > gameResult {
             equalParticipants.removeAll()

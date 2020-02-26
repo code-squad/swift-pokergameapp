@@ -19,4 +19,22 @@ class Players {
             handler($0)
         }
     }
+    
+    func compare() -> (result: GameResult, equalParticipants: [Player]) {
+        var gameResult = GameResult.none
+        var equalParticipants: [Player] = []
+
+        forEachPlayer { (player) in
+            let result = player.result()
+            if result > gameResult {
+                gameResult = result
+                equalParticipants.removeAll()
+                equalParticipants.append(player)
+            }else if result == gameResult {
+                equalParticipants.append(player)
+            }
+        }
+        
+        return (gameResult, equalParticipants)
+    }
 }
