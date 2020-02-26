@@ -30,9 +30,7 @@ class Dealer : Participant {
     func shuffleCardDeck() {
         self.cardDeck.shuffle()
     }
-    
 }
 
 class Player : Participant {
-
 }

@@ -36,7 +36,4 @@ class Players {
             behavior($0)
         }
     }
-    
-    
-    
 }

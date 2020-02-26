@@ -85,33 +85,6 @@ class ViewController: UIViewController {
         //UISegmentedControl - 플레이어 인원 선택
         self.view.addSubview(self.numbersOfPlayersSegmentControl)
         self.view.addSubview(self.gameStackView)
-        //        for _ in numbersOfPlayers
-        pokerGame.forEachPlayer(behavior: ){ player in
-            // 가정: forEachPlayer를 돌 때 마다 새로운 onePlayerInfoStack 객체가 생긴다.
-            
-            // 각자 플레이어의 라벨, 카드 이미지들을 담을 stackView : onePlayerInfoStack
-            let onePlayerInfoStack = makeParticipantStackView()
-            
-            // onePlayerInfoStack에 담길 플레이어 라벨
-            let playerLabel = UILabel()
-            var playerNumber = 1
-            playerLabel.text = "player\(playerNumber)"
-            onePlayerInfoStack.addArrangedSubview(playerLabel)
-            
-            // onePlayerInfoStack에 담길 플레이어 카드들의 이미지를 onePlayerCardsStack에 넣어준다
-            // 그리고 그 onePlayerCardsStack을 onePlayerInfoStack에 넣어준다
-            player.showEachCardInHand(behavior: ){ card in
-                // 가정: showEachCardInHand를 돌 때 마다 새로운 onePlayerCardsStack가 생긴다
-                let onePlayerCardsStack = makeCardsStackView()
-                let cardImage = UIImageView(image: UIImage(named: card.description))
-                onePlayerCardsStack.addArrangedSubview(cardImage)
-                onePlayerInfoStack.addArrangedSubview(onePlayerCardsStack)
-            }
-            playerNumber += 1
-            //            print(playerNumber)
-            gameStackView.addArrangedSubview(onePlayerInfoStack)
-            
-        }
     }
     
     func makeParticipantLabel(of who: String) -> UILabel{
@@ -119,6 +92,30 @@ class ViewController: UIViewController {
         participantLabel.text = "\(who)"
         participantLabel.textColor = .white
         return participantLabel
+    }
+    
+    func setPlayersCards(in gameStackView : UIStackView) {
+        
+        var playerNumber = 1
+        pokerGame.forEachPlayer(behavior: ){
+            player in
+            let onePlayerInfoStack = makeParticipantStackView()
+            
+            onePlayerInfoStack.addArrangedSubview(makeParticipantLabel(of: "Player\(playerNumber)"))
+            let cardsStack = makeCardsStackView()
+            player.showEachCardInHand(behavior: ){
+                (card) in
+                let card = UIImageView(image: UIImage(named: card.description))
+                card.contentMode = .scaleAspectFit
+                card.heightAnchor.constraint(equalTo: card.widthAnchor, multiplier: 1.27).isActive = true
+                cardsStack.addArrangedSubview(card)
+                
+            }
+            onePlayerInfoStack.addArrangedSubview(cardsStack)
+           
+            gameStackView.addArrangedSubview(onePlayerInfoStack)
+            playerNumber += 1
+        }
     }
     
     func setConstraintOfView(of stackView : UIStackView) {
