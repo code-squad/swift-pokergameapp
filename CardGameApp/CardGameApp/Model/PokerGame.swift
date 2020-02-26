@@ -71,7 +71,7 @@ class PokerGame {
     }
     
     func forEachDealerCards(handler: (Card) -> () ) {
-        dealer.forEach(handler: handler)
+        dealer.forEachCard(handler: handler)
     }
     
     func compareResults() {
