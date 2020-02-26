@@ -87,6 +87,16 @@ class ViewController: UIViewController {
         self.view.addSubview(self.gameStackView)
     }
     
+    func startPokerGame(gameMode : GameMode, numbersOfPlayers : NumbersOfPlayers){
+        pokerGame = PokerGame.init(numbersOfPlayers: numbersOfPlayers, gameMode: gameMode)
+        pokerGame.start()
+        pokerGame.shuffleWholeCardDeck()
+        self.view.addSubview(gameStackView)
+        setConstraintOfView(of: gameStackView)
+        setPlayersCards(in : gameStackView)
+        setDealersCards(in : gameStackView)
+    }
+    
     func makeParticipantLabel(of who: String) -> UILabel{
         let participantLabel = UILabel()
         participantLabel.text = "\(who)"
