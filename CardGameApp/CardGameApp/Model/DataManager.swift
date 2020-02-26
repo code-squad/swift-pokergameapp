@@ -14,7 +14,7 @@ import Foundation
 
 extension DataManager: StackViewDataSource {
     func stackForAt(_ fact: Bool) {
-        fact == true ? game.translateStyle(style: .five) : game.translateStyle(style: .seven)
+        game.translateStyle(style: fact ? .five: .seven)
         let new = game
         game = new
     }
