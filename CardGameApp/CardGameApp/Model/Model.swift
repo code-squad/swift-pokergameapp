@@ -6,7 +6,7 @@
 //  Copyright © 2020 Cloud. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 //MARK: - Card
 class Card {
@@ -25,16 +25,11 @@ class Card {
     
     private var suit: suit
     private var rank: rank
-    private var image: UIImage?
+    private var image: String?
 
     init(suit: suit, rank: rank) {
         self.suit = suit
         self.rank = rank
-        image = UIImage(named: self.description)
-    }
-    
-    func apply(imageView: UIImageView) {
-        imageView.image = image
     }
 }
 
@@ -49,6 +44,10 @@ struct Deck {
     
     mutating func shuffle() {
         cards.shuffle()
+    }
+    
+    mutating func reset() {
+        makeDeck()
     }
     
     mutating func removeOne() -> Card? {

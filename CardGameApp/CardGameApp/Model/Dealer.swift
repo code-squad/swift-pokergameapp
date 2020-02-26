@@ -25,7 +25,7 @@ class Dealer: Player {
     }
     
     func newGame() {
-        deck = Deck()
+        deck.reset()
     }
 }
 
