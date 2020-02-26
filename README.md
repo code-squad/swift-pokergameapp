@@ -7,11 +7,10 @@
 - [pokergameapp-step1](#pokergameapp-step1): StackView를 통해 동일한 비율의 7개 카드(뒷면)가 동일한 간격으로 수평으로 나열 
 - [pockerGameApp-step2](#pockerGameApp-step2): Card 클래스 구현
 - [pockerGameApp-step3](#pockerGameApp-step3): CardDeck 클래스 구현
+- [pockerGameApp-step4&5](#pockerGameApp-step4&5): 포커게임을 위한 클래스 및 포커게임 결과 화면 만들기
 
 
 ### pokergameapp-step1
-02.08 23:30
-
 
 1. 코드로 StatusBar 스타일을 LightContent로 변경
 
@@ -28,8 +27,6 @@
 ![](https://i.imgur.com/hwgvBE0.png)
 
 3. 카드 뒷면 이미지 Assets에 추가
-
-02.09 20:50
 
 ![image-20200209190050604](/Users/keunnalee/Library/Application Support/typora-user-images/image-20200209190050604.png)
 
@@ -55,8 +52,6 @@
 3. StackView관련 메소드와 StackView에 제약을 주는 키워드(axis,distribution,spacing,alignment)를 알게 됐고 써봤습니다.
 
 ### pockerGameApp-step2
-02.10 21:00
-
 0. testCode 작성
 ![](https://i.imgur.com/E5x9EX6.png)
 
@@ -79,7 +74,7 @@
 
    ![image-20200210212217610](/Users/keunnalee/Library/Application Support/typora-user-images/image-20200210212217610.png)
 
-20.02.11 피드백 반영 후 수정한 사항
+* 피드백 반영 후 수정한 사항
 
 1. Card 클래스가 CustomStringConvertible프로토콜을 채택한 후 프로퍼티 추가.
 
@@ -108,8 +103,6 @@
 4. ViewController 클래스의 addCard메소드 실행시 StackView의 subView가 7개가 생성되는지 확인하는 테스트 코드를 추가했습니다. -> (ViewController 테스트 코드는 Unit Test 보다 UITest를 하는 편이라는 걸 알게됐습니다.)
 
 ### pockerGameApp-step3
-
-20.02.11 18:00
 
 1. 테스트 코드 작성
 1-1. CardDeck 구조체의 reset 메소드를 테스트하는 코드
@@ -218,7 +211,7 @@ navie shuffle은 편향된 셔플 결과를 보이는 반면 Fisher-Yates shuffl
 
 
 
-20.02.13 20:53
+
 **pockerGameApp-step3 수정한 부분**
 
 1. ViewController에 readLine 삭제했습니다.
@@ -234,3 +227,11 @@ navie shuffle은 편향된 셔플 결과를 보이는 반면 Fisher-Yates shuffl
 8-1. CardDeck 구조체에 CardDeck의 프로퍼티인 Card 배열의 특정 인덱스에 있는 카드를 반환하는 메소드를 추가했습니다. `pickCard()` 
 
 9. 랜덤값을 어떻게 테스트할 것인지 알아보면서 랜덤이 리터럴하게 항상 랜덤은 아니라는 사실을 알았습니다. 그렇다면 랜덤값을 활용해서 어떻게 테스트 코드에 적용할것인지 고민하다가 random seed라는 개념을 알았지만 어떻게 활용해야할지 모르겠습니다. 그래서 테스트 코드에 아직 적용하지는 못했습니다.
+
+### pockerGameApp-step4&5
+
+포커 딜러와 게임 테스트 & 포커게임 결과 화면
+
+* 결과 화면
+![](https://i.imgur.com/HTUkIBI.jpg)
+![](https://i.imgur.com/DvEneKo.jpg)
