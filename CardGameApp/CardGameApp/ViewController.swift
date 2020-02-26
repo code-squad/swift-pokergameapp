@@ -106,8 +106,7 @@ class ViewController: UIViewController {
             player.showEachCardInHand(behavior: ){
                 (card) in
                 let card = UIImageView(image: UIImage(named: card.description))
-                card.contentMode = .scaleAspectFit
-                card.heightAnchor.constraint(equalTo: card.widthAnchor, multiplier: 1.27).isActive = true
+                setCardImage(of: card)
                 cardsStack.addArrangedSubview(card)
                 
             }
@@ -116,6 +115,11 @@ class ViewController: UIViewController {
             gameStackView.addArrangedSubview(onePlayerInfoStack)
             playerNumber += 1
         }
+    }
+    
+    func setCardImage(of card: UIImageView){
+        card.contentMode = .scaleAspectFit
+        card.heightAnchor.constraint(equalTo: card.widthAnchor, multiplier: 1.27).isActive = true
     }
     
     func setConstraintOfView(of stackView : UIStackView) {
