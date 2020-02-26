@@ -24,7 +24,7 @@ class Player: Equatable {
         hands.forEach(handler)
     }
     
-    func result() -> Hands.GameResult {
+    func result() -> GameResult {
         return hands.judgeResult()
     }
     

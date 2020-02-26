@@ -17,6 +17,7 @@
 		30476F0323EA7AE60046DAE5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30476F0223EA7AE60046DAE5 /* Assets.xcassets */; };
 		30476F0623EA7AE60046DAE5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30476F0423EA7AE60046DAE5 /* LaunchScreen.storyboard */; };
 		305910A423FAB50E005B95FE /* Players.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305910A323FAB50E005B95FE /* Players.swift */; };
+		305D74C324066EC600416491 /* GameResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305D74C224066EC600416491 /* GameResult.swift */; };
 		30ABE26A23FBD039001AFA22 /* Hands.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30ABE26923FBD039001AFA22 /* Hands.swift */; };
 		30BF90A023EBCA1000A5D728 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BF909F23EBCA1000A5D728 /* Card.swift */; };
 		30BF90A223EC42FF00A5D728 /* CardDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BF90A123EC42FF00A5D728 /* CardDeck.swift */; };
@@ -46,6 +47,7 @@
 		30476F0523EA7AE60046DAE5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		30476F0723EA7AE60046DAE5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		305910A323FAB50E005B95FE /* Players.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Players.swift; sourceTree = "<group>"; };
+		305D74C224066EC600416491 /* GameResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameResult.swift; sourceTree = "<group>"; };
 		30ABE26923FBD039001AFA22 /* Hands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hands.swift; sourceTree = "<group>"; };
 		30BF909F23EBCA1000A5D728 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		30BF90A123EC42FF00A5D728 /* CardDeck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDeck.swift; sourceTree = "<group>"; };
@@ -82,6 +84,7 @@
 				300E88E923F1731100A3EEDE /* Player.swift */,
 				300E88EB23F1731C00A3EEDE /* PokerGame.swift */,
 				30ABE26923FBD039001AFA22 /* Hands.swift */,
+				305D74C224066EC600416491 /* GameResult.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -239,6 +242,7 @@
 				300E88EC23F1731C00A3EEDE /* PokerGame.swift in Sources */,
 				30476EFC23EA7AE30046DAE5 /* SceneDelegate.swift in Sources */,
 				30BF90A023EBCA1000A5D728 /* Card.swift in Sources */,
+				305D74C324066EC600416491 /* GameResult.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

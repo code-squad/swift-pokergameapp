@@ -75,7 +75,7 @@ class PokerGame {
     }
     
     func compareResults() {
-        var gameResult = Hands.GameResult.none
+        var gameResult = GameResult.none
         var equalParticipants: [Player] = []
         let dealerResult = dealer.result()
         

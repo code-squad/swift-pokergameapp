@@ -14,31 +14,31 @@ class Hands: Equatable {
     
     private var hands = [Card]()
     
-    enum GameResult: Int, Comparable, Equatable {
-        case none = 0
-        case onePair
-        case twoPair
-        case tripple
-        case fourCard
-        case straight
-        
-        static func < (lhs: Hands.GameResult, rhs: Hands.GameResult) -> Bool {
-            return lhs.rawValue < rhs.rawValue
-        }
-        
-        static func > (lhs: Hands.GameResult, rhs: Hands.GameResult) -> Bool {
-            return lhs.rawValue > rhs.rawValue
-        }
-        
-        static func >= (lhs: Hands.GameResult, rhs: Hands.GameResult) -> Bool {
-            return lhs.rawValue >= rhs.rawValue
-        }
-        
-        static func == (lhs: Hands.GameResult, rhs: Hands.GameResult) -> Bool {
-            return lhs.rawValue == rhs.rawValue
-        }
-        
-    }
+//    enum GameResult: Int, Comparable, Equatable {
+//        case none = 0
+//        case onePair
+//        case twoPair
+//        case tripple
+//        case fourCard
+//        case straight
+//
+//        static func < (lhs: Hands.GameResult, rhs: Hands.GameResult) -> Bool {
+//            return lhs.rawValue < rhs.rawValue
+//        }
+//
+//        static func > (lhs: Hands.GameResult, rhs: Hands.GameResult) -> Bool {
+//            return lhs.rawValue > rhs.rawValue
+//        }
+//
+//        static func >= (lhs: Hands.GameResult, rhs: Hands.GameResult) -> Bool {
+//            return lhs.rawValue >= rhs.rawValue
+//        }
+//
+//        static func == (lhs: Hands.GameResult, rhs: Hands.GameResult) -> Bool {
+//            return lhs.rawValue == rhs.rawValue
+//        }
+//
+//    }
     
     func append(_ card: Card) {
         hands.append(card)
