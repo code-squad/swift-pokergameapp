@@ -84,6 +84,7 @@ class ViewController: UIViewController {
     }
     
     func startPokerGame(gameMode : GameMode, numbersOfPlayers : NumbersOfPlayers){
+        gameStackView.subviews.forEach{$0.removeFromSuperview()}
         pokerGame = PokerGame.init(numbersOfPlayers: numbersOfPlayers, gameMode: gameMode)
         pokerGame.start()
         pokerGame.shuffleWholeCardDeck()
@@ -157,28 +158,31 @@ class ViewController: UIViewController {
         return .lightContent
     }
     
-    // SegmentedControl
     @objc func gameModeSegmentChanged(segmentedControl: UISegmentedControl){
-        // 게임 모드 선택에 따른 내용 구현 예정
         switch segmentedControl.selectedSegmentIndex {
-            //        case 0: // 5 cards
-        //        case 1: // 7 cards
+        case 0:
+            gameMode = .fiveCardStud
+            startPokerGame(gameMode: gameMode, numbersOfPlayers: .two)
+        case 1:
+            gameMode = .sevenCardStud
+            startPokerGame(gameMode: gameMode, numbersOfPlayers: .two)
         default: return
         }
     }
     
     @objc func numbersOfPlayersSegmentChanged(segmentedControl: UISegmentedControl){
-        // 플레이어 인원 선택에 따른 내용 구현 예정
         switch segmentedControl.selectedSegmentIndex {
-            //        case 0: startPokerGame()// 2 명
-            //        case 1: startPokerGame()// 3 명
-        //        case 2: startPokerGame()// 4 명
+        case 0:
+            numbersOfPlayers = .two
+            startPokerGame(gameMode: gameMode, numbersOfPlayers: numbersOfPlayers)
+        case 1:
+            numbersOfPlayers = .three
+            startPokerGame(gameMode: gameMode, numbersOfPlayers: numbersOfPlayers)
+        case 2:
+            numbersOfPlayers = .four
+            startPokerGame(gameMode: gameMode, numbersOfPlayers: numbersOfPlayers)
         default: return
         }
-    }
-    
-    func setSegmentedControl() {
-        // 추후 추가 예정
     }
 }
 
