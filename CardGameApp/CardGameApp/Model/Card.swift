@@ -96,10 +96,6 @@ extension Card: Equatable, Comparable {
         return lhs.number == rhs.number && lhs.pattern == rhs.pattern
     }
     
-    static func === (lhs: Card, rhs: Card) -> Bool {
-        return lhs.number == rhs.number 
-    }
-    
     static func <= (lhs: Card, rhs: Card) -> Bool {
         return lhs.number.rawValue <= rhs.number.rawValue
     }
