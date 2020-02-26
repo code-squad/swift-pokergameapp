@@ -79,12 +79,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(patternImage:  #imageLiteral(resourceName: "bg_pattern"))
-        
-        //UISegmentedControl - 게임 모드 선택
-        self.view.addSubview(self.gameModeSegmentControl)
-        //UISegmentedControl - 플레이어 인원 선택
-        self.view.addSubview(self.numbersOfPlayersSegmentControl)
-        self.view.addSubview(self.gameStackView)
+        self.view.addSubview(gameModeSegmentControl)
+        self.view.addSubview(numbersOfPlayersSegmentControl)
     }
     
     func startPokerGame(gameMode : GameMode, numbersOfPlayers : NumbersOfPlayers){
