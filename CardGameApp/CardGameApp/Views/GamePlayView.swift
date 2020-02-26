@@ -37,6 +37,7 @@ class GamePlayView: UIView {
     func updateGamePlayView(with gamePlay: GamePlay) {
         showParticipantView(by: gamePlay.participantCount)
         let names = createParticipantNames(by: gamePlay.participantCount)
+        hideWinnerView(with: gamePlay)
         
         var subViewIndex = 0
         gamePlay.repeatForEachParticipant { participant in
@@ -80,6 +81,14 @@ class GamePlayView: UIView {
                 updateSubView(at: subViewIndex, to: isWinner)
                 subViewIndex += 1
             }
+        }
+    }
+    
+    private func hideWinnerView(with gamePlay: GamePlay) {
+        var subViewIndex = 0
+        gamePlay.repeatForEachParticipant { participant in
+            updateSubView(at: subViewIndex, to: false)
+            subViewIndex += 1
         }
     }
     
