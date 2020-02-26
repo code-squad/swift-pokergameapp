@@ -9,7 +9,7 @@
 import Foundation
 class Player: Equatable {
     private var hands = Hands()
-    var isWinner = false
+    private(set) var isWinner = false
     
     static func == (lhs: Player, rhs: Player) -> Bool {
         return lhs.hands == rhs.hands
