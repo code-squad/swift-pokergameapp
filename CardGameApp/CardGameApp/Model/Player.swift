@@ -11,6 +11,11 @@ class Player: Equatable {
     private var hands = Hands()
     private var isWinner = false
     
+    static func == (lhs: Player, rhs: Player) -> Bool {
+        return lhs.hands == rhs.hands
+    }
+    
+    
     func appendCard(_ card: Card) {
         hands.append(card)
     }
@@ -29,10 +34,6 @@ class Player: Equatable {
     
     func sortCards() -> [Card] {
         return hands.sortCards()
-    }
-    
-    static func == (lhs: Player, rhs: Player) -> Bool {
-        return lhs.hands == rhs.hands
     }
     
     func checkWinner(_ hander: (Bool) -> ()) {
