@@ -16,8 +16,6 @@ class Participant {
     }
     
     func showEachCardInHand(behavior: (Card) -> () ) {
-        print("Participant 클래스에서 showEachCardInHand 메소드 Player cardsInHand.count : \(self.cardsInHand.count)")
-        
         cardsInHand.forEach(behavior)
     }
 }
@@ -36,5 +34,5 @@ class Dealer : Participant {
 }
 
 class Player : Participant {
-    
+
 }

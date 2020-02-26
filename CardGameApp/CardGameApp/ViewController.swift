@@ -10,10 +10,10 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    private var pokerGame = PokerGame(numbersOfPlayers: .four, gameMode: .fiveCardStud)
     private var gameMode = GameMode.fiveCardStud
     private var numbersOfPlayers = NumbersOfPlayers.four
-    private var pokerGame = PokerGame(numbersOfPlayers: .four, gameMode: .fiveCardStud)
-   
+    
     // MARK: - Properties
     // StackView
     func makeCardsStackView() -> UIStackView {
@@ -21,45 +21,42 @@ class ViewController: UIViewController {
         horizontalStackView.translatesAutoresizingMaskIntoConstraints = false
         horizontalStackView.axis = .horizontal
         horizontalStackView.distribution = .fillEqually
-        horizontalStackView.spacing = -5
+        horizontalStackView.spacing = -15
         return horizontalStackView
     }
     
-    // 참여한 플레이어들의 카드가 쌓이는 StackView
-    func makePlayersStackView() ->  UIStackView {
-        let playersCardsStackView = UIStackView()
-        playersCardsStackView.translatesAutoresizingMaskIntoConstraints = false
-        playersCardsStackView.axis = .vertical
-        playersCardsStackView.distribution = .fillEqually
-        playersCardsStackView.spacing = 4
-        
-        return playersCardsStackView
-    }
+    let gameStackView: UIStackView = {
+        let gameStackView = UIStackView()
+        gameStackView.translatesAutoresizingMaskIntoConstraints = false
+        gameStackView.axis = .vertical
+        gameStackView.spacing = 5
+        return gameStackView
+    }()
     
-    let gameStackView : UIStackView = {
-           let gameStackView = UIStackView()
-           gameStackView.translatesAutoresizingMaskIntoConstraints = false
-           gameStackView.axis = .vertical
-           gameStackView.distribution = .fillEqually
-           gameStackView.alignment = .fill
-           gameStackView.spacing = 0
-           return gameStackView
-       }()
+    func makeParticipantStackView() -> UIStackView {
+        let playerStackView = UIStackView()
+        playerStackView.translatesAutoresizingMaskIntoConstraints = false
+        playerStackView.axis = .vertical
+        playerStackView.distribution = .equalSpacing
+        playerStackView.alignment = .fill
+        playerStackView.spacing = 15
+        return playerStackView
+    }
     
     // SegmentedControl
     // - GameMode
-    let gameModes: [String] = ["7 Cards", "5 Cards"]
+    let gameModes: [String] = ["5 Cards","7 Cards"]
     
     lazy var gameModeSegmentControl: UISegmentedControl = {
         let gameModeSegmentControl: UISegmentedControl = UISegmentedControl(items: gameModes)
         
-        gameModeSegmentControl.center = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/12)
+        gameModeSegmentControl.center = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/15)
         gameModeSegmentControl.backgroundColor = UIColor.gray
         gameModeSegmentControl.tintColor = UIColor.white
         gameModeSegmentControl.addTarget(self, action:
             #selector(gameModeSegmentChanged(segmentedControl:)),
                                          for: .valueChanged)
-        gameModeSegmentControl.selectedSegmentIndex = 0
+        //        gameModeSegmentControl.selectedSegmentIndex = 0
         return gameModeSegmentControl
     }()
     
@@ -68,15 +65,14 @@ class ViewController: UIViewController {
     
     lazy var numbersOfPlayersSegmentControl: UISegmentedControl = {
         let numbersOfPlayersSegmentControl: UISegmentedControl = UISegmentedControl(items: numbersOfPlayersList)
-        numbersOfPlayersSegmentControl.center = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/7-10)
+        numbersOfPlayersSegmentControl.center = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/9)
         numbersOfPlayersSegmentControl.backgroundColor = UIColor.gray
         numbersOfPlayersSegmentControl.tintColor = UIColor.white
         numbersOfPlayersSegmentControl.addTarget(self, action:
             #selector(numbersOfPlayersSegmentChanged(segmentedControl:)),
                                                  for: .valueChanged)
-        numbersOfPlayersSegmentControl.selectedSegmentIndex = 0
+        //        numbersOfPlayersSegmentControl.selectedSegmentIndex = 0
         return numbersOfPlayersSegmentControl
-        
     }()
     
     // MARK: - View Life Cycle
@@ -88,97 +84,34 @@ class ViewController: UIViewController {
         self.view.addSubview(self.gameModeSegmentControl)
         //UISegmentedControl - 플레이어 인원 선택
         self.view.addSubview(self.numbersOfPlayersSegmentControl)
-        
-        pokerGame.start() // 게임 시작 : 카드 셔플 후 분배
-//        pokerGame.forEachPlayer(behavior: ){ (player) in
-//            print(player.cardsInHand.count)
-//        }
-        var playersStack = makePlayersStackView()
-
-        var playerNumber = 1
-        numbersOfPlayers.setPlayerSeat{ // 4명
-            pokerGame.shuffleWholeCardDeck()
-            // playersStack에 UILabel을 subView로 추가하기
-            playersStack.addArrangedSubview(makePlayersLabel(of: "Player\(playerNumber)"))
-            playersStack.addArrangedSubview(makePlayersCardsStack())
+        self.view.addSubview(self.gameStackView)
+        //        for _ in numbersOfPlayers
+        pokerGame.forEachPlayer(behavior: ){ player in
+            // 가정: forEachPlayer를 돌 때 마다 새로운 onePlayerInfoStack 객체가 생긴다.
             
-            self.view.addSubview(playersStack)
-            setStackView(of: playersStack)
-            playerNumber += 1
-        }
-      
-        //딜러 추가
-        playersStack.addArrangedSubview (makePlayersLabel(of: "Dealer"))
-        playersStack.addArrangedSubview(makeDealerCardsStack())
-        //gameStackView - 딜러와 플레이어들을 담고 있는 StackView에 추가
-        gameStackView.addArrangedSubview(playersStack)
-        self.view.addSubview(gameStackView)
-        setStackView(of: gameStackView)
-    }
-    
-    func makePlayersLabel(of player: String) -> UILabel{
-        var participantLabel = UILabel()
-        participantLabel.text = "\(player)"
-        participantLabel.textColor = .white
-        return participantLabel
-    }
-    
-    func makePlayersCardsStack() -> UIStackView {
-        let playerCardStack = makeCardsStackView()
-        addPlayersCards(of: playerCardStack)
-        return playerCardStack
-    }
-    
-    func addPlayersCards(of stackView: UIStackView) {
-        
-        pokerGame.forEachPlayer(behavior: ){
-            player in
-            // 여기서 여러번 추가 됨. // 여기가 문제임.
-//            print(player.cardsInHand.count)
-//            print("얏")
-        print("ViewController에서 addPlayersCards 에서 pokerGame.forEachPlayer(behavior: )하고 player.cardsInHand.count :  \(player.cardsInHand.count)")
-            for card in player.cardsInHand {
-//            player.showEachCardInHand(behavior: ){
-//                (card) in
+            // 각자 플레이어의 라벨, 카드 이미지들을 담을 stackView : onePlayerInfoStack
+            let onePlayerInfoStack = makeParticipantStackView()
+            
+            // onePlayerInfoStack에 담길 플레이어 라벨
+            let playerLabel = UILabel()
+            var playerNumber = 1
+            playerLabel.text = "player\(playerNumber)"
+            onePlayerInfoStack.addArrangedSubview(playerLabel)
+            
+            // onePlayerInfoStack에 담길 플레이어 카드들의 이미지를 onePlayerCardsStack에 넣어준다
+            // 그리고 그 onePlayerCardsStack을 onePlayerInfoStack에 넣어준다
+            player.showEachCardInHand(behavior: ){ card in
+                // 가정: showEachCardInHand를 돌 때 마다 새로운 onePlayerCardsStack가 생긴다
+                let onePlayerCardsStack = makeCardsStackView()
                 let cardImage = UIImageView(image: UIImage(named: card.description))
-                // 카드 이미지 세팅
-                cardImage.contentMode = .scaleAspectFit
-                cardImage.heightAnchor.constraint(equalTo: cardImage.widthAnchor, multiplier: 1.27).isActive = true
-                stackView.addArrangedSubview(cardImage)
+                onePlayerCardsStack.addArrangedSubview(cardImage)
+                onePlayerInfoStack.addArrangedSubview(onePlayerCardsStack)
             }
+            playerNumber += 1
+            //            print(playerNumber)
+            gameStackView.addArrangedSubview(onePlayerInfoStack)
+            
         }
-    }
-    
-    func makeDealerCardsStack() -> UIStackView {
-           let dealerCardStack = makeCardsStackView()
-           addDealerCards(of: dealerCardStack)
-           return dealerCardStack
-       }
-    
-    func addDealerCards(of stackView: UIStackView) {
-        pokerGame.showDealerCards(behavior: ){ card in
-            let cardImage = UIImageView(image: UIImage(named: card.description))
-            // 카드 이미지 세팅
-            cardImage.contentMode = .scaleAspectFit
-            cardImage.heightAnchor.constraint(equalTo: cardImage.widthAnchor, multiplier: 1.27).isActive = true
-            stackView.addArrangedSubview(cardImage)
-        }
-    }
-    
-    // MARK: - Configuration
-    // StackView
-    func setStackView(of stackView : UIStackView) {
-        stackView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 140).isActive = true
-        stackView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 5).isActive = true
-        stackView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -5).isActive = true
-    }
-    
-    // StackView에 넣을 이미지 뷰 생성
-    func makeCard() -> UIImageView {
-        let card = UIImageView(image:  #imageLiteral(resourceName: "card-back"))
-        card.contentMode = .scaleAspectFit
-        card.heightAnchor.constraint(equalTo: card.widthAnchor, multiplier: 1.27).isActive = true
-        return card
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -189,7 +122,7 @@ class ViewController: UIViewController {
     @objc func gameModeSegmentChanged(segmentedControl: UISegmentedControl){
         // 게임 모드 선택에 따른 내용 구현 예정
         switch segmentedControl.selectedSegmentIndex {
-        //        case 0: // 5 cards
+            //        case 0: // 5 cards
         //        case 1: // 7 cards
         default: return
         }
@@ -198,9 +131,9 @@ class ViewController: UIViewController {
     @objc func numbersOfPlayersSegmentChanged(segmentedControl: UISegmentedControl){
         // 플레이어 인원 선택에 따른 내용 구현 예정
         switch segmentedControl.selectedSegmentIndex {
-//        case 0: startPokerGame()// 2 명
-//        case 1: startPokerGame()// 3 명
-//        case 2: startPokerGame()// 4 명
+            //        case 0: startPokerGame()// 2 명
+            //        case 1: startPokerGame()// 3 명
+        //        case 2: startPokerGame()// 4 명
         default: return
         }
     }

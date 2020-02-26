@@ -9,7 +9,7 @@
 import Foundation
 
 class Players {
-    var players = [Player]()
+    private var players = [Player]()
     
     init(with numbersOfPlayers : NumbersOfPlayers?) {
         do {
@@ -32,7 +32,6 @@ class Players {
     }
     
     func showParticipantsCards(behavior: (Player) -> ()) {
-        print("Players에서 showParticipantsCards 에서 players.count :  \(self.players.count)")
         players.forEach {
             behavior($0)
         }

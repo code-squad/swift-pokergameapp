@@ -57,7 +57,7 @@ class PokerGame {
         
         gameMode.setCardPlacement {
         var newCard = dealer.giveOneCard()
-         players.addCard(newCard: newCard)
+            players.addCard(newCard: newCard)
        }
         var newCard = dealer.giveOneCard()
         dealer.addCard(newCard: newCard)
@@ -68,9 +68,7 @@ class PokerGame {
     }
     
     func forEachPlayer(behavior: (Player) -> ()) {
-        
         players.showParticipantsCards(behavior: ) { (player) in
-            print("PokerGame에서 forEachPlayer 에서 players.players.count :  \(self.players.players.count)")
             behavior(player)
         }
     }
