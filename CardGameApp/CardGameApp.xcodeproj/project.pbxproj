@@ -15,7 +15,7 @@
 		AE40A37523ED4D70009AB61B /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = AE40A37423ED4D70009AB61B /* SnapKit */; };
 		AE40A3AE23F17205009AB61B /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE40A3AD23F17205009AB61B /* Model.swift */; };
 		AE5643FC2403F29800BA989E /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5643FB2403F29800BA989E /* Protocols.swift */; };
-		AE5643FF2403F38D00BA989E /* StackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5643FE2403F38D00BA989E /* StackView.swift */; };
+		AE5643FF2403F38D00BA989E /* GameTableStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5643FE2403F38D00BA989E /* GameTableStackView.swift */; };
 		AE5644012403F7B700BA989E /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5644002403F7B700BA989E /* DataManager.swift */; };
 		AE83CC3F23F67287002635AD /* Hands.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE83CC3E23F67287002635AD /* Hands.swift */; };
 		AE83CC4123F672DB002635AD /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE83CC4023F672DB002635AD /* Player.swift */; };
@@ -47,7 +47,7 @@
 		AE40A37123ED35B4009AB61B /* GameTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTableView.swift; sourceTree = "<group>"; };
 		AE40A3AD23F17205009AB61B /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		AE5643FB2403F29800BA989E /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
-		AE5643FE2403F38D00BA989E /* StackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackView.swift; sourceTree = "<group>"; };
+		AE5643FE2403F38D00BA989E /* GameTableStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTableStackView.swift; sourceTree = "<group>"; };
 		AE5644002403F7B700BA989E /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		AE83CC3E23F67287002635AD /* Hands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hands.swift; sourceTree = "<group>"; };
 		AE83CC4023F672DB002635AD /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
@@ -138,7 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				AE40A37123ED35B4009AB61B /* GameTableView.swift */,
-				AE5643FE2403F38D00BA989E /* StackView.swift */,
+				AE5643FE2403F38D00BA989E /* GameTableStackView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -279,7 +279,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AE40A36223ED340A009AB61B /* ViewController.swift in Sources */,
-				AE5643FF2403F38D00BA989E /* StackView.swift in Sources */,
+				AE5643FF2403F38D00BA989E /* GameTableStackView.swift in Sources */,
 				AE83CC4523F67409002635AD /* Game.swift in Sources */,
 				AE5643FC2403F29800BA989E /* Protocols.swift in Sources */,
 				AE40A3AE23F17205009AB61B /* Model.swift in Sources */,

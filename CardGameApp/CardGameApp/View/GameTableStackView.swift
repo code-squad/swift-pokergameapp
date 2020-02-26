@@ -8,7 +8,7 @@
 
 import UIKit
 
-class StackView: UIStackView {
+class GameTableStackView: UIStackView {
     
     private var game: Playable? = Game.fiveCardStud(gamers: Players())
     private var stackView: UIStackView!

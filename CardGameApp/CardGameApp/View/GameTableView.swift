@@ -21,7 +21,7 @@ final class GameTableView: UIView {
     // MARK: - IBOutlets
     private var gameStyleSegementedControl: UISegmentedControl!
     private var numberOfPlayerSegementedControl: UISegmentedControl!
-    private var stackView: StackView = StackView()
+    private var stackView: GameTableStackView = GameTableStackView()
     
     // MARK: - Lifecycles
     override init(frame: CGRect) {
