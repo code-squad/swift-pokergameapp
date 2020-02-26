@@ -34,6 +34,18 @@ class GamePlayView: UIView {
         self.init(frame: .zero)
     }
     
+    func updateGamePlayView(with gamePlay: GamePlay) {
+        showParticipantView(by: gamePlay.participantCount)
+        let names = createParticipantNames(by: gamePlay.participantCount)
+        
+        var subViewIndex = 0
+        gamePlay.repeatForEachParticipant { participant in
+            updateSubView(at: subViewIndex, to: participant, participantName: names[subViewIndex])
+            subViewIndex += 1
+        }
+        animateGamePlayView(with: gamePlay, speed: 10)
+    }
+    
     private func setupView() {
         translatesAutoresizingMaskIntoConstraints = false
         addSubview(participantsStackView)
@@ -61,19 +73,7 @@ class GamePlayView: UIView {
         return names
     }
     
-    func updateGamePlayView(with gamePlay: GamePlay) {
-        showParticipantView(by: gamePlay.participantCount)
-        let names = createParticipantNames(by: gamePlay.participantCount)
-        
-        var subViewIndex = 0
-        gamePlay.repeatForEachParticipant { participant in
-            updateSubView(at: subViewIndex, to: participant, participantName: names[subViewIndex])
-            subViewIndex += 1
-        }
-        animateGamePlayView(speed: 10)
-    }
-    
-    func updateWinnerView(with gamePlay: GamePlay) {
+    private func updateWinnerView(with gamePlay: GamePlay) {
         var subViewIndex = 0
         gamePlay.repeatForEachParticipant { participant in
             participant.informWinner { isWinner in
@@ -96,7 +96,7 @@ class GamePlayView: UIView {
 
 extension GamePlayView {
     
-    func animateGamePlayView(speed: Double) {
+    func animateGamePlayView(with gamePlay: GamePlay, speed: Double) {
         let shownViews = participantsStackView.arrangedSubviews.filter { $0.isHidden == false }
         var animations = [() -> Void]()
         var durations = [TimeInterval]()
@@ -112,6 +112,11 @@ extension GamePlayView {
         dealAnimators.removeAll()
         durations.forEach { dealAnimators.append(UIViewPropertyAnimator(duration: $0, curve: .linear)) }
         dealAnimators.forEach { $0.addAnimations { animations.popFirst()!() } }
+        dealAnimators.last?.addCompletion { [weak self] position in
+            if position == .end {
+                self?.updateWinnerView(with: gamePlay)
+            }
+        }
         dealAnimators.enumerated().forEach { index, animator in
             animator.startAnimation(afterDelay: TimeInterval(index) / speed)
         }
