@@ -10,7 +10,7 @@ import UIKit
 
 class StackView: UIStackView {
     
-    private var game: Game? = .fiveCardStud(gamers: Players())
+    private var game: Playable? = Game.fiveCardStud(gamers: Players())
     private var stackView: UIStackView!
     
     override init(frame: CGRect) {
@@ -23,7 +23,7 @@ class StackView: UIStackView {
         configure()
     }
     
-    func fetchGame(game: Game?) {
+    func fetchGame(game: Playable?) {
         self.game = game
         removeContents()
         initCardStackView()
