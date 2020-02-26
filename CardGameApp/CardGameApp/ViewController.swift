@@ -113,6 +113,14 @@ class ViewController: UIViewController {
             
         }
     }
+    
+    func makeParticipantLabel(of who: String) -> UILabel{
+        let participantLabel = UILabel()
+        participantLabel.text = "\(who)"
+        participantLabel.textColor = .white
+        return participantLabel
+    }
+    
     func setConstraintOfView(of stackView : UIStackView) {
         stackView.topAnchor.constraint(equalTo: numbersOfPlayersSegmentControl.bottomAnchor, constant: 10).isActive = true
         stackView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 30).isActive = true
