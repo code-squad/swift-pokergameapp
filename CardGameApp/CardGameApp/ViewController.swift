@@ -113,6 +113,11 @@ class ViewController: UIViewController {
             
         }
     }
+    func setConstraintOfView(of stackView : UIStackView) {
+        stackView.topAnchor.constraint(equalTo: numbersOfPlayersSegmentControl.bottomAnchor, constant: 10).isActive = true
+        stackView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 30).isActive = true
+        stackView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -30).isActive = true
+    }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
