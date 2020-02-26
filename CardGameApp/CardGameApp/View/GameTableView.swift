@@ -11,30 +11,30 @@ import SnapKit
 
 final class GameTableView: UIView {
     
+    // MARK: - Properties
     weak var datasource: StackViewDataSource?
     private var gameStyle: Bool = false
     private var gameStyleSegementedTitle: [String] = ["5 cards", "7 cards"]
     private var numberOfPlayerSegementedTitle: [String] = ["2 peoples", "3 peoples", "4 peoples"]
     private let viewBackground: String = "bg_pattern"
     
-    private var gameStyleSegementedControl: UISegmentedControl
-    private var numberOfPlayerSegementedControl: UISegmentedControl
+    // MARK: - IBOutlets
+    private var gameStyleSegementedControl: UISegmentedControl!
+    private var numberOfPlayerSegementedControl: UISegmentedControl!
     private var stackView: StackView = StackView()
     
+    // MARK: - Lifecycles
     override init(frame: CGRect) {
-        gameStyleSegementedControl = UISegmentedControl(items: gameStyleSegementedTitle)
-        numberOfPlayerSegementedControl = UISegmentedControl(items: numberOfPlayerSegementedTitle)
         super.init(frame: frame)
         configure()
     }
     
     required init?(coder: NSCoder) {
-        gameStyleSegementedControl = UISegmentedControl(items: gameStyleSegementedTitle)
-        numberOfPlayerSegementedControl = UISegmentedControl(items: numberOfPlayerSegementedTitle)
         super.init(coder: coder)
         configure()
     }
 
+    // MARK: - Methodes
     func fetchGame(game: Game?) {
         stackView.fetchGame(game: game)
     }
@@ -51,6 +51,7 @@ final class GameTableView: UIView {
     }
     
     private func configureGameStyleSegementControl() {
+        gameStyleSegementedControl = UISegmentedControl(items: gameStyleSegementedTitle)
         addSubview(gameStyleSegementedControl)
         gameStyleSegementedControl.selectedSegmentIndex = 0
         gameStyleSegementedControl.addTarget(self, action: #selector(translateGameStyle), for: .valueChanged)
@@ -62,6 +63,7 @@ final class GameTableView: UIView {
     }
     
     private func configureNumberofPlayers() {
+        numberOfPlayerSegementedControl = UISegmentedControl(items: numberOfPlayerSegementedTitle)
         addSubview(numberOfPlayerSegementedControl)
         numberOfPlayerSegementedControl.selectedSegmentIndex = 0
         numberOfPlayerSegementedControl.addTarget(self, action: #selector(translateNumberOfPlayers), for: .valueChanged)
