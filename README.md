@@ -184,4 +184,14 @@ card class 안에서 패턴과 숫자를 함께 표시하기에 열거형이 접
 - 메달 이미지를 넣어주기 위해 스택뷰를 내부에 하나 더 생성했는데, 사이즈가 제멋대로여서 찾아보니 스택뷰 내부의 이미지 사이즈도 조정이 가능해서 적용함
 - 이긴 플레이어에게 메달 표시를 해줄때 스택뷰의 인덱스로 접근하게 했음..
 
-<img src="https://user-images.githubusercontent.com/40784518/75237898-85228680-5803-11ea-9fa3-0fae8f32d2b0.png" width="30%"></img><img src="https://user-images.githubusercontent.com/40784518/75237964-a2575500-5803-11ea-8dc3-de107e3a3972.png" width="30%"></img><img src="https://user-images.githubusercontent.com/40784518/74433200-4e637c80-4ea3-11ea-9bf9-33dccf460c26.png" width="30%"></img>
+<img src="https://user-images.githubusercontent.com/40784518/75237898-85228680-5803-11ea-9fa3-0fae8f32d2b0.png" width="30%"></img><img src="https://user-images.githubusercontent.com/40784518/75237964-a2575500-5803-11ea-8dc3-de107e3a3972.png" width="30%"></img>
+
+
+
+### 수정 사항
+
+- Hands.swift 안에 nested 타입 선언을 GameResult.swift 로 분리
+- 플레이어간의 결과 비교는 PokerGame이 아닌 하위객체인 Players 에서 하도록 수정
+- ViewController 안에서 Player와 Dealer가 겹치는 부분 메소드로 분리
+- ViewController 안에서 private으로 선언되어있던 속성인 isWinner 확인하는 걸 기존 클로저 이용하는 것에서 접근제한자를 private(set)으로 수정해 값만 가져오도록 변경 
+- 승자에게 메달 달아주는 애니메이션 추가 🏅
