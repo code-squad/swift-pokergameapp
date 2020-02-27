@@ -153,7 +153,7 @@ class ViewController: UIViewController {
         
         medalImage.widthAnchor.constraint(equalToConstant: 30).isActive = true
         medalImage.heightAnchor.constraint(equalToConstant: 30).isActive = true
-        medalImage.isHidden = true
+        medalImage.alpha = 0
         
         return labelStack
     }
@@ -219,7 +219,9 @@ class ViewController: UIViewController {
                 let eachPlayerStack = wholeGameStack.arrangedSubviews[playerNumber] as! UIStackView
                 let labelStack = eachPlayerStack.arrangedSubviews[0] as! UIStackView
                 let medalImage = labelStack.arrangedSubviews[1]
-                medalImage.isHidden = false
+                UIView.animate(withDuration: 4) {
+                    medalImage.alpha = 1
+                }
             }
             playerNumber += 1
         }
@@ -229,7 +231,9 @@ class ViewController: UIViewController {
         if pokerGame.judgeDealerWin() {
             let labelStack = dealerGameStack.arrangedSubviews[0] as! UIStackView
             let medalImage = labelStack.arrangedSubviews[1]
-            medalImage.isHidden = false
+            UIView.animate(withDuration: 4) {
+                medalImage.alpha = 1
+            }
         }
     }
     
