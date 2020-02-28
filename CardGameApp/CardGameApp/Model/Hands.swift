@@ -30,16 +30,37 @@ struct Hands {
                 self = .none
             }
         }
+        
+        func compare(with value: Int) -> Int {
+            value < self.rawValue ? self.rawValue : value
+        }
+        
+        func findPlayer(with value: Int) -> Bool {
+            value == self.rawValue
+        }
     }
     
     private var cards: [Card] = []
     var count: Int {
         cards.count
     }
-    var grade: TexasHoldemRule?
+    var grade: TexasHoldemRule {
+        configureGrade()
+    }
+    var topValue: Int {
+        configureDictionary().keys.sorted { $0 > $1 }.first ?? 0
+    }
     
     func forEach(handler: (Card) -> Void) {
         cards.forEach { handler($0) }
+    }
+    
+    func compare(with counting: Int) -> Int {
+        grade.compare(with: counting)
+    }
+    
+    func findPlayer(with value: Int) -> Bool {
+        grade.findPlayer(with: value)
     }
     
     mutating func add(_ card: Card?) {
@@ -50,7 +71,7 @@ struct Hands {
     mutating func removeLast() {
         cards.removeLast()
     }
-
+    
     mutating func clearCards() {
         cards = []
     }
