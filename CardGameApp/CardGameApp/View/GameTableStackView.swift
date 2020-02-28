@@ -72,6 +72,15 @@ class GameTableStackView: UIStackView {
         }
     }
     
+    private func initWinnerImage(player: Player) -> UIImageView {
+        let imageView = UIImageView()
+        imageView.image = player.winner ? UIImage(named: "winner") : nil
+        imageView.snp.makeConstraints { (make) in
+            make.height.equalTo(imageView.snp.width).multipliedBy(1.27)
+        }
+        return imageView
+    }
+    
     private func initPlayerStackView(_ player: Player) -> UIStackView {
         let playerStack = UIStackView()
         let cardStack = UIStackView()
@@ -79,6 +88,7 @@ class GameTableStackView: UIStackView {
         identifierLabel.text = player.description
         identifierLabel.textColor = .white
         player.forEach { initCardsStackVieew(cardStack, card: $0) }
+        cardStack.addArrangedSubview(initWinnerImage(player: player))
         playerStack.addArrangedSubview(identifierLabel)
         playerStack.addArrangedSubview(cardStack)
         playerStack.axis = .vertical
