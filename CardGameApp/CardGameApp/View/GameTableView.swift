@@ -21,11 +21,18 @@ final class GameTableView: UIView {
     // MARK: - IBOutlets
     private var gameStyleSegementedControl: UISegmentedControl!
     private var numberOfPlayerSegementedControl: UISegmentedControl!
-    private var stackView: GameTableStackView = GameTableStackView()
+    private var stackView: GameTableStackView?
     
     // MARK: - Lifecycles
     override init(frame: CGRect) {
+        print(frame)
         super.init(frame: frame)
+        configure()
+    }
+    
+    init(frame: CGRect, game: Playable) {
+        super.init(frame: frame)
+        stackView = GameTableStackView(frame: frame, game: game)
         configure()
     }
     
@@ -36,7 +43,7 @@ final class GameTableView: UIView {
 
     // MARK: - Methodes
     func fetchGame(game: Game?) {
-        stackView.fetchGame(game: game)
+        stackView?.fetchGame(game: game)
     }
     
     private func configure() {
@@ -75,8 +82,8 @@ final class GameTableView: UIView {
     }
     
     private func configureStackView() {
-        addSubview(stackView)
-        stackView.snp.makeConstraints { (make) in
+        addSubview(stackView ?? GameTableStackView())
+        stackView?.snp.makeConstraints { (make) in
             make.leading.equalTo(numberOfPlayerSegementedControl.snp.leading)
             make.trailing.equalTo(numberOfPlayerSegementedControl.snp.trailing)
             make.top.equalTo(numberOfPlayerSegementedControl.snp.bottom).offset(16)
