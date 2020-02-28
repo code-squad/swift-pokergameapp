@@ -58,6 +58,7 @@ import Foundation
         dealer.newGame()
         numberOfPlayers = NumberOfPlayers(index: index)
         distributePlayers()
+        players.searchWinner()
     }
     
     func translateStyle(style: Style) {
