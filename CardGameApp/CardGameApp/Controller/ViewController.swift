@@ -13,7 +13,7 @@ class ViewController: UIViewController {
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
-    private var gameView = GameTableView()
+    private var gameView = GameTableView(frame: CGRect(x: 0, y: 0, width: 0, height: 0), game: Game.fiveCardStud(gamers: Players()))
     private var manager = DataManager()
     private var observer: NSKeyValueObservation?
     
