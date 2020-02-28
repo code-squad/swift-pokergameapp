@@ -12,11 +12,18 @@ class Player {
     
     private var cards: Hands = Hands()
     private var identifier: String
+    var winner: Bool = false
     var description: String {
         return identifier
     }
+    var topValue: Int {
+        cards.topValue
+    }
     var count: Int {
         return cards.count
+    }
+    var grade: Hands.TexasHoldemRule {
+        cards.grade
     }
     
     init(identifier: String) {
@@ -37,5 +44,17 @@ class Player {
     
     func forEach(handler: (Card) -> Void) {
         cards.forEach { handler($0) }
+    }
+    
+    func checkWinner() {
+        winner.toggle()
+    }
+    
+    func findPlayer(with value: Int) -> Bool {
+        cards.findPlayer(with: value)
+    }
+    
+    func compare(with value: Int) -> Int {
+        cards.compare(with: value)
     }
 }
