@@ -24,7 +24,6 @@ class Card {
     
     private var suit: suit
     private var rank: rank
-    private var image: String?
 
     init(suit: suit, rank: rank) {
         self.suit = suit
