@@ -29,4 +29,38 @@ struct Players {
     mutating func addGamers(contentsOf: [Player]) {
         self.players.append(contentsOf: players)
     }
+    
+    mutating func searchWinner() {
+        var winnerGrade = 0
+        setWinner(winnerGrade: &winnerGrade)
+        checkWinner(winnerGrade: &winnerGrade)
+        var count = 0
+        doubleCheck(count: &count)
+    }
+    
+    func setWinner(winnerGrade: inout Int) {
+        players.forEach { player in
+            winnerGrade = player.compare(with: winnerGrade)
+        }
+    }
+    
+    func checkWinner(winnerGrade: inout Int) {
+        players.forEach { player in
+            player.findPlayer(with: winnerGrade) ? player.checkWinner() : nil
+        }
+    }
+    
+    func doubleCheck(count: inout Int) {
+        players.forEach { player in
+            player.winner ? count += 1 : nil
+        }
+        if count > 1 {
+            players.sorted {
+                $0.winner = false
+                $1.winner = false
+                return $0.topValue > $1.topValue
+            }.first?
+                .checkWinner()
+        }
+    }
 }
