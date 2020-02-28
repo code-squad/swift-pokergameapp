@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Card {
+struct Card {
     
     enum suit: CaseIterable {
         case spade
@@ -18,7 +18,13 @@ class Card {
     }
     
     enum rank: Int {
-        case one = 1, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve, thirteen
+        case one = 1, two, three, four, five, six, seven, eight, nine, ten, eleven = 11, twelve = 12, thirteen = 13
+        
+        func configureDictionary(dictionary: inout [Int: Int]) {
+            let isEmpty = dictionary[self.rawValue] == nil
+            let updateValue = (dictionary[self.rawValue] ?? 0) + 1
+            dictionary.updateValue(isEmpty ? 1 : updateValue , forKey: self.rawValue)
+        }
     }
     
     private var suit: suit
@@ -27,6 +33,10 @@ class Card {
     init(suit: suit, rank: rank) {
         self.suit = suit
         self.rank = rank
+    }
+    
+    func configureDictionary(dictionary: inout [Int: Int]) {
+        self.rank.configureDictionary(dictionary: &dictionary)
     }
 }
 
