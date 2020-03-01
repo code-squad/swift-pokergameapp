@@ -28,10 +28,18 @@ class Score {
         self.cardDeck = cardDeck
     }
     
-    private func sortCard() {
+    public func calculateScore() -> ScoreWeight {
         
     }
     
+    // 이제 숫자(랭크)순으로 정렬되어있을 것임.
+    private func sortCard() {
+        cardDeck.sort { ( first, second) -> Bool in
+            first > second
+        }
+    }
+    
+    // 정렬후 checkPair onePair인지 twoPair인지
     private func checkPair() {
         
     }
