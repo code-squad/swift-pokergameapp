@@ -11,9 +11,12 @@ import Foundation
 class Player {
     private(set) var name: String
     private(set) var handDeck = [Card]()
+    private lazy var score = Score(cardDeck: handDeck)
+    private(set) var winGame: Bool
     
     init(name: String) {
         self.name = name
+        self.winGame = false
     }
     
     func bringCard(card: Card){
