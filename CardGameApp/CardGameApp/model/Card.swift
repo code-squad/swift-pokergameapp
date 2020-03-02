@@ -12,7 +12,7 @@ class Card {
     
     //suit와 rank는 위키백과 playing card에서 따옴.
     private let suit: Suit
-    private let rank: Rank
+    private(set) let rank: Rank
     
     init(suit: Suit, rank: Rank){
         self.suit = suit
@@ -82,6 +82,5 @@ extension Card: CustomStringConvertible, Equatable {
     var description: String {
         return suit.description + rank.description
     }
-    
     
 }
