@@ -59,8 +59,7 @@ class CardsStackView: UIStackView {
             cardsIndex += 1
         }
         
-        let cardsCount = cardsIndex
-        setNotCardsViewHidden(cardsCount: cardsCount)
+        setNotCardsViewHidden(cardsCount: participant.cardsCount)
     }
     
     private func setAllCardsViewsNotHidden() {
