@@ -10,7 +10,7 @@ import Foundation
 
 class Score {
     
-    enum ScoreWeight: Int {
+    enum ScoreWeight: Int, Equatable {
         case highCard = 0
         case onePair = 1
         case twoPair = 2
