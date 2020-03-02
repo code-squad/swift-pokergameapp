@@ -59,7 +59,7 @@ class CardsStackView: UIStackView {
             cardsIndex += 1
         }
         
-        setNotCardsViewHidden(cardsCount: participant.cardsCount)
+        setNotApplicatedCardsViewHidden(cardsCount: participant.cardsCount)
     }
     
     private func setAllCardsViewsNotHidden() {
@@ -77,7 +77,7 @@ class CardsStackView: UIStackView {
         imageView.image = cardImage
     }
     
-    private func setNotCardsViewHidden(cardsCount: Int) {
+    private func setNotApplicatedCardsViewHidden(cardsCount: Int) {
         for index in cardsCount ..< arrangedSubviews.count {
             arrangedSubviews[index].isHidden = true
         }
