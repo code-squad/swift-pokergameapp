@@ -88,12 +88,10 @@ class ViewController: UIViewController {
     }
     
     private func setConstraintParticipantsStackView() {
-        let topConstant: CGFloat = 40
         let leadingConstant: CGFloat = 30
-        let trailingConstant: CGFloat = 50
+        let trailingConstant: CGFloat = 57
         participantsStackView.topAnchor.constraint(
-            equalTo: gameSegmentedControlStackView.bottomAnchor,
-            constant: topConstant).isActive = true
+            equalTo:gameSegmentedControlStackView.bottomAnchor).isActive = true
         participantsStackView.leadingAnchor.constraint(
             equalTo: view.leadingAnchor,
             constant: leadingConstant).isActive = true
