@@ -20,7 +20,6 @@ extension Card.Number: Comparable {
     func isEqual(minus: Int, other: Card.Number) -> Bool {
         return self.rawValue - minus == other.rawValue
     }
-    
 }
 
 extension Participant {
@@ -28,8 +27,8 @@ extension Participant {
         case onePair = 1
         case twoPair = 2
         case triple = 3
-        case straight = 6
-        case fourCard = 8
+        case straight = 7
+        case fourCard = 9
         
         static func < (lhs: Rank, rhs: Rank) -> Bool {
             return lhs.rawValue < rhs.rawValue
@@ -78,6 +77,21 @@ extension Participant {
                     return nil
                 } else if count == 4 {
                     return curNum
+                }
+            }
+            return nil
+        }
+        
+        static func isTriple(cards: [Card]) -> Card.Number? {
+            let threeCardsCount = 3
+            guard cards.count >= threeCardsCount else {
+                return nil
+            }
+            
+            let nums = generateNums(cards: cards)
+            for num in nums {
+                if num.value == threeCardsCount {
+                    return num.key
                 }
             }
             return nil
@@ -132,12 +146,18 @@ class Participant: CardSearchable {
     }
     
     func updateRanks() {
-        var cards = self.cards
+        updateRanksRecursive(cards: cards)
+    }
+    
+    private func updateRanksRecursive(cards: [Card]) {
         if let updatedCards = checkFourCardAndUpdateCards(cards: cards) {
-            cards = updatedCards
+            updateRanksRecursive(cards: updatedCards)
         }
         if let updatedCards = checkStraightAndUpdateCards(cards: cards) {
-            cards = updatedCards
+            updateRanksRecursive(cards: updatedCards)
+        }
+        if let updatedCards = checkTripleAndUpdateCards(cards: cards) {
+            updateRanksRecursive(cards: updatedCards)
         }
     }
     
@@ -186,5 +206,17 @@ class Participant: CardSearchable {
             }
         }
         return newCards
+    }
+    
+    private func checkTripleAndUpdateCards(cards: [Card]) -> [Card]? {
+        var cards = cards
+        if let num = Rank.isTriple(cards: cards) {
+            ranks.append(.triple)
+            cards.removeAll { (card) -> Bool in
+                return card.number == num
+            }
+            return cards
+        }
+        return nil
     }
 }
