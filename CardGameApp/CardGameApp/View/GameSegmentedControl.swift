@@ -12,20 +12,20 @@ class GameSegmentedControl: UISegmentedControl {
     
     override init(items: [Any]?) {
         super.init(items: items)
-        configure()
+        setup()
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        configure()
+        setup()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        configure()
+        setup()
     }
     
-    private func configure() {
+    private func setup() {
         setupSegmentIndex()
         setupTitle()
     }
