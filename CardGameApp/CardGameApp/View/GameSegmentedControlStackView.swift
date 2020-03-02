@@ -34,30 +34,34 @@ class GameSegmentedControlStackView: UIStackView {
     }
     
     private func configure(){
-        setup()
+        setupProperties()
+        setupSegmentedControls()
         addSegmentedControls()
-        setAddTargets()
     }
     
-    private func setup(){
+    private func setupProperties(){
         axis = .vertical
         distribution = .fillEqually
         spacing = 8
         translatesAutoresizingMaskIntoConstraints = false
     }
     
-    private func addSegmentedControls() {
-        addArrangedSubview(stutSegmentedControl)
-        addArrangedSubview(playersSegmentedControl)
+    private func setupSegmentedControls() {
+        addTargets()
     }
     
-    private func setAddTargets() {
+    private func addTargets() {
         stutSegmentedControl.addTarget(self,
                                        action: #selector(indexChanged(_:)),
                                        for: .valueChanged)
         playersSegmentedControl.addTarget(self,
                                           action: #selector(indexChanged(_:)),
                                           for: .valueChanged)
+    }
+    
+    private func addSegmentedControls() {
+        addArrangedSubview(stutSegmentedControl)
+        addArrangedSubview(playersSegmentedControl)
     }
     
     @objc private func indexChanged(_ sender: UISegmentedControl) {
