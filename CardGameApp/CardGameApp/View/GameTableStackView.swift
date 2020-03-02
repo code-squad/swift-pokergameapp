@@ -11,7 +11,6 @@ import UIKit
 class GameTableStackView: UIStackView {
     
     private var game: Playable?
-    private var stackView: UIStackView?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -42,24 +41,22 @@ class GameTableStackView: UIStackView {
     }
     
     private func removeContents() {
-        stackView?.subviews.forEach {
-            stackView?.removeArrangedSubview($0)
+        subviews.forEach {
+         removeArrangedSubview($0)
             $0.removeFromSuperview()
         }
     }
     
     private func configuerStackView() {
-        stackView = UIStackView()
-        addSubview(stackView ?? UIStackView())
-        stackView?.snp.makeConstraints { (make) in
+        snp.makeConstraints { make in
             make.edges.equalTo(safeAreaLayoutGuide)
         }
-        stackView?.distribution = .fillEqually
-        stackView?.axis = .vertical
+        distribution = .fillEqually
+        axis = .vertical
     }
     
     private func initCardStackView()  {
-        game?.pushPlayerToView { stackView?.addArrangedSubview(initPlayerStackView($0)) }
+        game?.pushPlayerToView { addArrangedSubview(initPlayerStackView($0)) }
     }
     
     private func initCardsStackVieew(_ stackView: UIStackView, card: Card) {
