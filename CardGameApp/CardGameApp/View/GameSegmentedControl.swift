@@ -35,10 +35,17 @@ class GameSegmentedControl: UISegmentedControl {
     }
     
     private func setupTitle() {
-        let normalTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        setNormalTextColor(UIColor.white)
+        setSelectedTextColor(UIColor.black)
+    }
+    
+    private func setNormalTextColor(_ color: UIColor) {
+        let normalTextAttributes = [NSAttributedString.Key.foregroundColor: color]
         setTitleTextAttributes(normalTextAttributes, for: .normal)
-        
-        let selectedTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
+    }
+    
+    private func setSelectedTextColor(_ color: UIColor) {
+        let selectedTextAttributes = [NSAttributedString.Key.foregroundColor: color]
         setTitleTextAttributes(selectedTextAttributes, for: .selected)
     }
     
