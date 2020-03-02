@@ -60,6 +60,17 @@ class Card {
                     return "\(self.rawValue)"
             }
         }
+        
+        func isNextRank(card: Card) -> Bool {
+            if self.rawValue + 1 == card.rank.rawValue {
+                return true
+            }
+            return false
+        }
+    }
+    
+    func isContinousRank(nextCard: Card) -> Bool {
+        return self.rank.isNextRank(card: nextCard)
     }
 }
 
