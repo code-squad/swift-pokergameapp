@@ -10,7 +10,7 @@ import XCTest
 @testable import CardGameApp
 
 class RankTests: XCTestCase {
-
+    
     func testIsFourCardSuccess() {
         // 1.given
         let cards = [Card(suit: .club, number: .ace),
@@ -21,7 +21,7 @@ class RankTests: XCTestCase {
                      Card(suit: .heart, number: .four),
                      Card(suit: .spade, number: .four)]
         // 3.then
-        XCTAssertTrue(Participant.Rank.isFourCard(cards: cards))
+        XCTAssertGreaterThan(Participant.Rank.isFourCard(cards: cards), 0)
     }
     
     func testIsFourCardFail() {
@@ -32,6 +32,6 @@ class RankTests: XCTestCase {
                      Card(suit: .club, number: .four),
                      Card(suit: .diamond, number: .four),
                      Card(suit: .heart, number: .four)]
-        XCTAssertFalse(Participant.Rank.isFourCard(cards: cards))
+        XCTAssertEqual(Participant.Rank.isFourCard(cards: cards), 0)
     }
 }

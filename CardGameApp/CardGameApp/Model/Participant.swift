@@ -20,19 +20,19 @@ extension Participant {
             return lhs.rawValue < rhs.rawValue
         }
         
-        static func isFourCard(cards: [Card]) -> Bool {
+        static func isFourCard(cards: [Card]) -> Int {
             let fourCardsCount = 4
             guard cards.count >= fourCardsCount else {
-                return false
+                return 0
             }
             
             let nums = generateNums(cards: cards)
             for num in nums {
                 if num.value == fourCardsCount {
-                    return true
+                    return num.value
                 }
             }
-            return false
+            return 0
         }
         
         private static func generateNums(cards: [Card]) -> [Int:Int] {
@@ -81,6 +81,22 @@ class Participant: CardSearchable {
     
     func updateRanks() {
         var cards = self.cards
+        if let updatedcards = checkFourCardAndUpdateCards(cards: cards) {
+            cards = updatedcards
+        }
     }
     
+    private func checkFourCardAndUpdateCards(cards: [Card]) -> [Card]? {
+        var cards = cards
+        let num = Rank.isFourCard(cards: cards)
+        guard num != 0 else {
+            return nil
+        }
+        
+        ranks.append(.fourCard)
+        cards.removeAll { (card) -> Bool in
+            return card.number == Card.Number(rawValue: num)
+        }
+        return cards
+    }
 }
