@@ -16,6 +16,8 @@ class ParticipantStackView: UIStackView {
         return label
     }()
     
+    private let cardsStackView = CardsStackView()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
@@ -38,7 +40,7 @@ class ParticipantStackView: UIStackView {
     
     private func addArrangedViews() {
         addArrangedSubview(participantLabel)
-        addArrangedSubview(CardsStackView())
+        addArrangedSubview(cardsStackView)
     }
     
     func updateView(name: String, participant: Participant) {
@@ -51,12 +53,6 @@ class ParticipantStackView: UIStackView {
     }
     
     private func updateCardsStackView(participant: Participant) {
-        let cardStackIndex = 1
-        guard Controller.verifyIndex(index: cardStackIndex, arrLen: arrangedSubviews.count) else {
-            return
-        }
-        
-        let cardsStackView = arrangedSubviews[cardStackIndex] as! CardsStackView
         cardsStackView.updateView(participant: participant)
     }
     
