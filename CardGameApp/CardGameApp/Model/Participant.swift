@@ -173,17 +173,20 @@ class Participant: CardSearchable {
     }
     
     func updateRanks() {
-        updateRanksRecursive(cards: cards)
-    }
-    
-    private func updateRanksRecursive(cards: [Card]){
+        var cards = self.cards
         if let updatedCards = checkFourCardAndUpdateCards(cards: cards) {
-            updateRanksRecursive(cards: updatedCards)
-        } else if let updatedCards = checkStraightAndUpdateCards(cards: cards) {
-            updateRanksRecursive(cards: updatedCards)
-        } else if let updatedCards = checkTripleAndUpdateCards(cards: cards) {
-            updateRanksRecursive(cards: updatedCards)
-        } else if checkTwoPairAndUpdateCards(cards: cards) {
+            cards = updatedCards
+        }
+        if let updatedCards = checkStraightAndUpdateCards(cards: cards) {
+            cards = updatedCards
+        }
+        if let updatedCards = checkTripleAndUpdateCards(cards: cards) {
+            cards = updatedCards
+            if let updatedCards = checkTripleAndUpdateCards(cards: cards) {
+                cards = updatedCards
+            }
+        }
+        if checkTwoPairAndUpdateCards(cards: cards) {
             return
         }
     }
