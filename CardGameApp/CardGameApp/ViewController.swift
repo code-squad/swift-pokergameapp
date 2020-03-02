@@ -22,12 +22,11 @@ extension ViewController {
     
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         if motion == .motionShake {
-            guard let gameStut = gameSegmentedControlStackView.gameStut() else {
+            guard let gameStut = gameSegmentedControlStackView.gameStut(),
+                  let playersNum = gameSegmentedControlStackView.playersNum() else {
                 return
             }
-            guard let playersNum = gameSegmentedControlStackView.playersNum() else {
-                return
-            }
+            
             startGame(gameStut: gameStut,
                       participants: Participants(playersNum: playersNum))
         }
