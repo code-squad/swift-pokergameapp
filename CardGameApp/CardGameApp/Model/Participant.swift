@@ -8,6 +8,21 @@
 
 import Foundation
 
+extension Card.Number: Comparable {
+    static func < (lhs: Card.Number, rhs: Card.Number) -> Bool {
+        return lhs.rawValue < rhs.rawValue
+    }
+    
+    func isEqual(plus: Int, other: Card.Number) -> Bool {
+        return self.rawValue + plus == other.rawValue
+    }
+    
+    func isEqual(minus: Int, other: Card.Number) -> Bool {
+        return self.rawValue - minus == other.rawValue
+    }
+    
+}
+
 extension Participant {
     enum Rank: Int, CaseIterable, Comparable {
         case onePair = 1
@@ -20,35 +35,72 @@ extension Participant {
             return lhs.rawValue < rhs.rawValue
         }
         
-        static func isFourCard(cards: [Card]) -> Int {
+        static func isFourCard(cards: [Card]) -> Card.Number? {
             let fourCardsCount = 4
             guard cards.count >= fourCardsCount else {
-                return 0
+                return nil
             }
             
             let nums = generateNums(cards: cards)
             for num in nums {
                 if num.value == fourCardsCount {
-                    return num.value
+                    return num.key
                 }
             }
-            return 0
+            return nil
         }
         
-        private static func generateNums(cards: [Card]) -> [Int:Int] {
-            var nums = [Int:Int]()
-            for i in 0 ..< cards.count - 1 {
-                guard !nums.keys.contains(i) else {
+        static func isStraight(cards: [Card]) -> Card.Number? {
+            let fiveCardsCount = 5
+            guard cards.count >= fiveCardsCount else {
+                return nil
+            }
+            
+            let nums = generateNums(cards: cards)
+            let keys = nums.keys.sorted()
+            
+            guard keys.count >= fiveCardsCount else {
+                return nil
+            }
+            
+            for index in 0 ... keys.count - 5 {
+                var curNum = keys[index]
+                var count = 0
+                for j in index + 1 ..< keys.count {
+                    let next = keys[j]
+                    guard curNum.isEqual(plus: 1, other: next) else {
+                        break
+                    }
+                    curNum = next
+                    count += 1
+                }
+                if count > 4 {
+                    return nil
+                } else if count == 4 {
+                    return curNum
+                }
+            }
+            return nil
+        }
+        
+        private static func generateNums(cards: [Card]) -> [Card.Number:Int] {
+            var nums = [Card.Number:Int]()
+            for index in 0 ..< cards.count - 1 {
+                let curNum = cards[index].number
+                guard !nums.keys.contains(curNum) else {
                     continue
                 }
                 
                 var count = 1
-                for j in i + 1 ..< cards.count {
-                    if cards[i].number == cards[j].number {
+                for j in index + 1 ..< cards.count {
+                    if curNum == cards[j].number {
                         count += 1
                     }
                 }
-                nums[i] = count
+                nums[curNum] = count
+            }
+            if !nums.keys.contains(cards.last!.number) {
+                nums[cards.last!.number] = 1
             }
             return nums
         }
@@ -81,22 +133,58 @@ class Participant: CardSearchable {
     
     func updateRanks() {
         var cards = self.cards
-        if let updatedcards = checkFourCardAndUpdateCards(cards: cards) {
-            cards = updatedcards
+        if let updatedCards = checkFourCardAndUpdateCards(cards: cards) {
+            cards = updatedCards
+        }
+        if let updatedCards = checkStraightAndUpdateCards(cards: cards) {
+            cards = updatedCards
         }
     }
     
     private func checkFourCardAndUpdateCards(cards: [Card]) -> [Card]? {
         var cards = cards
-        let num = Rank.isFourCard(cards: cards)
-        guard num != 0 else {
-            return nil
+        if let num = Rank.isFourCard(cards: cards) {
+            ranks.append(.fourCard)
+            cards.removeAll { (card) -> Bool in
+                return card.number == num
+            }
+            return cards
         }
-        
-        ranks.append(.fourCard)
-        cards.removeAll { (card) -> Bool in
-            return card.number == Card.Number(rawValue: num)
+        return nil
+    }
+    
+    private func checkStraightAndUpdateCards(cards: [Card]) -> [Card]? {
+        var cards = cards
+        if let num = Rank.isStraight(cards: cards) {
+            ranks.append(.straight)
+            cards = removeCardsForStraight(cards: cards, num: num)
+            return cards
         }
-        return cards
+        return nil
+    }
+    
+    private func removeCardsForStraight(cards: [Card], num : Card.Number) -> [Card] {
+        var isFirst = false
+        var isSecond = false
+        var isThird = false
+        var isFourth = false
+        var isFifth = false
+        var newCards = [Card]()
+        for card in cards {
+            if num.isEqual(minus: 4, other: card.number), !isFirst {
+                isFirst = true
+            } else if num.isEqual(minus: 3, other: card.number), !isSecond {
+                isSecond = true
+            } else if num.isEqual(minus: 2, other: card.number), !isThird {
+                isThird = true
+            } else if num.isEqual(minus: 1, other: card.number), !isFourth {
+                isFourth = true
+            } else if num.isEqual(minus: 0, other: card.number), !isFifth {
+                isFifth = true
+            } else {
+                newCards.append(card)
+            }
+        }
+        return newCards
     }
 }
