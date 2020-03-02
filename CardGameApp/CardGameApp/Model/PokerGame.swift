@@ -52,17 +52,24 @@ class PokerGame {
     }
     
     func hasEnoughCards() -> Bool {
-        var stutNum = 0
+        return deck.count >= stutCount * participantsCount
+    }
+    
+    private var stutCount: Int {
+        var stutCount = 0
         gameStut.forEach {
-            stutNum += 1
+            stutCount += 1
         }
+        return stutCount
+    }
+    
+    private var participantsCount: Int {
         var participantsCount = 0
         participants.forEach {
             participantsCount += 1
         }
-        return deck.count >= stutNum * participantsCount
+        return participantsCount
     }
-    
 }
 
 extension PokerGame {
