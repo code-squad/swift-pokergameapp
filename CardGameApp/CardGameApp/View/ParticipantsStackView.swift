@@ -21,18 +21,18 @@ class ParticipantsStackView: UIStackView {
     }
     
     private func configure() {
-        setupStack()
-        setupView()
+        setupProperties()
+        addArrangedViews()
     }
     
-    private func setupStack() {
+    private func setupProperties() {
         axis = .vertical
         distribution = .fillEqually
         spacing = 20
         translatesAutoresizingMaskIntoConstraints = false
     }
     
-    private func setupView() {
+    private func addArrangedViews() {
         Participants.forEachMaxCase {
             addArrangedSubview(ParticipantStackView())
         }

@@ -63,10 +63,11 @@ class CardsStackView: UIStackView {
     private func updateApplicatedCardsView(participant: Participant) {
         var cardsIndex = 0
         participant.searchCard { (card) in
-            if let cardImage = UIImage(named:"\(card.description)") {
-                updateApplicatedCardView(at: cardsIndex,
-                cardImage: cardImage)
+            guard let cardImage = UIImage(named:"\(card.description)") else {
+                return
             }
+            
+            updateApplicatedCardView(at: cardsIndex, cardImage: cardImage)
             cardsIndex += 1
         }
     }
