@@ -12,7 +12,10 @@ class Participant: CardSearchable {
     
     let name: String
     private var cards = [Card]()
-
+    var cardsCount: Int {
+        return cards.count
+    }
+    
     init(name: String) {
         self.name = name
     }
