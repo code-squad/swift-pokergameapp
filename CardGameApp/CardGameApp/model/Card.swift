@@ -10,9 +10,8 @@ import Foundation
 
 class Card {
     
-    //suit와 rank는 위키백과 playing card에서 따옴.
     private let suit: Suit
-    private(set) let rank: Rank
+    let rank: Rank
     
     init(suit: Suit, rank: Rank){
         self.suit = suit
@@ -64,8 +63,8 @@ class Card {
     }
 }
 
-extension Card: CustomStringConvertible, Equatable {
-    public static func == (lhs: Card, rhs: Card) -> Bool {
+extension Card: CustomStringConvertible, Equatable, Hashable {
+    static func == (lhs: Card, rhs: Card) -> Bool {
         if lhs.suit == rhs.suit && lhs.rank == rhs.rank {
             return true
         }
@@ -83,4 +82,7 @@ extension Card: CustomStringConvertible, Equatable {
         return suit.description + rank.description
     }
     
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(self.rank)
+    }
 }
