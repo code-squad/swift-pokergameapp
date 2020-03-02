@@ -31,6 +31,10 @@ class GameTable {
     func isContinue() -> Bool {
         return dealer.cardDeckCount() > participants.players.count
     }
+    
+    func winner() -> Player {
+        return dealer.judgeWinner(players: participants)
+    }
 }
 
 enum StudType: Int, CaseIterable {
