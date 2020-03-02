@@ -20,7 +20,6 @@ class Score {
     }
     
     private var cardDeck: [Card]
-    private var pairDeck = [Card]()
     
     init(cardDeck : [Card]) {
         self.cardDeck = cardDeck
@@ -34,10 +33,16 @@ class Score {
             score = .straight
         }
         pairDeck = judgeDeckPairCount(cardDeck: cardDeck)
+        print(pairDeck)
         
         let highestPairCount = pairDeck.values.max()
-        
-        
+        if highestPairCount == 4 {
+            score = .four
+        } else if highestPairCount == 3 {
+            score = .triple
+        } else if highestPairCount == 2 {
+            score = checkPairType(cardDeck: pairDeck)
+        }
         
         return score
     }
@@ -62,7 +67,7 @@ class Score {
         var straightCount = 1
         var currentCard = cardDeck[0]
         
-        // forEach는 return이 안먹힌다.
+        // forEach는 return이 안먹힌다. 공부해볼것.
         for card in cardDeck {
             if currentCard.isContinousRank(nextCard: card) {
                 straightCount += 1
@@ -75,5 +80,16 @@ class Score {
             currentCard = card
         }
         return false
+    }
+    
+    private func checkPairType(cardDeck: [Card : Int]) -> ScoreWeight {
+        
+        let pairCount = cardDeck.filter { $0.value == 2 }.count
+        
+        if pairCount >= 4 {
+            return .twoPair
+        } else {
+            return .onePair
+        }
     }
 }
