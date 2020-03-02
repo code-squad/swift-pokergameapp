@@ -23,8 +23,8 @@ extension ViewController {
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         if motion == .motionShake {
             guard let gameStut = gameSegmentedControlStackView.gameStut(),
-                  let playersNum = gameSegmentedControlStackView.playersNum() else {
-                return
+                let playersNum = gameSegmentedControlStackView.playersNum() else {
+                    return
             }
             
             startGame(gameStut: gameStut,
@@ -104,14 +104,22 @@ class ViewController: UIViewController {
     
     private func startGame(gameStut: GameStut, participants: Participants) {
         shuffleDeck()
-        var game = PokerGame(gameStut: gameStut, participants: participants, deck: deck)
+        var game = PokerGame(gameStut: gameStut,
+                             participants: participants,
+                             deck: deck)
         if !game.hasEnoughCards() {
-            deck.reset()
-            shuffleDeck()
-            game = PokerGame(gameStut: gameStut, participants: participants, deck: deck)
+            game = resetDeckAndGenerateGame(gameStut: gameStut, participants: participants)
         }
         game.startNewRound()
         participantsStackView.updateView(game: game)
+    }
+    
+    private func resetDeckAndGenerateGame(gameStut: GameStut, participants: Participants) -> PokerGame {
+        deck.reset()
+        shuffleDeck()
+        return PokerGame(gameStut: gameStut,
+                         participants: participants,
+                         deck: deck)
     }
     
     private var generator = ANSI_C_RandomNumberGenerator()
