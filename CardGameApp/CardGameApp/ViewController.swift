@@ -70,7 +70,6 @@ class ViewController: UIViewController {
     private func setConstraintControlsStackView() {
         let topConstant: CGFloat = 10
         let sideConstant: CGFloat = 120
-        
         gameSegmentedControlStackView.topAnchor.constraint(
             equalTo: view.safeAreaLayoutGuide.topAnchor,
             constant: topConstant).isActive = true
@@ -92,7 +91,6 @@ class ViewController: UIViewController {
         let topConstant: CGFloat = 40
         let leadingConstant: CGFloat = 30
         let trailingConstant: CGFloat = 50
-        
         participantsStackView.topAnchor.constraint(
             equalTo: gameSegmentedControlStackView.bottomAnchor,
             constant: topConstant).isActive = true
