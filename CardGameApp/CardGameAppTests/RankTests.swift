@@ -74,4 +74,30 @@ class RankTests: XCTestCase {
          // 3. then
         XCTAssertNil(Participant.Rank.isStraight(cards: cards))
     }
+    
+    func testIsTripleSuccess() {
+        // 1. given
+        let cards = [Card(suit: .club, number: .two),
+                     Card(suit: .club, number: .two),
+                     Card(suit: .club, number: .two),
+                     Card(suit: .club, number: .four),
+                     Card(suit: .diamond, number: .four),
+                     Card(suit: .heart, number: .ace),
+                     Card(suit: .spade, number: .five)]
+        
+         // 3. then
+        XCTAssertEqual(Participant.Rank.isTriple(cards: cards), Card.Number.two)
+    }
+
+    func testIsTripleFail() {
+        // 1. given
+        let cards = [Card(suit: .club, number: .two),
+                     Card(suit: .club, number: .two),
+                     Card(suit: .club, number: .four),
+                     Card(suit: .diamond, number: .four),
+                     Card(suit: .heart, number: .ace),
+                     Card(suit: .spade, number: .five)]
+         // 3. then
+        XCTAssertNil(Participant.Rank.isTriple(cards: cards))
+    }
 }
