@@ -152,11 +152,9 @@ class Participant: CardSearchable {
     private func updateRanksRecursive(cards: [Card]) {
         if let updatedCards = checkFourCardAndUpdateCards(cards: cards) {
             updateRanksRecursive(cards: updatedCards)
-        }
-        if let updatedCards = checkStraightAndUpdateCards(cards: cards) {
+        } else if let updatedCards = checkStraightAndUpdateCards(cards: cards) {
             updateRanksRecursive(cards: updatedCards)
-        }
-        if let updatedCards = checkTripleAndUpdateCards(cards: cards) {
+        } else if let updatedCards = checkTripleAndUpdateCards(cards: cards) {
             updateRanksRecursive(cards: updatedCards)
         }
     }
