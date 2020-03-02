@@ -100,4 +100,28 @@ class RankTests: XCTestCase {
          // 3. then
         XCTAssertNil(Participant.Rank.isTriple(cards: cards))
     }
+    
+    func testIsTwoPairSuccess() {
+        // 1. given
+         let cards = [Card(suit: .club, number: .two),
+                      Card(suit: .club, number: .two),
+                      Card(suit: .club, number: .four),
+                      Card(suit: .diamond, number: .four),
+                      Card(suit: .heart, number: .three),
+                      Card(suit: .spade, number: .three)]
+          // 3. then
+        XCTAssertEqual(Participant.Rank.isTwoPair(cards: cards), Card.Number.four)
+    }
+    
+    func testIsTwoPairFail() {
+        // 1. given
+        let cards = [Card(suit: .club, number: .two),
+                     Card(suit: .club, number: .two),
+                     Card(suit: .club, number: .three),
+                     Card(suit: .diamond, number: .four),
+                     Card(suit: .heart, number: .five),
+                     Card(suit: .spade, number: .six)]
+         // 3. then
+        XCTAssertNil(Participant.Rank.isTwoPair(cards: cards))
+    }
 }
