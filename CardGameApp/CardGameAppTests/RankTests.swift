@@ -124,4 +124,30 @@ class RankTests: XCTestCase {
          // 3. then
         XCTAssertNil(Participant.Rank.isTwoPair(cards: cards))
     }
+    
+    func testIsOnePairSuccess() {
+        // 1. given
+        let cards = [Card(suit: .club, number: .two),
+                     Card(suit: .club, number: .two),
+                     Card(suit: .club, number: .three),
+                     Card(suit: .diamond, number: .four),
+                     Card(suit: .heart, number: .five),
+                     Card(suit: .spade, number: .six)]
+        
+        // 3. then
+        XCTAssertEqual(Participant.Rank.isOnePair(cards: cards), Card.Number.two)
+    }
+    
+    func testIsOnePairFail() {
+        // 1. given
+        let cards = [Card(suit: .club, number: .two),
+                     Card(suit: .club, number: .jack),
+                     Card(suit: .club, number: .three),
+                     Card(suit: .diamond, number: .four),
+                     Card(suit: .heart, number: .five),
+                     Card(suit: .spade, number: .six)]
+        
+        // 3. then
+        XCTAssertNil(Participant.Rank.isOnePair(cards: cards))
+    }
 }
