@@ -24,11 +24,12 @@ class Score {
     
     init(cardDeck : [Card]) {
         self.cardDeck = cardDeck
+        sortCard()
     }
     
     public func calculateScore() -> ScoreWeight {
         var pairDeck = [Card : Int]()
-        sortCard()
+        var score: ScoreWeight = .highCard
         if isStraight(cardDeck: cardDeck) {
             
             return .straight
@@ -37,7 +38,9 @@ class Score {
         
         let highestPairCount = pairDeck.values.max()
         
-        return .highCard
+        
+        
+        return score
     }
     
     private func sortCard() {
@@ -57,6 +60,8 @@ class Score {
     }
     
     private func isStraight(cardDeck: [Card]) -> Bool {
+        var straightCount = 1
+        
         
     }
 }
