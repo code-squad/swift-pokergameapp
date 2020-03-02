@@ -50,15 +50,7 @@ class CardsStackView: UIStackView {
     
     func updateView(participant: Participant) {
         setAllCardsViewsNotHidden()
-        var cardsIndex = 0
-        participant.searchCard { (card) in
-            if let cardImage = UIImage(named:"\(card.description)") {
-                updateSelectedCardView(at: cardsIndex,
-                cardImage: cardImage)
-            }
-            cardsIndex += 1
-        }
-        
+        updateApplicatedCardsView(participant: participant)
         setNotApplicatedCardsViewHidden(cardsCount: participant.cardsCount)
     }
     
@@ -68,7 +60,18 @@ class CardsStackView: UIStackView {
         }
     }
     
-    private func updateSelectedCardView(at index: Int, cardImage: UIImage) {
+    private func updateApplicatedCardsView(participant: Participant) {
+        var cardsIndex = 0
+        participant.searchCard { (card) in
+            if let cardImage = UIImage(named:"\(card.description)") {
+                updateApplicatedCardView(at: cardsIndex,
+                cardImage: cardImage)
+            }
+            cardsIndex += 1
+        }
+    }
+    
+    private func updateApplicatedCardView(at index: Int, cardImage: UIImage) {
         guard Controller.verifyIndex(index: index, arrLen: arrangedSubviews.count) else {
             return
         }
