@@ -41,8 +41,9 @@ extension Participant {
             }
             
             let nums = generateNums(cards: cards)
+            let sameCardsCount = 4
             for num in nums {
-                if num.value == fourCardsCount {
+                if num.value == sameCardsCount {
                     return num.key
                 }
             }
@@ -56,17 +57,15 @@ extension Participant {
             }
             
             let nums = generateNums(cards: cards)
-            let keys = nums.keys.sorted()
-            
-            guard keys.count >= fiveCardsCount else {
+            guard nums.count >= fiveCardsCount else {
                 return nil
             }
             
-            for index in 0 ... keys.count - 5 {
-                var curNum = keys[index]
+            for index in 0 ... nums.count - 5 {
+                var curNum = nums[index].key
                 var count = 0
-                for j in index + 1 ..< keys.count {
-                    let next = keys[j]
+                for j in index + 1 ..< nums.count {
+                    let next = nums[j].key
                     guard curNum.isEqual(plus: 1, other: next) else {
                         break
                     }
@@ -89,15 +88,16 @@ extension Participant {
             }
             
             let nums = generateNums(cards: cards)
+            let sameCardsCount = 3
             for num in nums {
-                if num.value == threeCardsCount {
+                if num.value == sameCardsCount {
                     return num.key
                 }
             }
             return nil
         }
         
-        private static func generateNums(cards: [Card]) -> [Card.Number:Int] {
+        private static func generateNums(cards: [Card]) -> [(key: Card.Number, value: Int)] {
             var nums = [Card.Number:Int]()
             for index in 0 ..< cards.count - 1 {
                 let curNum = cards[index].number
@@ -116,7 +116,10 @@ extension Participant {
             if !nums.keys.contains(cards.last!.number) {
                 nums[cards.last!.number] = 1
             }
-            return nums
+            
+            return nums.sorted {
+                $0.0 < $1.0
+            }
         }
     }
 }
