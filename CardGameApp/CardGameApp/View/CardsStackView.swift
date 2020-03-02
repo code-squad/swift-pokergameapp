@@ -68,6 +68,10 @@ class CardsStackView: UIStackView {
     }
     
     private func updateSelectedCardView(at index: Int, cardImage: UIImage?) {
+        guard Controller.verifyIndex(index: index, arrLen: arrangedSubviews.count) else {
+            return
+        }
+        
         let imageView = arrangedSubviews[index] as! UIImageView
         if let image = cardImage {
             imageView.image = image
