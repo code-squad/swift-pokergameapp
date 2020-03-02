@@ -69,12 +69,20 @@ class GameSegmentedControlStackView: UIStackView {
     
     func gameStut() -> GameStut? {
         let index = stutSegmentedControl.selectedSegmentIndex
-        return GameStut.allCases[index]
+        let stuts = GameStut.allCases
+        guard Controller.verifyIndex(index: index, arrLen: stuts.count) else {
+            return nil
+        }
+        return stuts[index]
     }
     
     func playersNum() -> Participants.PlayersNum? {
         let index = playersSegmentedControl.selectedSegmentIndex
-        return Participants.PlayersNum.allCases[index]
+        let playerNums = Participants.PlayersNum.allCases
+        guard Controller.verifyIndex(index: index, arrLen: playerNums.count) else {
+            return nil
+        }
+        return playerNums[index]
     }
     
 }
