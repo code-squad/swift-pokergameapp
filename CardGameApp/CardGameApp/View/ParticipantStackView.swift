@@ -27,16 +27,16 @@ class ParticipantStackView: UIStackView {
     }
     
     private func configure() {
-        setupStack()
-        setupView()
+        setupProperties()
+        addArrangedViews()
     }
     
-    private func setupStack() {
+    private func setupProperties() {
         axis = .vertical
         translatesAutoresizingMaskIntoConstraints = false
     }
     
-    private func setupView() {
+    private func addArrangedViews() {
         addArrangedSubview(participantLabel)
         addArrangedSubview(CardsStackView())
     }
