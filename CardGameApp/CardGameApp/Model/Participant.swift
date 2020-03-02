@@ -39,7 +39,6 @@ extension Participant {
             guard cards.count >= fourCardsCount else {
                 return nil
             }
-            
             let nums = generateNums(cards: cards)
             let sameCardsCount = 4
             for num in nums {
@@ -55,7 +54,6 @@ extension Participant {
             guard cards.count >= fiveCardsCount else {
                 return nil
             }
-            
             let nums = generateNums(cards: cards)
             guard nums.count >= fiveCardsCount else {
                 return nil
@@ -86,7 +84,6 @@ extension Participant {
             guard cards.count >= threeCardsCount else {
                 return nil
             }
-            
             let nums = generateNums(cards: cards)
             let sameCardsCount = 3
             for num in nums {
@@ -102,7 +99,6 @@ extension Participant {
             guard cards.count >= fourCardsCount else {
                 return nil
             }
-            
             let nums = generateNums(cards: cards)
             let sameCardsCount = 2
             
@@ -117,6 +113,21 @@ extension Participant {
             
             if count >= 2 {
                 return curNum
+            }
+            return nil
+        }
+        
+        static func isOnePair(cards: [Card]) -> Card.Number? {
+            let twoCardsCount = 2
+            guard cards.count >= twoCardsCount else {
+                return nil
+            }
+            let nums = generateNums(cards: cards)
+            let sameCardsCount = 2
+            for num in nums {
+                if num.value == sameCardsCount {
+                    return num.key
+                }
             }
             return nil
         }
@@ -188,6 +199,8 @@ class Participant: CardSearchable {
         }
         if checkTwoPairAndUpdateCards(cards: cards) {
             return
+        } else if checkOnePairAndUpdateCards(cards: cards) {
+            return
         }
     }
     
@@ -257,4 +270,13 @@ class Participant: CardSearchable {
         }
         return false
     }
+    
+    private func checkOnePairAndUpdateCards(cards: [Card]) -> Bool {
+        if let num = Rank.isOnePair(cards: cards) {
+            ranks.append(.onePair)
+            return true
+        }
+        return false
+    }
+    
 }
