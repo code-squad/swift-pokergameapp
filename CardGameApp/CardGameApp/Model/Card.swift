@@ -40,7 +40,7 @@ struct Card {
     }
     
     private let suit: Suit
-    private let number: Number
+    let number: Number
     
     init(suit: Suit, number: Number) {
         self.suit = suit
