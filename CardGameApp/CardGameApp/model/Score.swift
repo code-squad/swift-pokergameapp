@@ -27,43 +27,36 @@ class Score {
     }
     
     public func calculateScore() -> ScoreWeight {
-        let score: ScoreWeight = .highCard
+        var pairDeck = [Card : Int]()
         sortCard()
+        if isStraight(cardDeck: cardDeck) {
+            
+            return .straight
+        }
+        pairDeck = judgeDeckPairCount(cardDeck: cardDeck)
         
-        return score
+        let highestPairCount = pairDeck.values.max()
+        
+        return .highCard
     }
     
-    // 이제 숫자(랭크)순으로 정렬되어있을 것임.
-    // 내림차순으로.
     private func sortCard() {
         cardDeck.sort { ( first, second) -> Bool in
             first > second
         }
     }
     
-    // 정렬후 checkPair onePair인지 twoPair인지 triple인지....
-    // count 시작값이 1이여야 제대로 세어짐.
-    // 원페어는 pairCount가 2인 상황이 2번 이루어져야 하는데....?
-    // 배열로 해결봐야하나 일단 하고 리팩토링 예정
-    private func judgeDeckPairCount() -> [Int] {
-        var pairCount = 1
-        var pairCountCollection = [Int]()
-        for index in 0 ..< cardDeck.count-1 {
-            if cardDeck[index].rank == cardDeck[index+1].rank {
-                pairCount += 1
-            } else {
-                pairCount = 1
-            }
-            
-            if pairCount > 2 {
-                pairCountCollection.append(pairCount)
-            }
+    private func judgeDeckPairCount(cardDeck: [Card]) -> [Card : Int] {
+        var pairDeckCollection = [Card : Int]()
+        
+        cardDeck.forEach { (card) in
+            pairDeckCollection[card] = cardDeck.filter { $0.rank == card.rank }.count
         }
         
-        return pairCountCollection
+        return pairDeckCollection
     }
     
-    private func isStraight() {
+    private func isStraight(cardDeck: [Card]) -> Bool {
         
     }
 }
