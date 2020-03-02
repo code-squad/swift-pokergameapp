@@ -37,13 +37,13 @@ extension Participant {
         
         private static func generateNums(cards: [Card]) -> [Int:Int] {
             var nums = [Int:Int]()
-            for i in 0 ..< cards.count {
-                guard nums.keys.contains(i) else {
+            for i in 0 ..< cards.count - 1 {
+                guard !nums.keys.contains(i) else {
                     continue
                 }
                 
                 var count = 1
-                for j in i + 1 ..< cards.count - 1 {
+                for j in i + 1 ..< cards.count {
                     if cards[i].number == cards[j].number {
                         count += 1
                     }
