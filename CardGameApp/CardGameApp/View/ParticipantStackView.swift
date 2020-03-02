@@ -52,6 +52,10 @@ class ParticipantStackView: UIStackView {
     
     private func updateCardsStackView(participant: Participant) {
         let cardStackIndex = 1
+        guard Controller.verifyIndex(index: cardStackIndex, arrLen: arrangedSubviews.count) else {
+            return
+        }
+        
         let cardsStackView = arrangedSubviews[cardStackIndex] as! CardsStackView
         cardsStackView.updateView(participant: participant)
     }
