@@ -97,6 +97,30 @@ extension Participant {
             return nil
         }
         
+        static func isTwoPair(cards: [Card]) -> Card.Number? {
+            let fourCardsCount = 4
+            guard cards.count >= fourCardsCount else {
+                return nil
+            }
+            
+            let nums = generateNums(cards: cards)
+            let sameCardsCount = 2
+            
+            var count = 0
+            var curNum: Card.Number?
+            for num in nums {
+                if num.value == sameCardsCount {
+                    curNum = num.key
+                    count += 1
+                }
+            }
+            
+            if count >= 2 {
+                return curNum
+            }
+            return nil
+        }
+        
         private static func generateNums(cards: [Card]) -> [(key: Card.Number, value: Int)] {
             var nums = [Card.Number:Int]()
             for index in 0 ..< cards.count - 1 {
@@ -152,13 +176,15 @@ class Participant: CardSearchable {
         updateRanksRecursive(cards: cards)
     }
     
-    private func updateRanksRecursive(cards: [Card]) {
+    private func updateRanksRecursive(cards: [Card]){
         if let updatedCards = checkFourCardAndUpdateCards(cards: cards) {
             updateRanksRecursive(cards: updatedCards)
         } else if let updatedCards = checkStraightAndUpdateCards(cards: cards) {
             updateRanksRecursive(cards: updatedCards)
         } else if let updatedCards = checkTripleAndUpdateCards(cards: cards) {
             updateRanksRecursive(cards: updatedCards)
+        } else if checkTwoPairAndUpdateCards(cards: cards) {
+            return
         }
     }
     
@@ -219,5 +245,13 @@ class Participant: CardSearchable {
             return cards
         }
         return nil
+    }
+    
+    private func checkTwoPairAndUpdateCards(cards: [Card]) -> Bool {
+        if let num = Rank.isTwoPair(cards: cards) {
+            ranks.append(.twoPair)
+            return true
+        }
+        return false
     }
 }
