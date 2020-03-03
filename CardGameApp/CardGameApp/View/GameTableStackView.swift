@@ -71,10 +71,11 @@ class GameTableStackView: UIStackView {
     
     private func initWinnerImage(player: Player) -> UIImageView {
         let imageView = UIImageView()
-        imageView.image = player.winner ? UIImage(named: "winner") : nil
         imageView.snp.makeConstraints { (make) in
             make.height.equalTo(imageView.snp.width).multipliedBy(1.27)
         }
+        guard let winnerImageName = player.winnerImageName else { return imageView }
+        imageView.image = UIImage(named: winnerImageName)
         return imageView
     }
     
