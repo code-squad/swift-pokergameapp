@@ -89,7 +89,7 @@ extension Rank {
             return nil
         }
         
-        static func isTwoPair(cards: [Card]) -> Card.Number? {
+        static func isTwoPair(cards: [Card]) -> [Card.Number]? {
             let fourCardsCount = 4
             guard cards.count >= fourCardsCount else {
                 return nil
@@ -98,16 +98,16 @@ extension Rank {
             let sameCardsCount = 2
             
             var count = 0
-            var curNum: Card.Number?
+            var numbers = [Card.Number]()
             for num in nums {
                 if num.value == sameCardsCount {
-                    curNum = num.key
+                    numbers.append(num.key)
                     count += 1
                 }
             }
             
             if count >= 2 {
-                return curNum
+                return numbers
             }
             return nil
         }
