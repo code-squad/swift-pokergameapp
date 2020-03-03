@@ -24,6 +24,7 @@ class PokerGame {
         resetParticipantsCards()
         shuffle()
         handOutCards()
+        updatePariticipantRanks()
     }
     
     private func resetParticipantsCards() {
@@ -48,6 +49,12 @@ class PokerGame {
             if let card = deck.removeOne() {
                 $0.receive(card: card)
             }
+        }
+    }
+    
+    private func updatePariticipantRanks() {
+        participants.searchParticipants { (participant) -> (Void) in
+            participant.updateRanks()
         }
     }
     
