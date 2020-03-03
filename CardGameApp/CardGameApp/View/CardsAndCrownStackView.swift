@@ -9,7 +9,7 @@
 import UIKit
 
 class CardsAndCrownStackView: UIStackView {
-    
+
     private let overlappedCardsStackView = OverlappedCardsStackView()
     
     override init(frame: CGRect) {
@@ -36,5 +36,9 @@ class CardsAndCrownStackView: UIStackView {
     
     private func addOverlappedCardsStackView() {
         addArrangedSubview(overlappedCardsStackView)
+    }
+    
+    func updateView(participant: Participant) {
+        overlappedCardsStackView.updateView(participant: participant)
     }
 }

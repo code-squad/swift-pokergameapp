@@ -16,7 +16,7 @@ class ParticipantStackView: UIStackView {
         return label
     }()
     
-    private let cardsStackView = OverlappedCardsStackView()
+    private let cardsAndCrownStackView = CardsAndCrownStackView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -40,7 +40,7 @@ class ParticipantStackView: UIStackView {
     
     private func addLabelAndCardsStackView() {
         addArrangedSubview(participantLabel)
-        addArrangedSubview(cardsStackView)
+        addArrangedSubview(cardsAndCrownStackView)
     }
     
     func updateView(name: String, participant: Participant) {
@@ -53,7 +53,7 @@ class ParticipantStackView: UIStackView {
     }
     
     private func updateCardsStackView(participant: Participant) {
-        cardsStackView.updateView(participant: participant)
+        cardsAndCrownStackView.updateView(participant: participant)
     }
     
 }
