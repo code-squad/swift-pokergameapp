@@ -45,6 +45,8 @@ class Participant: CardSearchable {
     func searchCard(handler: (Card) -> (Void)) {
         cards.forEach{ handler($0) }
     }
+}
+extension Participant {
     
     func updateRanks() {
         var cards = self.cards
