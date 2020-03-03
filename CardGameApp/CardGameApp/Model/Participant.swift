@@ -23,8 +23,9 @@ extension Card.Number: Comparable {
 }
 
 class Participant {
-    let name: String
+    
     private var cards = [Card]()
+    let name: String
     var cardsCount: Int {
         return cards.count
     }
@@ -42,6 +43,10 @@ class Participant {
         cards.append(card)
     }
     
+    private(set) var isWinner = false
+    func setWinner() {
+        isWinner = true
+    }
 }
 
 extension Participant: CardSearchable {
