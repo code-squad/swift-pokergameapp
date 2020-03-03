@@ -16,7 +16,7 @@ class GameRule {
         for index in 0 ..< players.count-1 {
             highestPriorityPlayer = comparePriority(currentPlayer: highestPriorityPlayer, nextPlayer: players[index+1])
         }
-        print(highestPriorityPlayer.name)
+        
         return highestPriorityPlayer
     }
     

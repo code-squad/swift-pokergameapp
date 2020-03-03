@@ -75,7 +75,6 @@ class GameStackView: UIStackView {
             playerCardStackView.addArrangedSubview(cardImg)
         }
         
-        
         return playerCardStackView
     }
     
