@@ -62,8 +62,8 @@ extension Participant {
                 cards = updatedCards
             }
         }
-        if checkTwoPairAndUpdateCards(cards: cards) {
-            return
+        if let updatedCards = checkTwoPairAndUpdateCards(cards: cards) {
+            cards = updatedCards
         } else if checkOnePairAndUpdateCards(cards: cards) {
             return
         }
@@ -128,12 +128,16 @@ extension Participant {
         return nil
     }
     
-    private func checkTwoPairAndUpdateCards(cards: [Card]) -> Bool {
-        if let number = Rank.Combination.isTwoPair(cards: cards) {
-            ranks.append(Rank(number: number, combination: .twoPair))
-            return true
+    private func checkTwoPairAndUpdateCards(cards: [Card]) -> [Card]? {
+        var cards = cards
+        if let numbers = Rank.Combination.isTwoPair(cards: cards) {
+            ranks.append(Rank(number: numbers.last!, combination: .twoPair))
+            cards.removeAll { (card) -> Bool in
+                return numbers.contains(card.number)
+            }
+            return cards
         }
-        return false
+        return nil
     }
     
     private func checkOnePairAndUpdateCards(cards: [Card]) -> Bool {

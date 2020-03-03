@@ -103,14 +103,16 @@ class RankTests: XCTestCase {
     
     func testIsTwoPairSuccess() {
         // 1. given
-         let cards = [Card(suit: .club, number: .two),
-                      Card(suit: .club, number: .two),
+        let cards = [Card(suit: .club, number: .four),
                       Card(suit: .club, number: .four),
-                      Card(suit: .diamond, number: .four),
+                      Card(suit: .club, number: .two),
+                      Card(suit: .diamond, number: .two),
                       Card(suit: .heart, number: .three),
-                      Card(suit: .spade, number: .three)]
+                      Card(suit: .spade, number: .three),
+                      Card(suit: .spade, number: .queen)]
           // 3. then
-        XCTAssertEqual(Rank.Combination.isTwoPair(cards: cards), Card.Number.four)
+        XCTAssertEqual(Rank.Combination.isTwoPair(cards: cards),
+                       [Card.Number.two, Card.Number.three, Card.Number.four])
     }
     
     func testIsTwoPairFail() {
