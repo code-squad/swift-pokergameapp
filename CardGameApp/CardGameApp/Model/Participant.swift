@@ -73,7 +73,7 @@ extension Participant {
     private func checkFourCard(cards: [Card]) -> [Card]? {
         if let result = Rank.checkCombinationAndUpdateCards(type: .fourCard, cards: cards) {
             ranks.append(Rank(number: result.1, combination: .fourCard))
-            return result.0!
+            return result.0
         }
         return nil
     }
@@ -81,7 +81,7 @@ extension Participant {
     private func checkStraight(cards: [Card]) -> [Card]? {
         if let result = Rank.checkCombinationAndUpdateCards(type: .straight, cards: cards) {
             ranks.append(Rank(number: result.1, combination: .straight))
-            return result.0!
+            return result.0
         }
         return nil
     }
@@ -90,12 +90,12 @@ extension Participant {
         var cards = cards
         if let result = Rank.checkCombinationAndUpdateCards(type: .triple, cards: cards) {
             ranks.append(Rank(number: result.1, combination: .triple))
-            cards = result.0!
+            cards = result.0
             if let result = Rank.checkCombinationAndUpdateCards(type: .triple, cards: cards) {
                 ranks.append(Rank(number: result.1, combination: .triple))
-                return result.0!
+                return result.0
             }
-            return result.0!
+            return result.0
         }
         return nil
     }
@@ -103,10 +103,10 @@ extension Participant {
     private func checkPairs(cards: [Card] ) -> [Card]? {
         if let result = Rank.checkCombinationAndUpdateCards(type: .twoPair, cards: cards) {
             ranks.append(Rank(number: result.1, combination: .twoPair))
-            return result.0!
+            return result.0
         } else if let result = Rank.checkCombinationAndUpdateCards(type: .onePair, cards: cards) {
             ranks.append(Rank(number: result.1, combination: .onePair))
-            return result.0!
+            return result.0
         }
         return nil
     }

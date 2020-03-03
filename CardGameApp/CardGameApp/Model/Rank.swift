@@ -173,7 +173,7 @@ extension Rank {
 
 extension Rank {
     
-    static func checkCombinationAndUpdateCards(type: Rank.Combination, cards: [Card]) ->  ([Card]?,Card.Number)? {
+    static func checkCombinationAndUpdateCards(type: Rank.Combination, cards: [Card]) ->  ([Card],Card.Number)? {
         switch type {
         case .fourCard:
             return checkFourCardAndUpdateCards(cards: cards)
@@ -190,7 +190,7 @@ extension Rank {
         }
     }
     
-    private static func checkFourCardAndUpdateCards(cards: [Card]) -> ([Card]?,Card.Number)? {
+    private static func checkFourCardAndUpdateCards(cards: [Card]) -> ([Card],Card.Number)? {
         var cards = cards
         if let number = Rank.Combination.isFourCard(cards: cards) {
             cards.removeAll { (card) -> Bool in
@@ -201,7 +201,7 @@ extension Rank {
         return nil
     }
     
-    private static func checkStraightAndUpdateCards(cards: [Card]) -> ([Card]?,Card.Number)? {
+    private static func checkStraightAndUpdateCards(cards: [Card]) -> ([Card],Card.Number)? {
         var cards = cards
         if let number = Rank.Combination.isStraight(cards: cards) {
             cards = removeCardsForStraight(cards: cards, number: number)
@@ -235,7 +235,7 @@ extension Rank {
         return newCards
     }
     
-    private static func checkTripleAndUpdateCards(cards: [Card]) -> ([Card]?,Card.Number)? {
+    private static func checkTripleAndUpdateCards(cards: [Card]) -> ([Card],Card.Number)? {
         var cards = cards
         if let number = Rank.Combination.isTriple(cards: cards) {
             cards.removeAll { (card) -> Bool in
@@ -246,7 +246,7 @@ extension Rank {
         return nil
     }
     
-    private static func checkTwoPairAndUpdateCards(cards: [Card]) -> ([Card]?,Card.Number)? {
+    private static func checkTwoPairAndUpdateCards(cards: [Card]) -> ([Card],Card.Number)? {
         var cards = cards
         if let numbers = Rank.Combination.isTwoPair(cards: cards) {
             cards.removeAll { (card) -> Bool in
@@ -257,7 +257,7 @@ extension Rank {
         return nil
     }
     
-    private static func checkOnePairAndUpdateCards(cards: [Card]) -> ([Card]?,Card.Number)? {
+    private static func checkOnePairAndUpdateCards(cards: [Card]) -> ([Card],Card.Number)? {
         var cards = cards
         if let number = Rank.Combination.isOnePair(cards: cards) {
             cards.removeAll { (card) -> Bool in
@@ -268,9 +268,9 @@ extension Rank {
         return nil
     }
     
-    private static func checkOneCard(cards: [Card]) -> ([Card]?,Card.Number)? {
+    private static func checkOneCard(cards: [Card]) -> ([Card],Card.Number)? {
         if let number = Rank.Combination.isOneCard(cards: cards) {
-            return (nil,number)
+            return ([Card](),number)
         }
         return nil
     }
