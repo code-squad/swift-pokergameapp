@@ -16,7 +16,7 @@ class ParticipantStackView: UIStackView {
         return label
     }()
     
-    private let cardsStackView = CardsStackView()
+    private let cardsStackView = OverlappedCardsStackView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
