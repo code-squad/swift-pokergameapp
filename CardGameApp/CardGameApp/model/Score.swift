@@ -21,7 +21,7 @@ class Score {
     
     private var cardDeck: [Card]
     private(set) var highestPairCard: Card?
-    private var straightCard: Card?
+    private var lastStraightCard: Card?
     private lazy var score = calculateScore()
     
     init(cardDeck : [Card]) {
@@ -75,7 +75,7 @@ class Score {
             if currentCard.isContinousRank(nextCard: card) {
                 straightCount += 1
                 if straightCount == 5 {
-                    straightCard = card
+                    lastStraightCard = card
                     return true
                 }
             } else {
@@ -113,7 +113,7 @@ class Score {
 extension Score: Equatable {
     static func == (lhs: Score, rhs: Score) -> Bool {
         if lhs.score == .straight && rhs.score == .straight {
-            return lhs.straightCard?.rank == rhs.straightCard?.rank
+            return lhs.lastStraightCard?.rank == rhs.lastStraightCard?.rank
         } else if lhs.score == rhs.score {
             return true
         }
@@ -121,7 +121,9 @@ extension Score: Equatable {
     }
     
     static func < (lhs: Score, rhs: Score) -> Bool {
-        if lhs.score.rawValue < rhs.score.rawValue {
+        if lhs.score == .straight && rhs.score == .straight {
+            return lhs.lastStraightCard! < rhs.lastStraightCard!
+        } else if lhs.score.rawValue < rhs.score.rawValue {
             return true
         }
         return false
