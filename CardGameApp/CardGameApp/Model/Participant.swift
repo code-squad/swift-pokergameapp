@@ -28,7 +28,7 @@ class Participant: CardSearchable {
     var cardsCount: Int {
         return cards.count
     }
-    var ranks = [Rank.Combination]()
+    var ranks = [Rank]()
     
     init(name: String) {
         self.name = name
@@ -71,10 +71,10 @@ extension Participant {
     
     private func checkFourCardAndUpdateCards(cards: [Card]) -> [Card]? {
         var cards = cards
-        if let num = Rank.Combination.isFourCard(cards: cards) {
-            ranks.append(.fourCard)
+        if let number = Rank.Combination.isFourCard(cards: cards) {
+            ranks.append(Rank(number: number, combination: .fourCard))
             cards.removeAll { (card) -> Bool in
-                return card.number == num
+                return card.number == number
             }
             return cards
         }
@@ -83,15 +83,15 @@ extension Participant {
     
     private func checkStraightAndUpdateCards(cards: [Card]) -> [Card]? {
         var cards = cards
-        if let num = Rank.Combination.isStraight(cards: cards) {
-            ranks.append(.straight)
-            cards = removeCardsForStraight(cards: cards, num: num)
+        if let number = Rank.Combination.isStraight(cards: cards) {
+            ranks.append(Rank(number: number, combination: .straight))
+            cards = removeCardsForStraight(cards: cards, number: number)
             return cards
         }
         return nil
     }
     
-    private func removeCardsForStraight(cards: [Card], num : Card.Number) -> [Card] {
+    private func removeCardsForStraight(cards: [Card], number : Card.Number) -> [Card] {
         var isFirst = false
         var isSecond = false
         var isThird = false
@@ -99,15 +99,15 @@ extension Participant {
         var isFifth = false
         var newCards = [Card]()
         for card in cards {
-            if num.isEqual(minus: 4, other: card.number), !isFirst {
+            if number.isEqual(minus: 4, other: card.number), !isFirst {
                 isFirst = true
-            } else if num.isEqual(minus: 3, other: card.number), !isSecond {
+            } else if number.isEqual(minus: 3, other: card.number), !isSecond {
                 isSecond = true
-            } else if num.isEqual(minus: 2, other: card.number), !isThird {
+            } else if number.isEqual(minus: 2, other: card.number), !isThird {
                 isThird = true
-            } else if num.isEqual(minus: 1, other: card.number), !isFourth {
+            } else if number.isEqual(minus: 1, other: card.number), !isFourth {
                 isFourth = true
-            } else if num.isEqual(minus: 0, other: card.number), !isFifth {
+            } else if number.isEqual(minus: 0, other: card.number), !isFifth {
                 isFifth = true
             } else {
                 newCards.append(card)
@@ -118,10 +118,10 @@ extension Participant {
     
     private func checkTripleAndUpdateCards(cards: [Card]) -> [Card]? {
         var cards = cards
-        if let num = Rank.Combination.isTriple(cards: cards) {
-            ranks.append(.triple)
+        if let number = Rank.Combination.isTriple(cards: cards) {
+            ranks.append(Rank(number: number, combination: .triple))
             cards.removeAll { (card) -> Bool in
-                return card.number == num
+                return card.number == number
             }
             return cards
         }
@@ -129,16 +129,16 @@ extension Participant {
     }
     
     private func checkTwoPairAndUpdateCards(cards: [Card]) -> Bool {
-        if let num = Rank.Combination.isTwoPair(cards: cards) {
-            ranks.append(.twoPair)
+        if let number = Rank.Combination.isTwoPair(cards: cards) {
+            ranks.append(Rank(number: number, combination: .twoPair))
             return true
         }
         return false
     }
     
     private func checkOnePairAndUpdateCards(cards: [Card]) -> Bool {
-        if let num = Rank.Combination.isOnePair(cards: cards) {
-            ranks.append(.onePair)
+        if let number = Rank.Combination.isOnePair(cards: cards) {
+            ranks.append(Rank(number: number, combination: .onePair))
             return true
         }
         return false
