@@ -158,6 +158,7 @@ extension Rank {
                 }
                 nums[curNum] = count
             }
+            
             if !nums.keys.contains(cards.last!.number) {
                 nums[cards.last!.number] = 1
             }
