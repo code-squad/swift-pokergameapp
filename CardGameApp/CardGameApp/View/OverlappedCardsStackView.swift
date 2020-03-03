@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CardsStackView: UIStackView {
+class OverlappedCardsStackView: UIStackView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
