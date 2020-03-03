@@ -22,7 +22,7 @@ extension Card.Number: Comparable {
     }
 }
 
-class Participant: CardSearchable {
+class Participant {
     let name: String
     private var cards = [Card]()
     var cardsCount: Int {
@@ -42,9 +42,14 @@ class Participant: CardSearchable {
         cards.append(card)
     }
     
+}
+
+extension Participant: CardSearchable {
+    
     func searchCard(handler: (Card) -> (Void)) {
         cards.forEach{ handler($0) }
     }
+    
 }
 
 extension Participant {
