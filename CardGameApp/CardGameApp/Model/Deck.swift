@@ -28,14 +28,14 @@ struct Deck {
         cards.popLast()
     }
     
-    private func makeSuit(suit: Card.suit) -> [Card] {
+    private func makeSuit(suit: Card.Suit) -> [Card] {
         return (1...13).map {
-            Card(suit: suit, rank: Card.rank(rawValue: $0)!)
+            Card(suit: suit, rank: Card.Rank(rawValue: $0) ?? .one)
         }
     }
     
     private mutating func makeDeck() {
-        Card.suit.allCases.forEach {
+        Card.Suit.allCases.forEach {
             cards.append(contentsOf: makeSuit(suit: $0))
         }
         cards.shuffle()
