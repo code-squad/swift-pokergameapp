@@ -173,43 +173,39 @@ extension Rank {
 
 extension Rank {
     
-    static func checkCombinationAndUpdateCards(type: Rank.Combination, cards: [Card], ranks: [Rank]) ->  ([Card]?,[Rank])? {
+    static func checkCombinationAndUpdateCards(type: Rank.Combination, cards: [Card]) ->  ([Card]?,Card.Number)? {
         switch type {
         case .fourCard:
-            return checkFourCardAndUpdateCards(cards: cards, ranks: ranks)
+            return checkFourCardAndUpdateCards(cards: cards)
         case .straight:
-            return checkStraightAndUpdateCards(cards: cards, ranks: ranks)
+            return checkStraightAndUpdateCards(cards: cards)
         case .triple:
-            return checkTripleAndUpdateCards(cards: cards, ranks: ranks)
+            return checkTripleAndUpdateCards(cards: cards)
         case .twoPair:
-            return checkTwoPairAndUpdateCards(cards: cards, ranks: ranks)
+            return checkTwoPairAndUpdateCards(cards: cards)
         case .onePair:
-            return checkOnePairAndUpdateCards(cards: cards, ranks: ranks)
+            return checkOnePairAndUpdateCards(cards: cards)
         case .oneCard:
-            return checkOneCard(cards: cards, ranks: ranks)
+            return checkOneCard(cards: cards)
         }
     }
     
-    private static func checkFourCardAndUpdateCards(cards: [Card], ranks: [Rank]) -> ([Card]?,[Rank])? {
+    private static func checkFourCardAndUpdateCards(cards: [Card]) -> ([Card]?,Card.Number)? {
         var cards = cards
-        var ranks = ranks
         if let number = Rank.Combination.isFourCard(cards: cards) {
-            ranks.append(Rank(number: number, combination: .fourCard))
             cards.removeAll { (card) -> Bool in
                 return card.number == number
             }
-            return (cards,ranks)
+            return (cards,number)
         }
         return nil
     }
     
-    private static func checkStraightAndUpdateCards(cards: [Card], ranks: [Rank]) -> ([Card]?,[Rank])? {
+    private static func checkStraightAndUpdateCards(cards: [Card]) -> ([Card]?,Card.Number)? {
         var cards = cards
-        var ranks = ranks
         if let number = Rank.Combination.isStraight(cards: cards) {
-            ranks.append(Rank(number: number, combination: .straight))
             cards = removeCardsForStraight(cards: cards, number: number)
-            return (cards,ranks)
+            return (cards,number)
         }
         return nil
     }
@@ -239,50 +235,42 @@ extension Rank {
         return newCards
     }
     
-    private static func checkTripleAndUpdateCards(cards: [Card], ranks: [Rank]) -> ([Card]?,[Rank])? {
+    private static func checkTripleAndUpdateCards(cards: [Card]) -> ([Card]?,Card.Number)? {
         var cards = cards
-        var ranks = ranks
         if let number = Rank.Combination.isTriple(cards: cards) {
-            ranks.append(Rank(number: number, combination: .triple))
             cards.removeAll { (card) -> Bool in
                 return card.number == number
             }
-            return (cards,ranks)
+            return (cards,number)
         }
         return nil
     }
     
-    private static func checkTwoPairAndUpdateCards(cards: [Card], ranks: [Rank]) -> ([Card]?,[Rank])? {
+    private static func checkTwoPairAndUpdateCards(cards: [Card]) -> ([Card]?,Card.Number)? {
         var cards = cards
-        var ranks = ranks
         if let numbers = Rank.Combination.isTwoPair(cards: cards) {
-            ranks.append(Rank(number: numbers.last!, combination: .twoPair))
             cards.removeAll { (card) -> Bool in
                 return numbers.contains(card.number)
             }
-            return (cards,ranks)
+            return (cards,numbers.last!)
         }
         return nil
     }
     
-    private static func checkOnePairAndUpdateCards(cards: [Card], ranks: [Rank]) -> ([Card]?,[Rank])? {
+    private static func checkOnePairAndUpdateCards(cards: [Card]) -> ([Card]?,Card.Number)? {
         var cards = cards
-        var ranks = ranks
         if let number = Rank.Combination.isOnePair(cards: cards) {
-            ranks.append(Rank(number: number, combination: .onePair))
             cards.removeAll { (card) -> Bool in
                 return card.number == number
             }
-            return (cards,ranks)
+            return (cards,number)
         }
         return nil
     }
     
-    private static func checkOneCard(cards: [Card], ranks: [Rank]) -> ([Card]?,[Rank])? {
-        var ranks = ranks
+    private static func checkOneCard(cards: [Card]) -> ([Card]?,Card.Number)? {
         if let number = Rank.Combination.isOneCard(cards: cards) {
-            ranks.append(Rank(number: number, combination: .oneCard))
-            return (nil,ranks)
+            return (nil,number)
         }
         return nil
     }
