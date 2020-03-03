@@ -16,6 +16,20 @@ struct Players {
         players.forEach { handler($0) }
     }
     
+    func searchWinner() {
+        let topPlayer = players.sorted { $0 > $1 }.first ?? Player(identifier: "")
+        topPlayer.toggleWinner()
+        var count = 0
+        players.forEach { $0 == topPlayer ? count += 1 : nil }
+        count > 2 ? choiceTopValue() : nil
+    }
+    
+    private func choiceTopValue() {
+        players.forEach { $0.resetWinnerState() }
+        let topValue = players.sorted { $0.topValue > $1.topValue }.first ?? Player(identifier: "")
+        topValue.toggleWinner()
+    }
+    
     mutating func replacingPlayers(peoples: Game.NumberOfPlayers, handler: (Player) -> Void) {
         players = []
         peoples.forEach { players.append(Player(identifier: "players\($0)")) }
@@ -28,39 +42,5 @@ struct Players {
     
     mutating func addGamers(contentsOf: [Player]) {
         self.players.append(contentsOf: players)
-    }
-    
-    mutating func searchWinner() {
-        var winnerGrade = 0
-        setWinner(winnerGrade: &winnerGrade)
-        checkWinner(winnerGrade: &winnerGrade)
-        var count = 0
-        doubleCheck(count: &count)
-    }
-    
-    func setWinner(winnerGrade: inout Int) {
-        players.forEach { player in
-            winnerGrade = player.compare(with: winnerGrade)
-        }
-    }
-    
-    func checkWinner(winnerGrade: inout Int) {
-        players.forEach { player in
-            player.findPlayer(with: winnerGrade) ? player.checkWinner() : nil
-        }
-    }
-    
-    func doubleCheck(count: inout Int) {
-        players.forEach { player in
-            player.winner ? count += 1 : nil
-        }
-        if count > 1 {
-            players.sorted {
-                $0.winner = false
-                $1.winner = false
-                return $0.topValue > $1.topValue
-            }.first?
-                .checkWinner()
-        }
     }
 }
