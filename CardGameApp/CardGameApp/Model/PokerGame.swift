@@ -79,7 +79,6 @@ class PokerGame {
     private let deck: Deck
     let gameStut: GameStut
     let participants: Participants
-    private var winner: Participant!
     
     init(gameStut: GameStut , participants: Participants, deck: Deck){
         self.gameStut = gameStut
@@ -132,8 +131,8 @@ class PokerGame {
             rankedParticipants.append(participant)
         }
         rankedParticipants = rankedParticipants.sorted()
-        if let winner = rankedParticipants.last {
-            self.winner = winner
+        if let participant = rankedParticipants.last {
+            participant.setWinner()
         }
     }
     
