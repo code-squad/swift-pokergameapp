@@ -8,14 +8,21 @@
 
 import Foundation
 
-struct Rank {
+struct Rank: Comparable {
     
     let number: Card.Number
     let combination: Combination
     
+    static func < (lhs: Rank, rhs: Rank) -> Bool {
+        if lhs.combination == rhs.combination {
+            return lhs.number < rhs.number
+        }
+        return lhs.combination < rhs.combination
+    }
 }
 
 extension Rank {
+    
     enum Combination: Int, CaseIterable, Comparable {
         case oneCard = 0
         case onePair = 1
