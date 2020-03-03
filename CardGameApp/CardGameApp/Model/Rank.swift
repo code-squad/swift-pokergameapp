@@ -25,11 +25,11 @@ extension Rank {
     
     enum Combination: Int, CaseIterable, Comparable {
         case oneCard = 0
-        case onePair = 1
-        case twoPair = 2
-        case triple = 3
-        case straight = 7
-        case fourCard = 9
+        case onePair
+        case twoPair
+        case triple
+        case straight
+        case fourCard
         
         static func < (lhs: Combination, rhs: Combination) -> Bool {
             return lhs.rawValue < rhs.rawValue
