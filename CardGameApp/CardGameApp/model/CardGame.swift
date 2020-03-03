@@ -22,7 +22,7 @@ class GameTable {
         setUpGame()
     }
     
-    private func setUpGame() {
+    func setUpGame() {
         participants.joinPlayerToGame(playerEntry: playerEntry, dealer: dealer)
         participants.initDrawCard(studType: studType, dealer: dealer)
     }
@@ -32,8 +32,9 @@ class GameTable {
         return dealer.cardDeckCount() > participants.players.count
     }
     
-    func winner() -> Player {
-        return dealer.judgeWinner(players: participants)
+    func winner() -> Int {
+        let winner = dealer.judgeWinner(players: participants)
+        return participants.searchWinnerIndexNum(winner: winner)
     }
 }
 

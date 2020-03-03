@@ -89,6 +89,13 @@ extension Card: CustomStringConvertible, Equatable, Hashable {
         return false
     }
     
+    static func < (lhs: Card, rhs: Card) -> Bool {
+        if lhs.rank.rawValue < rhs.rank.rawValue {
+            return true
+        }
+        return false
+    }
+    
     var description: String {
         return suit.description + rank.description
     }

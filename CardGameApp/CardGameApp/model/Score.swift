@@ -10,7 +10,7 @@ import Foundation
 
 class Score {
     
-    enum ScoreWeight: Int, Equatable {
+    enum ScoreWeight: Int {
         case highCard = 0
         case onePair = 1
         case twoPair = 2
@@ -20,6 +20,9 @@ class Score {
     }
     
     private var cardDeck: [Card]
+    private(set) var highestPairCard: Card?
+    private var straightCard: Card?
+    private lazy var score = calculateScore()
     
     init(cardDeck : [Card]) {
         self.cardDeck = cardDeck
@@ -30,10 +33,9 @@ class Score {
         var pairDeck = [Card : Int]()
         var score: ScoreWeight = .highCard
         if isStraight(cardDeck: cardDeck) {
-            score = .straight
+            return .straight
         }
         pairDeck = judgeDeckPairCount(cardDeck: cardDeck)
-        print(pairDeck)
         
         let highestPairCount = pairDeck.values.max()
         if highestPairCount == 4 {
@@ -43,6 +45,8 @@ class Score {
         } else if highestPairCount == 2 {
             score = checkPairType(cardDeck: pairDeck)
         }
+        
+        pickHighestPairCard(cardDeck: pairDeck)
         
         return score
     }
@@ -67,11 +71,11 @@ class Score {
         var straightCount = 1
         var currentCard = cardDeck[0]
         
-        // forEach는 return이 안먹힌다. 공부해볼것.
         for card in cardDeck {
             if currentCard.isContinousRank(nextCard: card) {
                 straightCount += 1
                 if straightCount == 5 {
+                    straightCard = card
                     return true
                 }
             } else {
@@ -83,7 +87,6 @@ class Score {
     }
     
     private func checkPairType(cardDeck: [Card : Int]) -> ScoreWeight {
-        
         let pairCount = cardDeck.filter { $0.value == 2 }.count
         
         if pairCount >= 4 {
@@ -91,5 +94,36 @@ class Score {
         } else {
             return .onePair
         }
+    }
+    
+    private func pickHighestPairCard(cardDeck: [Card : Int]) {
+        let maxValue = cardDeck.values.max()
+        let pairDeck = cardDeck.filter { (cardPair) -> Bool in
+            return cardPair.value == maxValue
+        }
+        
+        pairDeck.sorted { (first, second) -> Bool in
+            first.key > second.key
+        }
+        
+        self.highestPairCard = pairDeck.first!.key
+    }
+}
+
+extension Score: Equatable {
+    static func == (lhs: Score, rhs: Score) -> Bool {
+        if lhs.score == .straight && rhs.score == .straight {
+            return lhs.straightCard?.rank == rhs.straightCard?.rank
+        } else if lhs.score == rhs.score {
+            return true
+        }
+        return false
+    }
+    
+    static func < (lhs: Score, rhs: Score) -> Bool {
+        if lhs.score.rawValue < rhs.score.rawValue {
+            return true
+        }
+        return false
     }
 }

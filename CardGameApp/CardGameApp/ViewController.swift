@@ -31,11 +31,10 @@ class ViewController: UIViewController {
     }
     
     func drawStackView() {
-        self.gameStackView = GameStackView(pokerGame: GameTable(playerEntry: self.entry, studType: self.studType))
         self.view.addSubview(gameStackView)
         gameStackView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 130).isActive = true
-        gameStackView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 40).isActive = true
-        gameStackView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -40).isActive = true
+        gameStackView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 20).isActive = true
+        gameStackView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -50).isActive = true
     }
     
     func drawSegmentCtrl() {
@@ -48,6 +47,7 @@ class ViewController: UIViewController {
             self.gameStackView.removeArrangedSubview(subCardStackView)
             subCardStackView.removeFromSuperview()
         }
+        self.gameStackView = GameStackView(pokerGame: GameTable(playerEntry: self.entry, studType: self.studType))
         drawStackView()
     }
     
