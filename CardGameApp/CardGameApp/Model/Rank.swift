@@ -173,8 +173,8 @@ extension Rank {
 
 extension Rank {
     
-    static func checkCombinationAndUpdateCards(type: Rank.Combination, cards: [Card]) ->  ([Card],Card.Number)? {
-        switch type {
+    static func checkCombinationAndUpdateCards(combination: Rank.Combination, cards: [Card]) ->  ([Card],Card.Number)? {
+        switch combination {
         case .fourCard:
             return checkFourCardAndUpdateCards(cards: cards)
         case .straight:
