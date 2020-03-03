@@ -10,43 +10,45 @@ import Foundation
 
 struct Card {
     
-    enum suit: CaseIterable {
+    enum Suit: CaseIterable {
         case spade
         case heart
         case club
         case diamond
     }
     
-    enum rank: Int {
-        case one = 1, two, three, four, five, six, seven, eight, nine, ten, eleven = 11, twelve = 12, thirteen = 13
+    enum Rank: Int, CaseIterable {
+        case one = 1, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve, thirteen
         
-        func configureDictionary(dictionary: inout [Int: Int]) {
-            let isEmpty = dictionary[self.rawValue] == nil
-            let updateValue = (dictionary[self.rawValue] ?? 0) + 1
-            dictionary.updateValue(isEmpty ? 1 : updateValue , forKey: self.rawValue)
+        func neighborRank(index: Int) -> Rank {
+            Rank(rawValue: self.rawValue + index) ?? .one
         }
     }
     
-    private var suit: suit
-    private var rank: rank
+    private var suit: Suit
+    private var rank: Rank
 
-    init(suit: suit, rank: rank) {
+    init(suit: Suit, rank: Rank) {
         self.suit = suit
         self.rank = rank
     }
-    
-    func configureDictionary(dictionary: inout [Int: Int]) {
-        self.rank.configureDictionary(dictionary: &dictionary)
-    }
 }
 
-extension Card: CustomStringConvertible {
+extension Card: CustomStringConvertible, Comparable {
+    static func < (lhs: Card, rhs: Card) -> Bool {
+        lhs.rank.rawValue < rhs.rank.rawValue
+    }
+    
     var description: String {
         return self.suit.description + self.rank.description
     }
+    
+    var value: Int {
+        return rank.rawValue
+    }
 }
 
-extension Card.rank: CustomStringConvertible {
+extension Card.Rank: CustomStringConvertible {
     var description: String {
         switch self {
         case .one: return "A"
@@ -58,7 +60,7 @@ extension Card.rank: CustomStringConvertible {
     }
 }
 
-extension Card.suit: CustomStringConvertible {
+extension Card.Suit: CustomStringConvertible {
     var description: String {
         switch self {
         case .club: return "c"
