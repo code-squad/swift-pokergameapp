@@ -24,7 +24,7 @@ class PokerGame {
         resetParticipantsCards()
         shuffle()
         handOutCards()
-        updatePariticipantRanks()
+        updateParticipantRanks()
     }
     
     private func resetParticipantsCards() {
@@ -52,7 +52,7 @@ class PokerGame {
         }
     }
     
-    private func updatePariticipantRanks() {
+    private func updateParticipantRanks() {
         participants.searchParticipants { (participant) -> (Void) in
             participant.updateRanks()
         }
