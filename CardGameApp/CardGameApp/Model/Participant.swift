@@ -22,150 +22,13 @@ extension Card.Number: Comparable {
     }
 }
 
-extension Participant {
-    enum Combination: Int, CaseIterable, Comparable {
-        case onePair = 1
-        case twoPair = 2
-        case triple = 3
-        case straight = 7
-        case fourCard = 9
-        
-        static func < (lhs: Combination, rhs: Combination) -> Bool {
-            return lhs.rawValue < rhs.rawValue
-        }
-        
-        static func isFourCard(cards: [Card]) -> Card.Number? {
-            let fourCardsCount = 4
-            guard cards.count >= fourCardsCount else {
-                return nil
-            }
-            let nums = generateNums(cards: cards)
-            let sameCardsCount = 4
-            for num in nums {
-                if num.value == sameCardsCount {
-                    return num.key
-                }
-            }
-            return nil
-        }
-        
-        static func isStraight(cards: [Card]) -> Card.Number? {
-            let fiveCardsCount = 5
-            guard cards.count >= fiveCardsCount else {
-                return nil
-            }
-            let nums = generateNums(cards: cards)
-            guard nums.count >= fiveCardsCount else {
-                return nil
-            }
-            
-            for index in 0 ... nums.count - 5 {
-                var curNum = nums[index].key
-                var count = 0
-                for j in index + 1 ..< nums.count {
-                    let next = nums[j].key
-                    guard curNum.isEqual(plus: 1, other: next) else {
-                        break
-                    }
-                    curNum = next
-                    count += 1
-                }
-                if count > 4 {
-                    return nil
-                } else if count == 4 {
-                    return curNum
-                }
-            }
-            return nil
-        }
-        
-        static func isTriple(cards: [Card]) -> Card.Number? {
-            let threeCardsCount = 3
-            guard cards.count >= threeCardsCount else {
-                return nil
-            }
-            let nums = generateNums(cards: cards)
-            let sameCardsCount = 3
-            for num in nums {
-                if num.value == sameCardsCount {
-                    return num.key
-                }
-            }
-            return nil
-        }
-        
-        static func isTwoPair(cards: [Card]) -> Card.Number? {
-            let fourCardsCount = 4
-            guard cards.count >= fourCardsCount else {
-                return nil
-            }
-            let nums = generateNums(cards: cards)
-            let sameCardsCount = 2
-            
-            var count = 0
-            var curNum: Card.Number?
-            for num in nums {
-                if num.value == sameCardsCount {
-                    curNum = num.key
-                    count += 1
-                }
-            }
-            
-            if count >= 2 {
-                return curNum
-            }
-            return nil
-        }
-        
-        static func isOnePair(cards: [Card]) -> Card.Number? {
-            let twoCardsCount = 2
-            guard cards.count >= twoCardsCount else {
-                return nil
-            }
-            let nums = generateNums(cards: cards)
-            let sameCardsCount = 2
-            for num in nums {
-                if num.value == sameCardsCount {
-                    return num.key
-                }
-            }
-            return nil
-        }
-        
-        private static func generateNums(cards: [Card]) -> [(key: Card.Number, value: Int)] {
-            var nums = [Card.Number:Int]()
-            for index in 0 ..< cards.count - 1 {
-                let curNum = cards[index].number
-                guard !nums.keys.contains(curNum) else {
-                    continue
-                }
-                
-                var count = 1
-                for j in index + 1 ..< cards.count {
-                    if curNum == cards[j].number {
-                        count += 1
-                    }
-                }
-                nums[curNum] = count
-            }
-            if !nums.keys.contains(cards.last!.number) {
-                nums[cards.last!.number] = 1
-            }
-            
-            return nums.sorted {
-                $0.0 < $1.0
-            }
-        }
-    }
-}
-
 class Participant: CardSearchable {
     let name: String
     private var cards = [Card]()
     var cardsCount: Int {
         return cards.count
     }
-    var ranks = [Combination]()
+    var ranks = [Rank.Combination]()
     
     init(name: String) {
         self.name = name
@@ -206,7 +69,7 @@ class Participant: CardSearchable {
     
     private func checkFourCardAndUpdateCards(cards: [Card]) -> [Card]? {
         var cards = cards
-        if let num = Combination.isFourCard(cards: cards) {
+        if let num = Rank.Combination.isFourCard(cards: cards) {
             ranks.append(.fourCard)
             cards.removeAll { (card) -> Bool in
                 return card.number == num
@@ -218,7 +81,7 @@ class Participant: CardSearchable {
     
     private func checkStraightAndUpdateCards(cards: [Card]) -> [Card]? {
         var cards = cards
-        if let num = Combination.isStraight(cards: cards) {
+        if let num = Rank.Combination.isStraight(cards: cards) {
             ranks.append(.straight)
             cards = removeCardsForStraight(cards: cards, num: num)
             return cards
@@ -253,7 +116,7 @@ class Participant: CardSearchable {
     
     private func checkTripleAndUpdateCards(cards: [Card]) -> [Card]? {
         var cards = cards
-        if let num = Combination.isTriple(cards: cards) {
+        if let num = Rank.Combination.isTriple(cards: cards) {
             ranks.append(.triple)
             cards.removeAll { (card) -> Bool in
                 return card.number == num
@@ -264,7 +127,7 @@ class Participant: CardSearchable {
     }
     
     private func checkTwoPairAndUpdateCards(cards: [Card]) -> Bool {
-        if let num = Combination.isTwoPair(cards: cards) {
+        if let num = Rank.Combination.isTwoPair(cards: cards) {
             ranks.append(.twoPair)
             return true
         }
@@ -272,7 +135,7 @@ class Participant: CardSearchable {
     }
     
     private func checkOnePairAndUpdateCards(cards: [Card]) -> Bool {
-        if let num = Combination.isOnePair(cards: cards) {
+        if let num = Rank.Combination.isOnePair(cards: cards) {
             ranks.append(.onePair)
             return true
         }
