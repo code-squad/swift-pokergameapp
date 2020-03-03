@@ -22,7 +22,7 @@ class ParticipantsStackView: UIStackView {
     
     private func setup() {
         setupProperties()
-        addArrangedViews()
+        addParticipantsStackViews()
     }
     
     private func setupProperties() {
@@ -32,7 +32,7 @@ class ParticipantsStackView: UIStackView {
         translatesAutoresizingMaskIntoConstraints = false
     }
     
-    private func addArrangedViews() {
+    private func addParticipantsStackViews() {
         Participants.forEachMaxCase {
             addArrangedSubview(ParticipantStackView())
         }
