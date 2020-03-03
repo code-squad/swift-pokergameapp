@@ -23,14 +23,14 @@ extension Card.Number: Comparable {
 }
 
 extension Participant {
-    enum Rank: Int, CaseIterable, Comparable {
+    enum Combination: Int, CaseIterable, Comparable {
         case onePair = 1
         case twoPair = 2
         case triple = 3
         case straight = 7
         case fourCard = 9
         
-        static func < (lhs: Rank, rhs: Rank) -> Bool {
+        static func < (lhs: Combination, rhs: Combination) -> Bool {
             return lhs.rawValue < rhs.rawValue
         }
         
@@ -165,7 +165,7 @@ class Participant: CardSearchable {
     var cardsCount: Int {
         return cards.count
     }
-    var ranks = [Rank]()
+    var ranks = [Combination]()
     
     init(name: String) {
         self.name = name
@@ -206,7 +206,7 @@ class Participant: CardSearchable {
     
     private func checkFourCardAndUpdateCards(cards: [Card]) -> [Card]? {
         var cards = cards
-        if let num = Rank.isFourCard(cards: cards) {
+        if let num = Combination.isFourCard(cards: cards) {
             ranks.append(.fourCard)
             cards.removeAll { (card) -> Bool in
                 return card.number == num
@@ -218,7 +218,7 @@ class Participant: CardSearchable {
     
     private func checkStraightAndUpdateCards(cards: [Card]) -> [Card]? {
         var cards = cards
-        if let num = Rank.isStraight(cards: cards) {
+        if let num = Combination.isStraight(cards: cards) {
             ranks.append(.straight)
             cards = removeCardsForStraight(cards: cards, num: num)
             return cards
@@ -253,7 +253,7 @@ class Participant: CardSearchable {
     
     private func checkTripleAndUpdateCards(cards: [Card]) -> [Card]? {
         var cards = cards
-        if let num = Rank.isTriple(cards: cards) {
+        if let num = Combination.isTriple(cards: cards) {
             ranks.append(.triple)
             cards.removeAll { (card) -> Bool in
                 return card.number == num
@@ -264,7 +264,7 @@ class Participant: CardSearchable {
     }
     
     private func checkTwoPairAndUpdateCards(cards: [Card]) -> Bool {
-        if let num = Rank.isTwoPair(cards: cards) {
+        if let num = Combination.isTwoPair(cards: cards) {
             ranks.append(.twoPair)
             return true
         }
@@ -272,7 +272,7 @@ class Participant: CardSearchable {
     }
     
     private func checkOnePairAndUpdateCards(cards: [Card]) -> Bool {
-        if let num = Rank.isOnePair(cards: cards) {
+        if let num = Combination.isOnePair(cards: cards) {
             ranks.append(.onePair)
             return true
         }
