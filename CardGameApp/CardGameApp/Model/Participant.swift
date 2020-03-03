@@ -46,6 +46,7 @@ class Participant: CardSearchable {
         cards.forEach{ handler($0) }
     }
 }
+
 extension Participant {
     
     func updateRanks() {

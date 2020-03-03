@@ -8,6 +8,13 @@
 
 import Foundation
 
+extension Participant {
+    func searchRank(handler: (Rank) -> (Void)) {
+        ranks.forEach{ handler($0) }
+    }
+}
+
+
 class PokerGame {
     
     private let deck: Deck
