@@ -62,7 +62,7 @@ class Card {
         }
         
         func isNextRank(card: Card) -> Bool {
-            if self.rawValue + 1 == card.rank.rawValue {
+            if self.rawValue - 1 == card.rank.rawValue {
                 return true
             }
             return false
