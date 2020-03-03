@@ -18,6 +18,7 @@ struct Rank {
 extension Rank {
     
     enum Combination: Int, CaseIterable, Comparable {
+        case oneCard = 0
         case onePair = 1
         case twoPair = 2
         case triple = 3
@@ -124,6 +125,15 @@ extension Rank {
                 }
             }
             return nil
+        }
+        
+        static func isOneCard(cards: [Card]) -> Card.Number? {
+            let noCardsCount = 0
+            guard cards.count != noCardsCount else {
+                return nil
+            }
+            let nums = generateNums(cards: cards)
+            return nums.last!.key
         }
         
         private static func generateNums(cards: [Card]) -> [(key: Card.Number, value: Int)] {
