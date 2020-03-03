@@ -79,6 +79,7 @@ class PokerGame {
     private let deck: Deck
     let gameStut: GameStut
     let participants: Participants
+    private var winner: Participant!
     
     init(gameStut: GameStut , participants: Participants, deck: Deck){
         self.gameStut = gameStut
@@ -91,6 +92,7 @@ class PokerGame {
         shuffle()
         handOutCards()
         updateParticipantRanks()
+        determineWinner()
     }
     
     private func resetParticipantsCards() {
@@ -121,6 +123,17 @@ class PokerGame {
     private func updateParticipantRanks() {
         participants.searchParticipants { (participant) -> (Void) in
             participant.updateRanks()
+        }
+    }
+    
+    private func determineWinner() {
+        var rankedParticipants = [Participant]()
+        participants.searchParticipants { (participant) -> (Void) in
+            rankedParticipants.append(participant)
+        }
+        rankedParticipants = rankedParticipants.sorted()
+        if let winner = rankedParticipants.last {
+            self.winner = winner
         }
     }
     
