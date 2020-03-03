@@ -31,6 +31,6 @@ class Dealer: Player {
     }
     
     func judgeWinner(players: Players) -> Player {
-        
+        return gameRule.judgePriority(participants: players)
     }
 }
