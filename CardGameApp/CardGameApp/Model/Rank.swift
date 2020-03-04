@@ -174,6 +174,44 @@ extension Rank {
 
 extension Rank {
     
+    static func checkCombiAndGenerateRanks(with cards: [Card]) -> [Rank] {
+        var cards = cards
+        var ranks = [Rank]()
+        
+        if let result = Rank.checkCombinationAndUpdateCards(combination: .fourCard, cards: cards) {
+            ranks.append(Rank(number: result.1, combination: .fourCard))
+            cards = result.0
+        }
+        
+        if let result = Rank.checkCombinationAndUpdateCards(combination: .straight, cards: cards) {
+            ranks.append(Rank(number: result.1, combination: .straight))
+            cards = result.0
+        }
+        
+        if let result = Rank.checkCombinationAndUpdateCards(combination: .triple, cards: cards) {
+            ranks.append(Rank(number: result.1, combination: .triple))
+            cards = result.0
+            if let result = Rank.checkCombinationAndUpdateCards(combination: .triple, cards: cards) {
+                ranks.append(Rank(number: result.1, combination: .triple))
+                cards = result.0
+            }
+        }
+        
+        if let result = Rank.checkCombinationAndUpdateCards(combination: .twoPair, cards: cards) {
+            ranks.append(Rank(number: result.1, combination: .twoPair))
+            cards = result.0
+        } else if let result = Rank.checkCombinationAndUpdateCards(combination: .onePair, cards: cards) {
+            ranks.append(Rank(number: result.1, combination: .onePair))
+            cards = result.0
+        }
+        
+        if let result = Rank.checkCombinationAndUpdateCards(combination: .oneCard, cards: cards) {
+            ranks.append(Rank(number: result.1, combination: .oneCard))
+        }
+        
+        return ranks
+    }
+    
     static func checkCombinationAndUpdateCards(combination: Rank.Combination, cards: [Card]) ->  ([Card],Card.Number)? {
         switch combination {
         case .fourCard:
