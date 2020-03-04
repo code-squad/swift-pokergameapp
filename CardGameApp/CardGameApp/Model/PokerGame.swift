@@ -130,8 +130,8 @@ class PokerGame {
         participants.searchParticipants { (participant) -> (Void) in
             rankedParticipants.append(participant)
         }
-        rankedParticipants = rankedParticipants.sorted()
-        if let participant = rankedParticipants.last {
+        
+        if let participant = rankedParticipants.max() {
             participant.setWinner()
         }
     }
