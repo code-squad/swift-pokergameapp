@@ -13,8 +13,8 @@ class CardsAndCrownStackView: UIStackView {
     private let overlappedCardsStackView = OverlappedCardsStackView()
     private let crownImageView : UIImageView = {
         let imageView = UIImageView(image: #imageLiteral(resourceName: "crown-iconfinder"))
-        imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFit
         imageView.isHidden = true
         return imageView
     }()
@@ -52,9 +52,10 @@ class CardsAndCrownStackView: UIStackView {
     }
     
     private func setConstraintCrownImageView() {
-        crownImageView.leadingAnchor.constraint(equalTo: overlappedCardsStackView.trailingAnchor, constant: 7).isActive = true
-        crownImageView.topAnchor.constraint(equalTo: overlappedCardsStackView.topAnchor, constant: 5).isActive = true
-        crownImageView.bottomAnchor.constraint(equalTo: overlappedCardsStackView.bottomAnchor, constant: -5).isActive = true
+        crownImageView.leadingAnchor.constraint(equalTo:
+            overlappedCardsStackView.trailingAnchor, constant: 7).isActive = true
+        crownImageView.centerYAnchor.constraint(equalTo:
+            overlappedCardsStackView.centerYAnchor).isActive = true
     }
     
     func updateView(participant: Participant) {

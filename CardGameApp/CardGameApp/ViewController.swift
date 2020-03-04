@@ -68,17 +68,11 @@ class ViewController: UIViewController {
     }
     
     private func setConstraintControlsStackView() {
-        let topConstant: CGFloat = 10
-        let sideConstant: CGFloat = 120
-        gameSegmentedControlStackView.topAnchor.constraint(
-            equalTo: view.safeAreaLayoutGuide.topAnchor,
-            constant: topConstant).isActive = true
-        gameSegmentedControlStackView.leadingAnchor.constraint(
-            equalTo: view.leadingAnchor,
-            constant: sideConstant).isActive = true
-        gameSegmentedControlStackView.trailingAnchor.constraint(
-            equalTo: view.trailingAnchor,
-            constant: -sideConstant).isActive = true
+        let safeArea = view.safeAreaLayoutGuide
+        gameSegmentedControlStackView.topAnchor.constraint(equalTo:
+            safeArea.topAnchor).isActive = true
+        gameSegmentedControlStackView.centerXAnchor.constraint(equalTo:
+            safeArea.centerXAnchor).isActive = true
     }
     
     private func setupPaticipantsStackView() {
@@ -88,16 +82,15 @@ class ViewController: UIViewController {
     }
     
     private func setConstraintParticipantsStackView() {
+        let safeArea = view.safeAreaLayoutGuide
         let leadingConstant: CGFloat = 30
         let trailingConstant: CGFloat = 57
         participantsStackView.topAnchor.constraint(
             equalTo:gameSegmentedControlStackView.bottomAnchor).isActive = true
         participantsStackView.leadingAnchor.constraint(
-            equalTo: view.leadingAnchor,
-            constant: leadingConstant).isActive = true
+            equalTo: safeArea.leadingAnchor, constant: leadingConstant).isActive = true
         participantsStackView.trailingAnchor.constraint(
-            equalTo: view.trailingAnchor,
-            constant: -trailingConstant).isActive = true
+            equalTo: safeArea.trailingAnchor, constant: -trailingConstant).isActive = true
     }
     
     private func startGame(gameStut: GameStut, participants: Participants) {
