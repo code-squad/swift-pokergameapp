@@ -10,7 +10,7 @@ import Foundation
 
 class Controller {
     
-    static func verifyIndex(index: Int, arrLen: Int) -> Bool {
+    static func verifyIndex(at index: Int, arrLen: Int) -> Bool {
         return index < arrLen
     }
     

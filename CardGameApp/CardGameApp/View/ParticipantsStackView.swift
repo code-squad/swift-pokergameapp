@@ -59,7 +59,7 @@ class ParticipantsStackView: UIStackView {
     }
     
     private func updateParticipant(at index: Int, participant: Participant) {
-        guard Controller.verifyIndex(index: index, arrLen: arrangedSubviews.count) else {
+        guard Controller.verifyIndex(at : index, arrLen: arrangedSubviews.count) else {
             return
         }
         
