@@ -46,15 +46,6 @@ class CardsAndCrownStackView: UIStackView {
         addArrangedSubview(overlappedCardsStackView)
     }
     
-    func updateView(participant: Participant) {
-        overlappedCardsStackView.updateView(participant: participant)
-        if participant.isWinner {
-            crownImageView.isHidden = false
-        } else {
-            crownImageView.isHidden = true
-        }
-    }
-
     private func addAndSetConstraintForCrownImageView() {
         addSubview(crownImageView)
         setConstraintCrownImageView()
@@ -64,6 +55,15 @@ class CardsAndCrownStackView: UIStackView {
         crownImageView.leadingAnchor.constraint(equalTo: overlappedCardsStackView.trailingAnchor, constant: 7).isActive = true
         crownImageView.topAnchor.constraint(equalTo: overlappedCardsStackView.topAnchor, constant: 5).isActive = true
         crownImageView.bottomAnchor.constraint(equalTo: overlappedCardsStackView.bottomAnchor, constant: -5).isActive = true
+    }
+    
+    func updateView(participant: Participant) {
+        overlappedCardsStackView.updateView(participant: participant)
+        if participant.isWinner {
+            crownImageView.isHidden = false
+        } else {
+            crownImageView.isHidden = true
+        }
     }
     
 }
