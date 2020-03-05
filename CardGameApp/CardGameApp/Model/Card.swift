@@ -40,7 +40,7 @@ struct Card {
     }
     
     private let suit: Suit
-    let number: Number
+    private let number: Number
     
     init(suit: Suit, number: Number) {
         self.suit = suit
@@ -49,15 +49,33 @@ struct Card {
     
 }
 
-extension Card: Equatable {
+extension Card: Comparable {
     
     public static func == (lhs: Card, rhs: Card) -> Bool {
-        return lhs.suit == rhs.suit && lhs.number == rhs.number
+        return lhs.number == rhs.number
     }
     
+    static func < (lhs: Card, rhs: Card) -> Bool {
+        return lhs.number < rhs.number
+    }
+    
+    func isEqual(other card: Card, distance: Int) -> Bool {
+        return self.number.isEqual(other: card.number, distance: distance)
+    }
+}
+
+extension Card: Hashable {
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(number)
+    }
 }
 
 extension Card.Number: Comparable {
+    
+    static func == (lhs: Card.Number, rhs: Card.Number) -> Bool {
+           return lhs.rawValue == rhs.rawValue
+    }
+    
     static func < (lhs: Card.Number, rhs: Card.Number) -> Bool {
         return lhs.rawValue < rhs.rawValue
     }
@@ -102,7 +120,6 @@ extension Card.Number: CustomStringConvertible {
     }
     
 }
-
 
 extension Card: CustomStringConvertible {
     

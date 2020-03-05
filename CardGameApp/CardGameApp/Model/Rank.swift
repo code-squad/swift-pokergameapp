@@ -10,12 +10,12 @@ import Foundation
 
 struct Rank: Comparable {
     
-    let number: Card.Number
+    let card: Card
     let combination: Combination
     
     static func < (lhs: Rank, rhs: Rank) -> Bool {
         if lhs.combination == rhs.combination {
-            return lhs.number < rhs.number
+            return lhs.card < rhs.card
         }
         return lhs.combination < rhs.combination
     }
@@ -35,59 +35,59 @@ extension Rank {
             return lhs.rawValue < rhs.rawValue
         }
         
-        static func isFourCard(cards: [Card]) -> Card.Number? {
+        static func isFourCard(cards: [Card]) -> Card? {
             let fourCardsCount = 4
             guard cards.count >= fourCardsCount else {
                 return nil
             }
-            let nums = generateNums(cards: cards)
+            let sameNumberCards = generateNums(cards: cards)
             let sameCardsCount = 4
-            for num in nums {
-                if num.value == sameCardsCount {
-                    return num.key
+            for sameNumberCard in sameNumberCards {
+                if sameNumberCard.value == sameCardsCount {
+                    return sameNumberCard.key
                 }
             }
             return nil
         }
         
-        static func isStraight(cards: [Card]) -> Card.Number? {
+        static func isStraight(cards: [Card]) -> Card? {
             let fiveCardsCount = 5
             guard cards.count >= fiveCardsCount else {
                 return nil
             }
-            let nums = generateNums(cards: cards)
-            guard nums.count >= fiveCardsCount else {
+            let sameNumberCards = generateNums(cards: cards)
+            guard sameNumberCards.count >= fiveCardsCount else {
                 return nil
             }
             
-            for index in 0 ... nums.count - 5 {
-                var curNum = nums[index].key
+            for index in 0 ... sameNumberCards.count - 5 {
+                var curCard = sameNumberCards[index].key
                 var count = 0
-                for j in index + 1 ..< nums.count {
-                    let next = nums[j].key
-                    guard curNum.isEqual(other: next, distance: -1) else {
+                for j in index + 1 ..< sameNumberCards.count {
+                    let next = sameNumberCards[j].key
+                    guard curCard.isEqual(other: next, distance: -1) else {
                         break
                     }
-                    curNum = next
+                    curCard = next
                     count += 1
                 }
                 if count > 4 {
                     return nil
                 } else if count == 4 {
-                    return curNum
+                    return curCard
                 }
             }
             return nil
         }
         
-        static func isTriple(cards: [Card]) -> Card.Number? {
+        static func isTriple(cards: [Card]) -> Card? {
             let threeCardsCount = 3
             guard cards.count >= threeCardsCount else {
                 return nil
             }
-            let nums = generateNums(cards: cards)
+            let sameNumberCards = generateNums(cards: cards)
             let sameCardsCount = 3
-            for num in nums {
+            for num in sameNumberCards {
                 if num.value == sameCardsCount {
                     return num.key
                 }
@@ -95,75 +95,75 @@ extension Rank {
             return nil
         }
         
-        static func isTwoPair(cards: [Card]) -> [Card.Number]? {
+        static func isTwoPair(cards: [Card]) -> [Card]? {
             let fourCardsCount = 4
             guard cards.count >= fourCardsCount else {
                 return nil
             }
-            let nums = generateNums(cards: cards)
+            let sameNumberCards = generateNums(cards: cards)
             let sameCardsCount = 2
             
             var count = 0
-            var numbers = [Card.Number]()
-            for num in nums {
+            var twoPairCards = [Card]()
+            for num in sameNumberCards {
                 if num.value == sameCardsCount {
-                    numbers.append(num.key)
+                    twoPairCards.append(num.key)
                     count += 1
                 }
             }
             
             if count >= 2 {
-                return numbers
+                return twoPairCards
             }
             return nil
         }
         
-        static func isOnePair(cards: [Card]) -> Card.Number? {
+        static func isOnePair(cards: [Card]) -> Card? {
             let twoCardsCount = 2
             guard cards.count >= twoCardsCount else {
                 return nil
             }
-            let nums = generateNums(cards: cards)
+            let sameNumberCards = generateNums(cards: cards)
             let sameCardsCount = 2
-            for num in nums {
-                if num.value == sameCardsCount {
-                    return num.key
+            for sameNumberCard in sameNumberCards {
+                if sameNumberCard.value == sameCardsCount {
+                    return sameNumberCard.key
                 }
             }
             return nil
         }
         
-        static func isOneCard(cards: [Card]) -> Card.Number? {
+        static func isOneCard(cards: [Card]) -> Card? {
             let noCardsCount = 0
             guard cards.count != noCardsCount else {
                 return nil
             }
-            let nums = generateNums(cards: cards)
-            return nums.last!.key
+            let sameNumberCards = generateNums(cards: cards)
+            return sameNumberCards.last!.key
         }
         
-        private static func generateNums(cards: [Card]) -> [(key: Card.Number, value: Int)] {
-            var nums = [Card.Number:Int]()
+        private static func generateNums(cards: [Card]) -> [(key: Card, value: Int)] {
+            var sameNumberCards = [Card:Int]()
             for index in 0 ..< cards.count - 1 {
-                let curNum = cards[index].number
-                guard !nums.keys.contains(curNum) else {
+                let curCard = cards[index]
+                guard !sameNumberCards.keys.contains(curCard) else {
                     continue
                 }
                 
                 var count = 1
                 for j in index + 1 ..< cards.count {
-                    if curNum == cards[j].number {
+                    if curCard == cards[j] {
                         count += 1
                     }
                 }
-                nums[curNum] = count
+                sameNumberCards[curCard] = count
             }
             
-            if !nums.keys.contains(cards.last!.number) {
-                nums[cards.last!.number] = 1
+            if !sameNumberCards.keys.contains(cards.last!) {
+                sameNumberCards[cards.last!] = 1
             }
             
-            return nums.sorted {
+            return sameNumberCards.sorted {
                 $0.0 < $1.0
             }
         }
@@ -179,40 +179,40 @@ extension Rank {
         var ranks = [Rank]()
         
         if let result = Rank.checkCombinationAndUpdateCards(combination: .fourCard, cards: cards) {
-            ranks.append(Rank(number: result.1, combination: .fourCard))
+            ranks.append(Rank(card: result.1, combination: .fourCard))
             cards = result.0
         }
         
         if let result = Rank.checkCombinationAndUpdateCards(combination: .straight, cards: cards) {
-            ranks.append(Rank(number: result.1, combination: .straight))
+            ranks.append(Rank(card: result.1, combination: .straight))
             cards = result.0
         }
         
         if let result = Rank.checkCombinationAndUpdateCards(combination: .triple, cards: cards) {
-            ranks.append(Rank(number: result.1, combination: .triple))
+            ranks.append(Rank(card: result.1, combination: .triple))
             cards = result.0
             if let result = Rank.checkCombinationAndUpdateCards(combination: .triple, cards: cards) {
-                ranks.append(Rank(number: result.1, combination: .triple))
+                ranks.append(Rank(card: result.1, combination: .triple))
                 cards = result.0
             }
         }
         
         if let result = Rank.checkCombinationAndUpdateCards(combination: .twoPair, cards: cards) {
-            ranks.append(Rank(number: result.1, combination: .twoPair))
+            ranks.append(Rank(card: result.1, combination: .twoPair))
             cards = result.0
         } else if let result = Rank.checkCombinationAndUpdateCards(combination: .onePair, cards: cards) {
-            ranks.append(Rank(number: result.1, combination: .onePair))
+            ranks.append(Rank(card: result.1, combination: .onePair))
             cards = result.0
         }
         
         if let result = Rank.checkCombinationAndUpdateCards(combination: .oneCard, cards: cards) {
-            ranks.append(Rank(number: result.1, combination: .oneCard))
+            ranks.append(Rank(card: result.1, combination: .oneCard))
         }
         
         return ranks
     }
     
-    static func checkCombinationAndUpdateCards(combination: Rank.Combination, cards: [Card]) ->  ([Card],Card.Number)? {
+    static func checkCombinationAndUpdateCards(combination: Rank.Combination, cards: [Card]) ->  ([Card],Card)? {
         switch combination {
         case .fourCard:
             return checkFourCardAndUpdateCards(cards: cards)
@@ -229,27 +229,27 @@ extension Rank {
         }
     }
     
-    private static func checkFourCardAndUpdateCards(cards: [Card]) -> ([Card],Card.Number)? {
+    private static func checkFourCardAndUpdateCards(cards: [Card]) -> ([Card],Card)? {
         var cards = cards
-        if let number = Rank.Combination.isFourCard(cards: cards) {
+        if let fourCard = Rank.Combination.isFourCard(cards: cards) {
             cards.removeAll { (card) -> Bool in
-                return card.number == number
+                return card == fourCard
             }
-            return (cards,number)
+            return (cards,fourCard)
         }
         return nil
     }
     
-    private static func checkStraightAndUpdateCards(cards: [Card]) -> ([Card],Card.Number)? {
+    private static func checkStraightAndUpdateCards(cards: [Card]) -> ([Card],Card)? {
         var cards = cards
-        if let number = Rank.Combination.isStraight(cards: cards) {
-            cards = removeCardsForStraight(cards: cards, number: number)
-            return (cards,number)
+        if let maxCard = Rank.Combination.isStraight(cards: cards) {
+            cards = removeCardsForStraight(cards: cards, maxCard: maxCard)
+            return (cards,maxCard)
         }
         return nil
     }
     
-    private static func removeCardsForStraight(cards: [Card], number : Card.Number) -> [Card] {
+    private static func removeCardsForStraight(cards: [Card], maxCard : Card) -> [Card] {
         var isFirst = false
         var isSecond = false
         var isThird = false
@@ -257,15 +257,15 @@ extension Rank {
         var isFifth = false
         var newCards = [Card]()
         for card in cards {
-            if number.isEqual(other: card.number, distance: 4), !isFirst {
+            if maxCard.isEqual(other: card, distance: 4), !isFirst {
                 isFirst = true
-            } else if number.isEqual(other: card.number, distance: 3), !isSecond {
+            } else if maxCard.isEqual(other: card, distance: 3), !isSecond {
                 isSecond = true
-            } else if number.isEqual(other: card.number, distance: 2), !isThird {
+            } else if maxCard.isEqual(other: card, distance: 2), !isThird {
                 isThird = true
-            } else if number.isEqual(other: card.number, distance: 1), !isFourth {
+            } else if maxCard.isEqual(other: card, distance: 1), !isFourth {
                 isFourth = true
-            } else if number.isEqual(other: card.number, distance: 0), !isFifth {
+            } else if maxCard.isEqual(other: card, distance: 0), !isFifth {
                 isFifth = true
             } else {
                 newCards.append(card)
@@ -274,42 +274,42 @@ extension Rank {
         return newCards
     }
     
-    private static func checkTripleAndUpdateCards(cards: [Card]) -> ([Card],Card.Number)? {
+    private static func checkTripleAndUpdateCards(cards: [Card]) -> ([Card],Card)? {
         var cards = cards
-        if let number = Rank.Combination.isTriple(cards: cards) {
+        if let tripleCard = Rank.Combination.isTriple(cards: cards) {
             cards.removeAll { (card) -> Bool in
-                return card.number == number
+                return card == tripleCard
             }
-            return (cards,number)
+            return (cards,tripleCard)
         }
         return nil
     }
     
-    private static func checkTwoPairAndUpdateCards(cards: [Card]) -> ([Card],Card.Number)? {
+    private static func checkTwoPairAndUpdateCards(cards: [Card]) -> ([Card],Card)? {
         var cards = cards
-        if let numbers = Rank.Combination.isTwoPair(cards: cards) {
+        if let twoPairCards = Rank.Combination.isTwoPair(cards: cards) {
             cards.removeAll { (card) -> Bool in
-                return numbers.contains(card.number)
+                return twoPairCards.contains(card)
             }
-            return (cards,numbers.last!)
+            return (cards,twoPairCards.last!)
         }
         return nil
     }
     
-    private static func checkOnePairAndUpdateCards(cards: [Card]) -> ([Card],Card.Number)? {
+    private static func checkOnePairAndUpdateCards(cards: [Card]) -> ([Card],Card)? {
         var cards = cards
-        if let number = Rank.Combination.isOnePair(cards: cards) {
+        if let onePairCard = Rank.Combination.isOnePair(cards: cards) {
             cards.removeAll { (card) -> Bool in
-                return card.number == number
+                return card == onePairCard
             }
-            return (cards,number)
+            return (cards,onePairCard)
         }
         return nil
     }
     
-    private static func checkOneCard(cards: [Card]) -> ([Card],Card.Number)? {
-        if let number = Rank.Combination.isOneCard(cards: cards) {
-            return ([Card](),number)
+    private static func checkOneCard(cards: [Card]) -> ([Card],Card)? {
+        if let oneCard = Rank.Combination.isOneCard(cards: cards) {
+            return ([Card](),oneCard)
         }
         return nil
     }

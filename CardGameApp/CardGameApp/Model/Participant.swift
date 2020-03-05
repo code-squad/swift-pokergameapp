@@ -41,8 +41,8 @@ extension Participant: Comparable {
         }
         
         for index in 0 ..< min {
-            if lhsRanks[index].number != rhsRanks[index].number {
-                return lhsRanks[index].number < rhsRanks[index].number
+            if lhsRanks[index].card != rhsRanks[index].card {
+                return lhsRanks[index].card < rhsRanks[index].card
             }
         }
         return false
