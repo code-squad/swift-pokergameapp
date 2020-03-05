@@ -20,6 +20,9 @@ class Participants {
     }
     let playersNumber: PlayersNumber
     private var players = [Participant]()
+    var count: Int {
+        return players.count + Participants.dealerCount
+    }
     
     private static let dealerCount = 1
     private let dealer = Participant(name: "Dealer")
