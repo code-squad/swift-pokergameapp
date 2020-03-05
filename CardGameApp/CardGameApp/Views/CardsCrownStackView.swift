@@ -68,11 +68,13 @@ class CardsCrownStackView: UIStackView {
     
     func updateView(participant: Participant) {
         overlappedCardsStackView.updateView(participant: participant)
-        if participant.isWinner {
-            crownImageView.isHidden = false
-        } else {
-            crownImageView.isHidden = true
-        }
+        hideCrownImageView()
+    }
+    private func hideCrownImageView() {
+        crownImageView.isHidden = true
     }
     
+    func updateCrownViewIsNotHidden() {
+        crownImageView.isHidden = false
+    }
 }

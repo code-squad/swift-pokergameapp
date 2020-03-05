@@ -20,8 +20,11 @@ class Participants {
     }
     let playersNumber: PlayersNumber
     private var players = [Participant]()
+    
     private static let dealerCount = 1
     private let dealer = Participant(name: "Dealer")
+    
+    private var winner: Participant?
     
     init(playersNumber: PlayersNumber) {
         self.playersNumber = playersNumber
@@ -41,8 +44,12 @@ class Participants {
         participants.append(dealer)
         
         if let winner = participants.max() {
-            winner.setWinner()
+            self.winner = winner
         }
+    }
+    
+    func isWinner(participant: Participant) -> Bool {
+        return winner === participant
     }
     
 }

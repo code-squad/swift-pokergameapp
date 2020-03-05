@@ -14,6 +14,7 @@ extension Participant {
 }
 
 extension Participant: Comparable {
+    
     static func < (lhs: Participant, rhs: Participant) -> Bool {
         var lhsRanks = [Rank]()
         lhs.searchRank {
@@ -94,11 +95,7 @@ class Participant {
     func receive(card: Card) {
         cards.append(card)
     }
-    
-    private(set) var isWinner = false
-    func setWinner() {
-        isWinner = true
-    }
+
 }
 
 extension Participant: CardSearchable {
