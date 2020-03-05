@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CardsAndCrownStackView: UIStackView {
+class CardsCrownStackView: UIStackView {
 
     private let overlappedCardsStackView = OverlappedCardsStackView()
     private let crownImageView : UIImageView = {
