@@ -36,6 +36,15 @@ class Participants {
         }
     }
     
+    func determineWinner() {
+        var participants = players
+        participants.append(dealer)
+        
+        if let winner = participants.max() {
+            winner.setWinner()
+        }
+    }
+    
 }
 
 extension Participants {
