@@ -8,8 +8,6 @@
 
 import Foundation
 
-
-
 class PokerGame {
     
     private let deck: Deck
