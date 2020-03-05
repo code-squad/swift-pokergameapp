@@ -14,7 +14,6 @@
 		5A6D174524023D4800348A81 /* ParticipantsStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6D174424023D4800348A81 /* ParticipantsStackView.swift */; };
 		5A6D174B2402429D00348A81 /* ParticipantStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6D174A2402429D00348A81 /* ParticipantStackView.swift */; };
 		5A6D174D240243B700348A81 /* OverlappedCardsStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6D174C240243B700348A81 /* OverlappedCardsStackView.swift */; };
-		5A777B1A240CA05900A65A9A /* Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A777B19240CA05900A65A9A /* Controller.swift */; };
 		5A91FC2B240DF6D700884D64 /* Rank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A91FC2A240DF6D700884D64 /* Rank.swift */; };
 		5A91FCBF240E8C9800884D64 /* CardsAndCrownStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A91FCBE240E8C9800884D64 /* CardsAndCrownStackView.swift */; };
 		5AB1838F23F637E2007419C4 /* ANSI_C_RandomNumberGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB3F53523F545170021E3A0 /* ANSI_C_RandomNumberGenerator.swift */; };
@@ -59,7 +58,6 @@
 		5A6D174424023D4800348A81 /* ParticipantsStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantsStackView.swift; sourceTree = "<group>"; };
 		5A6D174A2402429D00348A81 /* ParticipantStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantStackView.swift; sourceTree = "<group>"; };
 		5A6D174C240243B700348A81 /* OverlappedCardsStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlappedCardsStackView.swift; sourceTree = "<group>"; };
-		5A777B19240CA05900A65A9A /* Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Controller.swift; sourceTree = "<group>"; };
 		5A91FC2A240DF6D700884D64 /* Rank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rank.swift; sourceTree = "<group>"; };
 		5A91FCBE240E8C9800884D64 /* CardsAndCrownStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsAndCrownStackView.swift; sourceTree = "<group>"; };
 		5AB183A223F7E4E4007419C4 /* Participant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Participant.swift; sourceTree = "<group>"; };
@@ -123,14 +121,6 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		5A777B18240CA04300A65A9A /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				5A777B19240CA05900A65A9A /* Controller.swift */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
 		5AB183AC23F81456007419C4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -169,7 +159,6 @@
 		5AE093BB23EC21670046DA63 /* CardGameApp */ = {
 			isa = PBXGroup;
 			children = (
-				5A777B18240CA04300A65A9A /* Controller */,
 				5A6D173D23FEA1E500348A81 /* View */,
 				5AB183AC23F81456007419C4 /* Model */,
 				5AE093BC23EC21670046DA63 /* AppDelegate.swift */,
@@ -351,7 +340,6 @@
 				5A91FC2B240DF6D700884D64 /* Rank.swift in Sources */,
 				5A91FCBF240E8C9800884D64 /* CardsAndCrownStackView.swift in Sources */,
 				5ABC6AFE2404DBAC00EEAC46 /* GameStut.swift in Sources */,
-				5A777B1A240CA05900A65A9A /* Controller.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
