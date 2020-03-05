@@ -12,8 +12,29 @@ extension ViewController: GameSegmentedControlStackViewDelegate {
     
     func segmentedControlIndexChanged(gameStut: GameStut,
                                       playersNumber: Participants.PlayersNumber) {
-        startGame(gameStut: gameStut,
+        startNewGame(gameStut: gameStut,
                   participants: Participants(playersNumber: playersNumber))
+    }
+    
+    private func startNewGame(gameStut: GameStut, participants: Participants) {
+        shuffleDeck()
+        game = PokerGame(gameStut: gameStut,
+                             participants: participants, deck: deck)
+        
+        if !game.hasEnoughCards() {
+            game = resetDeckAndGenerateGame(gameStut: gameStut,
+                                            participants: participants)
+        }
+        game.startNewRound()
+        participantsStackView.updateView(game: game)
+    }
+    
+    private func resetDeckAndGenerateGame(gameStut: GameStut, participants: Participants) -> PokerGame {
+        deck.reset()
+        shuffleDeck()
+        return PokerGame(gameStut: gameStut,
+                         participants: participants,
+                         deck: deck)
     }
     
 }
@@ -22,20 +43,24 @@ extension ViewController {
     
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         if motion == .motionShake {
-            guard let gameStut = gameSegmentedControlStackView.gameStut(),
-                let playersNumber = gameSegmentedControlStackView.playersNum() else {
-                    return
-            }
-            
-            startGame(gameStut: gameStut,
-                      participants: Participants(playersNumber: playersNumber))
+            startNewRound()
         }
+    }
+    
+    private func startNewRound() {
+        if !game.hasEnoughCards() {
+            game = resetDeckAndGenerateGame(gameStut: game.gameStut,
+                                            participants: game.participants)
+        }
+        game.startNewRound()
+        participantsStackView.updateView(game: game)
     }
     
 }
 
 class ViewController: UIViewController {
     
+    private var game: PokerGame!
     private var deck = Deck()
     private var gameSegmentedControlStackView: GameSegmentedControlStackView!
     private var participantsStackView: ParticipantsStackView!
@@ -49,7 +74,7 @@ class ViewController: UIViewController {
         setupBackground()
         setupSegmentedControlsStackView()
         setupPaticipantsStackView()
-        startGame(gameStut: .seven,
+        startNewGame(gameStut: .seven,
                   participants: Participants(playersNumber: .one))
     }
     
@@ -91,26 +116,6 @@ class ViewController: UIViewController {
             equalTo: safeArea.leadingAnchor, constant: leadingConstant).isActive = true
         participantsStackView.trailingAnchor.constraint(
             equalTo: safeArea.trailingAnchor, constant: -trailingConstant).isActive = true
-    }
-    
-    private func startGame(gameStut: GameStut, participants: Participants) {
-        shuffleDeck()
-        var game = PokerGame(gameStut: gameStut,
-                             participants: participants,
-                             deck: deck)
-        if !game.hasEnoughCards() {
-            game = resetDeckAndGenerateGame(gameStut: gameStut, participants: participants)
-        }
-        game.startNewRound()
-        participantsStackView.updateView(game: game)
-    }
-    
-    private func resetDeckAndGenerateGame(gameStut: GameStut, participants: Participants) -> PokerGame {
-        deck.reset()
-        shuffleDeck()
-        return PokerGame(gameStut: gameStut,
-                         participants: participants,
-                         deck: deck)
     }
     
     private var generator = ANSI_C_RandomNumberGenerator()
