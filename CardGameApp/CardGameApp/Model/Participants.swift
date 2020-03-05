@@ -48,14 +48,6 @@ extension Participants {
     
 }
 
-extension Participants.PlayersNum: Comparable {
-    
-    static func < (lhs: Participants.PlayersNum, rhs: Participants.PlayersNum) -> Bool {
-        return lhs.rawValue < rhs.rawValue
-    }
-    
-}
-
 extension Participants {
     
     static func forEachMaxCase(handler: () -> (Void)) {
@@ -73,6 +65,14 @@ extension Participants {
         for _ in 0 ..< participantsCount {
             handler()
         }
+    }
+    
+}
+
+extension Participants.PlayersNum: Comparable {
+    
+    static func < (lhs: Participants.PlayersNum, rhs: Participants.PlayersNum) -> Bool {
+        return lhs.rawValue < rhs.rawValue
     }
     
 }
