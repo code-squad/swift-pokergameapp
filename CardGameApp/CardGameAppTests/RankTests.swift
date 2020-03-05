@@ -21,8 +21,8 @@ class RankTests: XCTestCase {
                      Card(suit: .heart, number: .four),
                      Card(suit: .spade, number: .four)]
         // 3. then
-        if let num = Rank.Combination.isFourCard(cards: cards) {
-            XCTAssertEqual(num, Card.Number.four)
+        if let card = Rank.Combination.isFourCard(cards: cards) {
+            XCTAssertEqual(card, Card(suit: .club, number: .four))
         }
     }
     
@@ -48,7 +48,7 @@ class RankTests: XCTestCase {
                      Card(suit: .heart, number: .four),
                      Card(suit: .spade, number: .four)]
          // 3. then
-        XCTAssertEqual(Rank.Combination.isStraight(cards: cards), Card.Number.five)
+        XCTAssertEqual(Rank.Combination.isStraight(cards: cards), Card(suit: .club, number: .five))
     }
     
     func testIsStraightFail() {
@@ -86,7 +86,8 @@ class RankTests: XCTestCase {
                      Card(suit: .spade, number: .five)]
         
          // 3. then
-        XCTAssertEqual(Rank.Combination.isTriple(cards: cards), Card.Number.two)
+        XCTAssertEqual(Rank.Combination.isTriple(cards: cards),
+                       Card(suit: .club, number: .two))
     }
 
     func testIsTripleFail() {
@@ -112,7 +113,9 @@ class RankTests: XCTestCase {
                       Card(suit: .spade, number: .queen)]
           // 3. then
         XCTAssertEqual(Rank.Combination.isTwoPair(cards: cards),
-                       [Card.Number.two, Card.Number.three, Card.Number.four])
+                       [Card(suit: .club, number: .two),
+                        Card(suit: .club, number: .three),
+                        Card(suit: .club, number: .four)])
     }
     
     func testIsTwoPairFail() {
@@ -137,7 +140,7 @@ class RankTests: XCTestCase {
                      Card(suit: .spade, number: .six)]
         
         // 3. then
-        XCTAssertEqual(Rank.Combination.isOnePair(cards: cards), Card.Number.two)
+        XCTAssertEqual(Rank.Combination.isOnePair(cards: cards), Card(suit: .club, number: .two))
     }
     
     func testIsOnePairFail() {
@@ -159,10 +162,12 @@ class RankTests: XCTestCase {
                      Card(suit: .diamond, number: .queen),
                      Card(suit: .heart, number: .three)]
         
-        XCTAssertEqual(Rank.Combination.isOneCard(cards: cards), Card.Number.queen)
+        XCTAssertEqual(Rank.Combination.isOneCard(cards: cards),
+                       Card(suit: .club, number: .queen))
         
         cards = [Card(suit: .club, number: Card.Number.ace)]
-        XCTAssertEqual(Rank.Combination.isOneCard(cards: cards), Card.Number.ace)
+        XCTAssertEqual(Rank.Combination.isOneCard(cards: cards),
+                       Card(suit: .club, number: .ace))
     }
     
     func testIsOneCardFail() {
