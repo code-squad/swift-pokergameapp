@@ -36,7 +36,6 @@ class GameSegmentedControlStackView: UIStackView {
     private func setup(){
         setupProperties()
         setupSegmentedControls()
-        addSegmentedControls()
     }
     
     private func setupProperties(){
@@ -48,6 +47,7 @@ class GameSegmentedControlStackView: UIStackView {
     
     private func setupSegmentedControls() {
         addTargets()
+        addSegmentedControls()
     }
     
     private func addTargets() {

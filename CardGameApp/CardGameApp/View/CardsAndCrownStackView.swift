@@ -31,8 +31,8 @@ class CardsAndCrownStackView: UIStackView {
     
     private func setup() {
         setupStack()
-        addOverlappedCardsStackView()
-        addAndSetConstraintForCrownImageView()
+        setupOverlappedCardsStackView()
+        setupCrownImageView()
     }
     
     private func setupStack() {
@@ -42,13 +42,21 @@ class CardsAndCrownStackView: UIStackView {
         translatesAutoresizingMaskIntoConstraints = false
     }
     
+    private func setupOverlappedCardsStackView() {
+        addOverlappedCardsStackView()
+    }
+    
     private func addOverlappedCardsStackView() {
         addArrangedSubview(overlappedCardsStackView)
     }
     
-    private func addAndSetConstraintForCrownImageView() {
-        addSubview(crownImageView)
+    private func setupCrownImageView() {
+        addCrownImageView()
         setConstraintCrownImageView()
+    }
+    
+    private func addCrownImageView(){
+        addSubview(crownImageView)
     }
     
     private func setConstraintCrownImageView() {
