@@ -257,26 +257,22 @@ class Ranks {
     
     private func generateRanks(cards: [Card]) {
         var cards = cards
-        
-        if let result = checkFourCardAndUpdateCards(cards: cards) {
-            cards = result
+        if let updatedCards = checkFourCardAndUpdateCards(cards: cards) {
+            cards = updatedCards
         }
-        
-        if let result = checkStraightAndUpdateCards(cards: cards) {
-            cards = result
+        if let updatedCards = checkStraightAndUpdateCards(cards: cards) {
+            cards = updatedCards
         }
-        
-        if let result = checkTripleAndUpdateCards(cards: cards) {
-            cards = result
-            if let result = checkTripleAndUpdateCards(cards: cards) {
-                cards = result
+        if let updatedCards = checkTripleAndUpdateCards(cards: cards) {
+            cards = updatedCards
+            if let updatedCards = checkTripleAndUpdateCards(cards: cards) {
+                cards = updatedCards
             }
         }
-        
-        if let result = checkTwoPairAndUpdateCards(cards: cards) {
-            cards = result
-        } else if let result = checkOnePairAndUpdateCards(cards: cards) {
-            cards = result
+        if let updatedCards = checkTwoPairAndUpdateCards(cards: cards) {
+            cards = updatedCards
+        } else if let updatedCards = checkOnePairAndUpdateCards(cards: cards) {
+            cards = updatedCards
         }
         checkOneCard(cards: cards)
     }
