@@ -70,18 +70,10 @@ extension Card: Hashable {
     }
 }
 
-extension Card.Number: Comparable {
+extension Card: CustomStringConvertible {
     
-    static func == (lhs: Card.Number, rhs: Card.Number) -> Bool {
-           return lhs.rawValue == rhs.rawValue
-    }
-    
-    static func < (lhs: Card.Number, rhs: Card.Number) -> Bool {
-        return lhs.rawValue < rhs.rawValue
-    }
-    
-    func isEqual(other: Card.Number, distance: Int) -> Bool {
-        return self.rawValue == other.rawValue + distance
+    public var description: String {
+        return suit.description + number.description
     }
 }
 
@@ -121,11 +113,18 @@ extension Card.Number: CustomStringConvertible {
     
 }
 
-extension Card: CustomStringConvertible {
+extension Card.Number: Comparable {
     
-    public var description: String {
-        return suit.description + number.description
+    static func == (lhs: Card.Number, rhs: Card.Number) -> Bool {
+        return lhs.rawValue == rhs.rawValue
     }
     
+    static func < (lhs: Card.Number, rhs: Card.Number) -> Bool {
+        return lhs.rawValue < rhs.rawValue
+    }
+    
+    func isEqual(other: Card.Number, distance: Int) -> Bool {
+        return self.rawValue == other.rawValue + distance
+    }
 }
 
