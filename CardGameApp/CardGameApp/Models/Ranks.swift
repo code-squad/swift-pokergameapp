@@ -68,7 +68,7 @@ extension Ranks {
         return nil
     }
     
-    private func isStraight(cards: [Card]) -> Card? {
+    private func isStraight(cards: [Card]) -> [Card]? {
         let fiveCardsCount = 5
         guard isLonger(count: cards.count, than: fiveCardsCount) else {
             return nil
@@ -82,11 +82,13 @@ extension Ranks {
         for index in 0 ... sameNumberCards.count - 5 {
             var curCard = sameNumberCards[index].key
             var count = 0
+            var straights = [curCard]
             for j in index + 1 ..< sameNumberCards.count {
                 let next = sameNumberCards[j].key
                 guard curCard.isEqual(other: next, distance: -1) else {
                     break
                 }
+                straights.append(next)
                 curCard = next
                 count += 1
             }
@@ -94,35 +96,20 @@ extension Ranks {
             if count > 4 {
                 return nil
             } else if count == 4 {
-                return curCard
+                return straights
             }
         }
         return nil
     }
     
-    private func removeCardsForStraight(cards: [Card], maxCard : Card) -> [Card] {
-        var isFirst = false
-        var isSecond = false
-        var isThird = false
-        var isFourth = false
-        var isFifth = false
-        var newCards = [Card]()
-        for card in cards {
-            if maxCard.isEqual(other: card, distance: 4), !isFirst {
-                isFirst = true
-            } else if maxCard.isEqual(other: card, distance: 3), !isSecond {
-                isSecond = true
-            } else if maxCard.isEqual(other: card, distance: 2), !isThird {
-                isThird = true
-            } else if maxCard.isEqual(other: card, distance: 1), !isFourth {
-                isFourth = true
-            } else if maxCard.isEqual(other: card, distance: 0), !isFifth {
-                isFifth = true
-            } else {
-                newCards.append(card)
+    private func removeStraights(cards: [Card], straights : [Card]) -> [Card] {
+        var cards = cards
+        for straight in straights {
+            cards.removeAll { (card) -> Bool in
+                straight.isDeepEqual(other: card)
             }
         }
-        return newCards
+        return cards
     }
     
     private func isTriple(cards: [Card]) -> Card? {
@@ -214,9 +201,9 @@ class Ranks {
             cards = remove(cards: cards, with: fourCard)
         }
         
-        if let maxCard = isStraight(cards: cards) {
-            ranks.append(Rank(card: maxCard, combination: .straight))
-            cards = removeCardsForStraight(cards: cards, maxCard: maxCard)
+        if let straights = isStraight(cards: cards) {
+            ranks.append(Rank(card: straights.last!, combination: .straight))
+            cards = removeStraights(cards: cards, straights: straights)
         }
         
         if let triple = isTriple(cards: cards) {
