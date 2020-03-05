@@ -19,6 +19,7 @@ struct Rank: Comparable {
         }
         return lhs.combination < rhs.combination
     }
+    
 }
 
 extension Rank {
