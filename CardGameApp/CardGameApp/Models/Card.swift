@@ -62,6 +62,10 @@ extension Card: Comparable {
     func isEqual(other card: Card, distance: Int) -> Bool {
         return self.number.isEqual(other: card.number, distance: distance)
     }
+    
+    func isDeepEqual(other card: Card) -> Bool {
+        return (suit == card.suit) && (number == card.number)
+    }
 }
 
 extension Card: Hashable {

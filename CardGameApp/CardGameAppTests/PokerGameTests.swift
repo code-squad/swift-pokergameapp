@@ -19,7 +19,7 @@ class PokerGameTests: XCTestCase {
     func testStartNewRound() {
         //1. given
         let gameStut = GameStut.five
-        let participants = Participants(playersNum: .three)
+        let participants = Participants(playersNumber: .three)
         game = PokerGame(gameStut: gameStut,
                          participants: participants,
                          deck: Deck())
@@ -66,7 +66,7 @@ class PokerGameTests: XCTestCase {
         
         //1. given
         game = PokerGame(gameStut: .seven,
-                         participants: Participants(playersNum: .four),
+                         participants: Participants(playersNumber: .four),
                          deck: Deck())
         //2. when
         game.startNewRound()
