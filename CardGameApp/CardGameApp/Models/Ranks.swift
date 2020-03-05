@@ -90,6 +90,7 @@ extension Ranks {
                 curCard = next
                 count += 1
             }
+            
             if count > 4 {
                 return nil
             } else if count == 4 {
