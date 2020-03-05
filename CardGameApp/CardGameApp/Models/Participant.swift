@@ -42,7 +42,10 @@ class Participant {
     func receive(card: Card) {
         cards.append(card)
     }
-
+    
+    func updateRanks() {
+        ranks = Ranks(cards: cards)
+    }
 }
 
 extension Participant: CardSearchable {
@@ -51,11 +54,4 @@ extension Participant: CardSearchable {
         cards.forEach{ handler($0) }
     }
     
-}
-
-extension Participant {
-    
-    func updateRanks() {
-        ranks = Ranks(cards: cards)
-    }
 }
