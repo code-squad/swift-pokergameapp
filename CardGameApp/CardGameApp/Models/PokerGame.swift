@@ -27,7 +27,7 @@ class PokerGame {
         shuffle()
         handOutCards()
         updateParticipantRanks()
-        determineWinner()
+        participants.determineWinner()
     }
     
     private func resetParticipantsCards() {
@@ -60,18 +60,7 @@ class PokerGame {
             participant.updateRanks()
         }
     }
-    
-    private func determineWinner() {
-        var rankedParticipants = [Participant]()
-        participants.searchParticipants { (participant) -> (Void) in
-            rankedParticipants.append(participant)
-        }
-        
-        if let participant = rankedParticipants.max() {
-            participant.setWinner()
-        }
-    }
-    
+
     func hasEnoughCards() -> Bool {
         return deck.count >= stutCount * participantsCount
     }
