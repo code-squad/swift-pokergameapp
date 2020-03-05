@@ -37,9 +37,10 @@ extension Rank {
         
         static func isFourCard(cards: [Card]) -> Card? {
             let fourCardsCount = 4
-            guard cards.count >= fourCardsCount else {
+            guard isLonger(count: cards.count, than: fourCardsCount) else {
                 return nil
             }
+            
             let sameNumberCards = generateNums(cards: cards)
             let sameCardsCount = 4
             for sameNumberCard in sameNumberCards {
@@ -52,9 +53,10 @@ extension Rank {
         
         static func isStraight(cards: [Card]) -> Card? {
             let fiveCardsCount = 5
-            guard cards.count >= fiveCardsCount else {
+            guard isLonger(count: cards.count, than: fiveCardsCount) else {
                 return nil
             }
+        
             let sameNumberCards = generateNums(cards: cards)
             guard sameNumberCards.count >= fiveCardsCount else {
                 return nil
@@ -82,9 +84,10 @@ extension Rank {
         
         static func isTriple(cards: [Card]) -> Card? {
             let threeCardsCount = 3
-            guard cards.count >= threeCardsCount else {
+            guard isLonger(count: cards.count, than: threeCardsCount) else {
                 return nil
             }
+        
             let sameNumberCards = generateNums(cards: cards)
             let sameCardsCount = 3
             for num in sameNumberCards {
@@ -97,12 +100,12 @@ extension Rank {
         
         static func isTwoPair(cards: [Card]) -> [Card]? {
             let fourCardsCount = 4
-            guard cards.count >= fourCardsCount else {
+            guard isLonger(count: cards.count, than: fourCardsCount) else {
                 return nil
             }
+            
             let sameNumberCards = generateNums(cards: cards)
             let sameCardsCount = 2
-            
             var count = 0
             var twoPairCards = [Card]()
             for num in sameNumberCards {
@@ -120,9 +123,10 @@ extension Rank {
         
         static func isOnePair(cards: [Card]) -> Card? {
             let twoCardsCount = 2
-            guard cards.count >= twoCardsCount else {
+            guard isLonger(count: cards.count, than: twoCardsCount) else {
                 return nil
             }
+        
             let sameNumberCards = generateNums(cards: cards)
             let sameCardsCount = 2
             for sameNumberCard in sameNumberCards {
@@ -134,12 +138,17 @@ extension Rank {
         }
         
         static func isOneCard(cards: [Card]) -> Card? {
-            let noCardsCount = 0
-            guard cards.count != noCardsCount else {
+            let oneCardsCount = 1
+            guard isLonger(count: cards.count, than: oneCardsCount) else {
                 return nil
             }
+            
             let sameNumberCards = generateNums(cards: cards)
             return sameNumberCards.last!.key
+        }
+        
+        private static func isLonger(count: Int, than size: Int) -> Bool {
+            return count >= size
         }
         
         private static func generateNums(cards: [Card]) -> [(key: Card, value: Int)] {
