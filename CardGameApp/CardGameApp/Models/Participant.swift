@@ -7,69 +7,15 @@
 //
 
 import Foundation
-extension Participant {
-    func searchRank(handler: (Rank) -> (Void)) {
-        ranks.forEach{ handler($0) }
-    }
-}
 
 extension Participant: Comparable {
     
-    static func < (lhs: Participant, rhs: Participant) -> Bool {
-        var lhsRanks = [Rank]()
-        lhs.searchRank {
-            lhsRanks.append($0)
-        }
-        
-        var rhsRanks = [Rank]()
-        rhs.searchRank {
-            rhsRanks.append($0)
-        }
-        
-        let min = lhsRanks.count > rhsRanks.count ? lhsRanks.count : rhsRanks.count
-        for index in 0 ..< min {
-            if lhsRanks[index].combination != rhsRanks[index].combination {
-                return lhsRanks[index].combination < rhsRanks[index].combination
-            }
-        }
-        
-        if lhsRanks.count > min {
-            return false
-        }
-        
-        if rhsRanks.count > min {
-            return true
-        }
-        
-        for index in 0 ..< min {
-            if lhsRanks[index].card != rhsRanks[index].card {
-                return lhsRanks[index].card < rhsRanks[index].card
-            }
-        }
-        return false
-    }
-    
     static func == (lhs: Participant, rhs: Participant) -> Bool {
-        var lhsRanks = [Rank]()
-        lhs.searchRank {
-            lhsRanks.append($0)
-        }
-        
-        var rhsRanks = [Rank]()
-        rhs.searchRank {
-            rhsRanks.append($0)
-        }
-        
-        guard lhsRanks.count == rhsRanks.count else {
-            return false
-        }
-        
-        for index in 0 ..< lhsRanks.count {
-            guard lhsRanks[index] == rhsRanks[index] else {
-                return false
-            }
-        }
-        return true
+        return lhs.ranks == rhs.ranks
+    }    
+    
+    static func < (lhs: Participant, rhs: Participant) -> Bool {
+        return lhs.ranks < rhs.ranks
     }
     
 }
@@ -80,7 +26,7 @@ class Participant {
     var cardsCount: Int {
         return cards.count
     }
-    private var ranks = [Rank]()
+    private var ranks: Ranks!
     private var cards = [Card]()
     
     
@@ -90,7 +36,7 @@ class Participant {
     
     func reset() {
         cards = [Card]()
-        ranks = [Rank]()
+        ranks = nil
     }
     
     func receive(card: Card) {
@@ -110,6 +56,6 @@ extension Participant: CardSearchable {
 extension Participant {
     
     func updateRanks() {
-        ranks = Rank.checkCombiAndGenerateRanks(with: cards)
+        ranks = Ranks(cards: cards)
     }
 }
