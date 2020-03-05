@@ -22,16 +22,16 @@ extension ViewController: GameSegmentedControlStackViewDelegate {
                              participants: participants, deck: deck)
         
         if !game.hasEnoughCards() {
-            game = resetDeckAndGenerateGame(gameStut: gameStut,
+            deck.reset()
+            shuffleDeck()
+            game = generateGame(gameStut: gameStut,
                                             participants: participants)
         }
         game.startNewRound()
         participantsStackView.updateView(game: game)
     }
     
-    private func resetDeckAndGenerateGame(gameStut: GameStut, participants: Participants) -> PokerGame {
-        deck.reset()
-        shuffleDeck()
+    private func generateGame(gameStut: GameStut, participants: Participants) -> PokerGame {
         return PokerGame(gameStut: gameStut,
                          participants: participants,
                          deck: deck)
@@ -49,7 +49,9 @@ extension ViewController {
     
     private func startNewRound() {
         if !game.hasEnoughCards() {
-            game = resetDeckAndGenerateGame(gameStut: game.gameStut,
+            deck.reset()
+            shuffleDeck()
+            game = generateGame(gameStut: game.gameStut,
                                             participants: game.participants)
         }
         game.startNewRound()
