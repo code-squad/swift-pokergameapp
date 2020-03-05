@@ -75,12 +75,13 @@ extension Participant: Comparable {
 
 class Participant {
     
-    private var cards = [Card]()
     let name: String
     var cardsCount: Int {
         return cards.count
     }
-    var ranks = [Rank]()
+    private var ranks = [Rank]()
+    private var cards = [Card]()
+    
     
     init(name: String) {
         self.name = name
