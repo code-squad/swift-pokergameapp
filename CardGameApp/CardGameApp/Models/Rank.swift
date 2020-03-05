@@ -13,6 +13,11 @@ struct Rank: Comparable {
     let card: Card
     let combination: Combination
     
+    static func == (lhs: Rank, rhs: Rank) -> Bool {
+        return (lhs.combination == rhs.combination) &&
+            (lhs.card == rhs.card)
+    }
+    
     static func < (lhs: Rank, rhs: Rank) -> Bool {
         if lhs.combination == rhs.combination {
             return lhs.card < rhs.card
