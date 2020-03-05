@@ -69,4 +69,7 @@ class ParticipantStackView: UIStackView {
         cardsCrownStackView.updateView(participant: participant)
     }
     
+    func updateWinnerView(participant: Participant) {
+        cardsCrownStackView.updateCrownViewIsNotHidden()
+    }
 }
