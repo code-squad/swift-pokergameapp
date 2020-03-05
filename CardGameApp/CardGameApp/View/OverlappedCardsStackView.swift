@@ -22,7 +22,7 @@ class OverlappedCardsStackView: UIStackView {
     
     private func setup() {
         setupStack()
-        addCardsImageViewForDefault()
+        setupCards()
     }
     
     private func setupStack() {
@@ -32,6 +32,10 @@ class OverlappedCardsStackView: UIStackView {
         translatesAutoresizingMaskIntoConstraints = false
     }
     
+    private func setupCards() {
+        addCardsImageViewForDefault()
+    }
+
     private func addCardsImageViewForDefault() {
         GameStut.seven.forEach {
             addArrangedSubview(generateCardImageViewDefault())

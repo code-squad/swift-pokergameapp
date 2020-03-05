@@ -30,7 +30,9 @@ class ParticipantStackView: UIStackView {
     
     private func setup() {
         setupProperties()
-        addLabelAndCardsStackView()
+        setupLabel()
+        setupCardsCrownStackView()
+        addCardsCrownStackView()
     }
     
     private func setupProperties() {
@@ -38,8 +40,19 @@ class ParticipantStackView: UIStackView {
         translatesAutoresizingMaskIntoConstraints = false
     }
     
-    private func addLabelAndCardsStackView() {
+    private func setupLabel() {
+        addLabel()
+    }
+    
+    private func addLabel() {
         addArrangedSubview(participantLabel)
+    }
+    
+    private func setupCardsCrownStackView() {
+        addCardsCrownStackView()
+    }
+    
+    private func addCardsCrownStackView() {
         addArrangedSubview(cardsAndCrownStackView)
     }
     

@@ -22,7 +22,7 @@ class ParticipantsStackView: UIStackView {
     
     private func setup() {
         setupProperties()
-        addParticipantsStackViews()
+        setupParticipantsStackViews()
     }
     
     private func setupProperties() {
@@ -30,6 +30,10 @@ class ParticipantsStackView: UIStackView {
         distribution = .fillEqually
         spacing = 20
         translatesAutoresizingMaskIntoConstraints = false
+    }
+    
+    private func setupParticipantsStackViews() {
+        addParticipantsStackViews()
     }
     
     private func addParticipantsStackViews() {
