@@ -90,6 +90,7 @@ class Participant {
     
     func reset() {
         cards = [Card]()
+        ranks = [Rank]()
     }
     
     func receive(card: Card) {
