@@ -37,24 +37,20 @@ extension Ranks {
     }
     
     private func isLonger(count: Int, than size: Int) -> Bool {
-           return count >= size
-       }
-       
+        return count >= size
+    }
+    
+    private func remove(cards: [Card], with card: Card) -> [Card] {
+        var cards = cards
+        cards.removeAll { (curCard) -> Bool in
+            return curCard == card
+        }
+        return cards
+    }
+    
 }
 
 extension Ranks {
-    
-    private func checkFourCardAndUpdateCards(cards: [Card]) -> [Card]? {
-        var cards = cards
-        if let fourCard = isFourCard(cards: cards) {
-            ranks.append(Rank(card: fourCard, combination: .fourCard))
-            cards.removeAll { (card) -> Bool in
-                return card == fourCard
-            }
-            return cards
-        }
-        return nil
-    }
     
     private func isFourCard(cards: [Card]) -> Card? {
         let fourCardsCount = 4
@@ -68,16 +64,6 @@ extension Ranks {
             if sameNumberCard.value == sameCardsCount {
                 return sameNumberCard.key
             }
-        }
-        return nil
-    }
-    
-    private func checkStraightAndUpdateCards(cards: [Card]) -> [Card]? {
-        var cards = cards
-        if let maxCard = isStraight(cards: cards) {
-            ranks.append(Rank(card: maxCard, combination: .straight))
-            cards = removeCardsForStraight(cards: cards, maxCard: maxCard)
-            return cards
         }
         return nil
     }
@@ -138,46 +124,21 @@ extension Ranks {
         return newCards
     }
     
-    private func checkTripleAndUpdateCards(cards: [Card]) -> [Card]? {
-        var cards = cards
-        if let tripleCard = isTriple(cards: cards) {
-            ranks.append(Rank(card: tripleCard, combination: .triple))
-            cards.removeAll { (card) -> Bool in
-                return card == tripleCard
-            }
-            return cards
-        }
-        return nil
-    }
-    
     private func isTriple(cards: [Card]) -> Card? {
-         let threeCardsCount = 3
-         guard isLonger(count: cards.count, than: threeCardsCount) else {
-             return nil
-         }
-         
-         let sameNumberCards = generateNums(cards: cards)
-         let sameCardsCount = 3
-         for num in sameNumberCards {
-             if num.value == sameCardsCount {
-                 return num.key
-             }
-         }
-         return nil
-     }
-    
-    private func checkTwoPairAndUpdateCards(cards: [Card]) -> [Card]? {
-        var cards = cards
-        if let twoPairCards = isTwoPair(cards: cards) {
-            ranks.append(Rank(card: twoPairCards.last!, combination: .twoPair))
-            cards.removeAll { (card) -> Bool in
-                return twoPairCards.contains(card)
+        let threeCardsCount = 3
+        guard isLonger(count: cards.count, than: threeCardsCount) else {
+            return nil
+        }
+        
+        let sameNumberCards = generateNums(cards: cards)
+        let sameCardsCount = 3
+        for num in sameNumberCards {
+            if num.value == sameCardsCount {
+                return num.key
             }
-            return cards
         }
         return nil
     }
-    
     
     private func isTwoPair(cards: [Card]) -> [Card]? {
         let fourCardsCount = 4
@@ -202,17 +163,13 @@ extension Ranks {
         return nil
     }
     
-    private func checkOnePairAndUpdateCards(cards: [Card]) -> [Card]? {
-        var cards = cards
-        if let onePairCard = isOnePair(cards: cards) {
-            ranks.append(Rank(card: onePairCard, combination: .onePair))
-            cards.removeAll { (card) -> Bool in
-                return card == onePairCard
-            }
-            return cards
-        }
-        return nil
-    }
+    private func removeTwopairs(cards: [Card], twopairs: [Card]) -> [Card] {
+         var cards = cards
+         cards.removeAll { (card) -> Bool in
+             return twopairs.contains(card)
+         }
+         return cards
+     }
     
     private func isOnePair(cards: [Card]) -> Card? {
         let twoCardsCount = 2
@@ -228,13 +185,6 @@ extension Ranks {
             }
         }
         return nil
-    }
-    
-    
-    private func checkOneCard(cards: [Card]) {
-        if let oneCard = isOneCard(cards: cards) {
-            ranks.append(Rank(card: oneCard, combination: .oneCard))
-        }
     }
     
     private func isOneCard(cards: [Card]) -> Card? {
@@ -257,24 +207,37 @@ class Ranks {
     
     private func generateRanks(cards: [Card]) {
         var cards = cards
-        if let updatedCards = checkFourCardAndUpdateCards(cards: cards) {
-            cards = updatedCards
+        
+        if let fourCard = isFourCard(cards: cards) {
+            ranks.append(Rank(card: fourCard, combination: .fourCard))
+            cards = remove(cards: cards, with: fourCard)
         }
-        if let updatedCards = checkStraightAndUpdateCards(cards: cards) {
-            cards = updatedCards
+        
+        if let maxCard = isStraight(cards: cards) {
+            ranks.append(Rank(card: maxCard, combination: .straight))
+            cards = removeCardsForStraight(cards: cards, maxCard: maxCard)
         }
-        if let updatedCards = checkTripleAndUpdateCards(cards: cards) {
-            cards = updatedCards
-            if let updatedCards = checkTripleAndUpdateCards(cards: cards) {
-                cards = updatedCards
+        
+        if let triple = isTriple(cards: cards) {
+            ranks.append(Rank(card: triple, combination: .triple))
+            cards = remove(cards: cards, with: triple)
+            if let tripleCard = isTriple(cards: cards) {
+                ranks.append(Rank(card: tripleCard, combination: .triple))
+                cards = remove(cards: cards, with: tripleCard)
             }
         }
-        if let updatedCards = checkTwoPairAndUpdateCards(cards: cards) {
-            cards = updatedCards
-        } else if let updatedCards = checkOnePairAndUpdateCards(cards: cards) {
-            cards = updatedCards
+        
+        if let twoPairs = isTwoPair(cards: cards) {
+            ranks.append(Rank(card: twoPairs.last!, combination: .twoPair))
+            cards = removeTwopairs(cards: cards, twopairs: twoPairs)
+        } else if let onePair = isOnePair(cards: cards) {
+            ranks.append(Rank(card: onePair, combination: .onePair))
+            cards = remove(cards: cards, with: onePair)
         }
-        checkOneCard(cards: cards)
+        
+        if let oneCard = isOneCard(cards: cards) {
+            ranks.append(Rank(card: oneCard, combination: .oneCard))
+        }
     }
 }
 
