@@ -62,7 +62,7 @@ class PokerGame {
     }
 
     func hasEnoughCards() -> Bool {
-        return deck.count >= stutCount * participantsCount
+        return deck.count >= stutCount * participants.count
     }
     
     private var stutCount: Int {
@@ -71,14 +71,6 @@ class PokerGame {
             stutCount += 1
         }
         return stutCount
-    }
-    
-    private var participantsCount: Int {
-        var participantsCount = 0
-        participants.forEach {
-            participantsCount += 1
-        }
-        return participantsCount
     }
 }
 
