@@ -57,6 +57,16 @@ extension Card: Equatable {
     
 }
 
+extension Card.Number: Comparable {
+    static func < (lhs: Card.Number, rhs: Card.Number) -> Bool {
+        return lhs.rawValue < rhs.rawValue
+    }
+    
+    func isEqual(other: Card.Number, distance: Int) -> Bool {
+        return self.rawValue == other.rawValue + distance
+    }
+}
+
 extension Card.Suit: CustomStringConvertible {
     
     var description: String {
@@ -93,6 +103,7 @@ extension Card.Number: CustomStringConvertible {
     
 }
 
+
 extension Card: CustomStringConvertible {
     
     public var description: String {
@@ -100,3 +111,4 @@ extension Card: CustomStringConvertible {
     }
     
 }
+

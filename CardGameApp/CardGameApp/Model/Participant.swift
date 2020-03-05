@@ -7,15 +7,70 @@
 //
 
 import Foundation
+extension Participant {
+    func searchRank(handler: (Rank) -> (Void)) {
+        ranks.forEach{ handler($0) }
+    }
+}
 
-extension Card.Number: Comparable {
-    static func < (lhs: Card.Number, rhs: Card.Number) -> Bool {
-        return lhs.rawValue < rhs.rawValue
+extension Participant: Comparable {
+    static func < (lhs: Participant, rhs: Participant) -> Bool {
+        var lhsRanks = [Rank]()
+        lhs.searchRank {
+            lhsRanks.append($0)
+        }
+        
+        var rhsRanks = [Rank]()
+        rhs.searchRank {
+            rhsRanks.append($0)
+        }
+        
+        let min = lhsRanks.count > rhsRanks.count ? lhsRanks.count : rhsRanks.count
+        for index in 0 ..< min {
+            if lhsRanks[index].combination != rhsRanks[index].combination {
+                return lhsRanks[index].combination < rhsRanks[index].combination
+            }
+        }
+        
+        if lhsRanks.count > min {
+            return false
+        }
+        
+        if rhsRanks.count > min {
+            return true
+        }
+        
+        for index in 0 ..< min {
+            if lhsRanks[index].number != rhsRanks[index].number {
+                return lhsRanks[index].number < rhsRanks[index].number
+            }
+        }
+        return false
     }
     
-    func isEqual(other: Card.Number, distance: Int) -> Bool {
-        return self.rawValue == other.rawValue + distance
+    static func == (lhs: Participant, rhs: Participant) -> Bool {
+        var lhsRanks = [Rank]()
+        lhs.searchRank {
+            lhsRanks.append($0)
+        }
+        
+        var rhsRanks = [Rank]()
+        rhs.searchRank {
+            rhsRanks.append($0)
+        }
+        
+        guard lhsRanks.count == rhsRanks.count else {
+            return false
+        }
+        
+        for index in 0 ..< lhsRanks.count {
+            guard lhsRanks[index] == rhsRanks[index] else {
+                return false
+            }
+        }
+        return true
     }
+    
 }
 
 class Participant {
