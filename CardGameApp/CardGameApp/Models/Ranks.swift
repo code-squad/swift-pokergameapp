@@ -10,7 +10,7 @@ import Foundation
 
 extension Ranks {
     
-    private func generateNums(cards: [Card]) -> [(key: Card, value: Int)] {
+    private func generateCards(cards: [Card]) -> [(key: Card, value: Int)] {
         var sameNumberCards = [Card:Int]()
         for index in 0 ..< cards.count - 1 {
             let curCard = cards[index]
@@ -58,7 +58,7 @@ extension Ranks {
             return nil
         }
         
-        let sameNumberCards = generateNums(cards: cards)
+        let sameNumberCards = generateCards(cards: cards)
         let sameCardsCount = 4
         for sameNumberCard in sameNumberCards {
             if sameNumberCard.value == sameCardsCount {
@@ -74,7 +74,7 @@ extension Ranks {
             return nil
         }
         
-        let sameNumberCards = generateNums(cards: cards)
+        let sameNumberCards = generateCards(cards: cards)
         guard sameNumberCards.count >= fiveCardsCount else {
             return nil
         }
@@ -118,7 +118,7 @@ extension Ranks {
             return nil
         }
         
-        let sameNumberCards = generateNums(cards: cards)
+        let sameNumberCards = generateCards(cards: cards)
         let sameCardsCount = 3
         for num in sameNumberCards {
             if num.value == sameCardsCount {
@@ -134,7 +134,7 @@ extension Ranks {
             return nil
         }
         
-        let sameNumberCards = generateNums(cards: cards)
+        let sameNumberCards = generateCards(cards: cards)
         let sameCardsCount = 2
         var count = 0
         var twoPairCards = [Card]()
@@ -165,7 +165,7 @@ extension Ranks {
             return nil
         }
         
-        let sameNumberCards = generateNums(cards: cards)
+        let sameNumberCards = generateCards(cards: cards)
         let sameCardsCount = 2
         for sameNumberCard in sameNumberCards {
             if sameNumberCard.value == sameCardsCount {
@@ -181,7 +181,7 @@ extension Ranks {
             return nil
         }
         
-        let sameNumberCards = generateNums(cards: cards)
+        let sameNumberCards = generateCards(cards: cards)
         return sameNumberCards.last!.key
     }
 }
