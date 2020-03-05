@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5A3C71FA240CFC160071B010 /* RankTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A3C71F9240CFC160071B010 /* RankTests.swift */; };
 		5A6D163723FBD68300348A81 /* Participants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6D163623FBD68300348A81 /* Participants.swift */; };
 		5A6D173F23FEA20800348A81 /* GameSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6D173E23FEA20800348A81 /* GameSegmentedControl.swift */; };
 		5A6D174123FF9EE400348A81 /* GameSegmentedControlStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6D174023FF9EE400348A81 /* GameSegmentedControlStackView.swift */; };
@@ -52,7 +51,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		5A3C71F9240CFC160071B010 /* RankTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankTests.swift; sourceTree = "<group>"; };
 		5A6D163623FBD68300348A81 /* Participants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Participants.swift; sourceTree = "<group>"; };
 		5A6D173E23FEA20800348A81 /* GameSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSegmentedControl.swift; sourceTree = "<group>"; };
 		5A6D174023FF9EE400348A81 /* GameSegmentedControlStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSegmentedControlStackView.swift; sourceTree = "<group>"; };
@@ -181,7 +179,6 @@
 				5AE093D323EC216A0046DA63 /* DeckTests.swift */,
 				5AE093D523EC216A0046DA63 /* Info.plist */,
 				5AB183A823F804D5007419C4 /* PokerGameTests.swift */,
-				5A3C71F9240CFC160071B010 /* RankTests.swift */,
 			);
 			path = CardGameAppTests;
 			sourceTree = "<group>";
@@ -353,7 +350,6 @@
 			files = (
 				5AE093D423EC216A0046DA63 /* DeckTests.swift in Sources */,
 				5AB183A923F804D5007419C4 /* PokerGameTests.swift in Sources */,
-				5A3C71FA240CFC160071B010 /* RankTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
