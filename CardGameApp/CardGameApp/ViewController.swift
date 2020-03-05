@@ -11,9 +11,9 @@ import UIKit
 extension ViewController: GameSegmentedControlStackViewDelegate {
     
     func segmentedControlIndexChanged(gameStut: GameStut,
-                                      playersNum: Participants.PlayersNum) {
+                                      playersNumber: Participants.PlayersNumber) {
         startGame(gameStut: gameStut,
-                  participants: Participants(playersNum: playersNum))
+                  participants: Participants(playersNumber: playersNumber))
     }
     
 }
@@ -23,12 +23,12 @@ extension ViewController {
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         if motion == .motionShake {
             guard let gameStut = gameSegmentedControlStackView.gameStut(),
-                let playersNum = gameSegmentedControlStackView.playersNum() else {
+                let playersNumber = gameSegmentedControlStackView.playersNum() else {
                     return
             }
             
             startGame(gameStut: gameStut,
-                      participants: Participants(playersNum: playersNum))
+                      participants: Participants(playersNumber: playersNumber))
         }
     }
     
@@ -50,7 +50,7 @@ class ViewController: UIViewController {
         setupSegmentedControlsStackView()
         setupPaticipantsStackView()
         startGame(gameStut: .seven,
-                  participants: Participants(playersNum: .one))
+                  participants: Participants(playersNumber: .one))
     }
     
     private func setupBackground() {

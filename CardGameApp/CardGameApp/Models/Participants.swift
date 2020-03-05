@@ -9,7 +9,7 @@
 import Foundation
 
 class Participants {
-    enum PlayersNum: Int, CaseIterable {
+    enum PlayersNumber: Int, CaseIterable {
         case one = 1 , two, three, four
         
         func forEach(handler: () -> (Void)) {
@@ -18,17 +18,17 @@ class Participants {
             }
         }
     }
-    let playersNum: PlayersNum
+    let playersNumber: PlayersNumber
     private var players = [Participant]()
     private static let dealerCount = 1
     private let dealer = Participant(name: "Dealer")
     
-    init(playersNum: PlayersNum) {
-        self.playersNum = playersNum
-        initPlayers(playersNum: playersNum)
+    init(playersNumber: PlayersNumber) {
+        self.playersNumber = playersNumber
+        initPlayers(playersNum: playersNumber)
     }
     
-    private func initPlayers(playersNum: PlayersNum) {
+    private func initPlayers(playersNum: PlayersNumber) {
         var number = 1
         playersNum.forEach {
             players.append(Participant(name: "Player\(number)"))
@@ -51,7 +51,7 @@ extension Participants {
 extension Participants {
     
     static func forEachMaxCase(handler: () -> (Void)) {
-        if let max = Participants.PlayersNum.allCases.max() {
+        if let max = Participants.PlayersNumber.allCases.max() {
             let maxCount = max.rawValue + Participants.dealerCount
             for _ in 0 ..< maxCount {
                 handler()
@@ -60,7 +60,7 @@ extension Participants {
     }
     
     func forEach(handler: () -> (Void)) {
-        let participantsCount = playersNum.rawValue +
+        let participantsCount = playersNumber.rawValue +
             Participants.dealerCount
         for _ in 0 ..< participantsCount {
             handler()
@@ -69,15 +69,15 @@ extension Participants {
     
 }
 
-extension Participants.PlayersNum: Comparable {
+extension Participants.PlayersNumber: Comparable {
     
-    static func < (lhs: Participants.PlayersNum, rhs: Participants.PlayersNum) -> Bool {
+    static func < (lhs: Participants.PlayersNumber, rhs: Participants.PlayersNumber) -> Bool {
         return lhs.rawValue < rhs.rawValue
     }
     
 }
 
-extension Participants.PlayersNum: CustomStringConvertible {
+extension Participants.PlayersNumber: CustomStringConvertible {
     
     var description: String {
         return String(self.rawValue)
