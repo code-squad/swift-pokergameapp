@@ -16,7 +16,7 @@ class ParticipantStackView: UIStackView {
         return label
     }()
     
-    private let cardsAndCrownStackView = CardsAndCrownStackView()
+    private let cardsCrownStackView = CardsCrownStackView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -53,7 +53,7 @@ class ParticipantStackView: UIStackView {
     }
     
     private func addCardsCrownStackView() {
-        addArrangedSubview(cardsAndCrownStackView)
+        addArrangedSubview(cardsCrownStackView)
     }
     
     func updateView(name: String, participant: Participant) {
@@ -66,7 +66,7 @@ class ParticipantStackView: UIStackView {
     }
     
     private func updateCardsStackView(participant: Participant) {
-        cardsAndCrownStackView.updateView(participant: participant)
+        cardsCrownStackView.updateView(participant: participant)
     }
     
 }

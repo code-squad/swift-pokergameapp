@@ -15,7 +15,7 @@
 		5A6D174B2402429D00348A81 /* ParticipantStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6D174A2402429D00348A81 /* ParticipantStackView.swift */; };
 		5A6D174D240243B700348A81 /* OverlappedCardsStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6D174C240243B700348A81 /* OverlappedCardsStackView.swift */; };
 		5A91FC2B240DF6D700884D64 /* Rank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A91FC2A240DF6D700884D64 /* Rank.swift */; };
-		5A91FCBF240E8C9800884D64 /* CardsAndCrownStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A91FCBE240E8C9800884D64 /* CardsAndCrownStackView.swift */; };
+		5A91FCBF240E8C9800884D64 /* CardsCrownStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A91FCBE240E8C9800884D64 /* CardsCrownStackView.swift */; };
 		5AB1838F23F637E2007419C4 /* ANSI_C_RandomNumberGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB3F53523F545170021E3A0 /* ANSI_C_RandomNumberGenerator.swift */; };
 		5AB183A323F7E4E4007419C4 /* Participant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB183A223F7E4E4007419C4 /* Participant.swift */; };
 		5AB183A723F7F3C7007419C4 /* PokerGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB183A623F7F3C7007419C4 /* PokerGame.swift */; };
@@ -59,7 +59,7 @@
 		5A6D174A2402429D00348A81 /* ParticipantStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantStackView.swift; sourceTree = "<group>"; };
 		5A6D174C240243B700348A81 /* OverlappedCardsStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlappedCardsStackView.swift; sourceTree = "<group>"; };
 		5A91FC2A240DF6D700884D64 /* Rank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rank.swift; sourceTree = "<group>"; };
-		5A91FCBE240E8C9800884D64 /* CardsAndCrownStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsAndCrownStackView.swift; sourceTree = "<group>"; };
+		5A91FCBE240E8C9800884D64 /* CardsCrownStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsCrownStackView.swift; sourceTree = "<group>"; };
 		5AB183A223F7E4E4007419C4 /* Participant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Participant.swift; sourceTree = "<group>"; };
 		5AB183A623F7F3C7007419C4 /* PokerGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokerGame.swift; sourceTree = "<group>"; };
 		5AB183A823F804D5007419C4 /* PokerGameTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokerGameTests.swift; sourceTree = "<group>"; };
@@ -115,7 +115,7 @@
 				5A6D174023FF9EE400348A81 /* GameSegmentedControlStackView.swift */,
 				5A6D174424023D4800348A81 /* ParticipantsStackView.swift */,
 				5A6D174A2402429D00348A81 /* ParticipantStackView.swift */,
-				5A91FCBE240E8C9800884D64 /* CardsAndCrownStackView.swift */,
+				5A91FCBE240E8C9800884D64 /* CardsCrownStackView.swift */,
 				5A6D174C240243B700348A81 /* OverlappedCardsStackView.swift */,
 			);
 			path = View;
@@ -338,7 +338,7 @@
 				5AE093BF23EC21670046DA63 /* SceneDelegate.swift in Sources */,
 				5A6D174D240243B700348A81 /* OverlappedCardsStackView.swift in Sources */,
 				5A91FC2B240DF6D700884D64 /* Rank.swift in Sources */,
-				5A91FCBF240E8C9800884D64 /* CardsAndCrownStackView.swift in Sources */,
+				5A91FCBF240E8C9800884D64 /* CardsCrownStackView.swift in Sources */,
 				5ABC6AFE2404DBAC00EEAC46 /* GameStut.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
