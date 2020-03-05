@@ -108,7 +108,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		5A6D173D23FEA1E500348A81 /* View */ = {
+		5A6D173D23FEA1E500348A81 /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				5A6D173E23FEA20800348A81 /* GameSegmentedControl.swift */,
@@ -118,10 +118,10 @@
 				5A91FCBE240E8C9800884D64 /* CardsCrownStackView.swift */,
 				5A6D174C240243B700348A81 /* OverlappedCardsStackView.swift */,
 			);
-			path = View;
+			path = Views;
 			sourceTree = "<group>";
 		};
-		5AB183AC23F81456007419C4 /* Model */ = {
+		5AB183AC23F81456007419C4 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				5AE0943223F167BB0046DA63 /* Card.swift */,
@@ -133,7 +133,7 @@
 				5ABC6AFD2404DBAC00EEAC46 /* GameStut.swift */,
 				5A91FC2A240DF6D700884D64 /* Rank.swift */,
 			);
-			path = Model;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		5AE093B023EC21670046DA63 = {
@@ -159,8 +159,8 @@
 		5AE093BB23EC21670046DA63 /* CardGameApp */ = {
 			isa = PBXGroup;
 			children = (
-				5A6D173D23FEA1E500348A81 /* View */,
-				5AB183AC23F81456007419C4 /* Model */,
+				5A6D173D23FEA1E500348A81 /* Views */,
+				5AB183AC23F81456007419C4 /* Models */,
 				5AE093BC23EC21670046DA63 /* AppDelegate.swift */,
 				5AE093BE23EC21670046DA63 /* SceneDelegate.swift */,
 				5AE093C023EC21670046DA63 /* ViewController.swift */,
