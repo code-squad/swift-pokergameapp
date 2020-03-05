@@ -13,12 +13,8 @@ extension Card.Number: Comparable {
         return lhs.rawValue < rhs.rawValue
     }
     
-    func isEqual(plus: Int, other: Card.Number) -> Bool {
-        return self.rawValue + plus == other.rawValue
-    }
-    
-    func isEqual(minus: Int, other: Card.Number) -> Bool {
-        return self.rawValue - minus == other.rawValue
+    func isEqual(other: Card.Number, distance: Int) -> Bool {
+        return self.rawValue == other.rawValue + distance
     }
 }
 
