@@ -65,7 +65,7 @@ extension Rank {
                 var count = 0
                 for j in index + 1 ..< nums.count {
                     let next = nums[j].key
-                    guard curNum.isEqual(plus: 1, other: next) else {
+                    guard curNum.isEqual(other: next, distance: -1) else {
                         break
                     }
                     curNum = next
@@ -257,15 +257,15 @@ extension Rank {
         var isFifth = false
         var newCards = [Card]()
         for card in cards {
-            if number.isEqual(minus: 4, other: card.number), !isFirst {
+            if number.isEqual(other: card.number, distance: 4), !isFirst {
                 isFirst = true
-            } else if number.isEqual(minus: 3, other: card.number), !isSecond {
+            } else if number.isEqual(other: card.number, distance: 3), !isSecond {
                 isSecond = true
-            } else if number.isEqual(minus: 2, other: card.number), !isThird {
+            } else if number.isEqual(other: card.number, distance: 2), !isThird {
                 isThird = true
-            } else if number.isEqual(minus: 1, other: card.number), !isFourth {
+            } else if number.isEqual(other: card.number, distance: 1), !isFourth {
                 isFourth = true
-            } else if number.isEqual(minus: 0, other: card.number), !isFifth {
+            } else if number.isEqual(other: card.number, distance: 0), !isFifth {
                 isFifth = true
             } else {
                 newCards.append(card)
