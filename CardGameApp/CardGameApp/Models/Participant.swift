@@ -8,18 +8,6 @@
 
 import Foundation
 
-extension Participant: Comparable {
-    
-    static func == (lhs: Participant, rhs: Participant) -> Bool {
-        return lhs.ranks == rhs.ranks
-    }    
-    
-    static func < (lhs: Participant, rhs: Participant) -> Bool {
-        return lhs.ranks < rhs.ranks
-    }
-    
-}
-
 class Participant {
     
     let name: String
@@ -55,3 +43,16 @@ extension Participant: CardSearchable {
     }
     
 }
+
+extension Participant: Comparable {
+    
+    static func == (lhs: Participant, rhs: Participant) -> Bool {
+        return lhs.ranks == rhs.ranks
+    }
+    
+    static func < (lhs: Participant, rhs: Participant) -> Bool {
+        return lhs.ranks < rhs.ranks
+    }
+    
+}
+
