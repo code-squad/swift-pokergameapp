@@ -9,6 +9,7 @@
 import Foundation
 
 class Participants {
+    
     enum PlayersNumber: Int, CaseIterable {
         case one = 1 , two, three, four
         

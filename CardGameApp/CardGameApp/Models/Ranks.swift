@@ -184,9 +184,11 @@ extension Ranks {
         let sameNumberCards = generateCards(cards: cards)
         return sameNumberCards.last!.key
     }
+    
 }
 
 class Ranks {
+    
     private var ranks = [Rank]()
     
     init(cards: [Card]) {
@@ -227,6 +229,7 @@ class Ranks {
             ranks.append(Rank(card: oneCard, combination: .oneCard))
         }
     }
+    
 }
 
 extension Ranks: Comparable {
@@ -268,6 +271,7 @@ extension Ranks: Comparable {
         }
         return false
     }
+    
 }
 
 

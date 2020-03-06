@@ -41,5 +41,6 @@ extension Rank {
             return lhs.rawValue < rhs.rawValue
         }
     }
+    
 }
 

@@ -77,4 +77,5 @@ class CardsCrownStackView: UIStackView {
     func updateCrownViewIsNotHidden() {
         crownImageView.isHidden = false
     }
+    
 }
