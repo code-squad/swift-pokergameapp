@@ -130,5 +130,6 @@ extension Card.Number: Comparable {
     func isEqual(other: Card.Number, distance: Int) -> Bool {
         return self.rawValue == other.rawValue + distance
     }
+    
 }
 
