@@ -8,44 +8,47 @@
 
 import Foundation
 
-extension Ranks {
+class Ranks {
     
-    private func generateCards(cards: [Card]) -> [(key: Card, value: Int)] {
-        var sameNumberCards = [Card:Int]()
-        for index in 0 ..< cards.count - 1 {
-            let curCard = cards[index]
-            guard !sameNumberCards.keys.contains(curCard) else {
-                continue
-            }
-            
-            var count = 1
-            for j in index + 1 ..< cards.count {
-                if curCard == cards[j] {
-                    count += 1
-                }
-            }
-            sameNumberCards[curCard] = count
-        }
-        
-        if !sameNumberCards.keys.contains(cards.last!) {
-            sameNumberCards[cards.last!] = 1
-        }
-        
-        return sameNumberCards.sorted {
-            $0.0 < $1.0
-        }
+    private var ranks = [Rank]()
+    
+    init(cards: [Card]) {
+        generateRanks(cards: cards)
     }
     
-    private func isLonger(count: Int, than size: Int) -> Bool {
-        return count >= size
-    }
-    
-    private func remove(cards: [Card], with card: Card) -> [Card] {
+    private func generateRanks(cards: [Card]) {
         var cards = cards
-        cards.removeAll { (curCard) -> Bool in
-            return curCard == card
+        
+        if let fourCard = isFourCard(cards: cards) {
+            ranks.append(Rank(card: fourCard, combination: .fourCard))
+            cards = remove(cards: cards, with: fourCard)
         }
-        return cards
+        
+        if let straights = isStraight(cards: cards) {
+            ranks.append(Rank(card: straights.last!, combination: .straight))
+            cards = removeStraights(cards: cards, straights: straights)
+        }
+        
+        if let triple = isTriple(cards: cards) {
+            ranks.append(Rank(card: triple, combination: .triple))
+            cards = remove(cards: cards, with: triple)
+            if let tripleCard = isTriple(cards: cards) {
+                ranks.append(Rank(card: tripleCard, combination: .triple))
+                cards = remove(cards: cards, with: tripleCard)
+            }
+        }
+        
+        if let twoPairs = isTwoPair(cards: cards) {
+            ranks.append(Rank(card: twoPairs.last!, combination: .twoPair))
+            cards = removeTwopairs(cards: cards, twopairs: twoPairs)
+        } else if let onePair = isOnePair(cards: cards) {
+            ranks.append(Rank(card: onePair, combination: .onePair))
+            cards = remove(cards: cards, with: onePair)
+        }
+        
+        if let oneCard = isOneCard(cards: cards) {
+            ranks.append(Rank(card: oneCard, combination: .oneCard))
+        }
     }
     
 }
@@ -187,47 +190,44 @@ extension Ranks {
     
 }
 
-class Ranks {
+extension Ranks {
     
-    private var ranks = [Rank]()
-    
-    init(cards: [Card]) {
-        generateRanks(cards: cards)
+    private func generateCards(cards: [Card]) -> [(key: Card, value: Int)] {
+        var sameNumberCards = [Card:Int]()
+        for index in 0 ..< cards.count - 1 {
+            let curCard = cards[index]
+            guard !sameNumberCards.keys.contains(curCard) else {
+                continue
+            }
+            
+            var count = 1
+            for j in index + 1 ..< cards.count {
+                if curCard == cards[j] {
+                    count += 1
+                }
+            }
+            sameNumberCards[curCard] = count
+        }
+        
+        if !sameNumberCards.keys.contains(cards.last!) {
+            sameNumberCards[cards.last!] = 1
+        }
+        
+        return sameNumberCards.sorted {
+            $0.0 < $1.0
+        }
     }
     
-    private func generateRanks(cards: [Card]) {
+    private func isLonger(count: Int, than size: Int) -> Bool {
+        return count >= size
+    }
+    
+    private func remove(cards: [Card], with card: Card) -> [Card] {
         var cards = cards
-        
-        if let fourCard = isFourCard(cards: cards) {
-            ranks.append(Rank(card: fourCard, combination: .fourCard))
-            cards = remove(cards: cards, with: fourCard)
+        cards.removeAll { (curCard) -> Bool in
+            return curCard == card
         }
-        
-        if let straights = isStraight(cards: cards) {
-            ranks.append(Rank(card: straights.last!, combination: .straight))
-            cards = removeStraights(cards: cards, straights: straights)
-        }
-        
-        if let triple = isTriple(cards: cards) {
-            ranks.append(Rank(card: triple, combination: .triple))
-            cards = remove(cards: cards, with: triple)
-            if let tripleCard = isTriple(cards: cards) {
-                ranks.append(Rank(card: tripleCard, combination: .triple))
-                cards = remove(cards: cards, with: tripleCard)
-            }
-        }
-        
-        if let twoPairs = isTwoPair(cards: cards) {
-            ranks.append(Rank(card: twoPairs.last!, combination: .twoPair))
-            cards = removeTwopairs(cards: cards, twopairs: twoPairs)
-        } else if let onePair = isOnePair(cards: cards) {
-            ranks.append(Rank(card: onePair, combination: .onePair))
-            cards = remove(cards: cards, with: onePair)
-        }
-        
-        if let oneCard = isOneCard(cards: cards) {
-            ranks.append(Rank(card: oneCard, combination: .oneCard))
-        }
+        return cards
     }
     
 }
