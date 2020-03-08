@@ -12,7 +12,7 @@ protocol SegmentedControlProtocol: class {
     func segmentControlDidChange()
 }
 
-class GameModeSegmentControl : UISegmentedControl{
+class GameModeSegmentedControl : UISegmentedControl{
     
     private var gameMode = GameMode.fiveCardStud
     let gameModes: [String] = ["5 Cards","7 Cards"]
@@ -47,7 +47,7 @@ class GameModeSegmentControl : UISegmentedControl{
     }
 }
 
-class NumbersOfPlayersSegmentControl: UISegmentedControl {
+class NumbersOfPlayersSegmentedControl: UISegmentedControl {
     private var numbersOfPlayers = NumbersOfPlayers.four
     let numbersOfPlayersList: [String] = ["2명", "3명", "4명"]
     var numbersOfPlayersSegmentControl = UISegmentedControl()
