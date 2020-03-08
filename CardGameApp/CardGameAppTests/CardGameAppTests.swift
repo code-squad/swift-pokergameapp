@@ -169,4 +169,37 @@ class CardGameAppTests: XCTestCase  {
                   XCTAssertEqual(combi.typesOfCombination, [.TwoPair,.Triple,.FourCard])
                
      }
+    
+    func testUpdateScore(){
+      //given
+        let scoreBoard = ScoreBoard(with: ["Player1","Dealer"])
+        
+        //when
+        scoreBoard.updateScores(of: scoreBoard.participants[0], with: [.OnePair,.Triple,.FourCard])
+               let scoreOfPlayer1 = scoreBoard.scoreBoard[scoreBoard.participants[0]]
+        //then
+        XCTAssertEqual(scoreOfPlayer1, 9)
+    }
+    
+    func testBreakTie(){
+        //given
+        let participants = ["Player1","Player2","Player3","Dealer"]
+        let scoreBoard = ScoreBoard(with: participants)
+        scoreBoard.scoreBoard = ["Player1" : 5,"Player2" : 5,"Player3" : 4,"Dealer" :3 ]
+        let combinedCards = ["Player1":[5,5,5,2,2,4,4],"Player2": [10,9,6,8,7,3,3],"Player3":[3,3,3,11,11],"Dealer":[1,1,1]]
+
+        
+        // 최고점 동점자 Player1와 Player2
+        let highestScore = scoreBoard.scoreBoard.max(by: { one, another in one.value < another.value})?.value
+        XCTAssertEqual(highestScore, scoreBoard.scoreBoard["Player1"])
+        XCTAssertEqual(highestScore, scoreBoard.scoreBoard["Player2"])
+        
+
+        scoreBoard.breakTie(between: combinedCards)
+        let highestScoreParticipant = scoreBoard.scoreBoard.max(by: { one, another in one.value < another.value})?.key
+        
+        // 최고점자 Player2
+        XCTAssertEqual(highestScoreParticipant, "Player2")
+    }
+
 }
