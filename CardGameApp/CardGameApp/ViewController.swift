@@ -15,14 +15,19 @@ class ViewController: UIViewController {
     private var numbersOfPlayers = NumbersOfPlayers.four
         private var gameStackView = GameStackView()
     private var gameModeSegmentedControl = GameModeSegmentControl()
-    private var numbersOfPlayersSegmentControl = NumbersOfPlayersSegmentControl()
+    private var numbersOfPlayersSegmentedControl = NumbersOfPlayersSegmentControl()
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(patternImage:  #imageLiteral(resourceName: "bg_pattern"))
-        self.view.addSubview(gameModeSegmentControl)
-        self.view.addSubview(numbersOfPlayersSegmentControl)
+        self.view.addSubview(gameModeSegmentedControl)
+        gameModeSegmentedControl.setSegmetedControl(in: self.view, offset: 15)
+        
+        self.view.addSubview(numbersOfPlayersSegmentedControl)
+        numbersOfPlayersSegmentedControl.setSegmetedControl(in: self.view, offset: 9)
+        gameModeSegmentedControl.delegate = self
+        numbersOfPlayersSegmentedControl.delegate = self
     }
     
     func startPokerGame(gameMode : GameMode, numbersOfPlayers : NumbersOfPlayers){
@@ -91,7 +96,7 @@ class ViewController: UIViewController {
     }
     
     func setConstraintOfView(of stackView : UIStackView) {
-        stackView.topAnchor.constraint(equalTo: numbersOfPlayersSegmentControl.bottomAnchor, constant: 10).isActive = true
+        stackView.topAnchor.constraint(equalTo: numbersOfPlayersSegmentedControl.bottomAnchor, constant: 10).isActive = true
         stackView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 30).isActive = true
         stackView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -30).isActive = true
     }
