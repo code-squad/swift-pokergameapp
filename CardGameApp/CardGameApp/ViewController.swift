@@ -81,12 +81,12 @@ class ViewController: UIViewController {
     }
 
     
-    func addDealerCards(of stackView: UIStackView) -> UIStackView {
-        let dealerStack = stackView
+    func addDealerCards(of dealerCardStack: UIStackView) -> UIStackView {
+        let dealerStack = dealerCardStack
         pokerGame.showDealerCards(behavior: ){ card in
-        let card = UIImageView(image: UIImage(named: card.description))
-        setCardImage(of: card)
-        dealerStack.addArrangedSubview(card)
+            let card = UIImageView(image: UIImage(named: card.description))
+            setCardImage(of: card)
+            dealerStack.addArrangedSubview(card)
         }
         return dealerStack
     }
