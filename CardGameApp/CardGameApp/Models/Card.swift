@@ -79,7 +79,7 @@ extension Card: Hashable {
 
 extension Card: CustomStringConvertible {
     
-    public var description: String {
+    var description: String {
         return suit.description + number.description
     }
     
