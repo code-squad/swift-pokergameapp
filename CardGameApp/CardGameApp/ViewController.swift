@@ -29,17 +29,17 @@ class ViewController: UIViewController {
         gameModeSegmentedControl.delegate = self
         numbersOfPlayersSegmentedControl.delegate = self
     }
-    
+    // MARK: - Method
     func startPokerGame(gameMode : GameMode, numbersOfPlayers : NumbersOfPlayers){
-        gameStackView.subviews.forEach{$0.removeFromSuperview()}
-        pokerGame = PokerGame.init(numbersOfPlayers: numbersOfPlayers, gameMode: gameMode)
-        pokerGame.start()
-        pokerGame.shuffleWholeCardDeck()
-        self.view.addSubview(gameStackView)
-        setConstraintOfView(of: gameStackView)
-        setPlayersCards(in : gameStackView)
-        setDealersCards(in : gameStackView)
-    }
+         gameStackView.subviews.forEach{$0.removeFromSuperview()}
+         pokerGame = PokerGame.init(numbersOfPlayers: numbersOfPlayers, gameMode: gameMode)
+         pokerGame.start()
+         pokerGame.shuffleWholeCardDeck()
+         self.view.addSubview(gameStackView)
+         gameStackView.setConstraintOfView(related: self.view, related: numbersOfPlayersSegmentedControl)
+         setPlayersCards(in : gameStackView)
+         setDealersCards(in : gameStackView)
+     }
     
     func makeParticipantLabel(of who: String) -> UILabel{
         let participantLabel = UILabel()
@@ -94,12 +94,6 @@ class ViewController: UIViewController {
     func setCardImage(of card: UIImageView){
         card.contentMode = .scaleAspectFit
         card.heightAnchor.constraint(equalTo: card.widthAnchor, multiplier: 1.27).isActive = true
-    }
-    
-    func setConstraintOfView(of stackView : UIStackView) {
-        stackView.topAnchor.constraint(equalTo: numbersOfPlayersSegmentedControl.bottomAnchor, constant: 10).isActive = true
-        stackView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 30).isActive = true
-        stackView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -30).isActive = true
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
