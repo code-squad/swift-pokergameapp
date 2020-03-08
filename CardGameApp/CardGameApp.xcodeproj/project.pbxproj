@@ -33,6 +33,8 @@
 		6ADF6A8124150902001E5466 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ADF6A7F24150902001E5466 /* Utility.swift */; };
 		6ADF6A82241509C9001E5466 /* StackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ADF6A782414FF72001E5466 /* StackView.swift */; };
 		6ADF6A83241509CB001E5466 /* SegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ADF6A7A24150133001E5466 /* SegmentedControl.swift */; };
+		6ADF6A8524150A8D001E5466 /* ScoreBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ADF6A8424150A8D001E5466 /* ScoreBoard.swift */; };
+		6ADF6A8624150A8D001E5466 /* ScoreBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ADF6A8424150A8D001E5466 /* ScoreBoard.swift */; };
 		6AE4B9D923FAECCA009721F9 /* Players.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE4B9D823FAECCA009721F9 /* Players.swift */; };
 		6AE4B9DA23FAECCA009721F9 /* Players.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE4B9D823FAECCA009721F9 /* Players.swift */; };
 /* End PBXBuildFile section */
@@ -77,6 +79,7 @@
 		6ADF6A7A24150133001E5466 /* SegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedControl.swift; sourceTree = "<group>"; };
 		6ADF6A7C24150515001E5466 /* HandCombination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandCombination.swift; sourceTree = "<group>"; };
 		6ADF6A7F24150902001E5466 /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
+		6ADF6A8424150A8D001E5466 /* ScoreBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreBoard.swift; sourceTree = "<group>"; };
 		6AE4B9D823FAECCA009721F9 /* Players.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Players.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -169,6 +172,7 @@
 				6AE4B9D823FAECCA009721F9 /* Players.swift */,
 				6ADF6A7C24150515001E5466 /* HandCombination.swift */,
 				6ADF6A7F24150902001E5466 /* Utility.swift */,
+				6ADF6A8424150A8D001E5466 /* ScoreBoard.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -320,6 +324,7 @@
 				6ABB45A523F6C204002C5CAA /* Participant.swift in Sources */,
 				6ADF6A792414FF72001E5466 /* StackView.swift in Sources */,
 				6ABB459F23F6BF0C002C5CAA /* PokerGame.swift in Sources */,
+				6ADF6A8524150A8D001E5466 /* ScoreBoard.swift in Sources */,
 				6ADF6A7D24150515001E5466 /* HandCombination.swift in Sources */,
 				6ADF6A8024150902001E5466 /* Utility.swift in Sources */,
 				6A7B19DF23EEBC4C0070F4E3 /* SceneDelegate.swift in Sources */,
@@ -335,6 +340,7 @@
 				6A1CD24E23F15FF100B42A97 /* ViewController.swift in Sources */,
 				6A7B19F423EEBC4F0070F4E3 /* CardGameAppTests.swift in Sources */,
 				6ADF6A83241509CB001E5466 /* SegmentedControl.swift in Sources */,
+				6ADF6A8624150A8D001E5466 /* ScoreBoard.swift in Sources */,
 				6ADF6A8124150902001E5466 /* Utility.swift in Sources */,
 				6A1CD25623F2F9AC00B42A97 /* CardDeck.swift in Sources */,
 				6AE4B9DA23FAECCA009721F9 /* Players.swift in Sources */,
