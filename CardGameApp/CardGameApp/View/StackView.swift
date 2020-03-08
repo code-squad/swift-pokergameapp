@@ -52,3 +52,24 @@ class CardsStackView: UIStackView {
     }
 }
 
+class ParticipantStackView : UIStackView {
+    
+    override init(frame: CGRect) { // by code
+        super.init(frame: frame)
+        self.translatesAutoresizingMaskIntoConstraints = false
+        self.axis = .vertical
+        self.distribution = .equalSpacing
+        self.alignment = .fill
+        self.spacing = 15
+    }
+    
+    convenience init() {
+        self.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+    }
+    
+    required init(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
+
