@@ -59,3 +59,8 @@ extension Card :Equatable{
         return lhs.suit == rhs.suit && lhs.suit == rhs.suit
     }
 }
+extension Card {
+    var numberDescription: String {
+        return "\(rank.description)"
+    }
+}
