@@ -51,8 +51,12 @@ class GameSegmentedControlStackView: UIStackView {
     }
     
     private func addTargets() {
-        stutSegmentedControl.addTarget(self, action: #selector(indexChanged(_:)), for: .valueChanged)
-        playersSegmentedControl.addTarget(self, action: #selector(indexChanged(_:)), for: .valueChanged)
+        stutSegmentedControl.addTarget(self,
+                                       action: #selector(indexChanged(_:)),
+                                       for: .valueChanged)
+        playersSegmentedControl.addTarget(self,
+                                          action: #selector(indexChanged(_:)),
+                                          for: .valueChanged)
     }
     
     private func addSegmentedControls() {
