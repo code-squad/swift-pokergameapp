@@ -53,10 +53,10 @@ class ViewController: UIViewController {
         var playerNumber = 1
         pokerGame.forEachPlayer(behavior: ){
             player in
-            let onePlayerInfoStack = makeParticipantStackView()
+            let onePlayerInfoStack = ParticipantStackView()
             
             onePlayerInfoStack.addArrangedSubview(makeParticipantLabel(of: "Player\(playerNumber)"))
-            let cardsStack = makeCardsStackView()
+            let cardsStack = CardsStackView()
             player.showEachCardInHand(behavior: ){
                 (card) in
                 let card = UIImageView(image: UIImage(named: card.description))
@@ -64,12 +64,12 @@ class ViewController: UIViewController {
                 cardsStack.addArrangedSubview(card)
             }
             onePlayerInfoStack.addArrangedSubview(cardsStack)
-           
+            
             gameStackView.addArrangedSubview(onePlayerInfoStack)
             playerNumber += 1
         }
     }
-    
+
     func setDealersCards(in gameStackView : UIStackView){
         let dealerInfoStack = makeParticipantStackView()
         let dealerLabel = makeParticipantLabel(of: "Dealer")
