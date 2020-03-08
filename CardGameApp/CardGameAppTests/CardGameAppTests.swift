@@ -158,6 +158,7 @@ class CardGameAppTests: XCTestCase  {
         XCTAssertEqual(handCombination.combinationTypes, [2,3,6,3,2])
     }
     
+    // MARK:-  Utility 클래스
     func testConvertToCombination(){
         //given
          let combi = HandCombination()
@@ -168,6 +169,20 @@ class CardGameAppTests: XCTestCase  {
          //then
                   XCTAssertEqual(combi.typesOfCombination, [.TwoPair,.Triple,.FourCard])
                
+     }
+    
+    // MARK:-  ScoreBoard 클래스
+    func testScoreBoardInitialSetUp(){
+         //given
+         let scoreBoard = ScoreBoard(with: ["Player1","Player2","Dealer"])
+         
+         //when
+         scoreBoard.doInitialSetUp()
+         let player2 = scoreBoard.participants[1]
+         let scoreOfPlayer2 = scoreBoard.scoreBoard[player2]
+         
+         //then
+         XCTAssertEqual(scoreOfPlayer2, 0)
      }
     
     func testUpdateScore(){
