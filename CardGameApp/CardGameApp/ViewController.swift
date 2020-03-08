@@ -70,15 +70,16 @@ class ViewController: UIViewController {
         }
     }
 
-    func setDealersCards(in gameStackView : UIStackView){
-        let dealerInfoStack = makeParticipantStackView()
+     func setDealersCards(in gameStackView : UIStackView){
+        let dealerInfoStack = ParticipantStackView()
         let dealerLabel = makeParticipantLabel(of: "Dealer")
         dealerInfoStack.addArrangedSubview(dealerLabel)
-        let dealerCardStack = makeCardsStackView()
+        let dealerCardStack = CardsStackView()
         let dealerCardsStack = addDealerCards(of: dealerCardStack)
         dealerInfoStack.addArrangedSubview(dealerCardsStack)
         gameStackView.addArrangedSubview(dealerInfoStack)
     }
+
     
     func addDealerCards(of stackView: UIStackView) -> UIStackView {
         let dealerStack = stackView
