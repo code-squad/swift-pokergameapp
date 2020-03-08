@@ -145,5 +145,17 @@ class CardGameAppTests: XCTestCase  {
         //then
         XCTAssertEqual(checkedStraight, expectedCards)
     }
-
+    
+    func testCheckPair(){
+        let handCombination = HandCombination()
+        let cardsToCheck = [1,2,3,1,12,3,4,3,4,2,5,3,2,6,5,4,3,3,9]
+        
+        //when
+        handCombination.checkPair(of: cardsToCheck)
+        
+        //then
+        XCTAssertEqual(handCombination.combinedCardsRank, [1,2,3,4,5])
+        XCTAssertEqual(handCombination.combinationTypes, [2,3,6,3,2])
+       
+    }
 }
