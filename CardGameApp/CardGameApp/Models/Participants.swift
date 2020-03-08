@@ -79,14 +79,6 @@ extension Participants {
         }
     }
     
-    func forEach(handler: () -> (Void)) {
-        let participantsCount = playersNumber.rawValue +
-            Participants.dealerCount
-        for _ in 0 ..< participantsCount {
-            handler()
-        }
-    }
-    
 }
 
 extension Participants.PlayersNumber: Comparable {

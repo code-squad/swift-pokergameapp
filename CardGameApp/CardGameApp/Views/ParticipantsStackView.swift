@@ -84,12 +84,8 @@ class ParticipantsStackView: UIStackView {
     }
     
     private func setNotParticipantViewsHidden(game: PokerGame) {
-        var participantsCount = 0
-        game.participants.forEach {
-            participantsCount += 1
-        }
         
-        for index in participantsCount ..< arrangedSubviews.count {
+        for index in game.participants.count ..< arrangedSubviews.count {
             arrangedSubviews[index].isHidden = true
         }
     }

@@ -47,10 +47,7 @@ class PokerGameTests: XCTestCase {
             gameStutCount += 1
         }
         
-        var participantsCount = 0
-        game.participants.forEach {
-            participantsCount += 1
-        }
+        let participantsCount = participants.count
         
         XCTAssertEqual(handedOutCards.count,
                        gameStutCount * participantsCount)
