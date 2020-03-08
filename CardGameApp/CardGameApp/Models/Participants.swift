@@ -21,14 +21,13 @@ class Participants {
     }
     let playersNumber: PlayersNumber
     private var players = [Participant]()
+    private let dealer = Participant(name: "Dealer")
+    private var winner: Participant?
     var count: Int {
         return players.count + Participants.dealerCount
     }
     
     private static let dealerCount = 1
-    private let dealer = Participant(name: "Dealer")
-    
-    private var winner: Participant?
     
     init(playersNumber: PlayersNumber) {
         self.playersNumber = playersNumber
