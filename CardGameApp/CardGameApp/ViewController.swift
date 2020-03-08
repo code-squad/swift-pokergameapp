@@ -9,71 +9,13 @@
 import UIKit
 
 class ViewController: UIViewController {
-    
+    // MARK: - Properties
     private var pokerGame = PokerGame(numbersOfPlayers: .four, gameMode: .fiveCardStud)
     private var gameMode = GameMode.fiveCardStud
     private var numbersOfPlayers = NumbersOfPlayers.four
-    
-    // MARK: - Properties
-    // StackView
-    func makeCardsStackView() -> UIStackView {
-        let horizontalStackView = UIStackView()
-        horizontalStackView.translatesAutoresizingMaskIntoConstraints = false
-        horizontalStackView.axis = .horizontal
-        horizontalStackView.distribution = .fillEqually
-        horizontalStackView.spacing = -15
-        return horizontalStackView
-    }
-    
-    let gameStackView: UIStackView = {
-        let gameStackView = UIStackView()
-        gameStackView.translatesAutoresizingMaskIntoConstraints = false
-        gameStackView.axis = .vertical
-        gameStackView.spacing = 5
-        return gameStackView
-    }()
-    
-    func makeParticipantStackView() -> UIStackView {
-        let playerStackView = UIStackView()
-        playerStackView.translatesAutoresizingMaskIntoConstraints = false
-        playerStackView.axis = .vertical
-        playerStackView.distribution = .equalSpacing
-        playerStackView.alignment = .fill
-        playerStackView.spacing = 15
-        return playerStackView
-    }
-    
-    // SegmentedControl
-    // - GameMode
-    let gameModes: [String] = ["5 Cards","7 Cards"]
-    
-    lazy var gameModeSegmentControl: UISegmentedControl = {
-        let gameModeSegmentControl: UISegmentedControl = UISegmentedControl(items: gameModes)
-        
-        gameModeSegmentControl.center = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/15)
-        gameModeSegmentControl.backgroundColor = UIColor.gray
-        gameModeSegmentControl.tintColor = UIColor.white
-        gameModeSegmentControl.addTarget(self, action:
-            #selector(gameModeSegmentChanged(segmentedControl:)),
-                                         for: .valueChanged)
-        //        gameModeSegmentControl.selectedSegmentIndex = 0
-        return gameModeSegmentControl
-    }()
-    
-    // - Players
-    let numbersOfPlayersList: [String] = ["2명", "3명", "4명"]
-    
-    lazy var numbersOfPlayersSegmentControl: UISegmentedControl = {
-        let numbersOfPlayersSegmentControl: UISegmentedControl = UISegmentedControl(items: numbersOfPlayersList)
-        numbersOfPlayersSegmentControl.center = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/9)
-        numbersOfPlayersSegmentControl.backgroundColor = UIColor.gray
-        numbersOfPlayersSegmentControl.tintColor = UIColor.white
-        numbersOfPlayersSegmentControl.addTarget(self, action:
-            #selector(numbersOfPlayersSegmentChanged(segmentedControl:)),
-                                                 for: .valueChanged)
-        //        numbersOfPlayersSegmentControl.selectedSegmentIndex = 0
-        return numbersOfPlayersSegmentControl
-    }()
+        private var gameStackView = GameStackView()
+    private var gameModeSegmentedControl = GameModeSegmentControl()
+    private var numbersOfPlayersSegmentControl = NumbersOfPlayersSegmentControl()
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {
