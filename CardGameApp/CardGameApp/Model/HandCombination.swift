@@ -34,8 +34,8 @@ class HandCombination{
         for card in duplicationRemovedCards{
             
             if cardRankToCompare == card{
-            cardRankToCompare += 1
-            squenceCount += 1
+                cardRankToCompare += 1
+                squenceCount += 1
             }
         }
         
@@ -49,13 +49,63 @@ class HandCombination{
     func removeDuplication(in cardsToCheck: [Int]) -> [Int]{
         var duplicationRemovedCards = cardsToCheck
         for cardIndex in 0 ... duplicationRemovedCards.count-1 {
-               if cardIndex + 1 <= duplicationRemovedCards.count-1 {
+            if cardIndex + 1 <= duplicationRemovedCards.count-1 {
                 if duplicationRemovedCards[cardIndex] == duplicationRemovedCards[cardIndex+1] {
                     duplicationRemovedCards.remove(at: cardIndex)
                 }
-           }
+            }
         }
         return duplicationRemovedCards
     }
-
+    
+    func checkPair(of cardsToCheck: [Int]) -> [Combination]{
+        var cardsToCheck = cardsToCheck.sorted()
+        while cardsToCheck.count != 0 {
+            // 0번째 인덱스에 있는 수와 같은 수 찾기
+            var combi = cardsToCheck.filter{card in card == cardsToCheck[0]}
+            var combinedCardsCount = combi.count
+            
+            // 같은 수가 2개 이상일 경우
+            if combinedCardsCount > 1{
+                combinedCardsRank.append(cardsToCheck[0])
+                combinationTypes.append(combinedCardsCount)
+                
+                // 숫자를 조합 타입으로 변환해서 typesOfCombination에 추가
+                addCombination(pairNumbers: combinationTypes)
+            }
+            
+            var leftCardsToCheck = cardsToCheck.filter{card in card != cardsToCheck[0]}
+            cardsToCheck = leftCardsToCheck
+        }
+        return typesOfCombination
+    }
+    
+    func addCombination(pairNumbers : [Int]){
+        let combination = Combination.self
+        
+        var pairCount = pairNumbers.filter{$0 == 2}.count
+        var tripleCount = pairNumbers.filter{$0 == 3}.count
+        var fourCardCount = pairNumbers.filter{$0 == 4}.count
+        
+        if pairCount == 1 {
+            isOnePair = true
+            typesOfCombination.append(combination.OnePair)
+        }
+        
+        if pairCount > 1 && isOnePair == true {
+            typesOfCombination.append(combination.TwoPair)
+        }
+        
+        if tripleCount >= 1 {
+            typesOfCombination.append(combination.Triple)
+        }
+        
+        if fourCardCount >= 1 {
+            typesOfCombination.append(combination.FourCard)
+        }
+    }
+    
+    func submitCombinedCards()->[Int]{
+        return combinedCardsRank
+    }
 }
