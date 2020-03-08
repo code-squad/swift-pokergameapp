@@ -55,6 +55,48 @@ class Ranks {
 
 extension Ranks {
     
+    private func generateCards(cards: [Card]) -> [(key: Card, value: Int)] {
+        var sameNumberCards = [Card:Int]()
+        for index in 0 ..< cards.count - 1 {
+            let curCard = cards[index]
+            guard !sameNumberCards.keys.contains(curCard) else {
+                continue
+            }
+            
+            var count = 1
+            for j in index + 1 ..< cards.count {
+                if curCard == cards[j] {
+                    count += 1
+                }
+            }
+            sameNumberCards[curCard] = count
+        }
+        
+        if !sameNumberCards.keys.contains(cards.last!) {
+            sameNumberCards[cards.last!] = 1
+        }
+        
+        return sameNumberCards.sorted {
+            $0.0 < $1.0
+        }
+    }
+    
+    private func isLonger(count: Int, than size: Int) -> Bool {
+        return count >= size
+    }
+    
+    private func remove(cards: [Card], with card: Card) -> [Card] {
+        var cards = cards
+        cards.removeAll { (curCard) -> Bool in
+            return curCard == card
+        }
+        return cards
+    }
+    
+}
+
+extension Ranks {
+    
     private func isFourCard(cards: [Card]) -> Card? {
         let fourCardsCount = 4
         guard isLonger(count: cards.count, than: fourCardsCount) else {
@@ -186,48 +228,6 @@ extension Ranks {
         
         let sameNumberCards = generateCards(cards: cards)
         return sameNumberCards.last!.key
-    }
-    
-}
-
-extension Ranks {
-    
-    private func generateCards(cards: [Card]) -> [(key: Card, value: Int)] {
-        var sameNumberCards = [Card:Int]()
-        for index in 0 ..< cards.count - 1 {
-            let curCard = cards[index]
-            guard !sameNumberCards.keys.contains(curCard) else {
-                continue
-            }
-            
-            var count = 1
-            for j in index + 1 ..< cards.count {
-                if curCard == cards[j] {
-                    count += 1
-                }
-            }
-            sameNumberCards[curCard] = count
-        }
-        
-        if !sameNumberCards.keys.contains(cards.last!) {
-            sameNumberCards[cards.last!] = 1
-        }
-        
-        return sameNumberCards.sorted {
-            $0.0 < $1.0
-        }
-    }
-    
-    private func isLonger(count: Int, than size: Int) -> Bool {
-        return count >= size
-    }
-    
-    private func remove(cards: [Card], with card: Card) -> [Card] {
-        var cards = cards
-        cards.removeAll { (curCard) -> Bool in
-            return curCard == card
-        }
-        return cards
     }
     
 }
