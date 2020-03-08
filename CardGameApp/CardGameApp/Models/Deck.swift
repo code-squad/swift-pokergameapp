@@ -31,14 +31,15 @@ class Deck {
         self.cards = Deck.singletonInitCards
     }
     
-    func shuffle<G: RandomNumberGenerator>(using generator: inout G)  {
+    func shuffle<G: RandomNumberGenerator>(using generator: inout G) {
         cards = cards.shuffled(using: &generator)
     }
     
     @discardableResult
     func removeOne() -> Card? {
         let none = 0
-        guard count != none else {
+        guard count != none
+        else {
             return nil
         }
         return cards.removeFirst()
@@ -61,7 +62,7 @@ extension Deck: Equatable {
 extension Deck: CardSearchable {
     
     func searchCard(handler: (Card) -> (Void)) {
-        cards.forEach{ handler($0) }
+        cards.forEach { handler($0) }
     }
     
 }

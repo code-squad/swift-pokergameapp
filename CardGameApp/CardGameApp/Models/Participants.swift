@@ -9,7 +9,9 @@
 import Foundation
 
 class Participants {
+    
     enum PlayersNumber: Int, CaseIterable {
+        
         case one = 1 , two, three, four
         
         func forEach(handler: () -> (Void)) {
@@ -17,17 +19,17 @@ class Participants {
                 handler()
             }
         }
+        
     }
     let playersNumber: PlayersNumber
     private var players = [Participant]()
+    private let dealer = Participant(name: "Dealer")
+    private var winner: Participant?
     var count: Int {
         return players.count + Participants.dealerCount
     }
     
     private static let dealerCount = 1
-    private let dealer = Participant(name: "Dealer")
-    
-    private var winner: Participant?
     
     init(playersNumber: PlayersNumber) {
         self.playersNumber = playersNumber
@@ -75,14 +77,6 @@ extension Participants {
             for _ in 0 ..< maxCount {
                 handler()
             }
-        }
-    }
-    
-    func forEach(handler: () -> (Void)) {
-        let participantsCount = playersNumber.rawValue +
-            Participants.dealerCount
-        for _ in 0 ..< participantsCount {
-            handler()
         }
     }
     

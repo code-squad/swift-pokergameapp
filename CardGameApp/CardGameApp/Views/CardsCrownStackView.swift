@@ -55,7 +55,7 @@ class CardsCrownStackView: UIStackView {
         setConstraintCrownImageView()
     }
     
-    private func addCrownImageView(){
+    private func addCrownImageView() {
         addSubview(crownImageView)
     }
     
@@ -70,6 +70,7 @@ class CardsCrownStackView: UIStackView {
         overlappedCardsStackView.updateView(participant: participant)
         hideCrownImageView()
     }
+    
     private func hideCrownImageView() {
         crownImageView.isHidden = true
     }
@@ -77,4 +78,5 @@ class CardsCrownStackView: UIStackView {
     func updateCrownViewIsNotHidden() {
         crownImageView.isHidden = false
     }
+    
 }

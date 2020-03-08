@@ -51,8 +51,13 @@ extension ViewController {
         if !game.hasEnoughCards() {
             deck.reset()
             shuffleDeck()
-            game = generateGame(gameStut: game.gameStut,
-                                            participants: game.participants)
+            
+            if let gameStut = gameSegmentedControlStackView.gameStut(),
+                let playersNumber = gameSegmentedControlStackView.playersNum() {
+                game = generateGame(gameStut: gameStut,
+                                    participants: Participants(playersNumber: playersNumber))
+            }
+            
         }
         game.startNewRound()
         participantsStackView.updateView(game: game)

@@ -33,12 +33,12 @@ class GameSegmentedControlStackView: UIStackView {
         setup()
     }
     
-    private func setup(){
+    private func setup() {
         setupProperties()
         setupSegmentedControls()
     }
     
-    private func setupProperties(){
+    private func setupProperties() {
         axis = .vertical
         distribution = .fillEqually
         spacing = 8
@@ -65,7 +65,8 @@ class GameSegmentedControlStackView: UIStackView {
     }
     
     @objc private func indexChanged(_ sender: UISegmentedControl) {
-        guard let gameStut = gameStut() , let playersNum = playersNum() else {
+        guard let gameStut = gameStut() , let playersNum = playersNum()
+        else {
             return
         }
         delegate?.segmentedControlIndexChanged(gameStut: gameStut, playersNumber: playersNum)
@@ -83,7 +84,8 @@ class GameSegmentedControlStackView: UIStackView {
     func playersNum() -> Participants.PlayersNumber? {
         let index = playersSegmentedControl.selectedSegmentIndex
         let playerNums = Participants.PlayersNumber.allCases
-        guard index < playerNums.count else {
+        guard index < playerNums.count
+        else {
             return nil
         }
         return playerNums[index]

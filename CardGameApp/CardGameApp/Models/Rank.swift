@@ -10,8 +10,13 @@ import Foundation
 
 struct Rank: Comparable {
     
-    let card: Card
-    let combination: Combination
+    private let card: Card
+    private let combination: Combination
+    
+    init(card: Card, combination: Combination) {
+        self.card = card
+        self.combination = combination
+    }
     
     static func == (lhs: Rank, rhs: Rank) -> Bool {
         return (lhs.combination == rhs.combination) &&
@@ -30,6 +35,7 @@ struct Rank: Comparable {
 extension Rank {
     
     enum Combination: Int, CaseIterable, Comparable {
+        
         case oneCard = 0
         case onePair
         case twoPair
@@ -41,5 +47,6 @@ extension Rank {
             return lhs.rawValue < rhs.rawValue
         }
     }
+    
 }
 

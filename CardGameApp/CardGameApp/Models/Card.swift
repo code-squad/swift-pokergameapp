@@ -66,19 +66,23 @@ extension Card: Comparable {
     func isDeepEqual(other card: Card) -> Bool {
         return (suit == card.suit) && (number == card.number)
     }
+    
 }
 
 extension Card: Hashable {
+    
     func hash(into hasher: inout Hasher) {
         hasher.combine(number)
     }
+    
 }
 
 extension Card: CustomStringConvertible {
     
-    public var description: String {
+    var description: String {
         return suit.description + number.description
     }
+    
 }
 
 extension Card.Suit: CustomStringConvertible {
@@ -130,5 +134,6 @@ extension Card.Number: Comparable {
     func isEqual(other: Card.Number, distance: Int) -> Bool {
         return self.rawValue == other.rawValue + distance
     }
+    
 }
 

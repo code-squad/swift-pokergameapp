@@ -56,7 +56,7 @@ class ParticipantsStackView: UIStackView {
     
     private func updateSelectedParticipantViews(game: PokerGame) {
         var participantsIndex = 0
-        game.searchParticipants { (participant) in
+        game.participants.searchParticipants { (participant) in
             updateParticipant(at: participantsIndex, participant: participant)
             if game.participants.isWinner(participant: participant) {
                 updateWinner(at: participantsIndex ,participant: participant)
@@ -66,7 +66,8 @@ class ParticipantsStackView: UIStackView {
     }
     
     private func updateParticipant(at index: Int, participant: Participant) {
-        guard index < arrangedSubviews.count else {
+        guard index < arrangedSubviews.count
+        else {
             return
         }
         
@@ -75,7 +76,8 @@ class ParticipantsStackView: UIStackView {
     }
     
     private func updateWinner(at index: Int, participant: Participant) {
-        guard index < arrangedSubviews.count else {
+        guard index < arrangedSubviews.count
+        else {
             return
         }
         
@@ -84,12 +86,8 @@ class ParticipantsStackView: UIStackView {
     }
     
     private func setNotParticipantViewsHidden(game: PokerGame) {
-        var participantsCount = 0
-        game.participants.forEach {
-            participantsCount += 1
-        }
         
-        for index in participantsCount ..< arrangedSubviews.count {
+        for index in game.participants.count ..< arrangedSubviews.count {
             arrangedSubviews[index].isHidden = true
         }
     }

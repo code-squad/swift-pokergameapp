@@ -8,13 +8,61 @@
 
 import Foundation
 
+class Ranks {
+    
+    private var ranks = [Rank]()
+    
+    init(cards: [Card]) {
+        ranks = generateRanks(cards: cards)
+    }
+    
+    private func generateRanks(cards: [Card]) -> [Rank] {
+        var ranks = [Rank]()
+        var cards = cards
+        
+        if let fourCard = isFourCard(cards: cards) {
+            ranks.append(Rank(card: fourCard, combination: .fourCard))
+            cards = remove(cards: cards, with: fourCard)
+        }
+        
+        if let straights = isStraight(cards: cards) {
+            ranks.append(Rank(card: straights.last!, combination: .straight))
+            cards = removeStraights(cards: cards, straights: straights)
+        }
+        
+        if let triple = isTriple(cards: cards) {
+            ranks.append(Rank(card: triple, combination: .triple))
+            cards = remove(cards: cards, with: triple)
+            if let tripleCard = isTriple(cards: cards) {
+                ranks.append(Rank(card: tripleCard, combination: .triple))
+                cards = remove(cards: cards, with: tripleCard)
+            }
+        }
+        
+        if let twoPairs = isTwoPair(cards: cards) {
+            ranks.append(Rank(card: twoPairs.last!, combination: .twoPair))
+            cards = removeTwopairs(cards: cards, twopairs: twoPairs)
+        } else if let onePair = isOnePair(cards: cards) {
+            ranks.append(Rank(card: onePair, combination: .onePair))
+            cards = remove(cards: cards, with: onePair)
+        }
+        
+        if let oneCard = isOneCard(cards: cards) {
+            ranks.append(Rank(card: oneCard, combination: .oneCard))
+        }
+        return ranks
+    }
+    
+}
+
 extension Ranks {
     
     private func generateCards(cards: [Card]) -> [(key: Card, value: Int)] {
         var sameNumberCards = [Card:Int]()
         for index in 0 ..< cards.count - 1 {
             let curCard = cards[index]
-            guard !sameNumberCards.keys.contains(curCard) else {
+            guard !sameNumberCards.keys.contains(curCard)
+            else {
                 continue
             }
             
@@ -184,49 +232,7 @@ extension Ranks {
         let sameNumberCards = generateCards(cards: cards)
         return sameNumberCards.last!.key
     }
-}
-
-class Ranks {
-    private var ranks = [Rank]()
     
-    init(cards: [Card]) {
-        generateRanks(cards: cards)
-    }
-    
-    private func generateRanks(cards: [Card]) {
-        var cards = cards
-        
-        if let fourCard = isFourCard(cards: cards) {
-            ranks.append(Rank(card: fourCard, combination: .fourCard))
-            cards = remove(cards: cards, with: fourCard)
-        }
-        
-        if let straights = isStraight(cards: cards) {
-            ranks.append(Rank(card: straights.last!, combination: .straight))
-            cards = removeStraights(cards: cards, straights: straights)
-        }
-        
-        if let triple = isTriple(cards: cards) {
-            ranks.append(Rank(card: triple, combination: .triple))
-            cards = remove(cards: cards, with: triple)
-            if let tripleCard = isTriple(cards: cards) {
-                ranks.append(Rank(card: tripleCard, combination: .triple))
-                cards = remove(cards: cards, with: tripleCard)
-            }
-        }
-        
-        if let twoPairs = isTwoPair(cards: cards) {
-            ranks.append(Rank(card: twoPairs.last!, combination: .twoPair))
-            cards = removeTwopairs(cards: cards, twopairs: twoPairs)
-        } else if let onePair = isOnePair(cards: cards) {
-            ranks.append(Rank(card: onePair, combination: .onePair))
-            cards = remove(cards: cards, with: onePair)
-        }
-        
-        if let oneCard = isOneCard(cards: cards) {
-            ranks.append(Rank(card: oneCard, combination: .oneCard))
-        }
-    }
 }
 
 extension Ranks: Comparable {
@@ -248,26 +254,16 @@ extension Ranks: Comparable {
         
         let min = lhs.ranks.count > rhs.ranks.count ? lhs.ranks.count : rhs.ranks.count
         for index in 0 ..< min {
-            if lhs.ranks[index].combination != rhs.ranks[index].combination {
-                return lhs.ranks[index].combination < rhs.ranks[index].combination
+            if lhs.ranks[index] != rhs.ranks[index] {
+                return lhs.ranks[index] < rhs.ranks[index]
             }
-        }
-        
-        if lhs.ranks.count > min {
-            return false
         }
         
         if rhs.ranks.count > min {
             return true
+        } else {
+            return false
         }
-        
-        for index in 0 ..< min {
-            if lhs.ranks[index].card != rhs.ranks[index].card {
-                return lhs.ranks[index].card < rhs.ranks[index].card
-            }
-        }
-        return false
     }
+    
 }
-
-

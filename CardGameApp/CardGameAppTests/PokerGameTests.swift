@@ -20,16 +20,10 @@ class PokerGameTests: XCTestCase {
         //1. given
         let gameStut = GameStut.five
         let participants = Participants(playersNumber: .three)
+        let originDeck = Deck()
         game = PokerGame(gameStut: gameStut,
                          participants: participants,
-                         deck: Deck())
-        
-        var originDeck = [Card]()
-        game.searchDeck { (deck : Deck) in
-            deck.searchCard {
-                originDeck.append($0)
-            }
-        }
+                         deck: originDeck)
         
         //2. when
         game.startNewRound()
@@ -47,19 +41,10 @@ class PokerGameTests: XCTestCase {
             gameStutCount += 1
         }
         
-        var participantsCount = 0
-        game.participants.forEach {
-            participantsCount += 1
-        }
+        let participantsCount = participants.count
         
         XCTAssertEqual(handedOutCards.count,
                        gameStutCount * participantsCount)
-        
-        game.searchDeck { (remainedDeck: Deck) in
-            XCTAssertEqual(remainedDeck.count ,
-                           originDeck.count - handedOutCards.count)
-        }
-        
     }
     
     func testHasEnoughCards() {
@@ -73,7 +58,6 @@ class PokerGameTests: XCTestCase {
 
         //3. then
         XCTAssertFalse(game.hasEnoughCards())
-        
     }
     
 }

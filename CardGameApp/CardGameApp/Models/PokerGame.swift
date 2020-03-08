@@ -11,10 +11,10 @@ import Foundation
 class PokerGame {
     
     private let deck: Deck
-    let gameStut: GameStut
+    private let gameStut: GameStut
     let participants: Participants
     
-    init(gameStut: GameStut , participants: Participants, deck: Deck){
+    init(gameStut: GameStut , participants: Participants, deck: Deck) {
         self.gameStut = gameStut
         self.participants = participants
         self.deck = deck
@@ -69,19 +69,6 @@ class PokerGame {
             stutCount += 1
         }
         return stutCount
-    }
-}
-
-extension PokerGame {
-    
-    func searchDeck(handler: (Deck) -> (Void)) {
-        handler(deck)
-    }
-    
-    func searchParticipants(handler: (Participant) -> (Void)) {
-        participants.searchParticipants {
-            handler($0)
-        }
     }
     
 }
