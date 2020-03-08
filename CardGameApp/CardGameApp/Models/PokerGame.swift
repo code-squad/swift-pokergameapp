@@ -73,17 +73,3 @@ class PokerGame {
     
 }
 
-extension PokerGame {
-    
-    func searchDeck(handler: (Deck) -> (Void)) {
-        handler(deck)
-    }
-    
-    func searchParticipants(handler: (Participant) -> (Void)) {
-        participants.searchParticipants {
-            handler($0)
-        }
-    }
-    
-}
-

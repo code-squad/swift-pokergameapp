@@ -56,7 +56,7 @@ class ParticipantsStackView: UIStackView {
     
     private func updateSelectedParticipantViews(game: PokerGame) {
         var participantsIndex = 0
-        game.searchParticipants { (participant) in
+        game.participants.searchParticipants { (participant) in
             updateParticipant(at: participantsIndex, participant: participant)
             if game.participants.isWinner(participant: participant) {
                 updateWinner(at: participantsIndex ,participant: participant)
