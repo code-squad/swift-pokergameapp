@@ -253,25 +253,16 @@ extension Ranks: Comparable {
         
         let min = lhs.ranks.count > rhs.ranks.count ? lhs.ranks.count : rhs.ranks.count
         for index in 0 ..< min {
-            if lhs.ranks[index].combination != rhs.ranks[index].combination {
-                return lhs.ranks[index].combination < rhs.ranks[index].combination
+            if lhs.ranks[index] != rhs.ranks[index] {
+                return lhs.ranks[index] < rhs.ranks[index]
             }
-        }
-        
-        if lhs.ranks.count > min {
-            return false
         }
         
         if rhs.ranks.count > min {
             return true
+        } else {
+            return false
         }
-        
-        for index in 0 ..< min {
-            if lhs.ranks[index].card != rhs.ranks[index].card {
-                return lhs.ranks[index].card < rhs.ranks[index].card
-            }
-        }
-        return false
     }
     
 }
