@@ -11,7 +11,7 @@ import Foundation
 class PokerGame {
     
     private let deck: Deck
-    let gameStut: GameStut
+    private let gameStut: GameStut
     let participants: Participants
     
     init(gameStut: GameStut , participants: Participants, deck: Deck){
