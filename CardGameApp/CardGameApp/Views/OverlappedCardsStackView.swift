@@ -77,7 +77,8 @@ class OverlappedCardsStackView: UIStackView {
     }
     
     private func updateApplicatedCardView(at index: Int, cardImage: UIImage) {
-        guard index < arrangedSubviews.count else {
+        guard index < arrangedSubviews.count
+        else {
             return
         }
         

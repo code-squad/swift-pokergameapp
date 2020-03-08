@@ -38,7 +38,8 @@ class Deck {
     @discardableResult
     func removeOne() -> Card? {
         let none = 0
-        guard count != none else {
+        guard count != none
+        else {
             return nil
         }
         return cards.removeFirst()

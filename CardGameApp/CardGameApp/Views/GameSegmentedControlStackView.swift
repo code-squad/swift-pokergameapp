@@ -51,12 +51,8 @@ class GameSegmentedControlStackView: UIStackView {
     }
     
     private func addTargets() {
-        stutSegmentedControl.addTarget(self,
-                                       action: #selector(indexChanged(_:)),
-                                       for: .valueChanged)
-        playersSegmentedControl.addTarget(self,
-                                          action: #selector(indexChanged(_:)),
-                                          for: .valueChanged)
+        stutSegmentedControl.addTarget(self, action: #selector(indexChanged(_:)), for: .valueChanged)
+        playersSegmentedControl.addTarget(self, action: #selector(indexChanged(_:)), for: .valueChanged)
     }
     
     private func addSegmentedControls() {
@@ -65,7 +61,8 @@ class GameSegmentedControlStackView: UIStackView {
     }
     
     @objc private func indexChanged(_ sender: UISegmentedControl) {
-        guard let gameStut = gameStut() , let playersNum = playersNum() else {
+        guard let gameStut = gameStut() , let playersNum = playersNum()
+        else {
             return
         }
         delegate?.segmentedControlIndexChanged(gameStut: gameStut, playersNumber: playersNum)
@@ -83,7 +80,8 @@ class GameSegmentedControlStackView: UIStackView {
     func playersNum() -> Participants.PlayersNumber? {
         let index = playersSegmentedControl.selectedSegmentIndex
         let playerNums = Participants.PlayersNumber.allCases
-        guard index < playerNums.count else {
+        guard index < playerNums.count
+        else {
             return nil
         }
         return playerNums[index]

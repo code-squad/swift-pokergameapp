@@ -66,7 +66,8 @@ class ParticipantsStackView: UIStackView {
     }
     
     private func updateParticipant(at index: Int, participant: Participant) {
-        guard index < arrangedSubviews.count else {
+        guard index < arrangedSubviews.count
+        else {
             return
         }
         
@@ -75,7 +76,8 @@ class ParticipantsStackView: UIStackView {
     }
     
     private func updateWinner(at index: Int, participant: Participant) {
-        guard index < arrangedSubviews.count else {
+        guard index < arrangedSubviews.count
+        else {
             return
         }
         

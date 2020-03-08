@@ -61,7 +61,8 @@ extension Ranks {
         var sameNumberCards = [Card:Int]()
         for index in 0 ..< cards.count - 1 {
             let curCard = cards[index]
-            guard !sameNumberCards.keys.contains(curCard) else {
+            guard !sameNumberCards.keys.contains(curCard)
+            else {
                 continue
             }
             
