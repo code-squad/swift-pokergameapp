@@ -216,5 +216,48 @@ class CardGameAppTests: XCTestCase  {
         // 최고점자 Player2
         XCTAssertEqual(highestScoreParticipant, "Player2")
     }
+    // MARK:-  WinnerDiscriminator 클래스
+    
+    func testListUpParticipants(){
+        //given
+        let pokerGame = PokerGame(numbersOfPlayers: .four, gameMode: .sevenCardStud)
+        let winnerDiscriminator = WinnerDiscriminator(in: pokerGame)
 
+        //when
+        winnerDiscriminator.listUpParticipants()
+        let participantsCount = winnerDiscriminator.allParticipants.count
+
+        //then
+        XCTAssertEqual(participantsCount, 5)
+    }
+    
+    func testAddPlayersCardsToDictionary(){
+        //given
+         let pokerGame = PokerGame(numbersOfPlayers: .four, gameMode: .sevenCardStud)
+        pokerGame.start()
+                let winnerDiscriminator = WinnerDiscriminator(in: pokerGame)
+        
+        //when
+        winnerDiscriminator.addPlayersCardsToDictionary()
+        let cardsOfPlayer1 = winnerDiscriminator.participantsCardsDictionary["Player1"]
+        let cardsCount = cardsOfPlayer1?.count
+         //then
+        XCTAssertEqual(cardsCount, 7)
+        XCTAssertTrue(winnerDiscriminator.participantsCardsDictionary["Player5"]==nil)
+    }
+    
+    func testAddDealerCardsToDictionary(){
+        //given
+               let pokerGame = PokerGame(numbersOfPlayers: .four, gameMode: .sevenCardStud)
+              pokerGame.start()
+                      let winnerDiscriminator = WinnerDiscriminator(in: pokerGame)
+              
+              //when
+              winnerDiscriminator.addDealerCardsToDictionary()
+              let cardsOfDealer = winnerDiscriminator.participantsCardsDictionary["Dealer"]
+              let cardsCount = cardsOfDealer?.count
+               //then
+              XCTAssertEqual(cardsCount, 7)
+    }
+    
 }
