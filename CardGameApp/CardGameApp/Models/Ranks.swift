@@ -13,10 +13,11 @@ class Ranks {
     private var ranks = [Rank]()
     
     init(cards: [Card]) {
-        generateRanks(cards: cards)
+        ranks = generateRanks(cards: cards)
     }
     
-    private func generateRanks(cards: [Card]) {
+    private func generateRanks(cards: [Card]) -> [Rank] {
+        var ranks = [Rank]()
         var cards = cards
         
         if let fourCard = isFourCard(cards: cards) {
@@ -49,6 +50,7 @@ class Ranks {
         if let oneCard = isOneCard(cards: cards) {
             ranks.append(Rank(card: oneCard, combination: .oneCard))
         }
+        return ranks
     }
     
 }
