@@ -33,12 +33,12 @@ class GameSegmentedControlStackView: UIStackView {
         setup()
     }
     
-    private func setup(){
+    private func setup() {
         setupProperties()
         setupSegmentedControls()
     }
     
-    private func setupProperties(){
+    private func setupProperties() {
         axis = .vertical
         distribution = .fillEqually
         spacing = 8

@@ -55,7 +55,7 @@ class CardsCrownStackView: UIStackView {
         setConstraintCrownImageView()
     }
     
-    private func addCrownImageView(){
+    private func addCrownImageView() {
         addSubview(crownImageView)
     }
     

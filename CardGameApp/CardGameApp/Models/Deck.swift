@@ -31,7 +31,7 @@ class Deck {
         self.cards = Deck.singletonInitCards
     }
     
-    func shuffle<G: RandomNumberGenerator>(using generator: inout G)  {
+    func shuffle<G: RandomNumberGenerator>(using generator: inout G) {
         cards = cards.shuffled(using: &generator)
     }
     
@@ -61,7 +61,7 @@ extension Deck: Equatable {
 extension Deck: CardSearchable {
     
     func searchCard(handler: (Card) -> (Void)) {
-        cards.forEach{ handler($0) }
+        cards.forEach { handler($0) }
     }
     
 }

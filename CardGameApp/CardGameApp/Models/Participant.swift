@@ -40,7 +40,7 @@ class Participant {
 extension Participant: CardSearchable {
     
     func searchCard(handler: (Card) -> (Void)) {
-        cards.forEach{ handler($0) }
+        cards.forEach { handler($0) }
     }
     
 }

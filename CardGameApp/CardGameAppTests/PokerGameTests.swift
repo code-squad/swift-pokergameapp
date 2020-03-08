@@ -58,7 +58,6 @@ class PokerGameTests: XCTestCase {
 
         //3. then
         XCTAssertFalse(game.hasEnoughCards())
-        
     }
     
 }

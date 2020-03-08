@@ -22,7 +22,7 @@ class DeckTests: XCTestCase {
         super.tearDown()
     }
     
-    func testDeckCount(){
+    func testDeckCount() {
         // 1. given is handled by setup
         // 2. when
         let count = deck.count
@@ -32,7 +32,7 @@ class DeckTests: XCTestCase {
                        "sut.count is wrong")
     }
     
-    func testShuffle(){
+    func testShuffle() {
         // 1. given
         var originCards = [Card]()
         deck.searchCard { (card: Card ) in
