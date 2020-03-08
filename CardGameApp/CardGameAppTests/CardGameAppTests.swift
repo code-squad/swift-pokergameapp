@@ -117,47 +117,5 @@ class CardGameAppTests: XCTestCase  {
         XCTAssertEqual(originalCount, changedCount+1)
     }
     
-    // MARK:-  pokerGame 클래스 테스트 케이스
-    // 참가한 모든 플레이어가 스터드 넘버만큼의 카드를 갖고 있는지 테스트
-//    func testAllPlayersCardsReady(){
-//        // Given
-//        let dealer = Dealer()
-//        let pokerGame = PokerGame(numbersOfPlayers: .four, gameMode: .fiveCardStud)
-//        
-//        // When
-//        pokerGame.start()
-//        let cardsReadyCheck = pokerGame.isAllPlayersCardsReady()
-//        
-//        // Then
-//        XCTAssertTrue(cardsReadyCheck)
-//    }
-    
-    // MARK:-  Player 클래스 테스트 케이스
-//    func testIsPlayerCardsFull(){
-//        //Given
-//        let player = Player()
-//        let dealer = Dealer()
-//
-//        // When
-//        let newCards = dealer.giveOneCard()
-//        player.addCard(newCard: newCards)
-//        let cardReadyCheck = player.isCardsFull()
-//
-//        //Then
-//        XCTAssertTrue(cardReadyCheck)
-//    }
-//
-//    // MARK:-  Dealer 클래스 테스트 케이스
-//    func testIsDealerCardsFull(){
-//        //Given
-//        let dealer = Dealer()
-//
-//        //When
-//        let newCards = dealer.giveOneCard()
-//        dealer.addCard(newCard: newCards)
-//        let cardReadyCheck = dealer.isCardsFull()
-//
-//        //Then
-//        XCTAssertTrue(cardReadyCheck)
-//    }
+    // MARK:-  HandCombination 클래스
 }

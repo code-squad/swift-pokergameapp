@@ -20,4 +20,42 @@ class HandCombination{
     var combinationTypes = [Int]() // 참가자가 갖고있는 카드들 중 각 조합을 이루기 위한 카드는 몇개였는지 (ex - Triple = 3, Straight = 5)
     var isOnePair : Bool = false
     var typesOfCombination = [Combination]() // 참가자가 갖고있는 카드들이 어떤 조합이 나왔는지
+    
+    func checkStraight(of cardsToCheck: [Int]) -> [Combination]{
+        let combination = Combination.self
+        
+        // 중복된 수를 지우기
+        let sortedCards = cardsToCheck.sorted()
+        var duplicationRemovedCards = removeDuplication(in: sortedCards)
+        
+        // 연속 수 찾기
+        var squenceCount = 0
+        var cardRankToCompare = duplicationRemovedCards.sorted()[0]
+        for card in duplicationRemovedCards{
+            
+            if cardRankToCompare == card{
+            cardRankToCompare += 1
+            squenceCount += 1
+            }
+        }
+        
+        //연속된 수가 5개일 경우
+        if squenceCount == 5{
+            typesOfCombination.append(combination.Straight)
+        }
+        return typesOfCombination
+    }
+    
+    func removeDuplication(in cardsToCheck: [Int]) -> [Int]{
+        var duplicationRemovedCards = cardsToCheck
+        for cardIndex in 0 ... duplicationRemovedCards.count-1 {
+               if cardIndex + 1 <= duplicationRemovedCards.count-1 {
+                if duplicationRemovedCards[cardIndex] == duplicationRemovedCards[cardIndex+1] {
+                    duplicationRemovedCards.remove(at: cardIndex)
+                }
+           }
+        }
+        return duplicationRemovedCards
+    }
+
 }
