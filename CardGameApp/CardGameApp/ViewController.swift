@@ -140,3 +140,10 @@ class ViewController: UIViewController {
     }
     
 }
+extension ViewController: SegmentedControlProtocol{
+    func segmentControlDidChange() {
+        gameModeSegmentChanged(segmentedControl: gameModeSegmentedControl)
+        numbersOfPlayersSegmentChanged(segmentedControl: numbersOfPlayersSegmentedControl)
+        
+    }
+}
