@@ -42,4 +42,31 @@ class ScoreBoard{
             scoreBoard[participant] = originalScore + score
         }
     }
+    
+    // 동점일 경우 조합을 이룬 카드 중 Rank가 높은 카드를 갖고있는 참가자에게 추가점수 부여
+     func breakTie(between combinedCards: [String:[Int]]){  // combinedCards: 조합을 이룬 카드들을 모아둔 딕셔너리
+         
+         if let highestScore = scoreBoard.max(by: { one, another in one.value < another.value}){
+             let tiebreakers = scoreBoard.filter{score in score == highestScore}
+             // 더 높은 랭크를 가진 사람에게 1점 더주기
+             compareHighestRank(between: tiebreakers, ranksOfCombinedCards: combinedCards)
+         }
+     }
+     
+     // 받아온게 조합을 이룬 카드 배열
+     func compareHighestRank(between tiebreakers : [String:Int], ranksOfCombinedCards : [String:[Int]]){
+         var comparingCardRank = 0
+         for name in tiebreakers.keys{
+             if let combindedCards = ranksOfCombinedCards[name]?.sorted(by: >){
+                 let cardRank = combindedCards[0]
+                 
+                 if comparingCardRank < cardRank {
+                     addScore(to: name, as: 1)
+                 }
+                 comparingCardRank = cardRank
+                 
+             }
+         }
+     }
+
 }
