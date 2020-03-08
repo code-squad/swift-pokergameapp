@@ -14,8 +14,8 @@ class ViewController: UIViewController {
     private var gameMode = GameMode.fiveCardStud
     private var numbersOfPlayers = NumbersOfPlayers.four
         private var gameStackView = GameStackView()
-    private var gameModeSegmentedControl = GameModeSegmentControl()
-    private var numbersOfPlayersSegmentedControl = NumbersOfPlayersSegmentControl()
+    private var gameModeSegmentedControl = GameModeSegmentedControl()
+    private var numbersOfPlayersSegmentedControl = NumbersOfPlayersSegmentedControl()
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {

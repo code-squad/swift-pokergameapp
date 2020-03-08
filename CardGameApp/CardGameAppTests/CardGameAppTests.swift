@@ -156,6 +156,17 @@ class CardGameAppTests: XCTestCase  {
         //then
         XCTAssertEqual(handCombination.combinedCardsRank, [1,2,3,4,5])
         XCTAssertEqual(handCombination.combinationTypes, [2,3,6,3,2])
-       
     }
+    
+    func testConvertToCombination(){
+        //given
+         let combi = HandCombination()
+                  combi.isOnePair = true
+                  let pairNumbers = [2,3,4,2]
+         //when
+                  combi.addCombination(pairNumbers: pairNumbers)
+         //then
+                  XCTAssertEqual(combi.typesOfCombination, [.TwoPair,.Triple,.FourCard])
+               
+     }
 }
