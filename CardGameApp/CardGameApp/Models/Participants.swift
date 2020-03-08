@@ -11,6 +11,7 @@ import Foundation
 class Participants {
     
     enum PlayersNumber: Int, CaseIterable {
+        
         case one = 1 , two, three, four
         
         func forEach(handler: () -> (Void)) {
@@ -18,6 +19,7 @@ class Participants {
                 handler()
             }
         }
+        
     }
     let playersNumber: PlayersNumber
     private var players = [Participant]()

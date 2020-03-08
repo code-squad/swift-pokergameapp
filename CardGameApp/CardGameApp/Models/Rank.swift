@@ -35,6 +35,7 @@ struct Rank: Comparable {
 extension Rank {
     
     enum Combination: Int, CaseIterable, Comparable {
+        
         case oneCard = 0
         case onePair
         case twoPair

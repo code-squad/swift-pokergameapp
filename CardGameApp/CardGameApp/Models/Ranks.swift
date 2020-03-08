@@ -266,5 +266,3 @@ extension Ranks: Comparable {
     }
     
 }
-
-

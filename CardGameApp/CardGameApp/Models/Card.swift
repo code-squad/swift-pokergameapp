@@ -66,12 +66,15 @@ extension Card: Comparable {
     func isDeepEqual(other card: Card) -> Bool {
         return (suit == card.suit) && (number == card.number)
     }
+    
 }
 
 extension Card: Hashable {
+    
     func hash(into hasher: inout Hasher) {
         hasher.combine(number)
     }
+    
 }
 
 extension Card: CustomStringConvertible {
@@ -79,6 +82,7 @@ extension Card: CustomStringConvertible {
     public var description: String {
         return suit.description + number.description
     }
+    
 }
 
 extension Card.Suit: CustomStringConvertible {

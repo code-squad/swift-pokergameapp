@@ -70,6 +70,7 @@ class CardsCrownStackView: UIStackView {
         overlappedCardsStackView.updateView(participant: participant)
         hideCrownImageView()
     }
+    
     private func hideCrownImageView() {
         crownImageView.isHidden = true
     }

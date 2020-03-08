@@ -34,6 +34,7 @@ class Participant {
     func updateRanks() {
         ranks = Ranks(cards: cards)
     }
+    
 }
 
 extension Participant: CardSearchable {
