@@ -184,9 +184,12 @@ class ViewController: UIViewController {
         default: return
         }
     }
+    
+    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        if motion == .motionShake {
+            pokerGame.shuffleWholeCardDeck()
+            startPokerGame(gameMode: gameMode, numbersOfPlayers: numbersOfPlayers)
+        }
+    }
+    
 }
-
-
-
-
-
