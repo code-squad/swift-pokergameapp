@@ -118,4 +118,32 @@ class CardGameAppTests: XCTestCase  {
     }
     
     // MARK:-  HandCombination 클래스
+    func testRemoveDuplication(){
+        //given
+        let handCombination = HandCombination()
+        var cardsToCheck = [1,1,2,3,4,5,7,7,3,9,8]
+        let expectedCards = [1,2,3,4,5,7,8,9]
+        
+        //when
+        cardsToCheck.sort()
+        let duplicationRemovedCards = handCombination.removeDuplication(in: cardsToCheck)
+        
+        //then
+        XCTAssertEqual(duplicationRemovedCards, expectedCards)
+    }
+    
+    func testCheckStraight(){
+        //given
+        let handCombination = HandCombination()
+        var cardsToCheck = [1,1,2,3,4,5,7,7,3,9,8]
+        let expectedCards : [Combination] = [.Straight]
+        
+        //when
+        cardsToCheck.sort()
+        let checkedStraight = handCombination.checkStraight(of: cardsToCheck)
+        
+        //then
+        XCTAssertEqual(checkedStraight, expectedCards)
+    }
+
 }
