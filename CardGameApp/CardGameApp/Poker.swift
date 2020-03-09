@@ -12,14 +12,29 @@ class Poker {
     enum Stud: Int {
         case fiveCard = 5, sevenCard = 7
         func forEach(_ closure: () -> ()) {
-            for _ in 1...self.rawValue {
+            for _ in 0..<self.rawValue {
                 closure()
+            }
+        }
+        func forEach(_ closure: (Int) -> ()) {
+            for index in 0..<self.rawValue {
+                closure(index)
             }
         }
     }
     
     enum NumberOfPlayers: Int {
-        case one = 1, two, three, four
+        case two = 2, three, four
+        func forEach(_ closure: () -> ()) {
+            for _ in 0..<self.rawValue {
+                closure()
+            }
+        }
+        func forEach(_ closure: (Int) -> ()) {
+            for index in 0..<self.rawValue {
+                closure(index)
+            }
+        }
     }
     
     private var stud: Stud
@@ -44,5 +59,13 @@ class Poker {
     
     func canContinue() -> Bool {
         return dealer.canContinue(stud: stud, numberOfPlayers: numberOfPlayers)
+    }
+    
+    func playersHands() -> [[Card]] {
+        return players.allHands()
+    }
+    
+    func dealerHands() -> [Card] {
+        return dealer.allHands()
     }
 }

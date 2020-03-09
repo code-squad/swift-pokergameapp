@@ -10,7 +10,7 @@ import Foundation
 
 struct Card: CustomStringConvertible, Equatable {
     enum Suit: Character, CaseIterable {
-        case spades = "♠️", hearts = "♥️", diamonds = "♦️", clubs = "♣️"
+        case spades = "s", hearts = "h", diamonds = "d", clubs = "c"
     }
 
     enum Rank: Int, CaseIterable {

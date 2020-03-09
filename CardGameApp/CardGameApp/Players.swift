@@ -12,7 +12,7 @@ class Players {
     private var players = [Player]()
     
     init(with numberOfPlayers: Poker.NumberOfPlayers) {
-        for _ in 1...numberOfPlayers.rawValue {
+        for _ in 0..<numberOfPlayers.rawValue {
             players.append(Player())
         }
     }
@@ -21,5 +21,13 @@ class Players {
         for index in 0..<players.count {
             players[index].receive(card())
         }
+    }
+    
+    func allHands() -> [[Card]] {
+        var allHands = [[Card]]()
+        for index in 0..<players.count {
+            allHands.append(players[index].allHands())
+        }
+        return allHands
     }
 }

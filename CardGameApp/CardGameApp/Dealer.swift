@@ -35,4 +35,8 @@ class Dealer: Playable {
     func canContinue(stud: Poker.Stud, numberOfPlayers: Poker.NumberOfPlayers) -> Bool {
         return count() > (stud.rawValue * (numberOfPlayers.rawValue + 1))
     }
+    
+    func allHands() -> [Card] {
+        return hands
+    }
 }

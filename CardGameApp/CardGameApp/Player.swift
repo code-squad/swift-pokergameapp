@@ -18,4 +18,8 @@ class Player: Playable {
     func receive(_ hand: Card) {
         hands.append(hand)
     }
+    
+    func allHands() -> [Card] {
+        return hands
+    }
 }
