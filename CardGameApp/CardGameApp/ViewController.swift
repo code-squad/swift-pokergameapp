@@ -13,21 +13,21 @@ class ViewController: UIViewController {
     private var pokerGame = PokerGame(numbersOfPlayers: .four, gameMode: .fiveCardStud)
     private var gameMode = GameMode.fiveCardStud
     private var numbersOfPlayers = NumbersOfPlayers.four
+    private var segmentedControl = SegmentedControl()
     private var gameStackView = GameStackView()
-    private var gameModeSegmentedControl = GameModeSegmentedControl()
-    private var numbersOfPlayersSegmentedControl = NumbersOfPlayersSegmentedControl()
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(patternImage:  #imageLiteral(resourceName: "bg_pattern"))
-        self.view.addSubview(gameModeSegmentedControl)
-        gameModeSegmentedControl.setSegmetedControl(in: self.view, offset: 15)
+        self.view.addSubview(segmentedControl)
+        segmentedControl.translatesAutoresizingMaskIntoConstraints = false
+        let safeArea = view.safeAreaLayoutGuide
         
-        self.view.addSubview(numbersOfPlayersSegmentedControl)
-        numbersOfPlayersSegmentedControl.setSegmetedControl(in: self.view, offset: 9)
-        gameModeSegmentedControl.delegate = self
-        numbersOfPlayersSegmentedControl.delegate = self
+        segmentedControl.topAnchor.constraint(equalTo: safeArea.topAnchor).isActive = true
+        segmentedControl.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor).isActive = true
+        
+        segmentedControl.delegate = self
     }
     // MARK: - Method
     func startPokerGame(gameMode : GameMode, numbersOfPlayers : NumbersOfPlayers){
@@ -36,7 +36,7 @@ class ViewController: UIViewController {
          pokerGame.start()
          pokerGame.shuffleWholeCardDeck()
          self.view.addSubview(gameStackView)
-         gameStackView.setConstraintOfView(related: self.view, related: numbersOfPlayersSegmentedControl)
+         gameStackView.setConstraintOfView(related: self.view, related: segmentedControl)
          setPlayersCards(in : gameStackView)
          setDealersCards(in : gameStackView)
      }
@@ -99,9 +99,30 @@ class ViewController: UIViewController {
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
+        
+    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        if motion == .motionShake {
+            pokerGame.shuffleWholeCardDeck()
+            startPokerGame(gameMode: gameMode, numbersOfPlayers: numbersOfPlayers)
+        }
+    }
     
-    @objc func gameModeSegmentChanged(segmentedControl: UISegmentedControl){
-        switch segmentedControl.selectedSegmentIndex {
+}
+extension ViewController: SegmentedControlProtocol{
+    func segmentControlDidChange(to mode: (Int,Int)) {
+        var gameMode = mode.0
+        var numbersOfPlayers = mode.1
+        
+        gameModeSegmentChanged(selectedSegmentIndex: gameMode)
+        numbersOfPlayersSegmentChanged(selectedSegmentIndex: numbersOfPlayers)
+        
+        // 승자 찾기
+        let winnerDiscriminator = WinnerDiscriminator(in: pokerGame)
+        winnerDiscriminator.findWinner()
+    }
+    
+    func gameModeSegmentChanged(selectedSegmentIndex: Int){
+        switch selectedSegmentIndex {
         case 0:
             gameMode = .fiveCardStud
             startPokerGame(gameMode: gameMode, numbersOfPlayers: .two)
@@ -112,8 +133,8 @@ class ViewController: UIViewController {
         }
     }
     
-    @objc func numbersOfPlayersSegmentChanged(segmentedControl: UISegmentedControl){
-        switch segmentedControl.selectedSegmentIndex {
+    func numbersOfPlayersSegmentChanged(selectedSegmentIndex: Int){
+        switch selectedSegmentIndex {
         case 0:
             numbersOfPlayers = .two
             startPokerGame(gameMode: gameMode, numbersOfPlayers: numbersOfPlayers)
@@ -126,21 +147,5 @@ class ViewController: UIViewController {
         default: return
         }
     }
-    
-    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
-        if motion == .motionShake {
-            pokerGame.shuffleWholeCardDeck()
-            startPokerGame(gameMode: gameMode, numbersOfPlayers: numbersOfPlayers)
-        }
-    }
-    
-}
-extension ViewController: SegmentedControlProtocol{
-    func segmentControlDidChange() {
-        gameModeSegmentChanged(segmentedControl: gameModeSegmentedControl)
-        numbersOfPlayersSegmentChanged(segmentedControl: numbersOfPlayersSegmentedControl)
-        // 승자 찾기
-        let winnerDiscriminator = WinnerDiscriminator(in: pokerGame)
-        winnerDiscriminator.findWinner()
-    }
+
 }
