@@ -13,7 +13,7 @@ class ViewController: UIViewController {
     private var pokerGame = PokerGame(numbersOfPlayers: .four, gameMode: .fiveCardStud)
     private var gameMode = GameMode.fiveCardStud
     private var numbersOfPlayers = NumbersOfPlayers.four
-        private var gameStackView = GameStackView()
+    private var gameStackView = GameStackView()
     private var gameModeSegmentedControl = GameModeSegmentedControl()
     private var numbersOfPlayersSegmentedControl = NumbersOfPlayersSegmentedControl()
     
@@ -139,6 +139,8 @@ extension ViewController: SegmentedControlProtocol{
     func segmentControlDidChange() {
         gameModeSegmentChanged(segmentedControl: gameModeSegmentedControl)
         numbersOfPlayersSegmentChanged(segmentedControl: numbersOfPlayersSegmentedControl)
-        
+        // 승자 찾기
+        let winnerDiscriminator = WinnerDiscriminator(in: pokerGame)
+        winnerDiscriminator.findWinner()
     }
 }
