@@ -9,13 +9,13 @@
 import UIKit
 
 protocol SegmentedControlProtocol: class {
-    func segmentControlDidChange()
+    func segmentControlDidChange(to mode: (Int,Int))
 }
 
-class SegmentedControl : UIView{
+class SegmentedControl : UISegmentedControl{
     weak var delegate : SegmentedControlProtocol?
-    let gameModes: [String] = ["5 Cards","7 Cards"]
-    let numbersOfPlayersList: [String] = ["2명", "3명", "4명"]
+    private let gameModes: [String] = ["5 Cards","7 Cards"]
+    private let numbersOfPlayersList: [String] = ["2명", "3명", "4명"]
     private lazy var gameModeSegmentControl: UISegmentedControl = {
         let segmentedControl = UISegmentedControl(items: gameModes)
         segmentedControl.translatesAutoresizingMaskIntoConstraints = false
@@ -28,7 +28,7 @@ class SegmentedControl : UIView{
     }()
     
     @objc func valueDidChange(){
-        delegate?.segmentControlDidChange()
+        delegate?.segmentControlDidChange(to : (gameModeSegmentControl.selectedSegmentIndex,numbersOfPlayersSegmentedControl.selectedSegmentIndex))
     }
     
     override init(frame: CGRect) {
