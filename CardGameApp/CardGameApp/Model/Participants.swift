@@ -28,15 +28,15 @@ class Participants {
         }
     }
     
-    func showParticipantsCards(behavior: (PokerPlayer) -> ()) {
+    func forEachParticipant(behavior: (PokerPlayer) -> ()) {
         allParticipants.forEach { participant in
             behavior(participant)
         }
     }
     
-    func showParicipantsNames(behavior:(String)->()){
-        allParticipants.forEach{participant in
-            participant.describeSelf()
+    func findCombination(){
+        allParticipants.forEach{ participant in
+        participant.findMyCombination()
         }
     }
 }
