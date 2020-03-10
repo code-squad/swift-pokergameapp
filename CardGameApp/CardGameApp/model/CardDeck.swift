@@ -34,10 +34,8 @@ struct CardDeck {
     // 카드하나 뽑기
     // 하나 랜덤으로 뽑고 deck에서 제거 -> Equtable protocol 사용
     mutating func removeOne() -> Card {
-        let pickCard = self.deck.randomElement()
-        self.deck = self.deck.filter { $0 != pickCard }
-        
-        return pickCard!
+        let pickCard = self.deck.removeFirst()
+        return pickCard
     }
     
     //카드리셋

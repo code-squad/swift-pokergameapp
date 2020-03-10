@@ -11,7 +11,7 @@ import Foundation
 class Card {
     
     private let suit: Suit
-    let rank: Rank
+    private let rank: Rank
     
     init(suit: Suit, rank: Rank){
         self.suit = suit
@@ -31,7 +31,7 @@ class Card {
     }
     
     // enum으로 카드숫자 선언
-    enum Rank: Int, CustomStringConvertible, CaseIterable {
+    enum Rank: Int, CustomStringConvertible, CaseIterable, Equatable {
         case A = 1
         case two = 2
         case three = 3
@@ -67,6 +67,13 @@ class Card {
             }
             return false
         }
+        
+        static func == (lhs: Rank, rhs: Rank) -> Bool {
+            if lhs.rawValue == rhs.rawValue  {
+                return true
+            }
+            return false
+        }
     }
     
     func isContinousRank(nextCard: Card) -> Bool {
@@ -76,7 +83,7 @@ class Card {
 
 extension Card: CustomStringConvertible, Equatable, Hashable {
     static func == (lhs: Card, rhs: Card) -> Bool {
-        if lhs.suit == rhs.suit && lhs.rank == rhs.rank {
+        if lhs.rank == rhs.rank {
             return true
         }
         return false
