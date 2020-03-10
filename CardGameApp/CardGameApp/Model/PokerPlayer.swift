@@ -9,9 +9,11 @@
 import Foundation
 
 class PokerPlayer {
-    var cardsInHand = [Card]()
-    var name : String = ""
-    let handCombination = HandCombination()
+    private var cardsInHand = [Card]()
+    private var name : String = ""
+    private var combinedCardsRank = [Int]() 
+    private let handCombination = HandCombination()
+    private var typesOfCombination = [Combination]()
     
     func addOneCard(newCard: Card) {
         self.cardsInHand.append(newCard)
@@ -28,6 +30,29 @@ class PokerPlayer {
     func describeSelf()-> String {
         return self.name
     }
+    
+    func showHighestRank(behavior: (Int) -> ()) -> Int{
+        combinedCardsRank.sort(by: >)
+        guard let highestRank = combinedCardsRank.first else { return 0 }
+        return highestRank
+    }
+    
+    func findMyCombination(){
+        let cardsRanksInHand = watchCardRanksInHand()
+        let checkResult = handCombination.submitCheckResult(of: cardsRanksInHand)
+        self.combinedCardsRank += checkResult.0
+        self.typesOfCombination += checkResult.1
+    }
+    
+    func watchCardRanksInHand() -> [Int]{
+        var cardsRanksInHand = [Int]()
+        self.cardsInHand.forEach{ card in
+            cardsRanksInHand.append(card.cardNumber)
+        }
+        return cardsRanksInHand
+    }
+    
+
 }
 
 class Dealer : PokerPlayer {
