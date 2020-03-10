@@ -52,11 +52,11 @@ class Players {
     
     private func comparePlayerScore(currentPlayer:Player, nextPlayer:Player) -> Player {
         var highPriorityPlayer = currentPlayer
-        if currentPlayer.score == nextPlayer.score {
+        if currentPlayer == nextPlayer {
             if currentPlayer.score.highestPairCard! < nextPlayer.score.highestPairCard! {
                 highPriorityPlayer = nextPlayer
             }
-        } else if currentPlayer.score < nextPlayer.score {
+        } else if currentPlayer < nextPlayer {
             highPriorityPlayer = nextPlayer
         }
         
