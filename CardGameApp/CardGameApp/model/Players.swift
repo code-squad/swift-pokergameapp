@@ -30,14 +30,7 @@ class Players {
     }
     
     func searchWinnerIndexNum(winner: Player) -> Int {
-        var winnerIndex = 0
-        
-        for index in 0 ..< players.count {
-            if players[index].name == winner.name {
-                winnerIndex = index
-            }
-        }
-        return winnerIndex
+        return players.firstIndex(of: winner)!
     }
     
     func highestScorePlayer() -> Player {
