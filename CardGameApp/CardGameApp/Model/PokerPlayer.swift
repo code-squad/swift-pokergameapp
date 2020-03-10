@@ -10,6 +10,7 @@ import Foundation
 
 class PokerPlayer {
     var cardsInHand = [Card]()
+    var name : String = ""
     
     func addCard(newCard: Card) {
         self.cardsInHand.append(newCard)
@@ -17,6 +18,14 @@ class PokerPlayer {
     
     func showEachCardInHand(behavior: (Card) -> () ) {
         cardsInHand.forEach(behavior)
+    }
+    
+    func decideName(with text: String){
+        self.name = text
+    }
+    
+    func describeSelf()-> String {
+        return self.name
     }
 }
 
