@@ -28,11 +28,11 @@ class ViewController: UIViewController {
     
     func setUI() {
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "BackgroundPattern")!)
-        drawSegmentCtrl()
-        drawStackView()
+        addSegmentControl()
+        addStackView()
     }
     
-    func drawStackView() {
+    func addStackView() {
         gameStackView = GameStackView(pokerGame: pokerGame)
         self.view.addSubview(gameStackView)
         gameStackView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 130).isActive = true
@@ -41,7 +41,7 @@ class ViewController: UIViewController {
         addWinnerThropy()
     }
     
-    func drawSegmentCtrl() {
+    func addSegmentControl() {
         setUpStudTypeSegment()
         setUpPlayerEntrySegment()
     }
@@ -52,15 +52,13 @@ class ViewController: UIViewController {
             subCardStackView.removeFromSuperview()
         }
         self.pokerGame = GameTable(playerEntry: self.entry, studType: self.studType)
-        drawStackView()
+        addStackView()
     }
     
     func addWinnerThropy() {
         let winnerIndex = pokerGame.winner()
-        
         self.view.addSubview(winnerThropyImageView)
-        winnerThropyImageView.topAnchor.constraint(equalTo: gameStackView.arrangedSubviews[winnerIndex].topAnchor, constant: 30).isActive = true
-        winnerThropyImageView.trailingAnchor.constraint(equalTo: gameStackView.arrangedSubviews[winnerIndex].trailingAnchor, constant: 40).isActive = true
+        gameStackView.setWinnerThropyImage(winnerThropyImageView: winnerThropyImageView, winnerIndex: winnerIndex, studType: studType)
     }
     
     func setUpStudTypeSegment() {

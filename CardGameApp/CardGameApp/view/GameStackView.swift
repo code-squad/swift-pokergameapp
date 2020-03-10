@@ -31,7 +31,6 @@ class GameStackView: UIStackView {
         pokerGame = GameTable()
         super.init(coder: coder)
         topStackViewSetup()
-        
     }
     
     // 최상위 스택뷰
@@ -87,5 +86,16 @@ class GameStackView: UIStackView {
         playerLabel.textColor = .white
         
         return playerLabel
+    }
+    
+    func setWinnerThropyImage(winnerThropyImageView: UIImageView, winnerIndex: Int, studType: StudType) {
+        var topAnchorConstant: CGFloat
+        if studType == .fiveStud {
+            topAnchorConstant = 40
+        } else {
+            topAnchorConstant = 30
+        }
+        winnerThropyImageView.topAnchor.constraint(equalTo: self.arrangedSubviews[winnerIndex].topAnchor, constant: topAnchorConstant).isActive = true
+        winnerThropyImageView.trailingAnchor.constraint(equalTo: self.arrangedSubviews[winnerIndex].trailingAnchor, constant: 40).isActive = true
     }
 }
