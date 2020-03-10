@@ -26,6 +26,7 @@ class HandCombination{
         
         // 중복된 수를 지우기
         let sortedCards = cardsToCheck.sorted()
+        
         var duplicationRemovedCards = removeDuplication(in: sortedCards)
         
         // 연속 수 찾기
@@ -47,14 +48,8 @@ class HandCombination{
     }
     
     func removeDuplication(in cardsToCheck: [Int]) -> [Int]{
-        var duplicationRemovedCards = cardsToCheck
-        for cardIndex in 0 ... duplicationRemovedCards.count-1 {
-            if cardIndex + 1 <= duplicationRemovedCards.count-1 {
-                if duplicationRemovedCards[cardIndex] == duplicationRemovedCards[cardIndex+1] {
-                    duplicationRemovedCards.remove(at: cardIndex)
-                }
-            }
-        }
+        let cardsSet = Set(cardsToCheck)
+        let duplicationRemovedCards = Array(cardsSet)
         return duplicationRemovedCards
     }
     

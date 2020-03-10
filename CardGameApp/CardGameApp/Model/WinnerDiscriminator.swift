@@ -78,6 +78,8 @@ class WinnerDiscriminator{
             
             guard var cardsToCheck = participantsCardsDictionary[oneParticipant] else { return }
             
+            cardsToCheck.remove(at: 0)
+            
             // 여기서 어떤 조합이 있는지 체크
             let handCombination = HandCombination()
             var combinations = handCombination.checkStraight(of: cardsToCheck)
