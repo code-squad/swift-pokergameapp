@@ -33,4 +33,10 @@ class Participants {
             behavior(participant)
         }
     }
+    
+    func showParicipantsNames(behavior:(String)->()){
+        allParticipants.forEach{participant in
+            participant.describeSelf()
+        }
+    }
 }

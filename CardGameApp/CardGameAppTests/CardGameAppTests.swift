@@ -158,106 +158,93 @@ class CardGameAppTests: XCTestCase  {
         XCTAssertEqual(handCombination.combinationTypes, [2,3,6,3,2])
     }
     
-    // MARK:-  Utility 클래스
-    func testConvertToCombination(){
-        //given
-         let combi = HandCombination()
-                  combi.isOnePair = true
-                  let pairNumbers = [2,3,4,2]
-         //when
-                  combi.addCombination(pairNumbers: pairNumbers)
-         //then
-                  XCTAssertEqual(combi.typesOfCombination, [.TwoPair,.Triple,.FourCard])
-               
-     }
-    
-    // MARK:-  ScoreBoard 클래스
-    func testScoreBoardInitialSetUp(){
-         //given
-         let scoreBoard = ScoreBoard(with: ["Player1","Player2","Dealer"])
-         
-         //when
-         scoreBoard.doInitialSetUp()
-         let player2 = scoreBoard.participants[1]
-         let scoreOfPlayer2 = scoreBoard.scoreBoard[player2]
-         
-         //then
-         XCTAssertEqual(scoreOfPlayer2, 0)
-     }
-    
-    func testUpdateScore(){
-      //given
-        let scoreBoard = ScoreBoard(with: ["Player1","Dealer"])
-        
-        //when
-        scoreBoard.updateScores(of: scoreBoard.participants[0], with: [.OnePair,.Triple,.FourCard])
-               let scoreOfPlayer1 = scoreBoard.scoreBoard[scoreBoard.participants[0]]
-        //then
-        XCTAssertEqual(scoreOfPlayer1, 9)
-    }
-    
-    func testBreakTie(){
-        //given
-        let participants = ["Player1","Player2","Player3","Dealer"]
-        let scoreBoard = ScoreBoard(with: participants)
-        scoreBoard.scoreBoard = ["Player1" : 5,"Player2" : 5,"Player3" : 4,"Dealer" :3 ]
-        let combinedCards = ["Player1":[5,5,5,2,2,4,4],"Player2": [10,9,6,8,7,3,3],"Player3":[3,3,3,11,11],"Dealer":[1,1,1]]
-
-        
-        // 최고점 동점자 Player1와 Player2
-        let highestScore = scoreBoard.scoreBoard.max(by: { one, another in one.value < another.value})?.value
-        XCTAssertEqual(highestScore, scoreBoard.scoreBoard["Player1"])
-        XCTAssertEqual(highestScore, scoreBoard.scoreBoard["Player2"])
-        
-
-        scoreBoard.breakTie(between: combinedCards)
-        let highestScoreParticipant = scoreBoard.scoreBoard.max(by: { one, another in one.value < another.value})?.key
-        
-        // 최고점자 Player2
-        XCTAssertEqual(highestScoreParticipant, "Player2")
-    }
-    // MARK:-  WinnerDiscriminator 클래스
-    
-    func testListUpParticipants(){
-        //given
-        let pokerGame = PokerGame(numbersOfPlayers: .four, gameMode: .sevenCardStud)
-        let winnerDiscriminator = WinnerDiscriminator(in: pokerGame)
-
-        //when
-        winnerDiscriminator.listUpParticipants()
-        let participantsCount = winnerDiscriminator.allParticipants.count
-
-        //then
-        XCTAssertEqual(participantsCount, 5)
-    }
-    
-    func testAddPlayersCardsToDictionary(){
-        //given
-         let pokerGame = PokerGame(numbersOfPlayers: .four, gameMode: .sevenCardStud)
-        pokerGame.start()
-                let winnerDiscriminator = WinnerDiscriminator(in: pokerGame)
-        
-        //when
-        winnerDiscriminator.addPlayersCardsToDictionary()
-        let cardsOfPlayer1 = winnerDiscriminator.participantsCardsDictionary["Player1"]
-        let cardsCount = cardsOfPlayer1?.count
-         //then
-        XCTAssertEqual(cardsCount, 7)
-        XCTAssertTrue(winnerDiscriminator.participantsCardsDictionary["Player5"]==nil)
-    }
-    
-    func testAddDealerCardsToDictionary(){
-        //given
-               let pokerGame = PokerGame(numbersOfPlayers: .four, gameMode: .sevenCardStud)
-              pokerGame.start()
-                      let winnerDiscriminator = WinnerDiscriminator(in: pokerGame)
-              
-              //when
-              winnerDiscriminator.addDealerCardsToDictionary()
-              let cardsOfDealer = winnerDiscriminator.participantsCardsDictionary["Dealer"]
-              let cardsCount = cardsOfDealer?.count
-               //then
-              XCTAssertEqual(cardsCount, 7)
-    }
+//    // MARK:-  ScoreBoard 클래스
+//    func testScoreBoardInitialSetUp(){
+//         //given
+//         let scoreBoard = ScoreBoard(with: ["Player1","Player2","Dealer"])
+//         
+//         //when
+//         scoreBoard.doInitialSetUp()
+//         let player2 = scoreBoard.participants[1]
+//         let scoreOfPlayer2 = scoreBoard.scoreBoard[player2]
+//         
+//         //then
+//         XCTAssertEqual(scoreOfPlayer2, 0)
+//     }
+//    
+//    func testUpdateScore(){
+//      //given
+//        let scoreBoard = ScoreBoard(with: ["Player1","Dealer"])
+//        
+//        //when
+//        scoreBoard.updateScores(of: scoreBoard.participants[0], with: [.OnePair,.Triple,.FourCard])
+//               let scoreOfPlayer1 = scoreBoard.scoreBoard[scoreBoard.participants[0]]
+//        //then
+//        XCTAssertEqual(scoreOfPlayer1, 9)
+//    }
+//    
+//    func testBreakTie(){
+//        //given
+//        let participants = ["Player1","Player2","Player3","Dealer"]
+//        let scoreBoard = ScoreBoard(with: participants)
+//        scoreBoard.scoreBoard = ["Player1" : 5,"Player2" : 5,"Player3" : 4,"Dealer" :3 ]
+//        let combinedCards = ["Player1":[5,5,5,2,2,4,4],"Player2": [10,9,6,8,7,3,3],"Player3":[3,3,3,11,11],"Dealer":[1,1,1]]
+//
+//        
+//        // 최고점 동점자 Player1와 Player2
+//        let highestScore = scoreBoard.scoreBoard.max(by: { one, another in one.value < another.value})?.value
+//        XCTAssertEqual(highestScore, scoreBoard.scoreBoard["Player1"])
+//        XCTAssertEqual(highestScore, scoreBoard.scoreBoard["Player2"])
+//        
+//
+//        scoreBoard.breakTie(between: combinedCards)
+//        let highestScoreParticipant = scoreBoard.scoreBoard.max(by: { one, another in one.value < another.value})?.key
+//        
+//        // 최고점자 Player2
+//        XCTAssertEqual(highestScoreParticipant, "Player2")
+//    }
+//    // MARK:-  WinnerDiscriminator 클래스
+//    
+//    func testListUpParticipants(){
+//        //given
+//        let pokerGame = PokerGame(numbersOfPlayers: .four, gameMode: .sevenCardStud)
+//        let winnerDiscriminator = WinnerDiscriminator(in: pokerGame)
+//
+//        //when
+//        winnerDiscriminator.listUpParticipants()
+//        let participantsCount = winnerDiscriminator.allParticipants.count
+//
+//        //then
+//        XCTAssertEqual(participantsCount, 5)
+//    }
+//    
+//    func testAddPlayersCardsToDictionary(){
+//        //given
+//         let pokerGame = PokerGame(numbersOfPlayers: .four, gameMode: .sevenCardStud)
+//        pokerGame.start()
+//                let winnerDiscriminator = WinnerDiscriminator(in: pokerGame)
+//        
+//        //when
+//        winnerDiscriminator.addPlayersCardsToDictionary()
+//        let cardsOfPlayer1 = winnerDiscriminator.participantsCardsDictionary["Player1"]
+//        let cardsCount = cardsOfPlayer1?.count
+//         //then
+//        XCTAssertEqual(cardsCount, 7)
+//        XCTAssertTrue(winnerDiscriminator.participantsCardsDictionary["Player5"]==nil)
+//    }
+//    
+//    func testAddDealerCardsToDictionary(){
+//        //given
+//               let pokerGame = PokerGame(numbersOfPlayers: .four, gameMode: .sevenCardStud)
+//              pokerGame.start()
+//                      let winnerDiscriminator = WinnerDiscriminator(in: pokerGame)
+//              
+//              //when
+//              winnerDiscriminator.addDealerCardsToDictionary()
+//              let cardsOfDealer = winnerDiscriminator.participantsCardsDictionary["Dealer"]
+//              let cardsCount = cardsOfDealer?.count
+//               //then
+//              XCTAssertEqual(cardsCount, 7)
+//    }
     
 }

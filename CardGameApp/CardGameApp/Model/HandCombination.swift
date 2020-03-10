@@ -26,7 +26,6 @@ class HandCombination{
         
         // 중복된 수를 지우기
         let sortedCards = cardsToCheck.sorted()
-        
         var duplicationRemovedCards = removeDuplication(in: sortedCards)
         
         // 연속 수 찾기

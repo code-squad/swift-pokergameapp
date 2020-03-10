@@ -10,7 +10,6 @@ import Foundation
 
 class WinnerDiscriminator{
     private let pokerGame : PokerGame
-    private let utility = Utility()
     var participantsCardsDictionary : [String: [Int]] = [:]
     var participantsCombinedCardsDictionary : [String: [Int]] = [:]
     var allParticipants = [String]()
@@ -21,8 +20,7 @@ class WinnerDiscriminator{
         self.pokerGame = pokerGame
         self.allParticipants = listUpParticipants()
         self.scoreBoard = ScoreBoard(with: allParticipants)
-        addPlayersCardsToDictionary()
-        addDealerCardsToDictionary()
+        addParticipnatCardsToDictionary()
     }
     
     func makeScoreBoard() -> ScoreBoard{
@@ -32,7 +30,7 @@ class WinnerDiscriminator{
     func listUpParticipants() -> [String]{
         var participantsList = [String]()
         var playerNumber = 1
-        pokerGame.forEachPlayer(behavior: ){ player in
+        pokerGame.forEachParticipant(behavior: ){ player in
             participantsList.append("Player\(playerNumber)")
             playerNumber += 1
         }
@@ -40,26 +38,18 @@ class WinnerDiscriminator{
         return participantsList
     }
     
-    func addPlayersCardsToDictionary(){
+    func addParticipnatCardsToDictionary(){
         var onePlayerCards = [Int]()
         var participantIndex = 0
-        pokerGame.forEachPlayer(behavior: ){ player in
+        pokerGame.forEachParticipant(behavior: ){ player in
             player.showEachCardInHand(behavior: ){ card in
-                onePlayerCards.append(utility.convertToNumber(text: card.numberDescription))
+                onePlayerCards.append(card.cardNumber)
             }
             participantsCardsDictionary[allParticipants[participantIndex]] = onePlayerCards
             participantIndex += 1
         }
     }
-    
-    func addDealerCardsToDictionary(){
-        var dealerCards = [Int]()
-        pokerGame.showDealerCards(behavior: ){ card in
-            dealerCards.append(utility.convertToNumber(text: card.numberDescription))
-        }
-        participantsCardsDictionary["Dealer"] = dealerCards
-    }
-    
+
     func findWinner() -> String{
         findCombination(then: ){ oneParticipant, combinations in
             scoreBoard.updateScores(of: oneParticipant, with: [combinations])
