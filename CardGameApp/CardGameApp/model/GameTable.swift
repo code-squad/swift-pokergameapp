@@ -23,6 +23,7 @@ class GameTable {
     }
     
     func setUpGame() {
+        self.dealer.shuffle()
         participants.joinPlayerToGame(playerEntry: playerEntry, dealer: dealer)
         participants.initDrawCard(studType: studType, dealer: dealer)
     }

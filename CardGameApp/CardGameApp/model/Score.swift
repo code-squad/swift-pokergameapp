@@ -61,7 +61,7 @@ class Score {
         var pairDeckCollection = [Card : Int]()
         
         cardDeck.forEach { (card) in
-            pairDeckCollection[card] = cardDeck.filter { $0.rank == card.rank }.count
+            pairDeckCollection[card] = cardDeck.filter { $0 == card }.count
         }
         
         return pairDeckCollection
@@ -113,7 +113,7 @@ class Score {
 extension Score: Equatable {
     static func == (lhs: Score, rhs: Score) -> Bool {
         if lhs.score == .straight && rhs.score == .straight {
-            return lhs.lastStraightCard?.rank == rhs.lastStraightCard?.rank
+            return lhs.lastStraightCard == rhs.lastStraightCard
         } else if lhs.score == rhs.score {
             return true
         }
