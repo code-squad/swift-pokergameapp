@@ -35,7 +35,7 @@ class Card: CustomStringConvertible {
         }
     }
     
-    enum Rank: UInt, CaseIterable, CustomStringConvertible {
+    enum Rank: Int, CaseIterable, CustomStringConvertible {
         case A = 1, two, three, four, five, six, seven, eight, nine, ten, J, Q, K
         var description: String {
             return "\(self.rawValue)"
@@ -62,5 +62,8 @@ extension Card :Equatable{
 extension Card {
     var numberDescription: String {
         return "\(rank.description)"
+    }
+    var cardNumber: Int{
+        return rank.rawValue
     }
 }
