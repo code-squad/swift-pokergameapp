@@ -21,3 +21,19 @@ class Player {
         self.handDeck.append(card)
     }
 }
+
+extension Player: Equatable {
+    static func == (lhs:Player, rhs:Player) -> Bool {
+        if lhs.score == rhs.score {
+            return true
+        }
+        return false
+    }
+    
+    static func < (lhs:Player, rhs:Player) -> Bool {
+        if lhs.score < rhs.score {
+            return true
+        }
+        return false
+    }
+}
