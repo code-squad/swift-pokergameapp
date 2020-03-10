@@ -9,7 +9,7 @@
 import Foundation
 
 enum Combination: Int {
-    case OnePair = 1, TwoPair, Triple, Straight, FourCard
+    case None = 0, OnePair = 1, TwoPair, Triple, Straight, FourCard
     func tellScore() -> Int{
         return self.rawValue
     }
@@ -26,11 +26,13 @@ class HandCombination{
         
         // 중복된 수를 지우기
         let sortedCards = cardsToCheck.sorted()
+        
         var duplicationRemovedCards = removeDuplication(in: sortedCards)
         
         // 연속 수 찾기
         var squenceCount = 0
-        var cardRankToCompare = duplicationRemovedCards.sorted()[0]
+        duplicationRemovedCards.sort(by: <)
+        var cardRankToCompare = duplicationRemovedCards[0]
         for card in duplicationRemovedCards{
             
             if cardRankToCompare == card{
@@ -46,18 +48,18 @@ class HandCombination{
         return typesOfCombination
     }
     
-    func removeDuplication(in cardsToCheck: [Int]) -> [Int]{
-        let cardsSet = Set(cardsToCheck)
-        let duplicationRemovedCards = Array(cardsSet)
-        return duplicationRemovedCards
+    func removeDuplication(in array: [Int]) -> [Int]{
+        let set = Set(array)
+        let duplicationRemovedArray = Array(set)
+        return duplicationRemovedArray
     }
     
     func checkPair(of cardsToCheck: [Int]) -> [Combination]{
         var cardsToCheck = cardsToCheck.sorted()
         while cardsToCheck.count != 0 {
             // 0번째 인덱스에 있는 수와 같은 수 찾기
-            var combi = cardsToCheck.filter{card in card == cardsToCheck[0]}
-            var combinedCardsCount = combi.count
+            let combi = cardsToCheck.filter{card in card == cardsToCheck[0]}
+            let combinedCardsCount = combi.count
             
             // 같은 수가 2개 이상일 경우
             if combinedCardsCount > 1{
@@ -68,7 +70,7 @@ class HandCombination{
                 addCombination(pairNumbers: combinationTypes)
             }
             
-            var leftCardsToCheck = cardsToCheck.filter{card in card != cardsToCheck[0]}
+            let leftCardsToCheck = cardsToCheck.filter{card in card != cardsToCheck[0]}
             cardsToCheck = leftCardsToCheck
         }
         return typesOfCombination
@@ -77,9 +79,9 @@ class HandCombination{
     func addCombination(pairNumbers : [Int]){
         let combination = Combination.self
         
-        var pairCount = pairNumbers.filter{$0 == 2}.count
-        var tripleCount = pairNumbers.filter{$0 == 3}.count
-        var fourCardCount = pairNumbers.filter{$0 == 4}.count
+        let pairCount = pairNumbers.filter{$0 == 2}.count
+        let tripleCount = pairNumbers.filter{$0 == 3}.count
+        let fourCardCount = pairNumbers.filter{$0 == 4}.count
         
         if pairCount == 1 {
             isOnePair = true
@@ -99,7 +101,23 @@ class HandCombination{
         }
     }
     
-    func submitCombinedCards()->[Int]{
-        return combinedCardsRank
+    func dealWithNilValue(){
+        if typesOfCombination == nil{
+            typesOfCombination.append(.None)
+        }
+        if combinedCardsRank == nil{
+            combinedCardsRank.append(0)
+        }
+    }
+    
+    func submitCheckResult(of cardsToCheck: [Int])->([Int],[Combination]){
+        let straightCombination = self.checkStraight(of: cardsToCheck)
+        let pairCombination = self.checkPair(of: cardsToCheck)
+        typesOfCombination += straightCombination
+        typesOfCombination += pairCombination
+        dealWithNilValue()
+        Array(Set(typesOfCombination))
+        Array(Set(combinedCardsRank))
+        return (combinedCardsRank, typesOfCombination)
     }
 }
