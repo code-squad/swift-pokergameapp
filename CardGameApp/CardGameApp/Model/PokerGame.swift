@@ -38,12 +38,12 @@ class PokerGame {
     private let gameMode: GameMode
     private let dealer = Dealer()
     private let numbersOfPlayers : NumbersOfPlayers
-    private var players = Players(with: nil)
+    private var players = Participants(with: nil)
     
     init(numbersOfPlayers: NumbersOfPlayers, gameMode: GameMode) {
         self.gameMode = gameMode
         self.numbersOfPlayers = numbersOfPlayers
-        self.players = Players(with: numbersOfPlayers)
+        self.players = Participants(with: numbersOfPlayers)
     }
     
     func start() {
