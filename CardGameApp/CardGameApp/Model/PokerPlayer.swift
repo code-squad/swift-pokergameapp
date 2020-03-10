@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Participant {
+class PokerPlayer {
     var cardsInHand = [Card]()
     
     func addCard(newCard: Card) {
@@ -20,7 +20,7 @@ class Participant {
     }
 }
 
-class Dealer : Participant {
+class Dealer : PokerPlayer {
     private var cardDeck = CardDeck()
 
     func giveOneCard() -> Card {
@@ -32,5 +32,5 @@ class Dealer : Participant {
     }
 }
 
-class Player : Participant {
+class Player : PokerPlayer {
 }
