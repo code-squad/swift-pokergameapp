@@ -38,12 +38,12 @@ class PokerGame {
     private let gameMode: GameMode
     private let dealer = Dealer()
     private let numbersOfPlayers : NumbersOfPlayers
-    private var players = Participants(with: nil)
+    private var allParticipants : Participants
     
     init(numbersOfPlayers: NumbersOfPlayers, gameMode: GameMode) {
         self.gameMode = gameMode
         self.numbersOfPlayers = numbersOfPlayers
-        self.players = Participants(with: numbersOfPlayers)
+        self.allParticipants = Participants(with: numbersOfPlayers, and: dealer)
     }
     
     func start() {
@@ -54,26 +54,18 @@ class PokerGame {
     }
     
     func destributeCards() {
-        self.forEachPlayer(behavior: ){ player in
-            player.addCard(newCard: dealer.giveOneCard())
+        self.forEachParticipant(behavior: ){ participant in
+            participant.addOneCard(newCard: dealer.giveOneCard())
         }
-        dealer.addCard(newCard: dealer.giveOneCard())
     }
     
     func shuffleWholeCardDeck(){
         dealer.shuffleCardDeck()
     }
     
-    func forEachPlayer(behavior: (Player) -> ()) {
-        players.showParticipantsCards(behavior: ) { (player) in
-            behavior(player)
+    func forEachParticipant(behavior: (PokerPlayer) -> ()) {
+        allParticipants.showParticipantsCards(behavior: ) { (participant) in
+            behavior(participant)
         }
     }
-    
-    func showDealerCards(behavior: (Card)->()){
-        dealer.showEachCardInHand(behavior: ){ (card) in
-            behavior(card)
-        }
-    }
-    
 }
