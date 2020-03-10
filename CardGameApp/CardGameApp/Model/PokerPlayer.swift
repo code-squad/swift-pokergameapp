@@ -11,6 +11,7 @@ import Foundation
 class PokerPlayer {
     var cardsInHand = [Card]()
     var name : String = ""
+    let handCombination = HandCombination()
     
     func addOneCard(newCard: Card) {
         self.cardsInHand.append(newCard)
