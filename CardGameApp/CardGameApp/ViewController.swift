@@ -16,6 +16,8 @@ class ViewController: UIViewController {
     
     private var studControl: UISegmentedControl!
     private var playersControl: UISegmentedControl!
+    private var allStackView: UIStackView!
+    private var poker: Poker!
     private var stud: Poker.Stud = .sevenCard
     private var numberOfPlayers: Poker.NumberOfPlayers = .two
 
@@ -76,11 +78,7 @@ class ViewController: UIViewController {
         return stackView
     }
     
-    private func setUpPlay() {
-        self.view.viewWithTag(1)?.removeFromSuperview()
-        let poker = Poker(stud: stud, numberOfPlayers: numberOfPlayers)
-        poker.start()
-        let allStackView = verticalStackView()
+    private func addPlayersHandsView() {
         numberOfPlayers.forEach { playerIndex in
             let stackView = horizontalStackView()
             stud.forEach { cardIndex in
@@ -95,6 +93,9 @@ class ViewController: UIViewController {
             allStackView.addArrangedSubview(label)
             allStackView.addArrangedSubview(stackView)
         }
+    }
+    
+    private func addDealerHandsView() {
         let stackView = horizontalStackView()
         stud.forEach { cardIndex in
             let card = poker.dealerHands()[cardIndex]
@@ -107,13 +108,19 @@ class ViewController: UIViewController {
         label.textColor = .white
         allStackView.addArrangedSubview(label)
         allStackView.addArrangedSubview(stackView)
+    }
+    
+    private func setUpPlay() {
+        self.view.viewWithTag(1)?.removeFromSuperview()
+        allStackView = verticalStackView()
+        poker = Poker(stud: stud, numberOfPlayers: numberOfPlayers)
+        poker.start()
+        addPlayersHandsView()
+        addDealerHandsView()
         self.view.addSubview(allStackView)
-        let constraints = [
-            allStackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 160.0),
-            allStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40.0),
-            allStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40.0)
-        ]
-        NSLayoutConstraint.activate(constraints)
+        allStackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 160.0).isActive = true
+        allStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40.0).isActive = true
+        allStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40.0).isActive = true
     }
 
 }
