@@ -38,8 +38,8 @@
 		6ADF6A8824150C6F001E5466 /* WinnerDiscriminator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ADF6A8724150C6F001E5466 /* WinnerDiscriminator.swift */; };
 		6ADF6A8924150C6F001E5466 /* WinnerDiscriminator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ADF6A8724150C6F001E5466 /* WinnerDiscriminator.swift */; };
 		6ADF6A8A24151461001E5466 /* PokerGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ABB459E23F6BF0C002C5CAA /* PokerGame.swift */; };
-		6AE4B9D923FAECCA009721F9 /* Players.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE4B9D823FAECCA009721F9 /* Players.swift */; };
-		6AE4B9DA23FAECCA009721F9 /* Players.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE4B9D823FAECCA009721F9 /* Players.swift */; };
+		6AE4B9D923FAECCA009721F9 /* Participants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE4B9D823FAECCA009721F9 /* Participants.swift */; };
+		6AE4B9DA23FAECCA009721F9 /* Participants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE4B9D823FAECCA009721F9 /* Participants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,7 +84,7 @@
 		6ADF6A7F24150902001E5466 /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		6ADF6A8424150A8D001E5466 /* ScoreBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreBoard.swift; sourceTree = "<group>"; };
 		6ADF6A8724150C6F001E5466 /* WinnerDiscriminator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinnerDiscriminator.swift; sourceTree = "<group>"; };
-		6AE4B9D823FAECCA009721F9 /* Players.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Players.swift; sourceTree = "<group>"; };
+		6AE4B9D823FAECCA009721F9 /* Participants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Participants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,7 +173,7 @@
 				6A1CD25023F29B9200B42A97 /* CardDeck.swift */,
 				6ABB459E23F6BF0C002C5CAA /* PokerGame.swift */,
 				6ABB45A423F6C204002C5CAA /* PokerPlayer.swift */,
-				6AE4B9D823FAECCA009721F9 /* Players.swift */,
+				6AE4B9D823FAECCA009721F9 /* Participants.swift */,
 				6ADF6A7C24150515001E5466 /* HandCombination.swift */,
 				6ADF6A7F24150902001E5466 /* Utility.swift */,
 				6ADF6A8424150A8D001E5466 /* ScoreBoard.swift */,
@@ -324,7 +324,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6AE4B9D923FAECCA009721F9 /* Players.swift in Sources */,
+				6AE4B9D923FAECCA009721F9 /* Participants.swift in Sources */,
 				6A7B19E123EEBC4C0070F4E3 /* ViewController.swift in Sources */,
 				6A1CD25523F2F9AB00B42A97 /* CardDeck.swift in Sources */,
 				6ADF6A8824150C6F001E5466 /* WinnerDiscriminator.swift in Sources */,
@@ -352,7 +352,7 @@
 				6ADF6A8924150C6F001E5466 /* WinnerDiscriminator.swift in Sources */,
 				6ADF6A8124150902001E5466 /* Utility.swift in Sources */,
 				6A1CD25623F2F9AC00B42A97 /* CardDeck.swift in Sources */,
-				6AE4B9DA23FAECCA009721F9 /* Players.swift in Sources */,
+				6AE4B9DA23FAECCA009721F9 /* Participants.swift in Sources */,
 				6A1CD24C23F15FEE00B42A97 /* Card.swift in Sources */,
 				6ADF6A7E24150515001E5466 /* HandCombination.swift in Sources */,
 				6ABB45A623F6C204002C5CAA /* PokerPlayer.swift in Sources */,

@@ -12,7 +12,7 @@ class PokerPlayer {
     var cardsInHand = [Card]()
     var name : String = ""
     
-    func addCard(newCard: Card) {
+    func addOneCard(newCard: Card) {
         self.cardsInHand.append(newCard)
     }
     
