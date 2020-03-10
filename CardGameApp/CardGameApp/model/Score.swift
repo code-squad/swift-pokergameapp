@@ -32,7 +32,7 @@ class Score {
     public func calculateScore() -> ScoreWeight {
         var pairDeck = [Card : Int]()
         var score: ScoreWeight = .highCard
-        if isStraight(cardDeck: cardDeck) {
+        if isStraight() {
             return .straight
         }
         pairDeck = judgeDeckPairCount(cardDeck: cardDeck)
@@ -67,11 +67,11 @@ class Score {
         return pairDeckCollection
     }
     
-    private func isStraight(cardDeck: [Card]) -> Bool {
+    private func isStraight() -> Bool {
         var straightCount = 1
-        var currentCard = cardDeck[0]
+        var currentCard = self.cardDeck[0]
         
-        for card in cardDeck {
+        for card in self.cardDeck {
             if currentCard.isContinousRank(nextCard: card) {
                 straightCount += 1
                 if straightCount == 5 {
