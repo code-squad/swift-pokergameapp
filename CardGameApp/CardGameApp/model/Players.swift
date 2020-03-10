@@ -39,4 +39,27 @@ class Players {
         }
         return winnerIndex
     }
+    
+    func highestScorePlayer() -> Player {
+        var highestPriorityPlayer = players[0]
+        
+        for index in 0 ..< players.count-1 {
+            highestPriorityPlayer = comparePlayerScore(currentPlayer: highestPriorityPlayer, nextPlayer: players[index+1])
+        }
+        
+        return highestPriorityPlayer
+    }
+    
+    private func comparePlayerScore(currentPlayer:Player, nextPlayer:Player) -> Player {
+        var highPriorityPlayer = currentPlayer
+        if currentPlayer.score == nextPlayer.score {
+            if currentPlayer.score.highestPairCard! < nextPlayer.score.highestPairCard! {
+                highPriorityPlayer = nextPlayer
+            }
+        } else if currentPlayer.score < nextPlayer.score {
+            highPriorityPlayer = nextPlayer
+        }
+        
+        return highPriorityPlayer
+    }
 }

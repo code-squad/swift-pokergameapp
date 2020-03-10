@@ -10,11 +10,9 @@ import Foundation
 
 class Dealer: Player {
     private var cardDeck: CardDeck
-    private var gameRule: GameRule
     
     override init(name: String) {
         self.cardDeck = CardDeck()
-        self.gameRule = GameRule()
         super.init(name: name)
     }
     
@@ -31,6 +29,6 @@ class Dealer: Player {
     }
     
     func judgeWinner(players: Players) -> Player {
-        return gameRule.judgePriority(participants: players)
+        return players.highestScorePlayer()
     }
 }
