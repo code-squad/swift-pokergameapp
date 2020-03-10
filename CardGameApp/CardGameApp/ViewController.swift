@@ -5,7 +5,6 @@
 //  Created by Keunna Lee on 2020/02/08.
 //  Copyright © 2020 Keunna Lee. All rights reserved.
 //
-
 import UIKit
 
 class ViewController: UIViewController {
@@ -22,8 +21,8 @@ class ViewController: UIViewController {
         view.backgroundColor = UIColor(patternImage:  #imageLiteral(resourceName: "bg_pattern"))
         self.view.addSubview(segmentedControl)
         segmentedControl.translatesAutoresizingMaskIntoConstraints = false
-        let safeArea = view.safeAreaLayoutGuide
         
+        let safeArea = view.safeAreaLayoutGuide
         segmentedControl.topAnchor.constraint(equalTo: safeArea.topAnchor).isActive = true
         segmentedControl.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor).isActive = true
         
@@ -37,8 +36,7 @@ class ViewController: UIViewController {
          pokerGame.shuffleWholeCardDeck()
          self.view.addSubview(gameStackView)
          gameStackView.setConstraintOfView(related: self.view, related: segmentedControl)
-         setPlayersCards(in : gameStackView)
-         setDealersCards(in : gameStackView)
+         setParticipantsCards(in : gameStackView)
      }
     
     func makeParticipantLabel(of who: String) -> UILabel{
@@ -48,47 +46,23 @@ class ViewController: UIViewController {
         return participantLabel
     }
     
-    func setPlayersCards(in gameStackView : UIStackView) {
+    
+    func setParticipantsCards(in gameStackView : UIStackView) {
         
-        var playerNumber = 1
-        pokerGame.forEachPlayer(behavior: ){
-            player in
-            let onePlayerInfoStack = ParticipantStackView()
-            
-            onePlayerInfoStack.addArrangedSubview(makeParticipantLabel(of: "Player\(playerNumber)"))
+        pokerGame.forEachParticipant(behavior: ){
+            participant in
+            let oneParticipantInfoStack = ParticipantStackView()
+            oneParticipantInfoStack.addArrangedSubview(makeParticipantLabel(of: participant.describeSelf()))
             let cardsStack = CardsStackView()
-            player.showEachCardInHand(behavior: ){
+            participant.showEachCardInHand(behavior: ){
                 (card) in
                 let card = UIImageView(image: UIImage(named: card.description))
                 setCardImage(of: card)
                 cardsStack.addArrangedSubview(card)
             }
-            onePlayerInfoStack.addArrangedSubview(cardsStack)
-            
-            gameStackView.addArrangedSubview(onePlayerInfoStack)
-            playerNumber += 1
+            oneParticipantInfoStack.addArrangedSubview(cardsStack)
+            gameStackView.addArrangedSubview(oneParticipantInfoStack)
         }
-    }
-
-     func setDealersCards(in gameStackView : UIStackView){
-        let dealerInfoStack = ParticipantStackView()
-        let dealerLabel = makeParticipantLabel(of: "Dealer")
-        dealerInfoStack.addArrangedSubview(dealerLabel)
-        let dealerCardStack = CardsStackView()
-        let dealerCardsStack = addDealerCards(of: dealerCardStack)
-        dealerInfoStack.addArrangedSubview(dealerCardsStack)
-        gameStackView.addArrangedSubview(dealerInfoStack)
-    }
-
-    
-    func addDealerCards(of dealerCardStack: UIStackView) -> UIStackView {
-        let dealerStack = dealerCardStack
-        pokerGame.showDealerCards(behavior: ){ card in
-            let card = UIImageView(image: UIImage(named: card.description))
-            setCardImage(of: card)
-            dealerStack.addArrangedSubview(card)
-        }
-        return dealerStack
     }
     
     func setCardImage(of card: UIImageView){
@@ -106,8 +80,8 @@ class ViewController: UIViewController {
             startPokerGame(gameMode: gameMode, numbersOfPlayers: numbersOfPlayers)
         }
     }
-    
 }
+
 extension ViewController: SegmentedControlProtocol{
     func segmentControlDidChange(to mode: (Int,Int)) {
         var gameMode = mode.0
@@ -147,5 +121,4 @@ extension ViewController: SegmentedControlProtocol{
         default: return
         }
     }
-
 }
