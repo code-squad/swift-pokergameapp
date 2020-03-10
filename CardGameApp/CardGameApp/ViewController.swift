@@ -117,8 +117,8 @@ extension ViewController: SegmentedControlProtocol{
         numbersOfPlayersSegmentChanged(selectedSegmentIndex: numbersOfPlayers)
         
         // 승자 찾기
-        let winnerDiscriminator = WinnerDiscriminator(in: pokerGame)
-        winnerDiscriminator.findWinner()
+//        let winnerDiscriminator = WinnerDiscriminator(in: pokerGame)
+//        winnerDiscriminator.findWinner()
     }
     
     func gameModeSegmentChanged(selectedSegmentIndex: Int){
