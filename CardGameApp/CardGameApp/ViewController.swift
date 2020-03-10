@@ -122,6 +122,21 @@ class ViewController: UIViewController {
         allStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40.0).isActive = true
         allStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40.0).isActive = true
     }
+    
+    private func allRankCount() -> [[Card.Rank : Int]] {
+        var allHands = poker.playersHands()
+        allHands.append(poker.dealerHands())
+        var allRankCount = [[Card.Rank : Int]]()
+        for hands in allHands {
+            let ranks = hands.map { $0.rank }
+            var rankCount = Dictionary(ranks.map { ($0, 1) }, uniquingKeysWith: +)
+            for (rank, count) in rankCount {
+                if count == 1 { rankCount.removeValue(forKey: rank) }
+            }
+            allRankCount.append(rankCount)
+        }
+        return allRankCount
+    }
 
 }
 
