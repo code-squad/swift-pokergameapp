@@ -116,8 +116,8 @@ class HandCombination{
         typesOfCombination += straightCombination
         typesOfCombination += pairCombination
         dealWithNilValue()
-        Array(Set(typesOfCombination))
-        Array(Set(combinedCardsRank))
+        typesOfCombination = Array(Set(typesOfCombination))
+        combinedCardsRank = Array(Set(combinedCardsRank))
         return (combinedCardsRank, typesOfCombination)
     }
 }

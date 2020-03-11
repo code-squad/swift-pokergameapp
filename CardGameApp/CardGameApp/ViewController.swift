@@ -89,10 +89,6 @@ extension ViewController: SegmentedControlProtocol{
         
         gameModeSegmentChanged(selectedSegmentIndex: gameMode)
         numbersOfPlayersSegmentChanged(selectedSegmentIndex: numbersOfPlayers)
-        
-        // 승자 찾기
-//        let winnerDiscriminator = WinnerDiscriminator(in: pokerGame)
-//        winnerDiscriminator.findWinner()
     }
     
     func gameModeSegmentChanged(selectedSegmentIndex: Int){
@@ -100,9 +96,12 @@ extension ViewController: SegmentedControlProtocol{
         case 0:
             gameMode = .fiveCardStud
             startPokerGame(gameMode: gameMode, numbersOfPlayers: .two)
+            pokerGame.findWinner()
         case 1:
             gameMode = .sevenCardStud
             startPokerGame(gameMode: gameMode, numbersOfPlayers: .two)
+            pokerGame.findWinner()
+
         default: return
         }
     }
@@ -112,13 +111,19 @@ extension ViewController: SegmentedControlProtocol{
         case 0:
             numbersOfPlayers = .two
             startPokerGame(gameMode: gameMode, numbersOfPlayers: numbersOfPlayers)
+            pokerGame.findWinner()
+
         case 1:
             numbersOfPlayers = .three
             startPokerGame(gameMode: gameMode, numbersOfPlayers: numbersOfPlayers)
+            pokerGame.findWinner()
+
         case 2:
             numbersOfPlayers = .four
             startPokerGame(gameMode: gameMode, numbersOfPlayers: numbersOfPlayers)
-        default: return
+            pokerGame.findWinner()
+            
+        default:  return
         }
     }
 }

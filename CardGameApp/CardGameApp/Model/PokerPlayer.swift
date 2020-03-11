@@ -10,8 +10,8 @@ import Foundation
 
 class PokerPlayer {
     private var cardsInHand = [Card]()
+    private var combinedCardsRank = [Int]()
     private var name : String = ""
-    private var combinedCardsRank = [Int]() 
     private let handCombination = HandCombination()
     private var typesOfCombination = [Combination]()
     
@@ -29,6 +29,10 @@ class PokerPlayer {
     
     func describeSelf()-> String {
         return self.name
+    }
+    
+    func showEachMyCombination(behavior: (Combination) -> ()){
+        typesOfCombination.forEach(behavior)
     }
     
     func showHighestRank(behavior: (Int) -> ()) -> Int{
@@ -52,7 +56,6 @@ class PokerPlayer {
         return cardsRanksInHand
     }
     
-
 }
 
 class Dealer : PokerPlayer {
