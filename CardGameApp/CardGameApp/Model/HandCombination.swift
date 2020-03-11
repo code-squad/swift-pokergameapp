@@ -121,3 +121,14 @@ class HandCombination{
         return (combinedCardsRank, typesOfCombination)
     }
 }
+extension HandCombination: Hashable{
+    static func == (lhs: HandCombination, rhs: HandCombination) -> Bool {
+        return lhs.combinationTypes == rhs.combinationTypes && lhs.combinedCardsRank == rhs.combinedCardsRank && lhs.isOnePair == rhs.isOnePair
+    }
+    
+    func hash(into hasher: inout Hasher) {
+          hasher.combine(combinationTypes)
+          hasher.combine(combinedCardsRank)
+          hasher.combine(isOnePair)
+       }
+}

@@ -39,4 +39,29 @@ class Participants {
         participant.findMyCombination()
         }
     }
+    
+    func updateEachScore(addScore: (_ pokerPlayer: PokerPlayer,_ with: Int) -> ()){
+        allParticipants.forEach{ participant in
+            participant.showEachMyCombination(behavior: ){ combination in
+                let score = combination.tellScore()
+                addScore(participant, score)
+            }
+        }
+    }
+
+    func giveExtraScoreForHigherRank(addScore: (_ to: PokerPlayer,_ with: Int) -> ()){
+        allParticipants.forEach{ participant in
+            var comparingRank = 0
+            participant.showHighestRank(behavior: ){
+                cardRank in
+                
+                if comparingRank <= cardRank {
+                    comparingRank = cardRank
+                }else{
+                    // 더 높은 사람에게 추가점수
+                    addScore(participant, 1)
+                }
+            }
+        }
+    }
 }
