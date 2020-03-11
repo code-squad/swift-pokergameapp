@@ -14,7 +14,7 @@ class Participants {
     init(with numbersOfPlayers : NumbersOfPlayers,and dealer: Dealer){
         var playerNumber = 1
         numbersOfPlayers.setPlayerSeat {
-            self.allParticipants.append(Player())
+            self.allParticipants.append(PokerPlayer())
             allParticipants.last?.decideName(with: "Player\(playerNumber)")
             playerNumber += 1
         }
