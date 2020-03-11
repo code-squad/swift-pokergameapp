@@ -69,6 +69,3 @@ class Dealer : PokerPlayer {
         self.cardDeck.shuffle()
     }
 }
-
-class Player : PokerPlayer {
-}
