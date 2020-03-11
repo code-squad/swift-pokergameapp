@@ -52,20 +52,25 @@ class Card: CustomStringConvertible {
             return rank.description
         }
     }
-    
 }
 
 extension Card :Equatable{
     static func == (lhs: Card, rhs: Card) -> Bool {
         return lhs.suit == rhs.suit && lhs.suit == rhs.suit
     }
-}
-
-extension Card {
+    
     var numberDescription: String {
         return "\(rank.description)"
     }
+    //여기서 비교하기
     var cardNumber: Int{
         return rank.rawValue
+    }
+}
+
+extension Card : Hashable{
+    func hash(into hasher: inout Hasher) {
+       hasher.combine(suit)
+       hasher.combine(rank)
     }
 }

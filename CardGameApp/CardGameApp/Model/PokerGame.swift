@@ -39,7 +39,7 @@ class PokerGame {
     private let dealer = Dealer()
     private let numbersOfPlayers : NumbersOfPlayers
     private var allParticipants : Participants
-    private var scoreBoard = [String:Int]()
+    private var scoreBoard = [PokerPlayer:Int]()
     
     init(numbersOfPlayers: NumbersOfPlayers, gameMode: GameMode) {
         self.gameMode = gameMode
@@ -47,19 +47,19 @@ class PokerGame {
         self.allParticipants = Participants(with: numbersOfPlayers, and: dealer)
         // 참가자 수만큼 ScoreBoard key에 참가자 이름을 넣고 기본 점수 0을 value로 설정
         allParticipants.forEachParticipant(behavior: ){participant in
-            scoreBoard[participant.describeSelf()] = 0
+            scoreBoard[participant] = 0
         }
     }
     
     func start() {
         shuffleWholeCardDeck()
         gameMode.setCardPlacement {
-            destributeCards()
+        destributeCards()
         }
     }
     
     func destributeCards() {
-        self.forEachParticipant(behavior: ){ participant in
+        allParticipants.forEachParticipant(behavior: ) { participant in
             participant.addOneCard(newCard: dealer.giveOneCard())
         }
     }
@@ -68,32 +68,25 @@ class PokerGame {
         dealer.shuffleCardDeck()
     }
     
+    // 이거랑
     func forEachParticipant(behavior: (PokerPlayer) -> ()) {
-        allParticipants.forEachParticipant(behavior: ) { (participant) in
+        allParticipants.forEachParticipant(behavior: ) { participant in
             behavior(participant)
         }
     }
     
-    func findWinner() -> String{
+    func findWinner() -> PokerPlayer? {
         allParticipants.findCombination()
-        updateEachScore()
+        allParticipants.updateEachScore(){ pokerplayer,score in
+            addScore(to: pokerplayer, extraScore: score)
+        }
         breakTie()
         let winner = scoreBoard.max(by:){ participant, anotherParticipant in participant.value < anotherParticipant.value}?.key
-        guard let theWinner = winner else { return ""}
+        guard let theWinner = winner else { return nil }
         return theWinner
     }
     
-    func updateEachScore(){
-        allParticipants.forEachParticipant(behavior: ){ participant in
-            participant.showEachMyCombination(behavior: ){ combination in
-                let name = participant.describeSelf()
-                let score = combination.tellScore()
-                addScore(to: name, extraScore: score)
-            }
-        }
-    }
-    
-    func addScore(to participant: String,extraScore: Int){
+    func addScore(to participant: PokerPlayer,extraScore: Int){
         guard let originalScore = scoreBoard[participant] else { return }
           scoreBoard[participant] = originalScore + extraScore
     }
@@ -103,24 +96,8 @@ class PokerGame {
             
             let tiebreakers = scoreBoard.filter{score in score == highestScore}
         
-            allParticipants.forEachParticipant(behavior: ){ participant in
-                
-                giveExtraScoreForHigherRank(to: participant)
-            }
-    }
-    
-    func giveExtraScoreForHigherRank(to participant: PokerPlayer){
-        var comparingRank = 0
-        participant.showHighestRank(behavior: ){
-            cardRank in
-            
-            if comparingRank <= cardRank {
-                comparingRank = cardRank
-            }else{
-                // 더 높은 사람에게 추가점수
-                let name = participant.describeSelf()
-                addScore(to: name, extraScore: 1)
-            }
+        allParticipants.giveExtraScoreForHigherRank(addScore: ){ pokerPlayer, score in
+            addScore(to: pokerPlayer, extraScore: 1)
         }
     }
 }

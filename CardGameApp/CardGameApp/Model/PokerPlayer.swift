@@ -58,6 +58,21 @@ class PokerPlayer {
     
 }
 
+extension PokerPlayer : Hashable{
+    static func == (lhs: PokerPlayer, rhs: PokerPlayer) -> Bool {
+        return lhs.name == rhs.name && lhs.cardsInHand == rhs.cardsInHand && lhs.combinedCardsRank == rhs.combinedCardsRank && rhs.typesOfCombination == lhs.typesOfCombination && rhs.handCombination === lhs.handCombination
+        
+    }
+    
+    func hash(into hasher: inout Hasher) {
+       hasher.combine(name)
+       hasher.combine(cardsInHand)
+       hasher.combine(combinedCardsRank)
+       hasher.combine(handCombination)
+       hasher.combine(typesOfCombination)
+    }
+}
+
 class Dealer : PokerPlayer {
     private var cardDeck = CardDeck()
 
@@ -69,3 +84,5 @@ class Dealer : PokerPlayer {
         self.cardDeck.shuffle()
     }
 }
+
+
