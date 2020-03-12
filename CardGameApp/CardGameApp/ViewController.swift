@@ -14,6 +14,8 @@ class ViewController: UIViewController {
     private var numbersOfPlayers = NumbersOfPlayers.four
     private var segmentedControl = SegmentedControl()
     private var gameStackView = GameStackView()
+    private var winnerMedal = UIImageView()
+    private var winnerPosition : Int = -1
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {
@@ -28,16 +30,18 @@ class ViewController: UIViewController {
         
         segmentedControl.delegate = self
     }
+    
     // MARK: - Method
     func startPokerGame(gameMode : GameMode, numbersOfPlayers : NumbersOfPlayers){
-         gameStackView.subviews.forEach{$0.removeFromSuperview()}
-         pokerGame = PokerGame.init(numbersOfPlayers: numbersOfPlayers, gameMode: gameMode)
-         pokerGame.start()
-         pokerGame.shuffleWholeCardDeck()
-         self.view.addSubview(gameStackView)
-         gameStackView.setConstraintOfView(related: self.view, related: segmentedControl)
-         setParticipantsCards(in : gameStackView)
-     }
+        winnerMedal.removeFromSuperview()
+        gameStackView.subviews.forEach{$0.removeFromSuperview()}
+        pokerGame = PokerGame.init(numbersOfPlayers: numbersOfPlayers, gameMode: gameMode)
+        pokerGame.start()
+        pokerGame.shuffleWholeCardDeck()
+        self.view.addSubview(gameStackView)
+        gameStackView.setConstraintOfView(related: self.view, related: segmentedControl)
+        setParticipantsCards(in : gameStackView)
+    }
     
     func makeParticipantLabel(of who: String) -> UILabel{
         let participantLabel = UILabel()
@@ -45,7 +49,6 @@ class ViewController: UIViewController {
         participantLabel.textColor = .white
         return participantLabel
     }
-    
     
     func setParticipantsCards(in gameStackView : UIStackView) {
         
@@ -63,6 +66,7 @@ class ViewController: UIViewController {
             oneParticipantInfoStack.addArrangedSubview(cardsStack)
             gameStackView.addArrangedSubview(oneParticipantInfoStack)
         }
+        
     }
     
     func setCardImage(of card: UIImageView){
@@ -73,7 +77,7 @@ class ViewController: UIViewController {
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
-        
+    
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         if motion == .motionShake {
             pokerGame.shuffleWholeCardDeck()
@@ -83,12 +87,16 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: SegmentedControlProtocol{
+    
     func segmentControlDidChange(to mode: (Int,Int)) {
         var gameMode = mode.0
         var numbersOfPlayers = mode.1
         
         gameModeSegmentChanged(selectedSegmentIndex: gameMode)
         numbersOfPlayersSegmentChanged(selectedSegmentIndex: numbersOfPlayers)
+        let winner = pokerGame.findWinner()
+        self.winnerPosition = winner
+        addMedalImage(to: winnerPosition)
     }
     
     func gameModeSegmentChanged(selectedSegmentIndex: Int){
@@ -96,12 +104,10 @@ extension ViewController: SegmentedControlProtocol{
         case 0:
             gameMode = .fiveCardStud
             startPokerGame(gameMode: gameMode, numbersOfPlayers: .two)
-            pokerGame.findWinner()
         case 1:
             gameMode = .sevenCardStud
             startPokerGame(gameMode: gameMode, numbersOfPlayers: .two)
-            pokerGame.findWinner()
-
+            
         default: return
         }
     }
@@ -111,19 +117,31 @@ extension ViewController: SegmentedControlProtocol{
         case 0:
             numbersOfPlayers = .two
             startPokerGame(gameMode: gameMode, numbersOfPlayers: numbersOfPlayers)
-            pokerGame.findWinner()
-
         case 1:
             numbersOfPlayers = .three
             startPokerGame(gameMode: gameMode, numbersOfPlayers: numbersOfPlayers)
-            pokerGame.findWinner()
-
         case 2:
             numbersOfPlayers = .four
             startPokerGame(gameMode: gameMode, numbersOfPlayers: numbersOfPlayers)
-            pokerGame.findWinner()
-            
-        default:  return
+        default:
+            return
         }
+    }
+    
+    func addMedalImage(to winnerPosition: Int){
+        var winnerMedal = makeMedalImage()
+        self.view.addSubview(winnerMedal)
+        self.winnerPosition  = 2
+        self.winnerMedal.topAnchor.constraint(equalTo: self.gameStackView.arrangedSubviews[winnerPosition].topAnchor).isActive = true
+        self.winnerMedal.bottomAnchor.constraint(equalTo: self.gameStackView.arrangedSubviews[winnerPosition].topAnchor).isActive = true
+    }
+    
+    func makeMedalImage() -> UIImageView{
+        var medalImage = UIImageView(image: UIImage(named: "winnerMedal"))
+        medalImage.translatesAutoresizingMaskIntoConstraints = false
+        medalImage.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        medalImage.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        self.winnerMedal = medalImage
+        return medalImage
     }
 }

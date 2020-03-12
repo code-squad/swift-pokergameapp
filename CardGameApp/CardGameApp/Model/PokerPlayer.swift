@@ -55,7 +55,6 @@ class PokerPlayer {
         }
         return cardsRanksInHand
     }
-    
 }
 
 extension PokerPlayer : Hashable{

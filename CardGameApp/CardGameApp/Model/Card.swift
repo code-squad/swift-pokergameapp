@@ -62,7 +62,7 @@ extension Card :Equatable{
     var numberDescription: String {
         return "\(rank.description)"
     }
-    //여기서 비교하기
+
     var cardNumber: Int{
         return rank.rawValue
     }

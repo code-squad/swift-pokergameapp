@@ -19,7 +19,7 @@ class GameStackView: UIStackView {
     }
     
     convenience init() {
-        self.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+        self.init(frame: .zero)
     }
     
     required init(coder: NSCoder) {
@@ -44,7 +44,7 @@ class CardsStackView: UIStackView {
     }
     
     convenience init() {
-        self.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+        self.init(frame: .zero)
     }
     
     required init(coder: NSCoder) {
@@ -64,7 +64,7 @@ class ParticipantStackView : UIStackView {
     }
     
     convenience init() {
-        self.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+        self.init(frame: .zero)
     }
     
     required init(coder: NSCoder) {
@@ -72,4 +72,22 @@ class ParticipantStackView : UIStackView {
     }
 }
 
-
+class ParticipantSectionStack : UIStackView {
+    
+    override init(frame: CGRect) { // by code
+        super.init(frame: frame)
+        self.translatesAutoresizingMaskIntoConstraints = false
+        self.axis = .horizontal
+        self.distribution = .fillProportionally
+        self.alignment = .center
+        self.spacing = 5
+    }
+    
+    convenience init() {
+        self.init(frame: .zero)
+    }
+    
+    required init(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}

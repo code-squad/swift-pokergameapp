@@ -64,4 +64,9 @@ class Participants {
             }
         }
     }
+    
+    func findPosition(of winner: PokerPlayer) -> Int{
+        guard let winnerPosition = allParticipants.index(of: winner) else { return -1 }
+        return winnerPosition
+    }
 }
