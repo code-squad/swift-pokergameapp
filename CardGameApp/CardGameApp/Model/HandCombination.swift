@@ -17,7 +17,7 @@ enum Combination: Int {
 
 class HandCombination{
     var combinedCardsRank = [Int]() // 조합을 이룬 카드들의 Rank
-    var combinationTypes = [Int]() // 참가자가 갖고있는 카드들 중 각 조합을 이루기 위한 카드는 몇개였는지 (ex - Triple = 3, Straight = 5)
+    var combinationTypes = [Int]() 
     var isOnePair : Bool = false
     var typesOfCombination = [Combination]() // 참가자가 갖고있는 카드들이 어떤 조합이 나왔는지
     
