@@ -121,6 +121,7 @@ class ViewController: UIViewController {
         allStackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 160.0).isActive = true
         allStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40.0).isActive = true
         allStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40.0).isActive = true
+        determineWinner()
     }
     
     private func allRankCount() -> [[Card.Rank : Int]] {
@@ -129,13 +130,60 @@ class ViewController: UIViewController {
         var allRankCount = [[Card.Rank : Int]]()
         for hands in allHands {
             let ranks = hands.map { $0.rank }
-            var rankCount = Dictionary(ranks.map { ($0, 1) }, uniquingKeysWith: +)
-            for (rank, count) in rankCount {
-                if count == 1 { rankCount.removeValue(forKey: rank) }
-            }
+            let rankCount = Dictionary(ranks.map { ($0, 1) }, uniquingKeysWith: +)
             allRankCount.append(rankCount)
         }
         return allRankCount
+    }
+    
+    private func isStraight(_ rankCount: [Card.Rank : Int]) -> Bool {
+        let sortedRankCount = rankCount.sorted { $0.key < $1.key }
+        var result = 0
+        for index in 0..<sortedRankCount.count - 1 {
+            let currentKey = sortedRankCount[index].key
+            let nextKey = sortedRankCount[index + 1].key
+            if Card.Rank.isNext(previous: currentKey, next: nextKey) { result += 1 }
+        }
+        return result >= 4 ? true : false
+    }
+    
+    private func judgeHandCombinations() {
+        let rankCount = allRankCount()
+        var handCombinations = [Poker.HandCombinations]()
+        for eachRankCount in rankCount {
+            let maxCount = eachRankCount.max(by: { a, b in a.value < b.value })?.value
+            if let maxCount = maxCount {
+                let handCombination: Poker.HandCombinations
+                switch maxCount {
+                case 2:
+                    let filtered = eachRankCount.filter { $0.value == 2 }
+                    if filtered.count == 1 {
+                        if isStraight(eachRankCount) {
+                            handCombination = .straight
+                        } else {
+                            handCombination = .onePair
+                        }
+                    } else {
+                        handCombination = .twoPair
+                    }
+                case 3:
+                    handCombination = .threeOfAKind
+                case 4:
+                    handCombination = .fourOfAKind
+                default:
+                    if isStraight(eachRankCount) {
+                        handCombination = .straight
+                    } else {
+                        handCombination = .none
+                    }
+                }
+                handCombinations.append(handCombination)
+            }
+        }
+    }
+    
+    private func determineWinner() {
+        judgeHandCombinations()
     }
 
 }

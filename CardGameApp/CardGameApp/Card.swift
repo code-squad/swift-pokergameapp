@@ -15,6 +15,12 @@ struct Card: CustomStringConvertible, Equatable {
 
     enum Rank: Int, CaseIterable {
         case A = 1, two, three, four, five, six, seven, eight, nine, ten, J, Q, K
+        static func < (lhs: Self, rhs: Self) -> Bool {
+            return lhs.rawValue < rhs.rawValue
+        }
+        static func isNext(previous: Self, next: Self) -> Bool {
+            return (next.rawValue - previous.rawValue) == 1 ? true : false
+        }
     }
 
     let suit: Suit, rank: Rank

@@ -37,6 +37,10 @@ class Poker {
         }
     }
     
+    enum HandCombinations {
+        case none, onePair, twoPair, threeOfAKind, straight, fourOfAKind
+    }
+    
     private var stud: Stud
     private var numberOfPlayers: NumberOfPlayers
     private var players: Players
