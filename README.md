@@ -8,6 +8,7 @@
 - [pockerGameApp-step2](#pockerGameApp-step2): Card 클래스 구현
 - [pockerGameApp-step3](#pockerGameApp-step3): CardDeck 클래스 구현
 - [pockerGameApp-step4&5](#pockerGameApp-step4&5): 포커게임을 위한 클래스 및 포커게임 결과 화면 만들기
+- [pockerGameApp-step6](#pockerGameApp-step6): 승자에게 매달달기
 
 
 ### pokergameapp-step1
@@ -226,7 +227,7 @@ navie shuffle은 편향된 셔플 결과를 보이는 반면 Fisher-Yates shuffl
 8. 인스턴스의 프로퍼티를 직접 호출해서 테스트했던 테스트 코드를 수정했습니다.
 8-1. CardDeck 구조체에 CardDeck의 프로퍼티인 Card 배열의 특정 인덱스에 있는 카드를 반환하는 메소드를 추가했습니다. `pickCard()` 
 
-9. 랜덤값을 어떻게 테스트할 것인지 알아보면서 랜덤이 리터럴하게 항상 랜덤은 아니라는 사실을 알았습니다. 그렇다면 랜덤값을 활용해서 어떻게 테스트 코드에 적용할것인지 고민하다가 random seed라는 개념을 알았지만 어떻게 활용해야할지 모르겠습니다. 그래서 테스트 코드에 아직 적용하지는 못했습니다.
+9. 랜덤값을 어떻게 테스트할 것인지 알아보면서 랜덤이 리터럴하게 항상 랜덤은 아니라는 사실을 알았습니다. 그렇다면 랜덤값을 활용해서 어떻게 테스트 코드에 적용할것인지 고민하다가 random seed라는 개념을 알게됐습니다.
 
 ### pockerGameApp-step4&5
 
@@ -235,3 +236,10 @@ navie shuffle은 편향된 셔플 결과를 보이는 반면 Fisher-Yates shuffl
 * 결과 화면
 ![](https://i.imgur.com/HTUkIBI.jpg)
 ![](https://i.imgur.com/DvEneKo.jpg)
+
+### pockerGameApp-step6
+
+Texas Holdem 카드게임 규칙에 따라 승자를 찾고 승자에게 메달을 달았습니다.
+
+![Screen Shot 2020-03-15 at 2.17.54 AM](/Users/keunnalee/Desktop/Screen Shot 2020-03-15 at 2.17.54 AM.png)
+
