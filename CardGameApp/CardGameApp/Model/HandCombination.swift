@@ -33,7 +33,7 @@ class HandCombination{
         var squenceCount = 0
         duplicationRemovedCards.sort(by: <) // 오름차수
         for cardIndex in 0 ... duplicationRemovedCards.count-1 {
-            if cardIndex <= duplicationRemovedCards.count-1 {
+            if cardIndex+1 <= duplicationRemovedCards.count-1 {
                 let comparingCard = duplicationRemovedCards[cardIndex+1]
                 let card = duplicationRemovedCards[cardIndex]
                 if card < comparingCard { // card의 다음 인덱스에있는 comparingCard가 card보다 1만큼 더 크면

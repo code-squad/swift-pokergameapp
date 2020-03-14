@@ -42,20 +42,11 @@ class PokerPlayer {
     }
     
     func findMyCombination(){
-//        let cardsRanksInHand = watchCardRanksInHand()
         let checkResult = handCombination.submitCheckResult(of: cardsInHand)
         
         self.combinedCards += checkResult.0
         self.typesOfCombination += checkResult.1
     }
-    
-//    func watchCardRanksInHand() -> [Int]{
-//        var cardsRanksInHand = [Int]()
-//        self.cardsInHand.forEach{ card in
-//            cardsRanksInHand.append(card.cardNumber)
-//        }
-//        return cardsRanksInHand
-//    }
 }
 
 extension PokerPlayer : Hashable{

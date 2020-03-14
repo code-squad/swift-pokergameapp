@@ -94,8 +94,8 @@ extension ViewController: SegmentedControlProtocol{
         
         gameModeSegmentChanged(selectedSegmentIndex: gameMode)
         numbersOfPlayersSegmentChanged(selectedSegmentIndex: numbersOfPlayers)
-        let winner = pokerGame.findWinner()
-        self.winnerPosition = winner
+        let winnerIndex = pokerGame.findWinner()
+        self.winnerPosition = winnerIndex
         addMedalImage(to: winnerPosition)
     }
     

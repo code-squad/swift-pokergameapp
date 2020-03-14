@@ -86,28 +86,3 @@ class ParticipantStackView : UIStackView {
     }
 }
 
-class ParticipantSectionStack : UIStackView {
-    
-    override init(frame: CGRect) { // by code
-        super.init(frame: frame)
-
-    }
-    
-    convenience init() {
-        self.init(frame: .zero)
-        configure()
-    }
-    
-    required init(coder: NSCoder) {
-        super.init(coder: coder)
-        configure()
-    }
-    
-    private func configure(){
-        self.translatesAutoresizingMaskIntoConstraints = false
-        self.axis = .horizontal
-        self.distribution = .fillProportionally
-        self.alignment = .center
-        self.spacing = 5
-    }
-}
