@@ -44,6 +44,7 @@ class PokerPlayer {
     func findMyCombination(){
 //        let cardsRanksInHand = watchCardRanksInHand()
         let checkResult = handCombination.submitCheckResult(of: cardsInHand)
+        
         self.combinedCards += checkResult.0
         self.typesOfCombination += checkResult.1
     }
