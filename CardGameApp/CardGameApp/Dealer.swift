@@ -9,34 +9,34 @@
 import Foundation
 
 class Dealer: Playable {
-    private var hands = [Card]()
-    private var cards = CardDeck()
+    private var cards = [Card]()
+    private var deck = CardDeck()
     
-    func receive(_ hand: Card) {
-        hands.append(hand)
+    func receive(_ card: Card) {
+        cards.append(card)
     }
     
     func count() -> Int {
-        return cards.count()
+        return deck.count()
     }
     
     func shuffle() {
-        cards.shuffle()
+        deck.shuffle()
     }
     
     func card() -> Card {
-        return cards.removeOne()
+        return deck.removeOne()
     }
     
     func reset() {
-        cards.reset()
+        deck.reset()
     }
     
     func canContinue(stud: Poker.Stud, numberOfPlayers: Poker.NumberOfPlayers) -> Bool {
         return count() > (stud.rawValue * (numberOfPlayers.rawValue + 1))
     }
     
-    func allHands() -> [Card] {
-        return hands
+    func allCards() -> [Card] {
+        return cards
     }
 }

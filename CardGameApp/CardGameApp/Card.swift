@@ -13,7 +13,7 @@ struct Card: CustomStringConvertible, Equatable {
         case spades = "s", hearts = "h", diamonds = "d", clubs = "c"
     }
 
-    enum Rank: Int, CaseIterable {
+    enum Rank: Int, CaseIterable, Comparable {
         case A = 1, two, three, four, five, six, seven, eight, nine, ten, J, Q, K
         static func < (lhs: Self, rhs: Self) -> Bool {
             return lhs.rawValue < rhs.rawValue

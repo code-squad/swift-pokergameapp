@@ -23,11 +23,11 @@ class Players {
         }
     }
     
-    func allHands() -> [[Card]] {
-        var allHands = [[Card]]()
+    func allCards() -> [[Card]] {
+        var allCards = [[Card]]()
         for index in 0..<players.count {
-            allHands.append(players[index].allHands())
+            allCards.append(players[index].allCards())
         }
-        return allHands
+        return allCards
     }
 }

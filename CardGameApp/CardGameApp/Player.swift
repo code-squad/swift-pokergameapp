@@ -13,13 +13,13 @@ protocol Playable {
 }
 
 class Player: Playable {
-    private var hands = [Card]()
+    private var cards = [Card]()
     
     func receive(_ hand: Card) {
-        hands.append(hand)
+        cards.append(hand)
     }
     
-    func allHands() -> [Card] {
-        return hands
+    func allCards() -> [Card] {
+        return cards
     }
 }

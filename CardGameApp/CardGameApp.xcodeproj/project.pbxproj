@@ -122,10 +122,10 @@
 				78971DB923F27F2400AC81D0 /* Info.plist */,
 				7893B6B723F6735D00D924C7 /* Card.swift */,
 				78530B6523FA6DB200BABC4E /* CardDeck.swift */,
-				78E049B024043DF6005BB4D5 /* Poker.swift */,
 				78E049B224043E16005BB4D5 /* Player.swift */,
 				787B82A024053E4F007BAB29 /* Players.swift */,
 				78E049B424043E31005BB4D5 /* Dealer.swift */,
+				78E049B024043DF6005BB4D5 /* Poker.swift */,
 			);
 			path = CardGameApp;
 			sourceTree = "<group>";

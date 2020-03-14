@@ -37,8 +37,14 @@ class Poker {
         }
     }
     
-    enum HandCombinations {
-        case none, onePair, twoPair, threeOfAKind, straight, fourOfAKind
+    enum Hand: Int, Comparable, Equatable {
+        case highCard = 0, onePair, twoPair, threeOfAKind, straight, fourOfAKind
+        static func < (lhs: Self, rhs: Self) -> Bool {
+            return lhs.rawValue < rhs.rawValue
+        }
+        static func == (lhs: Int, rhs: Self) -> Bool {
+            return lhs == rhs.rawValue
+        }
     }
     
     private var stud: Stud
@@ -65,11 +71,11 @@ class Poker {
         return dealer.canContinue(stud: stud, numberOfPlayers: numberOfPlayers)
     }
     
-    func playersHands() -> [[Card]] {
-        return players.allHands()
+    func playersCards() -> [[Card]] {
+        return players.allCards()
     }
     
-    func dealerHands() -> [Card] {
-        return dealer.allHands()
+    func dealerCards() -> [Card] {
+        return dealer.allCards()
     }
 }
