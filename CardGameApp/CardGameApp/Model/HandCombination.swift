@@ -40,10 +40,6 @@ class HandCombination{
                     squenceCount += 1
                 }
             }
-//            if cardRankToCompare == card{
-//                cardRankToCompare += 1
-//                squenceCount += 1
-//            }
         }
         
         //연속된 수가 5개일 경우
@@ -108,10 +104,10 @@ class HandCombination{
     
     func dealWithNilValue(){
         if typesOfCombination == nil{
-            typesOfCombination.append(.None)
+            return
         }
         if combinedCards == nil{
-//            combinedCards.append()
+            return
         }
     }
 
@@ -122,21 +118,8 @@ class HandCombination{
         typesOfCombination += pairCombination
         dealWithNilValue()
         typesOfCombination = Array(Set(typesOfCombination))
-        combinedCards = Array(Set(combinedCards))
-        return (combinedCards, typesOfCombination)
+        return (combinedCards , typesOfCombination)
     }
-    
-//    func submitCheckResult(of cardsToCheck: [Card])->([Card],[Combination]){
-//        let straightCombination = self.checkStraight(of: cardsToCheck)
-//        let pairCombination = self.checkPair(of: cardsToCheck)
-//        typesOfCombination += straightCombination
-//        typesOfCombination += pairCombination
-//        dealWithNilValue()
-//        typesOfCombination = Array(Set(typesOfCombination))
-//        combinedCardsRank = Array(Set(combinedCardsRank))
-//        return (combinedCardsRank, typesOfCombination)
-//    }
-
 }
 extension HandCombination: Hashable{
     static func == (lhs: HandCombination, rhs: HandCombination) -> Bool {
