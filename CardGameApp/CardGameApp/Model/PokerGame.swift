@@ -48,7 +48,6 @@ class PokerGame {
         self.numbersOfPlayers = numbersOfPlayers
         self.allParticipants = Participants(with: numbersOfPlayers, and: dealer)
         self.winnerPosition = allParticipants.findPosition(of: winner)
-        // 참가자 수만큼 ScoreBoard key에 참가자 이름을 넣고 기본 점수 0을 value로 설정
         allParticipants.forEachParticipant(behavior: ){ participant in
             scoreBoard[participant] = 0
         }

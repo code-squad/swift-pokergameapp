@@ -10,7 +10,7 @@ import Foundation
 
 class PokerPlayer {
     private var cardsInHand = [Card]()
-    private var combinedCardsRank = [Int]()
+    private var combinedCards = [Card]()
     private var name : String = ""
     private let handCombination = HandCombination()
     private var typesOfCombination = [Combination]()
@@ -35,38 +35,38 @@ class PokerPlayer {
         typesOfCombination.forEach(behavior)
     }
     
-    func showHighestRank(behavior: (Int) -> ()) -> Int{
-        combinedCardsRank.sort(by: >)
-        guard let highestRank = combinedCardsRank.first else { return 0 }
+    func showHighestRank(behavior: (Card) -> ()) -> Card?{
+        combinedCards.sort(by: >)
+        guard let highestRank = combinedCards.first else { return nil }
         return highestRank
     }
     
     func findMyCombination(){
-        let cardsRanksInHand = watchCardRanksInHand()
-        let checkResult = handCombination.submitCheckResult(of: cardsRanksInHand)
-        self.combinedCardsRank += checkResult.0
+//        let cardsRanksInHand = watchCardRanksInHand()
+        let checkResult = handCombination.submitCheckResult(of: cardsInHand)
+        self.combinedCards += checkResult.0
         self.typesOfCombination += checkResult.1
     }
     
-    func watchCardRanksInHand() -> [Int]{
-        var cardsRanksInHand = [Int]()
-        self.cardsInHand.forEach{ card in
-            cardsRanksInHand.append(card.cardNumber)
-        }
-        return cardsRanksInHand
-    }
+//    func watchCardRanksInHand() -> [Int]{
+//        var cardsRanksInHand = [Int]()
+//        self.cardsInHand.forEach{ card in
+//            cardsRanksInHand.append(card.cardNumber)
+//        }
+//        return cardsRanksInHand
+//    }
 }
 
 extension PokerPlayer : Hashable{
     static func == (lhs: PokerPlayer, rhs: PokerPlayer) -> Bool {
-        return lhs.name == rhs.name && lhs.cardsInHand == rhs.cardsInHand && lhs.combinedCardsRank == rhs.combinedCardsRank && rhs.typesOfCombination == lhs.typesOfCombination && rhs.handCombination === lhs.handCombination
+        return lhs.name == rhs.name && lhs.cardsInHand == rhs.cardsInHand && lhs.combinedCards == rhs.combinedCards && rhs.typesOfCombination == lhs.typesOfCombination && rhs.handCombination === lhs.handCombination
         
     }
     
     func hash(into hasher: inout Hasher) {
        hasher.combine(name)
        hasher.combine(cardsInHand)
-       hasher.combine(combinedCardsRank)
+       hasher.combine(combinedCards)
        hasher.combine(handCombination)
        hasher.combine(typesOfCombination)
     }
