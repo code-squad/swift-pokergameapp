@@ -35,10 +35,18 @@ class Card: CustomStringConvertible {
         }
     }
     
-    enum Rank: Int, CaseIterable, CustomStringConvertible {
+    enum Rank: Int, CaseIterable, CustomStringConvertible, Comparable {
         case A = 1, two, three, four, five, six, seven, eight, nine, ten, J, Q, K
         var description: String {
             return "\(self.rawValue)"
+        }
+        
+        static func < (lhs: Card.Rank, rhs: Card.Rank) -> Bool {
+            return lhs.rawValue == rhs.rawValue + 1
+        }
+
+        static func == (lhs: Card.Rank, rhs: Card.Rank) -> Bool {
+            return lhs.rawValue == rhs.rawValue
         }
     }
     
@@ -54,23 +62,20 @@ class Card: CustomStringConvertible {
     }
 }
 
-extension Card :Equatable{
-    static func == (lhs: Card, rhs: Card) -> Bool {
-        return lhs.suit == rhs.suit && lhs.suit == rhs.suit
-    }
-    
-    var numberDescription: String {
-        return "\(rank.description)"
-    }
-
-    var cardNumber: Int{
-        return rank.rawValue
-    }
-}
-
-extension Card : Hashable{
+extension Card: Hashable{
     func hash(into hasher: inout Hasher) {
        hasher.combine(suit)
        hasher.combine(rank)
     }
+}
+
+extension Card: Comparable{
+    static func < (lhs: Card, rhs: Card) -> Bool {
+        return lhs.rank < rhs.rank
+    }
+    
+    static func == (lhs: Card, rhs: Card) -> Bool {
+        return lhs.rank == rhs.rank
+    }
+    
 }

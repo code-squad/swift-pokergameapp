@@ -16,12 +16,12 @@ enum Combination: Int {
 }
 
 class HandCombination{
-    var combinedCardsRank = [Int]() // 조합을 이룬 카드들의 Rank
-    var combinationTypes = [Int]() 
+    var combinedCards = [Card]()
+    var combinationTypes = [Int]()
     var isOnePair : Bool = false
     var typesOfCombination = [Combination]() // 참가자가 갖고있는 카드들이 어떤 조합이 나왔는지
     
-    func checkStraight(of cardsToCheck: [Int]) -> [Combination]{
+    func checkStraight(of cardsToCheck: [Card]) -> [Combination]{
         let combination = Combination.self
         
         // 중복된 수를 지우기
@@ -31,14 +31,19 @@ class HandCombination{
         
         // 연속 수 찾기
         var squenceCount = 0
-        duplicationRemovedCards.sort(by: <)
-        var cardRankToCompare = duplicationRemovedCards[0]
-        for card in duplicationRemovedCards{
-            
-            if cardRankToCompare == card{
-                cardRankToCompare += 1
-                squenceCount += 1
+        duplicationRemovedCards.sort(by: <) // 오름차수
+        for cardIndex in 0 ... duplicationRemovedCards.count-1 {
+            if cardIndex <= duplicationRemovedCards.count-1 {
+                let comparingCard = duplicationRemovedCards[cardIndex+1]
+                let card = duplicationRemovedCards[cardIndex]
+                if card < comparingCard { // card의 다음 인덱스에있는 comparingCard가 card보다 1만큼 더 크면
+                    squenceCount += 1
+                }
             }
+//            if cardRankToCompare == card{
+//                cardRankToCompare += 1
+//                squenceCount += 1
+//            }
         }
         
         //연속된 수가 5개일 경우
@@ -48,13 +53,13 @@ class HandCombination{
         return typesOfCombination
     }
     
-    func removeDuplication(in array: [Int]) -> [Int]{
+    func removeDuplication(in array: [Card]) -> [Card]{
         let set = Set(array)
         let duplicationRemovedArray = Array(set)
         return duplicationRemovedArray
     }
     
-    func checkPair(of cardsToCheck: [Int]) -> [Combination]{
+    func checkPair(of cardsToCheck: [Card]) -> [Combination]{
         var cardsToCheck = cardsToCheck.sorted()
         while cardsToCheck.count != 0 {
             // 0번째 인덱스에 있는 수와 같은 수 찾기
@@ -63,7 +68,7 @@ class HandCombination{
             
             // 같은 수가 2개 이상일 경우
             if combinedCardsCount > 1{
-                combinedCardsRank.append(cardsToCheck[0])
+                combinedCards.append(cardsToCheck[0])
                 combinationTypes.append(combinedCardsCount)
                 
                 // 숫자를 조합 타입으로 변환해서 typesOfCombination에 추가
@@ -105,30 +110,42 @@ class HandCombination{
         if typesOfCombination == nil{
             typesOfCombination.append(.None)
         }
-        if combinedCardsRank == nil{
-            combinedCardsRank.append(0)
+        if combinedCards == nil{
+//            combinedCards.append()
         }
     }
-    
-    func submitCheckResult(of cardsToCheck: [Int])->([Int],[Combination]){
+
+    func submitCheckResult(of cardsToCheck: [Card])->([Card],[Combination]){
         let straightCombination = self.checkStraight(of: cardsToCheck)
         let pairCombination = self.checkPair(of: cardsToCheck)
         typesOfCombination += straightCombination
         typesOfCombination += pairCombination
         dealWithNilValue()
         typesOfCombination = Array(Set(typesOfCombination))
-        combinedCardsRank = Array(Set(combinedCardsRank))
-        return (combinedCardsRank, typesOfCombination)
+        combinedCards = Array(Set(combinedCards))
+        return (combinedCards, typesOfCombination)
     }
+    
+//    func submitCheckResult(of cardsToCheck: [Card])->([Card],[Combination]){
+//        let straightCombination = self.checkStraight(of: cardsToCheck)
+//        let pairCombination = self.checkPair(of: cardsToCheck)
+//        typesOfCombination += straightCombination
+//        typesOfCombination += pairCombination
+//        dealWithNilValue()
+//        typesOfCombination = Array(Set(typesOfCombination))
+//        combinedCardsRank = Array(Set(combinedCardsRank))
+//        return (combinedCardsRank, typesOfCombination)
+//    }
+
 }
 extension HandCombination: Hashable{
     static func == (lhs: HandCombination, rhs: HandCombination) -> Bool {
-        return lhs.combinationTypes == rhs.combinationTypes && lhs.combinedCardsRank == rhs.combinedCardsRank && lhs.isOnePair == rhs.isOnePair
+        return lhs.combinationTypes == rhs.combinationTypes && lhs.combinedCards == rhs.combinedCards && lhs.isOnePair == rhs.isOnePair
     }
     
     func hash(into hasher: inout Hasher) {
           hasher.combine(combinationTypes)
-          hasher.combine(combinedCardsRank)
+          hasher.combine(combinedCards)
           hasher.combine(isOnePair)
        }
 }

@@ -51,10 +51,9 @@ class Participants {
 
     func giveExtraScoreForHigherRank(addScore: (_ to: PokerPlayer,_ with: Int) -> ()){
         allParticipants.forEach{ participant in
-            var comparingRank = 0
-            participant.showHighestRank(behavior: ){
+            var comparingRank = participant
+            participant.showHighestRank(behavior: ){ //조합을 이룬 카드들 중 첫번째 카드를 받아옴
                 cardRank in
-                
                 if comparingRank <= cardRank {
                     comparingRank = cardRank
                 }else{
