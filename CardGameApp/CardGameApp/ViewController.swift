@@ -57,23 +57,33 @@ class ViewController: UIViewController {
         self.view.addSubview(playersControl)
     }
     
-    private func horizontalStackView() -> UIStackView {
+    private func cardStackView() -> UIStackView {
         let stackView = UIStackView()
         stackView.axis = .horizontal
-        stackView.distribution = .fill
+        stackView.distribution = .fillEqually
         stackView.alignment = .fill
         stackView.spacing = -10
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }
     
+    private func horizontalStackView() -> UIStackView {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.distribution = .fill
+        stackView.alignment = .center
+        stackView.spacing = 10
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }
+    
     private func verticalStackView() -> UIStackView {
         let stackView = UIStackView()
-        stackView.tag = 1
+        stackView.tag = 100
         stackView.axis = .vertical
         stackView.distribution = .fill
         stackView.alignment = .fill
-        stackView.spacing = 10
+        stackView.spacing = 15
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }
@@ -81,12 +91,20 @@ class ViewController: UIViewController {
     private func addPlayersCardsView() {
         numberOfPlayers.forEach { playerIndex in
             let stackView = horizontalStackView()
+            let cardViews = cardStackView()
             stud.forEach { cardIndex in
                 let card = poker.playersCards()[playerIndex][cardIndex]
                 let cardView = UIImageView(image: UIImage(named: String(describing: card)))
-                stackView.addArrangedSubview(cardView)
+                cardViews.addArrangedSubview(cardView)
                 cardView.heightAnchor.constraint(equalTo: cardView.widthAnchor, multiplier: 1.27).isActive = true
             }
+            let medalView = UIImageView(image: UIImage(named: "medal"))
+            medalView.tag = playerIndex + 1
+            medalView.alpha = 0
+            stackView.addArrangedSubview(cardViews)
+            stackView.addArrangedSubview(medalView)
+            medalView.widthAnchor.constraint(equalToConstant: 30).isActive = true
+            medalView.heightAnchor.constraint(equalToConstant: 30).isActive = true
             let label = UILabel()
             label.text = "Player\(playerIndex + 1)"
             label.textColor = .white
@@ -97,12 +115,20 @@ class ViewController: UIViewController {
     
     private func addDealerCardsView() {
         let stackView = horizontalStackView()
+        let cardViews = cardStackView()
         stud.forEach { cardIndex in
             let card = poker.dealerCards()[cardIndex]
             let cardView = UIImageView(image: UIImage(named: String(describing: card)))
-            stackView.addArrangedSubview(cardView)
+            cardViews.addArrangedSubview(cardView)
             cardView.heightAnchor.constraint(equalTo: cardView.widthAnchor, multiplier: 1.27).isActive = true
         }
+        let medalView = UIImageView(image: UIImage(named: "medal"))
+        medalView.tag = numberOfPlayers.rawValue + 1
+        medalView.alpha = 0
+        stackView.addArrangedSubview(cardViews)
+        stackView.addArrangedSubview(medalView)
+        medalView.widthAnchor.constraint(equalToConstant: 30).isActive = true
+        medalView.heightAnchor.constraint(equalToConstant: 30).isActive = true
         let label = UILabel()
         label.text = "Dealer"
         label.textColor = .white
@@ -111,7 +137,7 @@ class ViewController: UIViewController {
     }
     
     private func setUpPlay() {
-        self.view.viewWithTag(1)?.removeFromSuperview()
+        self.view.viewWithTag(100)?.removeFromSuperview()
         allStackView = verticalStackView()
         poker = Poker(stud: stud, numberOfPlayers: numberOfPlayers)
         poker.start()
@@ -232,9 +258,14 @@ class ViewController: UIViewController {
         }
     }
     
+    private func awardMedal(to winner: Int) {
+        self.view.viewWithTag(winner + 1)?.alpha = 1
+    }
+    
     private func decideWinner() {
         let hands = judgeHands()
-        let indexOfWinner = judgeWinner(with: hands)
+        let winner = judgeWinner(with: hands)
+        awardMedal(to: winner)
     }
 
 }
