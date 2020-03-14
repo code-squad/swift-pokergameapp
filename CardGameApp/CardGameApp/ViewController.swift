@@ -14,7 +14,7 @@ class ViewController: UIViewController {
     private var numbersOfPlayers = NumbersOfPlayers.four
     private var segmentedControl = SegmentedControl()
     private var gameStackView = GameStackView()
-    private var winnerMedal = UIImageView()
+    private var winnerMedal = UIView()
     private var winnerPosition : Int = -1
     
     // MARK: - View Life Cycle
@@ -33,7 +33,6 @@ class ViewController: UIViewController {
     
     // MARK: - Method
     func startPokerGame(gameMode : GameMode, numbersOfPlayers : NumbersOfPlayers){
-        winnerMedal.removeFromSuperview()
         gameStackView.subviews.forEach{$0.removeFromSuperview()}
         pokerGame = PokerGame.init(numbersOfPlayers: numbersOfPlayers, gameMode: gameMode)
         pokerGame.start()
@@ -51,11 +50,13 @@ class ViewController: UIViewController {
     }
     
     func setParticipantsCards(in gameStackView : UIStackView) {
-        
         pokerGame.forEachParticipant(behavior: ){
             participant in
+            
+            // 참가자의 라벨과 카드들을 담는 스택
             let oneParticipantInfoStack = ParticipantStackView()
             oneParticipantInfoStack.addArrangedSubview(makeParticipantLabel(of: participant.describeSelf()))
+            
             let cardsStack = CardsStackView()
             participant.showEachCardInHand(behavior: ){
                 (card) in
@@ -64,9 +65,13 @@ class ViewController: UIViewController {
                 cardsStack.addArrangedSubview(card)
             }
             oneParticipantInfoStack.addArrangedSubview(cardsStack)
-            gameStackView.addArrangedSubview(oneParticipantInfoStack)
+            
+            // 참가자 정보(라벨,카드)와 숨겨진 메달 이미지를 담는 스택
+            let participantSectionStack = ParticipantSectionStack()
+            participantSectionStack.addArrangedSubview(oneParticipantInfoStack)
+            participantSectionStack.addArrangedSubview(makeMedalImage())
+            gameStackView.addArrangedSubview(participantSectionStack)
         }
-        
     }
     
     func setCardImage(of card: UIImageView){
@@ -91,12 +96,20 @@ extension ViewController: SegmentedControlProtocol{
     func segmentControlDidChange(to mode: (Int,Int)) {
         var gameMode = mode.0
         var numbersOfPlayers = mode.1
-        
         gameModeSegmentChanged(selectedSegmentIndex: gameMode)
         numbersOfPlayersSegmentChanged(selectedSegmentIndex: numbersOfPlayers)
         let winnerIndex = pokerGame.findWinner()
         self.winnerPosition = winnerIndex
         addMedalImage(to: winnerPosition)
+    }
+    
+    func updateCardStackConstraint(){
+        for participantSection in gameStackView.arrangedSubviews{
+            let oneParticipantInfoStack = participantSection.subviews[0]
+            let medal = participantSection.subviews[1]
+            let cardsStack = oneParticipantInfoStack.subviews[1]
+            cardsStack.trailingAnchor.constraint(equalTo: winnerMedal.leadingAnchor).isActive = true
+        }
     }
     
     func gameModeSegmentChanged(selectedSegmentIndex: Int){
@@ -129,19 +142,18 @@ extension ViewController: SegmentedControlProtocol{
     }
     
     func addMedalImage(to winnerPosition: Int){
-        var winnerMedal = makeMedalImage()
-        self.view.addSubview(winnerMedal)
-        self.winnerPosition  = 2
-        self.winnerMedal.topAnchor.constraint(equalTo: self.gameStackView.arrangedSubviews[winnerPosition].topAnchor).isActive = true
-        self.winnerMedal.bottomAnchor.constraint(equalTo: self.gameStackView.arrangedSubviews[winnerPosition].topAnchor).isActive = true
+        let hiddenMedalImage = gameStackView.arrangedSubviews[winnerPosition].subviews[1]
+        self.winnerMedal = hiddenMedalImage
+        updateCardStackConstraint()
+        hiddenMedalImage.isHidden = false
     }
     
     func makeMedalImage() -> UIImageView{
         var medalImage = UIImageView(image: UIImage(named: "winnerMedal"))
         medalImage.translatesAutoresizingMaskIntoConstraints = false
-        medalImage.widthAnchor.constraint(equalToConstant: 50).isActive = true
-        medalImage.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        self.winnerMedal = medalImage
+        medalImage.widthAnchor.constraint(equalToConstant: 60).isActive = true
+        medalImage.heightAnchor.constraint(equalToConstant: 70).isActive = true
+        medalImage.isHidden = true
         return medalImage
     }
 }
