@@ -20,6 +20,7 @@
 		6A53F0062418AF2900425B45 /* PokerPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ABB45A423F6C204002C5CAA /* PokerPlayer.swift */; };
 		6A53F0072418AF2900425B45 /* Participants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE4B9D823FAECCA009721F9 /* Participants.swift */; };
 		6A53F0082418AF2900425B45 /* HandCombination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ADF6A7C24150515001E5466 /* HandCombination.swift */; };
+		6A730DA8241C9A5E0036B413 /* CardGameAppTests.xctest in Resources */ = {isa = PBXBuildFile; fileRef = 6A7B19EF23EEBC4F0070F4E3 /* CardGameAppTests.xctest */; };
 		6A7B19DD23EEBC4C0070F4E3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7B19DC23EEBC4C0070F4E3 /* AppDelegate.swift */; };
 		6A7B19DF23EEBC4C0070F4E3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7B19DE23EEBC4C0070F4E3 /* SceneDelegate.swift */; };
 		6A7B19E123EEBC4C0070F4E3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7B19E023EEBC4C0070F4E3 /* ViewController.swift */; };
@@ -299,6 +300,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6A730DA8241C9A5E0036B413 /* CardGameAppTests.xctest in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
