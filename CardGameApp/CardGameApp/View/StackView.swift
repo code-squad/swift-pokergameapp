@@ -27,7 +27,7 @@ class GameStackView: UIStackView {
     func setConstraintOfView(related superView : UIView, related numbersOfPlayersSegmentControl: UISegmentedControl ) {
         self.topAnchor.constraint(equalTo: numbersOfPlayersSegmentControl.bottomAnchor, constant: 10).isActive = true
         self.leadingAnchor.constraint(equalTo: superView.leadingAnchor, constant: 30).isActive = true
-        self.trailingAnchor.constraint(equalTo: superView.trailingAnchor, constant: -30).isActive = true
+        self.trailingAnchor.constraint(equalTo: superView.trailingAnchor, constant: -10).isActive = true
     }
     
     private func configure(){
@@ -86,3 +86,28 @@ class ParticipantStackView : UIStackView {
     }
 }
 
+class ParticipantSectionStack : UIStackView {
+    
+    override init(frame: CGRect) { // by code
+        super.init(frame: frame)
+        
+    }
+    
+    convenience init() {
+        self.init(frame: .zero)
+        configure()
+    }
+    
+    required init(coder: NSCoder) {
+        super.init(coder: coder)
+        configure()
+    }
+    
+    private func configure(){
+        self.translatesAutoresizingMaskIntoConstraints = false
+        self.axis = .horizontal
+        self.distribution = .fillProportionally
+        self.alignment = .center
+        self.spacing = 5
+    }
+}
