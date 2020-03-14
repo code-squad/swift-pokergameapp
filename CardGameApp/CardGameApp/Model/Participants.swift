@@ -54,7 +54,6 @@ class Participants {
             participant.showHighestRank(behavior: ){ highestRankCard in //조합을 이룬 카드들 중 첫번째 카드를 받아옴
                 var comparingCard = highestRankCard
                 
-                // 그냥 카드를 비교하면 되겠다
                 if comparingCard <= highestRankCard {
                     comparingCard = highestRankCard
                 }else{
