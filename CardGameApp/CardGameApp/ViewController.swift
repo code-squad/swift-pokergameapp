@@ -88,7 +88,23 @@ class ViewController: UIViewController {
         return stackView
     }
     
-    private func addPlayersCardsView() {
+    
+    private func medalImageView(index: Int) -> UIImageView {
+        let imageView = UIImageView(image: UIImage(named: "medal"))
+        imageView.tag = index + 1
+        imageView.alpha = 0
+        return imageView
+    }
+
+
+    private func whiteLabel(text: String) -> UILabel {
+        let label = UILabel()
+        label.text = text
+        label.textColor = .white
+        return label
+    }
+    
+    private func addPlayersView() {
         numberOfPlayers.forEach { playerIndex in
             let stackView = horizontalStackView()
             let cardViews = cardStackView()
@@ -98,22 +114,18 @@ class ViewController: UIViewController {
                 cardViews.addArrangedSubview(cardView)
                 cardView.heightAnchor.constraint(equalTo: cardView.widthAnchor, multiplier: 1.27).isActive = true
             }
-            let medalView = UIImageView(image: UIImage(named: "medal"))
-            medalView.tag = playerIndex + 1
-            medalView.alpha = 0
+            let medalView = medalImageView(index: playerIndex)
             stackView.addArrangedSubview(cardViews)
             stackView.addArrangedSubview(medalView)
             medalView.widthAnchor.constraint(equalToConstant: 30).isActive = true
             medalView.heightAnchor.constraint(equalToConstant: 30).isActive = true
-            let label = UILabel()
-            label.text = "Player\(playerIndex + 1)"
-            label.textColor = .white
+            let label = whiteLabel(text: "Player\(playerIndex + 1)")
             allStackView.addArrangedSubview(label)
             allStackView.addArrangedSubview(stackView)
         }
     }
     
-    private func addDealerCardsView() {
+    private func addDealerView() {
         let stackView = horizontalStackView()
         let cardViews = cardStackView()
         stud.forEach { cardIndex in
@@ -122,16 +134,12 @@ class ViewController: UIViewController {
             cardViews.addArrangedSubview(cardView)
             cardView.heightAnchor.constraint(equalTo: cardView.widthAnchor, multiplier: 1.27).isActive = true
         }
-        let medalView = UIImageView(image: UIImage(named: "medal"))
-        medalView.tag = numberOfPlayers.rawValue + 1
-        medalView.alpha = 0
+        let medalView = medalImageView(index: numberOfPlayers.rawValue)
         stackView.addArrangedSubview(cardViews)
         stackView.addArrangedSubview(medalView)
         medalView.widthAnchor.constraint(equalToConstant: 30).isActive = true
         medalView.heightAnchor.constraint(equalToConstant: 30).isActive = true
-        let label = UILabel()
-        label.text = "Dealer"
-        label.textColor = .white
+        let label = whiteLabel(text: "Dealer")
         allStackView.addArrangedSubview(label)
         allStackView.addArrangedSubview(stackView)
     }
@@ -141,8 +149,8 @@ class ViewController: UIViewController {
         allStackView = verticalStackView()
         poker = Poker(stud: stud, numberOfPlayers: numberOfPlayers)
         poker.start()
-        addPlayersCardsView()
-        addDealerCardsView()
+        addPlayersView()
+        addDealerView()
         self.view.addSubview(allStackView)
         allStackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 160.0).isActive = true
         allStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40.0).isActive = true
@@ -177,21 +185,25 @@ class ViewController: UIViewController {
         return result >= 4 ? true : false
     }
     
+    private func compareMaxCountTwo(with rankCount: [Card.Rank : Int]) -> Poker.Hand {
+        let filtered = rankCount.filter { $0.value == 2 }
+        if filtered.count == 1 {
+            if isStraight(rankCount) {
+                return .straight
+            } else {
+                return .onePair
+            }
+        } else {
+            return .twoPair
+        }
+    }
+    
     private func judgeHand(with rankCount: [Card.Rank : Int]) -> Poker.Hand {
         let maxCount = rankCount.max(by: { a, b in a.value < b.value })!.value
         var hand: Poker.Hand = .highCard
         switch maxCount {
         case 2:
-            let filtered = rankCount.filter { $0.value == 2 }
-            if filtered.count == 1 {
-                if isStraight(rankCount) {
-                    hand = .straight
-                } else {
-                    hand = .onePair
-                }
-            } else {
-                hand = .twoPair
-            }
+            hand = compareMaxCountTwo(with: rankCount)
         case 3:
             hand = .threeOfAKind
         case 4:
@@ -230,31 +242,36 @@ class ViewController: UIViewController {
         return nextRanks[nextRanksIndex - 1]
     }
     
-    private func compareRank(with data: [(index: Int, rank: Card.Rank)]) -> Int {
-        let winner = data.max { a, b in a.rank < b.rank }!
+    private func compareRank(with finalRecord: [(index: Int, rank: Card.Rank)]) -> Int {
+        let winner = finalRecord.max { a, b in a.rank < b.rank }!
         return winner.index
+    }
+    
+    private func finalRecord(of hands: [Poker.Hand]) -> [(index: Int, rank: Card.Rank)] {
+        let highestHand = hands.max()!
+        var rank: Card.Rank
+        let rankCounts = allRankCount()
+        let handValues: [Poker.Hand : Int] = [.onePair: 2, .twoPair: 2, .threeOfAKind: 3, .fourOfAKind: 4]
+        var finalRecord = [(index: Int, rank: Card.Rank)]()
+        for index in 0..<hands.count {
+            guard hands[index] == highestHand else { continue }
+            if highestHand == .straight {
+                rank = highestRankOfStraight(with: rankCounts[index])
+            } else {
+                let ranks = rankCounts[index].filter { $0.value == handValues[highestHand] }
+                rank = ranks.max { a, b in a.key < b.key }!.key
+            }
+            finalRecord.append((index, rank))
+        }
+        return finalRecord
     }
     
     private func judgeWinner(with hands: [Poker.Hand]) -> Int {
         let highestHand = hands.max()!
-        let rankCounts = allRankCount()
-        let handValues: [Poker.Hand : Int] = [.onePair: 2, .twoPair: 2, .threeOfAKind: 3, .fourOfAKind: 4]
-        var finalRecord = [(index: Int, rank: Card.Rank)]()
         if hands.filter({ $0 == highestHand }).count == 1 {
             return hands.firstIndex(of: highestHand)!
         } else {
-            for index in 0..<hands.count {
-                guard hands[index] == highestHand else { continue }
-                if highestHand == .straight {
-                    let rank = highestRankOfStraight(with: rankCounts[index])
-                    finalRecord.append((index, rank))
-                } else {
-                    let ranks = rankCounts[index].filter { $0.value == handValues[highestHand] }
-                    let rank = ranks.max { a, b in a.key < b.key }!.key
-                    finalRecord.append((index, rank))
-                }
-            }
-            return compareRank(with: finalRecord)
+            return compareRank(with: finalRecord(of: hands))
         }
     }
     
