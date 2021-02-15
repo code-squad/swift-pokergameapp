@@ -21,8 +21,8 @@ struct PlayingCardDeck {
     }
     
     mutating func initialize(){
-        for suit in PlayingCard.Suit.all {
-            for rank in PlayingCard.Rank.all {
+        for suit in PlayingCard.Suit.allCases {
+            for rank in PlayingCard.Rank.allCases {
                 cards.append(PlayingCard(suit: suit, rank: rank))
             }
         }
