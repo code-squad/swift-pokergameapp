@@ -1,28 +1,3 @@
-# pokergameapp-step1, 2 - 게임판 만들기, 카드덱 구현과 테스트
-
-
-
-- 화면 크기에 따라 코드로 View를 생성하고 화면에 추가하는 방식을 학습한다.
-
-- 앱 기본 설정(Info.plist)을 변경하는 방식에 대해 학습한다.
-
-
-
-
-
-- 데이터를 추상화하기 위한 설계 방식을 학습한다.
-- 객체 내부 데이터 타입과 출력할 때 사용할 데이터를 구분해서 사용할 것인지 연습한다.
-- 유니코드를 적극 활용한다.
-
-
-
-
-
-
-
-
-
-```swift
 //
 //  ViewController.swift
 //  PokerGameApp
@@ -83,16 +58,3 @@ class ViewController: UIViewController {
     }
 }
 
-
-```
-
-
-
-
-
-
-
-
-
-![1-1](https://user-images.githubusercontent.com/62657991/107908589-bf97ad00-6f99-11eb-9c76-85cf47116db9.png)
-![1-2](https://user-images.githubusercontent.com/62657991/107908601-c45c6100-6f99-11eb-8915-164b82094674.png)
