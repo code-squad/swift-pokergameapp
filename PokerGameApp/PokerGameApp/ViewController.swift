@@ -18,7 +18,8 @@ class ViewController: UIViewController {
     }
    
     func setBackground() {
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "bg_pattern")!)
+        guard let image = UIImage(named: "bg_pattern") else { return }
+        self.view.backgroundColor = UIColor(patternImage: image)
     }
     
     func setStackView() {
