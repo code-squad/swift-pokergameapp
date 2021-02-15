@@ -19,7 +19,12 @@ class ViewController: UIViewController {
         return stack
     }()
     
-    let cardBackgroundImage : UIImage? = UIImage(named: "card-back")
+    let cardBackgroundImage : UIImage = {
+        guard let image = UIImage(named: "card-back") else {
+            return UIImage()
+        }
+        return image
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,11 +58,11 @@ class ViewController: UIViewController {
     
     private func makeCard()  {
         (0...6).forEach { _ in
-            horizontalStackView.addArrangedSubview(imageViewCreate())
+            horizontalStackView.addArrangedSubview(createImageView())
         }
     }
 
-    private func imageViewCreate() -> UIImageView {
+    private func createImageView() -> UIImageView {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit

@@ -18,3 +18,4 @@
 카드  객체 인스턴스를 만들어서 콘솔에 출력
 
 <img width="1032" alt="스크린샷 2021-02-15 오후 7 54 45" src="https://user-images.githubusercontent.com/33626693/107937738-af96c200-6fc7-11eb-9eee-5f3bcfe9216f.png">
+
