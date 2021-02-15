@@ -13,6 +13,8 @@
 		227112A325DA062E007C9CD8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 227112A125DA062E007C9CD8 /* Main.storyboard */; };
 		227112A525DA0631007C9CD8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 227112A425DA0631007C9CD8 /* Assets.xcassets */; };
 		227112A825DA0631007C9CD8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 227112A625DA0631007C9CD8 /* LaunchScreen.storyboard */; };
+		22BB7F6B25DA73F900443633 /* CardDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BB7F6A25DA73F900443633 /* CardDeck.swift */; };
+		22BB7F7025DA797B00443633 /* TestGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BB7F6F25DA797B00443633 /* TestGame.swift */; };
 		22EB3C2C25DA3E8500818F97 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EB3C2B25DA3E8500818F97 /* Card.swift */; };
 /* End PBXBuildFile section */
 
@@ -44,6 +46,8 @@
 		227112A925DA0631007C9CD8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		227112AE25DA0632007C9CD8 /* PokerGameAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PokerGameAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		227112B925DA0632007C9CD8 /* PokerGameAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PokerGameAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		22BB7F6A25DA73F900443633 /* CardDeck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDeck.swift; sourceTree = "<group>"; };
+		22BB7F6F25DA797B00443633 /* TestGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestGame.swift; sourceTree = "<group>"; };
 		22EB3C2B25DA3E8500818F97 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -97,6 +101,8 @@
 				2271129D25DA062E007C9CD8 /* SceneDelegate.swift */,
 				2271129F25DA062E007C9CD8 /* ViewController.swift */,
 				22EB3C2B25DA3E8500818F97 /* Card.swift */,
+				22BB7F6A25DA73F900443633 /* CardDeck.swift */,
+				22BB7F6F25DA797B00443633 /* TestGame.swift */,
 				227112A125DA062E007C9CD8 /* Main.storyboard */,
 				227112A425DA0631007C9CD8 /* Assets.xcassets */,
 				227112A625DA0631007C9CD8 /* LaunchScreen.storyboard */,
@@ -175,6 +181,7 @@
 					};
 					227112AD25DA0632007C9CD8 = {
 						CreatedOnToolsVersion = 12.4;
+						LastSwiftMigration = 1240;
 						TestTargetID = 2271129725DA062E007C9CD8;
 					};
 					227112B825DA0632007C9CD8 = {
@@ -236,9 +243,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				227112A025DA062E007C9CD8 /* ViewController.swift in Sources */,
+				22BB7F6B25DA73F900443633 /* CardDeck.swift in Sources */,
 				2271129C25DA062E007C9CD8 /* AppDelegate.swift in Sources */,
 				2271129E25DA062E007C9CD8 /* SceneDelegate.swift in Sources */,
 				22EB3C2C25DA3E8500818F97 /* Card.swift in Sources */,
+				22BB7F7025DA797B00443633 /* TestGame.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -450,6 +459,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NY37VGJ3HF;
 				INFOPLIST_FILE = PokerGameAppTests/Info.plist;
@@ -461,6 +471,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = kr.maylily.PokerGameAppTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PokerGameApp.app/PokerGameApp";
@@ -472,6 +483,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NY37VGJ3HF;
 				INFOPLIST_FILE = PokerGameAppTests/Info.plist;

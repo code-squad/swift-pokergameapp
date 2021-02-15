@@ -17,11 +17,13 @@ class ViewController: UIViewController {
         
         setImageStackView()
         
-        let heartsQueenCard = Card(shape: .hearts, rank: .queen)
-        let spadesSeven = Card(shape: .spades, rank: .seven)
+//        let heartsQueenCard = Card(shape: .hearts, rank: .queen)
+//        let spadesSeven = Card(shape: .spades, rank: .seven)
+//
+//        print(heartsQueenCard)
+//        print(spadesSeven)
         
-        print(heartsQueenCard)
-        print(spadesSeven)
+
     }
     
     private func setImageStackView() {
