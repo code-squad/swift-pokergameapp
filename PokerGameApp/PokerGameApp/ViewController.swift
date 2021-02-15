@@ -14,6 +14,9 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
-
+    //상태바 글씨를 흰색으로 변경
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+           return .lightContent
+       }
 }
 
