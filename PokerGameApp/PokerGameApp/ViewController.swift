@@ -28,15 +28,6 @@ class ViewController: UIViewController {
         let cardWidth = view.frame.size.width/7
         let cardHeight = cardWidth * 1.27
         
-        // 카드 이미지뷰 생성
-        let card1 = UIImageView(image: UIImage(named: "card-back"))
-        let card2 = UIImageView(image: UIImage(named: "card-back"))
-        let card3 = UIImageView(image: UIImage(named: "card-back"))
-        let card4 = UIImageView(image: UIImage(named: "card-back"))
-        let card5 = UIImageView(image: UIImage(named: "card-back"))
-        let card6 = UIImageView(image: UIImage(named: "card-back"))
-        let card7 = UIImageView(image: UIImage(named: "card-back"))
-        
         // 카드를 담을 스택뷰
         let stackView = UIStackView()
 
@@ -46,13 +37,9 @@ class ViewController: UIViewController {
         stackView.spacing = 8
         stackView.translatesAutoresizingMaskIntoConstraints = false
 
-        stackView.addArrangedSubview(card1)
-        stackView.addArrangedSubview(card2)
-        stackView.addArrangedSubview(card3)
-        stackView.addArrangedSubview(card4)
-        stackView.addArrangedSubview(card5)
-        stackView.addArrangedSubview(card6)
-        stackView.addArrangedSubview(card7)
+        for _ in 0..<7 {
+            stackView.addArrangedSubview(makeCard())
+        }
         
         // add subview
         view.addSubview(stackView)
@@ -62,5 +49,9 @@ class ViewController: UIViewController {
         stackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 8).isActive = true
         stackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -8).isActive = true
         stackView.heightAnchor.constraint(equalToConstant: cardHeight).isActive = true
+    }
+    
+    func makeCard() -> UIImageView {
+        return UIImageView(image: UIImage(named:  "card-back"))
     }
 }
