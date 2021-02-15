@@ -13,13 +13,17 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named: StateController.backgroundImg) ?? UIImage())
-        self.view.addSubview(hand)
-        hand.setConstraint(superView: self.view)
+        setCardHand()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
+    }
+    
+    private func setCardHand() {
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: StateController.backgroundImg) ?? UIImage())
+        self.view.addSubview(hand)
+        hand.setConstraint(superView: self.view)
     }
 }
 
