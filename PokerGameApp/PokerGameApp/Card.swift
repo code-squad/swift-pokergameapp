@@ -16,7 +16,11 @@ struct Card: CustomStringConvertible {
         self.suit = suit
     }
     
-    var description: String {
+    internal var description: String {
         return "\(suit)\(value.display)"
+    }
+    
+    func display() {
+        print(description)
     }
 }

@@ -29,7 +29,7 @@ class ViewController: UIViewController {
     
     private func setCard() {
         let card = Card(value: CardValue.init(integerLiteral: 12), suit: Suit.hearts)
-        print(card.description)
+        card.display()
     }
 }
 
