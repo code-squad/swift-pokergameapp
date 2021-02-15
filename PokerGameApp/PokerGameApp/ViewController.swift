@@ -36,12 +36,9 @@ class ViewController: UIViewController {
     }
     
     func cardIn() -> UIImageView {
-//        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: newWidth, height: newHeight))
         let imageView = UIImageView()
         imageView.image = UIImage(named: "card-back")
         imageView.translatesAutoresizingMaskIntoConstraints = false
-//        imageView.frame.size = CGSize(width: newWidth, height: newHeight)
-//        imageView.contentMode = .scaleToFill
         return imageView
     }
 }
