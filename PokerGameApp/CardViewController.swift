@@ -9,6 +9,10 @@ import UIKit
 
 class CardViewController: UIViewController {
     
+    static let cardCount : Int = 7 // 카드의 개수
+    static let aspectRatio : CGFloat = 1.27 // 카드의 가로 세로 비율
+    static let padding : CGFloat = (CGFloat(cardCount)-1) // 카드의 간격의 갯수 (7개의 카드이므로 간격은 6번존재)
+    
     let cardImage : UIImage? = {
         return UIImage(named: "cardback.png")
     }()
@@ -16,20 +20,19 @@ class CardViewController: UIViewController {
     let backgroundImagePattern : UIImage? = {
         return UIImage(named: "bg_pattern")
     }()
-    
-    private struct Ratio{
-        static let totalNumOfCards : CGFloat = 7 // 카드의 개수
-        static let cadRatio : CGFloat = 1.27 // 카드의 가로 세로 비율
-        static let countOffset : CGFloat = (totalNumOfCards-1) // 카드의 간격의 갯수 (7개의 카드이므로 간격은 6번존재)
-    }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setBackgroundColor()
         drawSevenCards()
         
+        cardDeckTest()
+    }
+    
+    func cardDeckTest(){
         var cardDeck = PlayingCardDeck()
-        cardDeck.suffle()
+        
+        cardDeck.shuffle()
         print(cardDeck)
         cardDeck.removeOne()
         cardDeck.reset()
@@ -44,13 +47,15 @@ class CardViewController: UIViewController {
     
     func drawSevenCards(){
         
-        let cardWidth = (self.view.bounds.maxX - self.view.bounds.minX) / (Ratio.totalNumOfCards + CGFloat(1))
-        let cardHeight = cardWidth * Ratio.cadRatio
-        let offset = cardWidth / Ratio.countOffset
+        let cardWidth = (self.view.bounds.maxX - self.view.bounds.minX) / CGFloat(CardViewController.cardCount + 1)
+        let cardHeight = cardWidth * CardViewController.aspectRatio
+        let offset = cardWidth / CardViewController.padding
         
-        for index in 0..<Int(Ratio.totalNumOfCards) {
-            let imageView = UIImageView(frame: CGRect(x: self.view.frame.minX + (cardWidth + offset) * CGFloat(index),
-                                                      y: self.view.frame.minY + cardHeight,
+        for index in 0..<CardViewController.cardCount {
+            let startpointX = self.view.frame.minX + (cardWidth + offset) * CGFloat(index)
+            let startpointY = self.view.frame.minY + cardHeight
+            let imageView = UIImageView(frame: CGRect(x: startpointX,
+                                                      y: startpointY,
                                                       width: cardWidth, height: cardHeight))
             imageView.image = cardImage
             self.view.addSubview(imageView)
