@@ -24,9 +24,9 @@ class ViewController: UIViewController {
         self.view.backgroundColor = UIColor(patternImage:
                                                 backgroundImageChange(imageName: "bg_pattern"))
         
-        viewAdd()
-        viewConstraint()
-        cardsCreate()
+        self.view.addSubview(horizontalStackView)
+        constrainUI()
+        makeCard()
     }
 
 
@@ -37,11 +37,7 @@ class ViewController: UIViewController {
         return backgroundimage
     }
     
-    func viewAdd() {
-        self.view.addSubview(horizontalStackView)
-    }
-    
-    func viewConstraint() {
+    private func constrainUI() {
         NSLayoutConstraint.activate([
             horizontalStackView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 5),
             horizontalStackView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -5),
@@ -49,17 +45,17 @@ class ViewController: UIViewController {
         ])
     }
     
-    func cardsCreate()  {
+    private func makeCard()  {
         (0...6).forEach { _ in
             horizontalStackView.addArrangedSubview(imageViewCreate())
         }
     }
 
-    func imageViewCreate() -> UIImageView {
+    private func imageViewCreate() -> UIImageView {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
-        imageView.image = UIImage(named: "card-back")
+        imageView.image = backgroundImageChange(imageName: "card-back")
         imageView.widthAnchor.constraint(equalTo: imageView.heightAnchor, multiplier: 1.0/1.27).isActive = true
         return imageView
     }
