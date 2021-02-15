@@ -4,4 +4,5 @@
 <p float="left">
 <img src="images/step1_1.png" width="200" />
 <img src="images/step1_2.png" width="200" />
+<img src="images/step1_3.png" width="200" />
 </p>
