@@ -20,6 +20,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         drawSevenCard()
+        let myCard = PlayingCard(suit: .hearts, rank: .ace)
+        print(myCard.description)
     }
     
     func drawSevenCard(){
