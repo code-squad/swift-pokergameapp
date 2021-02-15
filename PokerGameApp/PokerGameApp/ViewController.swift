@@ -29,5 +29,11 @@ class ViewController: UIViewController {
         cardStackView.alignment = .fill
         cardStackView.distribution = .fillEqually
         cardStackView.spacing = 5.0
+        
+        self.view.addSubview(cardStackView)
+        cardStackView.translatesAutoresizingMaskIntoConstraints = false
+        cardStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        cardStackView.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor).isActive = true
+        cardStackView.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor).isActive = true
     }
 }
