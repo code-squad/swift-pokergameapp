@@ -40,6 +40,8 @@ enum Rank : Int, CustomStringConvertible {
         }
     }
 }
+
+// 머리속에 생각했을떄 카드라는 하나의 객체가 생각이 나서 그리고 객체지향을 연습한다면 클래스가 좋을거같다고 생각했습니다
 class Card : CustomStringConvertible {
     let suit : Suit
     let rank : Rank
