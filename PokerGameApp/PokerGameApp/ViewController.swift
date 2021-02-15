@@ -13,7 +13,6 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: StateController.backgroundImg) ?? UIImage())
     }
-
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
