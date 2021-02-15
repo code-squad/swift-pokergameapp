@@ -1,15 +1,16 @@
 {
   "images" : [
     {
-      "filename" : "card-back.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "card-back.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "card-back-1.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
