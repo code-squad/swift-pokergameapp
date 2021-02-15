@@ -9,13 +9,26 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    var cardImage : UIImage = {
-        return UIImage(named: "cardback.png")!
+    var cardImage : UIImage? = {
+        return UIImage(named: "cardback.png") ?? nil
+    }()
+    
+    var backgroundImagePattern : UIImage? = {
+        return UIImage(named: "bg_pattern") ?? nil
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "bg_pattern")!)
+        drawSevenCard()
+    }
+    
+    func drawSevenCard(){
+
+        guard let backimage = backgroundImagePattern else {
+            return
+        }
+        
+        self.view.backgroundColor = UIColor(patternImage: backimage)
         
         let cardWidth = (self.view.bounds.maxX - self.view.bounds.minX) / 8
         let cardHeight = cardWidth * 1.27
@@ -28,7 +41,6 @@ class ViewController: UIViewController {
             imageView.image = cardImage
             self.view.addSubview(imageView)
         }
-        
     }
 }
 
