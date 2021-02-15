@@ -36,7 +36,7 @@ class Card {
     var shape: Shape
     var rank: Rank
     
-    init(_ shape: Shape, _ rank: Rank) {
+    init(shape: Shape, rank: Rank) {
         self.shape = shape
         self.rank = rank
     }
