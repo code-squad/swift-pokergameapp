@@ -16,6 +16,8 @@ class ViewController: UIViewController {
         
         setupBackgroundImage()
         setupCard()
+        
+        print(Card(shape: Card.Shape.heart, number: Card.Number.A))
     }
 
     func setupBackgroundImage() {
