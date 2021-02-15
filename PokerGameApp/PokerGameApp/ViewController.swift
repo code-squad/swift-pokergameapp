@@ -9,11 +9,12 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    let backgroundImage = UIImage(named: "bg_pattern")
     let pokerCardImage = UIImage(named: "card-back")
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        guard let backgroundImage = UIImage(named: "bg_pattern") else { return }
+        self.view.backgroundColor = UIColor(patternImage: backgroundImage)
     }
 }
-
