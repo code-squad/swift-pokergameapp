@@ -21,24 +21,31 @@ class ViewController: UIViewController {
         self.view.addSubview(imageStackView)
         configConstraintStackView(imageStackView)
         
-        
-        let cardA = Card(.hearts, .queen)
-        let cardB = Card(.spades, .seven)
-        print(cardA, cardB)
+        let heartsQueenCard = Card(.hearts, .queen)
+        let spadesSeven = Card(.spades, .seven)
+        print(heartsQueenCard)
+        print(spadesSeven)
     }
     
     private func createCardInsideStackView(_ stackView: UIStackView) {
         for _ in 1...7 {
-            let image = UIImage(named: "card-back.png")!
-            let imageView = UIImageView(image: image)
-            imageView.layer.masksToBounds = true
-            imageView.layer.cornerRadius = 5
-            
-            let aspectRatioConstraint = NSLayoutConstraint(item: imageView, attribute: .height, relatedBy: .equal, toItem: imageView, attribute: .width, multiplier: (1.27 / 1.0), constant: 0)
-            imageView.addConstraint(aspectRatioConstraint)
-            stackView.addArrangedSubview(imageView)
+            if let image = UIImage(named: "card-back.png") {
+                let imageView = UIImageView(image: image)
+                imageView.layer.masksToBounds = true
+                imageView.layer.cornerRadius = 5
+                
+                let aspectRatioConstraint
+                    = NSLayoutConstraint(item: imageView,
+                                         attribute: .height,
+                                         relatedBy: .equal,
+                                         toItem: imageView,
+                                         attribute: .width,
+                                         multiplier: (1.27 / 1.0),
+                                         constant: 0)
+                imageView.addConstraint(aspectRatioConstraint)
+                stackView.addArrangedSubview(imageView)
+            }
         }
-        
     }
     
     private func configImageStackView(_ stackView: UIStackView) {
