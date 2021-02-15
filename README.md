@@ -1,2 +1,7 @@
-# swift-pokergameapp
-STEP15 포커게임 앱 저장소
+# Poker Game App 🃏
+## Step 1 - 게임판 만들기
+
+- 앱 구동 시 타일 패턴으로 이루어진 `게임판`과 7장의 `카드` 뒷면이 나타난다.  
+- `카드`의 크기는 **디바이스 크기**에 따라 자동 조절된다.
+
+![step1](https://user-images.githubusercontent.com/72188416/107912907-c24ad000-6fa2-11eb-8298-a1ee6c4f9928.png)
