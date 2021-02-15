@@ -19,6 +19,8 @@ class ViewController: UIViewController {
         return stack
     }()
     
+    let cardBackgroundImage : UIImage? = UIImage(named: "card-back")
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(patternImage:
@@ -59,7 +61,7 @@ class ViewController: UIViewController {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
-        imageView.image = backgroundImageChange(imageName: "card-back")
+        imageView.image = cardBackgroundImage
         imageView.widthAnchor.constraint(equalTo: imageView.heightAnchor, multiplier: 1.0/1.27).isActive = true
         return imageView
     }
