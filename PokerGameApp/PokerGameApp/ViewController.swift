@@ -8,6 +8,8 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    let cardBackside = UIImage(named: "card-back.png")
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -16,26 +18,26 @@ class ViewController: UIViewController {
     }
     
     private func setBackground() {
-        if let tile = UIImage(named: "bg_pattern.png") {
-            self.view.backgroundColor = UIColor(patternImage: tile)
-        }
+        guard let tile = UIImage(named: "bg_pattern.png") else { return }
+        self.view.backgroundColor = UIColor(patternImage: tile)
     }
     
-    private func addCards(count: CGFloat) {
-        guard let cardBack = UIImage(named: "card-back.png") else { return }
+    private func addCards(count: Int) {
+        
+        let cntInCGF = CGFloat(count)
         
         let fullWidth = self.view.bounds.width
         let marginUp = self.view.bounds.height/10
-        let marginRL = fullWidth/count/10
-        let cardWidth = (fullWidth - marginRL*(count+1))/count
+        let marginRL = fullWidth/cntInCGF/10
+
+        let cardWidth = (fullWidth - marginRL*(cntInCGF+1))/cntInCGF
         
-        for i in 0..<Int(count) {
-            let cardView = UIImageView(image: cardBack)
+        for i in 0..<count {
+            let cardView = UIImageView(image: cardBackside)
             cardView.frame = CGRect(x: cardWidth*CGFloat(i) + marginRL*(CGFloat(i)+1),
                                     y: marginUp,
                                     width: cardWidth,
                                     height: cardWidth*1.27)
-            cardView.contentMode = .scaleAspectFit
             view.addSubview(cardView)
         }
     }
