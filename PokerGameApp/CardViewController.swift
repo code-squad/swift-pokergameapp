@@ -28,8 +28,11 @@ class CardViewController: UIViewController {
         setBackgroundColor()
         drawSevenCards()
         
-        let myCard = PlayingCard(suit: .hearts, rank: .ace)
-        print(myCard.description)
+        var cardDeck = PlayingCardDeck()
+        cardDeck.suffle()
+        print(cardDeck)
+        cardDeck.removeOne()
+        cardDeck.reset()
     }
     
     func setBackgroundColor(){
