@@ -27,6 +27,10 @@ class ViewController: UIViewController {
         self.view.addSubview(horizontalStackView)
         constrainUI()
         makeCard()
+        
+        print(Card(suit: .club, rank: .A))
+        print(Card(suit: .diamond, rank: .ten))
+        print(Card(suit: .heart, rank: .Q))
     }
 
 
