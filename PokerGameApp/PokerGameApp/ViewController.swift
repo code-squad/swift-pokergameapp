@@ -11,11 +11,18 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .init(patternImage: UIImage(named: "bg_pattern")!)
         
+        setupBackgroundImage()
         setupCard()
     }
 
+    func setupBackgroundImage() {
+        guard let bgImage = UIImage(named: "bg_pattern") else {
+            return
+        }
+        self.view.backgroundColor = .init(patternImage: bgImage)
+    }
+    
     func setupCard() {
         
         let cardWidth = view.frame.size.width/7
