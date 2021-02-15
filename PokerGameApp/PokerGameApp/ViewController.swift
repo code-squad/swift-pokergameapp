@@ -10,6 +10,7 @@ import UIKit
 class ViewController: UIViewController {
     
     var stackView: UIStackView!
+    let image = UIImage(named: "card-back")
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,18 +42,12 @@ class ViewController: UIViewController {
     }
     
     func generateImage() -> UIImageView {
-        let imageView: UIImageView = {
-            let width:CGFloat = self.view.bounds.width/8
-            let height:CGFloat = width*1.27
-            let imageView = UIImageView()
-            
-            imageView.widthAnchor.constraint(equalToConstant: width).isActive = true
-            imageView.heightAnchor.constraint(equalToConstant: height).isActive = true
-            
-            let image = UIImage(named: "card-back")
-            imageView.image = image
-            return imageView
-        }()
+        let imageView = UIImageView()
+        
+        imageView.widthAnchor.constraint(equalToConstant: self.view.bounds.width/8).isActive = true
+        imageView.heightAnchor.constraint(equalToConstant: (self.view.bounds.width/8)*1.27).isActive = true
+        
+        imageView.image = image
         return imageView
     }
 
