@@ -10,4 +10,4 @@
 ###  결과
 <img width="500" alt="Screen Shot 2021-02-15 at 4 14 13 PM" src="https://user-images.githubusercontent.com/60229909/107915989-d98cbc00-6fa8-11eb-9f47-4e01198ab64b.png">
 
-<img width="300" alt="Screen Shot 2021-02-15 at 4 19 37 PM" src="https://user-images.githubusercontent.com/60229909/107916410-9aab3600-6fa9-11eb-9c94-91a3187fa634.png">
+<img width="300" alt="Screen Shot 2021-02-15 at 4 19 37 PM" src="https://user-images.githubusercontent.com/60229909/107916410-9aab3600-6fa9-11eb-9c94-91a3187fa634.png"><img width="500" alt="Screen Shot 2021-02-15 at 4 29 06 PM" src="https://user-images.githubusercontent.com/60229909/107917219-edd1b880-6faa-11eb-8c6f-8132faf118e2.png">
