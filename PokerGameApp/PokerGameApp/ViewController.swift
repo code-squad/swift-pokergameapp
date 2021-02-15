@@ -23,5 +23,11 @@ class ViewController: UIViewController {
             pokerCardView.heightAnchor.constraint(equalTo: pokerCardView.widthAnchor, multiplier: 1.27).isActive = true
             pokerCardViews.append(pokerCardView)
         }
+        
+        let cardStackView = UIStackView(arrangedSubviews: pokerCardViews)
+        cardStackView.axis = .horizontal
+        cardStackView.alignment = .fill
+        cardStackView.distribution = .fillEqually
+        cardStackView.spacing = 5.0
     }
 }
