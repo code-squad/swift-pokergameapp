@@ -23,6 +23,7 @@ struct PlayingCard : CustomStringConvertible {
         case clubs = "♦️"
         
         var description: String { return rawValue}
+        static var all : [Suit] = [.hearts, .clubs, .dimonds, .spades]
     }
     
     // Rank는 PlayingCard에서만 사용되는 모양에 대한 클래스이므로 Nested Enum으로 설계한다.
@@ -32,23 +33,21 @@ struct PlayingCard : CustomStringConvertible {
         case face(String)
         case numeric(Int)
         
-        var order: Int {
-            switch self {
-            case .ace: return 1
-            case .numeric(let pips) : return pips
-            case .face(let kind) where kind=="J" : return 11
-            case .face(let kind) where kind=="Q" : return 12
-            case .face(let kind) where kind=="K" : return 13
-            default : return 0
-            }
-        }
-        
         var description : String {
             switch self {
             case .ace: return "A"
             case .numeric(let pips) : return String(pips)
             case .face(let kind): return kind
             }
+        }
+        
+        static var all: [Rank] {
+            var allranks = [Rank.ace]
+            for num in 2...10 {
+                allranks.append(Rank.numeric(num))
+            }
+            allranks += [Rank.face("K"), Rank.face("Q"), Rank.face("J")]
+            return allranks
         }
     }
 }
