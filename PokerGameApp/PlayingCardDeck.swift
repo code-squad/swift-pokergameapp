@@ -30,7 +30,7 @@ struct PlayingCardDeck {
         print("총 \(count)장의 카드가 있습니다.")
     }
     
-    mutating func suffle(){
+    mutating func shuffle(){
         cards.shuffle()
         print("전체 \(count)장의 카드를 섞었습니다.")
     }
