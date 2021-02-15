@@ -32,11 +32,8 @@ struct PlayingCardDeck {
         cards.shuffle()
     }
     
-    mutating func removeOne(){
-        
-        guard let removed = cards.popLast() else {
-            return
-        }
+    mutating func removeOne() -> PlayingCard?{
+        return cards.popLast()
     }
     
     mutating func reset(){
