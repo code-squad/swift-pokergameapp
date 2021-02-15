@@ -16,5 +16,12 @@ class ViewController: UIViewController {
         
         guard let backgroundImage = UIImage(named: "bg_pattern") else { return }
         self.view.backgroundColor = UIColor(patternImage: backgroundImage)
+        
+        var pokerCardViews: [UIImageView] = []
+        for _ in 0..<7 {
+            let pokerCardView = UIImageView(image: pokerCardImage)
+            pokerCardView.heightAnchor.constraint(equalTo: pokerCardView.widthAnchor, multiplier: 1.27).isActive = true
+            pokerCardViews.append(pokerCardView)
+        }
     }
 }
