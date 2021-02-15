@@ -15,6 +15,7 @@
 		93C07E7225DA322C0037570E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93C07E7025DA322C0037570E /* LaunchScreen.storyboard */; };
 		93C07E7B25DA34B40037570E /* StateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C07E7A25DA34B40037570E /* StateController.swift */; };
 		93C07E9F25DA547C0037570E /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C07E9E25DA547C0037570E /* Card.swift */; };
+		93C07EA325DA6F2E0037570E /* Hand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C07EA225DA6F2E0037570E /* Hand.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		93C07E7325DA322C0037570E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		93C07E7A25DA34B40037570E /* StateController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateController.swift; sourceTree = "<group>"; };
 		93C07E9E25DA547C0037570E /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		93C07EA225DA6F2E0037570E /* Hand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hand.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +71,7 @@
 				93C07E7025DA322C0037570E /* LaunchScreen.storyboard */,
 				93C07E7325DA322C0037570E /* Info.plist */,
 				93C07E9E25DA547C0037570E /* Card.swift */,
+				93C07EA225DA6F2E0037570E /* Hand.swift */,
 			);
 			path = PokerGameApp;
 			sourceTree = "<group>";
@@ -145,6 +148,7 @@
 			files = (
 				93C07E6A25DA322B0037570E /* ViewController.swift in Sources */,
 				93C07E9F25DA547C0037570E /* Card.swift in Sources */,
+				93C07EA325DA6F2E0037570E /* Hand.swift in Sources */,
 				93C07E7B25DA34B40037570E /* StateController.swift in Sources */,
 				93C07E6625DA322B0037570E /* AppDelegate.swift in Sources */,
 				93C07E6825DA322B0037570E /* SceneDelegate.swift in Sources */,
