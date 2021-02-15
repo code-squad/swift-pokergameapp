@@ -8,7 +8,6 @@
 import UIKit
 
 class ViewController: UIViewController {
-    
     let imageStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -21,7 +20,10 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "bg_pattern")!)
+        if let backgroundPatternImage: UIImage = UIImage(named: "bg_pattern") {
+            self.view.backgroundColor = UIColor(patternImage: backgroundPatternImage)
+        }
+        
         self.view.addSubview(imageStackView)
         imageStackView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: self.view.frame.height/10).isActive = true
         imageStackView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
