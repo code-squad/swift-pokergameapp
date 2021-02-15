@@ -11,7 +11,7 @@ class ViewController: UIViewController {
     
     var stackView: UIStackView!
     let image = UIImage(named: "card-back")
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setBackground()
@@ -30,9 +30,10 @@ class ViewController: UIViewController {
         self.stackView.distribution = .equalSpacing
         self.stackView.spacing = 5
         self.stackView.translatesAutoresizingMaskIntoConstraints = false
-
+        
+        let imageView = generateImage()
         for _ in 0...6 {
-            self.stackView.addArrangedSubview(generateImage())
+            self.stackView.addArrangedSubview(imageView)
         }
         
         self.view.addSubview(stackView)
@@ -42,10 +43,12 @@ class ViewController: UIViewController {
     }
     
     func generateImage() -> UIImageView {
+        let width = self.view.bounds.width/8
+        let height = width*1.27
         let imageView = UIImageView()
         
-        imageView.widthAnchor.constraint(equalToConstant: self.view.bounds.width/8).isActive = true
-        imageView.heightAnchor.constraint(equalToConstant: (self.view.bounds.width/8)*1.27).isActive = true
+        imageView.widthAnchor.constraint(equalToConstant: width).isActive = true
+        imageView.heightAnchor.constraint(equalToConstant: height).isActive = true
         
         imageView.image = image
         return imageView
