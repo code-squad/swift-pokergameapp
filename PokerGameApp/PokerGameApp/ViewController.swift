@@ -8,12 +8,12 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
+    let backgroundImage = UIImage(named: "bg_pattern")
+    let pokerCardImage = UIImage(named: "card-back")
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
     }
-
-
 }
 
