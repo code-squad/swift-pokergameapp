@@ -22,10 +22,11 @@ class ViewController: UIViewController {
 
     func show7CardBack() {
         //  카드 7장을 놓을 수 있는 치수 설정
-        //  /8을 한 이유는 카드 사이 빈 공간을 만들기 위해서
-        let cardWidth = self.view.frame.width / 8
+        //  카드 사이 빈 공간을 만들기 위해 cardCount + 1로 frame.width를 나눈다.
+        let cardCount:CGFloat = 7
+        let cardWidth = self.view.frame.width / (cardCount + 1)
         let cardHeight = cardWidth * 1.27
-        let betweenCard = cardWidth / 8
+        let betweenCard = cardWidth / (cardCount + 1)
         let image = UIImage(named: "card-back")
         
         //  카드를 놓을 초기 위치 설정
