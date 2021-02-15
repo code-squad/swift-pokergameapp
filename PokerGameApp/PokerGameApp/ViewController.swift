@@ -45,7 +45,6 @@ class ViewController: UIViewController {
             let height:CGFloat = width*1.27
             let imageView = UIImageView()
             
-            imageView.contentMode = .scaleAspectFit
             imageView.widthAnchor.constraint(equalToConstant: width).isActive = true
             imageView.heightAnchor.constraint(equalToConstant: height).isActive = true
             
