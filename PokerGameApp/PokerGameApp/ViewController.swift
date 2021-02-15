@@ -18,6 +18,7 @@ class ViewController: UIViewController {
         for i in 0..<7 {
             showCardBack(x: i)
         }
+        testCard()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -33,5 +34,11 @@ class ViewController: UIViewController {
         view.addSubview(cardBackImageView)
     }
     
+    func testCard(){
+        var card = Card(shape: .Heart, num: 12)
+        print(card.showCardInfo())
+        card = Card(shape: .Spade, num: 7)
+        print(card.showCardInfo())
+    }
 }
 
