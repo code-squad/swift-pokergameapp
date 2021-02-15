@@ -31,7 +31,6 @@ class ViewController: UIViewController {
         self.view.backgroundColor = UIColor(patternImage:
                                                 backgroundImageChange(imageName: "bg_pattern"))
         
-        self.view.addSubview(horizontalStackView)
         constrainUI()
         makeCard()
         
@@ -49,6 +48,7 @@ class ViewController: UIViewController {
     }
     
     private func constrainUI() {
+        self.view.addSubview(horizontalStackView)
         NSLayoutConstraint.activate([
             horizontalStackView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 5),
             horizontalStackView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -5),
