@@ -20,10 +20,10 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let backgroundPatternImage: UIImage = UIImage(named: "bg_pattern") {
-            self.view.backgroundColor = UIColor(patternImage: backgroundPatternImage)
-        }
+        guard let backgroundPatternImage: UIImage = UIImage(named: "bg_pattern") else {print("Image file missing"); return}
+        guard let cardBacksideImage: UIImage = UIImage(named: "card-back") else {print("Image file missing"); return}
         
+        self.view.backgroundColor = UIColor(patternImage: backgroundPatternImage)
         self.view.addSubview(imageStackView)
         imageStackView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: self.view.frame.height/10).isActive = true
         imageStackView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
@@ -31,16 +31,16 @@ class ViewController: UIViewController {
         
         let numberOfCards = 7
         for _ in 0..<numberOfCards {
-            let newCardImageView = cardIn()
+            let newCardImageView = makeCardImageView(with: cardBacksideImage)
             imageStackView.addArrangedSubview(newCardImageView)
             newCardImageView.widthAnchor.constraint(equalTo: imageStackView.heightAnchor, multiplier: 1/1.27).isActive = true
         }
     }
     
-    func cardIn() -> UIImageView {
+    func makeCardImageView(with newImage: UIImage) -> UIImageView {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "card-back")
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.image = newImage
         return imageView
     }
 }
