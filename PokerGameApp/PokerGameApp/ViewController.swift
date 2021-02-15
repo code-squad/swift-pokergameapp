@@ -9,6 +9,8 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    let cardImage = UIImage(named:  "card-back")
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -24,13 +26,10 @@ class ViewController: UIViewController {
     }
     
     func setupCard() {
-        
         let cardWidth = view.frame.size.width/7
         let cardHeight = cardWidth * 1.27
         
-        // 카드를 담을 스택뷰
         let stackView = UIStackView()
-
         stackView.axis = .horizontal
         stackView.distribution = .fillEqually
         stackView.alignment = .fill
@@ -40,11 +39,8 @@ class ViewController: UIViewController {
         for _ in 0..<7 {
             stackView.addArrangedSubview(makeCard())
         }
-        
-        // add subview
         view.addSubview(stackView)
         
-        // stackview autolayout
         stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         stackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 8).isActive = true
         stackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -8).isActive = true
@@ -52,6 +48,6 @@ class ViewController: UIViewController {
     }
     
     func makeCard() -> UIImageView {
-        return UIImageView(image: UIImage(named:  "card-back"))
+        return UIImageView(image: cardImage)
     }
 }
