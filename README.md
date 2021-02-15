@@ -33,3 +33,20 @@
 
 구조체와 클래스의 가장 큰 차이점은 값을 전달할 때에 복사를 하느냐, 참조를 하느냐이다. 구조체의 경우 값을 복사하고, 클래스의 경우 값을 참조한다. 
 PockerGameApp에서 Card 객체는 생성된 한번 생성된 인스턴스에 대하여 값을 변경하지 않는다. 클래스로 만들어 참조 시 원본 값이 변경될 위험이 있기 때문에 클래스가 아닌 구조체로 설계하였다. 
+
+
+## Step03
+
+### 프로그래밍 요구사항
+- `count` 갖고 있는 카드 개수를 반환한다.
+- `shuffle` 기능은 전체 카드를 랜덤하게 섞는다.
+- `removeOne` 기능은 카드 인스턴스 중에 하나를 반환하고 목록에서 삭제한다.
+- `reset` 처음처럼 모든 카드를 다시 채워넣는다.
+
+### 결과
+
+<img width="748" alt="Screen Shot 2021-02-15 at 9 08 19 PM" src="https://user-images.githubusercontent.com/60229909/107944721-eeca1080-6fd1-11eb-8c09-e1bcbcc0da97.png">
+
+<img width="754" alt="Screen Shot 2021-02-15 at 9 15 59 PM" src="https://user-images.githubusercontent.com/60229909/107945463-0229ab80-6fd3-11eb-99b8-ca49bc3b361a.png">
+
+<img width="754" alt="Screen Shot 2021-02-15 at 9 25 10 PM" src="https://user-images.githubusercontent.com/60229909/107946365-49646c00-6fd4-11eb-8c54-e57f20bad2aa.png">
