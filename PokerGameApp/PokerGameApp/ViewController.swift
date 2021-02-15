@@ -16,22 +16,30 @@ class ViewController: UIViewController {
         if let bgImg = UIImage(named: "bg_pattern") {
             self.view.backgroundColor = UIColor(patternImage: bgImg)
         }
+        
         show7CardBack()
     }
 
     func show7CardBack() {
+        //  카드 7장을 놓을 수 있는 치수 설정
+        //  /8을 한 이유는 카드 사이 빈 공간을 만들기 위해서
         let cardWidth = self.view.frame.width / 8
         let cardHeight = cardWidth * 1.27
         let betweenCard = cardWidth / 8
         let image = UIImage(named: "card-back")
         
+        //  카드를 놓을 초기 위치 설정
         var currentPosition: CGFloat = 0.0
         currentPosition += betweenCard
+        
+        //  카드 7장 놓기
         for _ in 1...7 {
             let cardImage: UIImageView
             cardImage = UIImageView(frame: CGRect(x: currentPosition, y: self.view.frame.minY + 50, width: cardWidth, height: cardHeight))
             cardImage.image = image
             self.view.addSubview(cardImage)
+            
+            //  다음 카드의 위치 설정
             currentPosition += betweenCard + cardWidth
         }
     }
