@@ -15,6 +15,11 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         setBackground()
         addCards(count: 7)
+        
+        let card1 = Card(suit: .club, rank: 13)
+        let card2 = Card(suit: .heart, rank: 7)
+        card1.printCard()
+        card2.printCard()
     }
     
     private func setBackground() {
