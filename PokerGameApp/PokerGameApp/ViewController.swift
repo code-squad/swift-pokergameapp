@@ -13,6 +13,10 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
+        if let bgImg = UIImage(named: "bg_pattern") {
+            self.view.backgroundColor = UIColor(patternImage: bgImg)
+        }
+        
     }
 
 
