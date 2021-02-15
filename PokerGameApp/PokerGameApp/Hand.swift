@@ -15,7 +15,8 @@ class Hand: UIStackView {
     }
     
     required init(coder: NSCoder) {
-        fatalError()
+        super.init(coder: coder)
+        configure()
     }
     
     private func configure() {
