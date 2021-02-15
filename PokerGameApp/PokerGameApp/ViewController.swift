@@ -8,15 +8,18 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    var stackView: UIStackView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "bg_pattern")!)
-
+        setBackground()
         setStackView()
-        
     }
-    var stackView: UIStackView!
+   
+    func setBackground() {
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "bg_pattern")!)
+    }
     
     func setStackView() {
         self.stackView = UIStackView()
@@ -24,108 +27,34 @@ class ViewController: UIViewController {
         self.stackView.alignment = .fill
         self.stackView.distribution = .equalSpacing
         self.stackView.spacing = 5
-        self.stackView.addArrangedSubview(imageView1)
-        self.stackView.addArrangedSubview(imageView2)
-        self.stackView.addArrangedSubview(imageView3)
-        self.stackView.addArrangedSubview(imageView4)
-        self.stackView.addArrangedSubview(imageView5)
-        self.stackView.addArrangedSubview(imageView6)
-        self.stackView.addArrangedSubview(imageView7)
         self.stackView.translatesAutoresizingMaskIntoConstraints = false
 
+        for _ in 0...6 {
+            self.stackView.addArrangedSubview(generateImage())
+        }
+        
         self.view.addSubview(stackView)
         
         stackView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         stackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 100).isActive = true
-        
     }
-    func generateImage() {
-        
+    
+    func generateImage() -> UIImageView {
+        let imageView: UIImageView = {
+            let width:CGFloat = self.view.bounds.width/8
+            let height:CGFloat = width*1.27
+            let imageView = UIImageView()
+            
+            imageView.contentMode = .scaleAspectFit
+            imageView.widthAnchor.constraint(equalToConstant: width).isActive = true
+            imageView.heightAnchor.constraint(equalToConstant: height).isActive = true
+            
+            let image = UIImage(named: "card-back")
+            imageView.image = image
+            return imageView
+        }()
+        return imageView
     }
-    lazy var imageView1: UIImageView = {
-        let width:CGFloat = self.view.bounds.width/8
-        let height:CGFloat = width*1.27
-        
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
-        imageView.widthAnchor.constraint(equalToConstant: width).isActive = true
-        imageView.heightAnchor.constraint(equalToConstant: height).isActive = true
-        let image = UIImage(named: "card-back")
-        imageView.image = image
-        return imageView
-    }()
-    lazy var imageView2: UIImageView = {
-        let width:CGFloat = self.view.bounds.width/8
-        let height:CGFloat = width*1.27
-
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
-        imageView.widthAnchor.constraint(equalToConstant: width).isActive = true
-        imageView.heightAnchor.constraint(equalToConstant: height).isActive = true
-        let image = UIImage(named: "card-back")
-        imageView.image = image
-        return imageView
-    }()
-    lazy var imageView3: UIImageView = {
-        let width:CGFloat = self.view.bounds.width/8
-        let height:CGFloat = width*1.27
-
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
-        imageView.widthAnchor.constraint(equalToConstant: width).isActive = true
-        imageView.heightAnchor.constraint(equalToConstant: height).isActive = true
-        let image = UIImage(named: "card-back")
-        imageView.image = image
-        return imageView
-    }()
-    lazy var imageView4: UIImageView = {
-        let width:CGFloat = self.view.bounds.width/8
-        let height:CGFloat = width*1.27
-
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
-        imageView.widthAnchor.constraint(equalToConstant: width).isActive = true
-        imageView.heightAnchor.constraint(equalToConstant: height).isActive = true
-        let image = UIImage(named: "card-back")
-        imageView.image = image
-        return imageView
-    }()
-    lazy var imageView5: UIImageView = {
-        let width:CGFloat = self.view.bounds.width/8
-        let height:CGFloat = width*1.27
-
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
-        imageView.widthAnchor.constraint(equalToConstant: width).isActive = true
-        imageView.heightAnchor.constraint(equalToConstant: height).isActive = true
-        let image = UIImage(named: "card-back")
-        imageView.image = image
-        return imageView
-    }()
-    lazy var imageView6: UIImageView = {
-        let width:CGFloat = self.view.bounds.width/8
-        let height:CGFloat = width*1.27
-
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
-        imageView.widthAnchor.constraint(equalToConstant: width).isActive = true
-        imageView.heightAnchor.constraint(equalToConstant: height).isActive = true
-        let image = UIImage(named: "card-back")
-        imageView.image = image
-        return imageView
-    }()
-    lazy var imageView7: UIImageView = {
-        let width:CGFloat = self.view.bounds.width/8
-        let height:CGFloat = width*1.27
-
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
-        imageView.widthAnchor.constraint(equalToConstant: width).isActive = true
-        imageView.heightAnchor.constraint(equalToConstant: height).isActive = true
-        let image = UIImage(named: "card-back")
-        imageView.image = image
-        return imageView
-    }()
 
 }
 
