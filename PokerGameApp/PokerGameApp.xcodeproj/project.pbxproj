@@ -15,6 +15,8 @@
 		93C07E7225DA322C0037570E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93C07E7025DA322C0037570E /* LaunchScreen.storyboard */; };
 		93C07E9F25DA547C0037570E /* CardImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C07E9E25DA547C0037570E /* CardImage.swift */; };
 		93C07EA325DA6F2E0037570E /* Hand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C07EA225DA6F2E0037570E /* Hand.swift */; };
+		93C07EB025DA8CF10037570E /* CardValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C07EAF25DA8CF10037570E /* CardValue.swift */; };
+		93C07EB825DA98940037570E /* Suit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C07EB725DA98940037570E /* Suit.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		93C07E7325DA322C0037570E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		93C07E9E25DA547C0037570E /* CardImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardImage.swift; sourceTree = "<group>"; };
 		93C07EA225DA6F2E0037570E /* Hand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hand.swift; sourceTree = "<group>"; };
+		93C07EAF25DA8CF10037570E /* CardValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardValue.swift; sourceTree = "<group>"; };
+		93C07EB725DA98940037570E /* Suit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Suit.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +73,8 @@
 				93C07E7325DA322C0037570E /* Info.plist */,
 				93C07E9E25DA547C0037570E /* CardImage.swift */,
 				93C07EA225DA6F2E0037570E /* Hand.swift */,
+				93C07EAF25DA8CF10037570E /* CardValue.swift */,
+				93C07EB725DA98940037570E /* Suit.swift */,
 			);
 			path = PokerGameApp;
 			sourceTree = "<group>";
@@ -147,7 +153,9 @@
 				93C07E9F25DA547C0037570E /* CardImage.swift in Sources */,
 				93C07EA325DA6F2E0037570E /* Hand.swift in Sources */,
 				93C07E6625DA322B0037570E /* AppDelegate.swift in Sources */,
+				93C07EB025DA8CF10037570E /* CardValue.swift in Sources */,
 				93C07E6825DA322B0037570E /* SceneDelegate.swift in Sources */,
+				93C07EB825DA98940037570E /* Suit.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
