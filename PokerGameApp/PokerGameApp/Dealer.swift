@@ -7,6 +7,6 @@
 
 import Foundation
 
-class Dealer {
+class Dealer : Player {
     
 }
