@@ -19,6 +19,9 @@
 		93C07EBB25DA997A0037570E /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C07EBA25DA997A0037570E /* Card.swift */; };
 		93C07EC125DB6FEE0037570E /* CardDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C07EC025DB6FEE0037570E /* CardDeck.swift */; };
 		93C07ECA25DB98E30037570E /* PokerGameAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C07EC925DB98E30037570E /* PokerGameAppTests.swift */; };
+		93C07ED625DBBE200037570E /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C07ED525DBBE200037570E /* Player.swift */; };
+		93C07EDA25DBEAF40037570E /* PokerGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C07ED925DBEAF40037570E /* PokerGame.swift */; };
+		93C07EDE25DC8AC60037570E /* Dealer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C07EDD25DC8AC60037570E /* Dealer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +51,9 @@
 		93C07EC725DB98E30037570E /* PokerGameAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PokerGameAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		93C07EC925DB98E30037570E /* PokerGameAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokerGameAppTests.swift; sourceTree = "<group>"; };
 		93C07ECB25DB98E30037570E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		93C07ED525DBBE200037570E /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		93C07ED925DBEAF40037570E /* PokerGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokerGame.swift; sourceTree = "<group>"; };
+		93C07EDD25DC8AC60037570E /* Dealer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dealer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +107,9 @@
 				93C07EAF25DA8CF10037570E /* Rank.swift */,
 				93C07EBA25DA997A0037570E /* Card.swift */,
 				93C07EC025DB6FEE0037570E /* CardDeck.swift */,
+				93C07ED925DBEAF40037570E /* PokerGame.swift */,
+				93C07EDD25DC8AC60037570E /* Dealer.swift */,
+				93C07ED525DBBE200037570E /* Player.swift */,
 			);
 			path = PokerGameApp;
 			sourceTree = "<group>";
@@ -221,7 +230,10 @@
 				93C07E6625DA322B0037570E /* AppDelegate.swift in Sources */,
 				93C07EB025DA8CF10037570E /* Rank.swift in Sources */,
 				93C07E6825DA322B0037570E /* SceneDelegate.swift in Sources */,
+				93C07ED625DBBE200037570E /* Player.swift in Sources */,
 				93C07EBB25DA997A0037570E /* Card.swift in Sources */,
+				93C07EDE25DC8AC60037570E /* Dealer.swift in Sources */,
+				93C07EDA25DBEAF40037570E /* PokerGame.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
