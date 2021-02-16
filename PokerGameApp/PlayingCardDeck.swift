@@ -9,7 +9,7 @@ import Foundation
 
 struct PlayingCardDeck {
     
-    private var count : Int {
+    public var count : Int {
         get {
             return cards.count
         }
