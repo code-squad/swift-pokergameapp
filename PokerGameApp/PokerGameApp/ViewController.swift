@@ -9,7 +9,7 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    private let hand = Hand()
+    private let hand = HandView()
 
     override func viewDidLoad() {
         super.viewDidLoad()

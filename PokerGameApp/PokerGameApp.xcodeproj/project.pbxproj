@@ -14,7 +14,7 @@
 		93C07E6F25DA322C0037570E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 93C07E6E25DA322C0037570E /* Assets.xcassets */; };
 		93C07E7225DA322C0037570E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93C07E7025DA322C0037570E /* LaunchScreen.storyboard */; };
 		93C07E9F25DA547C0037570E /* CardImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C07E9E25DA547C0037570E /* CardImage.swift */; };
-		93C07EA325DA6F2E0037570E /* Hand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C07EA225DA6F2E0037570E /* Hand.swift */; };
+		93C07EA325DA6F2E0037570E /* HandView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C07EA225DA6F2E0037570E /* HandView.swift */; };
 		93C07EB025DA8CF10037570E /* Rank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C07EAF25DA8CF10037570E /* Rank.swift */; };
 		93C07EBB25DA997A0037570E /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C07EBA25DA997A0037570E /* Card.swift */; };
 		93C07EC125DB6FEE0037570E /* CardDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C07EC025DB6FEE0037570E /* CardDeck.swift */; };
@@ -44,7 +44,7 @@
 		93C07E7125DA322C0037570E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		93C07E7325DA322C0037570E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		93C07E9E25DA547C0037570E /* CardImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardImage.swift; sourceTree = "<group>"; };
-		93C07EA225DA6F2E0037570E /* Hand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hand.swift; sourceTree = "<group>"; };
+		93C07EA225DA6F2E0037570E /* HandView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandView.swift; sourceTree = "<group>"; };
 		93C07EAF25DA8CF10037570E /* Rank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rank.swift; sourceTree = "<group>"; };
 		93C07EBA25DA997A0037570E /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		93C07EC025DB6FEE0037570E /* CardDeck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDeck.swift; sourceTree = "<group>"; };
@@ -103,7 +103,7 @@
 				93C07E7025DA322C0037570E /* LaunchScreen.storyboard */,
 				93C07E7325DA322C0037570E /* Info.plist */,
 				93C07E9E25DA547C0037570E /* CardImage.swift */,
-				93C07EA225DA6F2E0037570E /* Hand.swift */,
+				93C07EA225DA6F2E0037570E /* HandView.swift */,
 				93C07EAF25DA8CF10037570E /* Rank.swift */,
 				93C07EBA25DA997A0037570E /* Card.swift */,
 				93C07EC025DB6FEE0037570E /* CardDeck.swift */,
@@ -226,7 +226,7 @@
 				93C07E6A25DA322B0037570E /* ViewController.swift in Sources */,
 				93C07E9F25DA547C0037570E /* CardImage.swift in Sources */,
 				93C07EC125DB6FEE0037570E /* CardDeck.swift in Sources */,
-				93C07EA325DA6F2E0037570E /* Hand.swift in Sources */,
+				93C07EA325DA6F2E0037570E /* HandView.swift in Sources */,
 				93C07E6625DA322B0037570E /* AppDelegate.swift in Sources */,
 				93C07EB025DA8CF10037570E /* Rank.swift in Sources */,
 				93C07E6825DA322B0037570E /* SceneDelegate.swift in Sources */,
