@@ -1,7 +1,7 @@
 # Cri
 # PokerGameApp
 
-## 1단계
+## 1단계 (2021.02.15 22:35)
 
 UIImageView는 UIView로부터 상속받은 클래스로, 크기 조정 등 관련 프로퍼티는 UIView에서 확인했습니다.
 
@@ -19,13 +19,14 @@ UIImageView는 UIView로부터 상속받은 클래스로, 크기 조정 등 관�
 
 Assets.xcassets에 이미지를 추가하고 override func viewDidLoad에 아래 코드를 추가함으로써 배경을 변경했습니다.
 
-'''
+```
 self.view.backgroundColor = UIColor(patternImage: UIImage(named: "bg_pattern.png")!)
-'''
+```
 
 7장의 카드는 아래 코드를 override func viewDidLoad에 추가해서 구현했습니다.
 
-'''
+
+```
 let VCWidth = self.view.frame.maxX
 
 for i in 0..<7 {
@@ -45,13 +46,13 @@ for i in 0..<7 {
     view.addSubview(cardUIImageView)
     
 }
-'''
+```
 
 시뮬레이터 모습은 아래와 같습니다.
 
 ![Simulator Screen Shot - iPhone 12 Pro - 2021-02-15 at 19 12 48](https://user-images.githubusercontent.com/61342175/107951625-fbebfd00-6fdb-11eb-8da5-b6b3c4e0ffaf.png)
 
-## 2단계
+## 2단계 (2021.02.15 22:35)
 
 마침 주말에 CS10 과정 동안 부족했던 부분을 학습하기 위해 객체지향을 주제로 글을 썼습니다. 내용은 아래와 같습니다.
 
@@ -102,3 +103,79 @@ swift 파일을 프로젝트에 추가하고 card 클래스를 만들었습니�
 ![스크린샷 2021-02-15 오후 9 45 49](https://user-images.githubusercontent.com/61342175/107951790-36559a00-6fdc-11eb-9ba8-e0d354b35bdb.png)
 
 카드 한 묶음을 생성하고 랜덤 카드 한 장을 뽑아 출력했습니다.
+
+## 1, 2단계 수정사항
+
+1. 프로젝트 생성 시 자동으로 생성되는 주석을 삭제했습니다. (그냥 삭제만 하는 것이 아니라 내용도 살펴봤어야 했는지 생각이 들어서 어떤 내용이 있는지 추후에 확인해보려고 합니다.)
+2. Card와 관련된 구조체와 클래스의 이름을 각각 Card, CardDeck으로 변경했습니다. 수업 중 말씀해주신 내용이 떠올라 이름을 블록으로 두고 우클릭, Refactor, Rename을 사용해봤습니다.
+3. CustomStringConvertible을 사용해 열거형의 rawValue를 직접 사용하지 않도록 구현해봤습니다. 익숙하지 않아 혼자 여러 시도를 했지만 어려웠고 다른 코드를 참고했습니다. 앞으로 더 많이 사용해봐야 할 것 같습니다.
+4. if let을 통해 옵셔널 강제 언래핑을 옵셔널 바인딩으로 수정했습니다.
+5. VCWidth를 viewController로 수정했습니다.
+6. 이미지뷰 생성을 위한 for 구문 안에 있었던 반복이 필요없는 상수 선언을 for 구문 밖으로 이동시켰습니다.
+7. 이미지뷰 생성을 위한 for 구문 중 이미지 포지션 x가 길었던 것을 더 짧게 만들기 위해 첫 번째 카드의 x 포지션을 따로 선언해서 작성했습니다.
+8. 프로젝트 생성 후 자동으로 생성된 테스트를 삭제했습니다. Xcode 업데이트 이후 자동으로 생성되는 것인지, 옵션에 따라 생성하지 않을 수도 있는지 알아봐야 할 것 같습니다.
+9. 현재 Cri_PokerGameApp_Step2 브랜치를 생성 후 작업하고 있습니다.
+
+## 3단계
+
+CardPlaying 파일을 별도로 만들어 CardPlaying 클래스에 함수를 구현해 deck shuffle, deck reset 등을 구현했습니다. 콘솔에 작동하는 모습을 남겼습니다. 아래 이미지와 같습니다.
+
+![스크린샷 2021-02-16 오후 4 33 10](https://user-images.githubusercontent.com/61342175/108032002-1cb46100-7075-11eb-9862-43d6cbce23c5.png)
+
+### Struct와 Class
+
+Link   
+<https://jusung.gitbook.io/the-swift-language-guide/language-guide/09-classes-and-strucutres>   
+<https://medium.com/@cenker.demir/call-by-reference-vs-call-by-value-using-swift-pre-swift3-1c822c80819a>
+<https://stackoverflow.com/questions/24232799/why-choose-struct-over-class/24232845>
+
+공통점
+- 프로퍼티, 메소드를 가질 수 있음
+- subscript를 통한 값 접근이 가능하도록 subscript 정의
+- initializer 정의
+- 기능 확장(extension?)
+- 정의한 프로토콜 순응
+
+클래스만 가능한 부분
+- 상속
+- 타입 캐스팅
+- 인스턴스 소멸
+- 클래스 인스턴스로 참조 가능
+
+### Fisher-Yates shuffle
+
+"모든 원소를 담아둔 상태에서 원소가 남아있지 않을 때까지 하나씩 차례로 뽑는 알고리즘?"
+
+1. Pencil-and-paper method
+- [1, 2, 3, 4, 5, 6, 7, 8] / result array
+- roll random number between 1 to 8
+- if 3, third element moves to result array
+- [1, 2, 4, 5, 6, 7, 8], [3]
+- roll random number between 1 to 7
+- if 4, fourth element moves to result array
+- [1, 2, 4, 5, 6, 7, 8], [3, 5]
+- iteration until all elements move
+
+2. Modern method
+
+- [1, 2, 3, 4, 5, 6, 7, 8] / result array
+- roll random number between 1 to 8
+- if 3, third element moves to result array and last element moves to third element index
+- iteration until all elements move
+
+### 메모리 누수를 감지할 수 있는 세 가지 방법
+
+Link
+<https://medium.com/@iostechset/3-ways-to-detect-memory-leaks-in-ios-bdf9425507d6>
+
+- FBRetainCycleDetector
+- Debug Memory Graph
+- Allocations and Leaks Instrument
+
+구현하면서 한 번씩 활용해봐야겠습니다.
+
+# 추가적으로 알아볼 부분
+
+예전부터 궁금했었던 것입니다. 구조체는 값의 복사로 인해 메모리 별도 위치에 값이 할당되는 것이기 때문에 상대적으로 메모리 효율이 떨어지는 것이 아닐까 생각했습니다. 클래스는 참조이므로 메모리에 할당된 주소 한 곳만을 바라보기 때문에 별도 메모리 위치에 값을 할당할 필요가 없어 상대적으로 메모리 효율이 좋은 것이 아닌지 생각했었습니다. Struct와 Class 내용의 두 번째 링크가 관련이 있는 것 같은데, 정확하게 이해하고 있는 것인지 모르겠습니다. 세 번째 링크는 WWDC 2015의 script 내용을 볼 수 있는데, 구조체가 '메모리 누수', '하나의 변수 인스턴스에 접근, 수정이 일어날 때 발생할 수 있는 멀티스레드 racing'에서 더 이점을 갖고 있다고 하는 것 같습니다. 앞서 설명한 메모리 효율과 다른 내용으로 이해하고 있는데, 메모리 누수와 관련한 내용으로는 상대적으로 구조체가 더 쉽고 확실하게 메모리에서 지워질 수 있는 특성이 있는 것이 아닐까 생각하고 있습니다.
+
+중간에 시스템 리소스에 대해서 찾아보기도 했는데, 단순히 메모리만을 생각할 것이 아니라 CPU 속도에 대한 내용이 언급되어 있어 시스템 리소스에 대한 개념을 다시 정리해야 할 필요성을 느꼈습니다.
