@@ -9,12 +9,12 @@ import Foundation
 
 class Dealer {
     private var cardDeck: CardDeck
-    private let hand: [Card]
+    private let hand: Hand
     private let name = "딜러"
 
     init(cardDeck: CardDeck) {
         self.cardDeck = cardDeck
-        self.hand = []
+        self.hand = Hand(cards: [])
     }
     
     func handOut(_ numberOfCards: Int) -> [Card] {

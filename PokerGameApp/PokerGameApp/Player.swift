@@ -8,10 +8,10 @@
 import Foundation
 
 class Player {
-    private let hand: [Card]
+    private let hand: Hand
     private let name: String
     
-    init(hand: [Card], name: String) {
+    init(hand: Hand, name: String) {
         self.hand = hand
         self.name = name
     }
