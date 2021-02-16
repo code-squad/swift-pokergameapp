@@ -9,15 +9,18 @@ class Card: CustomStringConvertible {
         self.rank = rank
     }
     
-    // 공통적인 타입을 가진 관련있는 값의 그룹을 묶기 위하여 enum타입을 활용
-    enum Suit: Character {
+    /*
+     공통적인 타입을 가진 관련있는 값의 그룹을 묶기 위하여 enum타입을 활용
+     CaseIterable을 활용하여 enum이 갖는 모든 case를 배열로 생성
+    */
+    enum Suit: Character, CaseIterable {
         case spades = "♠️"
         case heart = "♥️"
         case diamonds = "♦️"
         case clubs = "♣️"
     }
     
-    enum Rank: Int {
+    enum Rank: Int, CaseIterable {
         case Ace = 1
         case Two
         case Three
