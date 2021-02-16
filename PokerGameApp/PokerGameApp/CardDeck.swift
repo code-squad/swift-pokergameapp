@@ -17,8 +17,8 @@ struct CardDeck {
         self.cards = cards
     }
     
-    mutating func reset(with cards: [Card]) {
-        self.cards = cards
+    mutating func reset() {
+        self.cards = CardDeckGenerator.generateCardDeck()
     }
     
     mutating func shuffle() -> [Card] {
@@ -41,6 +41,17 @@ struct CardDeck {
         }
         
         return shuffledCards
+    }
+    
+    mutating func removeOne() -> Card {
+        let randomIndex = Int(arc4random_uniform(UInt32(total - 1)))
+        let cardToRemoved = cards.remove(at: randomIndex)
+
+        return cardToRemoved
+    }
+    
+    mutating func count() -> Int {
+        return total
     }
 }
 
