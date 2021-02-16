@@ -9,6 +9,9 @@ import Foundation
 
 struct CardDeck {
     var Cards: [PokerCard] = []
+    var count: Int {
+        return Cards.count
+    }
     
     init() {
         self.Cards = makeCards()
@@ -23,4 +26,5 @@ struct CardDeck {
         }
         return tempCards
     }
+    
 }
