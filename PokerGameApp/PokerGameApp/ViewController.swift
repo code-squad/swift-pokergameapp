@@ -25,11 +25,11 @@ class ViewController: UIViewController {
         }
         
         add(numberOfCardViews: 7, to: cardStackView)
-        set(cardStackView)
+        setProperties(of: cardStackView)
         setConstraints(of: cardStackView)
     }
     
-    func set(_ stackView: UIStackView) {
+    func setProperties(of stackView: UIStackView) {
         self.view.addSubview(stackView)
         stackView.axis = .horizontal
         stackView.alignment = .fill
