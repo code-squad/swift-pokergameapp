@@ -34,6 +34,7 @@ struct CardDeck {
         }
     }
     mutating func reset() {
+        self.cards.removeAll()
         for i in 1...13 {
             self.cards.append(Card(Card.Nums(rawValue: i)!, Card.Shapes.clobers))
             self.cards.append(Card(Card.Nums(rawValue: i)!, Card.Shapes.diamonds))
