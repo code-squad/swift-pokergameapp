@@ -15,6 +15,7 @@
 		823DDE9325DA49F900A04E6B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 823DDE9125DA49F900A04E6B /* LaunchScreen.storyboard */; };
 		823DDE9E25DA49F900A04E6B /* PokerGameAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823DDE9D25DA49F900A04E6B /* PokerGameAppTests.swift */; };
 		823DDEA925DA49F900A04E6B /* PokerGameAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823DDEA825DA49F900A04E6B /* PokerGameAppUITests.swift */; };
+		8274A7DF25DB974B00BF317E /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8274A7DE25DB974B00BF317E /* Card.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		823DDEA425DA49F900A04E6B /* PokerGameAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PokerGameAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		823DDEA825DA49F900A04E6B /* PokerGameAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokerGameAppUITests.swift; sourceTree = "<group>"; };
 		823DDEAA25DA49F900A04E6B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8274A7DE25DB974B00BF317E /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 				823DDE8625DA49F800A04E6B /* AppDelegate.swift */,
 				823DDE8825DA49F800A04E6B /* SceneDelegate.swift */,
 				823DDE8A25DA49F800A04E6B /* ViewController.swift */,
+				8274A7DE25DB974B00BF317E /* Card.swift */,
 				823DDE8C25DA49F800A04E6B /* Main.storyboard */,
 				823DDE8F25DA49F900A04E6B /* Assets.xcassets */,
 				823DDE9125DA49F900A04E6B /* LaunchScreen.storyboard */,
@@ -261,6 +264,7 @@
 				823DDE8B25DA49F800A04E6B /* ViewController.swift in Sources */,
 				823DDE8725DA49F800A04E6B /* AppDelegate.swift in Sources */,
 				823DDE8925DA49F800A04E6B /* SceneDelegate.swift in Sources */,
+				8274A7DF25DB974B00BF317E /* Card.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
