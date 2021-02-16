@@ -25,4 +25,10 @@ struct TestCardDeck {
         print(card)
         print("총 \(deck.count)장의 카드가 남아있습니다.")
     }
+    
+    mutating func testWithScenario() {
+        shuffle()
+        pop()
+        pop()
+    }
 }
