@@ -16,7 +16,6 @@ class ViewController: UIViewController {
         }
         setImageStackView()
         
-        
         // Check Data
         let dealer = Dealer()
         dealer.start(numberOfPlayer: 4, stud: .sevenCardStud)
@@ -56,7 +55,7 @@ class ViewController: UIViewController {
                                      relatedBy: .equal,
                                      toItem: imageView,
                                      attribute: .width,
-                                     multiplier: (1.27 / 1.0),
+                                     multiplier: 1.27,
                                      constant: 0)
             imageView.addConstraint(aspectRatioConstraint)
             cards.append(imageView)

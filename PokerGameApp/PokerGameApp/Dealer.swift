@@ -2,7 +2,7 @@ import Foundation
 
 protocol Playable {
     var name: String { get }
-    var cards: [Card] { get }
+    var playResult: [Card] { get }
     func getCard(_ card: Card)
 }
 
@@ -13,9 +13,11 @@ class Dealer: Playable {
     }
     
     var name = "딜러"
-    var cards = [Card]()
-    
+    private var cards = [Card]()
     private var cardDeck = CardDeck()
+    var playResult: [Card] {
+        return cards
+    }
     
     public func start(numberOfPlayer: UInt, stud: CardStud) {
         guard numberOfPlayer >= 1 || numberOfPlayer <= 4 else { return }
@@ -33,6 +35,7 @@ class Dealer: Playable {
         
         for _ in 1...number {
             let player = Player()
+            
             players.append(player)
         }
         
@@ -53,12 +56,12 @@ class Dealer: Playable {
     
     private func printHand(of players: [Playable]) {
         players.forEach { (player) in
-            print("\(player.name)", player.cards)
+            print("\(player.name)", player.playResult)
         }
     }
     
     func getCard(_ card: Card) {
         cards.append(card)
     }
-
+    
 }
