@@ -16,6 +16,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         setBackground()
         setStackView()
+        Card.drawingCardRandomly()
     }
    
     func setBackground() {
