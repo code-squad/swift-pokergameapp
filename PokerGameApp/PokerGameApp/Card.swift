@@ -22,7 +22,7 @@ class Card {
 //        ♦️
 //        다이아몬드 카드
 //        유니코드: U+2666 U+FE0F, UTF-8: E2 99 A6 EF B8 8F
-        case hearts = "\u{2764}\u{FE0F}", spades = "\u{2660}\u{FE0F}", clobers = "\u{2663}\u{FE0F}", diamonds = "\u{2666}\u{FE0F}"
+        case hearts = "❤️", spades = "♠️", clobers = "♣️", diamonds = "♦️"
     }
     let nums: [Int : String] = [
         1 : "A", 2 : "2", 3 : "3", 4 : "4", 5 : "5", 6 : "6", 7 : "7",
