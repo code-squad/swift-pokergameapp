@@ -22,10 +22,6 @@ enum Rank : Int, CaseIterable, CustomStringConvertible {
     case A = 1,two,three,four,five,six,seven,eight,nine,ten,J,Q,K
     
     var description: String {
-        return "\(self.reName())"
-    }
-    
-    func reName() -> String {
         switch self {
         case .A:
             return "A"

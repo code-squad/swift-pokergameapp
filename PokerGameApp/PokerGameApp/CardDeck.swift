@@ -26,7 +26,10 @@ struct CardDeck {
     }
     
     mutating func shuffle() {
-        return cards.shuffle()
+        for index in cards.enumerated() {
+            let radomIndex = Int.random(in: index.offset..<cards.count)
+            cards.swapAt(index.offset, radomIndex)
+        }
     }
     
     mutating func removeOne() -> Card? {

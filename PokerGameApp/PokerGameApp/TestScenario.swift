@@ -12,27 +12,27 @@ struct Scenario {
     private var deck = CardDeck()
     
     mutating func scene() {
-        initPrint()
-        
+        printInit()
+
         deck.shuffle()
-        shufflePrint()
+        printShuffle()
         
-        removeOnePrint()
-        removeOnePrint()
+        printRemoveOne()
+        printRemoveOne()
         
         deck.reset()
-        initPrint()
+        printInit()
     }
     
-    private func initPrint() {
+    private func printInit() {
         print("카드 전체를 초기화했습니다\n총 \(deck.count())의 카드가 있습니다")
     }
     
-    private func shufflePrint() {
+    private func printShuffle() {
         print("전체 \(deck.count())장의 카드를 섞었습니다")
     }
     
-    private mutating func removeOnePrint() {
+    private mutating func printRemoveOne() {
         guard let card = deck.removeOne() else { return }
         print("\(card)\n총 \(deck.count())의 카드가 있습니다")
     }
