@@ -33,12 +33,12 @@ class Card {
         case K
     }
     
-    func printCardInfo () {
+    func makeCardInfo () -> String {
         switch self.rank {
         case .Ace, .J, .Q, .K:
-            print("\(suit.rawValue)\(rank)")
+            return "\(suit.rawValue)\(rank)"
         default:
-            print("\(suit.rawValue)\(rank.rawValue)")
+            return "\(suit.rawValue)\(rank.rawValue)"
         }
     }
 }

@@ -9,8 +9,10 @@ class ViewController: UIViewController {
         setUpBackGround()
         setStackView()
         addCardIntoStackView()
-        Card(suit: .heart, rank: .Q).printCardInfo()
-        Card(suit: .spades, rank: .Seven).printCardInfo()
+        let heartQ = Card(suit: .heart, rank: .Q).makeCardInfo()
+        let spadeSeven = Card(suit: .spades, rank: .Seven).makeCardInfo()
+        print(heartQ)
+        print(spadeSeven)
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
