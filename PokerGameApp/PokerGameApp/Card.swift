@@ -25,12 +25,12 @@ class Card {
         case hearts = "\u{2764}\u{FE0F}", spades = "\u{2660}\u{FE0F}", clobers = "\u{2663}\u{FE0F}", diamonds = "\u{2666}\u{FE0F}"
     }
     let nums: [Int : String] = [
-        1 : "1", 2 : "2", 3 : "3", 4 : "4", 5 : "5", 6 : "6", 7 : "7",
+        1 : "A", 2 : "2", 3 : "3", 4 : "4", 5 : "5", 6 : "6", 7 : "7",
         8 : "8", 9 : "9", 10 : "10", 11 : "J", 12 : "Q", 13 : "K"
     ]
     
-    var num: Int
-    var shape: Shapes
+    private var num: Int
+    private var shape: Shapes
     
     init(_ num: Int, _ shape: Shapes) {
         self.num = num
@@ -52,12 +52,9 @@ class Card {
         }
         return tempString + nums[self.num]!
     }
+    
     func printInfo() {
         print(convertString())
-        print(Shapes.hearts.rawValue)
-        print(Shapes.spades.rawValue)
-        print(Shapes.clobers.rawValue)
-        print(Shapes.diamonds.rawValue)
 
     }
     
