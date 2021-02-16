@@ -16,10 +16,19 @@ class ViewController: UIViewController {
         setBackground()
         addCards(count: 7)
         
-        let card1 = Card(suit: .club, rank: .rank13)
-        let card2 = Card(suit: .heart, rank: .rank7)
-        print(card1)
-        print(card2)
+        var cardDeck = CardDeck()
+        let P = PrintFactory()
+        
+        print(P.deckContents(from: cardDeck.currentDeck))
+        print(P.deckCount(cardDeck.count()))
+        print(P.cardInfo(from: cardDeck.removeOne()))
+        print(P.deckCount(cardDeck.count()))
+        cardDeck.shuffle()
+        print(P.shuffleMessage)
+        print(P.cardInfo(from: cardDeck.removeOne()))
+        cardDeck.reset()
+        print(P.resetMessage)
+        print(P.deckCount(cardDeck.count()))
     }
     
     private func setBackground() {
