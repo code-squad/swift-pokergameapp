@@ -8,17 +8,17 @@
 import Foundation
 
 struct CardDeck {
-    private var cards: [Card]
+    private var cards = [Card]()
     private var total: Int {
         return cards.count
     }
     
-    init(cards: [Card]) {
-        self.cards = cards
+    init() {
+        cards = self.reset()
     }
     
-    mutating func reset() {
-        self.cards = CardDeckGenerator.generateCardDeck()
+    mutating func reset() -> [Card] {
+        return CardDeckGenerator.generateCardDeck()
     }
     
     mutating func shuffle() -> [Card] {
