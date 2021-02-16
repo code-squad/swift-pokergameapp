@@ -15,6 +15,7 @@
 		E438090A25DA3D6D0024C294 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E438090825DA3D6D0024C294 /* LaunchScreen.storyboard */; };
 		E438091525DA63D60024C294 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = E438091425DA63D60024C294 /* Card.swift */; };
 		E4CE9B4C25DB5DF4000CE7F4 /* CardDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CE9B4B25DB5DF4000CE7F4 /* CardDeck.swift */; };
+		E4CE9B5025DB73BA000CE7F4 /* PrintFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CE9B4F25DB73BA000CE7F4 /* PrintFactory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		E438090B25DA3D6D0024C294 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E438091425DA63D60024C294 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		E4CE9B4B25DB5DF4000CE7F4 /* CardDeck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDeck.swift; sourceTree = "<group>"; };
+		E4CE9B4F25DB73BA000CE7F4 /* PrintFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrintFactory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +67,7 @@
 				E438090125DA3D6C0024C294 /* ViewController.swift */,
 				E438091425DA63D60024C294 /* Card.swift */,
 				E4CE9B4B25DB5DF4000CE7F4 /* CardDeck.swift */,
+				E4CE9B4F25DB73BA000CE7F4 /* PrintFactory.swift */,
 				E438090325DA3D6C0024C294 /* Main.storyboard */,
 				E438090625DA3D6D0024C294 /* Assets.xcassets */,
 				E438090825DA3D6D0024C294 /* LaunchScreen.storyboard */,
@@ -145,6 +148,7 @@
 			files = (
 				E438090225DA3D6C0024C294 /* ViewController.swift in Sources */,
 				E4CE9B4C25DB5DF4000CE7F4 /* CardDeck.swift in Sources */,
+				E4CE9B5025DB73BA000CE7F4 /* PrintFactory.swift in Sources */,
 				E43808FE25DA3D6C0024C294 /* AppDelegate.swift in Sources */,
 				E438090025DA3D6C0024C294 /* SceneDelegate.swift in Sources */,
 				E438091525DA63D60024C294 /* Card.swift in Sources */,
