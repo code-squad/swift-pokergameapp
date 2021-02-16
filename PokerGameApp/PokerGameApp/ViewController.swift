@@ -16,33 +16,35 @@ class ViewController: UIViewController {
         setBackground()
         addCards(count: 7)
         
-        let card1 = Card(suit: .club, rank: 13)
-        let card2 = Card(suit: .heart, rank: 7)
-        card1.printCard()
-        card2.printCard()
+        let card1 = Card(suit: .club, rank: .rank13)
+        let card2 = Card(suit: .heart, rank: .rank7)
+        print(card1)
+        print(card2)
     }
     
     private func setBackground() {
         guard let tile = UIImage(named: "bg_pattern.png") else { return }
-        self.view.backgroundColor = UIColor(patternImage: tile)
+        view.backgroundColor = UIColor(patternImage: tile)
     }
     
     private func addCards(count: Int) {
         
-        let cntInCGF = CGFloat(count)
+        let countInCGF = CGFloat(count)
         
-        let fullWidth = self.view.bounds.width
-        let marginUp = self.view.bounds.height/10
-        let marginRL = fullWidth/cntInCGF/10
+        let viewSize = (width: view.bounds.width, height: view.bounds.height)
+        let marginRatio: CGFloat = 0.1, cardRatio: CGFloat = 1.27
+        
+        let marginUp = viewSize.height * marginRatio
+        let marginRL = viewSize.width / countInCGF * marginRatio
 
-        let cardWidth = (fullWidth - marginRL*(cntInCGF+1))/cntInCGF
+        let cardWidth = (viewSize.width - marginRL * (countInCGF + 1)) / countInCGF
         
         for i in 0..<count {
             let cardView = UIImageView(image: cardBackside)
-            cardView.frame = CGRect(x: cardWidth*CGFloat(i) + marginRL*(CGFloat(i)+1),
+            cardView.frame = CGRect(x: cardWidth * CGFloat(i) + marginRL * (CGFloat(i) + 1),
                                     y: marginUp,
                                     width: cardWidth,
-                                    height: cardWidth*1.27)
+                                    height: cardWidth * cardRatio)
             view.addSubview(cardView)
         }
     }
