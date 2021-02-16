@@ -13,7 +13,7 @@ class PokerGameAppTests: XCTestCase {
     var cardDeck = CardDeck()
     
     func testGenerateCardDeck() {
-        let resetCardDeck = cardDeck.reset()
+        let resetCardDeck = CardDeckGenerator.generateCardDeck()
         
         XCTAssertEqual(52, resetCardDeck.count)
     }
@@ -21,7 +21,7 @@ class PokerGameAppTests: XCTestCase {
     func testShuffled() {
         let shuffledCardDeck = cardDeck.shuffle()
     
-        XCTAssertNotEqual(cardDeck.reset(), shuffledCardDeck)
+        XCTAssertNotEqual(CardDeckGenerator.generateCardDeck(), shuffledCardDeck)
     }
     
     func testRemoveOne() {

@@ -11,11 +11,7 @@ struct CardDeck {
     private var cards = [Card]()
     
     init() {
-        cards = self.reset()
-    }
-    
-    mutating func reset() -> [Card] {
-        return CardDeckGenerator.generateCardDeck()
+        cards = CardDeckGenerator.generateCardDeck()
     }
     
     mutating func shuffle() -> [Card] {
