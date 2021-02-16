@@ -62,7 +62,7 @@ extension Card.Num: CustomStringConvertible {
     
 }
 
-extension Card.cardShape: CustomStringConvertible {
+extension Card.Shape: CustomStringConvertible {
     
     var description: String{
         
