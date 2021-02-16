@@ -13,7 +13,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         makeBackGround()
         makeStackView()
-        let cardData = Card(suit: .heart, rank: .seven)
+        let cardData = Card(suit: .heart, rank: .A)
         print(cardData)
     }
     
