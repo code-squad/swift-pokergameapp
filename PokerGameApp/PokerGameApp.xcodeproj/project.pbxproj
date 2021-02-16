@@ -15,10 +15,7 @@
 		AE905A6925DA3B1F00C99E3C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE905A6725DA3B1F00C99E3C /* LaunchScreen.storyboard */; };
 		AE905A7525DAA79000C99E3C /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE905A7425DAA79000C99E3C /* Card.swift */; };
 
-<<<<<<< HEAD
 		AE905A7525DAA79000C99E3C /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE905A7425DAA79000C99E3C /* Card.swift */; };
-=======
->>>>>>> 95d885e9fdf8d99c3ba476339fd9f3daf23b2c79
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,10 +30,7 @@
 
 		AE905A7425DAA79000C99E3C /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 
-<<<<<<< HEAD
 		AE905A7425DAA79000C99E3C /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
-=======
->>>>>>> 95d885e9fdf8d99c3ba476339fd9f3daf23b2c79
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,10 +67,7 @@
 				AE905A5E25DA3B1E00C99E3C /* SceneDelegate.swift */,
 				AE905A6025DA3B1E00C99E3C /* ViewController.swift */,
 				AE905A7425DAA79000C99E3C /* Card.swift */,
-<<<<<<< HEAD
 				AE905A7425DAA79000C99E3C /* Card.swift */,
-=======
->>>>>>> 95d885e9fdf8d99c3ba476339fd9f3daf23b2c79
 				AE905A6225DA3B1E00C99E3C /* Main.storyboard */,
 				AE905A6525DA3B1F00C99E3C /* Assets.xcassets */,
 				AE905A6725DA3B1F00C99E3C /* LaunchScreen.storyboard */,
@@ -159,10 +150,7 @@
 				AE905A5D25DA3B1E00C99E3C /* AppDelegate.swift in Sources */,
 				AE905A5F25DA3B1E00C99E3C /* SceneDelegate.swift in Sources */,
 				AE905A7525DAA79000C99E3C /* Card.swift in Sources */,
-<<<<<<< HEAD
 				AE905A7525DAA79000C99E3C /* Card.swift in Sources */,
-=======
->>>>>>> 95d885e9fdf8d99c3ba476339fd9f3daf23b2c79
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
