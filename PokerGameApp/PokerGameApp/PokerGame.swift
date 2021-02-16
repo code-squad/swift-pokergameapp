@@ -7,31 +7,67 @@
 
 import Foundation
 
+enum GameType : Int {
+    case seven = 7
+    case five = 5
+}
+
+enum Participant : Int {
+    case one = 1
+    case two
+    case three
+    case four
+}
+
 class PockerGame {
-    var cardDeck = CardDeck()
-    let players : [Player]
-    let player1 = Player()
-    let player2 = Player()
-    let player3 = Player()
-    let dealer = Dealer()
+    private var cardDeck = CardDeck()
+    private var players : [Player] = []
+    private let dealer = Dealer()
     
-    init() {
+    init(participant: Participant) {
         cardDeck.shuffle()
-        players = [player1,player2,player3,dealer]
-        
+        createPlayer(people : participant.rawValue)
     }
     
-    func drawCard() {
-        for player in players.enumerated() {
-            (0...6).forEach { _ in
-                player.element.receiveCard(card: cardDeck.removeOne())
+    func startGame(cardType : GameType) {
+        while true {
+            drawCard(cardType: cardType.rawValue)
+            showPlayerCard()
+            resetPlayerCard()
+            if cardDeck.count() == 0 {
+                return
+            }
+        }
+    }
+    
+    func createPlayer(people : Int) {
+        (1...people).forEach { _ in
+            players.append(Player())
+        }
+        players.append(dealer)
+    }
+    
+    func drawCard(cardType : Int) {
+        players.forEach { player in
+            (1...cardType).forEach { _ in
+                guard let card = cardDeck.removeOne() else { return }
+                player.receiveCard(card: card)
             }
         }
     }
     
     func showPlayerCard() {
         players.forEach { player in
-            print(player.showCards()!)
+            if player.countCard() > 0 {
+                print(player.showCards())
+            }
+        }
+    }
+    
+    func resetPlayerCard() {
+        players.forEach { player in
+            player.resetCard()
         }
     }
 }
+
