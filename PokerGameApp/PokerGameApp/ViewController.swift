@@ -14,7 +14,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setCardHand()
-        setCard()
+        makeACard()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -25,6 +25,11 @@ class ViewController: UIViewController {
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: CardImage.background) ?? UIImage())
         self.view.addSubview(hand)
         hand.setConstraint(superView: self.view)
+    }
+    
+    private func makeACard() {
+        let card = Card(rank: Rank(1), suit: .spades)
+        print(card.description)
     }
 }
 

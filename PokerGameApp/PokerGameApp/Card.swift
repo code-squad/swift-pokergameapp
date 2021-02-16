@@ -19,19 +19,15 @@ struct Card: CustomStringConvertible {
         case clubs = "♣️"
     }
     
-    let value: Rank
+    let rank: Rank
     let suit: Suit
     
-    init(value: Rank, suit: Suit) {
-        self.value = value
+    init(rank: Rank, suit: Suit) {
+        self.rank = rank
         self.suit = suit
     }
     
     internal var description: String {
-        return "\(suit)\(value.display)"
-    }
-    
-    func display() {
-        print(description)
+        return "\(suit.rawValue)\(rank.value)"
     }
 }

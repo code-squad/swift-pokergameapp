@@ -8,15 +8,15 @@
 import Foundation
 
 struct Rank {
-    private var rank = String()
+    private (set) var value = String()
 
-    init(integerLiteral value: Int) {
-        switch value {
-        case 2...10: rank = String(value)
-        case 1: rank = "A"
-        case 11: rank = "J"
-        case 12: rank = "Q"
-        case 13: rank = "K"
+    init(_ rank: Int) {
+        switch rank {
+        case 2...10: value = String(rank)
+        case 1: value = "A"
+        case 11: value = "J"
+        case 12: value = "Q"
+        case 13: value = "K"
         default: break
         }
     }
