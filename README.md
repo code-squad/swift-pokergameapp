@@ -6,3 +6,8 @@
 <img src="images/step1_2.png" width="200" />
 <img src="images/step1_3.png" width="200" />
 </p>
+
+2. (Step3과 동시 진행)Card 및 CardDeck 클래스 구현 2020.02.18 :14
+<p float="left">
+<img src="images/step2.png" width="200" />
+</p>
