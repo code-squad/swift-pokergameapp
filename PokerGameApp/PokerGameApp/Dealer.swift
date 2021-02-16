@@ -1,11 +1,19 @@
 import Foundation
 
-class Dealer {
+protocol Playable {
+    var name: String { get }
+    var cards: [Card] { get }
+    func getCard(_ card: Card)
+}
+
+class Dealer: Playable {
     enum CardStud: Int {
         case sevenCardStud = 7
         case fiveCardStud = 5
     }
     
+    var name = "딜러"
+    var cards = [Card]()
     private var cardDeck = CardDeck()
     
     public func start(numberOfPlayer: UInt, stud: CardStud) {
@@ -26,7 +34,8 @@ class Dealer {
             let player = Player()
             players.append(player)
         }
-        let dealer = Player(name: "딜러")
+        
+        let dealer = self
         players.append(dealer)
         
         return players
@@ -45,6 +54,10 @@ class Dealer {
         players.forEach { (player) in
             print("\(player.name)", player.cards)
         }
+    }
+    
+    func getCard(_ card: Card) {
+        cards.append(card)
     }
 
 }

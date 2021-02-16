@@ -1,10 +1,24 @@
 import Foundation
 
-// Card가 가질 수 있는 값이 졍해져있기 때문에 enum으로 구현했습니다
-/// Shape와 Rank 속성 모두 초기화 시 값을 정할 수 있기 때문에 구현을 하게 됐는데
-/// 만약 인스턴스 생성 시 속성 값의 범위가 넓거나 예측 불가능하다면 struct로 구현하려 고민했을 것 같습니다.
+protocol CardCreatable {
+    static func createCardSet() -> [Card]
+}
 
-class Card: Dealer {
+extension CardCreatable {
+    static func createCardSet() -> [Card] {
+        var cards = [Card]()
+        
+        for rank in Card.Rank.allCases {
+            for shape in Card.Shape.allCases {
+                let card = Card(with: shape.self, rank: rank.self)
+                cards.append(card)
+            }
+        }
+        return cards
+    }
+}
+
+class Card: CardCreatable {
     enum Shape: String {
         case clubs = "♣️"
         case diamone = "♦️"
