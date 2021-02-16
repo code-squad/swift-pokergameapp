@@ -8,10 +8,10 @@
 import Foundation
 
 class Card: CustomStringConvertible {
-    enum Shape: String, CustomStringConvertible {
+    enum Shape: String, CaseIterable, CustomStringConvertible {
         case clover = "♣️"
-        case heart = "🧡"
-        case diamond = "🔶"
+        case heart = "♥️"
+        case diamond = "♦️"
         case spade = "♠️"
         
         var description: String {
@@ -19,7 +19,7 @@ class Card: CustomStringConvertible {
         }
     }
     
-    enum Number: Int, CustomStringConvertible {
+    enum Number: Int, CaseIterable, CustomStringConvertible {
         case A = 1, two, three, four, five, six, seven, eight, nine, ten
         case J, Q, K
         
