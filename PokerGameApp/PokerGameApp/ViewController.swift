@@ -15,10 +15,22 @@ class ViewController: UIViewController {
             self.view.backgroundColor = UIColor(patternImage: pattern)
         }
         setImageStackView()
+        
+        
+        // Check Data
+        let dealer = Dealer()
+        dealer.start(numberOfPlayer: 4, stud: .sevenCardStud)
     }
     
     private func setImageStackView() {
-        let imageStackView = UIStackView()
+        var imageStackView: UIStackView {
+            let stackView = UIStackView()
+            stackView.axis = .horizontal
+            stackView.distribution = .fillEqually
+            stackView.alignment = .center
+            stackView.spacing = 5
+            return stackView
+        }
         
         let cardImageViews = createCards(count: 7)
         cardImageViews.forEach { (imageView) in
@@ -54,11 +66,6 @@ class ViewController: UIViewController {
     }
     
     private func configImageStackView(_ stackView: UIStackView) {
-        stackView.axis = .horizontal
-        stackView.distribution = .fillEqually
-        stackView.alignment = .center
-        stackView.spacing = 5
-        
         self.view.addSubview(stackView)
         
         stackView.translatesAutoresizingMaskIntoConstraints = false

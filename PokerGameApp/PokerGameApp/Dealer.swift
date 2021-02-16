@@ -1,19 +1,50 @@
 import Foundation
 
-protocol cardCreatable {
-    static func createCardSet() -> [Card]
-}
-
-class Dealer: cardCreatable {
-    public static func createCardSet() -> [Card] {
-        var cards = [Card]()
+class Dealer {
+    enum CardStud: Int {
+        case sevenCardStud = 7
+        case fiveCardStud = 5
+    }
+    
+    private var cardDeck = CardDeck()
+    
+    public func start(numberOfPlayer: UInt, stud: CardStud) {
+        guard numberOfPlayer >= 1 || numberOfPlayer <= 4 else { return }
         
-        for rank in Card.Rank.allCases {
-            for shape in Card.Shape.allCases {
-                let card = Card(with: shape.self, rank: rank.self)
-                cards.append(card)
+        let players = registerPlayer(of: numberOfPlayer)
+        
+        let turns = stud.rawValue
+        shareCards(players: players, count: turns)
+        
+        printHand(of: players)
+    }
+    
+    private func registerPlayer(of number: UInt) -> [Playable] {
+        var players = [Playable]()
+        
+        for _ in 1...number {
+            let player = Player()
+            players.append(player)
+        }
+        let dealer = Player(name: "딜러")
+        players.append(dealer)
+        
+        return players
+    }
+    
+    private func shareCards(players: [Playable], count: Int) {
+        for _ in 1...count {
+            players.forEach { (player) in
+                guard let newCard = cardDeck.removeOne() else { return }
+                player.getCard(newCard)
             }
         }
-        return cards
     }
+    
+    private func printHand(of players: [Playable]) {
+        players.forEach { (player) in
+            print("\(player.name)", player.cards)
+        }
+    }
+
 }
