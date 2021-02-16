@@ -40,3 +40,5 @@ statusBar는 화면의 상단 가장자리에 표시되며 시간, 이동통신�
 - 문자열에서 1은 A로, 11은 J로, 12는 Q로, 13은 K로 출력한다.
 
 ### 2. ViewController에서 특정한 카드 객체 인스턴스를 만들어서 콘솔에 출력
+
+<img width="1792" alt="스크린샷 2021-02-16 오후 5 21 31" src="https://user-images.githubusercontent.com/73586326/108036423-8df71280-707b-11eb-8fc3-df22b6d8674f.png">
