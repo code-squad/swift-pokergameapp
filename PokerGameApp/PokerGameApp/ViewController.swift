@@ -17,11 +17,8 @@ class ViewController: UIViewController {
         setupBackgroundImage()
         setupCard()
         
-        // card deck test
         var test = TestCardDeck()
-        test.shuffle()
-        test.pop()
-        test.pop()
+        test.testWithScenario()
     }
 
     func setupBackgroundImage() {
