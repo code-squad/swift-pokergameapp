@@ -1,6 +1,13 @@
 import Foundation
 
 class Card {
+    let suit: Suit
+    let rank: Rank
+    
+    init(suit:Suit, rank:Rank) {
+        self.suit = suit
+        self.rank = rank
+    }
     
     // 공통적인 타입을 가진 관련있는 값의 그룹을 묶기 위하여 enum타입을 활용
     enum Suit: Character {
@@ -24,5 +31,14 @@ class Card {
         case J
         case Q
         case K
+    }
+    
+    func printCardInfo () {
+        switch self.rank {
+        case .Ace, .J, .Q, .K:
+            print("\(suit.rawValue)\(rank)")
+        default:
+            print("\(suit.rawValue)\(rank.rawValue)")
+        }
     }
 }
