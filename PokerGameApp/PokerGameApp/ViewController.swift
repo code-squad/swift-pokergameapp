@@ -19,16 +19,11 @@ class ViewController: UIViewController {
         var cardDeck = CardDeck()
         let P = PrintFactory()
         
-        print(P.deckContents(from: cardDeck.currentDeck))
-        print(P.deckCount(cardDeck.count()))
-        print(P.cardInfo(from: cardDeck.removeOne()))
-        print(P.deckCount(cardDeck.count()))
-        cardDeck.shuffle()
-        print(P.shuffleMessage)
-        print(P.cardInfo(from: cardDeck.removeOne()))
-        cardDeck.reset()
-        print(P.resetMessage)
-        print(P.deckCount(cardDeck.count()))
+        print(P.resetMessage(with: cardDeck.reset()))
+        print(P.shuffleMessage(with: cardDeck.shuffle()))
+        print(P.cardDrawn(card: cardDeck.removeOne(), remainingCount: cardDeck.count()))
+        print(P.cardDrawn(card: cardDeck.removeOne(), remainingCount: cardDeck.count()))
+        print(P.cardDrawn(card: cardDeck.removeOne(), remainingCount: cardDeck.count()))
     }
     
     private func setBackground() {
