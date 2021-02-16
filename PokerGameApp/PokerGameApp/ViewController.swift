@@ -8,12 +8,23 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        self.view.backgroundColor = UIColor(patternImage: optionalBindingBGImage())
     }
-
+    
+    func optionalBindingBGImage() -> UIImage {
+        guard let image = UIImage(named: "bg_pattern") else {
+            return UIImage()
+        }
+        return image
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle{
+        return .lightContent
+    }
 
 }
 
