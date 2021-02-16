@@ -24,39 +24,34 @@ class Card {
 //        유니코드: U+2666 U+FE0F, UTF-8: E2 99 A6 EF B8 8F
         case hearts = "❤️", spades = "♠️", clobers = "♣️", diamonds = "♦️"
     }
-    let nums: [Int : String] = [
-        1 : "A", 2 : "2", 3 : "3", 4 : "4", 5 : "5", 6 : "6", 7 : "7",
-        8 : "8", 9 : "9", 10 : "10", 11 : "J", 12 : "Q", 13 : "K"
-    ]
+    enum Nums: Int {
+        case one = 1, two, three, four, five, six, seven, eight, nine, ten, jack, queen, king
+    }
     
-    private var num: Int
+    private var num: Nums
     private var shape: Shapes
     
-    init(_ num: Int, _ shape: Shapes) {
+    init(_ num: Nums, _ shape: Shapes) {
         self.num = num
         self.shape = shape
     }
     
-    func convertString() -> String {
-        var tempString: String
-        switch shape {
-        case .hearts:
-            tempString = Shapes.hearts.rawValue
-        case .clobers:
-            tempString = Shapes.clobers.rawValue
-        case .diamonds:
-            tempString = Shapes.diamonds.rawValue
-        case .spades:
-            tempString = Shapes.spades.rawValue
-            
+}
+extension Card: CustomStringConvertible {
+    var description: String {
+        var resultStr = ""
+        switch self.num{
+        case .one:
+            resultStr = "A"
+        case .jack:
+            resultStr = "J"
+        case .queen:
+            resultStr = "Q"
+        case .king:
+            resultStr = "K"
+        default:
+            resultStr = String(self.num.rawValue)
         }
-        return tempString + nums[self.num]!
+        return self.shape.rawValue + resultStr
     }
-    
-    func printInfo() {
-        print(convertString())
-
-    }
-    
-    
 }
