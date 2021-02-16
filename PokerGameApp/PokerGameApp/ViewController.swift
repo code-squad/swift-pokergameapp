@@ -18,6 +18,11 @@ class ViewController: UIViewController {
         }
         
         show7CardBack()
+        
+        let heartQ = PokerCard(suit: .hearts, rank: .queen)
+        let club7 = PokerCard(suit: .clubs, rank: .seven)
+        print("\(heartQ.cardInfo())")
+        print("\(club7.cardInfo())")
     }
 
     func show7CardBack() {
