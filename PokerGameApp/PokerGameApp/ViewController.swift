@@ -20,8 +20,8 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        guard let backgroundPatternImage: UIImage = UIImage(named: "bg_pattern") else {print("Image file missing"); return}
-        guard let cardBacksideImage: UIImage = UIImage(named: "card-back") else {print("Image file missing"); return}
+        let backgroundPatternImage: UIImage = UIImage(named: "bg_pattern") ?? UIImage()
+        let cardBacksideImage: UIImage = UIImage(named: "card-back") ?? UIImage()
         
         self.view.backgroundColor = UIColor(patternImage: backgroundPatternImage)
         self.view.addSubview(cardStackView)
