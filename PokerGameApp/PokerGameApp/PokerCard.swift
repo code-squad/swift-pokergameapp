@@ -29,7 +29,7 @@ class PokerCard {
         self.rank = rank
     }
     
-    func printCardInfo() -> String {
+    func cardInfo() -> String {
         return "\(self.suit.rawValue)\(self.rank.rawValue)"
     }
 }
