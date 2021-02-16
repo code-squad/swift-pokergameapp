@@ -14,3 +14,12 @@
 
 ![step2](https://user-images.githubusercontent.com/72188416/107930032-cd5f2980-6fbd-11eb-893b-71202a1cb52a.png)
 
+<br>
+
+## Step 3 - 카드덱 구현과 테스트
+
+- 앱 구동 시 `카드 덱`을 구성하고 섞는다.
+- `카드` 3장을 뽑는다.
+- 위의 과정을 콘솔 창에 출력한다.
+
+![step3](https://user-images.githubusercontent.com/72188416/108039266-39559680-707f-11eb-804f-b3e2a6739d4a.png)
