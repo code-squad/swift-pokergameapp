@@ -40,10 +40,8 @@ struct CardDeck {
         return shuffledCards
     }
     
-    mutating func removeOne() -> Card {
-        let randomIndex = Int(arc4random_uniform(UInt32(count() - 1)))
-        let cardToRemoved = cards.remove(at: randomIndex)
-
+    mutating func removeOne() -> Card? {
+        guard let cardToRemoved = cards.popLast() else { return nil }
         return cardToRemoved
     }
     
