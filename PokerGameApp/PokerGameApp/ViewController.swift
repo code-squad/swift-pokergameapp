@@ -41,18 +41,20 @@ class ViewController: UIViewController {
     
     private func createCardStackView() {
         let stackView = UIStackView()
-    
-        for _ in 0..<7 {
+        let numberOfCard = 7
+        let intervalBetweenCards: CGFloat = 5
+        
+        for _ in 0..<numberOfCard {
             stackView.addArrangedSubview(setCardImageView())
         }
 
         stackView.axis = .horizontal
         stackView.distribution = .fillEqually
-        stackView.spacing = 5
+        stackView.spacing = intervalBetweenCards
         self.view.addSubview(stackView)
         
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: self.view.frame.height/10).isActive = true
+        stackView.topAnchor.constraint(equalTo: self.view.layoutMarginsGuide.topAnchor, constant: 5).isActive = true
         stackView.trailingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.trailingAnchor).isActive = true
         stackView.leadingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.leadingAnchor).isActive = true
     }
