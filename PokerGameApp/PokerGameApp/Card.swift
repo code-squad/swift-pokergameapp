@@ -30,4 +30,16 @@ class Card {
     }
 }
 
+extension Card: CustomStringConvertible {
+    var description: String {
+        var cardDescription = ""
+        if let randSuit = Card.Suit.allCases.randomElement()?.rawValue, let randRank = Card.Rank.allCases.randomElement()?.rawValue {
+            cardDescription = (String(describing: randSuit) + String(describing: randRank))
+        }
+        return cardDescription
+    }
+    
+    
+}
+
 
