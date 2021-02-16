@@ -8,28 +8,31 @@
 import UIKit
 
 class ViewController: UIViewController {
-
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "bg_pattern")!)
+        makeBackGround()
         makeStackView()
     }
-
+    
     override var preferredStatusBarStyle: UIStatusBarStyle{
         return .lightContent
     }
-
-    func makeCardImageView() -> UIImageView {
-        let imageView = UIImageView()
-        let image = UIImage(named: "card-back")
-        imageView.image = image
-        let cardWidth = view.frame.size.width/7
-        let cardHeight = cardWidth * 1.27
-        imageView.heightAnchor.constraint(equalToConstant: cardHeight).isActive = true
-        return imageView
+    
+    func makeBackGround() {
+        if let bgImage = UIImage(named: "bg_pattern") {
+            self.view.backgroundColor = .init(patternImage: bgImage)
+        }
     }
-
+    
+    func makeCardImageView() -> UIImageView {
+        let cardImageView = UIImageView()
+        let image = UIImage(named: "card-back")
+        cardImageView.image = image
+        cardImageView.heightAnchor.constraint(equalTo: cardImageView.widthAnchor, multiplier: 1.27).isActive = true
+        return cardImageView
+    }
+    
     func makeStackView() {
         let stackView = UIStackView()
         stackView.axis = .horizontal
@@ -45,7 +48,6 @@ class ViewController: UIViewController {
             stackView.addArrangedSubview(makeCardImageView())
         }
     }
-
 }
 
 
