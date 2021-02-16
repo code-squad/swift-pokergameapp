@@ -4,3 +4,25 @@
 - 7개의 card image view를 stack view에 담고, stack view에 대한 autolayout을 추가
 <img width="291" alt="step1" src="https://user-images.githubusercontent.com/75113784/107923230-8ae51f00-6fb4-11eb-9ec5-c7478e323aa8.png">
 
+## Step 2
+- Card class 구현
+- Nested enum `Shape`와 `Number`를 선언하고, `CustomStringConvertible`을 채택해서 의도한대로 출력하도록 추가
+
+## Step 3 - CardDeck, Test
+- CardDeck `struct` 구현
+- CardDeck이 `Card` 클래스의 인스턴스를 배열로 갖고 있도록 설계
+- Card의 nested enum case를 모두 구하기 위해 `CaseIterable` 프로토콜을 채택하도록 추가
+- CardDeck의 cards 배열 셔플을 위해 `Fisher-Yates` 알고리즘을 `shuffle` 함수 안에 구현
+- Test 코드 작성을 위해 `TestCardDeck` 구조체를 선언하고, `testWithScenario()`로 테스트 함수를 작성
+
+### Test code result
+```
+카드 전체를 초기화했습니다.
+총 52장의 카드가 있습니다.
+전체 52장의 카드를 섞었습니다.
+♣️6
+총 51장의 카드가 남아있습니다.
+♠️4
+총 50장의 카드가 남아있습니다.
+```
+
