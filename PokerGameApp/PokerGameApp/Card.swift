@@ -23,27 +23,29 @@ class Card: CustomStringConvertible {
         case clubs = "♣️"
     }
     
-    enum Rank: Int {
+    enum Rank: Int, CustomStringConvertible {
         case one = 1, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve, thirteen
+        
+        var description: String {
+            switch self {
+            case .one:
+                return "A"
+            case .eleven:
+                return "J"
+            case .twelve:
+                return "Q"
+            case .thirteen:
+                return "K"
+            default:
+                return "\(self.rawValue)"
+            }
+        }
     }
     
     let suit: Suit
     let rank: Rank
     var description: String {
-        var convertedRank: String = ""
-        switch rank {
-        case .one:
-            convertedRank = "A"
-        case .eleven:
-            convertedRank = "J"
-        case .twelve:
-            convertedRank = "Q"
-        case .thirteen:
-            convertedRank = "K"
-        default:
-            convertedRank = "\(rank.rawValue)"
-        }
-        return "\(suit.rawValue)\(convertedRank)"
+        return "\(suit.rawValue)\(rank.description)"
     }
     
     init(suit: Suit, rank: Rank) {
