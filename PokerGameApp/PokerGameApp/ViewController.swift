@@ -14,7 +14,6 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setCardHand()
-        makeCardDeck()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -25,12 +24,6 @@ class ViewController: UIViewController {
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: CardImage.background) ?? UIImage())
         self.view.addSubview(hand)
         hand.setConstraint(superView: self.view)
-    }
-    
-    private func makeCardDeck() {
-        var cardDeck = CardDeck()
-        cardDeck.shuffle()
-        cardDeck.removeOne()
     }
 }
 
