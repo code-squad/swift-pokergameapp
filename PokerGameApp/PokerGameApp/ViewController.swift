@@ -41,12 +41,15 @@ class ViewController: UIViewController {
             
         }
         
-        CardDeck.makeDeck()
-        CardPlaying.countDeck()
-        CardPlaying.resetDeck()
-        CardPlaying.shuffleDeck()
-        CardPlaying.removeOne()
-        CardPlaying.resetDeck()
+        let cardDeck = CardDeck()
+        let cardPlaying = CardPlaying()
+        
+        cardDeck.makeDeck()
+        cardPlaying.countDeck()
+        cardPlaying.resetDeck()
+        cardPlaying.shuffleDeck()
+        cardPlaying.removeOne()
+        cardPlaying.resetDeck()
         
     }
     
