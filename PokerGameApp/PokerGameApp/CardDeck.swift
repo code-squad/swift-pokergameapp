@@ -10,12 +10,7 @@ import Foundation
 struct CardDeck {
     var cards: [Card] = []
     init() {
-        for i in 1...13 {
-            self.cards.append(Card(Card.Nums(rawValue: i)!, Card.Shapes.clobers))
-            self.cards.append(Card(Card.Nums(rawValue: i)!, Card.Shapes.diamonds))
-            self.cards.append(Card(Card.Nums(rawValue: i)!, Card.Shapes.hearts))
-            self.cards.append(Card(Card.Nums(rawValue: i)!, Card.Shapes.spades))
-        }
+        reset()
     }
     func count() -> Int {
         return self.cards.count
@@ -36,6 +31,14 @@ struct CardDeck {
         } else {
             print("CardDeck에 Card가 존재하지 않습니다.")
             return nil
+        }
+    }
+    mutating func reset() {
+        for i in 1...13 {
+            self.cards.append(Card(Card.Nums(rawValue: i)!, Card.Shapes.clobers))
+            self.cards.append(Card(Card.Nums(rawValue: i)!, Card.Shapes.diamonds))
+            self.cards.append(Card(Card.Nums(rawValue: i)!, Card.Shapes.hearts))
+            self.cards.append(Card(Card.Nums(rawValue: i)!, Card.Shapes.spades))
         }
     }
 }
