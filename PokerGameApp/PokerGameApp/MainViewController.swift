@@ -40,7 +40,12 @@ class MainViewController: UIViewController {
             self.view.addSubview(imgView[i])
             width += self.view.bounds.width / 7
         }
-        
+        printTestResult()
+    }
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    func printTestResult() {
         let card1 = Card(10, Card.Shapes.diamonds)
         let card2 = Card(11, Card.Shapes.hearts)
         let card3 = Card(12, Card.Shapes.clobers)
@@ -51,13 +56,6 @@ class MainViewController: UIViewController {
         card3.printInfo()
         card4.printInfo()
         card5.printInfo()
-        
     }
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-    
-
-
 }
 
