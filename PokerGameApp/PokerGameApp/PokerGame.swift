@@ -29,12 +29,12 @@ class PockerGame {
     private var players : [Player] = []
     private let dealer = Dealer(type: .dealer)
     
-    init(participant: Participant) {
+    init() {
         cardDeck.shuffle()
-        createPlayer(people : participant.rawValue)
     }
     
-    func startGame(cardType : GameType) {
+    func startGame(numberOfPlayers : Participant ,cardType : GameType) {
+        createPlayer(numberOfPlayers : numberOfPlayers.rawValue)
         while true {
             drawCard(cardType: cardType.rawValue)
             if cardDeck.empty() {
@@ -45,8 +45,8 @@ class PockerGame {
         }
     }
     
-    private func createPlayer(people : Int) {
-        (1...people).forEach { _ in
+    private func createPlayer(numberOfPlayers : Int) {
+        (1...numberOfPlayers).forEach { _ in
             players.append(Player(type: .participant))
         }
         players.append(dealer)
