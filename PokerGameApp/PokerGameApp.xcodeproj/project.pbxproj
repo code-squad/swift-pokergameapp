@@ -14,6 +14,7 @@
 		719CB0BD25DA385000E8218D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 719CB0BC25DA385000E8218D /* Assets.xcassets */; };
 		719CB0C025DA385000E8218D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 719CB0BE25DA385000E8218D /* LaunchScreen.storyboard */; };
 		719D7B0325DB5D74005CA708 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719D7B0225DB5D74005CA708 /* Card.swift */; };
+		719D7B0825DBA29C005CA708 /* CardDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719D7B0725DBA29C005CA708 /* CardDeck.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		719CB0BF25DA385000E8218D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		719CB0C125DA385000E8218D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		719D7B0225DB5D74005CA708 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		719D7B0725DBA29C005CA708 /* CardDeck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDeck.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 				719CB0B525DA384F00E8218D /* SceneDelegate.swift */,
 				719CB0B725DA384F00E8218D /* ViewController.swift */,
 				719D7B0225DB5D74005CA708 /* Card.swift */,
+				719D7B0725DBA29C005CA708 /* CardDeck.swift */,
 				719CB0B925DA384F00E8218D /* Main.storyboard */,
 				719CB0BC25DA385000E8218D /* Assets.xcassets */,
 				719CB0BE25DA385000E8218D /* LaunchScreen.storyboard */,
@@ -141,6 +144,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				719CB0B825DA384F00E8218D /* ViewController.swift in Sources */,
+				719D7B0825DBA29C005CA708 /* CardDeck.swift in Sources */,
 				719CB0B425DA384F00E8218D /* AppDelegate.swift in Sources */,
 				719CB0B625DA384F00E8218D /* SceneDelegate.swift in Sources */,
 				719D7B0325DB5D74005CA708 /* Card.swift in Sources */,
