@@ -41,3 +41,25 @@
 - 완성 날짜시간
 
   2021/02/16 12:18
+
+
+
+## step-3
+
+- 설명
+  - Card들을 담고 여러기능들을 추가하기 위해 CardDeck이라는 구조체 생성
+  - CardDeck안에 셔플, 랜덤 카드 한장 뽑기, 초기화하기 기능들을 추가하였다.
+  - Card에 CustomStringConvertible 프로토콜을 채택하였다.
+  - 객체지향적인 코드를 작성하기 위해 객체의 속성들은 private사용하여 숨겨주었다.
+
+
+
+- 실행화면
+
+  <img width="318" alt="스크린샷 2021-02-16 오후 6 03 52" src="https://user-images.githubusercontent.com/42647277/108041668-314b2600-7082-11eb-9ec9-76cab7d97ee5.png">
+
+- 완성 날짜시간
+
+  2021/02/16 18:09
+
+
