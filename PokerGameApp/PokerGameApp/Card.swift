@@ -4,14 +4,14 @@ import Foundation
 /// Shape와 Rank 속성 모두 초기화 시 값을 정할 수 있기 때문에 구현을 하게 됐는데
 /// 만약 인스턴스 생성 시 속성 값의 범위가 넓거나 예측 불가능하다면 struct로 구현하려 고민했을 것 같습니다.
 class Card {
-    enum Shape: String, CaseIterable {
+    enum Shape: String {
         case clubs = "♣️"
         case diamone = "♦️"
         case hearts = "❤️"
         case spades = "♠️"
     }
     
-    enum Rank: Int, CaseIterable {
+    enum Rank: Int {
         case ace = 1, two, three, four, five, six, seven, eight, nine, ten, jack, queen, king
         
         var rankName: String {
@@ -53,13 +53,13 @@ extension Card: CustomStringConvertible {
     }
 }
 
-extension Card.Rank: CustomStringConvertible {
+extension Card.Rank: CustomStringConvertible, CaseIterable {
     var description: String {
         return rankName
     }
 }
 
-extension Card.Shape: CustomStringConvertible {
+extension Card.Shape: CustomStringConvertible, CaseIterable {
     var description: String {
         return "\(self.rawValue)"
     }
