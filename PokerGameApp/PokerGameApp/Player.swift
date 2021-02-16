@@ -1,11 +1,5 @@
 import Foundation
 
-protocol Playable {
-    var name: String { get }
-    var cards: [Card] { get }
-    func getCard(_ card: Card)
-}
-
 class Player: Playable {
     var name: String
     var cards = [Card]()

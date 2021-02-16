@@ -2,7 +2,11 @@
 
 
 
-- 
+- 팩토리 메소드 구현(CardCreatable)
+- Dealer 구현해서 테스트 데이터 출력
+  - `start`, `registerPlayer`, `shareCards`, `printHand`
+- Player, Playable 구현
+  - 각각 
 
 
 
