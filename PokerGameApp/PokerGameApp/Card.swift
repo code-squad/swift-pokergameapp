@@ -1,6 +1,6 @@
 import Foundation
 
-class Card {
+class Card: CustomStringConvertible {
     let suit: Suit
     let rank: Rank
     
@@ -33,7 +33,7 @@ class Card {
         case K
     }
     
-    func makeCardInfo () -> String {
+    var description: String {
         switch self.rank {
         case .Ace, .J, .Q, .K:
             return "\(suit.rawValue)\(rank)"

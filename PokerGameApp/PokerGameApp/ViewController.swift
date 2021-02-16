@@ -11,8 +11,8 @@ class ViewController: UIViewController {
         setStackView()
         addCardIntoStackView()
 
-        let heartQ = Card(suit: .heart, rank: .Q).makeCardInfo()
-        let spadeSeven = Card(suit: .spades, rank: .Seven).makeCardInfo()
+        let heartQ = Card(suit: .heart, rank: .Q)
+        let spadeSeven = Card(suit: .spades, rank: .Seven)
         print(heartQ)
         print(spadeSeven)
     }
