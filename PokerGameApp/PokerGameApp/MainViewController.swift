@@ -61,6 +61,8 @@ class MainViewController: UIViewController {
         print(card3)
         print(card4)
         print(card5)
+        let deck = CardDeck()
+        
         
     }
 }

@@ -31,7 +31,7 @@ class Card {
     private var num: Nums
     private var shape: Shapes
     
-    init(_ num: Nums, _ shape: Shapes) {
+    init(_ num: Nums , _ shape: Shapes) {
         self.num = num
         self.shape = shape
     }
