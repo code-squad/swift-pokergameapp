@@ -19,10 +19,10 @@ struct Card: CustomStringConvertible {
         case clubs = "♣️"
     }
     
-    let value: CardValue
+    let value: Rank
     let suit: Suit
     
-    init(value: CardValue, suit: Suit) {
+    init(value: Rank, suit: Suit) {
         self.value = value
         self.suit = suit
     }

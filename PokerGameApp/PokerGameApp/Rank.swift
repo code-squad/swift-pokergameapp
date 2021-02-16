@@ -12,7 +12,7 @@ import Foundation
  1. Int로 초기화시키고, String으로 display하기에 편한 구조라 생각.
  2. 프로그램 사용 중에 클래스 참조가 필요없어서 class는 생각하지 않음.
  */
-struct CardValue: ExpressibleByIntegerLiteral {
+struct Rank: ExpressibleByIntegerLiteral {
     typealias IntegerLiteralType = Int
     
     let display: String
