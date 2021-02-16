@@ -8,32 +8,47 @@
 import Foundation
 
 class Card: CustomStringConvertible {
+    enum Shape: String, CustomStringConvertible {
+        case clover = "♣️"
+        case heart = "🧡"
+        case diamond = "🔶"
+        case spade = "♠️"
+        
+        var description: String {
+            return "\(self.rawValue)"
+        }
+    }
+    
+    enum Number: Int, CustomStringConvertible {
+        case A = 1, two, three, four, five, six, seven, eight, nine, ten
+        case J, Q, K
+        
+        var description: String {
+            switch self {
+            case .A:
+                return "A"
+            case .J:
+                return "J"
+            case .Q:
+                return "Q"
+            case .K:
+                return "K"
+            default:
+                return "\(self.rawValue)"
+            }
+            
+        }
+    }
+    
     var shape: Shape
     var number: Number
     
-    init(shape: Card.Shape, number:Card.Number) {
+    init(shape: Shape, number: Number) {
         self.shape = shape
         self.number = number
     }
     
     var description: String {
-        switch number {
-        case .A, .J, .Q, .K:
-            return "\(shape.rawValue)\(number)"
-        default:
-            return "\(shape.rawValue)\(number.rawValue)"
-        }
-    }
-    
-    enum Shape: String {
-        case clover = "♣️"
-        case heart = "🧡"
-        case diamond = "🔶"
-        case spade = "♠️"
-    }
-    
-    enum Number: Int {
-        case A = 1, two, three, four, five, six, seven, eight, nine, ten
-        case J, Q, K
+        return "\(shape.description)\(number.description)"
     }
 }
