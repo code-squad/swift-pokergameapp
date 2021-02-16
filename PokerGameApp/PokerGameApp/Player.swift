@@ -8,5 +8,14 @@
 import Foundation
 
 class Player {
+    private var cards : [Card]? = []
     
+    func receiveCard(card : Card?) {
+        guard let card = card else { return }
+        cards?.append(card)
+    }
+    
+    func showCards() -> [Card]? {
+        return cards
+    }
 }

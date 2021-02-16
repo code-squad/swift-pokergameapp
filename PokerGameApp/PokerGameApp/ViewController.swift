@@ -33,9 +33,10 @@ class ViewController: UIViewController {
         
         constrainUI()
         makeCard()
-        
-        var scenario = Scenario()
-        scenario.scene()
+    
+        let p = PockerGame()
+        p.drawCard()
+        p.showPlayerCard()
     }
 
 
