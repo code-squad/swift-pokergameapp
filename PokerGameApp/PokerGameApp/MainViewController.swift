@@ -28,6 +28,9 @@ class MainViewController: UIViewController {
             width += self.view.bounds.width / 7
         }
         
+        let card = Card(10, Card.Shapes.diamonds)
+        card.printInfo()
+        
     }
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
