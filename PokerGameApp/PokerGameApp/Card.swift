@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Card {
+class Card: CustomStringConvertible {
     
     /*
      Suit와 Rank를 Nested Enum으로 구현한 이유:
@@ -29,6 +29,22 @@ class Card {
     
     let suit: Suit
     let rank: Rank
+    var description: String {
+        var convertedRank: String = ""
+        switch rank {
+        case .one:
+            convertedRank = "A"
+        case .eleven:
+            convertedRank = "J"
+        case .twelve:
+            convertedRank = "Q"
+        case .thirteen:
+            convertedRank = "K"
+        default:
+            convertedRank = "\(rank.rawValue)"
+        }
+        return "\(suit.rawValue)\(convertedRank)"
+    }
     
     init(suit: Suit, rank: Rank) {
         self.suit = suit
