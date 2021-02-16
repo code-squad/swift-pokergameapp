@@ -28,8 +28,16 @@ class MainViewController: UIViewController {
             width += self.view.bounds.width / 7
         }
         
-        let card = Card(10, Card.Shapes.diamonds)
-        card.printInfo()
+        let card1 = Card(10, Card.Shapes.diamonds)
+        let card2 = Card(11, Card.Shapes.hearts)
+        let card3 = Card(12, Card.Shapes.clobers)
+        let card4 = Card(13, Card.Shapes.spades)
+        let card5 = Card(1, Card.Shapes.hearts)
+        card1.printInfo()
+        card2.printInfo()
+        card3.printInfo()
+        card4.printInfo()
+        card5.printInfo()
         
     }
     override var preferredStatusBarStyle: UIStatusBarStyle {
