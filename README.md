@@ -1,2 +1,15 @@
-# swift-pokergameapp
-STEP15 포커게임 앱 저장소
+# 포커게임 앱
+
+## Step1. 게임판 만들기
+완성 일자 및 시간: 2021-02-16 12:30PM
+
+* 카드 7장이 놓인 게임판이 화면에 나타난다.
+* 카드는 1:1.27 비율을 유지한채 기기 종류 및 방향에 따라 그 크기와 위치가 조정된다.
+
+**시뮬레이터 스크린샷**
+
+[Portrait]
+<img src="https://user-images.githubusercontent.com/56751259/108019046-b28fc200-705c-11eb-94ac-5a638546ad09.png" width=390>
+
+[Landscape]
+<img src="https://user-images.githubusercontent.com/56751259/108019125-d81ccb80-705c-11eb-928e-c0b568ba0232.png" height=390>
