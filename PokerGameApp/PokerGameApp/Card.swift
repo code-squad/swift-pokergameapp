@@ -36,7 +36,17 @@ class Card {
     }
    
     init(suit: Suit, value: Value) {
-        self.cardDescription = "\(suit.rawValue)\(value.rawValue)"
+        self.cardDescription = "\(suit)\(value)"
     }
 }
 
+extension Card.Suit: CustomStringConvertible {
+    var description: String {
+        return "\(self.rawValue)"
+    }
+}
+extension Card.Value: CustomStringConvertible {
+    var description: String {
+        return "\(self.rawValue)"
+    }
+}
