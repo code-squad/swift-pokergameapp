@@ -9,16 +9,14 @@ import Foundation
 
 
 struct CardDeck{
-    private var currentCardDeck: Array<String> = []
+    private var currentCardDeck: Array<Card> = []
     
-    private func generateCardSet() -> Array<String> {
-        var result: Array<String> = []
-        let suitArray: Array<String> = ["♠️","♥️","♦️","☘️"]
-        let valueArray: Array<String> = ["1","2","3","4","5","6","7","8","9","10","J","Q","K"]
-        
-        for suit in suitArray {
-            for value in valueArray {
-                result.append("\(suit)\(value)")
+    private func generateCardSet() -> Array<Card> {
+        var result: Array<Card> = []
+        for suit in Card.Suit.allCases {
+            for value in Card.Value.allCases {
+                let newCard = Card(suit: suit, value: value)
+                result.append(newCard)
             }
         }
         return result
@@ -36,9 +34,12 @@ struct CardDeck{
         currentCardDeck.shuffle()
     }
     
-    mutating func removeOne() -> String {
-        let draw = currentCardDeck.popLast() ?? "No card left"
-        return draw
+    mutating func removeOne() -> Card? {
+        if let draw = currentCardDeck.popLast() {
+            return draw
+        } else {
+            return nil
+        }
     }
     
     mutating func reset() {
