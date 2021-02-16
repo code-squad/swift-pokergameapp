@@ -25,6 +25,10 @@ struct CardDeck {
         return cards.count
     }
     
+    func empty() -> Bool {
+        return cards.isEmpty
+    }
+    
     mutating func shuffle() {
         for index in cards.enumerated() {
             let radomIndex = Int.random(in: index.offset..<cards.count)

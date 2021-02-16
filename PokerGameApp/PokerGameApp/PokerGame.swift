@@ -34,7 +34,7 @@ class PockerGame {
             drawCard(cardType: cardType.rawValue)
             showPlayerCard()
             resetPlayerCard()
-            if cardDeck.count() == 0 {
+            if cardDeck.empty() {
                 return
             }
         }
