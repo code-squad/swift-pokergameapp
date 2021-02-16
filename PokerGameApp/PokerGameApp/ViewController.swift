@@ -8,6 +8,9 @@
 import UIKit
 
 class ViewController: UIViewController {
+    let cardBackImage: UIImage = {
+        UIImage(named: "card-back") ?? UIImage()
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,10 +27,10 @@ class ViewController: UIViewController {
             self.view.backgroundColor = UIColor(patternImage: image)
         }
     }
-    
-    private func createCardImageView() -> UIImageView {
+
+    private func setCardImageView() -> UIImageView {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "card-back")
+        imageView.image = cardBackImage
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor, multiplier: 1.27).isActive = true
         imageView.clipsToBounds = true
@@ -38,9 +41,9 @@ class ViewController: UIViewController {
     
     private func createCardStackView() {
         let stackView = UIStackView()
-        
+    
         for _ in 0..<7 {
-             stackView.addArrangedSubview(createCardImageView())
+            stackView.addArrangedSubview(setCardImageView())
         }
 
         stackView.axis = .horizontal
