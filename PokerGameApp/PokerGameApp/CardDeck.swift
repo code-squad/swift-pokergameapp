@@ -4,7 +4,8 @@ struct CardDeck {
     private var cards = [Card]()
     
     init() {
-        cards = Dealer.createCardSet()
+        cards = Card.createCardSet()
+        cards = cards.customShuffled()
     }
     
     public var count: Int {
@@ -12,7 +13,7 @@ struct CardDeck {
     }
     
     public mutating func shuffle() {
-        cards.customShuffled()
+        cards = cards.customShuffled()
     }
     
     public mutating func removeOne() -> Card? {
@@ -21,18 +22,20 @@ struct CardDeck {
     }
     
     public mutating func reset() {
-        cards = Dealer.createCardSet()
+        cards = Card.createCardSet()
     }
 }
 
 extension Array {
-    mutating func customShuffled() {
-        for index in 0..<self.count {
-            let randomIndex = Int.random(in: index..<self.count)
+    mutating func customShuffled() -> [Element] {
+        var shuffledElements = self
+        for index in 0..<shuffledElements.count {
+            let randomIndex = Int.random(in: index..<shuffledElements.count)
             
-            let temp = self[index]
-            self[index] = self[randomIndex]
-            self[randomIndex] = temp
+            let temp = shuffledElements[index]
+            shuffledElements[index] = shuffledElements[randomIndex]
+            shuffledElements[randomIndex] = temp
         }
+        return shuffledElements
     }
 }
