@@ -16,7 +16,7 @@ class Card {
         case spades = "\u{2660}"
         case hearts = "\u{2665}"
         case diamonds = "\u{2666}"
-        case clovers = "\u{1F340}"
+        case clovers = "\u{2618}"
     }
     
     enum Value: String, CaseIterable {
