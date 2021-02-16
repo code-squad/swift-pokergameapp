@@ -54,6 +54,7 @@ class CardViewController: UIViewController {
         for index in 0..<CardViewController.cardCount {
             let startpointX = self.view.frame.minX + (cardWidth + offset) * CGFloat(index)
             let startpointY = self.view.frame.minY + cardHeight
+            
             let imageView = UIImageView(frame: CGRect(x: startpointX,
                                                       y: startpointY,
                                                       width: cardWidth, height: cardHeight))
