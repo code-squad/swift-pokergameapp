@@ -15,15 +15,11 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let backgroundImage = UIImage(named: "bg_patter") {
+        if let backgroundImage = UIImage(named: "bg_pattern") {
             self.view.backgroundColor = UIColor(patternImage: backgroundImage)
         }
         
-        for _ in 0..<7 {
-            let pokerCardView = UIImageView(image: pokerCardImage)
-            pokerCardView.heightAnchor.constraint(equalTo: pokerCardView.widthAnchor, multiplier: 1.27).isActive = true
-            cardStackView.addArrangedSubview(pokerCardView)
-        }
+        add(numberOfCardViews: 7, to: cardStackView)
         
         cardStackView.axis = .horizontal
         cardStackView.alignment = .fill
@@ -35,5 +31,14 @@ class ViewController: UIViewController {
         cardStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         cardStackView.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor).isActive = true
         cardStackView.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor).isActive = true
+    }
+    
+    func add(numberOfCardViews: Int, to stackView: UIStackView) {
+        for _ in 0..<numberOfCardViews {
+            let pokerCardView = UIImageView(image: pokerCardImage)
+            pokerCardView.translatesAutoresizingMaskIntoConstraints = false
+            pokerCardView.heightAnchor.constraint(equalTo: pokerCardView.widthAnchor, multiplier: 1.27).isActive  = true
+            stackView.addArrangedSubview(pokerCardView)
+        }
     }
 }
