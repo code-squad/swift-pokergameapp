@@ -21,11 +21,7 @@ class ViewController: UIViewController {
         
         add(numberOfCardViews: 7, to: cardStackView)
         set(cardStackView)
-        
-        cardStackView.translatesAutoresizingMaskIntoConstraints = false
-        cardStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-        cardStackView.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor).isActive = true
-        cardStackView.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor).isActive = true
+        setConstraints(of: cardStackView)
     }
     
     func set(_ stackView: UIStackView) {
@@ -34,6 +30,13 @@ class ViewController: UIViewController {
         stackView.alignment = .fill
         stackView.distribution = .fillEqually
         stackView.spacing = 5.0
+    }
+    
+    func setConstraints(of view: UIView) {
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
+        view.leadingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.leadingAnchor).isActive = true
+        view.trailingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.trailingAnchor).isActive = true
     }
     
     func add(numberOfCardViews: Int, to stackView: UIStackView) {
