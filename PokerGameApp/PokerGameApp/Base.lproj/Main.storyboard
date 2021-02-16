@@ -2,13 +2,19 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 98ee7a0b8200856b5d9e272f705956ddc70eb53d
     <device id="retina6_7" orientation="portrait" appearance="light"/>
 =======
     <device id="retina6_1" orientation="portrait" appearance="light"/>
 >>>>>>> 95d885e9fdf8d99c3ba476339fd9f3daf23b2c79
+<<<<<<< HEAD
 =======
     <device id="retina6_1" orientation="portrait" appearance="light"/>
 >>>>>>> 95d885e9fdf8d99c3ba476339fd9f3daf23b2c79
+=======
+>>>>>>> 98ee7a0b8200856b5d9e272f705956ddc70eb53d
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -22,6 +28,9 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 98ee7a0b8200856b5d9e272f705956ddc70eb53d
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -91,15 +100,21 @@
                             <constraint firstItem="6Pf-RP-j2X" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="sxm-bN-d40"/>
                         </constraints>
 =======
+<<<<<<< HEAD
 =======
 >>>>>>> 95d885e9fdf8d99c3ba476339fd9f3daf23b2c79
+=======
+>>>>>>> 98ee7a0b8200856b5d9e272f705956ddc70eb53d
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 95d885e9fdf8d99c3ba476339fd9f3daf23b2c79
 =======
+=======
+>>>>>>> 98ee7a0b8200856b5d9e272f705956ddc70eb53d
 >>>>>>> 95d885e9fdf8d99c3ba476339fd9f3daf23b2c79
                     </view>
                 </viewController>
@@ -107,11 +122,16 @@
             </objects>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             <point key="canvasLocation" x="131.8840579710145" y="114.50892857142857"/>
 =======
             <point key="canvasLocation" x="132" y="115"/>
 >>>>>>> 95d885e9fdf8d99c3ba476339fd9f3daf23b2c79
 =======
+=======
+            <point key="canvasLocation" x="131.8840579710145" y="114.50892857142857"/>
+=======
+>>>>>>> 98ee7a0b8200856b5d9e272f705956ddc70eb53d
             <point key="canvasLocation" x="132" y="115"/>
 >>>>>>> 95d885e9fdf8d99c3ba476339fd9f3daf23b2c79
         </scene>

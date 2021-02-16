@@ -17,6 +17,9 @@
 - 추가 구현 : 카드 모서리를 둥글게 만들어봤다
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 98ee7a0b8200856b5d9e272f705956ddc70eb53d
 
 ### view 와 stackView 제약 조건을 학습함
 
@@ -52,5 +55,8 @@ let cardStackView = UIStackView(arrangedSubviews: cards)
 
 =======
 >>>>>>> 95d885e9fdf8d99c3ba476339fd9f3daf23b2c79
+<<<<<<< HEAD
 =======
 >>>>>>> 95d885e9fdf8d99c3ba476339fd9f3daf23b2c79
+=======
+>>>>>>> 98ee7a0b8200856b5d9e272f705956ddc70eb53d
