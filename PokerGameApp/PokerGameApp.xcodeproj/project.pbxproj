@@ -13,6 +13,7 @@
 		88F39C9A25DA88EF0006A7DF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88F39C9825DA88EF0006A7DF /* Main.storyboard */; };
 		88F39C9C25DA88F00006A7DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88F39C9B25DA88F00006A7DF /* Assets.xcassets */; };
 		88F39C9F25DA88F00006A7DF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88F39C9D25DA88F00006A7DF /* LaunchScreen.storyboard */; };
+		88F39CB225DB61E50006A7DF /* CardDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F39CB125DB61E50006A7DF /* CardDeck.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		88F39C9B25DA88F00006A7DF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		88F39C9E25DA88F00006A7DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		88F39CA025DA88F00006A7DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		88F39CB125DB61E50006A7DF /* CardDeck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDeck.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 			children = (
 				88F39C9225DA88EF0006A7DF /* AppDelegate.swift */,
 				88F39C9425DA88EF0006A7DF /* SceneDelegate.swift */,
+				88F39CB125DB61E50006A7DF /* CardDeck.swift */,
 				88F39C9625DA88EF0006A7DF /* ViewController.swift */,
 				88F39C9825DA88EF0006A7DF /* Main.storyboard */,
 				88F39C9B25DA88F00006A7DF /* Assets.xcassets */,
@@ -139,6 +142,7 @@
 			files = (
 				88F39C9725DA88EF0006A7DF /* ViewController.swift in Sources */,
 				88F39C9325DA88EF0006A7DF /* AppDelegate.swift in Sources */,
+				88F39CB225DB61E50006A7DF /* CardDeck.swift in Sources */,
 				88F39C9525DA88EF0006A7DF /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
