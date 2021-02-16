@@ -28,8 +28,8 @@ class ViewController: UIViewController {
     }
     
     private func makeCardDeck() {
-        var cardDeck = CardDeck(cards: CardDeckGenerator.generateCardDeck())
-        print(cardDeck.shuffle())
+        var cardDeck = CardDeck()
+        cardDeck.shuffle()
         cardDeck.removeOne()
     }
 }
