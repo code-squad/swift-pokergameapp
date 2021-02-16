@@ -16,6 +16,7 @@
 
 - 추가 구현 : 카드 모서리를 둥글게 만들어봤다
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 ### view 와 stackView 제약 조건을 학습함
 
@@ -49,5 +50,7 @@ let cardStackView = UIStackView(arrangedSubviews: cards)
 - raw value 를 가진 enum 으로 카드 모양 표현
 - Dictionary 로 카드 숫자 표현
 
+=======
+>>>>>>> 95d885e9fdf8d99c3ba476339fd9f3daf23b2c79
 =======
 >>>>>>> 95d885e9fdf8d99c3ba476339fd9f3daf23b2c79

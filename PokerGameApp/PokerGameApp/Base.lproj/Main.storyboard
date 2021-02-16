@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
 <<<<<<< HEAD
+<<<<<<< HEAD
     <device id="retina6_7" orientation="portrait" appearance="light"/>
+=======
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+>>>>>>> 95d885e9fdf8d99c3ba476339fd9f3daf23b2c79
 =======
     <device id="retina6_1" orientation="portrait" appearance="light"/>
 >>>>>>> 95d885e9fdf8d99c3ba476339fd9f3daf23b2c79
@@ -16,6 +20,7 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="PokerGameApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+<<<<<<< HEAD
 <<<<<<< HEAD
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -86,17 +91,26 @@
                             <constraint firstItem="6Pf-RP-j2X" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="sxm-bN-d40"/>
                         </constraints>
 =======
+=======
+>>>>>>> 95d885e9fdf8d99c3ba476339fd9f3daf23b2c79
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+<<<<<<< HEAD
+>>>>>>> 95d885e9fdf8d99c3ba476339fd9f3daf23b2c79
+=======
 >>>>>>> 95d885e9fdf8d99c3ba476339fd9f3daf23b2c79
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
 <<<<<<< HEAD
+<<<<<<< HEAD
             <point key="canvasLocation" x="131.8840579710145" y="114.50892857142857"/>
+=======
+            <point key="canvasLocation" x="132" y="115"/>
+>>>>>>> 95d885e9fdf8d99c3ba476339fd9f3daf23b2c79
 =======
             <point key="canvasLocation" x="132" y="115"/>
 >>>>>>> 95d885e9fdf8d99c3ba476339fd9f3daf23b2c79
