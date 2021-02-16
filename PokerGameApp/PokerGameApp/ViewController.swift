@@ -10,18 +10,18 @@ import UIKit
 class ViewController: UIViewController {
     
     var stackView: UIStackView!
-    let image = UIImage(named: "card-back")
+    let cardBackImage = UIImage(named: "card-back")
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setBackground()
         setStackView()
-        Card.drawingCardRandomly()
+        drawingCardRandomly()
     }
    
     func setBackground() {
-        guard let image = UIImage(named: "bg_pattern") else { return }
-        self.view.backgroundColor = UIColor(patternImage: image)
+        guard let bgImage = UIImage(named: "bg_pattern") else { return }
+        self.view.backgroundColor = UIColor(patternImage: bgImage)
     }
     
     func setStackView() {
@@ -37,19 +37,24 @@ class ViewController: UIViewController {
         }
         
         self.view.addSubview(stackView)
-        
         stackView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         stackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 100).isActive = true
     }
     
     func generateImage() -> UIImageView {
+        let width = self.view.bounds.width/8
+        let height = self.view.bounds.width/8 * 1.27
         let imageView = UIImageView()
-        
-        imageView.widthAnchor.constraint(equalToConstant: self.view.bounds.width/8).isActive = true
-        imageView.heightAnchor.constraint(equalToConstant: (self.view.bounds.width/8)*1.27).isActive = true
-        
-        imageView.image = image
+        imageView.widthAnchor.constraint(equalToConstant: width).isActive = true
+        imageView.heightAnchor.constraint(equalToConstant: height).isActive = true
+        imageView.image = cardBackImage
         return imageView
+    }
+    
+    func drawingCardRandomly() {
+        guard let randSuit = Card.Suit.allCases.randomElement()?.rawValue else { return }
+        guard let randRank = Card.Rank.allCases.randomElement()?.rawValue else { return }
+        print(String(describing: randSuit) + String(describing: randRank))
     }
 }
 
