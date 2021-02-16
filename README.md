@@ -96,3 +96,75 @@ private func addCardIntoStackView() {
 #### 실행화면 (lightContent, darkContent, default)
 
 <img src="https://user-images.githubusercontent.com/74946802/107921183-7fdcbf80-6fb1-11eb-8e61-4bb85f86c9db.png" width="290" height="500"> <img src="https://user-images.githubusercontent.com/74946802/107921281-a69af600-6fb1-11eb-88f3-84420df1b7b4.png" width="290" height="500"> <img src="https://user-images.githubusercontent.com/74946802/107921281-a69af600-6fb1-11eb-88f3-84420df1b7b4.png" width="290" height="500">
+
+## Step.2
+
+#### Card 클래스 및 enum 타입 생성
+```swift
+class Card {
+    let suit: Suit
+    let rank: Rank
+    
+    init(suit:Suit, rank:Rank) {
+        self.suit = suit
+        self.rank = rank
+    }
+    
+    // 공통적인 타입을 가진 관련있는 값의 그룹을 묶기 위하여 enum타입을 활용
+    enum Suit: Character {
+        case spades = "♠️"
+        case heart = "♥️"
+        case diamonds = "♦️"
+        case clubs = "♣️"
+    }
+    
+    enum Rank: Int {
+        case Ace = 1
+        case Two
+        case Three
+        case Four
+        case Five
+        case Six
+        case Seven
+        case Eight
+        case Nine
+        case Ten
+        case J
+        case Q
+        case K
+    }
+}
+```
+- card라는 class를 생성하고 그 안에 enum을 활용하여 카드의 정보를 입력
+- enum은 공통적인 타입을 갖는 관련있는 값을 열거하기에 좋은 타입
+- enum에 rawValue를 지정하기 위해서는 반드시 해당 타입으로 지정이 필요
+- rawValue가 정수형인 경우 case별로 지정을 안해줘도 자동으로 +1씩 증가
+
+#### 문자열을 반환하는 카드 정보 출력 함수 생성
+```swift
+func makeCardInfo () -> String {
+    switch self.rank {
+    case .Ace, .J, .Q, .K:
+        return "\(suit.rawValue)\(rank)"
+    default:
+        return "\(suit.rawValue)\(rank.rawValue)"
+    }
+}
+```
+- Ace, J, Q, K의 경우 입력받은 suit의 rawValue와 rank를 반환
+- 그 외의 경우에는 suit의 rawValue와 rank의 raVlue를 반환
+
+#### viewController의 viewDidLoad에서 콘솔에 출력
+```swift
+override func viewDidLoad() {
+    let heartQ = Card(suit: .heart, rank: .Q).makeCardInfo()
+    let spadeSeven = Card(suit: .spades, rank: .Seven).makeCardInfo()
+    print(heartQ)
+    print(spadeSeven)
+}
+```
+- 임의의 카드 하트Q, 스페이드7 콘솔에 출력
+
+#### 출력화면
+
+<img width="141" alt="스크린샷 2021-02-16 오전 11 47 04" src="https://user-images.githubusercontent.com/74946802/108013469-19a67a00-704f-11eb-8bfc-42ef3809dcc5.png">
