@@ -8,8 +8,9 @@
 import UIKit
 
 class ViewController: UIViewController {
-    let cardBacksideImage = UIImage(named: "card-back")
+    var cardBacksideImage = UIImage()
     let trouble = TroubleShooter()
+    var cardStackView = UIStackView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,7 +20,8 @@ class ViewController: UIViewController {
         super.viewDidAppear(false)
         
         do{
-            self.view.backgroundColor = UIColor(patternImage: try optionalBindingBGImage())
+            self.view.backgroundColor = UIColor(patternImage: try optionalBindingImage(calledCard: "bg_pattern"))
+            self.cardBacksideImage = try optionalBindingImage(calledCard: "card-back")
         }
         catch {
             print(error)
@@ -27,14 +29,33 @@ class ViewController: UIViewController {
             //UIControl().sendAction(#selector(URLSessionTask.suspend), to: UIApplication.shared, for: nil)
         }
         
-        for _ in 0..<7 {
-            self.view.addSubview(backsideOfCard())
-        }
+        setStackView(cardStackView)
+        addCard2StackView(cardCount: 7, stackView: cardStackView)
+        setStackViewConstraints(stackView: cardStackView)
     }
     
-    private func optionalBindingBGImage() throws -> UIImage {
-        guard let image = UIImage(named: "bg_pattern") else {
-            throw TroubleShooter.errors.optionalBindingError
+    private func addCard2StackView( cardCount : Int ,stackView : UIStackView) {
+        for _ in 0..<cardCount {
+            stackView.addArrangedSubview(backsideOfCard())
+        }
+    }
+    private func setStackViewConstraints(stackView : UIStackView) {
+        stackView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 10).isActive = true
+        stackView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 10).isActive = true
+        stackView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -10).isActive = true
+    }
+    
+    private func setStackView(_ stackView : UIStackView) {
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .horizontal
+        stackView.spacing = 5
+        stackView.distribution = .fillEqually
+        self.view.addSubview(stackView)
+    }
+    
+    private func optionalBindingImage(calledCard : String) throws -> UIImage {
+        guard let image = UIImage(named: calledCard) else {
+            throw TroubleShooter.errors.imageOptionalBindingError
         }
         return image
     }
@@ -43,17 +64,10 @@ class ViewController: UIViewController {
         return .lightContent
     }
 
-    func backsideOfCard() -> UIImageView {
-        
-        let cardBackSideWidth : CGFloat = (view.bounds.width - 80)/7  //214
-        let cardBackSideHeight : CGFloat = cardBackSideWidth * 1.27
-        
-        let downPosX: CGFloat = 10 + CGFloat(self.view.subviews.count ) * (cardBackSideWidth + 10)
-        let downPosY: CGFloat = 50
-        
-        let imageView: UIImageView = UIImageView(frame: CGRect(x: downPosX, y: downPosY, width: cardBackSideWidth, height: cardBackSideHeight))
-        imageView.image = self.cardBacksideImage
-
+    private func backsideOfCard() -> UIImageView {
+        let imageView = UIImageView(image: self.cardBacksideImage)
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor, multiplier: 1.27).isActive = true
         return imageView
     }
 }

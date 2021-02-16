@@ -10,7 +10,7 @@ import UIKit
 
 class TroubleShooter {
     enum errors : Error {
-        case optionalBindingError
+        case imageOptionalBindingError
     }
     func fatalError() -> UIAlertController {
         
