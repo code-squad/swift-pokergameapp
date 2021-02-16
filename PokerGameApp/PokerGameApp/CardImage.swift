@@ -15,7 +15,7 @@ enum CardImage {
 }
 
 struct CardBack {
-    private (set) var cardBack: UIImageView = {
+    static private (set) var image: UIImageView = {
         let imageView = UIImageView()
         imageView.layer.masksToBounds = true
         imageView.layer.cornerRadius = 6

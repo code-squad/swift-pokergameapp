@@ -29,7 +29,7 @@ class Hand: UIStackView {
     }
     
     private func setHand() {
-        let cardBack = CardBack().cardBack
+        let cardBack = CardBack.image
         for _ in 0..<7 {
             self.addArrangedSubview(cardBack)
         }
