@@ -45,8 +45,8 @@ struct CardDeck {
     }
 }
 
-struct CardsGenerator {
-    static func generateCards() -> [Card] {
+struct CardDeckGenerator {
+    static func generateCardDeck() -> [Card] {
         var cards: [Card] = []
         
         for suit in Card.Suit.allCases {
