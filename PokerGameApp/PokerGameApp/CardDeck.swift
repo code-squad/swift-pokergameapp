@@ -9,9 +9,6 @@ import Foundation
 
 struct CardDeck {
     private var cards = [Card]()
-    private var total: Int {
-        return cards.count
-    }
     
     init() {
         cards = self.reset()
@@ -27,12 +24,12 @@ struct CardDeck {
         
         func swapCardWithRandomFollowingCard(index: Int) {
             let randomIndex = index +
-                Int(arc4random_uniform(UInt32(total - index)))
+                Int(arc4random_uniform(UInt32(count() - index)))
             shuffledCards.swapAt(index, randomIndex)
             swappedIndexes.append(randomIndex)
         }
         
-        for index in 0..<total {
+        for index in 0..<count() {
             let cardWasNotSwappedYet = !swappedIndexes.contains(index)
             guard cardWasNotSwappedYet else {
                 continue
@@ -44,14 +41,14 @@ struct CardDeck {
     }
     
     mutating func removeOne() -> Card {
-        let randomIndex = Int(arc4random_uniform(UInt32(total - 1)))
+        let randomIndex = Int(arc4random_uniform(UInt32(count() - 1)))
         let cardToRemoved = cards.remove(at: randomIndex)
 
         return cardToRemoved
     }
     
     mutating func count() -> Int {
-        return total
+        return cards.count
     }
 }
 
