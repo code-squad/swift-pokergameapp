@@ -8,5 +8,19 @@
 import Foundation
 
 struct CardDeck {
+    var Cards: [PokerCard] = []
     
+    init() {
+        self.Cards = makeCards()
+    }
+    
+    private func makeCards() -> [PokerCard] {
+        var tempCards:[PokerCard] = []
+        for suit in PokerCard.Suit.allCases {
+            for rank in PokerCard.Rank.allCases {
+                tempCards.append(PokerCard(suit: suit, rank: rank))
+            }
+        }
+        return tempCards
+    }
 }
