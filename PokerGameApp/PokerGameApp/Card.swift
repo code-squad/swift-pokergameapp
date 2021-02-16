@@ -7,26 +7,27 @@
 
 import Foundation
 
-class Card {
+class CardDeck {
     
     static var deck = [String]()
     
     static func makeDeck() {
         
-        for cardNumber in cardValue.cardNum.allCases {
-            deck.append(cardNumber.rawValue+String(cardValue.cardShape.spades.rawValue))
-            deck.append(cardNumber.rawValue+String(cardValue.cardShape.clubs.rawValue))
-            deck.append(cardNumber.rawValue+String(cardValue.cardShape.diamonds.rawValue))
-            deck.append(cardNumber.rawValue+String(cardValue.cardShape.hearts.rawValue))
+        for shape in Card.cardShape.allCases {
+            
+            for num in Card.cardNum.allCases {
+                
+                CardDeck.deck.append("\(shape)\(num)")
+                
+            }
+            
         }
-        
-        print(deck.randomElement()!)
         
     }
     
 }
 
-struct cardValue {
+struct Card {
     
     // 상속이나 변경이 필요하지 않아 따로 struct에 구현했습니다.
     // 이를 통해 call by value, 값을 복사함으로써 원본 변경에 대한 위험을 줄일 수 있다고 이해할 수 있는지 더 생각하고 있습니다.
@@ -42,6 +43,39 @@ struct cardValue {
     enum cardNum: String, CaseIterable {
         
         case one = "Ace", two = "2", three = "3", four = "4", five = "5", six = "6", seven = "7", eight = "8", nine = "9", ten = "10", eleven = "Jack", twelve = "Queen", thirteen = "King"
+        
+    }
+    
+    private var shape: cardShape
+    private var num: cardNum
+    
+}
+
+extension Card: CustomStringConvertible {
+    
+    var description: String {
+        
+        return "(\(shape)\(num))"
+        
+    }
+
+}
+
+extension Card.cardNum: CustomStringConvertible {
+    
+    var description: String{
+        
+        return self.rawValue
+        
+    }
+    
+}
+
+extension Card.cardShape: CustomStringConvertible {
+    
+    var description: String{
+        
+        return String(self.rawValue)
         
     }
     
