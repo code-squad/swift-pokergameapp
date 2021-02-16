@@ -22,7 +22,7 @@ class ViewController: UIViewController {
     }
     
     private func setCardHand() {
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named: CardImageString.background.rawValue) ?? UIImage())
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: CardImageString.background) ?? UIImage())
         self.view.addSubview(hand)
         hand.setConstraint(superView: self.view)
     }
