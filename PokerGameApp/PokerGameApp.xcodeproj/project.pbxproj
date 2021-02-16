@@ -13,6 +13,7 @@
 		CE1C23D025DA3C4400109419 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE1C23CE25DA3C4400109419 /* Main.storyboard */; };
 		CE1C23D225DA3C4500109419 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE1C23D125DA3C4500109419 /* Assets.xcassets */; };
 		CE1C23D525DA3C4500109419 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE1C23D325DA3C4500109419 /* LaunchScreen.storyboard */; };
+		CE1C23E025DB645800109419 /* PokerCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1C23DF25DB645800109419 /* PokerCard.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		CE1C23D125DA3C4500109419 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE1C23D425DA3C4500109419 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CE1C23D625DA3C4500109419 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CE1C23DF25DB645800109419 /* PokerCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokerCard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				CE1C23D125DA3C4500109419 /* Assets.xcassets */,
 				CE1C23D325DA3C4500109419 /* LaunchScreen.storyboard */,
 				CE1C23D625DA3C4500109419 /* Info.plist */,
+				CE1C23DF25DB645800109419 /* PokerCard.swift */,
 			);
 			path = PokerGameApp;
 			sourceTree = "<group>";
@@ -138,6 +141,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE1C23CD25DA3C4400109419 /* ViewController.swift in Sources */,
+				CE1C23E025DB645800109419 /* PokerCard.swift in Sources */,
 				CE1C23C925DA3C4400109419 /* AppDelegate.swift in Sources */,
 				CE1C23CB25DA3C4400109419 /* SceneDelegate.swift in Sources */,
 			);
