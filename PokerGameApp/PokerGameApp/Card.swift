@@ -1,0 +1,28 @@
+import Foundation
+
+class Card {
+    
+    // 공통적인 타입을 가진 관련있는 값의 그룹을 묶기 위하여 enum타입을 활용
+    enum Suit: Character {
+        case spades = "♠️"
+        case heart = "♥️"
+        case diamonds = "♦️"
+        case clubs = "♣️"
+    }
+    
+    enum Rank: Int {
+        case Ace = 1
+        case Two
+        case Three
+        case Four
+        case Five
+        case Six
+        case Seven
+        case Eight
+        case Nine
+        case Ten
+        case J
+        case Q
+        case K
+    }
+}
