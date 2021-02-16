@@ -16,7 +16,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setBackGround()
-        drawCard()
+        setCard()
         print(Card(rank: .J, suit: .clubs))
         print(Card(rank: .Five, suit: .hearts))
     }
@@ -26,17 +26,18 @@ class ViewController: UIViewController {
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "bg_pattern.png") ?? UIImage())
     }
     
-    func drawCard() {
-        guard let cardImage : UIImage = UIImage(named: "card-back.png") else { return }
+    func setCard() {
+        let cardImage : UIImage = UIImage(named: "card-back.png") ?? UIImage()
         let numberOfCard = 7
         let divideSizeOfCard: CGFloat = CGFloat(numberOfCard) + 1
         let padding : CGFloat = 5
         let width = self.view.bounds.width / divideSizeOfCard
         let height = width * 1.27
-        
-        for i in 0..<numberOfCard{
+        let cardRange = 0..<numberOfCard
+        let posY : CGFloat = 44
+
+        for i in cardRange{
             let posX = width * CGFloat(i) + (padding * CGFloat(i)) + padding
-            let posY : CGFloat = 44
             let imageView = UIImageView(frame: CGRect(x: posX, y: posY, width: width, height: height))
 
             imageView.image = cardImage
