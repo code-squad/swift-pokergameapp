@@ -14,10 +14,10 @@ class Card {
     let suit: Suit
     
     enum Suit: String, CaseIterable {
-        case spade = "\u{2660}"
-        case club = "\u{2663}"
-        case heart = "\u{2665}"
-        case diamond = "\u{2666}"
+        case spade = "\u{2660}\u{FE0F}"
+        case club = "\u{2663}\u{FE0F}"
+        case heart = "\u{2665}\u{FE0F}"
+        case diamond = "\u{2666}\u{FE0F}"
     }
     
     /// 1~13까지만 설정 가능하도록 enum 통해 초기화하되,

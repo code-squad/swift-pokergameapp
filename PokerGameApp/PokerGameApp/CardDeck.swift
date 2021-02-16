@@ -9,7 +9,7 @@ import Foundation
 
 struct CardDeck {
     
-    var currentDeck = [Card]()
+    private var currentDeck = [Card]()
     
     private var wholeDeck: [Card] {
         var deck = [Card]()
@@ -21,30 +21,27 @@ struct CardDeck {
         return deck
     }
     
-    init() { reset() }
+    init() { currentDeck = wholeDeck }
     
     func count() -> Int { return currentDeck.count }
     
-    mutating func shuffle() {
-        //modern fisher-yates shuffle
-        let lastIndex = currentDeck.count - 1
+    mutating func shuffle() -> Int {
+        let lastIdx = count() - 1
         
-        for i in 0...lastIndex {
-            let currentIndex = lastIndex - i
-            let randomIndex = Int.random(in: 0...currentIndex)
-            let temp = currentDeck[randomIndex]
-            currentDeck[randomIndex] = currentDeck[currentIndex]
-            currentDeck[currentIndex] = temp
+        for i in 0...lastIdx {
+            let currIdx = lastIdx - i
+            let randIdx = Int.random(in: 0...currIdx)
+            (currentDeck[randIdx], currentDeck[currIdx]) = (currentDeck[currIdx], currentDeck[randIdx])
         }
+        
+        return count()
     }
     
-    mutating func removeOne() -> Card? {
-        return currentDeck.popLast()
-    }
+    mutating func removeOne() -> Card? { return currentDeck.popLast() }
     
-    mutating func reset() {
+    mutating func reset() -> Int {
         currentDeck = wholeDeck
-        shuffle()
+        return count()
     }
     
     private func deckPart(from suit: Card.Suit) -> [Card] {
