@@ -13,7 +13,6 @@ struct Scenario {
     
     mutating func scene() {
         initPrint()
-        countPrint()
         
         deck.shuffle()
         shufflePrint()
@@ -23,19 +22,10 @@ struct Scenario {
         
         deck.reset()
         initPrint()
-        countPrint(deck: deck)
     }
     
     private func initPrint() {
-        print("카드 전체를 초기화했습니다")
-    }
-    
-    private func countPrint(deck : CardDeck) {
-        print("총 \(deck.count())의 카드가 있습니다")
-    }
-    
-    private func countPrint() {
-        print("총 \(deck.count())의 카드가 있습니다")
+        print("카드 전체를 초기화했습니다\n총 \(deck.count())의 카드가 있습니다")
     }
     
     private func shufflePrint() {
