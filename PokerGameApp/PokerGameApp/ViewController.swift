@@ -14,7 +14,7 @@ class ViewController: UIViewController {
         makeBackGround()
         makeStackView()
         let cardData = Card(suit: .heart, rank: .seven)
-        print("\(cardData.description)")
+        print(cardData)
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle{

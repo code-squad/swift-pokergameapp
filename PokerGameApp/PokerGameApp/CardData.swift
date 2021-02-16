@@ -7,7 +7,9 @@
 
 import Foundation
 
-class Card {
+class Card: CustomStringConvertible {
+
+    
     
     // 컨텍스트 외부에서 중첩된 사용을 하기 위해 Nested enum 타입을 사용
     // Suit을 위한 열거형 생성, rawValue가 Character 이므로 Character 타입 지정
