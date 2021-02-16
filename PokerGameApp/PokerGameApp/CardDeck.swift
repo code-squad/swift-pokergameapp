@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct CardDect {
+struct CardDeck {
     var cards = [Card]()
     var count: Int {
         return cards.count
