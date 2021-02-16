@@ -19,7 +19,7 @@ struct CardDeck {
         }
     }
     
-    func printCountOfCards() -> Int {
+    func countOfCards() -> Int {
         return cards.count
     }
     
@@ -27,8 +27,9 @@ struct CardDeck {
         cards.shuffle()
     }
     
-    mutating func removeOne() {
-        cards.remove(at: Int(arc4random_uniform(UInt32(cards.count))))
+    mutating func removeOne() -> Card {
+        let drawnCard = cards.remove(at: Int(arc4random_uniform(UInt32(cards.count))))
+        return drawnCard
     }
     
     mutating func reset() {
