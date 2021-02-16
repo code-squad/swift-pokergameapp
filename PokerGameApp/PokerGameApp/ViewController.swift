@@ -1,3 +1,4 @@
+
 import UIKit
 
 class ViewController: UIViewController {
@@ -9,6 +10,7 @@ class ViewController: UIViewController {
         setUpBackGround()
         setStackView()
         addCardIntoStackView()
+
         let heartQ = Card(suit: .heart, rank: .Q).makeCardInfo()
         let spadeSeven = Card(suit: .spades, rank: .Seven).makeCardInfo()
         print(heartQ)
@@ -17,10 +19,13 @@ class ViewController: UIViewController {
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
+
     }
+    
     
     private func setUpBackGround () {
         self.view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "background"))
+
     }
 
     private func setStackView() {
@@ -47,5 +52,6 @@ class ViewController: UIViewController {
         cardImage.heightAnchor.constraint(equalTo: cardImage.widthAnchor, multiplier: 1.27).isActive = true
         return cardImage
     }
+
 }
 
