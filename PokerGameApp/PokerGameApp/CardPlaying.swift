@@ -7,29 +7,29 @@
 
 import Foundation
 
-class CardPlaying: CardDeck {
+class CardPlaying {
     
-    public static func countDeck() {
-        print("Remain cards: \(deck.count)")
+    let cardDeck = CardDeck()
+    
+    public func countDeck() {
+        print("Remain cards: \(cardDeck.deck.count)")
     }
     
-    public static func shuffleDeck() {
-        deck.shuffle()
+    public func shuffleDeck() {
+        cardDeck.deck.shuffle()
     }
     
-    public static func removeOne() {
-        print(deck[0])
-        deck.removeFirst()
-        CardPlaying.countDeck()
+    public func removeOne() {
+        print(CardDeck().deck[0])
+        cardDeck.deck.removeFirst()
+        self.countDeck()
     }
     
-    public static func resetDeck() {
-        CardDeck.deck.removeAll()
-        CardDeck.makeDeck()
+    public func resetDeck() {
+        cardDeck.deck.removeAll()
+        cardDeck.makeDeck()
         print("Reset deck")
-        CardPlaying.countDeck()
+        self.countDeck()
     }
-    
-    
-    
+
 }
