@@ -13,10 +13,10 @@ class Card {
     let cardDescription: String
     
     enum Suit: Character, CaseIterable {
-        case spades = "♠️"
-        case hearts = "♥️"
-        case diamonds = "♦️"
-        case clovers = "🍀"
+        case spades = "\u{2660}"
+        case hearts = "\u{2665}"
+        case diamonds = "\u{2666}"
+        case clovers = "\u{1F340}"
     }
     
     enum Value: String, CaseIterable {
