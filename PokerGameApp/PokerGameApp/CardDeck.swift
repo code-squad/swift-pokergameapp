@@ -27,13 +27,12 @@ struct CardDeck {
         
         func swapCardWithRandomFollowingCard(index: Int) {
             let randomIndex = index +
-                Int(arc4random_uniform(UInt32(maxCardsCount - index)))
+                Int(arc4random_uniform(UInt32(total - index)))
             shuffledCards.swapAt(index, randomIndex)
             swappedIndexes.append(randomIndex)
         }
         
-        let maxCardsCount = 52
-        for index in 0..<maxCardsCount {
+        for index in 0..<total {
             let cardWasNotSwappedYet = !swappedIndexes.contains(index)
             guard cardWasNotSwappedYet else {
                 continue
