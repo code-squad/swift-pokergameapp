@@ -21,8 +21,9 @@ struct TestCardDeck {
     }
     
     mutating func pop() {
-        let card = deck.removeOne()
-        print(card)
+        if let card = deck.removeOne() {
+            print(card)
+        }
         print("총 \(deck.count)장의 카드가 남아있습니다.")
     }
     
