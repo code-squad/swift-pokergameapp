@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct PlayingCardDeck {
+class PlayingCardDeck {
     
     public var count : Int {
         get {
@@ -20,7 +20,7 @@ struct PlayingCardDeck {
         reset()
     }
     
-    mutating func initialize(){
+    private func initialize(){
         for suit in PlayingCard.Suit.allCases {
             for rank in PlayingCard.Rank.allCases {
                 cards.append(PlayingCard(suit: suit, rank: rank))
@@ -28,15 +28,16 @@ struct PlayingCardDeck {
         }
     }
     
-    mutating func shuffle(){
+    func shuffle(){
         cards.shuffle()
     }
     
-    mutating func removeOne() -> PlayingCard?{
+    @discardableResult
+    func removeOne() -> PlayingCard?{
         return cards.popLast()
     }
     
-    mutating func reset(){
+    func reset(){
         cards.removeAll()
         initialize()
     }
