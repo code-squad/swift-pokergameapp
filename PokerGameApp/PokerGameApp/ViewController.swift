@@ -14,7 +14,6 @@ class ViewController: UIViewController {
         if let pattern = UIImage(named: "bg_pattern.png") {
             self.view.backgroundColor = UIColor(patternImage: pattern)
         }
-        
         setImageStackView()
     }
     

@@ -7,7 +7,8 @@ struct TestGame {
         print("총 \(deck.count)의 카드가 있습니다.")
     }
     
-    public func shuffle() {
+    public mutating func shuffle() {
+        deck.shuffle()
         print("전체 \(deck.count)장의 카드를 섞었습니다.")
     }
     
