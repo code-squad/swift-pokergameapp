@@ -15,8 +15,9 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        guard let backgroundImage = UIImage(named: "bg_pattern") else { return }
-        self.view.backgroundColor = UIColor(patternImage: backgroundImage)
+        if let backgroundImage = UIImage(named: "bg_patter") {
+            self.view.backgroundColor = UIColor(patternImage: backgroundImage)
+        }
         
         for _ in 0..<7 {
             let pokerCardView = UIImageView(image: pokerCardImage)
