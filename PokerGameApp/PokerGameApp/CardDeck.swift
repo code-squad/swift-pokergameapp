@@ -24,7 +24,7 @@ struct CardDeck{
         return result
     }
     
-    private init() {
+    init() {
         currentCardDeck = generateCardSet()
     }
     

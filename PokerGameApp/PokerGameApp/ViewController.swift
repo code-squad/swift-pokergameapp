@@ -8,6 +8,8 @@
 import UIKit
 
 class ViewController: UIViewController {
+    var cardDeck = CardDeck()
+    
     let cardStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -27,6 +29,12 @@ class ViewController: UIViewController {
         self.view.addSubview(cardStackView)
         configureCardStackView(cardStackView: cardStackView)
         addSubviewToCardStackView(numberOfCards: 7, image: cardBacksideImage)
+        
+        
+        testScenario(command: "카드초기화")
+        testScenario(command: "카드섞기")
+        testScenario(command: "카드하나뽑기")
+        testScenario(command: "카드하나뽑기")
     }
     
     func makeCardImageView(with newImage: UIImage) -> UIImageView {
@@ -47,6 +55,15 @@ class ViewController: UIViewController {
             let newCardImageView = makeCardImageView(with: image)
             cardStackView.addArrangedSubview(newCardImageView)
             newCardImageView.widthAnchor.constraint(equalTo: cardStackView.heightAnchor, multiplier: 1/1.27).isActive = true
+        }
+    }
+    
+    func testScenario(command: String) {
+            switch command {
+            case "카드초기화": print("카드 전체를 초기화했습니다.");print("총\(cardDeck.count())장의 카드가 있습니다.")
+            case "카드섞기": cardDeck.shuffle(); print("전체 \(cardDeck.count())장의 카드를 섞었습니다.")
+            case "카드하나뽑기": print("\(cardDeck.removeOne())\n총 \(cardDeck.count())장의 카드가 남았습니다.)")
+            default: print("sdf")
         }
     }
 }
