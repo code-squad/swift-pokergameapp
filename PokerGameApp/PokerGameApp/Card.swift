@@ -20,11 +20,6 @@ class Card {
     enum Rank: String, CaseIterable {
         case one = "A", two = "2", three = "3", four = "4", five = "5", six = "6", seven = "7", eight = "8", nine = "9", ten = "10", eleven = "J", twelve = "Q", thirteen = "K"
     }
-    static func drawingCardRandomly() {
-        guard let randSuit = Card.Suit.allCases.randomElement()?.rawValue else { return }
-        guard let randRank = Card.Rank.allCases.randomElement()?.rawValue else { return }
-        print(String(describing: randSuit) + String(describing: randRank))
-    }
 }
 
 
