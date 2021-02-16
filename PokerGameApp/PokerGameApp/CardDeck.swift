@@ -32,7 +32,9 @@ struct CardDeck {
     mutating func shuffle() {
         for index in cards.enumerated() {
             let radomIndex = Int.random(in: index.offset..<cards.count)
-            cards.swapAt(index.offset, radomIndex)
+            let temp = cards[index.offset]
+            cards[index.offset] = cards[radomIndex]
+            cards[radomIndex] = temp
         }
     }
     
