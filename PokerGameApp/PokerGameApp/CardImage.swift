@@ -14,8 +14,8 @@ enum CardImage {
     static let heightRatio: CGFloat = 1.27
 }
 
-struct CardBack {
-    static private (set) var image: UIImageView = {
+enum CardBack {
+    static let image: UIImageView = {
         let imageView = UIImageView()
         imageView.layer.masksToBounds = true
         imageView.layer.cornerRadius = 6
