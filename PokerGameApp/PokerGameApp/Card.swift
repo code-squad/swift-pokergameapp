@@ -26,4 +26,12 @@ class Card {
     enum Rank: Int {
         case one = 1, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve, thirteen
     }
+    
+    let suit: Suit
+    let rank: Rank
+    
+    init(suit: Suit, rank: Rank) {
+        self.suit = suit
+        self.rank = rank
+    }
 }
