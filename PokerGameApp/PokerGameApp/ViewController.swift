@@ -1,13 +1,3 @@
-<<<<<<< Updated upstream
-//
-//  ViewController.swift
-//  PokerGameApp
-//
-//  Created by 서우석 on 2021/02/15.
-//
-
-=======
->>>>>>> Stashed changes
 import UIKit
 
 class ViewController: UIViewController {
@@ -19,34 +9,26 @@ class ViewController: UIViewController {
         setUpBackGround()
         setStackView()
         addCardIntoStackView()
+        let heartQ = Card(suit: .heart, rank: .Q).makeCardInfo()
+        let spadeSeven = Card(suit: .spades, rank: .Seven).makeCardInfo()
+        print(heartQ)
+        print(spadeSeven)
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .darkContent
+        return .lightContent
     }
     
     private func setUpBackGround () {
         self.view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "background"))
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
     }
 
     private func setStackView() {
         self.view.addSubview(stackView)
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
         self.stackView.axis = .horizontal
         self.stackView.distribution = .fillEqually
         self.stackView.spacing = 4
         self.stackView.translatesAutoresizingMaskIntoConstraints = false
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
         self.stackView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 70).isActive = true
         self.stackView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 5).isActive = true
         self.stackView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -5).isActive = true
@@ -56,10 +38,6 @@ class ViewController: UIViewController {
         for _ in 0..<7 {
             self.stackView.addArrangedSubview(cardArrangement())
         }
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
     }
 
     private func cardArrangement() -> UIImageView {
@@ -69,10 +47,5 @@ class ViewController: UIViewController {
         cardImage.heightAnchor.constraint(equalTo: cardImage.widthAnchor, multiplier: 1.27).isActive = true
         return cardImage
     }
-<<<<<<< Updated upstream
-
-
-=======
->>>>>>> Stashed changes
 }
 
