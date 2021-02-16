@@ -9,11 +9,24 @@ import UIKit
 
 class MainViewController: UIViewController {
     
+    func loadImg() -> UIImage? {
+        guard let filepath = Bundle.main.path(forResource: "bg_pattern", ofType: "png") else {
+            return nil
+        }
+        guard let img = UIImage(contentsOfFile: filepath) else {
+            return nil
+        }
+        return img
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let filepath = Bundle.main.path(forResource: "bg_pattern", ofType: "png")!
-        self.view.backgroundColor = UIColor(patternImage: UIImage(contentsOfFile: filepath)!)
+        guard let img = loadImg() else {
+            print("파일경로가 잘못되었습니다.")
+            return
+        }
+        self.view.backgroundColor = UIColor(patternImage: img)
         
         var imgView: [UIImageView] = []
         var width: CGFloat = 0
