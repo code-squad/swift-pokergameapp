@@ -55,6 +55,12 @@ struct CardDeck {
     }
 }
 
+extension CardDeck: Equatable {
+    static func ==(lhs: CardDeck, rhs: CardDeck) -> Bool {
+        return lhs.cards == rhs.cards
+    }
+}
+
 struct CardDeckGenerator {
     static func generateCardDeck() -> [Card] {
         var cards: [Card] = []
