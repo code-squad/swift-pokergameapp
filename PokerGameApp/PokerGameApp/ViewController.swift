@@ -9,7 +9,6 @@
     
     class ViewController: UIViewController {
         
-        // 스택뷰 선언 
         var stackView = UIStackView()
         
         override func viewDidLoad() {
@@ -17,7 +16,7 @@
             // 뷰 배경 설정
             self.view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "bg_pattern"))
             createCardView()
-            view.addSubview(stackView)
+            self.view.addSubview(stackView)
             setStackViewContraints()
         }
         
@@ -49,7 +48,6 @@
                 
                 let cardLayout = NSLayoutConstraint(item: cardImageView, attribute: .height, relatedBy: .equal, toItem: cardImageView, attribute: .width, multiplier: (1.27 / 1.0), constant: 0)
                 cardImageView.addConstraint(cardLayout)
-                //cardImage.heightAnchor.constraint(equalTo: cardImage.widthAnchor, multiplier: 1.27).isActive = true
                 stackView.addArrangedSubview(cardImageView)
                 
             }
