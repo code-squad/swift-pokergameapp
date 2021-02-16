@@ -7,19 +7,36 @@
 
 import Foundation
 
-struct Rank {
-    private (set) var value = String()
-
-    init?(_ rank: Int) {
-        guard rank < 14 && rank > 0 else { return nil }
-        
-        switch rank {
-        case 2...10: value = String(rank)
-        case 1: value = "A"
-        case 11: value = "J"
-        case 12: value = "Q"
-        case 13: value = "K"
-        default: break
+enum Rank: Int, CustomStringConvertible, CaseIterable {
+    case A = 1
+    case two
+    case three
+    case four
+    case five
+    case six
+    case seven
+    case eight
+    case nine
+    case ten
+    case J
+    case Q
+    case K
+    
+    var description: String {
+        switch self {
+        case .A: return "A"
+        case .two: return "2"
+        case .three: return "3"
+        case .four: return "4"
+        case .five: return "5"
+        case .six: return "6"
+        case .seven: return "7"
+        case .eight: return "8"
+        case .nine: return "9"
+        case .ten: return "10"
+        case .J: return "J"
+        case .Q: return "Q"
+        case .K: return "K"
         }
     }
 }
