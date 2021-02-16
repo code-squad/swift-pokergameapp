@@ -15,6 +15,7 @@
 		D4810C7B25DA3E79002B720D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4810C7925DA3E79002B720D /* LaunchScreen.storyboard */; };
 		D4810C8725DA56ED002B720D /* bg_pattern.png in Resources */ = {isa = PBXBuildFile; fileRef = D4810C8525DA56ED002B720D /* bg_pattern.png */; };
 		D4810C8825DA56ED002B720D /* card-back.png in Resources */ = {isa = PBXBuildFile; fileRef = D4810C8625DA56ED002B720D /* card-back.png */; };
+		D4810C8D25DA8565002B720D /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4810C8C25DA8565002B720D /* Card.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		D4810C7C25DA3E7A002B720D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D4810C8525DA56ED002B720D /* bg_pattern.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_pattern.png; sourceTree = "<group>"; };
 		D4810C8625DA56ED002B720D /* card-back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "card-back.png"; sourceTree = "<group>"; };
+		D4810C8C25DA8565002B720D /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +71,7 @@
 				D4810C7725DA3E79002B720D /* Assets.xcassets */,
 				D4810C7925DA3E79002B720D /* LaunchScreen.storyboard */,
 				D4810C7C25DA3E7A002B720D /* Info.plist */,
+				D4810C8C25DA8565002B720D /* Card.swift */,
 			);
 			path = PokerGameApp;
 			sourceTree = "<group>";
@@ -148,6 +151,7 @@
 				D4810C7325DA3E78002B720D /* MainViewController.swift in Sources */,
 				D4810C6F25DA3E78002B720D /* AppDelegate.swift in Sources */,
 				D4810C7125DA3E78002B720D /* SceneDelegate.swift in Sources */,
+				D4810C8D25DA8565002B720D /* Card.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
