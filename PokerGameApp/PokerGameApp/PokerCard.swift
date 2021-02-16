@@ -18,8 +18,8 @@ class PokerCard {
     }
     
     enum Rank: Int {
-        case one = 1, two, three, four, five, six, seven, eight, nine, ten
-        case jack, queen, king
+        case one = 49, two, three, four, five, six, seven, eight, nine, ten
+        case jack = 74, queen = 81, king = 75
     }
     
     let suit:Suit, rank:Rank
@@ -30,6 +30,6 @@ class PokerCard {
     }
     
     func cardInfo() -> String {
-        return "\(self.suit.rawValue)\(self.rank.rawValue)"
+        return "\(self.suit.rawValue)\(UnicodeScalar(self.rank.rawValue)!)"
     }
 }
