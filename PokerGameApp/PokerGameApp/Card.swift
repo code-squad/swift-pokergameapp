@@ -20,24 +20,30 @@ class Card {
         case diamond = "\u{2666}"
     }
     
-    /// 추후 크기 비교가 용이하도록 내부 rank는 Int 타입으로 설정하고,
-    /// 출력 시에는 개별 메소드를 통해 A, J, Q, K 등 특수 경우 문자 변환
-    let rankNum: Int
+    /// 1~13까지만 설정 가능하도록 enum 통해 초기화하되,
+    /// 내부 rank는 계산 편의성 위해 Int로 저장, 프린트용 변환은 개별 메소드로 구현
+    let rank: Int
     
-    init(suit: Suit, rank: Int) {
+    enum Rank: Int {
+        case rank1 = 1,
+             rank2, rank3, rank4, rank5, rank6, rank7,
+             rank8, rank9, rank10, rank11, rank12, rank13
+    }
+    
+    init(suit: Suit, rank: Rank) {
         self.suit = suit
-        self.rankNum = rank
+        self.rank = rank.rawValue
     }
 }
 
 //MARK: - 출력 관련
-extension Card {
-    func printCard() {
-        print(suit.rawValue + printableRank(from: rankNum))
+extension Card: CustomStringConvertible {
+    var description: String {
+        return "\(suit.rawValue)\(printableRank(from: rank))"
     }
     
-    private func printableRank(from n: Int) -> String {
-        switch n {
+    private func printableRank(from rank: Int) -> String {
+        switch rank {
         case 1:
             return "A"
         case 11:
@@ -47,7 +53,7 @@ extension Card {
         case 13:
             return "K"
         default:
-            return String(n)
+            return String(rank)
         }
     }
 }
