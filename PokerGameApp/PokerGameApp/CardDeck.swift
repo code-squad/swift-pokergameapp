@@ -22,4 +22,8 @@ struct CardDeck {
     func printCountOfCards() -> Int {
         return cards.count
     }
+    
+    mutating func shuffle() {
+        cards.shuffle()
+    }
 }
