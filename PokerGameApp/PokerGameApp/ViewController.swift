@@ -9,7 +9,6 @@ import UIKit
 
 class ViewController: UIViewController {
 
-<<<<<<< HEAD
     let cardBackImage = UIImage(named: "card-back.png")
     lazy var width = view.bounds.width/7
     
@@ -18,21 +17,12 @@ class ViewController: UIViewController {
         self.view.backgroundColor = UIColor(patternImage: (UIImage(named: "bg_pattern.png") ?? UIImage()))
         showCards(cardNum: 7)
         testCard()
-=======
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "bg_pattern.png")!)
-        for i in 0..<7 {
-            showCardBack(x: i)
-        }
->>>>>>> 95d885e9fdf8d99c3ba476339fd9f3daf23b2c79
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
 
-<<<<<<< HEAD
     func makeCard() -> UIView {
         let cardBackImageView = UIImageView(image: cardBackImage)
         let cardConstraint = NSLayoutConstraint(item: cardBackImageView,
@@ -76,18 +66,5 @@ class ViewController: UIViewController {
         card = Card(shape: .Spade, num: 7)
         print(card.showCardInfo())
     }
-=======
-    func showCardBack(x: Int) {
-        let cardBackImage = UIImage(named: "card-back.png")
-        let cardBackImageView = UIImageView(image: cardBackImage!)
-        let width = self.view.bounds.width/7
-        
-        cardBackImageView.frame = CGRect(x: width*CGFloat(x)+3, y: 50, width: width-5, height: (width-5)*1.27)
-        cardBackImageView.layer.cornerRadius = 5
-        cardBackImageView.clipsToBounds = true
-        view.addSubview(cardBackImageView)
-    }
-    
->>>>>>> 95d885e9fdf8d99c3ba476339fd9f3daf23b2c79
 }
 
