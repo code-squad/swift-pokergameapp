@@ -19,10 +19,15 @@ enum Participant : Int {
     case four
 }
 
+enum GamerType {
+    case participant
+    case dealer
+}
+
 class PockerGame {
     private var cardDeck = CardDeck()
     private var players : [Player] = []
-    private let dealer = Dealer()
+    private let dealer = Dealer(type: .dealer)
     
     init(participant: Participant) {
         cardDeck.shuffle()
@@ -32,22 +37,22 @@ class PockerGame {
     func startGame(cardType : GameType) {
         while true {
             drawCard(cardType: cardType.rawValue)
-            showPlayerCard()
-            resetPlayerCard()
             if cardDeck.empty() {
                 return
             }
+            showPlayerCard()
+            resetPlayerCard()
         }
     }
     
-    func createPlayer(people : Int) {
+    private func createPlayer(people : Int) {
         (1...people).forEach { _ in
-            players.append(Player())
+            players.append(Player(type: .participant))
         }
         players.append(dealer)
     }
     
-    func drawCard(cardType : Int) {
+    private func drawCard(cardType : Int) {
         players.forEach { player in
             (1...cardType).forEach { _ in
                 guard let card = cardDeck.removeOne() else { return }
@@ -56,15 +61,23 @@ class PockerGame {
         }
     }
     
-    func showPlayerCard() {
-        players.forEach { player in
-            if player.countCard() > 0 {
-                print(player.showCards())
+    private func showPlayerCard() {
+        players.enumerated().forEach { player in
+            if !player.element.emptyCard() {
+                print(printResult(player: player.element, index: player.offset))
             }
         }
     }
     
-    func resetPlayerCard() {
+    private func printResult(player : Player, index : Int) -> String {
+        if player.type() == .participant {
+            return "참가자\(index+1)# \(player.showCards())"
+        } else {
+            return "딜러 \(player.showCards())"
+        }
+    }
+    
+    private func resetPlayerCard() {
         players.forEach { player in
             player.resetCard()
         }

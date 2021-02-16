@@ -34,7 +34,7 @@ class ViewController: UIViewController {
         constrainUI()
         makeCard()
     
-        let p = PockerGame(participant: .four)
+        let p = PockerGame(participant: .one)
         p.startGame(cardType: .seven)
     }
 
