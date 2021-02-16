@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		866818D525DBAE3600C70C67 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866818D425DBAE3600C70C67 /* AppDelegate.swift */; };
 		866818D725DBAE3600C70C67 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866818D625DBAE3600C70C67 /* SceneDelegate.swift */; };
-		866818D925DBAE3600C70C67 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866818D825DBAE3600C70C67 /* ViewController.swift */; };
+		866818D925DBAE3600C70C67 /* PokerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866818D825DBAE3600C70C67 /* PokerViewController.swift */; };
 		866818DC25DBAE3600C70C67 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 866818DA25DBAE3600C70C67 /* Main.storyboard */; };
 		866818DE25DBAE3700C70C67 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 866818DD25DBAE3700C70C67 /* Assets.xcassets */; };
 		866818E125DBAE3700C70C67 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 866818DF25DBAE3700C70C67 /* LaunchScreen.storyboard */; };
@@ -19,7 +19,7 @@
 		866818D125DBAE3600C70C67 /* PokerGameApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PokerGameApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		866818D425DBAE3600C70C67 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		866818D625DBAE3600C70C67 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		866818D825DBAE3600C70C67 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		866818D825DBAE3600C70C67 /* PokerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokerViewController.swift; sourceTree = "<group>"; };
 		866818DB25DBAE3600C70C67 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		866818DD25DBAE3700C70C67 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		866818E025DBAE3700C70C67 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -58,7 +58,7 @@
 			children = (
 				866818D425DBAE3600C70C67 /* AppDelegate.swift */,
 				866818D625DBAE3600C70C67 /* SceneDelegate.swift */,
-				866818D825DBAE3600C70C67 /* ViewController.swift */,
+				866818D825DBAE3600C70C67 /* PokerViewController.swift */,
 				866818DA25DBAE3600C70C67 /* Main.storyboard */,
 				866818DD25DBAE3700C70C67 /* Assets.xcassets */,
 				866818DF25DBAE3700C70C67 /* LaunchScreen.storyboard */,
@@ -137,7 +137,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				866818D925DBAE3600C70C67 /* ViewController.swift in Sources */,
+				866818D925DBAE3600C70C67 /* PokerViewController.swift in Sources */,
 				866818D525DBAE3600C70C67 /* AppDelegate.swift in Sources */,
 				866818D725DBAE3600C70C67 /* SceneDelegate.swift in Sources */,
 			);

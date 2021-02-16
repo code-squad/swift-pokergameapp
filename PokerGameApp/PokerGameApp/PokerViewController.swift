@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class PokerViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
