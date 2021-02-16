@@ -14,6 +14,7 @@ class Dealer: Playable {
     
     var name = "딜러"
     var cards = [Card]()
+    
     private var cardDeck = CardDeck()
     
     public func start(numberOfPlayer: UInt, stud: CardStud) {

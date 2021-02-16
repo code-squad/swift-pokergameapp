@@ -18,15 +18,19 @@ extension CardCreatable {
     }
 }
 
-class Card: CardCreatable {
-    enum Shape: String {
+class Card: CardCreatable, CustomStringConvertible {
+    enum Shape: String, CaseIterable, CustomStringConvertible {
         case clubs = "♣️"
         case diamone = "♦️"
         case hearts = "❤️"
         case spades = "♠️"
+        
+        var description: String {
+            return "\(self.rawValue)"
+        }
     }
     
-    enum Rank: Int {
+    enum Rank: Int, CaseIterable, CustomStringConvertible {
         case ace = 1, two, three, four, five, six, seven, eight, nine, ten, jack, queen, king
         
         var rankName: String {
@@ -38,6 +42,10 @@ class Card: CardCreatable {
             default: return "\(self.rawValue)"
             }
         }
+        
+        var description: String {
+            return rankName
+        }
     }
     
     var shape: Shape
@@ -47,22 +55,8 @@ class Card: CardCreatable {
         self.shape = shape
         self.rank = rank
     }
-}
-
-extension Card: CustomStringConvertible {
+    
     var description: String {
         return "\(shape)\(rank)"
-    }
-}
-
-extension Card.Rank: CustomStringConvertible, CaseIterable {
-    var description: String {
-        return rankName
-    }
-}
-
-extension Card.Shape: CustomStringConvertible, CaseIterable {
-    var description: String {
-        return "\(self.rawValue)"
     }
 }
