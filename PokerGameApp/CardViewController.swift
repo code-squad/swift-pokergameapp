@@ -25,17 +25,6 @@ class CardViewController: UIViewController {
         super.viewDidLoad()
         setBackgroundColor()
         drawSevenCards()
-        
-        cardDeckTest()
-    }
-    
-    func cardDeckTest(){
-        var cardDeck = PlayingCardDeck()
-        
-        cardDeck.shuffle()
-        print(cardDeck)
-        cardDeck.removeOne()
-        cardDeck.reset()
     }
     
     func setBackgroundColor(){
