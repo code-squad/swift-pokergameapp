@@ -8,9 +8,20 @@
 import Foundation
 
 struct CardDeck {
-    var cards : [Card]
+    private var cards : [Card] = []
     
-    func getCount() -> Int {
+    init() {
+        makeCard()
+    }
+    private mutating func makeCard() {
+        Suit.allCases.forEach { suit in
+            Rank.allCases.forEach { rank in
+                cards.append(Card(suit: suit, rank: rank))
+            }
+        }
+    }
+    
+    func count() -> Int {
         return cards.count
     }
     
@@ -18,12 +29,13 @@ struct CardDeck {
         return cards.shuffle()
     }
     
-    mutating func randomCard() {
-        cards.popLast()
+    mutating func removeOne() -> Card? {
+        return cards.popLast()
     }
     
     mutating func reset() {
         cards.removeAll()
+        makeCard()
     }
     
 }

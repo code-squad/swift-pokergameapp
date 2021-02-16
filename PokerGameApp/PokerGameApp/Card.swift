@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum Suit : String, CustomStringConvertible {
+enum Suit : String, CaseIterable, CustomStringConvertible {
     case spade = "♠️"
     case heart = "♥️"
     case club = "♣️"
@@ -18,7 +18,7 @@ enum Suit : String, CustomStringConvertible {
     }
 }
 
-enum Rank : Int, CustomStringConvertible {
+enum Rank : Int, CaseIterable, CustomStringConvertible {
     case A = 1,two,three,four,five,six,seven,eight,nine,ten,J,Q,K
     
     var description: String {
