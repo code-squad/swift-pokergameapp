@@ -46,6 +46,7 @@ class MainViewController: UIViewController {
             width += self.view.bounds.width / 7
         }
         printTestResult()
+        testScenario()
     }
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent

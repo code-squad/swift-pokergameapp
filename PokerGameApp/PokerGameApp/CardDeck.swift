@@ -23,15 +23,9 @@ struct CardDeck {
             self.cards[i] = self.cards[randomIndex]
             self.cards[randomIndex] = temp
         }
-        print(self.cards)
     }
     mutating func removeOn() -> Card?{
-        if let removeCard = self.cards.popLast() {
-            return removeCard
-        } else {
-            print("CardDeck에 Card가 존재하지 않습니다.")
-            return nil
-        }
+        return cards.count == 0 ? nil : self.cards.popLast()
     }
     mutating func reset() {
         self.cards.removeAll()
