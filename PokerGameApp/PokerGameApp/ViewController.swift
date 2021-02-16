@@ -14,18 +14,18 @@ class ViewController: UIViewController {
         initialize()
     }
     
-    func initialize() {
+    private func initialize() {
         setBackground()
         createCardStackView()
     }
     
-    func setBackground() {
+    private func setBackground() {
         if let image = UIImage(named: "bg_pattern") {
             self.view.backgroundColor = UIColor(patternImage: image)
         }
     }
     
-    func createCardImageView() -> UIImageView {
+    private func createCardImageView() -> UIImageView {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "card-back")
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -36,7 +36,7 @@ class ViewController: UIViewController {
         return imageView
     }
     
-    func createCardStackView() {
+    private func createCardStackView() {
         let stackView = UIStackView()
         
         for _ in 0..<7 {
