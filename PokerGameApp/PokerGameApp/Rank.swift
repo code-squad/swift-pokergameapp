@@ -10,7 +10,9 @@ import Foundation
 struct Rank {
     private (set) var value = String()
 
-    init(_ rank: Int) {
+    init?(_ rank: Int) {
+        guard rank < 14 && rank > 0 else { return nil }
+        
         switch rank {
         case 2...10: value = String(rank)
         case 1: value = "A"

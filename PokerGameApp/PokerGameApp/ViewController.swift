@@ -28,7 +28,8 @@ class ViewController: UIViewController {
     }
     
     private func makeACard() {
-        let card = Card(rank: Rank(1), suit: .spades)
+        guard let rank = Rank(1) else { return }
+        let card = Card(rank: rank, suit: .spades)
         print(card.description)
     }
 }
