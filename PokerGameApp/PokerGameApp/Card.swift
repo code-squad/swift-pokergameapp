@@ -17,10 +17,10 @@ class Card: CustomStringConvertible {
      */
     
     enum Suit: Character {
-        case spades = "\u{2660}"
-        case hearts = "\u{2665}"
-        case diamonds = "\u{2666}"
-        case clubs = "\u{2663}"
+        case spades = "♠️"
+        case hearts = "♥️"
+        case diamonds = "♦️"
+        case clubs = "♣️"
     }
     
     enum Rank: Int {
