@@ -17,8 +17,26 @@ class Dealer {
         self.hand = Hand(cards: [])
     }
     
+    init(cardDeck: CardDeck, hand: Hand) {
+        self.cardDeck = cardDeck
+        self.hand = hand
+    }
+    
+    var handInfo: Hand {
+        return self.hand
+    }
+    
+    var nameInfo: String {
+        return self.name
+    }
+    
+    var remainCards: CardDeck {
+        return cardDeck
+    }
+    
     func handOut(_ numberOfCards: Int) -> [Card] {
         var cards: [Card] = []
+        self.cardDeck.shuffle()
         
         for _ in 0..<numberOfCards {
             cards.append(self.cardDeck.removeOne())
