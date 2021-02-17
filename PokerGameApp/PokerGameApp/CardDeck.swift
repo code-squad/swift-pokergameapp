@@ -21,9 +21,24 @@ struct CardDeck {
         return deck
     }
     
-    init() { currentDeck = wholeDeck }
+    private func deckPart(from suit: Card.Suit) -> [Card] {
+        var cards = [Card]()
+        
+        for rank in Card.Rank.allCases {
+            let card = Card(suit: suit, rank: rank)
+            cards.append(card)
+        }
+        
+        return cards
+    }
     
-    func count() -> Int { return currentDeck.count }
+    init() {
+        currentDeck = wholeDeck
+    }
+    
+    func count() -> Int {
+        return currentDeck.count
+    }
     
     mutating func shuffle() -> Int {
         let lastIdx = count() - 1
@@ -37,21 +52,12 @@ struct CardDeck {
         return count()
     }
     
-    mutating func removeOne() -> Card? { return currentDeck.popLast() }
+    mutating func removeOne() -> Card? {
+        return currentDeck.popLast()
+    }
     
     mutating func reset() -> Int {
         currentDeck = wholeDeck
         return count()
-    }
-    
-    private func deckPart(from suit: Card.Suit) -> [Card] {
-        var cards = [Card]()
-        
-        for rank in Card.Rank.allCases {
-            let card = Card(suit: suit, rank: rank)
-            cards.append(card)
-        }
-        
-        return cards
     }
 }
