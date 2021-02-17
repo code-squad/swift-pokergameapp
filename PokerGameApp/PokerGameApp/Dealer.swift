@@ -15,36 +15,9 @@ class Dealer: PokerGame, Playable {
         return cards
     }
     
-    private var cardDeck = CardDeck()
-    
-    public func start(numberOfPlayer: Participant, stud: CardStud) {
-        players = registerPlayer(of: numberOfPlayer)
-        shareCards(players: players, cardStud: stud)
-    }
-    
-    private func registerPlayer(of number: Participant) -> [Playable] {
-        var players = [Playable]()
-        
-        let playerCount = number.rawValue
-        for _ in 1...playerCount {
-            let player = Player()
-            
-            players.append(player)
-        }
-        let dealer = self
-        players.append(dealer)
-        
+    public func calculateScore() -> [Playable] {
+        // 추후 미션에서 Dealer 역할을 할 score 계산 산출이 이 메소드에서 이뤄집니다.
         return players
-    }
-    
-    private func shareCards(players: [Playable], cardStud: CardStud) {
-        let cardCount = cardStud.rawValue
-        for _ in 1...cardCount {
-            players.forEach { (player) in
-                guard let newCard = cardDeck.removeOne() else { return }
-                player.appendCard(newCard)
-            }
-        }
     }
     
     func appendCard(_ card: Card) {

@@ -1,6 +1,6 @@
 import Foundation
 
-class Player: PokerGame, Playable {
+class Player: Playable {
     var name: String
     private var cards = [Card]()
     var result: [Card] {
@@ -9,7 +9,7 @@ class Player: PokerGame, Playable {
     
     private static var identifierFactory = 0
     
-    override init() {
+    init() {
         Player.identifierFactory += 1
         self.name = "참가자\(Player.identifierFactory)#"
     }
