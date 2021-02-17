@@ -11,8 +11,10 @@ class SevenCardStud: PokerGame {
     override func participate() {
         let per1 = Player()
         let per2 = Player()
+        let per3 = Player()
         players.append(per1)
         players.append(per2)
+        players.append(per3)
     }
     override func readyToGameStart() {
         super.readyToGameStart()
