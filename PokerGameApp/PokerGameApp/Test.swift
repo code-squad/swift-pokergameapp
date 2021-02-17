@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Test {
+class Test: CustomStringConvertible {
     
     enum CardDeckTestCase: CustomStringConvertible {
         case create
@@ -32,6 +32,18 @@ class Test {
     private let testCase: CardDeckTestCase
     private let testDeck: CardDeck
     private let expectedValue: Int
+    var description: String {
+        switch testCase {
+        case .create:
+            return testCreate(testDeck, with: expectedValue) ? "\(testCase.description): 테스트 성공" : "\(testCase.description): 테스트 실패"
+        case .shuffle:
+            return testShuffle(testDeck, with: expectedValue) ? "\(testCase.description): 테스트 성공" : "\(testCase.description): 테스트 실패"
+        case .removeOne:
+            return testRemoveOne(from: testDeck, with: expectedValue) ? "\(testCase.description): 테스트 성공" : "\(testCase.description): 테스트 실패"
+        case .reset:
+            return testReset(testDeck, with: expectedValue) ? "\(testCase.description): 테스트 성공" : "\(testCase.description): 테스트 실패"
+        }
+    }
     
     init(testCase: CardDeckTestCase, testDeck: CardDeck, expectedValue: Int) {
         self.testCase = testCase
