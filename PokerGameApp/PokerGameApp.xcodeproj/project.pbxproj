@@ -18,6 +18,7 @@
 		D4810C8725DA56ED002B720D /* bg_pattern.png in Resources */ = {isa = PBXBuildFile; fileRef = D4810C8525DA56ED002B720D /* bg_pattern.png */; };
 		D4810C8825DA56ED002B720D /* card-back.png in Resources */ = {isa = PBXBuildFile; fileRef = D4810C8625DA56ED002B720D /* card-back.png */; };
 		D4810C8D25DA8565002B720D /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4810C8C25DA8565002B720D /* Card.swift */; };
+		D4AE4F6225DD14CD0028615F /* Dealer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AE4F6125DD14CD0028615F /* Dealer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		D4810C8525DA56ED002B720D /* bg_pattern.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_pattern.png; sourceTree = "<group>"; };
 		D4810C8625DA56ED002B720D /* card-back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "card-back.png"; sourceTree = "<group>"; };
 		D4810C8C25DA8565002B720D /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		D4AE4F6125DD14CD0028615F /* Dealer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dealer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +80,7 @@
 				D4810C8C25DA8565002B720D /* Card.swift */,
 				D4020D3225DBB19A00796394 /* CardDeck.swift */,
 				D4020D3525DBDBB400796394 /* TestScenario.swift */,
+				D4AE4F6125DD14CD0028615F /* Dealer.swift */,
 			);
 			path = PokerGameApp;
 			sourceTree = "<group>";
@@ -156,6 +159,7 @@
 			files = (
 				D4810C7325DA3E78002B720D /* MainViewController.swift in Sources */,
 				D4020D3625DBDBB400796394 /* TestScenario.swift in Sources */,
+				D4AE4F6225DD14CD0028615F /* Dealer.swift in Sources */,
 				D4020D3325DBB19A00796394 /* CardDeck.swift in Sources */,
 				D4810C6F25DA3E78002B720D /* AppDelegate.swift in Sources */,
 				D4810C7125DA3E78002B720D /* SceneDelegate.swift in Sources */,
