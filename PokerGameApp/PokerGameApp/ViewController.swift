@@ -8,13 +8,14 @@
 import UIKit
 
 class ViewController: UIViewController {
+    var test = Test()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         makeBackGround()
         makeStackView()
-        let cardData = Card(suit: .heart, rank: .A)
-        print(cardData)
+        test.startTest()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle{

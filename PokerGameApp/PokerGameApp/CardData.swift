@@ -11,7 +11,7 @@ class Card: CustomStringConvertible {
     
     // 컨텍스트 외부에서 중첩된 사용을 하기 위해 Nested enum 타입을 사용
     // Suit을 위한 열거형 생성, rawValue가 Character 이므로 Character 타입 지정
-    enum Suit: String, CustomStringConvertible {
+    enum Suit: String, CustomStringConvertible, CaseIterable {
         case spade = "♠", heart = "❤", diamond = "◆", clover = "♣"
         var description: String {
             return rawValue
@@ -19,7 +19,7 @@ class Card: CustomStringConvertible {
     }
     
     // Rank를 위한 열거형 생성, rawValue가 Int 이므로 Int 타입 지정
-    enum Rank: Int, CustomStringConvertible {
+    enum Rank: Int, CustomStringConvertible, CaseIterable {
         case A = 1, two, three, four, five, six, seven, eight, nine, ten, J, Q, K
         var description: String {
             switch self {

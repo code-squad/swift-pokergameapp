@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		BDCC605225DB6A5500165F69 /* CardData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDCC605125DB6A5500165F69 /* CardData.swift */; };
 		BDCC605725DBE47200165F69 /* CardDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDCC605625DBE47200165F69 /* CardDeck.swift */; };
+		BDCC605A25DC09B300165F69 /* TestCardDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDCC605925DC09B300165F69 /* TestCardDeck.swift */; };
 		BDFE629825DA3CF800F0FA87 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDFE629725DA3CF800F0FA87 /* AppDelegate.swift */; };
 		BDFE629A25DA3CF800F0FA87 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDFE629925DA3CF800F0FA87 /* SceneDelegate.swift */; };
 		BDFE629C25DA3CF800F0FA87 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDFE629B25DA3CF800F0FA87 /* ViewController.swift */; };
@@ -20,6 +21,7 @@
 /* Begin PBXFileReference section */
 		BDCC605125DB6A5500165F69 /* CardData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardData.swift; sourceTree = "<group>"; };
 		BDCC605625DBE47200165F69 /* CardDeck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDeck.swift; sourceTree = "<group>"; };
+		BDCC605925DC09B300165F69 /* TestCardDeck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCardDeck.swift; sourceTree = "<group>"; };
 		BDFE629425DA3CF800F0FA87 /* PokerGameApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PokerGameApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDFE629725DA3CF800F0FA87 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BDFE629925DA3CF800F0FA87 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -65,6 +67,7 @@
 				BDFE629B25DA3CF800F0FA87 /* ViewController.swift */,
 				BDCC605125DB6A5500165F69 /* CardData.swift */,
 				BDCC605625DBE47200165F69 /* CardDeck.swift */,
+				BDCC605925DC09B300165F69 /* TestCardDeck.swift */,
 				BDFE629D25DA3CF800F0FA87 /* Main.storyboard */,
 				BDFE62A025DA3CF800F0FA87 /* Assets.xcassets */,
 				BDFE62A225DA3CF800F0FA87 /* LaunchScreen.storyboard */,
@@ -145,6 +148,7 @@
 			files = (
 				BDFE629C25DA3CF800F0FA87 /* ViewController.swift in Sources */,
 				BDCC605725DBE47200165F69 /* CardDeck.swift in Sources */,
+				BDCC605A25DC09B300165F69 /* TestCardDeck.swift in Sources */,
 				BDCC605225DB6A5500165F69 /* CardData.swift in Sources */,
 				BDFE629825DA3CF800F0FA87 /* AppDelegate.swift in Sources */,
 				BDFE629A25DA3CF800F0FA87 /* SceneDelegate.swift in Sources */,
