@@ -8,24 +8,24 @@
 import Foundation
 
 class PockerGame {
-    var cardDeck = CardDeck()
-    var dealer = Dealer()
-    var players: Array<Player> = []
-    var lackOfCard: Bool = false
+    private var cardDeck = CardDeck()
+    private var dealer = Dealer()
+    private var players: Array<Player> = []
+    private var lackOfCard: Bool = false
     
-    func welcomePlayer(numberOfPlayers: Int) {
+    private func welcomePlayer(numberOfPlayers: Int) {
         for i in 1...numberOfPlayers {
             players.append(Player(id: i))
         }
     }
     
-    func restartGame() {
+    private func resetCardDeck() {
         cardDeck.reset()
         cardDeck.shuffle()
         print(cardDeck.count())
     }
     
-    func distribute(numberOfCards: Int) {
+    private func distribute(numberOfCards: Int) {
         for _ in 1...numberOfCards {
             for player in players {
                 if let drawnCard = cardDeck.removeOne() {
@@ -42,9 +42,9 @@ class PockerGame {
         }
     }
     
-    func gamePlay() {
-        welcomePlayer(numberOfPlayers: 1)
-        restartGame()
+    public func gamePlay() {
+        welcomePlayer(numberOfPlayers: 4)
+        resetCardDeck()
         distribute(numberOfCards: 7)
         if lackOfCard == true {
             print("카드 수 부족")

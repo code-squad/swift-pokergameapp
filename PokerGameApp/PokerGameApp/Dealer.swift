@@ -8,13 +8,13 @@
 import Foundation
 
 class Dealer {
-    var cardDeck: Array<Card>
+    private var cardDeck: Array<Card>
     
     init() {
         self.cardDeck = []
     }
     
-    func receive(card: Card) {
+    public func receive(card: Card) {
         cardDeck.append(card)
     }
 }
