@@ -13,18 +13,18 @@ func testScenario() {
     print("> 카드초기화")
     deck.reset()
     print("카드 전체를 초기화했습니다.")
-    var cardNum = deck.count()
+    var cardNum = deck.count
     print("총 \(cardNum)장의 카드가 있습니다.\n")
     
     print("> 카드섞기")
     deck.shuffle()
-    cardNum = deck.count()
+    cardNum = deck.count
     print("전체 \(cardNum)장의 카드를 섞었습니다.\n")
     
     print("> 카드 하나 뽑기")
     var card = deck.removeOn()
     if let card = card {
-        cardNum = deck.count()
+        cardNum = deck.count
         print(card)
         print("총 \(cardNum)장의 카드가 남아있습니다.\n")
     } else {
@@ -34,7 +34,7 @@ func testScenario() {
     print("> 카드 하나 뽑기")
     card = deck.removeOn()
     if let card = card {
-        cardNum = deck.count()
+        cardNum = deck.count
         print(card)
         print("총 \(cardNum)장의 카드가 남아있습니다.\n")
     } else {
