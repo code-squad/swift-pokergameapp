@@ -21,5 +21,9 @@ class Player {
     func playerDeck() -> [Card] {
         cards
     }
+    
+    func printDeck() {
+        print(cards)
+    }
  
 }
