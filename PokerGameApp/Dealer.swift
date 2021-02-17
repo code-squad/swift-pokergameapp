@@ -10,10 +10,12 @@ import Foundation
 class Dealer : Player {
     
     private var gameCardDeck : CardDeck
-    private(set) var cardSqud = InputView.CardStud.five
+    private(set) var cardSqud : InputView.CardStud
     
     override init(){
+        cardSqud = InputView.CardStud.five
         gameCardDeck = CardDeck()
+        super.init()
     }
     
     public func spreadCardsToPlayer(players : Players){
@@ -27,11 +29,16 @@ class Dealer : Player {
         let cards = gameCardDeck.removeCards(count: cardSqud.rawValue)
         self.cards.takeCards(cards: cards)
     }
+    
     public func shuffleCards(){
         gameCardDeck.shuffle()
     }
     
     public func removeAllCards(){
         cards.removeAll()
+    }
+    
+    public func resetCardDeck(){
+        gameCardDeck = CardDeck()
     }
 }
