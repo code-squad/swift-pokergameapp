@@ -12,9 +12,9 @@ enum Shape: Character, CustomStringConvertible, CaseIterable {
     var description: String { return "\(self.rawValue)" }
     
     case Spade = "♠️"
-    case Clover = "♣️"
     case Diamond = "♦️"
     case Heart = "♥️"
+    case Clover = "♣️"
 }
 
 // 1-13 범위만 받을 수 있고, 숫자에 해당하는 String 값을 받을 수 있다
