@@ -10,3 +10,23 @@
 - frame길이를 통해 카드 너비, 높이 지정
 
 완성 날짜: 2021.02.15 월요일 오후 9:59분
+
+## Step-2, 3
+
+<p align="center">
+<img width="533" alt="step2,3-1" src="https://user-images.githubusercontent.com/45817559/108171497-ed6a2680-713e-11eb-94ea-0a4cbc391cc2.png">
+</p>
+
+<p align="center">
+<img width="533" alt="step2,3-2" src="https://user-images.githubusercontent.com/45817559/108171516-f78c2500-713e-11eb-9e0b-cb4b214ac635.png">
+</p>
+
+- 카드 데이터를 추상화해서 클래스로 구현.
+- 클래스를 print할 때, CustomStringConvertible 프로토콜을 채택해 커스터마이징
+- 카드 덱 구현
+    - count: 갖고 있는 카드 개수 반환
+    - shuffle: 전체 카드를 랜덤하게 섞음
+    - removeOne: 카드 인스턴스 중 하나를 반환하고 목록에서 삭제
+    - reset: 처음처럼 모든 카드를 다시 채워넣음
+
+완성 날짜: 2021.02.17 수요일 오후 4:41분
