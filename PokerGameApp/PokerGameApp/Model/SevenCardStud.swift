@@ -16,8 +16,8 @@ class SevenCardStud: PokerGame {
         players.append(per2)
         players.append(per3)
     }
-    override func readyToGameStart() {
-        super.readyToGameStart()
+    override func startGame() {
+        super.startGame()
         players.forEach { (player) in
             for _ in 0...6 {
                 player.playerCards.append(cardDeck.removeOne())

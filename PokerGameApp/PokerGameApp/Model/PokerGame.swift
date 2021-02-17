@@ -17,7 +17,7 @@ class PokerGame {
         self.players = players
     }
     
-    func readyToGameStart() {
+    func startGame() {
         cardDeck.filltheCardDeck()
         cardDeck.shuffle()
     }

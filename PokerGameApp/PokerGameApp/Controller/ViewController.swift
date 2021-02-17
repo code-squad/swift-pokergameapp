@@ -84,7 +84,7 @@ class ViewController: UIViewController {
         var participantNum = 1
         let sevenCardStud = SevenCardStud()
         sevenCardStud.participate()
-        sevenCardStud.readyToGameStart()
+        sevenCardStud.startGame()
         print("SevenCardStud")
         sevenCardStud.players.forEach { (player) in
             print("참가자#\(participantNum) \(player.playerCards)")
@@ -97,7 +97,7 @@ class ViewController: UIViewController {
         var participantNum = 1
         let fiveCardStud = FiveCardStud()
         fiveCardStud.participate()
-        fiveCardStud.readyToGameStart()
+        fiveCardStud.startGame()
         print("FiveCardStud")
         fiveCardStud.players.forEach { (player) in
             print("참가자#\(participantNum) \(player.playerCards)")
