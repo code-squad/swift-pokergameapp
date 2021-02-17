@@ -17,10 +17,19 @@ class PokerGame {
         static let five = 5
     }
     
-    class func start(gameMode: PokerGame.Mode, NumberOfPlayer: Int) -> PokerGameBaord {
+    private var dealer = Dealer(cardDeck: CardDeck())
+    private var players: [Player] = []
+    
+    func showDealerInfo() -> Dealer {
+        return self.dealer
+    }
+    
+    func showPlayersInfo() -> [Player] {
+        return self.players
+    }
+    
+    func start(gameMode: PokerGame.Mode, NumberOfPlayer: Int) {
         let cardCount = gameMode == .fiveStud ? NumberOfcards.five : NumberOfcards.seven
-        var dealer: Dealer = Dealer(cardDeck: CardDeck())
-        var players: [Player] = []
         
         func HandOutToPlayers(playerNumber index: Int) {
             let hand = Hand(cards: dealer.handOut(cardCount))
@@ -34,18 +43,16 @@ class PokerGame {
         }
         
         dealer = hasAHandToDealer(dealer: dealer, cardCount: cardCount)
-        
-        return PokerGameBaord(dealer: dealer, players: players)
     }
 }
 
 private extension PokerGame {
-    static func setPlayerName(_ playerNumber: Int) -> String {
+    func setPlayerName(_ playerNumber: Int) -> String {
         return "참가자\(playerNumber)"
     }
     
-    static func hasAHandToDealer(dealer: Dealer, cardCount: Int) -> Dealer {
+    func hasAHandToDealer(dealer: Dealer, cardCount: Int) -> Dealer {
         let dealer = dealer
-        return Dealer(cardDeck: dealer.remainCards, hand: Hand(cards: dealer.handOut(cardCount)))
+        return Dealer(cardDeck: dealer.takeRemainCards(), hand: Hand(cards: dealer.handOut(cardCount)))
     }
 }
