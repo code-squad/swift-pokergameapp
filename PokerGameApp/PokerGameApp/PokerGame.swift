@@ -15,21 +15,13 @@ class PockerGame {
 
     private var cardDeck = CardDeck()
     private var dealer = Dealer()
-    private var players: Array<Player> = []
-    private var numberOfPlayers: Int
+    private var paticipants: Array<Player>
     private var numberOfCards: Int
     private var lackOfCard: Bool = false
     
-    
     public init(withPlayersOf: Int, stud: StudVariant) {
-        numberOfPlayers = withPlayersOf
+        paticipants = Players(numberOfPlayers: withPlayersOf).players
         numberOfCards = stud == .fiveCardStud ? 5 : 7
-    }
-    
-    private func welcomePlayer() {
-        for i in 1...numberOfPlayers {
-            players.append(Player(id: i))
-        }
     }
     
     private func resetCardDeck() {
@@ -40,7 +32,7 @@ class PockerGame {
     
     private func distribute() {
         for _ in 1...numberOfCards {
-            for player in players {
+            for player in paticipants {
                 if let drawnCard = cardDeck.removeOne() {
                     player.receive(card: drawnCard)
                 } else {
@@ -56,14 +48,13 @@ class PockerGame {
     }
     
     public func gamePlay() {
-        welcomePlayer()
         resetCardDeck()
         distribute()
         if lackOfCard == true {
             print("카드 수 부족")
             return
         }
-        for player in players {
+        for player in paticipants {
             print("\(player)")
         }
         print("\(dealer)")
