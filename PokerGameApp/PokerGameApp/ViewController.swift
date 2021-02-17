@@ -16,14 +16,15 @@ class ViewController: UIViewController {
         setBackground()
         addCards(count: 7)
         
-        var cardDeck = CardDeck()
-        let P = PrintFactory()
+        let dealer = Dealer(rule: .sevenCardStud, seat: .two)
+        print(dealer.start())
+        print(dealer.start())
+        print(dealer.start())
         
-        print(P.resetMessage(with: cardDeck.reset()))
-        print(P.shuffleMessage(with: cardDeck.shuffle()))
-        print(P.cardDrawn(card: cardDeck.removeOne(), remainingCount: cardDeck.count()))
-        print(P.cardDrawn(card: cardDeck.removeOne(), remainingCount: cardDeck.count()))
-        print(P.cardDrawn(card: cardDeck.removeOne(), remainingCount: cardDeck.count()))
+        let dealer2 = Dealer(rule: .fiveCardStud, seat: .four)
+        print(dealer2.start())
+        print(dealer2.start())
+        print(dealer2.start())
     }
     
     private func setBackground() {

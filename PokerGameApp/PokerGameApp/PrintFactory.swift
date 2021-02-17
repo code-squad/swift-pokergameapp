@@ -28,4 +28,8 @@ struct PrintFactory {
     func resetMessage(with deckCount: Int) -> String {
         return "> 카드 초기화\n덱을 초기화했습니다.\n\(deckCountInfo(from: deckCount))"
     }
+    
+    func endMessage() -> String {
+        return "덱에 카드가 모자라서 게임을 종료합니다\n"
+    }
 }
