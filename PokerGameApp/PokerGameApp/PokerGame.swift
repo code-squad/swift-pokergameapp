@@ -26,7 +26,7 @@ enum GamerType {
 
 class PockerGame {
     private var cardDeck = CardDeck()
-    private var players : [Player] = []
+    private var players = Players()
     private let dealer = Dealer(type: .dealer)
     
     init() {
@@ -47,40 +47,41 @@ class PockerGame {
     
     private func createPlayer(numberOfPlayers : Int) {
         (1...numberOfPlayers).forEach { _ in
-            players.append(Player(type: .participant))
+            players.addPlayer(player: (Player(type: .participant)))
         }
-        players.append(dealer)
+        players.addPlayer(player : dealer)
     }
     
     private func drawCard(cardType : Int) {
-        players.forEach { player in
-            (1...cardType).forEach { _ in
-                guard let card = cardDeck.removeOne() else { return }
-                player.receiveCard(card: card)
-            }
-        }
+        
+//        players.forEach { player in
+//            (1...cardType).forEach { _ in
+//                guard let card = cardDeck.removeOne() else { return }
+//                player.receiveCard(card: card)
+//            }
+//        }
     }
     
     private func showPlayerCard() {
-        players.enumerated().forEach { player in
-            if !player.element.emptyCard() {
-                print(printResult(player: player.element, index: player.offset))
-            }
-        }
+//        players.enumerated().forEach { player in
+//            if !player.element.emptyCard() {
+//                print(printResult(player: player.element, index: player.offset))
+//            }
+//        }
     }
     
-    private func printResult(player : Player, index : Int) -> String {
-        if player.type() == .participant {
-            return "참가자\(index+1)# \(player.showCards())"
-        } else {
-            return "딜러 \(player.showCards())"
-        }
-    }
+//    private func printResult(player : Player, index : Int) -> String {
+//        if player.type() == .participant {
+//            return "참가자\(index+1)# \(player.showCards())"
+//        } else {
+//            return "딜러 \(player.showCards())"
+//        }
+//    }
     
     private func resetPlayerCard() {
-        players.forEach { player in
-            player.resetCard()
-        }
+//        players.forEach { player in
+//            player.resetCard()
+//        }
     }
 }
 
