@@ -9,7 +9,7 @@ import Foundation
 
 
 class CardDeck{
-    private var currentCardDeck: Array<Card> = []
+    public var currentCardDeck: Array<Card> = []
     
     private func generateCardSet() -> Array<Card> {
         var result: Array<Card> = []
@@ -41,7 +41,7 @@ class CardDeck{
             return nil
         }
     }
-    
+
     public func reset() {
         currentCardDeck = generateCardSet()
     }

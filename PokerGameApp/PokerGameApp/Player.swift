@@ -7,22 +7,40 @@
 
 import Foundation
 
-class Player {
+class Player: Receiver {
     private var id: Int = 0
-    private var cardDeck: Array<Card>
+    private var cardsInHand: Array<Card>
     
     init(id: Int) {
         self.id = id
-        self.cardDeck = []
+        self.cardsInHand = []
     }
     
-    public func receive(card: Card) {
-        cardDeck.append(card)
+    func receive(card: Card) {
+        cardsInHand.append(card)
     }
 }
 
 extension Player: CustomStringConvertible {
     var description: String {
-        return "참가자#\(self.id) \(cardDeck)"
+        return "참가자#\(self.id) \(cardsInHand)"
     }
 }
+
+//var receiver: Receiver = isAAA ? Player() : Dealer();
+//receiver.receive()
+//
+//class Anmial {
+//    init(id: String) {
+//        self.id = id
+//    }
+//}
+//
+//class Person {
+//    var a: String
+//    var b: String
+//
+//    init(id: String, name: String) {
+//        self.a = ""
+//    }
+//}
