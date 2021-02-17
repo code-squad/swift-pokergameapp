@@ -8,9 +8,9 @@
 import Foundation
 
 class PokerGame {
-    var cardDeck: CardDeck
-    var players: [Player]
-    var dealer: Dealer = Dealer()
+    private var cardDeck: CardDeck
+    private var players: [Player]
+    private var dealer: Dealer = Dealer()
     
     init(cardDeck: CardDeck = CardDeck(cards: []), players: [Player] = []) {
         self.cardDeck = cardDeck
@@ -21,13 +21,19 @@ class PokerGame {
         cardDeck.filltheCardDeck()
         cardDeck.shuffle()
     }
-    func participate() {
-    }
     
     class Player {
         var playerCards: [Card] = []
     }
     class Dealer {
         var dealerCards: [Card] = []
+        
+    }
+    
+    class SevenCardStud {
+        
+    }
+    class FiveCardStud {
+        
     }
 }

@@ -17,8 +17,6 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         setBackground()
         setStackView()
-//        drawingCardRandomly()
-//        test()
         testSevenCardStud()
         testFiveCardStud()
     }
@@ -55,7 +53,7 @@ class ViewController: UIViewController {
         return imageView
     }
     
-    func drawingCardRandomly() {
+    func drawCardRandomly() {
         cards.filltheCardDeck()
         let card = cards.removeOne()
         print(card)
