@@ -14,13 +14,14 @@ class PokerGame {
     var dealer : Dealer
     
     init(){
-        self.players = Players(total: countOfPlayer)
+        self.players = Players(with: countOfPlayer)
         self.dealer = Dealer()
     }
     
     private func gameReset(){
         players.removeAllCards()
         dealer.removeAllCards()
+        dealer.resetCardDeck()
     }
 
     public func start(){
