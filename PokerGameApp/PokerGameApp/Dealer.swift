@@ -12,28 +12,33 @@ class Dealer: Playable {
         case fiveCardStud = 5
     }
     
-    var name = "딜러"
+    enum Participant: Int {
+        case onePlayer = 1
+        case twoPlayer = 2
+        case threePlayer = 3
+        case fourPlayer = 4
+    }
+    
+    let name = "딜러"
     private var cards = [Card]()
     private var cardDeck = CardDeck()
     var playResult: [Card] {
         return cards
     }
     
-    public func start(numberOfPlayer: UInt, stud: CardStud) {
-        guard numberOfPlayer >= 1 || numberOfPlayer <= 4 else { return }
-        
+    public func start(numberOfPlayer: Participant, stud: CardStud) {
         let players = registerPlayer(of: numberOfPlayer)
         
-        let turns = stud.rawValue
-        shareCards(players: players, count: turns)
+        shareCards(players: players, cardStud: stud)
         
         printHand(of: players)
     }
     
-    private func registerPlayer(of number: UInt) -> [Playable] {
+    private func registerPlayer(of number: Participant) -> [Playable] {
         var players = [Playable]()
         
-        for _ in 1...number {
+        let playerCount = number.rawValue
+        for _ in 1...playerCount {
             let player = Player()
             
             players.append(player)
@@ -45,8 +50,9 @@ class Dealer: Playable {
         return players
     }
     
-    private func shareCards(players: [Playable], count: Int) {
-        for _ in 1...count {
+    private func shareCards(players: [Playable], cardStud: CardStud) {
+        let cardCount = cardStud.rawValue
+        for _ in 1...cardCount {
             players.forEach { (player) in
                 guard let newCard = cardDeck.removeOne() else { return }
                 player.getCard(newCard)

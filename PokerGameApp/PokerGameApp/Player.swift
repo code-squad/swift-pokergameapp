@@ -2,7 +2,7 @@ import Foundation
 
 class Player: Playable {
     var name: String
-    var cards = [Card]()
+    private var cards = [Card]()
     var playResult: [Card] {
         return cards
     }
