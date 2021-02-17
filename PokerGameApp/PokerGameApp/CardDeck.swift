@@ -26,15 +26,15 @@ class CardDeck{
         currentCardDeck = generateCardSet()
     }
     
-    func count() -> Int {
+    public func count() -> Int {
         return currentCardDeck.count
     }
     
-    func shuffle() {
+    public func shuffle() {
         currentCardDeck.shuffle()
     }
     
-    func removeOne() -> Card? {
+    public func removeOne() -> Card? {
         if let draw = currentCardDeck.popLast() {
             return draw
         } else {
@@ -42,7 +42,7 @@ class CardDeck{
         }
     }
     
-    func reset() {
+    public func reset() {
         currentCardDeck = generateCardSet()
     }
 }

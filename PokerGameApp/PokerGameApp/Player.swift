@@ -8,8 +8,8 @@
 import Foundation
 
 class Player {
-    var id: Int = 0
-    var cardDeck: Array<Card>
+    private var id: Int = 0
+    private var cardDeck: Array<Card>
     
     init(id: Int) {
         self.id = id
