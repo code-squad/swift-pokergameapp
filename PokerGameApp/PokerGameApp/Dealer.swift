@@ -8,19 +8,18 @@
 import Foundation
 
 class Dealer {
-    private var cardDeck: Array<Card>
+    private var cardsInHand: Array<Card>
     
     init() {
-        self.cardDeck = []
+        cardsInHand = []
     }
-    
     public func receive(card: Card) {
-        cardDeck.append(card)
+        cardsInHand.append(card)
     }
 }
 
 extension Dealer: CustomStringConvertible {
     var description: String {
-        return "딜러 \(cardDeck)"
+        return "딜러 \(cardsInHand)"
     }
 }
