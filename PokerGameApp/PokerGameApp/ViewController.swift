@@ -20,6 +20,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         print(heartQ)
         print(spade7)
+        testScenarios()
         
         if let backgroundImage = UIImage(named: "bg_pattern") {
             self.view.backgroundColor = UIColor(patternImage: backgroundImage)
@@ -52,5 +53,15 @@ class ViewController: UIViewController {
             pokerCardView.heightAnchor.constraint(equalTo: pokerCardView.widthAnchor, multiplier: 1.27).isActive  = true
             stackView.addArrangedSubview(pokerCardView)
         }
+    }
+    
+    func testScenarios() {
+        print(Test(testCase: .create, testDeck: cardDeck, expectedValue: 52))
+        cardDeck.shuffle()
+        print(Test(testCase: .shuffle, testDeck: cardDeck, expectedValue: 52))
+        let _ = cardDeck.removeOne()
+        print(Test(testCase: .removeOne, testDeck: cardDeck, expectedValue: 51))
+        cardDeck.reset()
+        print(Test(testCase: .reset, testDeck: cardDeck, expectedValue: 52))
     }
 }
