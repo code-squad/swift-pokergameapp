@@ -30,5 +30,9 @@ struct Test {
         print("> 카드 하나 뽑기")
         print(deck.removeOne() ?? "모든 카드를 뽑았습니다")
         print("총 \(deck.count())장의 카드가 남았습니다.")
-    }
+        
+        print("> 카드초기화")
+        deck.reset()
+        print("카드 전체를 초기화 했습니다.")
+        print("총 \(deck.count())장의 카드가 있습니다.\n")    }
 }
