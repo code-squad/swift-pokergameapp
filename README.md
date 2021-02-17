@@ -38,3 +38,10 @@ struct는 대입 시 복제라는 큰 특징이 있고 이로 인해 불변성�
 Struct 는 Value에 의해, Class는 Reference에 의해 
 
 Class는 ARC에 의해 메모리 관리를 받는다.
+
+## Step04 - 포커딜러와 게임테스트
+
+### 실행 화면
+
+<img src = "img/step04-01.png" width = "80%">
+<img src = "img/step04-02.png" width = "80%">
