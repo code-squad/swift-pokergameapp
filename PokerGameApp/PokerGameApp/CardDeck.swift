@@ -24,13 +24,8 @@ struct CardDeck {
     }
     
     mutating func removeOne() -> Card? {
-        let numberOfCards = count()
-        if numberOfCards == 0 {
-            return nil
-        } else {
-            let randomNumber = Int.random(in: 0..<numberOfCards)
-            return cards.remove(at: randomNumber)
-        }
+        if let lastCard = cards.popLast() { return lastCard }
+        return nil
     }
     
     mutating func reset() {
