@@ -28,48 +28,49 @@ class PokerGame {
         case one = 1, two, three, four
         
         func count() -> Int {
-            return self.rawValue + 1 //딜러 몫 추가
+            return self.rawValue + 1
+        }
+        
+        func makePlayers() -> [Player] {
+            var players = [Player]()
+            
+            for i in 1...self.rawValue {
+                players.append(Player(name: .player, number: i))
+            }
+            return players
         }
     }
     
-    var dealer: Dealer
-    
+    private var dealer: Dealer
+
     private var participants = [Participant]()
+    
+    private var infoBoard = InfoBoard()
     
     init(rule: Rule, seat: Seat) {
         self.rule = rule
         self.seat = seat
-        self.dealer = Dealer(name: .dealer, cardDeck: self.cardDeck)
-        addParticipants()
-    }
-    
-    private func addParticipants() {
-        for i in 1..<seat.count() {
-            participants.append(Player(name: .player, number: i))
-        }
-        participants.append(self.dealer)
+        self.dealer = Dealer(name: .dealer, with: cardDeck, infoBoard)
+        self.participants = seat.makePlayers()
+        participants.append(dealer)
+        infoBoard.participantsList = participants.map { $0.introduceMyself() }
     }
     
     func start() -> String {
-        if let cardStacks = dealer.startGame(with: self.rule, self.seat) {
-            for (i, stack) in cardStacks.enumerated() {
-                self.participants[i].updateMyStack(with: stack)
-            }
-        } else {
-            return dealer.endGame()
-        }
-        return self.description + dealer.deckInfo()
+        takeCard()
+        return infoBoard.description
     }
-}
-
-extension PokerGame: CustomStringConvertible {
     
-    var description: String {
-        var gameStatus = ""
-        
-        for participant in participants {
-            gameStatus += "\(participant)\n"
+    private func takeCard() {
+        if let cardStacks = dealer.handOutCardStacks(within: self.rule, self.seat) {
+            for (i, stack) in cardStacks.enumerated() {
+                self.participants[i].updateStack(with: stack)
+            }
+            updateBoard(with: cardStacks)
         }
-        return gameStatus
+    }
+    
+    private func updateBoard(with currentStacks: [[Card]]) {
+        infoBoard.cardStackList = currentStacks
     }
 }
