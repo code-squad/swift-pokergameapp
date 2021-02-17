@@ -72,8 +72,4 @@ struct CardDeck {
         }
         return newCards
     }
-    
-    func isDeckEmpty() -> Bool {
-        return deck.count == 0 ? true : false
-    }
 }
