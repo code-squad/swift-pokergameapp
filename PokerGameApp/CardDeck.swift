@@ -15,8 +15,8 @@ class CardDeck : Cards{
         }
     }
 
-    public func initialize(){
-        removeAll()
+    override init(){
+        super.init()
         for suit in Card.Suit.allCases {
             for rank in Card.Rank.allCases {
                 cards.append(Card(suit: suit, rank: rank))
