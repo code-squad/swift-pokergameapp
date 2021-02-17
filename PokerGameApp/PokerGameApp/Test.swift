@@ -42,4 +42,8 @@ class Test {
     private func testCreate(_ newCardDeck: CardDeck, with expectedValue: Int) -> Bool {
         return newCardDeck.count() == expectedValue
     }
+    
+    private func testShuffle(_ cardDeck: CardDeck, with expectedValue: Int) -> Bool {
+        return cardDeck.count() == expectedValue
+    }
 }
