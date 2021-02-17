@@ -5,7 +5,7 @@ struct CardDeck {
     
     init() {
         cards = CardBox.takeSetOfCards()
-        cards = cards.customShuffled()
+        cards = cards.shuffled()
     }
     
     public var count: Int {
