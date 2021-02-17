@@ -67,4 +67,8 @@ class PokerGame {
     func getPlayersResult() -> [[Card]] {
         return players.map { $0.showdown() }
     }
+    
+    func getDealerResult() -> [Card] {
+        return dealer.showdown()
+    }
 }
