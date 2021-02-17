@@ -8,13 +8,13 @@
 import Foundation
 
 struct CardDeck {
-    var Cards: [PokerCard] = []
+    var cards: [PokerCard] = []
     var count: Int {
-        return Cards.count
+        return cards.count
     }
     
     init() {
-        self.Cards = makeCards()
+        self.cards = makeCards()
     }
     
     private func makeCards() -> [PokerCard] {
@@ -33,16 +33,16 @@ struct CardDeck {
         
         while randomRange != 0 {
             let pickedIndex = Int.random(in: 0...randomRange)
-            self.Cards.swapAt(randomRange, pickedIndex)
+            self.cards.swapAt(randomRange, pickedIndex)
             randomRange -= 1
         }
     }
     
     mutating func removeOne() -> PokerCard? {
-        return self.Cards.popLast()
+        return self.cards.popLast()
     }
     
     mutating func reset() {
-        self.Cards = makeCards()
+        self.cards = makeCards()
     }
 }
