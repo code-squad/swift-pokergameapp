@@ -7,7 +7,7 @@ class Player {
         self.handDeck = [Card]()
     }
     
-    private func recieveCard(card: Card) {
+    func recieveCard(card: Card) {
         self.handDeck.append(card)
     }
 }

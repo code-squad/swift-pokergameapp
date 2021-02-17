@@ -1,10 +1,10 @@
 import Foundation
 
-class Dealer {
+class Dealer: Player {
     private var cardDeck:CardDeck
     private var handDeck:[Card] // 딜러가 들고 있을 카드덱
     
-    init() {
+    override init() {
         self.cardDeck = CardDeck()
         self.handDeck = [Card]()
         self.cardDeck.shuffle() // 셔플은 딜러의 역할
