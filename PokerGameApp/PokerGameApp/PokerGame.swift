@@ -1,8 +1,6 @@
 import Foundation
 
 class PokerGame {
-    var players = [Playable]()
-    
     enum CardStud: Int {
         case sevenCardStud = 7
         case fiveCardStud = 5
@@ -15,17 +13,37 @@ class PokerGame {
         case fourPlayer = 4
     }
     
-    struct CardBox {
-        static func takeSetOfCards() -> [Card] {
-            var cards = [Card]()
-            
-            for rank in Card.Rank.allCases {
-                for shape in Card.Shape.allCases {
-                    let card = Card(with: shape.self, rank: rank.self)
-                    cards.append(card)
-                }
+    var players = [Playable]()
+    var cardDeck = CardDeck()
+    let dealer = Dealer()
+    
+    public func start(numberOfPlayer: Participant, stud: CardStud) {
+        players = registerPlayer(of: numberOfPlayer)
+        shareCards(players: players, cardStud: stud)
+    }
+    
+    private func shareCards(players: [Playable], cardStud: CardStud) {
+        let cardCount = cardStud.rawValue
+        for _ in 1...cardCount {
+            players.forEach { (player) in
+                guard let newCard = cardDeck.removeOne() else { return }
+                player.appendCard(newCard)
             }
-            return cards
         }
     }
+    
+    private func registerPlayer(of number: Participant) -> [Playable] {
+        var players = [Playable]()
+        
+        let playerCount = number.rawValue
+        for _ in 1...playerCount {
+            let player = Player()
+            
+            players.append(player)
+        }
+        players.append(dealer)
+        
+        return players
+    }
+    
 }

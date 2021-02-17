@@ -1,28 +1,28 @@
 import Foundation
 
-class CardDeck: PokerGame {
-    private var cardDeck = [Card]()
+struct CardDeck {
+    private var cards = [Card]()
     
-    override init() {
-        cardDeck = CardBox.takeSetOfCards()
-        cardDeck = cardDeck.customShuffled()
+    init() {
+        cards = CardBox.takeSetOfCards()
+        cards = cards.customShuffled()
     }
     
     public var count: Int {
-        return cardDeck.count
+        return cards.count
     }
     
-    public func shuffle() {
-        cardDeck = cardDeck.customShuffled()
+    public mutating func shuffle() {
+        cards = cards.customShuffled()
     }
     
-    public func removeOne() -> Card? {
-        guard let card = cardDeck.popLast() else { return nil }
+    public mutating func removeOne() -> Card? {
+        guard let card = cards.popLast() else { return nil }
         return card
     }
     
-    public func reset() {
-        cardDeck = CardBox.takeSetOfCards()
+    public mutating func reset() {
+        cards = CardBox.takeSetOfCards()
     }
 }
 
