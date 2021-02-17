@@ -1,7 +1,7 @@
 import Foundation
 
 class CardBox {
-    static func takeCardSet() -> [Card] {
+    static func takeSetOfCards() -> [Card] {
         var cards = [Card]()
         
         for rank in Card.Rank.allCases {
