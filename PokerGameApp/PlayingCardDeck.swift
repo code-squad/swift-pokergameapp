@@ -20,7 +20,8 @@ class PlayingCardDeck : CustomStringConvertible{
         return cards.description
     }
     
-    private func initialize(){
+    public func initialize(){
+        removeAll()
         for suit in PlayingCard.Suit.allCases {
             for rank in PlayingCard.Rank.allCases {
                 cards.append(PlayingCard(suit: suit, rank: rank))
@@ -28,16 +29,16 @@ class PlayingCardDeck : CustomStringConvertible{
         }
     }
     
-    func shuffle(){
+    public func shuffle(){
         cards.shuffle()
     }
     
     @discardableResult
-    func removeOneCard() -> PlayingCard?{
+    public func removeOneCard() -> PlayingCard?{
         return cards.popLast()
     }
     
-    func removeCards(count : Int) -> [PlayingCard] {
+    public func removeCards(count : Int) -> [PlayingCard] {
         var removedCards = [PlayingCard]()
         for _ in 0..<count {
             guard let removedCard = removeOneCard() else {
@@ -48,15 +49,14 @@ class PlayingCardDeck : CustomStringConvertible{
         return removedCards
     }
     
-    func takeOneCard(card : PlayingCard){
+    public func takeOneCard(card : PlayingCard){
         cards.append(card)
     }
     
-    func takeCards(cards : [PlayingCard]){
+    public func takeCards(cards : [PlayingCard]){
         self.cards.append(contentsOf: cards)
     }
-    func reset(){
+    public func removeAll(){
         cards.removeAll()
-        initialize()
     }
 }

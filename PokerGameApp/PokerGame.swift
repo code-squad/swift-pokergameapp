@@ -14,16 +14,27 @@ class PokerGame {
         static let cardstud = 7
     }
     
-    var gameCardDeck = PlayingCardDeck()
-    var players = Players(totalPlayers: Constant.numberOfPlayers)
-    var dealer = Dealer()
+    var gameCardDeck : PlayingCardDeck
+    var players : Players
+    var dealer : Dealer
+    
+    init(){
+        self.gameCardDeck = PlayingCardDeck()
+        self.players = Players(totalPlayers: Constant.numberOfPlayers)
+        self.dealer = Dealer()
+    }
+    
+    private func gameReset(){
+        gameCardDeck.initialize()
+        gameCardDeck.shuffle()
+        players.player.forEach{$0.cards.removeAll()}
+        dealer.cards.removeAll()
+    }
 
     public func start(){
+        gameReset()
         printRule()
         
-        gameCardDeck.reset()
-        gameCardDeck.shuffle()
-    
         players.player.forEach{spreadCardsToPerson(person:$0)}
         spreadCardsToPerson(person: dealer)
         
