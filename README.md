@@ -5,6 +5,10 @@ STEP15 포커게임 앱 저장소
 
 2021.02.15
 
+혹시나 해서 남겨둔  git log 첨부합니다!
+
+<img width="878" alt="스크린샷 2021-02-17 오전 11 46 41" src="https://user-images.githubusercontent.com/60323625/108171006-3bcaf580-713e-11eb-8758-01ca59fe7ab0.png">
+
 
 
 statusBarManager 
