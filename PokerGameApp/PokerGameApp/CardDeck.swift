@@ -17,7 +17,7 @@ struct CardDeck {
         self.reset()
     }
     
-    mutating private func reset() {
+    mutating func reset() {
         var tempCards:[PokerCard] = []
         for suit in PokerCard.Suit.allCases {
             for rank in PokerCard.Rank.allCases {
