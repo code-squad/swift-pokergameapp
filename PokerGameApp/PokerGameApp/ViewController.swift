@@ -16,8 +16,10 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initGameplay()
-        let card = Card()
-        print(card.description)
+//        let card = Card.init(suit: .spade, number: .J)
+//        print(card.description)
+        let deck = Deck()
+        deck.createDeck()
     }
     
     func initGameplay(){
@@ -37,7 +39,7 @@ class ViewController: UIViewController {
             cardBackImage = UIImage(named: cardname)
         }
         
-        for i in 0..<7{
+        for i in 0..<Int(CARDNUMBER){
             let j : CGFloat = CGFloat(i)
             CardViewer.append(UIImageView(image: cardBackImage))
             CardViewer[i].frame = CGRect(x: cardXpos * j - offset, y: 50, width: cardWidth , height: cardHeight)
