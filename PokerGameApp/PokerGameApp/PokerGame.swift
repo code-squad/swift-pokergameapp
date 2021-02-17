@@ -7,7 +7,7 @@
 
 import Foundation
 
-class PockerGame {
+class PokerGame {
     public enum StudVariant {
         case fiveCardStud
         case sevenCardStud
