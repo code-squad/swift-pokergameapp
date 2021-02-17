@@ -52,11 +52,19 @@
 			children = (
 				B3691E1925DCFAD100C028EC /* FiveCardStud.swift */,
 				B3691E1625DCFA3100C028EC /* SevenCardStud.swift */,
+				B3691E0E25DCB5C900C028EC /* PokerGame.swift */,
 				B3E1516225DB5652008CF74D /* Card.swift */,
 				B3E1516725DB9590008CF74D /* CardDeck.swift */,
-				B3691E0E25DCB5C900C028EC /* PokerGame.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		B37B66C625DCFF9A00411A63 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				B3D75F6625DA389C00218D88 /* ViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		B3D75F5625DA389C00218D88 = {
@@ -80,7 +88,7 @@
 			children = (
 				B3D75F6225DA389C00218D88 /* AppDelegate.swift */,
 				B3D75F6425DA389C00218D88 /* SceneDelegate.swift */,
-				B3D75F6625DA389C00218D88 /* ViewController.swift */,
+				B37B66C625DCFF9A00411A63 /* Controller */,
 				B3691E1C25DCFB0300C028EC /* Model */,
 				B3D75F6825DA389C00218D88 /* Main.storyboard */,
 				B3D75F6B25DA389D00218D88 /* Assets.xcassets */,

@@ -19,6 +19,7 @@ class ViewController: UIViewController {
         setStackView()
         drawingCardRandomly()
         test()
+        testSevenCardStud()
     }
    
     func setBackground() {
@@ -77,6 +78,17 @@ class ViewController: UIViewController {
         printDeckShuffle()
         printDeckRemoveOne()
         printDeckRemoveOne()
+    }
+    func testSevenCardStud() {
+        var participantNum = 1
+        let sevenCardStud = SevenCardStud()
+        sevenCardStud.participate()
+        sevenCardStud.readyToGameStart()
+        sevenCardStud.players.forEach { (player) in
+            print("참가자#\(participantNum) \(player.playerCards)")
+            participantNum += 1
+        }
+        print("딜러 \(sevenCardStud.dealer.dealerCards)")
     }
 }
 
