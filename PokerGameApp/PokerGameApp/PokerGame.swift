@@ -7,9 +7,11 @@
 
 import Foundation
 
-class PokerGame: CustomStringConvertible {
+class PokerGame {
+    
+    private let cardDeck = CardDeck()
 
-    var rule: Rule
+    private var rule: Rule
     
     enum Rule: Int {
         case sevenCardStud = 7
@@ -20,7 +22,7 @@ class PokerGame: CustomStringConvertible {
         }
     }
     
-    var seat: Seat
+    private var seat: Seat
 
     enum Seat: Int {
         case one = 1, two, three, four
@@ -30,88 +32,44 @@ class PokerGame: CustomStringConvertible {
         }
     }
     
-    fileprivate var players = [Player]()
+    var dealer: Dealer
     
-    fileprivate struct Player {
-        let name: String
-        var cards: [Card]?
-        
-        init(name: String) {
-            self.name = name
-        }
-    }
+    private var participants = [Participant]()
     
     init(rule: Rule, seat: Seat) {
         self.rule = rule
         self.seat = seat
-        addPlayers()
-        addDealer()
+        self.dealer = Dealer(name: .dealer, cardDeck: self.cardDeck)
+        addParticipants()
     }
     
-    private func addPlayers() {
+    private func addParticipants() {
         for i in 1..<seat.count() {
-            players.append(Player(name: "참가자 #\(i)"))
+            participants.append(Player(name: .player, number: i))
         }
+        participants.append(self.dealer)
     }
     
-    private func addDealer() {
-        players.append(Player(name: "딜러"))
-    }
-    
-    var description: String {
-        var status = ""
-        
-        for player in players {
-            if let cards = player.cards {
-                status += "\(player.name): \(cards)\n"
+    func start() -> String {
+        if let cardStacks = dealer.startGame(with: self.rule, self.seat) {
+            for (i, stack) in cardStacks.enumerated() {
+                self.participants[i].updateMyStack(with: stack)
             }
+        } else {
+            return dealer.endGame()
         }
-        return status
+        return self.description + dealer.deckInfo()
     }
 }
 
-class Dealer: PokerGame {
+extension PokerGame: CustomStringConvertible {
     
-    private var cardDeck = CardDeck()
-    private let P = PrintFactory()
-    
-    func start() -> String {
-        let cardNeeded = seat.count() * rule.cardCount()
-        guard cardDeck.count() >= cardNeeded else { return P.endMessage() }
-        
+    var description: String {
         var gameStatus = ""
         
-        gameStatus += P.shuffleMessage(with: cardDeck.shuffle())
-        gameStatus += handOutCards()
-        
+        for participant in participants {
+            gameStatus += "\(participant)\n"
+        }
         return gameStatus
-    }
-    
-    private func handOutCards() -> String {
-        for i in 0..<seat.count() {
-            if let cards = cardStack() {
-                super.players[i].cards = cards
-            } else {
-                return P.endMessage()
-            }
-        }
-        return allSet()
-    }
-    
-    private func cardStack() -> [Card]? {
-        var cards = [Card]()
-        
-        for _ in 0..<rule.cardCount() {
-            if let card = cardDeck.removeOne() {
-                cards.append(card)
-            } else {
-                return nil
-            }
-        }
-        return cards
-    }
-    
-    private func allSet() -> String {
-        return "\(description)"
     }
 }
