@@ -22,4 +22,27 @@ class PokerGame {
             }
         }
     }
+    
+    enum StudPoker: CustomStringConvertible {
+        case fiveCardStud
+        case sevenCardStud
+        
+        var description: String {
+            switch self {
+            case .fiveCardStud:
+                return "5카드 스터드"
+            case .sevenCardStud:
+                return "7카드 스터드"
+            }
+        }
+        
+        func getMaxCardCounts() -> Int {
+            switch self {
+            case .fiveCardStud:
+                return 5
+            case .sevenCardStud:
+                return 7
+            }
+        }
+    }
 }
