@@ -15,7 +15,6 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         makeBackGround()
         makeStackView()
-        test.startTest()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle{
