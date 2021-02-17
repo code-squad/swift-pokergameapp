@@ -7,18 +7,6 @@
 
 import Foundation
 
-class Dealer: CardDeck {
-    var dealerDeck: Array<Card>?
-    
-    public func receive(card: Card) {
-        if dealerDeck != nil {
-            dealerDeck?.append(card)
-        } else {
-            dealerDeck = [card]
-        }
-    }
-}
-
 class PockerGame {
     var cardDeck = CardDeck()
     var dealer = Dealer()
@@ -66,11 +54,7 @@ class PockerGame {
             print("\(player)")
         }
         print("\(dealer)")
+        print("\(cardDeck.count())")
     }
 }
 
-extension Dealer: CustomStringConvertible {
-    var description: String {
-        return "딜러 \(dealerDeck ?? [])"
-    }
-}
