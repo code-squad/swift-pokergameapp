@@ -17,8 +17,9 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         setBackGround()
         setCard()
-        print(Card(rank: .J, suit: .clubs))
-        print(Card(rank: .Five, suit: .hearts))
+        
+        var test = Test()
+        test.startTest()
     }
     
     
