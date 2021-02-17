@@ -9,4 +9,6 @@ import Foundation
 
 struct CardDeck {
     
+    private var cards: [Card] = []
+    
 }
