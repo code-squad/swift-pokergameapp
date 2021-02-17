@@ -11,7 +11,7 @@ struct CardDeck {
     private var cards = [Card]()
     
     init() {
-        cards = CardDeckGenerator.generateCardDeck()
+        cards = CardDeckGenerator.generate()
     }
     
     mutating func shuffle() {
@@ -53,7 +53,7 @@ extension CardDeck: Equatable {
 }
 
 struct CardDeckGenerator {
-    static func generateCardDeck() -> [Card] {
+    static func generate() -> [Card] {
         var cards: [Card] = []
         
         for suit in Card.Suit.allCases {
