@@ -8,12 +8,15 @@
 import Foundation
 
 enum Suit: Character, CustomStringConvertible, CaseIterable {
-    var description: String { return "\(self.rawValue)"}
-    
     case spades = "♠️", hearts = "❤️", diamonds = "♦️", clubs = "♣️"
+    
+    var description: String { return "\(self.rawValue)"}
+
 }
 
 enum Rank: Int, CustomStringConvertible, CaseIterable{
+    case A = 1, Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten, J, Q, K
+
     var description: String {
         let rankNumber = self.rawValue
 
@@ -30,9 +33,6 @@ enum Rank: Int, CustomStringConvertible, CaseIterable{
             return "\(rankNumber)"
         }
         }
-    
-    case A = 1, Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten, J, Q, K
-    
 }
 
 struct Card: CustomStringConvertible {
