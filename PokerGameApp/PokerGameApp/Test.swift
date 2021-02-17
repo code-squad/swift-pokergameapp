@@ -28,4 +28,14 @@ class Test {
             }
         }
     }
+    
+    private let testCase: CardDeckTestCase
+    private let testDeck: CardDeck
+    private let expectedValue: Int
+    
+    init(testCase: CardDeckTestCase, testDeck: CardDeck, expectedValue: Int) {
+        self.testCase = testCase
+        self.testDeck = testDeck
+        self.expectedValue = expectedValue
+    }
 }
