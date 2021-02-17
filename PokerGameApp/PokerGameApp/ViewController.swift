@@ -54,10 +54,11 @@ class ViewController: UIViewController {
     }
     
     func drawingCardRandomly() {
-        guard let randSuit = Card.Suit.allCases.randomElement()?.rawValue else { return }
-        guard let randRank = Card.Rank.allCases.randomElement()?.rawValue else { return }
-        print(String(describing: randSuit) + String(describing: randRank))
+        cards.filltheCardDeck()
+        let card = cards.removeOne()
+        print(card)
     }
+    
     func printDeckReset() {
         cards.reset()
         print("카드 전체를 초기화했습니다.")
