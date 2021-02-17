@@ -14,7 +14,7 @@ class ViewController: UIViewController {
         let dealer = Dealer()
         dealer.start(numberOfPlayer: .fourPlayer, stud: .sevenCardStud)
         for player in dealer.players {
-            print(player.name, player.finalScore)
+            print(player.name, player.result)
         }
     }
     

@@ -19,7 +19,6 @@ class Card: PokerGame, CustomStringConvertible {
             switch self {
             case .ace: return "A"
             case .jack: return "J"
-            
             case .king: return "K"
             default: return "\(self.rawValue)"
             }

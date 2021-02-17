@@ -3,7 +3,7 @@ import Foundation
 class Player: PokerGame, Playable {
     var name: String
     private var cards = [Card]()
-    var finalScore: [Card] {
+    var result: [Card] {
         return cards
     }
     
