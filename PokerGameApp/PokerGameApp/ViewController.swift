@@ -41,18 +41,14 @@ class ViewController: UIViewController {
             
         }
         
+        let cardGame = Dealer()
         
-        let cardGame = CardGame()
-        cardGame.makeDeck()
-        cardGame.startGame(participantsNum: 3)
-        cardGame.distributeCard(cardStud: 5)
+        cardGame.startGame()
+        cardGame.distributeCard()
         
         for i in 0..<cardGame.gameBoard.count {
-            
             print("\(cardGame.gameBoard[i])")
-            
         }
-        
     }
     
 }
