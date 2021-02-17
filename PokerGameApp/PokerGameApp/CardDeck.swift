@@ -22,6 +22,21 @@ struct CardDeck {
         }
     }
     
+    func count() -> Int {
+        return deck.count
+    }
     
+    mutating func shuffle() {
+        deck.shuffle()
+    }
+    
+    mutating func removeOne() -> Card? {
+        return deck.popLast()
+    }
+    
+    mutating func reset() {
+        deck.removeAll()
+        setCardDeck()
+    }
     
 }
