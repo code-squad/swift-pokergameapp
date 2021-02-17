@@ -21,15 +21,15 @@ class Dealer {
         self.init(cardDeck: cardDeck, hand: Hand(cards: []))
     }
     
-    var handInfo: Hand {
+    func showHandInfo() -> Hand {
         return self.hand
     }
     
-    var nameInfo: String {
+    func showNameInfo() -> String {
         return self.name
     }
     
-    var remainCards: CardDeck {
+    func takeRemainCards() -> CardDeck {
         return cardDeck
     }
     
