@@ -9,9 +9,16 @@ import Foundation
 
 class CardDeck {
     private var cards = [Card]()
+    private let initialCards: [Card]
     
     init() {
-        reset()
+        for shape in Shape.allCases {
+            for rank in Rank.allCases {
+                let card = Card(shape: shape, rank: rank)
+                self.cards.append(card)
+            }
+        }
+        self.initialCards = self.cards
     }
     
     func countCard() -> Int {
@@ -27,11 +34,10 @@ class CardDeck {
     }
     
     func reset() {
-        Shape.allCases.forEach { (shape) in
-            Rank.allCases.forEach { (rank) in
-                let card = Card(shape: shape, rank: rank)
-                cards.append(card)
-            }
-        }
+        cards = initialCards
+    }
+    
+    func showCardDect() -> [Card] {
+        return cards
     }
 }
