@@ -13,7 +13,7 @@ class PokerGameAppTests: XCTestCase {
     var cardDeck = CardDeck()
     
     func testGenerateCardDeck() {
-        let resetCardDeck = CardDeckGenerator.generateCardDeck()
+        let resetCardDeck = CardDeckGenerator.generate()
         
         XCTAssertEqual(52, resetCardDeck.count)
     }
