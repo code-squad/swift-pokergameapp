@@ -15,7 +15,7 @@ import Foundation
 class Player {
     private var cards: [Card] = []
     
-    func receiveCards(with rCards: [Card]) {
+    func receive(with rCards: [Card]) {
         self.cards = rCards
     }
     func playerDeck() -> [Card] {

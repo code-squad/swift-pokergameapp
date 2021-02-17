@@ -23,8 +23,8 @@ class Dealer{
         return cardDeck.give(number: stud)
     }
     
-    func distributePlayers(with players: Players) -> Bool{
-        players.distributeCards(with: self)
+    func distribute(with players: Players) -> Bool{
+        players.distribute(with: self)
         return true
     }
     

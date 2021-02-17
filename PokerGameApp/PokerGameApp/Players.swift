@@ -20,10 +20,10 @@ struct Players {
         return players.count
     }
     
-    func distributeCards(with dealer: Dealer) {
+    func distribute(with dealer: Dealer) {
         players.forEach { player in
             guard let newCards = dealer.give() else { return }
-            player.receiveCards(with: newCards)
+            player.receive(with: newCards)
         }
     }
     
