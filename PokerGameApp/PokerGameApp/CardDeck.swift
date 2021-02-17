@@ -7,31 +7,30 @@
 
 import Foundation
 
-struct cardDeck {
-    private var cardDeckArr: [String] = []
+struct CardDeck {
+    private var cards: [Card] = []
     
     mutating func makeCardDeck()  {
         for suit in Card.Suit.allCases {
             for rank in Card.Rank.allCases {
-                self.cardDeckArr.append("\(suit)\(rank)")
+                self.cards.append(Card(suit: suit, rank: rank))
             }
         }
     }
     mutating func count() -> Int {
-        let cardDeckCount = cardDeckArr.count
-        return cardDeckCount
+        return cards.count
     }
     
     mutating func shuffle() {
-        cardDeckArr = cardDeckArr.shuffled()
+        cards.shuffle()
     }
     
-    mutating func removeOne() -> String? {
-        return cardDeckArr.removeLast()
+    mutating func removeOne() -> Card? {
+        return cards.removeLast()
     }
     
     mutating func reset() {
-        cardDeckArr.removeAll()
+        cards.removeAll()
         makeCardDeck()
     }
 }
