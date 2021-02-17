@@ -29,7 +29,9 @@ class Dealer{
     }
     
     func takeDealerCards() -> Bool {
-        guard let newCards = cardDeck.give(number: stud) else { return false }
+        guard let newCards = cardDeck.give(number: stud) else {
+            return false
+        }
         self.cards = newCards
         return true
     }

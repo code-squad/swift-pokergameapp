@@ -10,8 +10,9 @@ import Foundation
 enum Suit: Character, CustomStringConvertible, CaseIterable {
     case spades = "♠️", hearts = "❤️", diamonds = "♦️", clubs = "♣️"
     
-    var description: String { return "\(self.rawValue)"}
-
+    var description: String {
+        return "\(self.rawValue)"
+    }
 }
 
 enum Rank: Int, CustomStringConvertible, CaseIterable{
