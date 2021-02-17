@@ -45,7 +45,8 @@ let cardStackView = UIStackView(arrangedSubviews: cards)
 
 ## STEP 2
 
-- raw value 를 가진 enum 으로 카드 모양 표현
-- Dictionary 로 카드 숫자 표현
+- 카드 모양 :  raw value 를 가진 enum
+- 카드 숫자 :  Dictionary -> raw value 를 가진 enum 
 
+- 카드 클래스에 CustomStringConvertible 을 적용해서 출력 함수 없이, 출력 형식을 지정함
 
