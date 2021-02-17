@@ -28,12 +28,10 @@ struct CardDeck {
         return cards.count == 0 ? nil : self.cards.popLast()
     }
     mutating func reset() {
+
         self.cards.removeAll()
-        for i in 1...13 {
-            self.cards.append(Card(Card.Nums(rawValue: i)!, Card.Shapes.clobers))
-            self.cards.append(Card(Card.Nums(rawValue: i)!, Card.Shapes.diamonds))
-            self.cards.append(Card(Card.Nums(rawValue: i)!, Card.Shapes.hearts))
-            self.cards.append(Card(Card.Nums(rawValue: i)!, Card.Shapes.spades))
-        }
+        Card.Nums.allCases.map{ num in
+            Card.Shapes.allCases.map{ shape in
+                self.cards.append(Card(num, shape))} }
     }
 }
