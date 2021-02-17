@@ -20,6 +20,8 @@ class ViewController: UIViewController {
         
         var pockerGame = PockerGame(numberOfPlayer: 3, cardStud: 7)
         pockerGame.gameStart()
+        pockerGame = PockerGame(numberOfPlayer: 3, cardStud: 5)
+        pockerGame.gameStart()
     }
     
     
