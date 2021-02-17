@@ -16,11 +16,21 @@ class Card: CustomStringConvertible {
      이때 switch statement를 사용하기에도 Enum이 좋을 것이라 판단했습니다.
      */
     
-    enum Suit: Character, CaseIterable {
-        case spades = "♠️"
-        case hearts = "♥️"
-        case diamonds = "♦️"
-        case clubs = "♣️"
+    enum Suit: CustomStringConvertible, CaseIterable {
+        case spades, hearts, diamonds, clubs
+        
+        var description: String {
+            switch self {
+            case .spades:
+                return "♠️"
+            case .hearts:
+                return "♥️"
+            case .diamonds:
+                return "♦️"
+            case .clubs:
+                return "♣️"
+            }
+        }
     }
     
     enum Rank: Int, CustomStringConvertible, CaseIterable {
@@ -45,7 +55,7 @@ class Card: CustomStringConvertible {
     let suit: Suit
     let rank: Rank
     var description: String {
-        return "\(suit.rawValue)\(rank.description)"
+        return "\(suit)\(rank)"
     }
     
     init(suit: Suit, rank: Rank) {
