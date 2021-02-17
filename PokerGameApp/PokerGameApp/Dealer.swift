@@ -2,7 +2,7 @@ import Foundation
 
 protocol Playable {
     var name: String { get }
-    // 이후에 play 결과를 반환합니다. [Card]가 아닌 값이 반환될 수 있습니다.
+    // 해당 프로퍼티는 이후 step에서 player간 score 비교를 위해 써보려 했습니다. step 이후에 반환 값이 바뀔 수 있습니다.
     var finalScore: [Card] { get }
     func appendCard(_ card: Card)
 }
