@@ -22,11 +22,15 @@ class PokerGame {
         var dealer: Dealer = Dealer(cardDeck: CardDeck())
         var players: [Player] = []
         
-        for index in 1...NumberOfPlayer {
+        func HandOutToPlayers(playerNumber index: Int) {
             let hand = Hand(cards: dealer.handOut(cardCount))
             let playerName = setPlayerName(index)
             let player = Player(hand: hand, name: playerName)
             players.append(player)
+        }
+        
+        for index in 1...NumberOfPlayer {
+            HandOutToPlayers(playerNumber: index)
         }
         
         dealer = hasAHand(dealer: dealer, cardCount: cardCount)
