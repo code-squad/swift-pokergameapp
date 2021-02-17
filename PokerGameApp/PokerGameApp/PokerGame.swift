@@ -8,8 +8,8 @@
 import Foundation
 
 class PokerGame {
-    enum Mode: Int {
-        case sevenStud = 1, fiveStud
+    enum Mode {
+        case sevenStud, fiveStud
     }
     
     enum NumberOfcards {
@@ -18,8 +18,28 @@ class PokerGame {
     }
     
     class func start(gameMode: PokerGame.Mode, NumberOfPlayer: Int) {
-        let cardNumber = gameMode == .fiveStud ? NumberOfcards.five : NumberOfcards.seven
+        let cardCount = gameMode == .fiveStud ? NumberOfcards.five : NumberOfcards.seven
         var dealer: Dealer = Dealer(cardDeck: CardDeck())
         var players: [Player] = []
+        
+        for index in 1...NumberOfPlayer {
+            let hand = Hand(cards: dealer.handOut(cardCount))
+            let playerName = setPlayerName(index)
+            let player = Player(hand: hand, name: playerName)
+            players.append(player)
+        }
+        
+        dealer = hasAHand(dealer: dealer, cardCount: cardCount)
+    }
+}
+
+private extension PokerGame {
+    static func setPlayerName(_ playerNumber: Int) -> String {
+        return "참가자\(playerNumber)"
+    }
+    
+    static func hasAHand(dealer: Dealer, cardCount: Int) -> Dealer {
+        let dealer = dealer
+        return Dealer(cardDeck: dealer.remainCards, hand: Hand(cards: dealer.handOut(cardCount)))
     }
 }
