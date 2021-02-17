@@ -45,4 +45,14 @@ class PokerGame {
             }
         }
     }
+    
+    let dealer: Dealer
+    let players: [Player]
+    let gameType: StudPoker
+    
+    init(dealer: Dealer, players: [Player], gameType: StudPoker) {
+        self.dealer = dealer
+        self.players = players
+        self.gameType = gameType
+    }
 }
