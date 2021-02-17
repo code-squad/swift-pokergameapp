@@ -68,9 +68,9 @@
 
 - 설명
   - PokerGame 클래스를 만들고 그 안에 카드덱, 플레이어들, 딜러 프로퍼티를 생성하였다.
-  - 게임을 시작하기 위한 준비과정 readyToGameStart(), 플레이어 인스턴스를 생성하기 위한 participate() 메소드를 생성하였다.
+  - 게임을 시작하는 startGame(), 플레이어 인스턴스를 생성하기 위한 participate() 메소드를 생성하였다.
   - PokerGame안에 nestedType으로 Player와  Dealer 클래스를 생성하였다.
-  - readyToGameStart() 메소드는 우선 카드덱을 셔플하고, 셔플한 카드덱으로부터 각 플레이어들에게 카드를 나눠주고, 마지막으로 딜러까지 카드를 받는 기능을 코드이다.
+  - startGame() 메소드는 우선 카드덱을 셔플하고, 셔플한 카드덱으로부터 각 플레이어들에게 카드를 나눠주고, 마지막으로 딜러까지 카드를 받는 기능을 코드이다.
   - ViewController에 testSevenCardStud()메소드를 생성하여 참가자들과 딜러의 카드를 출력하는 코드를 작성하였다.
 
 
