@@ -37,8 +37,7 @@ struct CardDeck {
     }
     
     mutating func removeOne() -> Card {
-        guard let cardToRemoved = cards.popLast() else { return Card(rank: .two, suit: .clubs) }
-        return cardToRemoved
+        return cards.removeLast()
     }
     
     mutating func count() -> Int {
