@@ -12,7 +12,7 @@ class TroubleShooter {
     enum errors : Error {
         case imageOptionalBindingError
     }
-    func fatalError() -> UIAlertController {
+    func personalError() -> UIAlertController {
         
         let alert = UIAlertController(title: "치명적 오류 발생", message: nil, preferredStyle: .actionSheet)
         let stop = UIAlertAction(title: "앱 정지", style: .destructive, handler: {(action) in self.suspendApp()})
