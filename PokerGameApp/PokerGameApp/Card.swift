@@ -1,6 +1,6 @@
 import Foundation
 
-class Card: CustomStringConvertible {
+class Card: CardBox, CustomStringConvertible {
     enum Shape: String, CaseIterable, CustomStringConvertible {
         case clubs = "♣️"
         case diamone = "♦️"
