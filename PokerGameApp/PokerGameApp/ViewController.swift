@@ -9,6 +9,7 @@ import UIKit
 
 class ViewController: UIViewController {
     var cardDeck = CardDeck()
+    var mockGame = PokerGameApp.pockerGame()
     
     let cardStackView: UIStackView = {
         let stackView = UIStackView()
@@ -30,11 +31,7 @@ class ViewController: UIViewController {
         configureCardStackView(cardStackView: cardStackView)
         addSubviewToCardStackView(numberOfCards: 7, image: cardBacksideImage)
         
-        testScenario(command: "카드초기화")
-        testScenario(command: "카드섞기")
-        for _ in 1...60 {
-            testScenario(command: "카드하나뽑기")
-        }
+        mockGame.gamePlay()
     }
     
     func makeCardImageView(with newImage: UIImage) -> UIImageView {
@@ -67,4 +64,4 @@ class ViewController: UIViewController {
         }
     }
 }
-
+    

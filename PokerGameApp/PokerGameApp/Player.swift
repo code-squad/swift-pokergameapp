@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Player {
+class Player {
     var playerID: Int = 0
     var playerCardDeck: Array<Card>?
     
@@ -15,7 +15,7 @@ struct Player {
         playerID = id
     }
     
-    mutating func receive(card: Card) {
+    public func receive(card: Card) {
         if playerCardDeck != nil {
             playerCardDeck?.append(card)
         } else {
