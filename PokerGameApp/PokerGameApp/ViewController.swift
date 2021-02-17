@@ -14,22 +14,23 @@ class ViewController: UIViewController {
         if let pattern = UIImage(named: "bg_pattern.png") {
             self.view.backgroundColor = UIColor(patternImage: pattern)
         }
+        
         setImageStackView()
         
         // Check Data
         let dealer = Dealer()
-        dealer.start(numberOfPlayer: 4, stud: .sevenCardStud)
+        dealer.start(numberOfPlayer: .onePlayer, stud: .sevenCardStud)
     }
     
     private func setImageStackView() {
-        var imageStackView: UIStackView {
+        let imageStackView: UIStackView = {
             let stackView = UIStackView()
             stackView.axis = .horizontal
             stackView.distribution = .fillEqually
             stackView.alignment = .center
             stackView.spacing = 5
             return stackView
-        }
+        }()
         
         let cardImageViews = createCards(count: 7)
         cardImageViews.forEach { (imageView) in
