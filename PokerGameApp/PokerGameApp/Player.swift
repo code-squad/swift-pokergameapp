@@ -33,10 +33,11 @@ class Deck {
 
 class Player {
     private var deck = Deck()
-    private let gamerType : GamerType
+    private let name = "참가자"
+    private let entryNumber : Int
     
-    init(type : GamerType) {
-        gamerType = type
+    init(entryNumber : Int) {
+        self.entryNumber = entryNumber
     }
     
     func receiveCard(card : Card) {
@@ -47,7 +48,4 @@ class Player {
         return deck.showCards()
     }
     
-    func type() -> GamerType {
-        return gamerType
-    }
 }
