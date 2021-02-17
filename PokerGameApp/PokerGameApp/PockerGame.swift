@@ -48,3 +48,14 @@ class PockerGame {
         }
     }
 }
+extension PockerGame: CustomStringConvertible {
+    var description: String {
+        var str = ""
+        for num in 1...participants.count {
+            str.append("참가자#\(num) \(participants[num-1])")
+        }
+
+        str.append("딜러 \(dealer))")
+        return str
+    }
+}

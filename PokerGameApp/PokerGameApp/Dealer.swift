@@ -18,3 +18,11 @@ class Dealer {
         return cards
     }
 }
+extension Dealer: CustomStringConvertible {
+    var description: String {
+        var str = cards.map({"\($0)"}).joined(separator: " ,")
+        str.insert("[", at: str.startIndex)
+        str.append("]")
+        return str
+    }
+}
