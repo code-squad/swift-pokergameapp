@@ -15,6 +15,26 @@ class PokerGame {
     
     var players = [Playable]()
     var cardDeck = CardDeck()
+    var dealer = Dealer()
+    
+    public func start(numberOfPlayer: Participant, stud: CardStud) {
+        players = registerPlayer(of: numberOfPlayer)
+
+        shareCards(players: players, cardStud: stud)
+    }
+    
+    private func registerPlayer(of number: Participant) -> [Playable] {
+        var players = [Playable]()
+        
+        let playerCount = number.rawValue
+        for _ in 1...playerCount {
+            let player = Player()
+            players.append(player)
+        }
+        players.append(dealer)
+        
+        return players
+    }
     
     func shareCards(players: [Playable], cardStud: CardStud) {
         let cardCount = cardStud.rawValue
