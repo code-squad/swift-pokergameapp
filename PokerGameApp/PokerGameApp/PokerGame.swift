@@ -55,4 +55,12 @@ class PokerGame {
         self.players = players
         self.gameType = gameType
     }
+    
+    func startGame() {
+        dealer.cardDeck.shuffle()
+        (0..<gameType.getMaxCardCounts()).forEach { _ in
+            dealer.deal(to: players)
+            dealer.deal(to: dealer)
+        }
+    }
 }
