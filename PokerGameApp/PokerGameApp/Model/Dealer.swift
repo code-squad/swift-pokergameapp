@@ -24,7 +24,7 @@ class Dealer : Playable {
         deck.resetCard()
     }
     
-    func receiveCard(gameType : Int, players : [Playable]) {
+    func shareCard(gameType : Int, players : [Playable]) {
         players.forEach { player in
             (1...gameType).forEach { _ in
                 guard let card = cardDeck.removeOne() else {
@@ -36,12 +36,16 @@ class Dealer : Playable {
     }
     
     func showCards() -> String {
-        return "\(name) \(self.deck.showCards())"
+        return "\(name) \(deck.showCards())"
     }
     
     func resetPlayerCard(players : [Playable]) {
         players.forEach { player in
             player.resetCards()
         }
+    }
+    
+    func count(gameType : Int ,players : Int) -> Bool {
+        return cardDeck.count() > gameType * players
     }
 }

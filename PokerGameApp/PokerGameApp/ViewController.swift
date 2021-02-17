@@ -35,8 +35,10 @@ class ViewController: UIViewController {
         makeCard()
     
         let pokerGame = PockerGame(particpatin: .two, gameType: .five)
-        (0...3).forEach { _ in
+        while pokerGame.countCardDeck() {
             pokerGame.startGame()
+            print(pokerGame.showPlayersCard())
+            pokerGame.resetCard()
         }
     }
 

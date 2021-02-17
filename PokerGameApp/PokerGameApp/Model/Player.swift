@@ -7,30 +7,6 @@
 
 import Foundation
 
-class Deck {
-    private var handCard : [Card] = []
-    
-    func receiveCard(card : Card) {
-        handCard.append(card)
-    }
-    
-    func showCards() -> [Card] {
-        return handCard
-    }
-    
-    func resetCard() {
-        handCard.removeAll()
-    }
-    
-    func countCard() -> Int {
-        return handCard.count
-    }
-    
-    func emptyCard() -> Bool {
-        return handCard.isEmpty
-    }
-}
-
 class Player : Playable {
     private var deck = Deck()
     private let name = "참가자"
