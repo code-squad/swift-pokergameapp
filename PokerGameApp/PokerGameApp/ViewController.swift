@@ -11,6 +11,7 @@ class ViewController: UIViewController {
     
     let heartQ = Card(suit: .hearts, rank: .twelve)
     let spade7 = Card(suit: .spades, rank: .seven)
+    var cardDeck = CardDeck()
     
     let pokerCardImage = UIImage(named: "card-back")
     let cardStackView = UIStackView()
