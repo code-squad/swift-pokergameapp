@@ -17,11 +17,23 @@ enum Shape: Character, CustomStringConvertible {
     case Heart = "♥️"
 }
 
-// 1-13 범위만 받을 수 있고, 값에 해당하는 String 값을 원시값으로 가지고 있다
-enum Rank: String, CustomStringConvertible {
-    var description: String { return "\(self.rawValue)" }
+// 1-13 범위만 받을 수 있고, 숫자에 해당하는 String 값을 받을 수 있다
+enum Rank: Int, CustomStringConvertible {
+    case ace = 1, two, three, four, five, six, seven, eight, nine, ten, jack, queen, king
     
-    case ace = "A", two = "2", three = "3", four = "4", five = "5", six = "6", seven = "7", eight = "8", nine = "9", ten = "10", jack = "J", queen = "Q", king = "K"
+    var description: String {
+        switch self.rawValue {
+        case 1:
+            return "A"
+        case 11:
+            return "J"
+        case 12:
+            return "Q"
+        case 13:
+            return "K"
+        default:
+            return "\(self.rawValue)" }
+        }
 }
 
 
