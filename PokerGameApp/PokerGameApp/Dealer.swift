@@ -9,45 +9,36 @@ import Foundation
 
 
 
-struct Dealer : CustomStringConvertible{
-    
-    private var description: String { return "\(cards)" }
+class Dealer{
     private var cardDeck: CardDeck
     private var cards:[Card] = []
+    private var stud: Int
     
-    init() {
+    init(stud :Int) {
         self.cardDeck = CardDeck()
+        self.stud = stud
     }
     
-    mutating func distributeCard(with player: Player, stud: Int) -> Bool{
-        switch stud {
-        case 5:
-            guard let newCards = cardDeck.fiveStudCards() else {return false}
-            player.receiveCards(with: newCards)
-        case 7:
-            guard let newCards = cardDeck.sevenStudCards() else {return false}
-            player.receiveCards(with: newCards)
-        default:
-            return false
-        }
+    func give() -> [Card]? {
+        return cardDeck.give(number: stud)
+    }
+    
+    func distributePlayers(with players: Players) -> Bool{
+        players.distributeCards(with: self)
         return true
     }
     
-    mutating func takeDealerCards(stud: Int) -> Bool {
-        switch stud {
-        case 5:
-            guard let newCards = cardDeck.fiveStudCards() else {return false}
-            self.cards = newCards
-        case 7:
-            guard let newCards = cardDeck.sevenStudCards() else {return false}
-            self.cards = newCards
-        default:
-            return false
-        }
+    func takeDealerCards() -> Bool {
+        guard let newCards = cardDeck.give(number: stud) else { return false }
+        self.cards = newCards
         return true
     }
     
-    mutating func shuffle() {
+    func shuffle() {
         cardDeck.shuffle()
+    }
+    
+    func printDeck() {
+        print("딜러#  \(cards)")
     }
 }

@@ -12,16 +12,14 @@ import Foundation
 //    mutating func receiveCards(with rCards:[Card])
 //}
 
-class Player : CustomStringConvertible {
-
-    var description: String { return "\(cards)" }
-    
-    
+class Player {
     private var cards: [Card] = []
     
     func receiveCards(with rCards: [Card]) {
         self.cards = rCards
     }
-    
+    func playerDeck() -> [Card] {
+        cards
+    }
  
 }
