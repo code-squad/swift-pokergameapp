@@ -14,17 +14,17 @@ struct CardDeck {
     }
     
     init() {
-        self.cards = makeCards()
+        self.reset()
     }
     
-    private func makeCards() -> [PokerCard] {
+    mutating private func reset() {
         var tempCards:[PokerCard] = []
         for suit in PokerCard.Suit.allCases {
             for rank in PokerCard.Rank.allCases {
                 tempCards.append(PokerCard(suit: suit, rank: rank))
             }
         }
-        return tempCards
+        self.cards = tempCards
     }
     
     //  Fisher-Yates shuffle(Knuth)
@@ -40,9 +40,5 @@ struct CardDeck {
     
     mutating func removeOne() -> PokerCard? {
         return self.cards.popLast()
-    }
-    
-    mutating func reset() {
-        self.cards = makeCards()
     }
 }
