@@ -19,6 +19,7 @@ class PokerGame {
     
     func readyToGameStart() {
         cardDeck.filltheCardDeck()
+        cardDeck.shuffle()
     }
     func participate() {
     }
