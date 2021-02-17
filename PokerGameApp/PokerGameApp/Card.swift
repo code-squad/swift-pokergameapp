@@ -8,7 +8,7 @@
 import Foundation
 
 // 4가지 모양만 존재 가능하다고 명시하는 효과가 있는 것 같아서 선택
-enum Shape: Character, CustomStringConvertible {
+enum Shape: Character, CustomStringConvertible, CaseIterable {
     var description: String { return "\(self.rawValue)" }
     
     case Spade = "♠️"
@@ -18,7 +18,7 @@ enum Shape: Character, CustomStringConvertible {
 }
 
 // 1-13 범위만 받을 수 있고, 숫자에 해당하는 String 값을 받을 수 있다
-enum Rank: Int, CustomStringConvertible {
+enum Rank: Int, CustomStringConvertible, CaseIterable {
     case ace = 1, two, three, four, five, six, seven, eight, nine, ten, jack, queen, king
     
     var description: String {

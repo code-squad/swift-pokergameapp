@@ -14,8 +14,7 @@
 		AE905A6625DA3B1F00C99E3C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE905A6525DA3B1F00C99E3C /* Assets.xcassets */; };
 		AE905A6925DA3B1F00C99E3C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE905A6725DA3B1F00C99E3C /* LaunchScreen.storyboard */; };
 		AE905A7525DAA79000C99E3C /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE905A7425DAA79000C99E3C /* Card.swift */; };
-
-		AE905A7525DAA79000C99E3C /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE905A7425DAA79000C99E3C /* Card.swift */; };
+		AEB5075125DCEB7800E53DAA /* CardDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB5075025DCEB7800E53DAA /* CardDeck.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,10 +26,8 @@
 		AE905A6525DA3B1F00C99E3C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AE905A6825DA3B1F00C99E3C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AE905A6A25DA3B1F00C99E3C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-
 		AE905A7425DAA79000C99E3C /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
-
-		AE905A7425DAA79000C99E3C /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		AEB5075025DCEB7800E53DAA /* CardDeck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDeck.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,7 +64,7 @@
 				AE905A5E25DA3B1E00C99E3C /* SceneDelegate.swift */,
 				AE905A6025DA3B1E00C99E3C /* ViewController.swift */,
 				AE905A7425DAA79000C99E3C /* Card.swift */,
-				AE905A7425DAA79000C99E3C /* Card.swift */,
+				AEB5075025DCEB7800E53DAA /* CardDeck.swift */,
 				AE905A6225DA3B1E00C99E3C /* Main.storyboard */,
 				AE905A6525DA3B1F00C99E3C /* Assets.xcassets */,
 				AE905A6725DA3B1F00C99E3C /* LaunchScreen.storyboard */,
@@ -146,6 +143,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AEB5075125DCEB7800E53DAA /* CardDeck.swift in Sources */,
 				AE905A6125DA3B1E00C99E3C /* ViewController.swift in Sources */,
 				AE905A5D25DA3B1E00C99E3C /* AppDelegate.swift in Sources */,
 				AE905A5F25DA3B1E00C99E3C /* SceneDelegate.swift in Sources */,
