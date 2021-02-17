@@ -20,14 +20,14 @@ class PokerGame {
     
     init(){
         self.gameCardDeck = PlayingCardDeck()
-        self.players = Players(totalPlayers: Constant.numberOfPlayers)
+        self.players = Players(total: Constant.numberOfPlayers)
         self.dealer = Dealer()
     }
     
     private func gameReset(){
         gameCardDeck.initialize()
         gameCardDeck.shuffle()
-        players.player.forEach{$0.cards.removeAll()}
+        players.removeAllCards()
         dealer.cards.removeAll()
     }
 
