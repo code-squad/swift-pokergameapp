@@ -7,13 +7,13 @@
 
 import Foundation
 
-class Dealer {
+class Dealer: Receiver {
     private var cardsInHand: Array<Card>
     
     init() {
         cardsInHand = []
     }
-    public func receive(card: Card) {
+    func receive(card: Card) {
         cardsInHand.append(card)
     }
 }

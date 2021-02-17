@@ -26,21 +26,3 @@ extension Player: CustomStringConvertible {
         return "참가자#\(self.id) \(cardsInHand)"
     }
 }
-
-//var receiver: Receiver = isAAA ? Player() : Dealer();
-//receiver.receive()
-//
-//class Anmial {
-//    init(id: String) {
-//        self.id = id
-//    }
-//}
-//
-//class Person {
-//    var a: String
-//    var b: String
-//
-//    init(id: String, name: String) {
-//        self.a = ""
-//    }
-//}
