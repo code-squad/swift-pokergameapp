@@ -17,8 +17,13 @@ class TestCardGame {
     }
     
     private func removeCard() {
-        print("\(testCard.removeOne())")
-        print("총\(testCard.count())장의 카드가 남아있습니다.")
+        let pickCard = testCard.removeOne()
+        if let result = pickCard {
+            print("\(result)")
+            print("총\(testCard.count())장의 카드가 남아있습니다.")
+        } else {
+            print("카드덱이 비었습니다.")
+        }
     }
     
     private func resetCard() {

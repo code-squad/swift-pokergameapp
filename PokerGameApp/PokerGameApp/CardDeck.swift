@@ -12,14 +12,14 @@ struct CardDeck {
     
     init() {
         deckOfCard = [Card]()
-        setCardDeck()
+        addCardToCardDeck()
     }
     
     /*
      구조체의 매서드가 구조체 내부에서 데이터를 수정할 때에는 mutating키워드 선언이 필수
      mutating과 상관없이 let으로 선언된 경우는 수정 불가
     */
-    private mutating func setCardDeck() {
+    private mutating func addCardToCardDeck() {
         for suit in Card.Suit.allCases {
             for rank in Card.Rank.allCases {
                 deckOfCard.append(Card(suit: suit, rank: rank))
@@ -35,12 +35,16 @@ struct CardDeck {
         self.deckOfCard.shuffle()
     }
     
-    mutating func removeOne() -> Card {
-        return self.deckOfCard.removeLast()
+    mutating func removeOne() -> Card? {
+        if deckOfCard.isEmpty {
+            return nil
+        } else {
+            return self.deckOfCard.removeLast()
+        }
     }
     
     mutating func reset() {
         deckOfCard = [Card]()
-        setCardDeck()
+        addCardToCardDeck()
     }
 }
