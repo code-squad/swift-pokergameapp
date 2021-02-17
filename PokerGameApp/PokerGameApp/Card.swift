@@ -20,6 +20,12 @@ class Card: CustomStringConvertible {
         case clubs = "♣️"
     }
     
+//    클래스를 통해(인스턴스화 하지 않고) 호출할 수 있는 키워드(static)활용
+//    하기와 같이 코딩해야하는 걸 Caseiterable을 활용하면 자동으로 모든 case에 대한 배열 생성
+//    static var allCases: [Suit] {
+//        return [.spades, .clubs, .diamonds, .heart]
+//    }
+    
     enum Rank: Int, CaseIterable {
         case Ace = 1
         case Two
@@ -35,6 +41,10 @@ class Card: CustomStringConvertible {
         case Q
         case K
     }
+    
+//    static var allCases: [Rank] {
+//        return [.Ace, .Two, .Three, .Four, .Five, .Six, .Seven, .Eight, .Nine, .Ten, .J, .Q, .K]
+//    }
     
     var description: String {
         switch self.rank {

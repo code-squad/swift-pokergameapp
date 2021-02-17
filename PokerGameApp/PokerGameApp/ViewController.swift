@@ -10,22 +10,16 @@ class ViewController: UIViewController {
         setUpBackGround()
         setStackView()
         addCardIntoStackView()
-
-        let heartQ = Card(suit: .heart, rank: .Q)
-        let spadeSeven = Card(suit: .spades, rank: .Seven)
-        print(heartQ)
-        print(spadeSeven)
+        TestCardGame.init()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
-
     }
     
     
     private func setUpBackGround () {
         self.view.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "background"))
-
     }
 
     private func setStackView() {

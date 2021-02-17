@@ -12,7 +12,7 @@ struct CardDeck {
     
     init() {
         deckOfCard = [Card]()
-        
+        setCardDeck()
     }
     
     /*
@@ -29,5 +29,18 @@ struct CardDeck {
     
     func count() -> Int {
         return self.deckOfCard.count
+    }
+    
+    mutating func shuffle() {
+        self.deckOfCard.shuffle()
+    }
+    
+    mutating func removeOne() -> Card {
+        return self.deckOfCard.removeLast()
+    }
+    
+    mutating func reset() {
+        deckOfCard = [Card]()
+        setCardDeck()
     }
 }
