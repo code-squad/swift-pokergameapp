@@ -20,7 +20,11 @@ class ViewController: UIViewController {
 //        print(card.description)
         let deck = Deck()
         deck.createDeck()
-        deck.shuffle()
+        deck.createDeck()
+        deck.shuffleDeck()
+        for _ in 0..<3{
+            deck.takeOnecard()
+        }
     }
     
     func initGameplay(){
