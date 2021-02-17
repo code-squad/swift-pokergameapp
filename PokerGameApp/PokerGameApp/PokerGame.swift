@@ -10,6 +10,10 @@ import Foundation
 enum GameType : Int {
     case seven = 7
     case five = 5
+    
+    var value : Int {
+        return self.rawValue
+    }
 }
 
 enum Participant : Int {
@@ -17,6 +21,10 @@ enum Participant : Int {
     case two
     case three
     case four
+    
+    var value: Int {
+        return self.rawValue
+    }
 }
 
 enum GamerType {
@@ -28,15 +36,19 @@ class PockerGame {
     private var cardDeck = CardDeck()
     private var players = Players()
     private let dealer = Dealer(type: .dealer)
+    private let participant : Int
+    private let gameType : Int
     
-    init() {
+    init(particpatin : Participant, gameType : GameType) {
+        self.participant = particpatin.value
+        self.gameType = gameType.value
         cardDeck.shuffle()
     }
     
-    func startGame(numberOfPlayers : Participant ,cardType : GameType) {
-        createPlayer(numberOfPlayers : numberOfPlayers.rawValue)
+    func startGame() {
+        createPlayer()
         while true {
-            drawCard(cardType: cardType.rawValue)
+            drawCard()
             if cardDeck.empty() {
                 return
             }
@@ -45,14 +57,14 @@ class PockerGame {
         }
     }
     
-    private func createPlayer(numberOfPlayers : Int) {
-        (1...numberOfPlayers).forEach { _ in
+    private func createPlayer() {
+        (1...participant).forEach { _ in
             players.addPlayer(player: (Player(type: .participant)))
         }
-        players.addPlayer(player : dealer)
+        //players.addPlayer(player : dealer)
     }
     
-    private func drawCard(cardType : Int) {
+    private func drawCard() {
         
 //        players.forEach { player in
 //            (1...cardType).forEach { _ in
