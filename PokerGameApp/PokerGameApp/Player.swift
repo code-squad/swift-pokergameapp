@@ -15,4 +15,12 @@ class Player {
         self.hand = hand
         self.name = name
     }
+    
+    var handInfo: Hand {
+        return self.hand
+    }
+    
+    var nameInfo: String {
+        return self.name
+    }
 }
