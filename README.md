@@ -24,7 +24,7 @@
 <img width="229" alt="스크린샷 2021-02-15 오후 10 52 56" src="https://user-images.githubusercontent.com/39956881/107955013-98180300-6fe0-11eb-89a3-29433742a776.png">
 
 
-## step 2. 카드덱 구현과 테스트
+## step 3. 카드덱 구현과 테스트
 
 ### 주요 작업
 - CardDeck구조체를 생성
@@ -36,3 +36,16 @@
 3. reset 처음처럼 모든 카드를 다시 채워넣는다.
 
 - CardDeck 인터페이스 테스트 코드 작성
+
+## step 4. 포커 딜러와 게임 테스트
+
+### 주요 작업
+- 포커 게임을 진행하는 PokerGame class 생성
+- 포커 게임에 필요한 Dealer, Player class 생성
+- 포커 게임 중 정보를 보여주는 PokerGameBoard struct 생성
+- 포커 게임 진행에 맞게 CardDeck 메서드 수정
+- 테스트 코드 수정 및 추가
+
+### 스크린샷
+
+<img width="520" alt="스크린샷 2021-02-17 오후 3 19 35" src="https://user-images.githubusercontent.com/39956881/108164399-10430d80-7134-11eb-988f-fdfbc54d652f.png">
