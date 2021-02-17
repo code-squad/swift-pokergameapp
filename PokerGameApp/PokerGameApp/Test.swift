@@ -50,4 +50,8 @@ class Test {
     private func testRemoveOne(from cardDeck: CardDeck, with expectedValue: Int) -> Bool {
         return cardDeck.count() == expectedValue
     }
+    
+    private func testReset(_ cardDeck: CardDeck, with expectedValue: Int) -> Bool {
+        return cardDeck.count() == expectedValue
+    }
 }
