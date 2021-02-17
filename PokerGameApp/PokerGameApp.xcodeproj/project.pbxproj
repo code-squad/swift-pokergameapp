@@ -18,6 +18,7 @@
 		E4E8149F25DBEF9A00AC0DB5 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E8149E25DBEF9A00AC0DB5 /* Test.swift */; };
 		E4E814A625DD05E200AC0DB5 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E814A525DD05E200AC0DB5 /* Player.swift */; };
 		E4E814A925DD06A100AC0DB5 /* Dealer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E814A825DD06A100AC0DB5 /* Dealer.swift */; };
+		E4E814AC25DD0DD800AC0DB5 /* PokerGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E814AB25DD0DD800AC0DB5 /* PokerGame.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		E4E8149E25DBEF9A00AC0DB5 /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
 		E4E814A525DD05E200AC0DB5 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		E4E814A825DD06A100AC0DB5 /* Dealer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dealer.swift; sourceTree = "<group>"; };
+		E4E814AB25DD0DD800AC0DB5 /* PokerGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokerGame.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,8 +72,9 @@
 				E4E8147D25DA8CC700AC0DB5 /* SceneDelegate.swift */,
 				E4E8147F25DA8CC700AC0DB5 /* ViewController.swift */,
 				E4E8149E25DBEF9A00AC0DB5 /* Test.swift */,
-				E4E8149225DB874900AC0DB5 /* Card.swift */,
 				E4E8149B25DBB66E00AC0DB5 /* CardDeck.swift */,
+				E4E8149225DB874900AC0DB5 /* Card.swift */,
+				E4E814AB25DD0DD800AC0DB5 /* PokerGame.swift */,
 				E4E814A525DD05E200AC0DB5 /* Player.swift */,
 				E4E814A825DD06A100AC0DB5 /* Dealer.swift */,
 				E4E8148125DA8CC700AC0DB5 /* Main.storyboard */,
@@ -152,6 +155,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E4E814AC25DD0DD800AC0DB5 /* PokerGame.swift in Sources */,
 				E4E8148025DA8CC700AC0DB5 /* ViewController.swift in Sources */,
 				E4E8149C25DBB66E00AC0DB5 /* CardDeck.swift in Sources */,
 				E4E8147C25DA8CC700AC0DB5 /* AppDelegate.swift in Sources */,
