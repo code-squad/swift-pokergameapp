@@ -29,7 +29,6 @@ struct CardDeck {
     }
     
     mutating func removeOn() -> Card?{
-        //return cards.count == 0 ? nil : self.cards.popLast()
         return self.cards.popLast()
     }
     

@@ -27,9 +27,7 @@ func testScenario() {
         cardNum = deck.count
         print(card)
         print("총 \(cardNum)장의 카드가 남아있습니다.\n")
-    } else {
-        print("남아있는 카드가 없습니다.")
-    }
+    } else { print("남아있는 카드가 없습니다.") }
 
     print("> 카드 하나 뽑기")
     card = deck.removeOn()
@@ -37,8 +35,5 @@ func testScenario() {
         cardNum = deck.count
         print(card)
         print("총 \(cardNum)장의 카드가 남아있습니다.\n")
-    } else {
-        print("남아있는 카드가 없습니다.")
-    }
-    
+    } else { print("남아있는 카드가 없습니다.") }
 }
