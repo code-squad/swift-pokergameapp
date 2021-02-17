@@ -26,3 +26,15 @@
 총 50장의 카드가 남아있습니다.
 ```
 
+## Step 4 - PokerGame, Test
+- PokerGame `class` 구현
+- CardDeck과 Player 객체를 활용해 player에게 handCard를 나눠주고 리셋하는 함수를 추가
+- `PlayerType`에 따라 player와 dealer를 구분할 수 있도록 nested enum 추가
+```
+7카드 기준, 참가자 3명 일 때 
+
+player: [♣️5, ♦️A, ♦️4, ♠️A, ♥️3, ♥️5, ♣️K]
+player: [♦️2, ♣️8, ♠️Q, ♣️7, ♥️8, ♠️3, ♠️6]
+player: [♠️4, ♣️6, ♦️7, ♠️J, ♥️2, ♣️2, ♦️8]
+dealer: [♥️10, ♦️6, ♠️8, ♠️K, ♠️9, ♦️9, ♦️Q]
+```
