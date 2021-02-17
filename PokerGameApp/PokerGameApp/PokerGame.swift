@@ -7,56 +7,79 @@
 
 import Foundation
 
-class PokerGame {
+class PokerGame: CustomStringConvertible {
 
     var rule: Rule
     
     enum Rule: Int {
         case sevenCardStud = 7
         case fiveCardStud = 5
+        
+        func cardCount() -> Int {
+            return self.rawValue
+        }
     }
     
     var seat: Seat
 
     enum Seat: Int {
         case one = 1, two, three, four
+        
+        func count() -> Int {
+            return self.rawValue + 1 //딜러 몫 추가
+        }
+    }
+    
+    fileprivate var players = [Player]()
+    
+    fileprivate struct Player {
+        let name: String
+        var cards: [Card]?
+        
+        init(name: String) {
+            self.name = name
+        }
     }
     
     init(rule: Rule, seat: Seat) {
         self.rule = rule
         self.seat = seat
+        addPlayers()
+        addDealer()
     }
     
-    func start() -> String {
-        return ""
+    private func addPlayers() {
+        for i in 1..<seat.count() {
+            players.append(Player(name: "참가자 #\(i)"))
+        }
     }
-
+    
+    private func addDealer() {
+        players.append(Player(name: "딜러"))
+    }
+    
+    var description: String {
+        var status = ""
+        
+        for player in players {
+            if let cards = player.cards {
+                status += "\(player.name): \(cards)\n"
+            }
+        }
+        return status
+    }
 }
 
 class Dealer: PokerGame {
     
+    private var cardDeck = CardDeck()
     private let P = PrintFactory()
     
-    private var cardDeck = CardDeck()
-    private var players = [Player]() //pokerGame의 nested가 나을 것 같음
-    
-    private struct Player: CustomStringConvertible {
-        let name: String
-        var cards: [Card]
+    func start() -> String {
+        let cardNeeded = seat.count() * rule.cardCount()
+        guard cardDeck.count() >= cardNeeded else { return P.endMessage() }
         
-        init(name: String,_ cards: [Card]) {
-            self.name = name
-            self.cards = cards
-        }
-        
-        var description: String {
-            return "\(name)의 카드: \(cards)\n"
-        }
-    }
-    
-    override func start() -> String {
-        var gameStatus = super.start()
-        resetPlayer()
+        var gameStatus = ""
         
         gameStatus += P.shuffleMessage(with: cardDeck.shuffle())
         gameStatus += handOutCards()
@@ -64,25 +87,21 @@ class Dealer: PokerGame {
         return gameStatus
     }
     
-    private func resetPlayer() {
-        players = []
-    }
-    
     private func handOutCards() -> String {
-        for i in 1...super.seat.rawValue {
+        for i in 0..<seat.count() {
             if let cards = cardStack() {
-                players.append(Player(name: "참가자 #\(i)", cards))
+                super.players[i].cards = cards
             } else {
-                return endGame()
+                return P.endMessage()
             }
         }
-        return makeDealerStack()
+        return allSet()
     }
     
     private func cardStack() -> [Card]? {
         var cards = [Card]()
         
-        for _ in 0..<super.rule.rawValue {
+        for _ in 0..<rule.cardCount() {
             if let card = cardDeck.removeOne() {
                 cards.append(card)
             } else {
@@ -92,26 +111,7 @@ class Dealer: PokerGame {
         return cards
     }
     
-    private func makeDealerStack() -> String {
-        if let cards = cardStack() {
-            players.append(Player(name: "딜러", cards))
-        } else {
-            return endGame()
-        }
-        return allSet()
-    }
-    
     private func allSet() -> String {
-        var playerStatus = ""
-        
-        for player in players {
-            playerStatus += player.description
-        }
-        return playerStatus
-    }
-    
-    private func endGame() -> String {
-        return "덱에 카드가 모자라서 게임을 종료합니다"
+        return "\(description)"
     }
 }
-
