@@ -25,14 +25,15 @@ class ViewController: UIViewController {
         }
         return image
     }()
-    @IBOutlet weak var gameType: UISegmentedControl!
-    @IBOutlet weak var particpatin: UISegmentedControl!
+    
+    private var cardDeck = CardDeck()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(patternImage:
                                                 backgroundImageChange(imageName: "bg_pattern"))
         
+        cardDeck.shuffle()
         constrainUI()
         makeCard()
     
@@ -57,21 +58,22 @@ class ViewController: UIViewController {
         NSLayoutConstraint.activate([
             horizontalStackView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 5),
             horizontalStackView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -5),
-            horizontalStackView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 40)
+            horizontalStackView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 100)
         ])
     }
     
     private func makeCard()  {
         (0...6).forEach { _ in
-            horizontalStackView.addArrangedSubview(createImageView())
+            guard let card = cardDeck.removeOne() else { return }
+            horizontalStackView.addArrangedSubview(createImageView(card : card))
         }
     }
-
-    private func createImageView() -> UIImageView {
+	
+    private func createImageView(card : Card) -> UIImageView {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
-        imageView.image = cardBackgroundImage
+        imageView.image = UIImage(named:card.description)
         imageView.widthAnchor.constraint(equalTo: imageView.heightAnchor, multiplier: 1.0/1.27).isActive = true
         return imageView
     }
