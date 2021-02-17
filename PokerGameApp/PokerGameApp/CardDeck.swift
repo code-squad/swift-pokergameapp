@@ -4,7 +4,7 @@ struct CardDeck {
     private var cards = [Card]()
     
     init() {
-        cards = Dealer.takeCardSet()
+        cards = Card.takeSetOfCards()
         cards = cards.customShuffled()
     }
     
@@ -22,7 +22,7 @@ struct CardDeck {
     }
     
     public mutating func reset() {
-        cards = Dealer.takeCardSet()
+        cards = Card.takeSetOfCards()
     }
 }
 

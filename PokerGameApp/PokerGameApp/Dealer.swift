@@ -7,7 +7,7 @@ protocol Playable {
     func appendCard(_ card: Card)
 }
 
-class Dealer: CardBox, Playable {
+class Dealer: Playable {
     enum CardStud: Int {
         case sevenCardStud = 7
         case fiveCardStud = 5
