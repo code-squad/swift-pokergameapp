@@ -81,3 +81,8 @@ class PokerGame: CustomStringConvertible {
         return dealer.showdown()
     }
 }
+
+enum PokerGameError: Error {
+    case tooFewPlayers
+    case tooManyPlayers(playersNeededToLeave: Int)
+}
