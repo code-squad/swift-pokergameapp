@@ -48,6 +48,6 @@ func testScenario() {
     
     game = PockerGame(numOfParticipant: 4, numOfCard: 7)
     game.distributeCard()
-    print("7카드 기준, 참가자 4명 일 때\n")
+    print("\n7카드 기준, 참가자 4명 일 때\n")
     print(game)
 }

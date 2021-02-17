@@ -55,7 +55,7 @@ extension PockerGame: CustomStringConvertible {
             str.append("참가자#\(num) \(participants[num-1])")
         }
 
-        str.append("딜러 \(dealer))")
+        str.append("딜러 \(dealer)")
         return str
     }
 }
