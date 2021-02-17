@@ -9,7 +9,7 @@ import Foundation
 
 
 
-class Dealer{
+class Dealer : Player{
     private var cardDeck: CardDeck
     private var cards:[Card] = []
     private var stud: Event
@@ -40,7 +40,7 @@ class Dealer{
         cardDeck.shuffle()
     }
     
-    func printDeck() {
+    override func printDeck() {
         print("딜러#  \(cards)")
     }
 }

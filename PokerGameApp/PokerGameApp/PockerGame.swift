@@ -29,6 +29,7 @@ struct PockerGame {
             
             print("\(ground)번 째 그라운드")
             players.printDeck()
+            print("딜러# ", terminator: " ")
             dealer.printDeck()
             ground += 1
         }
