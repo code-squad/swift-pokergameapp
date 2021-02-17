@@ -7,7 +7,7 @@
 
 import Foundation
 
-class PokerGame {
+class PokerGame: CustomStringConvertible {
     
     enum GameRule {
         case minPlayer
@@ -49,6 +49,15 @@ class PokerGame {
     let dealer: Dealer
     let players: [Player]
     let gameType: StudPoker
+    var description: String {
+        var playerIndex = 0
+        let playersResult: String = getPlayersResult().map {
+            playerIndex += 1
+            return "참가자\(playerIndex): \($0)"
+        }.joined(separator: "\n")
+        let dealerResult: String = "딜러: \(getDealerResult())"
+        return "🃏카드게임 종류: \(gameType), 👨‍👩‍👧‍👦참가자: \(players.count)명\n\(playersResult)\n\(dealerResult)"
+    }
     
     init(dealer: Dealer, players: [Player], gameType: StudPoker) {
         self.dealer = dealer
