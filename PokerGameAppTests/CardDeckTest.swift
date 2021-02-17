@@ -26,7 +26,7 @@ class CardDeckTest: XCTestCase {
     }
     
     func testRemoveOne(){
-        let removed = cardDeck.removeOne()
+        let removed = cardDeck.removeOneCard()
         XCTAssertTrue(removed != nil, "남아있는 카드가 없습니다")
     }
     
@@ -39,7 +39,7 @@ class CardDeckTest: XCTestCase {
         let guess = 52 - randomNumber
     
         for _ in 0..<randomNumber {
-            cardDeck.removeOne()
+            cardDeck.removeOneCard()
         }
         
         XCTAssertEqual(guess, cardDeck.count, "남아있는 카드의 개수에 오류가 있습니다.")
