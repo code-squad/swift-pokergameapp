@@ -11,10 +11,10 @@ struct CardDeck {
     private var deck: [Card] = []
     
     init() {
-        setCardDeck()
+        makeCardDeck()
     }
     
-    private mutating func setCardDeck() {
+    private mutating func makeCardDeck() {
         Suit.allCases.forEach { suit in
             Rank.allCases.forEach { rank in
                 deck.append(Card(rank: rank, suit: suit))
@@ -27,8 +27,14 @@ struct CardDeck {
     }
     
     mutating func shuffle() {
-        deck.shuffle()
+        deck = deck.enumerated().filter { index, card in index < deck.count-1 }.map{ (index, card) -> Card in
+            let targetCardNumber = Int.random(in: index+1...deck.count-1)
+            let temp = deck[targetCardNumber]
+            deck[targetCardNumber] = card
+            return temp
+        }
     }
+    
     
     mutating func removeOne() -> Card? {
         return deck.popLast()
@@ -36,7 +42,7 @@ struct CardDeck {
     
     mutating func reset() {
         deck.removeAll()
-        setCardDeck()
+        makeCardDeck()
     }
     
 }
