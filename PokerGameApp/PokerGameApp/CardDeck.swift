@@ -12,7 +12,7 @@ struct CardDeck {
     private var cards: [Card] = []
     
     init() {
-        cards = Card.Suit.allCases.flatMap { getAllCards(for: $0) }
+        reset()
     }
     
     func count() -> Int {
@@ -31,6 +31,10 @@ struct CardDeck {
             let randomNumber = Int.random(in: 0..<numberOfCards)
             return cards.remove(at: randomNumber)
         }
+    }
+    
+    mutating func reset() {
+        cards = Card.Suit.allCases.flatMap { getAllCards(for: $0) }
     }
     
     private func getAllCards(for symbol: Card.Suit) -> [Card] {
