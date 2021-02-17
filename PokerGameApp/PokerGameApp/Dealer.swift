@@ -39,6 +39,9 @@ class Dealer {
         self.cardDeck.shuffle()
         
         for _ in 0..<numberOfCards {
+            guard self.cardDeck.count() > 0 else {
+                continue
+            }
             cards.append(self.cardDeck.removeOne())
         }
         
