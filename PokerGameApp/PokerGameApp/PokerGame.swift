@@ -19,15 +19,15 @@ class Dealer: CardDeck {
     }
 }
 
-class pockerGame {
+class PockerGame {
     var cardDeck = CardDeck()
     var dealer = Dealer()
-    var playersArray: Array<Player> = []
+    var players: Array<Player> = []
     var lackOfCard: Bool = false
     
     func welcomePlayer(numberOfPlayers: Int) {
         for i in 1...numberOfPlayers {
-            playersArray.append(Player(id: i))
+            players.append(Player(id: i))
         }
     }
     
@@ -39,7 +39,7 @@ class pockerGame {
     
     func distribute(numberOfCards: Int) {
         for _ in 1...numberOfCards {
-            for player in playersArray {
+            for player in players {
                 if let drawnCard = cardDeck.removeOne() {
                     player.receive(card: drawnCard)
                 } else {
@@ -62,7 +62,7 @@ class pockerGame {
             print("카드 수 부족")
             return
         }
-        for player in playersArray {
+        for player in players {
             print("\(player)")
         }
         print("\(dealer)")
