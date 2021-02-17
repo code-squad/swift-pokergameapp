@@ -9,7 +9,7 @@ import Foundation
 
 class Card {
     
-    enum Shapes: String {
+    enum Shapes: String, CaseIterable {
 //        ♣️
 //        클로버 카드
 //        유니코드: U+2663 U+FE0F, UTF-8: E2 99 A3 EF B8 8F
@@ -24,7 +24,7 @@ class Card {
 //        유니코드: U+2666 U+FE0F, UTF-8: E2 99 A6 EF B8 8F
         case hearts = "❤️", spades = "♠️", clobers = "♣️", diamonds = "♦️"
     }
-    enum Nums: Int {
+    enum Nums: Int, CaseIterable {
         case one = 1, two, three, four, five, six, seven, eight, nine, ten, jack, queen, king
     }
     
