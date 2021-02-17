@@ -50,3 +50,23 @@ let cardStackView = UIStackView(arrangedSubviews: cards)
 
 - 카드 클래스에 CustomStringConvertible 을 적용해서 출력 함수 없이, 출력 형식을 지정함
 
+
+
+
+
+
+
+## STEP 3
+
+- 카드덱 클래스 구현
+  - init()
+  - countCard() → Int
+  - shuffle()
+  - takeOutCard() → Card
+  - reset()
+  - showCardDeck() → [Card]
+- 카드덱 테스트 구조체 구현
+  - count, shuffle, takeOutOne, reset 을 테스트함
+
+<img width="400" alt="스크린샷 2021-02-17 오후 4 15 51" src="https://user-images.githubusercontent.com/73650994/108169979-d6c2d000-713c-11eb-8528-02010105525c.png">
+
