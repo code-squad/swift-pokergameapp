@@ -38,4 +38,8 @@ class Test {
         self.testDeck = testDeck
         self.expectedValue = expectedValue
     }
+    
+    private func testCreate(_ newCardDeck: CardDeck, with expectedValue: Int) -> Bool {
+        return newCardDeck.count() == expectedValue
+    }
 }
