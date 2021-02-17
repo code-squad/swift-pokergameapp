@@ -25,6 +25,8 @@ class ViewController: UIViewController {
         }
         return image
     }()
+    @IBOutlet weak var gameType: UISegmentedControl!
+    @IBOutlet weak var particpatin: UISegmentedControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()

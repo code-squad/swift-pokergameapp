@@ -15,151 +15,8 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="card-back" translatesAutoresizingMaskIntoConstraints="NO" id="XpE-R3-MWi">
-                                <rect key="frame" x="5" y="94" width="53.333333333333336" height="68"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="XpE-R3-MWi" secondAttribute="height" multiplier="1:1.27" id="pWj-wq-JtA"/>
-                                </constraints>
-                            </imageView>
-                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="card-back" translatesAutoresizingMaskIntoConstraints="NO" id="8bH-Ex-j0u">
-                                <rect key="frame" x="63.333333333333343" y="94" width="53.666666666666657" height="68"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="8bH-Ex-j0u" secondAttribute="height" multiplier="1:1.27" id="aow-D3-Uv9"/>
-                                </constraints>
-                            </imageView>
-                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="card-back" translatesAutoresizingMaskIntoConstraints="NO" id="bag-4P-jxp">
-                                <rect key="frame" x="121.99999999999999" y="94" width="53.333333333333329" height="68"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="bag-4P-jxp" secondAttribute="height" multiplier="1:1.27" id="zc8-ij-ZUb"/>
-                                </constraints>
-                            </imageView>
-                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="card-back" translatesAutoresizingMaskIntoConstraints="NO" id="SYp-EJ-ivE">
-                                <rect key="frame" x="180.33333333333334" y="94" width="53.333333333333343" height="68"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="SYp-EJ-ivE" secondAttribute="height" multiplier="1:1.27" id="TSd-pc-3Mf"/>
-                                </constraints>
-                            </imageView>
-                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="card-back" translatesAutoresizingMaskIntoConstraints="NO" id="sSI-Ww-9oz">
-                                <rect key="frame" x="238.66666666666666" y="94" width="53.333333333333343" height="68"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="sSI-Ww-9oz" secondAttribute="height" multiplier="1:1.27" id="HLI-cu-lp8"/>
-                                </constraints>
-                            </imageView>
-                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="card-back" translatesAutoresizingMaskIntoConstraints="NO" id="xfq-4P-FYs">
-                                <rect key="frame" x="297" y="94" width="53.666666666666686" height="68"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="xfq-4P-FYs" secondAttribute="height" multiplier="1:1.27" id="qS3-hO-CnJ"/>
-                                </constraints>
-                            </imageView>
-                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="card-back" translatesAutoresizingMaskIntoConstraints="NO" id="4ga-9v-oez">
-                                <rect key="frame" x="355.66666666666669" y="94" width="53.333333333333314" height="68"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="4ga-9v-oez" secondAttribute="height" multiplier="1:1.27" id="Dez-aI-ndE"/>
-                                </constraints>
-                            </imageView>
-                            <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="QMs-36-qj7">
-                                <rect key="frame" x="5" y="202" width="404" height="67.666666666666686"/>
-                                <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XTN-CY-vkQ">
-                                        <rect key="frame" x="0.0" y="0.0" width="53.333333333333336" height="67.666666666666671"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="XTN-CY-vkQ" secondAttribute="height" multiplier="1:1.27" id="yVS-Me-HEO"/>
-                                        </constraints>
-                                    </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iO2-L7-2El">
-                                        <rect key="frame" x="58.333333333333343" y="0.0" width="53.666666666666657" height="67.666666666666671"/>
-                                    </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="whz-aZ-fm0">
-                                        <rect key="frame" x="116.99999999999999" y="0.0" width="53.333333333333329" height="67.666666666666671"/>
-                                    </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kzE-Tr-r7A">
-                                        <rect key="frame" x="175.33333333333334" y="0.0" width="53.333333333333343" height="67.666666666666671"/>
-                                    </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="F7x-dV-Rgx">
-                                        <rect key="frame" x="233.66666666666666" y="0.0" width="53.333333333333343" height="67.666666666666671"/>
-                                    </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hKd-ot-9rD">
-                                        <rect key="frame" x="292" y="0.0" width="53.666666666666686" height="67.666666666666671"/>
-                                    </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9wp-5S-xyB">
-                                        <rect key="frame" x="350.66666666666669" y="0.0" width="53.333333333333314" height="67.666666666666671"/>
-                                    </imageView>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstItem="kzE-Tr-r7A" firstAttribute="height" secondItem="XTN-CY-vkQ" secondAttribute="height" id="0Pv-dK-wL8"/>
-                                    <constraint firstItem="hKd-ot-9rD" firstAttribute="height" secondItem="XTN-CY-vkQ" secondAttribute="height" id="0ZP-MM-DMl"/>
-                                    <constraint firstItem="iO2-L7-2El" firstAttribute="height" secondItem="XTN-CY-vkQ" secondAttribute="height" id="3TW-4P-iW7"/>
-                                    <constraint firstItem="hKd-ot-9rD" firstAttribute="width" secondItem="XTN-CY-vkQ" secondAttribute="width" id="70p-kN-hik"/>
-                                    <constraint firstItem="iO2-L7-2El" firstAttribute="width" secondItem="XTN-CY-vkQ" secondAttribute="width" id="QXP-tF-Ml6"/>
-                                    <constraint firstItem="F7x-dV-Rgx" firstAttribute="height" secondItem="XTN-CY-vkQ" secondAttribute="height" id="cnB-Bw-RL1"/>
-                                    <constraint firstItem="whz-aZ-fm0" firstAttribute="width" secondItem="XTN-CY-vkQ" secondAttribute="width" id="f8c-Nd-xDd"/>
-                                    <constraint firstItem="F7x-dV-Rgx" firstAttribute="width" secondItem="XTN-CY-vkQ" secondAttribute="width" id="gWG-Ba-88W"/>
-                                    <constraint firstItem="kzE-Tr-r7A" firstAttribute="width" secondItem="XTN-CY-vkQ" secondAttribute="width" id="lwL-7e-gXw"/>
-                                    <constraint firstItem="whz-aZ-fm0" firstAttribute="height" secondItem="XTN-CY-vkQ" secondAttribute="height" id="mci-pG-geP"/>
-                                    <constraint firstItem="9wp-5S-xyB" firstAttribute="height" secondItem="XTN-CY-vkQ" secondAttribute="height" id="sID-Xr-E87"/>
-                                    <constraint firstItem="9wp-5S-xyB" firstAttribute="width" secondItem="XTN-CY-vkQ" secondAttribute="width" id="xYG-qe-VfX"/>
-                                </constraints>
-                            </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="lfa-Qa-Lok">
-                                <rect key="frame" x="5" y="319.66666666666669" width="404" height="75"/>
-                                <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DJj-Ts-13c">
-                                        <rect key="frame" x="0.0" y="0.0" width="59" height="75"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="DJj-Ts-13c" secondAttribute="height" multiplier="1:1.27" id="pat-6v-EDY"/>
-                                        </constraints>
-                                    </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jya-wO-mnp">
-                                        <rect key="frame" x="69" y="0.0" width="59" height="75"/>
-                                    </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gnU-vf-r9f">
-                                        <rect key="frame" x="138" y="0.0" width="59" height="75"/>
-                                    </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2gS-8E-N4h">
-                                        <rect key="frame" x="207" y="0.0" width="59" height="75"/>
-                                    </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xSg-XZ-LQk">
-                                        <rect key="frame" x="276" y="0.0" width="59" height="75"/>
-                                    </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0m3-H1-Rfs">
-                                        <rect key="frame" x="345" y="0.0" width="59" height="75"/>
-                                    </imageView>
-                                </subviews>
-                            </stackView>
-                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="bag-4P-jxp" firstAttribute="bottom" secondItem="XpE-R3-MWi" secondAttribute="bottom" id="0kC-YO-Ocs"/>
-                            <constraint firstItem="SYp-EJ-ivE" firstAttribute="bottom" secondItem="XpE-R3-MWi" secondAttribute="bottom" id="2tG-m4-U3e"/>
-                            <constraint firstItem="bag-4P-jxp" firstAttribute="leading" secondItem="8bH-Ex-j0u" secondAttribute="trailing" constant="5" id="3vy-bE-HOV"/>
-                            <constraint firstItem="lfa-Qa-Lok" firstAttribute="top" secondItem="QMs-36-qj7" secondAttribute="bottom" constant="50" id="5tv-Mm-DTA"/>
-                            <constraint firstItem="xfq-4P-FYs" firstAttribute="bottom" secondItem="XpE-R3-MWi" secondAttribute="bottom" id="7Q4-rX-upn"/>
-                            <constraint firstItem="sSI-Ww-9oz" firstAttribute="leading" secondItem="SYp-EJ-ivE" secondAttribute="trailing" constant="5" id="9xr-3C-yfT"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="4ga-9v-oez" secondAttribute="trailing" constant="5" id="AUc-Ld-vdw"/>
-                            <constraint firstItem="lfa-Qa-Lok" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="5" id="DTr-R6-E58"/>
-                            <constraint firstItem="XpE-R3-MWi" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="50" id="FMM-Yk-vhr"/>
-                            <constraint firstItem="SYp-EJ-ivE" firstAttribute="top" secondItem="XpE-R3-MWi" secondAttribute="top" id="LUJ-23-yiE"/>
-                            <constraint firstItem="4ga-9v-oez" firstAttribute="bottom" secondItem="XpE-R3-MWi" secondAttribute="bottom" id="N2s-w0-EtP"/>
-                            <constraint firstItem="8bH-Ex-j0u" firstAttribute="leading" secondItem="XpE-R3-MWi" secondAttribute="trailing" constant="5" id="NRz-1I-s8Z"/>
-                            <constraint firstItem="4ga-9v-oez" firstAttribute="top" secondItem="XpE-R3-MWi" secondAttribute="top" id="P6O-Hr-owu"/>
-                            <constraint firstItem="QMs-36-qj7" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="5" id="Xrk-vA-qG1"/>
-                            <constraint firstItem="SYp-EJ-ivE" firstAttribute="leading" secondItem="bag-4P-jxp" secondAttribute="trailing" constant="5" id="avn-oy-ckp"/>
-                            <constraint firstItem="8bH-Ex-j0u" firstAttribute="top" secondItem="XpE-R3-MWi" secondAttribute="top" id="bqE-CA-tmK"/>
-                            <constraint firstItem="sSI-Ww-9oz" firstAttribute="bottom" secondItem="XpE-R3-MWi" secondAttribute="bottom" id="cc1-mh-KhC"/>
-                            <constraint firstItem="8bH-Ex-j0u" firstAttribute="leading" secondItem="XpE-R3-MWi" secondAttribute="trailing" constant="5" id="evb-9W-NWt"/>
-                            <constraint firstItem="4ga-9v-oez" firstAttribute="leading" secondItem="xfq-4P-FYs" secondAttribute="trailing" constant="5" id="mTA-BC-9BL"/>
-                            <constraint firstItem="bag-4P-jxp" firstAttribute="top" secondItem="XpE-R3-MWi" secondAttribute="top" id="n4n-Ij-xri"/>
-                            <constraint firstItem="8bH-Ex-j0u" firstAttribute="bottom" secondItem="XpE-R3-MWi" secondAttribute="bottom" id="stx-2q-g4s"/>
-                            <constraint firstItem="xfq-4P-FYs" firstAttribute="leading" secondItem="sSI-Ww-9oz" secondAttribute="trailing" constant="5" id="tce-AB-BRm"/>
-                            <constraint firstItem="QMs-36-qj7" firstAttribute="top" secondItem="8bH-Ex-j0u" secondAttribute="bottom" constant="40" id="ucV-vG-f50"/>
-                            <constraint firstItem="sSI-Ww-9oz" firstAttribute="top" secondItem="XpE-R3-MWi" secondAttribute="top" id="uq5-o1-lCa"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="lfa-Qa-Lok" secondAttribute="trailing" constant="5" id="vkt-Yc-Luw"/>
-                            <constraint firstItem="xfq-4P-FYs" firstAttribute="top" secondItem="XpE-R3-MWi" secondAttribute="top" id="wyN-rU-k6V"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="QMs-36-qj7" secondAttribute="trailing" constant="5" id="xEZ-eW-9Oj"/>
-                            <constraint firstItem="XpE-R3-MWi" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="5" id="z9u-39-JMr"/>
-                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -168,7 +25,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="card-back" width="71.333335876464844" height="90"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
