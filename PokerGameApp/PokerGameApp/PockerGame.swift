@@ -26,23 +26,29 @@ struct PockerGame {
     
     mutating func gameStart() {
         print("\(cardStud) 기준, 참가자 \(players.count)명 일 때")
-        
+        var ground = 1
         dealer.cardDeck.shuffle()
-        
+        while true {
+            if dealer.cardDeck.isDeckEmpty() { return }
+            print("\(ground)번 째 그라운드")
+            
 
-        cardSetting()
-    
-        for (index, player) in players.enumerated() {
-            print("참가자#\(index+1) \(player)")
+            if !cardSetting() { return }
+        
+            for (index, player) in players.enumerated() {
+                print("참가자#\(index+1) \(player)")
+            }
+            print("딜러#\(dealer)")
+            ground += 1
         }
-        print("딜러#\(dealer)")
     }
     
-    mutating func cardSetting() {
+    mutating func cardSetting() -> Bool {
         for player in players {
-            dealer.distributeCard(with: player, stud: cardStud)
+            if !dealer.distributeCard(with: player, stud: cardStud) {return false}
         }
-        dealer.takeDealerCards(stud: cardStud)
+        if !dealer.takeDealerCards(stud: cardStud) {return false}
+        return true
     }
     
 }
