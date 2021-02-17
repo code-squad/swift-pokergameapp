@@ -3,7 +3,7 @@ import Foundation
 class Player: Playable {
     var name: String
     private var cards = [Card]()
-    var playResult: [Card] {
+    var finalScore: [Card] {
         return cards
     }
     
@@ -18,7 +18,7 @@ class Player: Playable {
         self.name = name
     }
     
-    public func getCard(_ card: Card) {
+    public func appendCard(_ card: Card) {
         cards.append(card)
     }
 }

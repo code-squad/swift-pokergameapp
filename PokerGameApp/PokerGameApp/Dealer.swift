@@ -2,11 +2,12 @@ import Foundation
 
 protocol Playable {
     var name: String { get }
-    var playResult: [Card] { get }
-    func getCard(_ card: Card)
+    // 이후에 play 결과를 반환합니다. [Card]가 아닌 값이 반환될 수 있습니다.
+    var finalScore: [Card] { get }
+    func appendCard(_ card: Card)
 }
 
-class Dealer: Playable {
+class Dealer: CardBox, Playable {
     enum CardStud: Int {
         case sevenCardStud = 7
         case fiveCardStud = 5
@@ -22,15 +23,13 @@ class Dealer: Playable {
     let name = "딜러"
     private var cards = [Card]()
     private var cardDeck = CardDeck()
-    var playResult: [Card] {
+    var finalScore: [Card] {
         return cards
     }
     
     public func start(numberOfPlayer: Participant, stud: CardStud) {
         let players = registerPlayer(of: numberOfPlayer)
-        
         shareCards(players: players, cardStud: stud)
-        
         printHand(of: players)
     }
     
@@ -55,18 +54,18 @@ class Dealer: Playable {
         for _ in 1...cardCount {
             players.forEach { (player) in
                 guard let newCard = cardDeck.removeOne() else { return }
-                player.getCard(newCard)
+                player.appendCard(newCard)
             }
         }
     }
     
     private func printHand(of players: [Playable]) {
         players.forEach { (player) in
-            print("\(player.name)", player.playResult)
+            print("\(player.name)", player.finalScore)
         }
     }
     
-    func getCard(_ card: Card) {
+    func appendCard(_ card: Card) {
         cards.append(card)
     }
     

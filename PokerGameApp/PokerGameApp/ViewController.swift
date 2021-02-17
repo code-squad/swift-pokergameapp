@@ -1,10 +1,3 @@
-//
-//  ViewController.swift
-//  PokerGameApp
-//
-//  Created by Issac on 2021/02/15.
-//
-
 import UIKit
 
 class ViewController: UIViewController {
@@ -19,7 +12,7 @@ class ViewController: UIViewController {
         
         // Check Data
         let dealer = Dealer()
-        dealer.start(numberOfPlayer: .onePlayer, stud: .sevenCardStud)
+        dealer.start(numberOfPlayer: .fourPlayer, stud: .sevenCardStud)
     }
     
     private func setImageStackView() {
