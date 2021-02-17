@@ -8,7 +8,7 @@
 import Foundation
 
 //지정된 범위 안의 값만을 사용해야 하기 때문에 enum을 사용, 예를들면 다른 ☞모양은 사용X
-enum Shape: Character, CustomStringConvertible{
+enum Shape: Character, CustomStringConvertible, CaseIterable {
     case spade = "♠️"
     case clover = "♣️"
     case diamond = "♦️"
@@ -18,20 +18,8 @@ enum Shape: Character, CustomStringConvertible{
 }
 
 //지정된 범위 안의 값만을 사용해야 하기 때문에 enum을 사용, 예를들면 14라는 숫자는 사용X
-enum Number: Int, CustomStringConvertible {
-    case ace = 1
-    case two
-    case three
-    case four
-    case five
-    case sixth
-    case seven
-    case eight
-    case nine
-    case ten
-    case jack
-    case queen
-    case king
+enum Number: Int, CustomStringConvertible, CaseIterable {
+    case ace = 1, two, three, four, five, sixth, seven, eight, nine, ten, jack, queen, king
     
     var description: String {
         switch self {
@@ -49,7 +37,7 @@ enum Number: Int, CustomStringConvertible {
     }
 }
 
-class Card: CustomStringConvertible{
+class Card: CustomStringConvertible {
     let shape: Shape
     let number: Number
     var description: String { "\(shape)\(number)" }
@@ -59,3 +47,4 @@ class Card: CustomStringConvertible{
         self.number = number
     }
 }
+
