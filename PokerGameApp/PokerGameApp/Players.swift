@@ -8,11 +8,29 @@
 import Foundation
 
 class Players {
-    var players: Array<Player> = []
+    private var players: Array<Player> = []
     
     init(numberOfPlayers: Int) {
         for i in 1...numberOfPlayers {
             players.append(Player(id: i))
         }
+    }
+    
+    func cardForAll(cards: CardDeck) {
+        for player in players {
+            if let drawnCard = cards.removeOne() {
+                player.receive(card: drawnCard)
+            }
+        }
+    }
+}
+
+extension Players: CustomStringConvertible {
+    var description: String {
+        var result = ""
+        for player in players {
+            result.append("\(player)\n")
+        }
+        return result
     }
 }
