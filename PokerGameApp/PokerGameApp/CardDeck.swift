@@ -20,7 +20,17 @@ struct CardDeck {
     }
     
     mutating func shuffle() {
-        cards.shuffle()
+        // cards.shuffle() 대신 셔플 직접 구현
+        /// Fisher–Yates shuffle의 Durstenfeld's version 참고
+        var swappedIndex: Int = cards.count - 1
+        
+        while swappedIndex != 0 {
+            let randomIndex = Int.random(in: 0...swappedIndex)
+            let lastCard = cards[swappedIndex]
+            cards[swappedIndex] = cards[randomIndex]
+            cards[randomIndex] = lastCard
+            swappedIndex -= 1
+        }
     }
     
     mutating func removeOne() -> Card? {
