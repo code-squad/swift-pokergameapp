@@ -14,7 +14,7 @@ struct CardDeck {
         cards = CardDeckGenerator.generateCardDeck()
     }
     
-    mutating func shuffle() -> [Card] {
+    mutating func shuffle() {
         var swappedIndexes: [Int] = []
         var shuffledCards = cards
         
@@ -33,7 +33,7 @@ struct CardDeck {
             swapCardWithRandomFollowingCard(index: index)
         }
         
-        return shuffledCards
+        self.cards = shuffledCards
     }
     
     mutating func removeOne() -> Card {
