@@ -59,7 +59,15 @@ class PokerGame: CustomStringConvertible {
         return "🃏카드게임 종류: \(gameType), 👨‍👩‍👧‍👦참가자: \(players.count)명\n\(playersResult)\n\(dealerResult)"
     }
     
-    init(dealer: Dealer, players: [Player], gameType: StudPoker) {
+    init(dealer: Dealer, players: [Player], gameType: StudPoker) throws {
+        guard players.count >= GameRule.minPlayer.getNumber() else {
+            throw PokerGameError.tooFewPlayers
+        }
+        
+        guard players.count <= GameRule.maxPlayer.getNumber() else {
+            throw PokerGameError.tooManyPlayers(playersNeededToLeave: players.count - GameRule.maxPlayer.getNumber())
+        }
+        
         self.dealer = dealer
         self.players = players
         self.gameType = gameType
