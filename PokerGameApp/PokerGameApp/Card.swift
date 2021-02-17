@@ -37,7 +37,7 @@ enum Rank: Int, CustomStringConvertible {
 }
 
 
-class Card: CustomStringConvertible {
+struct Card: CustomStringConvertible {
     private let shape: Shape
     private let rank: Rank
     
