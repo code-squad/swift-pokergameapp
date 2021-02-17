@@ -23,6 +23,9 @@ class ViewController: UIViewController {
         let club7 = PokerCard(suit: .clubs, rank: .seven)
         print(heartQ)
         print(club7)
+        
+        var actionTest = ActionTest()
+        actionTest.startTest()
     }
 
     func show7CardBack() {
