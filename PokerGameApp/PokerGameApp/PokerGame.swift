@@ -33,36 +33,29 @@ enum GamerType {
 }
 
 class PockerGame {
-    private var cardDeck = CardDeck()
     private var players = Players()
-    private let dealer = Dealer(type: .dealer)
+    private let dealer = Dealer()
     private let participant : Int
     private let gameType : Int
     
     init(particpatin : Participant, gameType : GameType) {
         self.participant = particpatin.value
         self.gameType = gameType.value
-        cardDeck.shuffle()
     }
     
     func startGame() {
-        createPlayer()
-        while true {
-            drawCard()
-            if cardDeck.empty() {
-                return
-            }
-            showPlayerCard()
-            resetPlayerCard()
-        }
+        players.addPlayer(particpatin: participant)
+        
+//        while true {
+//            drawCard()
+//            if cardDeck.empty() {
+//                return
+//            }
+//            showPlayerCard()
+//            resetPlayerCard()
+//        }
     }
     
-    private func createPlayer() {
-        (1...participant).forEach { _ in
-            players.addPlayer(player: (Player(type: .participant)))
-        }
-        //players.addPlayer(player : dealer)
-    }
     
     private func drawCard() {
         

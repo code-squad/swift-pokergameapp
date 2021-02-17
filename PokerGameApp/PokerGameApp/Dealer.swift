@@ -7,6 +7,18 @@
 
 import Foundation
 
-class Dealer : Player {
+class Dealer {
+    private var cardDeck = CardDeck()
+    private var deck = Deck()
+    private let name = "딜러"
+    
+    init() {
+        cardDeck.shuffle()
+    }
+    
+    func receiveCard(deck : CardDeck, players : [Players]) {
+        
+    }
+    
     
 }
