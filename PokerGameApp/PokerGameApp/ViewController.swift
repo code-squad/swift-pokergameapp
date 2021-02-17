@@ -11,10 +11,14 @@ class ViewController: UIViewController {
     let cardBackImage: UIImage = {
         UIImage(named: "card-back") ?? UIImage()
     }()
-
+    let card = Card(shape: .diamond, number: .K)
+    let card2 = Card(shape: .diamond, number: .seven)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         initialize()
+        print(card)
+        print(card2)
     }
     
     private func initialize() {
