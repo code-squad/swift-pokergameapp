@@ -9,7 +9,7 @@ import Foundation
 
 struct Test {
 
-    var deck = cardDeck()
+    var deck = CardDeck()
     
     mutating func initializeCard() {
         deck.makeCardDeck()
