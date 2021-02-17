@@ -33,9 +33,9 @@ class ViewController: UIViewController {
         let cardHeartQueen = PlayingCard.init(suit: .heart, number: 12)
         let cardSpadeSeven = PlayingCard.init(suit: .spade, number: 7)
         
-        newRandCard.showCard()
-        cardHeartQueen.showCard()
-        cardSpadeSeven.showCard()
+        print(newRandCard)
+        print(cardHeartQueen)
+        print(cardSpadeSeven)
     }
     
     private func addCard2StackView( cardCount : Int ,stackView : UIStackView) {
