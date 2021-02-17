@@ -8,7 +8,7 @@
 import Foundation
 
 
-struct CardDeck{
+class CardDeck{
     private var currentCardDeck: Array<Card> = []
     
     private func generateCardSet() -> Array<Card> {
@@ -30,11 +30,11 @@ struct CardDeck{
         return currentCardDeck.count
     }
     
-    mutating func shuffle() {
+    func shuffle() {
         currentCardDeck.shuffle()
     }
     
-    mutating func removeOne() -> Card? {
+    func removeOne() -> Card? {
         if let draw = currentCardDeck.popLast() {
             return draw
         } else {
@@ -42,7 +42,7 @@ struct CardDeck{
         }
     }
     
-    mutating func reset() {
+    func reset() {
         currentCardDeck = generateCardSet()
     }
 }

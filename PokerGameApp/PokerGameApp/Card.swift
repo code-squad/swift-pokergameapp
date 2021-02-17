@@ -40,6 +40,7 @@ class Card {
     }
 }
 
+//MARK: -EXTENSIONS
 extension Card.Suit: CustomStringConvertible {
     var description: String {
         return "\(self.rawValue)"
@@ -48,5 +49,10 @@ extension Card.Suit: CustomStringConvertible {
 extension Card.Value: CustomStringConvertible {
     var description: String {
         return "\(self.rawValue)"
+    }
+}
+extension Card: CustomStringConvertible {
+    var description: String {
+        return "\(self.cardDescription)"
     }
 }

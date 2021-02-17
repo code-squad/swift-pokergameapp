@@ -7,8 +7,21 @@
 
 import Foundation
 
+class Dealer: CardDeck {
+    var dealerDeck: Array<Card>?
+    
+    public func receive(card: Card) {
+        if dealerDeck != nil {
+            dealerDeck?.append(card)
+        } else {
+            dealerDeck = [card]
+        }
+    }
+}
+
 class pockerGame {
     var cardDeck = CardDeck()
+    var dealer = Dealer()
     var playersArray: Array<Player> = []
     var lackOfCard: Bool = false
     
@@ -24,10 +37,17 @@ class pockerGame {
         print(cardDeck.count())
     }
     
-    func distributeCard() {
-        for player in playersArray {
+    func distribute(numberOfCards: Int) {
+        for _ in 1...numberOfCards {
+            for player in playersArray {
+                if let drawnCard = cardDeck.removeOne() {
+                    player.receive(card: drawnCard)
+                } else {
+                    lackOfCard = true
+                }
+            }
             if let drawnCard = cardDeck.removeOne() {
-                player.receive(card: drawnCard)
+                dealer.receive(card: drawnCard)
             } else {
                 lackOfCard = true
             }
@@ -35,11 +55,9 @@ class pockerGame {
     }
     
     func gamePlay() {
-        welcomePlayer(numberOfPlayers: 4)
+        welcomePlayer(numberOfPlayers: 1)
         restartGame()
-        (1...5).forEach { (_) in
-            distributeCard()
-        }
+        distribute(numberOfCards: 7)
         if lackOfCard == true {
             print("카드 수 부족")
             return
@@ -47,6 +65,12 @@ class pockerGame {
         for player in playersArray {
             print("\(player)")
         }
+        print("\(dealer)")
     }
 }
 
+extension Dealer: CustomStringConvertible {
+    var description: String {
+        return "딜러 \(dealerDeck ?? [])"
+    }
+}
