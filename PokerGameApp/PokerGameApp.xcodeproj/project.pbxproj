@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		718B5E7825DCAE7D00607600 /* TestCardGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718B5E7725DCAE7D00607600 /* TestCardGame.swift */; };
+		718B5E7D25DCE35E00607600 /* PokerGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718B5E7C25DCE35E00607600 /* PokerGame.swift */; };
+		718B5E8025DCE75000607600 /* Dealer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718B5E7F25DCE75000607600 /* Dealer.swift */; };
+		718B5E8325DCE8DC00607600 /* Players.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718B5E8225DCE8DC00607600 /* Players.swift */; };
 		719CB0B425DA384F00E8218D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719CB0B325DA384F00E8218D /* AppDelegate.swift */; };
 		719CB0B625DA384F00E8218D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719CB0B525DA384F00E8218D /* SceneDelegate.swift */; };
 		719CB0B825DA384F00E8218D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719CB0B725DA384F00E8218D /* ViewController.swift */; };
@@ -20,6 +23,9 @@
 
 /* Begin PBXFileReference section */
 		718B5E7725DCAE7D00607600 /* TestCardGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCardGame.swift; sourceTree = "<group>"; };
+		718B5E7C25DCE35E00607600 /* PokerGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokerGame.swift; sourceTree = "<group>"; };
+		718B5E7F25DCE75000607600 /* Dealer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dealer.swift; sourceTree = "<group>"; };
+		718B5E8225DCE8DC00607600 /* Players.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Players.swift; sourceTree = "<group>"; };
 		719CB0B025DA384F00E8218D /* PokerGameApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PokerGameApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		719CB0B325DA384F00E8218D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		719CB0B525DA384F00E8218D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -67,6 +73,9 @@
 				719CB0B725DA384F00E8218D /* ViewController.swift */,
 				719D7B0225DB5D74005CA708 /* Card.swift */,
 				719D7B0725DBA29C005CA708 /* CardDeck.swift */,
+				718B5E7C25DCE35E00607600 /* PokerGame.swift */,
+				718B5E7F25DCE75000607600 /* Dealer.swift */,
+				718B5E8225DCE8DC00607600 /* Players.swift */,
 				718B5E7725DCAE7D00607600 /* TestCardGame.swift */,
 				719CB0B925DA384F00E8218D /* Main.storyboard */,
 				719CB0BC25DA385000E8218D /* Assets.xcassets */,
@@ -146,9 +155,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				718B5E8325DCE8DC00607600 /* Players.swift in Sources */,
+				718B5E7D25DCE35E00607600 /* PokerGame.swift in Sources */,
 				719CB0B825DA384F00E8218D /* ViewController.swift in Sources */,
 				718B5E7825DCAE7D00607600 /* TestCardGame.swift in Sources */,
 				719D7B0825DBA29C005CA708 /* CardDeck.swift in Sources */,
+				718B5E8025DCE75000607600 /* Dealer.swift in Sources */,
 				719CB0B425DA384F00E8218D /* AppDelegate.swift in Sources */,
 				719CB0B625DA384F00E8218D /* SceneDelegate.swift in Sources */,
 				719D7B0325DB5D74005CA708 /* Card.swift in Sources */,

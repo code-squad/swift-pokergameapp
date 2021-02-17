@@ -10,7 +10,6 @@ class ViewController: UIViewController {
         setUpBackGround()
         setStackView()
         addCardIntoStackView()
-        TestCardGame.init()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
