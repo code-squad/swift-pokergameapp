@@ -7,51 +7,43 @@
 
 import Foundation
 
-class CardPlaying {
+class DeckHandling {
     
     public var deck = [String]()
     
-    public func makeDeck() {
-        
+    public func make() {
         for shape in Card.Shape.allCases {
-            
             for num in Card.Num.allCases {
-                
                 deck.append("\(shape)\(num)")
-                
             }
-            
         }
-        
     }
     
-    public func countDeck() {
-        
-        print("Remain cards: \(deck.count)")
-        
+    public func count() {
+        let deckCount = deck.count
+        print("Remain cards: \(deckCount)")
     }
     
-    public func shuffleDeck() {
-        
+    public func shuffle() {
         deck.shuffle()
-        
     }
     
     public func removeOne() {
-        
-        print(deck[0])
+        let selectedCard = deck[0]
+        print(selectedCard)
         deck.removeFirst()
-        self.countDeck()
-        
+        self.count()
     }
     
-    public func resetDeck() {
-        
+    public func reset() {
         deck.removeAll()
-        makeDeck()
+        make()
         print("Reset deck")
-        self.countDeck()
-        
+        self.count()
+    }
+    
+    init() {
+        deck = [String]()
     }
 
 }
