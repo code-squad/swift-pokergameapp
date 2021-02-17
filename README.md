@@ -12,3 +12,10 @@ https://jamesu.dev/posts/2020/03/31/how-to-make-default-status-bar-style-dark/
 
 ## 카드 배열
 stackView를 사용하여 카드를 비율에 맞게 배열함.
+trailing anchor의 x좌표를 좌측으로 옮기려면 -값을 줘야함.
+
+# step 2
+## 구현 화면
+<img width="332" alt="스크린샷 2021-02-17 오후 4 04 09" src="https://user-images.githubusercontent.com/68788135/108167942-d117bb00-7139-11eb-8e51-58c116974c5c.png">
+## 카드 생성
+카드는 랜덤한 카드를 생성하거나, 원하는 카드를 생성 할 수 있다.
