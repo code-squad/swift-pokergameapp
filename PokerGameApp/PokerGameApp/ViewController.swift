@@ -12,7 +12,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        initBackground()
+        setBackground()
         placeCards()
         
         let testCard = Card(suit: .spade, rank: .A)
@@ -23,7 +23,7 @@ class ViewController: UIViewController {
         return .lightContent
     }
     
-    private func initBackground(){
+    private func setBackground(){
         let backgraoundPattern = UIImage(named: "bg_pattern") ?? UIImage()
         self.view.backgroundColor = UIColor(patternImage: backgraoundPattern)
     }
