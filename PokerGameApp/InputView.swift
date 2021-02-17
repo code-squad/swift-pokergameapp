@@ -6,3 +6,14 @@
 //
 
 import Foundation
+
+struct InputView {
+    enum PlayersCount : Int {
+        case one = 1, two, three, four
+    }
+
+    enum CardStud : Int {
+        case five = 5
+        case seven = 7
+    }
+}
