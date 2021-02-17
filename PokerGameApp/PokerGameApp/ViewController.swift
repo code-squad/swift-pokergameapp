@@ -10,12 +10,12 @@ class ViewController: UIViewController {
         
         setImageStackView()
         
-        let dealer = Dealer()
-        dealer.start(numberOfPlayer: .fourPlayer, stud: .fiveCardStud)
+        let pokerGame = PokerGame()
+        pokerGame.start(numberOfPlayer: .fourPlayer, stud: .fiveCardStud)
         
         
         // Check Data
-        for player in dealer.players {
+        for player in pokerGame.players {
             print(player.name, player.result)
         }
     }
