@@ -40,4 +40,14 @@ func testScenario() {
     } else {
         print("남아있는 카드가 없습니다.")
     }
+    
+    var game = PockerGame(numOfParticipant: 3, numOfCard: 5)
+    game.distributeCard()
+    print("5카드 기준, 참가자 3명 일 때\n")
+    print(game)
+    
+    game = PockerGame(numOfParticipant: 4, numOfCard: 7)
+    game.distributeCard()
+    print("7카드 기준, 참가자 4명 일 때\n")
+    print(game)
 }
