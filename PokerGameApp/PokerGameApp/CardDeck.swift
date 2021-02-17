@@ -9,12 +9,15 @@ import Foundation
 
 struct CardDeck {
     var cards: [Card] = []
+    
     init() {
         reset()
     }
-    func count() -> Int {
-        return self.cards.count
+
+    var count: Int {
+        get { return self.cards.count }
     }
+    
     mutating func shuffle() {
         for i in 0..<self.cards.count-1 {
             let randomIndex = Int.random(in: 1..<self.cards.count)
@@ -24,12 +27,14 @@ struct CardDeck {
             self.cards[randomIndex] = temp
         }
     }
+    
     mutating func removeOn() -> Card?{
         return cards.count == 0 ? nil : self.cards.popLast()
     }
+    
     mutating func reset() {
-
         self.cards.removeAll()
+        
         Card.Nums.allCases.map{ num in
             Card.Shapes.allCases.map{ shape in
                 self.cards.append(Card(num, shape))} }
