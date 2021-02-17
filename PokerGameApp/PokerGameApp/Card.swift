@@ -7,26 +7,6 @@
 
 import Foundation
 
-class CardDeck {
-    
-    public var deck = [String]()
-    
-    public func makeDeck() {
-        
-        for shape in Card.Shape.allCases {
-            
-            for num in Card.Num.allCases {
-                
-                CardDeck().deck.append("\(shape)\(num)")
-                
-            }
-            
-        }
-        
-    }
-    
-}
-
 struct Card: CustomStringConvertible {
     
     enum Shape: Character, CaseIterable {
