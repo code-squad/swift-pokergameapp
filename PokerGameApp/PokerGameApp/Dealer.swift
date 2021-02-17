@@ -7,19 +7,7 @@ protocol Playable {
     func appendCard(_ card: Card)
 }
 
-class Dealer: Playable {
-    enum CardStud: Int {
-        case sevenCardStud = 7
-        case fiveCardStud = 5
-    }
-    
-    enum Participant: Int {
-        case onePlayer = 1
-        case twoPlayer = 2
-        case threePlayer = 3
-        case fourPlayer = 4
-    }
-    
+class Dealer: PokerGame, Playable {
     let name = "딜러"
     private var cards = [Card]()
     private var cardDeck = CardDeck()
@@ -28,9 +16,8 @@ class Dealer: Playable {
     }
     
     public func start(numberOfPlayer: Participant, stud: CardStud) {
-        let players = registerPlayer(of: numberOfPlayer)
+        players = registerPlayer(of: numberOfPlayer)
         shareCards(players: players, cardStud: stud)
-        printHand(of: players)
     }
     
     private func registerPlayer(of number: Participant) -> [Playable] {
@@ -42,7 +29,6 @@ class Dealer: Playable {
             
             players.append(player)
         }
-        
         let dealer = self
         players.append(dealer)
         
@@ -59,14 +45,7 @@ class Dealer: Playable {
         }
     }
     
-    private func printHand(of players: [Playable]) {
-        players.forEach { (player) in
-            print("\(player.name)", player.finalScore)
-        }
-    }
-    
     func appendCard(_ card: Card) {
         cards.append(card)
     }
-    
 }

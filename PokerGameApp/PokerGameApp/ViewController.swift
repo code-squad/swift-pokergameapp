@@ -13,6 +13,9 @@ class ViewController: UIViewController {
         // Check Data
         let dealer = Dealer()
         dealer.start(numberOfPlayer: .fourPlayer, stud: .sevenCardStud)
+        for player in dealer.players {
+            print(player.name, player.finalScore)
+        }
     }
     
     private func setImageStackView() {
