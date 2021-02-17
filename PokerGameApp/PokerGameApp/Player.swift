@@ -7,8 +7,32 @@
 
 import Foundation
 
+class Deck {
+    private var handCard : [Card] = []
+    
+    func receiveCard(card : Card) {
+        handCard.append(card)
+    }
+    
+    func showCards() -> [Card] {
+        return handCard
+    }
+    
+    func resetCard() {
+        handCard.removeAll()
+    }
+    
+    func countCard() -> Int {
+        return handCard.count
+    }
+    
+    func emptyCard() -> Bool {
+        return handCard.isEmpty
+    }
+}
+
 class Player {
-    private var cards : [Card] = []
+    private var deck = Deck()
     private let gamerType : GamerType
     
     init(type : GamerType) {
@@ -16,23 +40,11 @@ class Player {
     }
     
     func receiveCard(card : Card) {
-        cards.append(card)
+        deck.receiveCard(card: card)
     }
     
     func showCards() -> [Card] {
-        return cards
-    }
-    
-    func resetCard() {
-        cards.removeAll()
-    }
-    
-    func countCard() -> Int {
-        return cards.count
-    }
-    
-    func emptyCard() -> Bool {
-        return cards.isEmpty
+        return deck.showCards()
     }
     
     func type() -> GamerType {
