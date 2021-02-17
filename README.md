@@ -63,3 +63,24 @@
   2021/02/16 18:09
 
 
+
+## step-4
+
+- 설명
+  - PokerGame 클래스를 만들고 그 안에 카드덱, 플레이어들, 딜러 프로퍼티를 생성하였다.
+  - 게임을 시작하기 위한 준비과정 readyToGameStart(), 플레이어 인스턴스를 생성하기 위한 participate() 메소드를 생성하였다.
+  - PokerGame안에 nestedType으로 Player와  Dealer 클래스를 생성하였다.
+  - readyToGameStart() 메소드는 우선 카드덱을 셔플하고, 셔플한 카드덱으로부터 각 플레이어들에게 카드를 나눠주고, 마지막으로 딜러까지 카드를 받는 기능을 코드이다.
+  - ViewController에 testSevenCardStud()메소드를 생성하여 참가자들과 딜러의 카드를 출력하는 코드를 작성하였다.
+
+
+
+- 실행화면
+
+  <img width="894" alt="스크린샷 2021-02-17 오후 5 48 49" src="https://user-images.githubusercontent.com/42647277/108178987-6cb02800-7148-11eb-9213-264451c0a1a5.png">
+
+  
+
+- 완성날짜시간
+
+  2021/02/17 17:50
