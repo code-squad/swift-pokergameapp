@@ -15,4 +15,14 @@ class Dealer: Player {
         cardDeck = CardDeck()
         super.init()
     }
+    
+    func deal(to player: Player) {
+        if let card = cardDeck.removeOne() {
+            player.cards.append(card)
+        }
+    }
+    
+    func deal(to players: [Player]) {
+        players.forEach { deal(to: $0) }
+    }
 }
