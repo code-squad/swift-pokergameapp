@@ -11,6 +11,8 @@ class PokerGame {
         self.players = [Player]()
         self.stud = .seven
         self.participants = .four
+        setUpPlayers()
+        startGame()
     }
     
     enum CardStud:Int {
@@ -20,6 +22,13 @@ class PokerGame {
     
     enum Participants: Int {
         case one = 1, two, three, four
+    }
+    
+    private func setUpPlayers() {
+        self.players = [Player]()
+        for _ in 0..<self.participants.rawValue {
+            players.append(Player())
+        }
     }
     
     private func startGame() {
