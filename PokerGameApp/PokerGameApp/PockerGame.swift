@@ -8,9 +8,9 @@
 import Foundation
 
 struct PockerGame {
-    var players: [Player] = []
-    var dealer: Dealer
-    var cardStud: Int
+    private var players: [Player] = []
+    private var dealer: Dealer
+    private var cardStud: Int
     
     init(numberOfPlayer: Int, cardStud: Int) {
         self.cardStud = cardStud
@@ -27,7 +27,7 @@ struct PockerGame {
     mutating func gameStart() {
         print("===\(cardStud) 기준, 참가자 \(players.count)명 일 때===")
         var ground = 1
-        dealer.cardDeck.shuffle()
+        dealer.shuffle()
         while true {
             if !cardSetting() { return }
             
