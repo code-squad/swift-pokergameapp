@@ -10,7 +10,6 @@ import UIKit
 class ViewController: UIViewController {
 
     let cardBackImage = UIImage(named: "card-back.png")
-    lazy var width = view.bounds.width/7
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,10 +60,10 @@ class ViewController: UIViewController {
     }
     
     func testCard(){
-        var card = Card(shape: .Heart, num: 12)
-        print(card.showCardInfo())
-        card = Card(shape: .Spade, num: 7)
-        print(card.showCardInfo())
+        var card = Card(shape: .Heart, rank: .queen)
+        print(card)
+        card = Card(shape: .Spade, rank: .seven)
+        print(card)
     }
 }
 

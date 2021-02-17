@@ -15,25 +15,24 @@ enum Shape: Character {
     case Heart = "♥️"
 }
 
-// 나중에 숫자 -> 문자열 변환이 편할 것 같아서
-// 1-13 범위 밖 값은 nil 로 반환되어 예외처리하기 좋을 것 같아서
-let rank = [1: "A", 2: "2", 3: "3", 4: "4", 5: "5", 6: "6", 7: "7", 8: "8", 9: "9", 10: "10", 11: "J", 12: "Q", 13: "K"]
-
-
-class Card {
-    
-    private let shape: Shape
-    private let number: Int
-    
-    init(shape: Shape, num: Int) {
-        self.shape = shape
-        self.number = num
-    }
-    
-    func showCardInfo() -> String {
-        return "\(shape.rawValue)\(rank[number] ?? "")"
-    }
-    
+// 1-13 범위만 받을 수 있고, 값에 해당하는 String 값을 원시값으로 가지고 있다
+enum Rank: String {
+    case ace = "A", two = "2", three = "3", four = "4", five = "5", six = "6", seven = "7", eight = "8", nine = "9", ten = "10", jack = "J", queen = "Q", king = "K"
 }
 
 
+class Card {
+    private let shape: Shape
+    private let rank: Rank
+    
+    init(shape: Shape, rank: Rank) {
+        self.shape = shape
+        self.rank = rank
+    }
+}
+
+extension Card: CustomStringConvertible {
+    var description: String {
+        return "\(self.shape.rawValue)\(self.rank.rawValue)"
+    }
+}
