@@ -37,4 +37,12 @@ struct CardDeck {
             randomRange -= 1
         }
     }
+    
+    mutating func removeOne() -> PokerCard? {
+        return self.Cards.popLast()
+    }
+    
+    mutating func reset() {
+        self.Cards = makeCards()
+    }
 }
