@@ -18,10 +18,15 @@ class Player : Dealer{
 class Players {
     var player = [Player]()
     
-    init(totalPlayers playerNumber : Int){
+    init(total count : Int){
         
-        for id in 0..<playerNumber {
+        for id in 0..<count {
             player.append(Player(id: id))
+        }
+    }
+    func removeAllCards(){
+        for person in player {
+            person.cards.removeAll()
         }
     }
 }
