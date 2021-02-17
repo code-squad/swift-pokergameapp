@@ -46,4 +46,8 @@ class Test {
     private func testShuffle(_ cardDeck: CardDeck, with expectedValue: Int) -> Bool {
         return cardDeck.count() == expectedValue
     }
+    
+    private func testRemoveOne(from cardDeck: CardDeck, with expectedValue: Int) -> Bool {
+        return cardDeck.count() == expectedValue
+    }
 }
