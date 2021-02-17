@@ -9,14 +9,14 @@ import Foundation
 
 class Dealer : Player {
     
-    private var gameCardDeck = CardDeck()
+    private var gameCardDeck : CardDeck
     private(set) var cardSqud = InputView.CardStud.five
     
     override init(){
-        gameCardDeck.initialize()
+        gameCardDeck = CardDeck()
     }
     
-    public func spreadCardsToPlayer(players : inout Players){
+    public func spreadCardsToPlayer(players : Players){
         for player in players.player {
             let cards = gameCardDeck.removeCards(count: cardSqud.rawValue)
             player.cards.takeCards(cards: cards)
