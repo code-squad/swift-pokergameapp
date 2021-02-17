@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BD0338C925DCF0EA00EAEEF8 /* Dealer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD0338C825DCF0EA00EAEEF8 /* Dealer.swift */; };
 		BDCC605225DB6A5500165F69 /* CardData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDCC605125DB6A5500165F69 /* CardData.swift */; };
 		BDCC605725DBE47200165F69 /* CardDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDCC605625DBE47200165F69 /* CardDeck.swift */; };
 		BDCC605A25DC09B300165F69 /* TestCardDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDCC605925DC09B300165F69 /* TestCardDeck.swift */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BD0338C825DCF0EA00EAEEF8 /* Dealer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dealer.swift; sourceTree = "<group>"; };
 		BDCC605125DB6A5500165F69 /* CardData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardData.swift; sourceTree = "<group>"; };
 		BDCC605625DBE47200165F69 /* CardDeck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDeck.swift; sourceTree = "<group>"; };
 		BDCC605925DC09B300165F69 /* TestCardDeck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCardDeck.swift; sourceTree = "<group>"; };
@@ -67,6 +69,7 @@
 				BDFE629B25DA3CF800F0FA87 /* ViewController.swift */,
 				BDCC605125DB6A5500165F69 /* CardData.swift */,
 				BDCC605625DBE47200165F69 /* CardDeck.swift */,
+				BD0338C825DCF0EA00EAEEF8 /* Dealer.swift */,
 				BDCC605925DC09B300165F69 /* TestCardDeck.swift */,
 				BDFE629D25DA3CF800F0FA87 /* Main.storyboard */,
 				BDFE62A025DA3CF800F0FA87 /* Assets.xcassets */,
@@ -148,6 +151,7 @@
 			files = (
 				BDFE629C25DA3CF800F0FA87 /* ViewController.swift in Sources */,
 				BDCC605725DBE47200165F69 /* CardDeck.swift in Sources */,
+				BD0338C925DCF0EA00EAEEF8 /* Dealer.swift in Sources */,
 				BDCC605A25DC09B300165F69 /* TestCardDeck.swift in Sources */,
 				BDCC605225DB6A5500165F69 /* CardData.swift in Sources */,
 				BDFE629825DA3CF800F0FA87 /* AppDelegate.swift in Sources */,
