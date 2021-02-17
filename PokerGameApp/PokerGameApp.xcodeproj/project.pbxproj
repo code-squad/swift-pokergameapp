@@ -20,6 +20,7 @@
 		BFB69E8525DB8B70009A276E /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB69E8425DB8B70009A276E /* Player.swift */; };
 		BFB69E8825DB8B7D009A276E /* Dealer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB69E8725DB8B7D009A276E /* Dealer.swift */; };
 		BFB69EAD25DC3028009A276E /* Players.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB69EAC25DC3028009A276E /* Players.swift */; };
+		BFB69EB025DD01CE009A276E /* Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB69EAF25DD01CE009A276E /* Protocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		BFB69E8425DB8B70009A276E /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		BFB69E8725DB8B7D009A276E /* Dealer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dealer.swift; sourceTree = "<group>"; };
 		BFB69EAC25DC3028009A276E /* Players.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Players.swift; sourceTree = "<group>"; };
+		BFB69EAF25DD01CE009A276E /* Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +79,7 @@
 				BFB69E7925DAB64D009A276E /* CardDeck.swift */,
 				BFB69E8125DB8583009A276E /* PokerGame.swift */,
 				BFB69EAC25DC3028009A276E /* Players.swift */,
+				BFB69EAF25DD01CE009A276E /* Protocol.swift */,
 				BFB69E8425DB8B70009A276E /* Player.swift */,
 				BFB69E8725DB8B7D009A276E /* Dealer.swift */,
 				BFB69E7C25DAD5D4009A276E /* TestScenario.swift */,
@@ -164,6 +167,7 @@
 				BFB69E7D25DAD5D4009A276E /* TestScenario.swift in Sources */,
 				BFB69E7A25DAB64D009A276E /* CardDeck.swift in Sources */,
 				BFB69E8525DB8B70009A276E /* Player.swift in Sources */,
+				BFB69EB025DD01CE009A276E /* Protocol.swift in Sources */,
 				BFB69EAD25DC3028009A276E /* Players.swift in Sources */,
 				BFAE2DBE25DA3D1100CC5118 /* AppDelegate.swift in Sources */,
 				BFAE2DC025DA3D1100CC5118 /* SceneDelegate.swift in Sources */,

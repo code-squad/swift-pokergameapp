@@ -9,12 +9,32 @@ import Foundation
 
 
 class Players {
-    private var players = [Player]()
+    private var players = [Playable]()
+    private let dealer = Dealer()
     
     func addPlayer(particpatin : Int) {
-        (1...particpatin).enumerated().forEach { number in
-            players.append(Player(entryNumber: number.offset))
+        (1...particpatin).forEach { number in
+            players.append(Player(entryNumber: number))
         }
+        players.append(dealer)
+    }
+    
+    func drawCard(gameType : Int) {
+        dealer.receiveCard(gameType: gameType, players: players)
+    }
+    
+    func resetCard() {
+        dealer.resetPlayerCard(players: players)
+    }
+    
+    func showPlayerCard() {
+        players.enumerated().forEach { player in
+            print(printResult(player: player.element))
+        }
+    }
+    
+    private func printResult(player : Playable) -> String {
+        return "\(player.showCards())"
     }
     
     func totalPlayer() -> Int {

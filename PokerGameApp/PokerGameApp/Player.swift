@@ -31,11 +31,11 @@ class Deck {
     }
 }
 
-class Player {
+class Player : Playable {
     private var deck = Deck()
     private let name = "참가자"
     private let entryNumber : Int
-    
+
     init(entryNumber : Int) {
         self.entryNumber = entryNumber
     }
@@ -44,8 +44,12 @@ class Player {
         deck.receiveCard(card: card)
     }
     
-    func showCards() -> [Card] {
-        return deck.showCards()
+    func showCards() -> String {
+        return "\(name)\(entryNumber) \(deck.showCards())"
+    }
+    
+    func resetCards() {
+        deck.resetCard()
     }
     
 }
