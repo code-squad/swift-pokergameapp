@@ -6,27 +6,66 @@
 //
 
 import XCTest
+@testable import PokerGameApp
 
 class CardsTest: XCTestCase {
-
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    
+    var cardsObject : Cards!
+    
+    override func setUp() {
+        super.setUp()
+        cardsObject = Cards()
+        cardsObject.cards.append(Card(suit: .hearts, rank: .ace))
+        cardsObject.cards.append(Card(suit: .hearts, rank: .two))
+        cardsObject.cards.append(Card(suit: .hearts, rank: .three))
+        cardsObject.cards.append(Card(suit: .hearts, rank: .four))
+        cardsObject.cards.append(Card(suit: .hearts, rank: .five))
+        cardsObject.cards.append(Card(suit: .hearts, rank: .six))
+        cardsObject.cards.append(Card(suit: .hearts, rank: .seven))
+        cardsObject.cards.append(Card(suit: .hearts, rank: .eight))
+        cardsObject.cards.append(Card(suit: .hearts, rank: .nine))
+        cardsObject.cards.append(Card(suit: .hearts, rank: .ten))
     }
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    override class func tearDown() {
+        super.tearDown()
     }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    
+    func testRemoveOneCard(){
+        let removed = cardsObject.removeOneCard()
+        XCTAssertTrue(removed != nil, "남아있는 카드가 없습니다")
     }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    
+    func testRemoveCards(){
+        let count = 10
+        let removed = cardsObject.removeCards(count: count)
+        
+        XCTAssertEqual(removed.count, count)
     }
-
+    
+    func testRemoveAll(){
+        XCTAssertNoThrow(cardsObject.removeAll(), "카드를 초기화 할 수 없습니다.")
+    }
+    
+    func testTakeOneCard(){
+        let guessCount = 11
+        let card = Card(suit: .clubs, rank: .eight)
+        cardsObject.takeOneCard(card: card)
+        
+        XCTAssertEqual(guessCount, cardsObject.cards.count, "카드가 정상적으로 추가되지 않았습니다.")
+    }
+    
+    func testTakeCards(){
+        let guessCount = 15
+        
+        let cards = [Card(suit: .clubs, rank: .ace),
+                     Card(suit: .clubs, rank: .two),
+                     Card(suit: .clubs, rank: .three),
+                     Card(suit: .clubs, rank: .four),
+                     Card(suit: .clubs, rank: .five)]
+        
+        cardsObject.takeCards(cards: cards)
+        
+        XCTAssertEqual(guessCount, cardsObject.cards.count, "카드가 정상적으로 추가되지 않았습니다.")
+    }
 }
