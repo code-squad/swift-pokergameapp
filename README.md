@@ -168,3 +168,166 @@ override func viewDidLoad() {
 #### 출력화면
 
 <img width="141" alt="스크린샷 2021-02-16 오전 11 47 04" src="https://user-images.githubusercontent.com/74946802/108013469-19a67a00-704f-11eb-8bfc-42ef3809dcc5.png">
+
+## step3.
+
+#### CustomStringConvertible 프로토콜 추가
+```swift
+class Card: CustomStringConvertible {
+    var description: String {
+        switch self.rank {
+        case .Ace, .J, .Q, .K:
+            return "\(suit.rawValue)\(rank)"
+        default:
+            return "\(suit.rawValue)\(rank.rawValue)"
+        }
+}
+```
+- step2의 makeCardInfo()함수를 CustomStringConvertible을 활용하여 수정
+- 해당 프로토콜의 정확한 이점은 가독성인 것 같음
+
+#### CaseIterable 프로토콜 추가
+```swift
+class Card: CustomStringConvertible {
+    enum Suit: Character, CaseIterable {
+        case spades = "♠️"
+        case heart = "♥️"
+        case diamonds = "♦️"
+        case clubs = "♣️"
+    }
+    enum Rank: Int, CaseIterable {
+        case Ace = 1
+        case Two
+        case Three
+        case Four
+        case Five
+        case Six
+        case Seven
+        case Eight
+        case Nine
+        case Ten
+        case J
+        case Q
+        case K
+    }
+}
+```
+- CaseIterable 프로토콜을 활용하면 allCases를 변수로 설정하지 않아도 모든 case를 담은 배열을 생성
+
+#### 카드덱 구조체 및 기능 추가
+```swift
+import Foundation
+struct CardDeck {
+    
+    private var deckOfCard: [Card]
+    
+    init() {
+        deckOfCard = [Card]()
+        setCardDeck()
+    }
+    
+    /*
+     구조체의 매서드가 구조체 내부에서 데이터를 수정할 때에는 mutating키워드 선언이 필수
+     mutating과 상관없이 let으로 선언된 경우는 수정 불가
+    */
+    private mutating func setCardDeck() {
+        for suit in Card.Suit.allCases {
+            for rank in Card.Rank.allCases {
+                deckOfCard.append(Card(suit: suit, rank: rank))
+            }
+        }
+    }
+    
+    func count() -> Int {
+        return self.deckOfCard.count
+    }
+    
+    mutating func shuffle() {
+        self.deckOfCard.shuffle()
+    }
+    
+    mutating func removeOne() -> Card {
+        return self.deckOfCard.removeLast()
+    }
+    
+    mutating func reset() {
+        deckOfCard = [Card]()
+        setCardDeck()
+    }
+}
+```
+- 카드덱 구조체를 추가하고 shuffle, remove, reset기능을 추가
+- setCardDeck 메서드는 각 suit마다 모든 rank를 for-loop로 탐색하면서 카드덱에 추가하는 메서드
+- 그 외에 기능은 말그대로 shuffle, remove, reset기능을 하도록 구현
+
+#### 테스트 클래스 추가
+```swift
+import Foundation
+
+class TestCardGame {
+    
+    private var testCard = CardDeck()
+    
+    init() {
+        resetCard()
+        shuffleCard()
+        removeCard()
+        removeCard()
+    }
+    
+    private func shuffleCard() {
+        testCard.shuffle()
+        print("전체 \(testCard.count())장의 카드를 섞었습니다.")
+    }
+    
+    private func removeCard() {
+        print("\(testCard.removeOne())")
+        print("총\(testCard.count())장의 카드가 남아있습니다.")
+    }
+    
+    private func resetCard() {
+        testCard.reset()
+        print("카드 전체를 초기화했습니다.")
+        print("총 \(testCard.count())장의 카드가 있습니다.")
+    }
+}
+```
+- 구현한 카드덱의 기능이 정상적으로 작동하는지 확인하는 테스트 클래스 추가
+
+#### 실행화면
+
+<img width="201" alt="스크린샷 2021-02-17 오전 11 09 42" src="https://user-images.githubusercontent.com/74946802/108147607-82a2f600-7112-11eb-9b1b-6416f11ceb28.png">
+
+
+## 구조체와 클래스의 차이?
+
+#### 공통점
+- 프로퍼티와 메서드를 구조화해서 묶어두는 형식
+- 새로운 Custom타입을 만드는 것
+- init, extension 사용 가능
+- 프로토콜 채택 가능
+
+#### Struct
+- 값(Value)타입
+- 상속 불가능
+- 값 복사
+- mutating없이 프로퍼티 값 변경 불가
+
+#### Class
+- 참조(reference)타입
+- 상속 가능
+- 값 참조
+- 프로퍼티 값 변경 가능
+- reference counting으로 메모리 관리 가능
+
+#### Automatic Reference Counting
+- iOS는 앱의 메모리 사용을 추적하고 관리하는 자동 참조 계수(ARC)를 사용
+- ARC는 인스턴스가 더 이상 필요없을 때 클래스 인스턴스에 사용된 메모리를 자동적으로 해제
+- 프로퍼티, 상수, 변수 등에 레퍼런스가 지정되면 카운트를 증가, 해제되면 카운트를 감소
+- 카운트가 0이되면 메모리를 해제
+- ARC는 클래스의 인스턴스에만 적용되며, 값 타입인 구조체나 열거형에는 적용 불가
+
+#### Strong Reference Cycles
+- 강한 순환 참조는 두 개의 객체가 상호참조하는 경우
+- 여기에 연관된 객체들은 레퍼런스 카운트가 0에 도달하지 않음
+- 따라서, iOS 메모리 관리의 핵심은 강한 순환 참조를 발생시키지 않는 것에 있음
