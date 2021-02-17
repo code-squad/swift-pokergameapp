@@ -20,6 +20,7 @@ class ViewController: UIViewController {
 //        print(card.description)
         let deck = Deck()
         deck.createDeck()
+        deck.shuffle()
     }
     
     func initGameplay(){
