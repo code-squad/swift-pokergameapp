@@ -13,55 +13,28 @@ class PokerGame {
         case sevenCardStud = 7
     }
     
-    private var rule: Rule
-    private var cardDeck = CardDeck()
-    private var players: [Player] = []
-    
-    init(rule: Rule = .sevenCardStud, players: [Player]) {
-        self.rule = rule
-        self.players = players
-        cardDeck.shuffle()
+    enum NumberOfPlayers: Int {
+        case one = 1, two, three, four
     }
     
-    // 카드 딜링
-    func splitCard() {
-        for _ in 0..<rule.rawValue {
-            for player in players {
-                if let card = cardDeck.removeOne() {
-                    player.receive(card: card)
-                }
-            }
-        }
+    private var rule: Rule
+    private var players: Players
+    private var numberOfPlayers: NumberOfPlayers
+    
+    init(rule: Rule = .sevenCardStud, players: Players) {
+        self.rule = rule
+        self.players = players
+        self.numberOfPlayers = NumberOfPlayers(rawValue: players.count) ?? .one
+        //cardDeck.shuffle()
+    }
+    
+    func play() {
+        // 카드 돌리기
+        players.setHandCard(rule: rule)
     }
     
     func reset() {
-        for player in players {
-            player.reset()
-        }
+        // 카드 리셋
     }
 }
 
-class Player {
-    enum PlayerType {
-        case dealer
-        case player
-    }
-    
-    private var handCard: [Card] = []
-    var playerType: PlayerType
-    var getHandCard: [Card] {
-        return handCard
-    }
-    
-    init(playerType: PlayerType = .player) {
-        self.playerType = playerType
-    }
-    
-    func receive(card: Card) {
-        handCard.append(card)
-    }
-    
-    func reset() {
-        handCard.removeAll()
-    }
-}
