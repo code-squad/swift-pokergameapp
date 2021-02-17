@@ -37,16 +37,15 @@ enum Rank: Int, CustomStringConvertible, CaseIterable{
 }
 
 struct Card: CustomStringConvertible {
-    var description: String {
-        return "\(suit)\(rank)"
-    }
-    
-    
     private let rank: Rank
     private let suit: Suit
     
     init(rank: Rank, suit: Suit) {
         self.rank = rank
         self.suit = suit
+    }
+
+    var description: String {
+        return "\(suit)\(rank)"
     }
 }
