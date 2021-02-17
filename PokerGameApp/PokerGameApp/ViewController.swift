@@ -13,12 +13,14 @@ class ViewController: UIViewController {
     }()
     let card = Card(shape: .diamond, number: .king)
     let card2 = Card(shape: .diamond, number: .seven)
+    var testCardGame = TestCardGame()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         initialize()
         print(card)
         print(card2)
+        testCardGame.testGame()
     }
     
     private func initialize() {
