@@ -15,7 +15,6 @@ struct Card : CustomStringConvertible {
         return "\(suit)\(rank)"
     }
     
-    // Suit는 PlayingCard에서만 사용되는 모양에 대한 클래스이므로 Nested Enum으로 설계한다.
     enum Suit : String, CustomStringConvertible, CaseIterable {
         case spades = "♠️"
         case hearts = "❤️"
@@ -25,7 +24,6 @@ struct Card : CustomStringConvertible {
         var description: String { return rawValue}
     }
     
-    // Rank는 PlayingCard에서만 사용되는 모양에 대한 클래스이므로 Nested Enum으로 설계한다.
     enum Rank : Int, CustomStringConvertible, CaseIterable {
         
         case ace = 1, two, three, four, five, six, seven, eight, nine, ten, jack, queen, king
