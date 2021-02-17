@@ -38,7 +38,7 @@ enum Rank: Int, CustomStringConvertible, CaseIterable{
 
 struct Card: CustomStringConvertible {
     var description: String {
-        return "suit is \(suit), rank is \(rank)"
+        return "\(suit)\(rank)"
     }
     
     
