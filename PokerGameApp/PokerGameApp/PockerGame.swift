@@ -25,15 +25,13 @@ struct PockerGame {
     }
     
     mutating func gameStart() {
-        print("\(cardStud) 기준, 참가자 \(players.count)명 일 때")
+        print("===\(cardStud) 기준, 참가자 \(players.count)명 일 때===")
         var ground = 1
         dealer.cardDeck.shuffle()
         while true {
-            print("\(ground)번 째 그라운드")
-            
-
             if !cardSetting() { return }
-        
+            
+            print("\(ground)번 째 그라운드")
             for (index, player) in players.enumerated() {
                 print("참가자#\(index+1) \(player)")
             }
