@@ -20,24 +20,30 @@ class Players {
     }
     
     func drawCard(gameType : Int) {
-        dealer.receiveCard(gameType: gameType, players: players)
+        dealer.shareCard(gameType: gameType, players: players)
     }
     
     func resetCard() {
         dealer.resetPlayerCard(players: players)
     }
     
-    func showPlayerCard() {
+    func showPlayerCard() -> String {
+        var showcard = ""
         players.enumerated().forEach { player in
-            print(printResult(player: player.element))
+            showcard += "\(printResult(player: player.element))\n"
         }
+        return showcard
     }
     
     private func printResult(player : Playable) -> String {
         return "\(player.showCards())"
     }
     
-    func totalPlayer() -> Int {
+    func countCardDeck(gameType : Int) -> Bool {
+        return dealer.count(gameType : gameType ,players : numberOfPlayer())
+    }
+    
+    private func numberOfPlayer() -> Int {
         return players.count
     }
 }
