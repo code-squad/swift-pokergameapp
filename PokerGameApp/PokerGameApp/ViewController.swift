@@ -22,17 +22,17 @@ class ViewController: UIViewController {
     }
     
     private func initialize() {
-        setBackground()
+        drawBackground()
         createCardStackView()
     }
     
-    private func setBackground() {
+    private func drawBackground() {
         if let image = UIImage(named: "bg_pattern") {
             self.view.backgroundColor = UIColor(patternImage: image)
         }
     }
 
-    private func setCardImageView() -> UIImageView {
+    private func createCardImageView() -> UIImageView {
         let imageView = UIImageView()
         imageView.image = cardBackImage
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -49,7 +49,7 @@ class ViewController: UIViewController {
         let intervalBetweenCards: CGFloat = 5
         
         for _ in 0..<numberOfCard {
-            stackView.addArrangedSubview(setCardImageView())
+            stackView.addArrangedSubview(createCardImageView())
         }
 
         stackView.axis = .horizontal
