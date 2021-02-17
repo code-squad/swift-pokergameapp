@@ -27,6 +27,13 @@ class Players {
         }
     }
     
+    func reset() {
+        cardDeck.reset()
+        players.forEach { player in
+            player.reset()
+        }
+    }
+    
     private func handout() {
         players.forEach { player in
             guard let card = cardDeck.removeOne() else {

@@ -25,16 +25,14 @@ class PokerGame {
         self.rule = rule
         self.players = players
         self.numberOfPlayers = NumberOfPlayers(rawValue: players.count) ?? .one
-        //cardDeck.shuffle()
     }
     
     func play() {
-        // 카드 돌리기
         players.setHandCard(rule: rule)
     }
     
     func reset() {
-        // 카드 리셋
+        players.reset()
     }
 }
 
