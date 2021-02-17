@@ -2,13 +2,13 @@ import Foundation
 
 class PokerGame {
     private var dealer: Dealer
-    private var player: Players
+    private var players: Players
     private var stud: CardStud
     private var participants: Participants
     
     init(stud: CardStud, participants: Participants) {
         self.dealer = Dealer()
-        self.player = Players()
+        self.players = Players()
         self.stud = .seven
         self.participants = .four
     }
