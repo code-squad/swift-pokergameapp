@@ -17,10 +17,10 @@ enum Suit: Character, CustomStringConvertible, CaseIterable {
 
 enum Rank: Int, CustomStringConvertible, CaseIterable{
     case A = 1, Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten, J, Q, K
-
+    
     var description: String {
         let rankNumber = self.rawValue
-
+        
         switch rankNumber {
         case 1:
             return "A"
@@ -33,7 +33,7 @@ enum Rank: Int, CustomStringConvertible, CaseIterable{
         default:
             return "\(rankNumber)"
         }
-        }
+    }
 }
 
 struct Card: CustomStringConvertible {
@@ -44,7 +44,7 @@ struct Card: CustomStringConvertible {
         self.rank = rank
         self.suit = suit
     }
-
+    
     var description: String {
         return "\(suit)\(rank)"
     }
