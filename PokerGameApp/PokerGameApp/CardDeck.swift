@@ -28,7 +28,7 @@ struct CardDeck {
     }
     
     mutating func removeOne() -> Card {
-        let drawnCard = cards.remove(at: Int(arc4random_uniform(UInt32(cards.count))))
+        let drawnCard = cards.remove(at: 0)
         return drawnCard
     }
     
