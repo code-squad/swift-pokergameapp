@@ -29,10 +29,10 @@ struct CardDeck {
     }
     
     mutating func reset() {
-        cards = Card.Suit.allCases.flatMap { getAllCards(for: $0) }
-    }
-    
-    private func getAllCards(for symbol: Card.Suit) -> [Card] {
-        return Card.Rank.allCases.map { Card(suit: symbol, rank: $0) }
+        cards = Card.Suit.allCases.flatMap { suit in
+            Card.Rank.allCases.map { rank in
+                Card(suit: suit, rank: rank)
+            }
+        }
     }
 }
