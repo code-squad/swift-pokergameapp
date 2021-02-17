@@ -43,4 +43,9 @@ struct Card: CustomStringConvertible {
     
     private let rank: Rank
     private let suit: Suit
+    
+    init(rank: Rank, suit: Suit) {
+        self.rank = rank
+        self.suit = suit
+    }
 }

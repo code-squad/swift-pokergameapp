@@ -8,43 +8,39 @@
 import Foundation
 
 struct PockerGame {
-    private var players: [Player] = []
+    private var players: Players
     private var dealer: Dealer
     private var cardStud: Int
     
-    init(numberOfPlayer: Int, cardStud: Int) {
+    init(ofPlayer: Int, cardStud: Int) {
         self.cardStud = cardStud
-        self.dealer = Dealer()
-        addPlayer(numberOfPlayer)
+        self.dealer = Dealer(stud: cardStud)
+        self.players = Players(number: ofPlayer)
     }
     
-    mutating func addPlayer(_ number: Int) {
-        for _ in 0..<number {
-            players.append(Player())
-        }
-    }
+
     
     mutating func gameStart() {
-        print("===\(cardStud) 기준, 참가자 \(players.count)명 일 때===")
+        print("===\(cardStud) 기준, 참가자 \(players.count())명 일 때===")
         var ground = 1
         dealer.shuffle()
         while true {
-            if !cardSetting() { return }
+            if !cardSetting() {
+                print("===카드 부족 게임 종료===")
+                return }
             
             print("\(ground)번 째 그라운드")
-            for (index, player) in players.enumerated() {
-                print("참가자#\(index+1) \(player)")
-            }
-            print("딜러#\(dealer)")
+            players.printDeck()
+            dealer.printDeck()
             ground += 1
         }
     }
     
     mutating func cardSetting() -> Bool {
-        for player in players {
-            if !dealer.distributeCard(with: player, stud: cardStud) {return false}
-        }
-        if !dealer.takeDealerCards(stud: cardStud) {return false}
+       
+        if !dealer.distributePlayers(with: players) {return false}
+        
+        if !dealer.takeDealerCards() {return false}
         return true
     }
     

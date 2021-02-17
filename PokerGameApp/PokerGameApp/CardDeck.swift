@@ -45,28 +45,11 @@ struct CardDeck {
         makeCardDeck()
     }
     
-    mutating func sevenStudCards() -> [Card]? {
+    mutating func give(number ofCard: Int) -> [Card]? {
         var newCards:[Card] = []
         
-        for _ in 0...6 {
-            guard let newCard = self.removeOne() else {
-                print("카드 부족 게임 종료")
-                return nil
-            }
-            
-            newCards.append(newCard)
-        }
-        return newCards
-    }
-    
-    mutating func fiveStudCards() -> [Card]?{
-        var newCards:[Card] = []
-        
-        for _ in 0...4 {
-            guard let newCard = self.removeOne() else {
-                print("카드 부족 게임 종료")
-                return nil
-            }
+        for _ in 0...ofCard {
+            guard let newCard = self.removeOne() else { return nil }
             
             newCards.append(newCard)
         }
