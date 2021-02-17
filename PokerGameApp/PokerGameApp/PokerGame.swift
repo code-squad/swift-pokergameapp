@@ -15,7 +15,6 @@ class PokerGame {
     
     private var rule: Rule
     private var cardDeck = CardDeck()
-    private var dealer = Dealer()
     private var players: [Player] = []
     
     init(rule: Rule = .sevenCardStud, players: [Player]) {
@@ -29,37 +28,40 @@ class PokerGame {
         for _ in 0..<rule.rawValue {
             for player in players {
                 if let card = cardDeck.removeOne() {
-                    player.receiveCard(card: card)
+                    player.receive(card: card)
                 }
             }
-            if let card = cardDeck.removeOne() {
-                dealer.receiveCard(card: card)
-            }
+        }
+    }
+    
+    func reset() {
+        for player in players {
+            player.reset()
         }
     }
 }
 
-// Dealer와 Player의 중복되는 코드
-class Dealer {
-    private var handCard: [Card] = []
-    
-    var getHandCard: [Card] {
-        return handCard
-    }
-    
-    func receiveCard(card: Card) {
-        handCard.append(card)
-    }
-}
-
 class Player {
-    private var handCard: [Card] = []
+    enum PlayerType {
+        case dealer
+        case player
+    }
     
+    private var handCard: [Card] = []
+    var playerType: PlayerType
     var getHandCard: [Card] {
         return handCard
     }
     
-    func receiveCard(card: Card) {
+    init(playerType: PlayerType = .player) {
+        self.playerType = playerType
+    }
+    
+    func receive(card: Card) {
         handCard.append(card)
+    }
+    
+    func reset() {
+        handCard.removeAll()
     }
 }
