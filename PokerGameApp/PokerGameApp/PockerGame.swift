@@ -38,9 +38,12 @@ struct PockerGame {
     
     mutating func cardSetting() -> Bool {
        
-        if !dealer.distributePlayers(with: players) {return false}
-        
-        if !dealer.takeDealerCards() {return false}
+        if !dealer.distributePlayers(with: players) {
+            return false
+        }
+        if !dealer.takeDealerCards() {
+            return false
+        }
         return true
     }
     
