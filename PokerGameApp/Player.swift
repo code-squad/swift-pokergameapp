@@ -7,21 +7,16 @@
 
 import Foundation
 
-class Player : Dealer{
-    let id : Int
-
-    init(id : Int){
-        self.id = id
-    }
+class Player{
+    private(set) var cards = CardDeck()
 }
 
 class Players {
     var player = [Player]()
     
-    init(total count : Int){
-        
-        for id in 0..<count {
-            player.append(Player(id: id))
+    init(total count : InputView.PlayersCount){
+        for _ in 0..<count.rawValue {
+            player.append(Player())
         }
     }
     func removeAllCards(){
