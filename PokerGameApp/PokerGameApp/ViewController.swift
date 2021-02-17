@@ -29,7 +29,13 @@ class ViewController: UIViewController {
             addCard2StackView(cardCount: 7, stackView: cardStackView)
             setStackViewConstraints(stackView: cardStackView)
         }
+        let newRandCard = PlayingCard.init()
+        let cardHeartQueen = PlayingCard.init(suit: .heart, number: 12)
+        let cardSpadeSeven = PlayingCard.init(suit: .spade, number: 7)
         
+        newRandCard.showCard()
+        cardHeartQueen.showCard()
+        cardSpadeSeven.showCard()
     }
     
     private func addCard2StackView( cardCount : Int ,stackView : UIStackView) {
