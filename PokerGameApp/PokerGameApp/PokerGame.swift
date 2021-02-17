@@ -33,7 +33,7 @@ class PokerGame {
             HandOutToPlayers(playerNumber: index)
         }
         
-        dealer = hasAHand(dealer: dealer, cardCount: cardCount)
+        dealer = hasAHandToDealer(dealer: dealer, cardCount: cardCount)
         
         return PokerGameBaord(dealer: dealer, players: players)
     }
@@ -44,7 +44,7 @@ private extension PokerGame {
         return "참가자\(playerNumber)"
     }
     
-    static func hasAHand(dealer: Dealer, cardCount: Int) -> Dealer {
+    static func hasAHandToDealer(dealer: Dealer, cardCount: Int) -> Dealer {
         let dealer = dealer
         return Dealer(cardDeck: dealer.remainCards, hand: Hand(cards: dealer.handOut(cardCount)))
     }
