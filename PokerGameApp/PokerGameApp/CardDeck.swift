@@ -6,3 +6,22 @@
 //
 
 import Foundation
+
+struct CardDeck {
+    private var deck: [Card] = []
+    
+    init() {
+        setCardDeck()
+    }
+    
+    private mutating func setCardDeck() {
+        Suit.allCases.forEach { suit in
+            Rank.allCases.forEach { rank in
+                deck.append(Card(rank: rank, suit: suit))
+            }
+        }
+    }
+    
+    
+    
+}
