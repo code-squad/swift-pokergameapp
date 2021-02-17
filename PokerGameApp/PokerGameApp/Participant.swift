@@ -8,11 +8,12 @@
 import Foundation
 
 class Participant {
-    var cards: [Card] = []
+    private var cards: [Card] = []
     
     func receiveCard(_ card: Card) {
         cards.append(card)
     }
+    
     var getCards: [Card] {
         return cards
     }

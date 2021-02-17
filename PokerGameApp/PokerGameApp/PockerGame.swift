@@ -10,7 +10,7 @@ import Foundation
 class PockerGame {
     private var deck: CardDeck
     private var dealer: Dealer
-    private var participant: [Participant]
+    private var participants: [Participant] = []
     private var numOfParticipant: Int
     private var numOfCard: Int
     
@@ -19,6 +19,32 @@ class PockerGame {
         self.numOfCard = numOfCard
         deck = CardDeck()
         dealer = Dealer()
-        participant = Array(repeating: Participant(), count: self.numOfParticipant)
+        //participants = Array(repeating: Participant(), count: self.numOfParticipant)
+        for _ in 1...numOfParticipant {
+            let participant = Participant()
+            self.participants.append(participant)
+        }
+    }
+    
+    func distributeCard() {
+        deck.shuffle()
+        for _ in 1...numOfCard {
+            if let selectedCard = deck.removeOn() {
+                // 딜러에게 한장나눠준다.
+                dealer.receiveCard(selectedCard)
+            } else {
+                print("카드가 다 소모되었습니다.\n 게임을 종료합니다.")
+                return
+            }
+
+            participants.forEach({ participant in
+                if let selectedCard = deck.removeOn() {
+                    participant.receiveCard(selectedCard)
+                } else {
+                    print("카드가 다 소모되었습니다.\n 게임을 종료합니다.")
+                    return
+                }
+            })
+        }
     }
 }
