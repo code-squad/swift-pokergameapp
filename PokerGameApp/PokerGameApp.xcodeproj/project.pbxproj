@@ -16,6 +16,9 @@
 		FF66B1A025DB56C3005CC24B /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF66B19F25DB56C3005CC24B /* Card.swift */; };
 		FF66B1A325DBA6CF005CC24B /* CardDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF66B1A225DBA6CF005CC24B /* CardDeck.swift */; };
 		FF66B1A625DCA993005CC24B /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF66B1A525DCA993005CC24B /* Test.swift */; };
+		FF66B1AB25DCC30D005CC24B /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF66B1AA25DCC30D005CC24B /* Player.swift */; };
+		FF66B1AE25DCC313005CC24B /* Dealer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF66B1AD25DCC313005CC24B /* Dealer.swift */; };
+		FF66B1B125DCD91F005CC24B /* PockerGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF66B1B025DCD91F005CC24B /* PockerGame.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +33,9 @@
 		FF66B19F25DB56C3005CC24B /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		FF66B1A225DBA6CF005CC24B /* CardDeck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDeck.swift; sourceTree = "<group>"; };
 		FF66B1A525DCA993005CC24B /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
+		FF66B1AA25DCC30D005CC24B /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		FF66B1AD25DCC313005CC24B /* Dealer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dealer.swift; sourceTree = "<group>"; };
+		FF66B1B025DCD91F005CC24B /* PockerGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PockerGame.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +75,9 @@
 				FF66B19F25DB56C3005CC24B /* Card.swift */,
 				FF66B1A525DCA993005CC24B /* Test.swift */,
 				FF66B1A225DBA6CF005CC24B /* CardDeck.swift */,
+				FF66B1AD25DCC313005CC24B /* Dealer.swift */,
+				FF66B1AA25DCC30D005CC24B /* Player.swift */,
+				FF66B1B025DCD91F005CC24B /* PockerGame.swift */,
 				FF66B19325DA3AD4005CC24B /* Assets.xcassets */,
 				FF66B19525DA3AD4005CC24B /* LaunchScreen.storyboard */,
 				FF66B19825DA3AD4005CC24B /* Info.plist */,
@@ -147,9 +156,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				FF66B18F25DA3AD1005CC24B /* ViewController.swift in Sources */,
+				FF66B1B125DCD91F005CC24B /* PockerGame.swift in Sources */,
 				FF66B1A325DBA6CF005CC24B /* CardDeck.swift in Sources */,
 				FF66B18B25DA3AD1005CC24B /* AppDelegate.swift in Sources */,
 				FF66B18D25DA3AD1005CC24B /* SceneDelegate.swift in Sources */,
+				FF66B1AE25DCC313005CC24B /* Dealer.swift in Sources */,
+				FF66B1AB25DCC30D005CC24B /* Player.swift in Sources */,
 				FF66B1A025DB56C3005CC24B /* Card.swift in Sources */,
 				FF66B1A625DCA993005CC24B /* Test.swift in Sources */,
 			);
