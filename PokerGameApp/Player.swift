@@ -7,9 +7,8 @@
 
 import Foundation
 
-class Player{
+class Player : Dealer{
     let id : Int
-    var cards = PlayingCardDeck()
 
     init(id : Int){
         self.id = id
