@@ -17,7 +17,7 @@ class PokerGame {
         static let five = 5
     }
     
-    class func start(gameMode: PokerGame.Mode, NumberOfPlayer: Int) {
+    class func start(gameMode: PokerGame.Mode, NumberOfPlayer: Int) -> PokerGameBaord {
         let cardCount = gameMode == .fiveStud ? NumberOfcards.five : NumberOfcards.seven
         var dealer: Dealer = Dealer(cardDeck: CardDeck())
         var players: [Player] = []
@@ -34,6 +34,8 @@ class PokerGame {
         }
         
         dealer = hasAHand(dealer: dealer, cardCount: cardCount)
+        
+        return PokerGameBaord(dealer: dealer, players: players)
     }
 }
 

@@ -31,4 +31,15 @@ class PokerGameAppTests: XCTestCase {
         cardDeck.removeOne()
         XCTAssertEqual(50, cardDeck.count())
     }
+    
+    func testPokerGamePlayers() {
+        let pokerGame = PokerGame.start(gameMode: .sevenStud, NumberOfPlayer: 3)
+        let dealerInfo = pokerGame.dealerInfo
+        let firstPlayerInfo = pokerGame.playersInfo.first
+        let lastPlayerInfo = pokerGame.playersInfo.last
+        
+        XCTAssertEqual("딜러", dealerInfo.nameInfo)
+        XCTAssertEqual("참가자1", firstPlayerInfo?.nameInfo)
+        XCTAssertEqual("참가자3", lastPlayerInfo?.nameInfo)
+    }
 }
