@@ -1,24 +1,6 @@
 import Foundation
 
-protocol CardCreatable {
-    static func createCardSet() -> [Card]
-}
-
-extension CardCreatable {
-    static func createCardSet() -> [Card] {
-        var cards = [Card]()
-        
-        for rank in Card.Rank.allCases {
-            for shape in Card.Shape.allCases {
-                let card = Card(with: shape.self, rank: rank.self)
-                cards.append(card)
-            }
-        }
-        return cards
-    }
-}
-
-class Card: CardCreatable, CustomStringConvertible {
+class Card: CustomStringConvertible {
     enum Shape: String, CaseIterable, CustomStringConvertible {
         case clubs = "♣️"
         case diamone = "♦️"

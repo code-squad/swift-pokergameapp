@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		221E2FA225DCC483006F86A6 /* CardBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221E2FA125DCC483006F86A6 /* CardBox.swift */; };
 		223D19D525DB933700D92F59 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223D19D425DB933700D92F59 /* Player.swift */; };
 		2271129C25DA062E007C9CD8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2271129B25DA062E007C9CD8 /* AppDelegate.swift */; };
 		2271129E25DA062E007C9CD8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2271129D25DA062E007C9CD8 /* SceneDelegate.swift */; };
@@ -38,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		221E2FA125DCC483006F86A6 /* CardBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardBox.swift; sourceTree = "<group>"; };
 		223D19D425DB933700D92F59 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		2271129825DA062E007C9CD8 /* PokerGameApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PokerGameApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2271129B25DA062E007C9CD8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -104,10 +106,11 @@
 				2271129B25DA062E007C9CD8 /* AppDelegate.swift */,
 				2271129D25DA062E007C9CD8 /* SceneDelegate.swift */,
 				2271129F25DA062E007C9CD8 /* ViewController.swift */,
-				22EB3C2B25DA3E8500818F97 /* Card.swift */,
 				22E442AC25DB6F88005DF177 /* Dealer.swift */,
 				223D19D425DB933700D92F59 /* Player.swift */,
+				22EB3C2B25DA3E8500818F97 /* Card.swift */,
 				22BB7F6A25DA73F900443633 /* CardDeck.swift */,
+				221E2FA125DCC483006F86A6 /* CardBox.swift */,
 				22BB7F6F25DA797B00443633 /* TestGame.swift */,
 				227112A125DA062E007C9CD8 /* Main.storyboard */,
 				227112A425DA0631007C9CD8 /* Assets.xcassets */,
@@ -254,6 +257,7 @@
 				2271129C25DA062E007C9CD8 /* AppDelegate.swift in Sources */,
 				223D19D525DB933700D92F59 /* Player.swift in Sources */,
 				2271129E25DA062E007C9CD8 /* SceneDelegate.swift in Sources */,
+				221E2FA225DCC483006F86A6 /* CardBox.swift in Sources */,
 				22EB3C2C25DA3E8500818F97 /* Card.swift in Sources */,
 				22BB7F7025DA797B00443633 /* TestGame.swift in Sources */,
 			);
