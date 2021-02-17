@@ -21,25 +21,41 @@ extension Suits : CustomStringConvertible {
     }
 }
 
+enum Rank : Int, CaseIterable, CustomStringConvertible {
+    
+    case one, two, three, four, five, six, seven, eight, nine, ten, jack, queen, king
+         
+    var description: String {
+        switch self {
+        case .one:
+            return "A"
+        case .jack:
+            return "J"
+        case .queen:
+            return "Q"
+        case .king:
+            return "K"
+        default:
+            return String(self.rawValue)
+        }
+    }
+}
+
 class PlayingCard : CustomStringConvertible{
     
     var description: String {
-        return "\(suit)\(rank[number] ?? "nil")"
+        return "\(suit)\(number)"
     }
     
-
-    /// 카드의 숫자 또한 enum : CaseIterable 을 사용하려고 했지만, 각 case를 명명하는 것은 효율성이 떨어져 보였기 때문에, Dictionary를 택하였습니다. 범위 밖의 숫자를 입력 시  optional chaning을 이용하여 해결 할 수 있으므로 좋은 방법이라 보았습니다.
-    private let rank : Dictionary<Int,String> = [1 : "A", 2 : "2", 3 : "3", 4 : "4", 5 : "5", 6 : "6", 7 : "7", 8 : "8", 9 : "9", 10 : "10", 11 : "J", 12 : "Q", 13 : "K"]
-    
     let suit : Suits
-    let number : Int
+    let number : Rank
     
-    init(suit : Suits, number : Int) {
+    init(suit : Suits, number : Rank) {
         self.suit = suit
         self.number = number
     }
     
     convenience init() {
-        self.init(suit: Suits.allCases.randomElement()!,number: Int.random(in: 1...13))
+        self.init(suit: Suits.allCases.randomElement()!,number: Rank.allCases.randomElement()!)
     }
 }

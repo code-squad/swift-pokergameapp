@@ -30,8 +30,8 @@ class ViewController: UIViewController {
             setStackViewConstraints(stackView: cardStackView)
         }
         let newRandCard = PlayingCard.init()
-        let cardHeartQueen = PlayingCard.init(suit: .heart, number: 12)
-        let cardSpadeSeven = PlayingCard.init(suit: .spade, number: 7)
+        let cardHeartQueen = PlayingCard.init(suit: .heart, number: .queen)
+        let cardSpadeSeven = PlayingCard.init(suit: .spade, number: .seven)
         
         print(newRandCard)
         print(cardHeartQueen)
