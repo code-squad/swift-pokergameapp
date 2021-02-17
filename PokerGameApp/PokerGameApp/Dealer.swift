@@ -11,9 +11,9 @@ import Foundation
 
 struct Dealer : CustomStringConvertible{
     
-    var description: String { return "\(cards)" }
-    var cardDeck: CardDeck
-    var cards:[Card] = []
+    private var description: String { return "\(cards)" }
+    private var cardDeck: CardDeck
+    private var cards:[Card] = []
     
     init() {
         self.cardDeck = CardDeck()
@@ -45,5 +45,9 @@ struct Dealer : CustomStringConvertible{
             return false
         }
         return true
+    }
+    
+    mutating func shuffle() {
+        cardDeck.shuffle()
     }
 }

@@ -41,6 +41,6 @@ struct Card: CustomStringConvertible {
     }
     
     
-    let rank: Rank
-    let suit: Suit
+    private let rank: Rank
+    private let suit: Suit
 }
