@@ -16,6 +16,7 @@ class ViewController: UIViewController {
         self.view.backgroundColor = UIColor(patternImage: (UIImage(named: "bg_pattern.png") ?? UIImage()))
         showCards(cardNum: 7)
         testCard()
+        runCardDeckTest()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
