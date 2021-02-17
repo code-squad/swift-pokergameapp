@@ -9,7 +9,11 @@ import Foundation
 
 struct CardDeck {
     
-    private var cards: [Card] = []
+    private var cards: [Card]
+    
+    init(cards: [Card]) {
+        self.cards = cards
+    }
     
     mutating func filltheCardDeck() {
         Card.Rank.allCases.forEach { (rank) in
