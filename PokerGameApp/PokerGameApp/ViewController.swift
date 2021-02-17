@@ -16,15 +16,10 @@ class ViewController: UIViewController {
         setBackground()
         addCards(count: 7)
         
-        let dealer = Dealer(rule: .sevenCardStud, seat: .two)
-        print(dealer.start())
-        print(dealer.start())
-        print(dealer.start())
-        
-        let dealer2 = Dealer(rule: .fiveCardStud, seat: .four)
-        print(dealer2.start())
-        print(dealer2.start())
-        print(dealer2.start())
+        let game = PokerGame(rule: .fiveCardStud, seat: .three)
+        print(game.start())
+        print(game.start())
+        print(game.start())
     }
     
     private func setBackground() {

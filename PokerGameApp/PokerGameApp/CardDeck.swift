@@ -40,7 +40,7 @@ struct CardDeck {
         return currentDeck.count
     }
     
-    mutating func shuffle() -> Int {
+    mutating func shuffle() {
         let lastIdx = count() - 1
         
         for i in 0...lastIdx {
@@ -48,8 +48,6 @@ struct CardDeck {
             let randIdx = Int.random(in: 0...currIdx)
             (currentDeck[randIdx], currentDeck[currIdx]) = (currentDeck[currIdx], currentDeck[randIdx])
         }
-        
-        return count()
     }
     
     mutating func removeOne() -> Card? {
