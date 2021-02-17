@@ -13,3 +13,11 @@ STEP15 포커게임 앱 저장소
 ### 결과
 <img width="598" alt="스크린샷 2021-02-16 오전 10 27 57" src="https://user-images.githubusercontent.com/69951890/108007566-a5b1a500-7041-11eb-9d14-eae236c00b8a.png">
 
+## 3. 카드덱 구현과 테스트
+
+### 결과
+<img width="318" alt="스크린샷 2021-02-17 오후 9 24 17" src="https://user-images.githubusercontent.com/69951890/108203944-7ea0c380-7166-11eb-84e1-c5a57cbccc31.png">
+
+## 4. 포커딜러와 게임테스트
+<img width="381" alt="스크린샷 2021-02-17 오후 9 25 11" src="https://user-images.githubusercontent.com/69951890/108204033-9ed08280-7166-11eb-9414-f0e2f5212d8b.png">
+
