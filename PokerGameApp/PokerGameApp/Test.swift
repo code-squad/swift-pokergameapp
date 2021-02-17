@@ -35,13 +35,13 @@ class Test: CustomStringConvertible {
     var description: String {
         switch testCase {
         case .create:
-            return testCreate(testDeck, with: expectedValue) ? "\(testCase.description): 테스트 성공" : "\(testCase.description): 테스트 실패"
+            return testCreate(testDeck, with: expectedValue) ? "\(testCase): 테스트 성공" : "\(testCase): 테스트 실패"
         case .shuffle:
-            return testShuffle(testDeck, with: expectedValue) ? "\(testCase.description): 테스트 성공" : "\(testCase.description): 테스트 실패"
+            return testShuffle(testDeck, with: expectedValue) ? "\(testCase): 테스트 성공" : "\(testCase): 테스트 실패"
         case .removeOne:
-            return testRemoveOne(from: testDeck, with: expectedValue) ? "\(testCase.description): 테스트 성공" : "\(testCase.description): 테스트 실패"
+            return testRemoveOne(from: testDeck, with: expectedValue) ? "\(testCase): 테스트 성공" : "\(testCase): 테스트 실패"
         case .reset:
-            return testReset(testDeck, with: expectedValue) ? "\(testCase.description): 테스트 성공" : "\(testCase.description): 테스트 실패"
+            return testReset(testDeck, with: expectedValue) ? "\(testCase): 테스트 성공" : "\(testCase): 테스트 실패"
         }
     }
     
