@@ -33,13 +33,14 @@ class PokerGameAppTests: XCTestCase {
     }
     
     func testPokerGamePlayers() {
-        let pokerGame = PokerGame.start(gameMode: .sevenStud, NumberOfPlayer: 3)
-        let dealerInfo = pokerGame.dealerInfo
-        let firstPlayerInfo = pokerGame.playersInfo.first
-        let lastPlayerInfo = pokerGame.playersInfo.last
+        let pokerGame = PokerGame()
+        pokerGame.start(gameMode: .sevenStud, NumberOfPlayer: 3)
+        let dealerInfo = pokerGame.showDealerInfo()
+        let firstPlayerInfo = pokerGame.showPlayersInfo().first
+        let lastPlayerInfo = pokerGame.showPlayersInfo().last
         
-        XCTAssertEqual("딜러", dealerInfo.nameInfo)
-        XCTAssertEqual("참가자1", firstPlayerInfo?.nameInfo)
-        XCTAssertEqual("참가자3", lastPlayerInfo?.nameInfo)
+        XCTAssertEqual("딜러", dealerInfo.showNameInfo())
+        XCTAssertEqual("참가자1", firstPlayerInfo?.showNameInfo())
+        XCTAssertEqual("참가자3", lastPlayerInfo?.showNameInfo())
     }
 }
