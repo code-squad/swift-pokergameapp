@@ -8,24 +8,21 @@
 import Foundation
 
 class Player {
-    var playerID: Int = 0
-    var playerCardDeck: Array<Card>?
+    var id: Int = 0
+    var cardDeck: Array<Card>
     
     init(id: Int) {
-        playerID = id
+        self.id = id
+        self.cardDeck = []
     }
     
     public func receive(card: Card) {
-        if playerCardDeck != nil {
-            playerCardDeck?.append(card)
-        } else {
-            playerCardDeck = [card]
-        }
+        cardDeck.append(card)
     }
 }
 
 extension Player: CustomStringConvertible {
     var description: String {
-        return "참가자#\(self.playerID) \(playerCardDeck ?? [])"
+        return "참가자#\(self.id) \(cardDeck)"
     }
 }

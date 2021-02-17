@@ -9,7 +9,7 @@ import UIKit
 
 class ViewController: UIViewController {
     var cardDeck = CardDeck()
-    var mockGame = PokerGameApp.pockerGame()
+    var mockGame = PockerGame()
     
     let cardStackView: UIStackView = {
         let stackView = UIStackView()
@@ -59,7 +59,7 @@ class ViewController: UIViewController {
             switch command {
             case "카드초기화": print("카드 전체를 초기화했습니다.");print("총\(cardDeck.count())장의 카드가 있습니다.")
             case "카드섞기": cardDeck.shuffle(); print("전체 \(cardDeck.count())장의 카드를 섞었습니다.")
-            case "카드하나뽑기": print("\(cardDeck.removeOne()?.cardDescription ?? "뽑을 카드가 없습니다.")\n총 \(cardDeck.count())장의 카드가 남았습니다.")
+            case "카드하나뽑기": print("\(cardDeck.removeOne()?.description ?? "뽑을 카드가 없습니다.")\n총 \(cardDeck.count())장의 카드가 남았습니다.")
             default: print("sdf")
         }
     }
