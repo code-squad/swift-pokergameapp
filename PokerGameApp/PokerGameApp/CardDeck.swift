@@ -45,10 +45,10 @@ struct CardDeck {
         makeCardDeck()
     }
     
-    mutating func give(number ofCard: Int) -> [Card]? {
+    mutating func give(number ofCard: Event) -> [Card]? {
         var newCards:[Card] = []
         
-        for _ in 0...ofCard {
+        for _ in 0...ofCard.rawValue {
             guard let newCard = self.removeOne() else { return nil }
             
             newCards.append(newCard)

@@ -36,6 +36,15 @@ enum Rank: Int, CustomStringConvertible, CaseIterable{
     }
 }
 
+enum Capacity : Int{
+    case two = 2, three, four
+}
+
+enum Event : Int {
+    case fiveStudPocker = 5
+    case sevenStudPocker = 7
+}
+
 struct Card: CustomStringConvertible {
     private let rank: Rank
     private let suit: Suit

@@ -18,9 +18,9 @@ class ViewController: UIViewController {
         setBackGround()
         setCard()
         
-        var pockerGame = PockerGame(ofPlayer: 3, cardStud: 7)
+        var pockerGame = PockerGame(ofPlayer: .three, cardStud: .sevenStudPocker)
         pockerGame.gameStart()
-        pockerGame = PockerGame(ofPlayer: 3, cardStud: 5)
+        pockerGame = PockerGame(ofPlayer: .three, cardStud: .fiveStudPocker)
         pockerGame.gameStart()
     }
     
