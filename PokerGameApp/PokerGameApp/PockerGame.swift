@@ -29,7 +29,6 @@ struct PockerGame {
         var ground = 1
         dealer.cardDeck.shuffle()
         while true {
-            if dealer.cardDeck.isDeckEmpty() { return }
             print("\(ground)번 째 그라운드")
             
 
