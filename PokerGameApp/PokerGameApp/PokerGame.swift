@@ -8,5 +8,25 @@
 import Foundation
 
 class PokerGame {
+    var cardDeck: CardDeck
+    var players: [Player]
+    var dealer: Dealer = Dealer()
     
+    init(cardDeck: CardDeck = CardDeck(cards: []), players: [Player] = []) {
+        self.cardDeck = cardDeck
+        self.players = players
+    }
+    
+    func readyToGameStart() {
+        cardDeck.filltheCardDeck()
+    }
+    func participate() {
+    }
+    
+    class Player {
+        var playerCards: [Card] = []
+    }
+    class Dealer {
+        var dealerCards: [Card] = []
+    }
 }
