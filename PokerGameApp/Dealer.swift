@@ -41,4 +41,8 @@ class Dealer : Player {
     public func resetCardDeck(){
         gameCardDeck = CardDeck()
     }
+    
+    public func getRemainCardDeckCount() -> Int {
+        return gameCardDeck.count
+    }
 }
