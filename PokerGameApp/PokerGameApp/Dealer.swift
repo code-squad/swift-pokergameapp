@@ -11,15 +11,14 @@ class Dealer {
     private var cardDeck: CardDeck
     private let hand: Hand
     private let name = "딜러"
-
-    init(cardDeck: CardDeck) {
-        self.cardDeck = cardDeck
-        self.hand = Hand(cards: [])
-    }
     
     init(cardDeck: CardDeck, hand: Hand) {
         self.cardDeck = cardDeck
         self.hand = hand
+    }
+    
+    convenience init(cardDeck: CardDeck) {
+        self.init(cardDeck: cardDeck, hand: Hand(cards: []))
     }
     
     var handInfo: Hand {
