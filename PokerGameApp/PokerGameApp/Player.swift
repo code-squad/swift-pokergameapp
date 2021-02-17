@@ -14,4 +14,8 @@ class Player {
     init() {
         self.cards = []
     }
+    
+    func showdown() -> [Card] {
+        return cards
+    }
 }
