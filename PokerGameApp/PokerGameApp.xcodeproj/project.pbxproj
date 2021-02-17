@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D00D346625DCE9EA00571130 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00D346525DCE9EA00571130 /* Player.swift */; };
 		D04D010A25DA390D0036F5D5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04D010925DA390D0036F5D5 /* AppDelegate.swift */; };
 		D04D010C25DA390D0036F5D5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04D010B25DA390D0036F5D5 /* SceneDelegate.swift */; };
 		D04D010E25DA390D0036F5D5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04D010D25DA390D0036F5D5 /* ViewController.swift */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D00D346525DCE9EA00571130 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		D04D010625DA390D0036F5D5 /* PokerGameApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PokerGameApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D04D010925DA390D0036F5D5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D04D010B25DA390D0036F5D5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -71,6 +73,7 @@
 				D0CE47E625DB9A830007C7FC /* CardDeck.swift */,
 				D04D013425DAE1E40036F5D5 /* Card.swift */,
 				D0C0607A25DBCAC5001802BE /* PokerGame.swift */,
+				D00D346525DCE9EA00571130 /* Player.swift */,
 				D04D010F25DA390D0036F5D5 /* Main.storyboard */,
 				D04D011225DA390E0036F5D5 /* Assets.xcassets */,
 				D04D011425DA390E0036F5D5 /* LaunchScreen.storyboard */,
@@ -153,6 +156,7 @@
 				D04D010E25DA390D0036F5D5 /* ViewController.swift in Sources */,
 				D0CE47E725DB9A830007C7FC /* CardDeck.swift in Sources */,
 				D0CE47EA25DB9BDA0007C7FC /* TestCardDeck.swift in Sources */,
+				D00D346625DCE9EA00571130 /* Player.swift in Sources */,
 				D04D010A25DA390D0036F5D5 /* AppDelegate.swift in Sources */,
 				D04D010C25DA390D0036F5D5 /* SceneDelegate.swift in Sources */,
 				D04D013525DAE1E40036F5D5 /* Card.swift in Sources */,
