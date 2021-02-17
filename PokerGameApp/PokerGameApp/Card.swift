@@ -33,11 +33,22 @@ struct Card {
         case ace = "A"
     }
 
-    let suit: Suit, value: Value
+    public let suit: Suit, value: Value
+}
+extension Card.Suit: CustomStringConvertible {
+    var description: String {
+        return "\(self.rawValue)"
+    }
+}
+
+extension Card.Value: CustomStringConvertible {
+    var description: String {
+        return "\(self.rawValue)"
+    }
 }
 
 extension Card: CustomStringConvertible {
     var description: String {
-        return "\(suit.rawValue)\(value.rawValue)"
+        return "\(self.suit)\(self.value)"
     }
 }
