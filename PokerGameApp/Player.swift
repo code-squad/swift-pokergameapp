@@ -8,13 +8,17 @@
 import Foundation
 
 class Player{
-    private(set) var cards = CardDeck()
+    private(set) var cards : CardDeck
+    
+    init(){
+        cards = CardDeck()
+    }
 }
 
 class Players {
     var player = [Player]()
     
-    init(total count : InputView.PlayersCount){
+    init(with count : InputView.PlayersCount){
         for _ in 0..<count.rawValue {
             player.append(Player())
         }
