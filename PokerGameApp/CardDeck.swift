@@ -7,7 +7,7 @@
 
 import Foundation
 
-class PlayingCardDeck : CustomStringConvertible{
+class CardDeck : CustomStringConvertible{
 
     public var count : Int {
         get {
