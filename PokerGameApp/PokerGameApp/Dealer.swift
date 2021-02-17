@@ -9,4 +9,10 @@ import Foundation
 
 class Dealer: Player {
     
+    var cardDeck: CardDeck
+    
+    override init() {
+        cardDeck = CardDeck()
+        super.init()
+    }
 }
