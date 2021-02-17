@@ -8,7 +8,7 @@
 import Foundation
 
 struct CardDeck {
-    var cards = [Card]()
+    private var cards = [Card]()
     var count: Int {
         return cards.count
     }
@@ -18,9 +18,6 @@ struct CardDeck {
     }
     
     mutating func shuffle() {
-        guard !cards.isEmpty else {
-            return
-        }
         for i in 0..<cards.count - 1 {
             let randomIndex = Int.random(in: i..<cards.count)
             let temp = cards[i]
