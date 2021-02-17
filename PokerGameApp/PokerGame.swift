@@ -9,52 +9,39 @@ import Foundation
 
 class PokerGame {
     
-    enum Constant {
-        static let numberOfPlayers = 3
-        static let cardstud = 7
-    }
-    
-    var gameCardDeck : PlayingCardDeck
+    var countOfPlayer = InputView.PlayersCount.three
     var players : Players
     var dealer : Dealer
     
     init(){
-        self.gameCardDeck = PlayingCardDeck()
-        self.players = Players(total: Constant.numberOfPlayers)
+        self.players = Players(total: countOfPlayer)
         self.dealer = Dealer()
     }
     
     private func gameReset(){
-        gameCardDeck.initialize()
-        gameCardDeck.shuffle()
         players.removeAllCards()
-        dealer.cards.removeAll()
+        dealer.removeAllCards()
     }
 
     public func start(){
         gameReset()
         printRule()
         
-        players.player.forEach{spreadCardsToPerson(person:$0)}
-        spreadCardsToPerson(person: dealer)
+        dealer.shuffleCards()
+        dealer.spreadCardsToPlayer(players : &players)
+        dealer.spreadCardsToDealer()
         
         printResult()
     }
 
-    private func spreadCardsToPerson(person : Dealer){
-        let cards = gameCardDeck.removeCards(count: Constant.cardstud)
-        person.cards.takeCards(cards: cards)
-    }
-    
     private func printRule(){
-        print("참가자 수 : \(Constant.numberOfPlayers)")
-        print("\(Constant.cardstud)카드 기준")
+        print("참가자 수 : \(countOfPlayer.rawValue)")
+        print("카드 기준 : \(dealer.cardSqud.rawValue)")
     }
     
     private func printResult(){
         
-        players.player.forEach{print("참가자#\($0.id) \($0.cards)")}
+        players.player.forEach{print("참가자# \($0.cards)")}
         print("딜러 \(dealer.cards)")
-        print("남아있는 카드의 수 \(gameCardDeck.count)")
     }
 }
