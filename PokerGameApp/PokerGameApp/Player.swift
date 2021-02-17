@@ -10,7 +10,6 @@ import Foundation
 class Players {
     private var cardDeck = CardDeck()
     private var players: [Player] = []
-    
     lazy var count = players.count
     
     init(players: [Player]) {
@@ -22,15 +21,18 @@ class Players {
         (1...rule.rawValue).forEach { _ in
             handout()
         }
-        players.forEach { player in
-            print(player.handCard)
-        }
     }
     
     func reset() {
         cardDeck.reset()
         players.forEach { player in
             player.reset()
+        }
+    }
+    
+    func printAllPlayerCard() {
+        players.forEach { player in
+            print(player.description)
         }
     }
     
@@ -52,18 +54,40 @@ class Player {
         case player
     }
     
-    var handCard: [Card] = []
     private var playerType: PlayerType
+    var handCard = HandCard()
+    var description: String {
+        return "\(playerType) \(handCard.description)"
+    }
     
     init(playerType: PlayerType = .player) {
         self.playerType = playerType
     }
     
     func receive(card: Card) {
-        handCard.append(card)
+        handCard.append(card: card)
     }
     
     func reset() {
-        handCard.removeAll()
+        handCard.reset()
+    }
+}
+
+class HandCard {
+    private var cards: [Card] = []
+    var description: String {
+        return cards.description
+    }
+    
+    func append(card: Card) {
+        cards.append(card)
+    }
+    
+    func reset() {
+        cards.removeAll()
+    }
+    
+    func printCard() {
+        print(cards)
     }
 }

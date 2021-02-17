@@ -17,16 +17,10 @@ class ViewController: UIViewController {
         setupBackgroundImage()
         setupCard()
         
-        let players = [Player(), Player(), Player(), Player(playerType: .dealer)]
-        let game = PokerGame(rule: .sevenCardStud, players: players)
-        game.splitCard()
-        players.forEach { player in
-            if player.playerType == .dealer {
-                print("dealer: \(player.getHandCard)")
-            } else {
-                print("player: \(player.getHandCard)")
-            }
-        }
+        let players = Players(players: [Player(), Player(), Player(), Player(playerType: .dealer)])
+        let game = PokerGame(players: players)
+        game.play()
+        players.printAllPlayerCard()
     }
 
     func setupBackgroundImage() {
