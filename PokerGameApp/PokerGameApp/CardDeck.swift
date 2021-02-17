@@ -27,4 +27,14 @@ struct CardDeck {
         return tempCards
     }
     
+    //  Fisher-Yates shuffle(Knuth)
+    mutating func shuffle() {
+        var randomRange = self.count - 1
+        
+        while randomRange != 0 {
+            let pickedIndex = Int.random(in: 0...randomRange)
+            self.Cards.swapAt(randomRange, pickedIndex)
+            randomRange -= 1
+        }
+    }
 }
