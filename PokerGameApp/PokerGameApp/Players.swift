@@ -10,8 +10,8 @@ import Foundation
 struct Players {
     private var players : [Player] = []
     
-    init(number ofPlayer: Int) {
-        for _ in 0..<ofPlayer {
+    init(number ofPlayer: Capacity) {
+        for _ in 0..<ofPlayer.rawValue {
             players.append(Player())
         }
     }

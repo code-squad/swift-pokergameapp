@@ -12,9 +12,9 @@ import Foundation
 class Dealer{
     private var cardDeck: CardDeck
     private var cards:[Card] = []
-    private var stud: Int
+    private var stud: Event
     
-    init(stud :Int) {
+    init(stud : Event) {
         self.cardDeck = CardDeck()
         self.stud = stud
     }

@@ -10,15 +10,13 @@ import Foundation
 struct PockerGame {
     private var players: Players
     private var dealer: Dealer
-    private var cardStud: Int
+    private var cardStud: Event
     
-    init(ofPlayer: Int, cardStud: Int) {
+    init(ofPlayer: Capacity, cardStud: Event) {
         self.cardStud = cardStud
         self.dealer = Dealer(stud: cardStud)
         self.players = Players(number: ofPlayer)
     }
-    
-
     
     mutating func gameStart() {
         print("===\(cardStud) 기준, 참가자 \(players.count())명 일 때===")
