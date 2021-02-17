@@ -11,7 +11,7 @@ class ViewController: UIViewController {
     
     var stackView: UIStackView!
     let cardBackImage = UIImage(named: "card-back")
-    var cards = CardDeck()
+    var cards = CardDeck(cards: [])
     
     override func viewDidLoad() {
         super.viewDidLoad()
