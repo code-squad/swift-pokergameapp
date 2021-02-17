@@ -41,3 +41,14 @@ class Card {
         self.number = number
     }
 }
+
+extension Card: CustomStringConvertible {
+    var description: String {
+        switch number.rawValue {
+        case 1,11,12,13:
+            return "\(shape.rawValue)\(number)"
+        default:
+            return "\(shape.rawValue)\(number.rawValue)"
+        }
+    }
+}
