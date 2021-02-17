@@ -16,11 +16,11 @@ class Player {
         self.name = name
     }
     
-    var handInfo: Hand {
+    func showHandInfo() -> Hand {
         return self.hand
     }
     
-    var nameInfo: String {
+    func showNameInfo() -> String {
         return self.name
     }
 }
