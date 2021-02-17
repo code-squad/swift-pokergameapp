@@ -46,9 +46,9 @@ class PokerGame: CustomStringConvertible {
         }
     }
     
-    let dealer: Dealer
-    let players: [Player]
-    let gameType: StudPoker
+    private let dealer: Dealer
+    private let players: [Player]
+    private let gameType: StudPoker
     var description: String {
         var playerIndex = 0
         let playersResult: String = getPlayersResult().map {
@@ -81,11 +81,11 @@ class PokerGame: CustomStringConvertible {
         }
     }
     
-    func getPlayersResult() -> [[Card]] {
+    private func getPlayersResult() -> [[Card]] {
         return players.map { $0.showdown() }
     }
     
-    func getDealerResult() -> [Card] {
+    private func getDealerResult() -> [Card] {
         return dealer.showdown()
     }
 }
