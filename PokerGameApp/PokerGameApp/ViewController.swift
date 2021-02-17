@@ -15,6 +15,9 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         makeBackGround()
         makeStackView()
+        
+        let pokerGame = PokerGame(player: .four, rule: .sevenCardStud)
+        pokerGame.start()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle{
