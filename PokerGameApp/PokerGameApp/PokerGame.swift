@@ -63,4 +63,8 @@ class PokerGame {
             dealer.deal(to: dealer)
         }
     }
+    
+    func getPlayersResult() -> [[Card]] {
+        return players.map { $0.showdown() }
+    }
 }
