@@ -25,6 +25,8 @@ class CardViewController: UIViewController {
         super.viewDidLoad()
         setBackgroundColor()
         drawSevenCards()
+        let pokergame = PokerGame()
+        pokergame.start()
     }
     
     func setBackgroundColor(){
