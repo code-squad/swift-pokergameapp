@@ -11,21 +11,23 @@ import Foundation
 // 덱 준비
 // distribute
 
-class Dealer: CardDeck {
+class Dealer {
     
-    public var player: Array<Players> = []
+    var cardDeck = CardDeck()
+    var players = Players()
+    
     public var playerNum = 1
     public var cardStud = 5
     
     public func recruitPlayer() {
         for i in 1...playerNum {
-            player.append(Players(name: "Player\(i)", hand: []))
+            players.willJoinGame.append(Player(name: ""))
         }
-        player.append(Players(name: "Dealer", hand: []))
+        players.append(Players(name: "Dealer", hand: []))
     }
     
     public func makeDeckForGame() {
-        make()
+        cardDeck.make()
     }
 
     public func distributeCard() {
@@ -35,19 +37,13 @@ class Dealer: CardDeck {
                 removeOne()
             }
             player[player.endIndex-1].hand.append(deck[0])
-            removeOne()
+            cardDeck.removeOne()
         }
         
         for j in 0..<player.count {
             print(player[j].hand)
         }
         
-    }
-    
-    public func startGame() {
-        recruitPlayer()
-        makeDeckForGame()
-        distributeCard()
     }
     
 }
