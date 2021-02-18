@@ -7,7 +7,11 @@
 <img src="images/step1_3.png" width="200" />
 </p>
 
-2. (Step3과 동시 진행)Card 및 CardDeck 클래스 구현 2020.02.18 :14
+2. (Step3과 동시 진행)Card 및 CardDeck 클래스 구현 2020.02.16 18:37
 <p float="left">
 <img src="images/step2.png" width="200" />
 </p>
+
+4. (브랜치 Step3으로 진행) 포커게임과 참가자 OOP 통해 구현  2020.02.17  23:27
+
+5. 
