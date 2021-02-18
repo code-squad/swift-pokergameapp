@@ -37,46 +37,36 @@ class PokerGame {
         }
     }
     
+    private var infoBoard: InfoBoard
+    
     private var dealer: Dealer
 
-    private var participants = [Participant]()
-    
-    private var infoBoard = InfoBoard()
+    private var participants: Participants
     
     init(rule: Rule, seat: Seat) {
         self.rule = rule
         self.seat = seat
-        self.dealer = Dealer(name: .dealer, with: cardDeck, infoBoard)
-        self.participants = seat.makePlayers()
+        infoBoard = InfoBoard()
+        dealer = Dealer(name: .dealer, with: cardDeck)
+        participants = Participants(players: seat.makePlayers(), dealer: dealer)
+    }
+    
+    func start() {
         
-        addDealer()
-        updateBoardParticipantsList()
+        let newStacks = cardsFromDealer()
+        
+        participants.takeCard(from: newStacks)
+        updateInfoBoard()
     }
     
-    private func addDealer() {
-        participants.append(dealer)
+    private func cardsFromDealer() -> [[Card]] {
+        let newStacks = dealer.handOutCardStacks(for: participants.count(),
+                                                 each: rule.cardCount())
+        return newStacks
     }
     
-    private func updateBoardParticipantsList() {
-        infoBoard.participantsList = participants.map { $0.myName() }
-    }
-    
-    func start() -> String {
-        takeCard()
-        return infoBoard.description
-    }
-    
-    private func takeCard() {
-        if let cardStacks = dealer.handOutCardStacks(for: participants.count,
-                                                     each: rule.cardCount()) {
-            for (i, cards) in cardStacks.enumerated() {
-                self.participants[i].updateStack(with: cards)
-            }
-            updateBoard(with: cardStacks)
-        }
-    }
-    
-    private func updateBoard(with currentStacks: [[Card]]) {
-        infoBoard.cardStackList = currentStacks
+    private func updateInfoBoard() {
+        infoBoard.update(participantsList: participants.names())
+        infoBoard.update(cardStackList: participants.stacks())
     }
 }

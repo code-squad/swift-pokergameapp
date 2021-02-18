@@ -54,8 +54,7 @@ struct CardDeck {
         return currentDeck.popLast()
     }
     
-    mutating func reset() -> Int {
+    mutating func reset() {
         currentDeck = wholeDeck
-        return count()
     }
 }
