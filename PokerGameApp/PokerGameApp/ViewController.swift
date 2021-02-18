@@ -18,13 +18,8 @@ class ViewController: UIViewController {
         initGameplay()
 //        let card = Card.init(suit: .spade, number: .J)
 //        print(card.description)
-        let deck = Deck()
-        deck.createDeck()
-        deck.createDeck()
-        deck.shuffleDeck()
-        for _ in 0..<3{
-            deck.takeOnecard()
-        }
+        let test = TESTCode()
+        test.excuteTest()
     }
     
     func initGameplay(){

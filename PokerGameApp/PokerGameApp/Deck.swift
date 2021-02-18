@@ -24,6 +24,14 @@ class Deck{
         }
     }
     
+    func getDeckCount() -> Int{
+        return deck.count
+    }
+    
+    func getCurrentdeck() -> [Card]{
+        return deck
+    }
+    
     func shuffleDeck() -> Void{
         if deck.count != 0{
             for i in 0..<deck.count - 1{
@@ -33,7 +41,6 @@ class Deck{
                 deck[i] = deck[randomIndex]
                 deck[randomIndex] = temp
             }
-            print(deck)
         }
         else {
             print("덱이 비어있습니다.")
@@ -45,6 +52,5 @@ class Deck{
         
         print(deck[randomIndex].description)
         deck.remove(at: randomIndex)
-        print("총 \(deck.count)장의 카드가 남아있습니다.")
     }
 }
