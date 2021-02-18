@@ -41,8 +41,11 @@ struct Deck : CustomStringConvertible {
     }
     
     ///removeOne 기능
-    mutating func popOneCard() -> PlayingCard {
-        return cards.popLast() ?? PlayingCard()
+    mutating func popOneCard() throws -> PlayingCard {
+        guard let returnCard = cards.popLast() else {
+            throw TroubleShooter.errors.noMoreCardError
+        }
+        return returnCard
     }
     
     mutating func reset() {
