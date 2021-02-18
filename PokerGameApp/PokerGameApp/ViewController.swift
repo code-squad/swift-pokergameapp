@@ -16,8 +16,10 @@ class ViewController: UIViewController {
         makeBackGround()
         makeStackView()
         
-        let pokerGame = PokerGame(player: .four, rule: .sevenCardStud)
-        pokerGame.start()
+        let pokerGame = PokerGame(playerCount: .three, cardStud: .five)
+        pokerGame.makeGamePlayer()
+        pokerGame.distributeCard()
+        print(pokerGame)
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle{

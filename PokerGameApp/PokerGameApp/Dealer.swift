@@ -7,6 +7,27 @@
 
 import Foundation
 
-class Dealer {
+class Dealer: CustomStringConvertible {
+    var description: String{
+        return dealer.description
+    }
     
+    private var cardDeck = CardDeck()
+    private var dealer: [Card]
+    
+    init() {
+        self.dealer = [Card]()
+        cardDeck.makeCardDeck()
+        cardDeck.shuffle()
+    }
+    
+    func handOutCard() -> Card? {
+        return cardDeck.removeOne()
+    }
+    
+    func makeDealerCard() {
+        if let card = handOutCard() {
+            dealer.append(card)
+        }
+    }
 }
