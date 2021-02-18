@@ -40,9 +40,10 @@ class ViewController: UIViewController {
             
         }
         
-        let gameOperator = GameOperator()
-        gameOperator.dealerStartGame()
         
+        for i in 0..<cardGame.gameBoard.count {
+            print("\(cardGame.gameBoard[i])")
+        }
     }
     
 }

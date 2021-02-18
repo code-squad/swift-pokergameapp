@@ -24,11 +24,6 @@ struct Card: CustomStringConvertible {
         return "(\(shape)\(num))"
     }
     
-    init(shape: Shape, num: Num) {
-        self.shape = shape
-        self.num = num
-    }
-    
 }
 
 extension Card.Num: CustomStringConvertible {

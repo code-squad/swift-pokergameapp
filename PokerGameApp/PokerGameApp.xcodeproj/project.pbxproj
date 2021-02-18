@@ -14,10 +14,6 @@
 		A00AAF6025DA3BC600DFEB07 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A00AAF5F25DA3BC600DFEB07 /* Assets.xcassets */; };
 		A00AAF6325DA3BC600DFEB07 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A00AAF6125DA3BC600DFEB07 /* LaunchScreen.storyboard */; };
 		A00AB02425DA897400DFEB07 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00AB02325DA897400DFEB07 /* Card.swift */; };
-		A09F3A8925DB8F07007C0F62 /* CardDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09F3A8825DB8F07007C0F62 /* CardDeck.swift */; };
-		A0A826D825DE5A96003B22C8 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0A826D725DE5A96003B22C8 /* Player.swift */; };
-		A0A826E025DE5C1E003B22C8 /* GameOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0A826DF25DE5C1E003B22C8 /* GameOperator.swift */; };
-		A0AE925625DCA9AD003F2755 /* Dealer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0AE925525DCA9AD003F2755 /* Dealer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,10 +45,7 @@
 		A00AAF6925DA3BC600DFEB07 /* PokerGameAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PokerGameAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A00AAF7425DA3BC600DFEB07 /* PokerGameAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PokerGameAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A00AB02325DA897400DFEB07 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
-		A09F3A8825DB8F07007C0F62 /* CardDeck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDeck.swift; sourceTree = "<group>"; };
-		A0A826D725DE5A96003B22C8 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
-		A0A826DF25DE5C1E003B22C8 /* GameOperator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOperator.swift; sourceTree = "<group>"; };
-		A0AE925525DCA9AD003F2755 /* Dealer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dealer.swift; sourceTree = "<group>"; };
+
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,10 +98,6 @@
 				A00AAF5825DA3BC500DFEB07 /* SceneDelegate.swift */,
 				A00AAF5A25DA3BC500DFEB07 /* ViewController.swift */,
 				A00AB02325DA897400DFEB07 /* Card.swift */,
-				A09F3A8825DB8F07007C0F62 /* CardDeck.swift */,
-				A0AE925525DCA9AD003F2755 /* Dealer.swift */,
-				A0A826D725DE5A96003B22C8 /* Player.swift */,
-				A0A826DF25DE5C1E003B22C8 /* GameOperator.swift */,
 				A00AAF5C25DA3BC500DFEB07 /* Main.storyboard */,
 				A00AAF5F25DA3BC600DFEB07 /* Assets.xcassets */,
 				A00AAF6125DA3BC600DFEB07 /* LaunchScreen.storyboard */,
@@ -251,9 +240,6 @@
 				A0A826E025DE5C1E003B22C8 /* GameOperator.swift in Sources */,
 				A00AAF5725DA3BC500DFEB07 /* AppDelegate.swift in Sources */,
 				A00AAF5925DA3BC500DFEB07 /* SceneDelegate.swift in Sources */,
-				A0A826D825DE5A96003B22C8 /* Player.swift in Sources */,
-				A09F3A8925DB8F07007C0F62 /* CardDeck.swift in Sources */,
-				A0AE925625DCA9AD003F2755 /* Dealer.swift in Sources */,
 				A00AB02425DA897400DFEB07 /* Card.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
