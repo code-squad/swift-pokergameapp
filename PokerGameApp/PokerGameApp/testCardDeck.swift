@@ -10,20 +10,20 @@ import Foundation
 class testCardDeck {
     var cardDeck = CardDeck()
     
-    func testSetCard() {
+    private func testSetCard() {
         print("> 카드 초기화")
         cardDeck.setCard()
         print("카드 전체를 초기화했습니다.")
         print("총 \(cardDeck.count())개의 카드가 있습니다.\n")
     }
     
-    func testShuffle() {
+    private func testShuffle() {
         print("> 카드 섞기")
         cardDeck.shuffle()
         print("전체 \(cardDeck.count())장의 카드를 섞었습니다.\n")
     }
     
-    func testRemoveOne() {
+    private func testRemoveOne() {
         print("> 카드 하나 뽑기")
         if let card = cardDeck.removeOne() {
             print(card)
