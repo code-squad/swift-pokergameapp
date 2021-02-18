@@ -16,8 +16,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initGameplay()
-        let test = TESTCode()
-        test.excuteTest()
+        let game = PokerGame.init(GameStyle: 5)
+        game.gameStart()
     }
     
     func initGameplay(){
