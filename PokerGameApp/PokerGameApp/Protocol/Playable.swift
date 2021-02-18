@@ -11,5 +11,5 @@ import Foundation
 protocol Playable {
     func receiveCard(card : Card)
     func resetCards()
-    func showCards() -> String
+    func showCards() -> PlayerCard
 }

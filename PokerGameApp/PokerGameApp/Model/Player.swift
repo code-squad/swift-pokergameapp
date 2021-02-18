@@ -20,8 +20,9 @@ class Player : Playable {
         deck.receiveCard(card: card)
     }
     
-    func showCards() -> String {
-        return "\(name)\(entryNumber) \(deck.showCards())"
+    func showCards() -> PlayerCard {
+        let playerCard = PlayerCard(name: "\(name)\(entryNumber)", card: deck)
+        return playerCard
     }
     
     func resetCards() {
