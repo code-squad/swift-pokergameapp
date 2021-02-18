@@ -12,11 +12,3 @@ class Participant: Player {
         super.init(name: name)
     }
 }
-//extension Participant: CustomStringConvertible {
-//    var description: String {
-//        var str = cards.map({"\($0)"}).joined(separator: " ,")
-//        str.insert("[", at: str.startIndex)
-//        str.append("]\n")
-//        return str
-//    }
-//}

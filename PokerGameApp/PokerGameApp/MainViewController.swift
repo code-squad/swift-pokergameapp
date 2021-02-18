@@ -47,6 +47,7 @@ class MainViewController: UIViewController {
         }
         printTestResult()
         testScenario()
+        pockerGameScenario()
     }
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
