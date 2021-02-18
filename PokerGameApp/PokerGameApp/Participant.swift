@@ -8,7 +8,7 @@
 import Foundation
 
 class Participant: Player {
-    override init(name: String) {
+    override init(name: PlayerType) {
         super.init(name: name)
     }
 }

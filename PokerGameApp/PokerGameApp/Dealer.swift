@@ -9,7 +9,7 @@ import Foundation
 
 class Dealer: Player {
 
-    override init(name: String) {
+    override init(name: PlayerType) {
         super.init(name: name)
     }
 

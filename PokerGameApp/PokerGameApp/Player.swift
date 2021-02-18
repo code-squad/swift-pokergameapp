@@ -7,11 +7,16 @@
 
 import Foundation
 
+enum PlayerType: String {
+    case Dealer = "딜러"
+    case Pariticipant = "참가자"
+}
+
 class Player {
     private var cards: [Card] = [] 
-    private var name: String
+    private var name: PlayerType
     
-    init(name: String) {
+    init(name: PlayerType) {
         self.name = name
     }
     
