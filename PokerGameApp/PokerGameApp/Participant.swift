@@ -9,26 +9,17 @@ import Foundation
 
 class Participant {
     
-    fileprivate let name: Role
+    fileprivate let role: Role
     
-    enum Role: CustomStringConvertible {
-        case dealer
-        case player
-        
-        var description: String {
-            switch self {
-            case .dealer:
-                return "딜러"
-            case .player:
-                return "플레이어"
-            }
-        }
+    enum Role {
+        case dealer, player
     }
     
-    fileprivate var cards: [Card]?
+    fileprivate var cards: [Card]
     
     init(name: Role) {
-        self.name = name
+        self.role = name
+        cards = []
     }
     
     func updateStack(with cards: [Card]) {
@@ -38,75 +29,57 @@ class Participant {
     func myName() -> String {
         return ""
     }
+    
+    func myStack() -> [Card] {
+        return cards
+    }
 }
 
 
 class Dealer: Participant {
     
     private var cardDeck: CardDeck
-    private var infoBoard: InfoBoard
     
-    init(name: Role, with cardDeck: CardDeck, _ infoBoard: InfoBoard) {
+    init(name: Role, with cardDeck: CardDeck) {
         self.cardDeck = cardDeck
-        self.infoBoard = infoBoard
         super.init(name: name)
     }
     
-    func handOutCardStacks(for headCnt: Int, each cardCnt: Int) -> [[Card]]? {
-        cardDeck.shuffle()
+    func handOutCardStacks(for headCnt: Int, each cardCnt: Int) -> [[Card]] {
         
-        guard isCardAvailable(for: headCnt, each: cardCnt) else {
-            finishGame()
-            return nil
+        if !isCardAvailable(for: headCnt, each: cardCnt) {
+            cardDeck.reset()
         }
         
-        let newCardStacks = makeCardStacks(for: headCnt, each: cardCnt)
+        cardDeck.shuffle()
         
-        updateCardCount(to: cardDeck.count())
-        
-        return newCardStacks
+        return makeCardStacks(for: headCnt, each: cardCnt)
     }
     
     private func isCardAvailable(for headCnt: Int, each cardCnt: Int) -> Bool {
         return cardDeck.count() >= headCnt * cardCnt ? true : false
     }
     
-    private func makeCardStacks(for headCnt: Int, each cardCnt: Int) -> [[Card]]? {
+    private func makeCardStacks(for headCnt: Int, each cardCnt: Int) -> [[Card]] {
         var stacks = [[Card]]()
         
         for _ in 0..<headCnt {
-            if let stack = makeCardStack(of: cardCnt) {
-                stacks.append(stack)
-            } else {
-                return nil
-            }
+            stacks.append(makeCardStack(of: cardCnt))
         }
         return stacks
     }
     
-    private func makeCardStack(of count: Int) -> [Card]? {
+    private func makeCardStack(of count: Int) -> [Card] {
         var cards = [Card]()
         
         for _ in 0..<count {
-            if let card = cardDeck.removeOne() {
-                cards.append(card)
-            } else {
-                return nil
-            }
+            cards.append(cardDeck.removeOne()!)
         }
         return cards
     }
-    
-    private func updateCardCount(to currentCount: Int) {
-        infoBoard.cardCount = currentCount
-    }
-    
-    private func finishGame() {
-        infoBoard.isGameFinished = true
-    }
-    
+
     override func myName() -> String {
-        return "\(name)"
+        return "\(role)"
     }
 }
 
@@ -121,6 +94,6 @@ class Player: Participant {
     }
     
     override func myName() -> String {
-        return "\(name) #\(number)"
+        return "\(role) #\(number)"
     }
 }
