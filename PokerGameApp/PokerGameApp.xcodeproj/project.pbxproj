@@ -104,15 +104,8 @@
 				93C07E6E25DA322C0037570E /* Assets.xcassets */,
 				93C07E7025DA322C0037570E /* LaunchScreen.storyboard */,
 				93C07E7325DA322C0037570E /* Info.plist */,
-				93C07E9E25DA547C0037570E /* CardImage.swift */,
-				93C07EA225DA6F2E0037570E /* HandView.swift */,
-				93C07EAF25DA8CF10037570E /* Rank.swift */,
-				93C07EBA25DA997A0037570E /* Card.swift */,
-				93C07EC025DB6FEE0037570E /* CardDeck.swift */,
-				93C07ED925DBEAF40037570E /* PokerGame.swift */,
-				93C07EDD25DC8AC60037570E /* Dealer.swift */,
-				93C07ED525DBBE200037570E /* Player.swift */,
-				93C07EE525DC91630037570E /* Hand.swift */,
+				93C07EF125DDF1B00037570E /* Views */,
+				93C07EF425DDF1C90037570E /* Models */,
 			);
 			path = PokerGameApp;
 			sourceTree = "<group>";
@@ -124,6 +117,29 @@
 				93C07ECB25DB98E30037570E /* Info.plist */,
 			);
 			path = PokerGameAppTests;
+			sourceTree = "<group>";
+		};
+		93C07EF125DDF1B00037570E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				93C07E9E25DA547C0037570E /* CardImage.swift */,
+				93C07EA225DA6F2E0037570E /* HandView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		93C07EF425DDF1C90037570E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				93C07EAF25DA8CF10037570E /* Rank.swift */,
+				93C07EBA25DA997A0037570E /* Card.swift */,
+				93C07EC025DB6FEE0037570E /* CardDeck.swift */,
+				93C07ED925DBEAF40037570E /* PokerGame.swift */,
+				93C07EDD25DC8AC60037570E /* Dealer.swift */,
+				93C07ED525DBBE200037570E /* Player.swift */,
+				93C07EE525DC91630037570E /* Hand.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
