@@ -14,6 +14,9 @@ enum GameType : Int {
     var value : Int {
         return self.rawValue
     }
+    static var allValues: [GameType] {
+        return [.seven,.five]
+    }
 }
 
 enum Participant : Int {
@@ -25,6 +28,9 @@ enum Participant : Int {
     var value: Int {
         return self.rawValue
     }
+    static var allValues: [Participant] {
+        return [.one,.two,.three,.four]
+    }
 }
 
 class PockerGame {
@@ -32,15 +38,21 @@ class PockerGame {
     private var participant : Int = 0
     private var gameType : Int = 0
     
-    func startGame(particpatin : Participant, gameType : GameType) {
-        self.participant = particpatin.value
-        self.gameType = gameType.value
+    func startGame() {
         players.addPlayer(particpatin: self.participant)
         players.drawCard(gameType: self.gameType)
     }
     
     func showPlayersCard() -> [PlayerCard] {
         return players.showPlayerCard()
+    }
+    
+    func selectGameType(index : Int) {
+        gameType = GameType.allValues[index].value
+    }
+    
+    func selectParticipant(index : Int) {
+        participant = Participant.allValues[index].value
     }
     
     func resetCard() {
