@@ -19,12 +19,18 @@ class ViewController: UIViewController {
         return stack
     }()
     
+    let backgroundImageChange : UIImage = {
+        guard let backgroundimage = UIImage(named: "bg_pattern") else {
+            return UIImage()
+        }
+        return backgroundimage
+    }()
+    
     let pokerGame = PockerGame()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor(patternImage:
-                                                backgroundImageChange(imageName: "bg_pattern"))
+        self.view.backgroundColor = UIColor(patternImage: backgroundImageChange)
         
         //while pokerGame.countCardDeck()
         pokerGame.startGame(particpatin: .four, gameType: .seven)
@@ -34,18 +40,11 @@ class ViewController: UIViewController {
         //}
     }
     
-    func backgroundImageChange(imageName : String) -> UIImage {
-        guard let backgroundimage = UIImage(named: imageName) else {
-            return UIImage()
-        }
-        return backgroundimage
-    }
-    
     private func pockerGameUI() {
         self.view.addSubview(pockerGameStackView)
         NSLayoutConstraint.activate([
             pockerGameStackView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 5),
-            pockerGameStackView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -5),
+            pockerGameStackView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -50),
             pockerGameStackView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 100)
         ])
     }
@@ -80,7 +79,7 @@ class ViewController: UIViewController {
         cardStackView.axis = .horizontal
         cardStackView.distribution = .fillEqually
         cardStackView.alignment = .fill
-        cardStackView.spacing = 5
+        cardStackView.spacing = -10
         cardStackView.translatesAutoresizingMaskIntoConstraints = false
         
         cards.forEach { card in
