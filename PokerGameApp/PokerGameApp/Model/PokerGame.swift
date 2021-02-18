@@ -50,16 +50,20 @@ class PokerGame {
         }
     }
     
-    public func gamePlay() {
+    public func play() -> Array<Array<Card>>? {
+        var cardDashboard: Array<Array<Card>> = []
         resetCardDeck()
         distribute()
         if lackOfCard == true {
             print("카드 수 부족")
-            return
+            return nil
         }
         print("\(players)")
         print("\(dealer)")
         print("\(cardDeck.count())")
+        
+        cardDashboard.append(dealer.giveCardInfo())
+        return cardDashboard
     }
 }
 
