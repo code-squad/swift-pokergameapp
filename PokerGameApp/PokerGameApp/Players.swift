@@ -21,4 +21,8 @@ class Players {
         var cardsFromDealer = cards
         players.forEach { $0.dealt(cardsFromDealer.removeFirst()) }
     }
+    
+    func showdown() -> [[Card]] {
+        return players.map { $0.showdown() }
+    }
 }
