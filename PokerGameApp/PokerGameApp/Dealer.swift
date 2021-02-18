@@ -12,21 +12,14 @@ class Dealer {
     var cardDeck = CardDeck()
     var players = Players()
     
-    public var playerNum = 1
     public var cardStud = 5
-    
-    public func recruitPlayer() {
-        for i in 1...playerNum {
-            players.willJoinGame.append(Player(name: "Player\(i)", hand: []))
-        }
-        players.willJoinGame.append(Player(name: "Dealer", hand: []))
-    }
     
     public func makeDeckForGame() {
         cardDeck.make()
     }
 
     public func distributeCard() {
+        players.participatePlayer()
         cardDeck.shuffle()
         for _ in 1...cardStud {
             for i in 0..<players.willJoinGame.count-1 {
