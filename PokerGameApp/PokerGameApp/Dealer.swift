@@ -7,22 +7,18 @@
 
 import Foundation
 
-class Dealer {
-    private var cards: [Card] = []
-    
-    func receiveCard(_ card: Card) {
-        cards.append(card)
+class Dealer: Player {
+
+    override init(name: String) {
+        super.init(name: name)
     }
-    
-    var getCards: [Card] {
-        return cards
-    }
+
 }
-extension Dealer: CustomStringConvertible {
-    var description: String {
-        var str = cards.map({"\($0)"}).joined(separator: " ,")
-        str.insert("[", at: str.startIndex)
-        str.append("]")
-        return str
-    }
-}
+//extension Dealer: CustomStringConvertible {
+//    var description: String {
+//        var str = cards.map({"\($0)"}).joined(separator: " ,")
+//        str.insert("[", at: str.startIndex)
+//        str.append("]")
+//        return str
+//    }
+//}

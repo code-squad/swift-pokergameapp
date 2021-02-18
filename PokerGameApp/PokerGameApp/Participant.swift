@@ -7,22 +7,16 @@
 
 import Foundation
 
-class Participant {
-    private var cards: [Card] = []
-    
-    func receiveCard(_ card: Card) {
-        cards.append(card)
-    }
-    
-    var getCards: [Card] {
-        return cards
+class Participant: Player {
+    override init(name: String) {
+        super.init(name: name)
     }
 }
-extension Participant: CustomStringConvertible {
-    var description: String {
-        var str = cards.map({"\($0)"}).joined(separator: " ,")
-        str.insert("[", at: str.startIndex)
-        str.append("]\n")
-        return str
-    }
-}
+//extension Participant: CustomStringConvertible {
+//    var description: String {
+//        var str = cards.map({"\($0)"}).joined(separator: " ,")
+//        str.insert("[", at: str.startIndex)
+//        str.append("]\n")
+//        return str
+//    }
+//}
