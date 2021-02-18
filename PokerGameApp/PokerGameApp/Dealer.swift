@@ -21,7 +21,7 @@ class Dealer: Player {
         return card
     }
     
-    func deal(to players: [Player]) {
-        players.forEach { deal(to: $0) }
+    func deal(to players: Players) -> [Card?] {
+        return (0..<players.count).map { _ in deal() }
     }
 }
