@@ -8,7 +8,7 @@
 import Foundation
 
 class Deck{
-    var deck : [Card] = []
+    private var deck : [Card] = []
     
     func createDeck(){
         if deck.count > 0{
@@ -18,7 +18,7 @@ class Deck{
         else{
             Suit.allCases.forEach{ suit in
                 Number.allCases.forEach{ num in
-                    deck.append(Card(suit: suit, number: num))
+                    deck.append(Card.init(suit: suit, number: num))
                 }
             }
         }

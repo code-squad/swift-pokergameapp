@@ -1,12 +1,17 @@
 import Foundation
 
-struct Card : CustomStringConvertible{
-    let suit : Suit
-    let number : Number
+class Card : CustomStringConvertible{
+    private let suit : Suit
+    private let number : Number
+    
+    init(suit : Suit, number : Number){
+        self.suit = suit
+        self.number = number
+    }
     var description: String{
         return "\(suit)\(number)"
     }
-}// struct는 초기화 해줄 필요도 없고 각각 카드가 복사되어 쓰이니까 struct로 사용하는 것이 더 적합하다고 판단
+}
 
 enum Suit : String, CustomStringConvertible, CaseIterable {
     var description: String{
