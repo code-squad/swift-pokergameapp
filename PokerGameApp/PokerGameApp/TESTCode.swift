@@ -19,7 +19,7 @@ class TESTCode{
         TESTdeck.createDeck()
         print("> 카드 초기화")
         print("카드 전체를 초기화 했습니다.")
-        print("총 \(TESTdeck.getDeckCount())장의 카드가 있습니다.")
+        print("총 \(TESTdeck.getCount())]장의 카드가 있습니다.")
         
         TESTdeck.shuffleDeck()
         print("> 카드 섞기")
@@ -28,10 +28,10 @@ class TESTCode{
         
         TESTdeck.takeOnecard()
         print("> 카드 하나 뽑기")
-        print("> 총 \(TESTdeck.getDeckCount())장의 카드가 남아있습니다.")
+        print("> 총 \(TESTdeck.getCount())장의 카드가 남아있습니다.")
         
         TESTdeck.takeOnecard()
         print("> 카드 하나 뽑기")
-        print("> 총 \(TESTdeck.getDeckCount())장의 카드가 남아있습니다.")
+        print("> 총 \(TESTdeck.getCount())장의 카드가 남아있습니다.")
     }
 }

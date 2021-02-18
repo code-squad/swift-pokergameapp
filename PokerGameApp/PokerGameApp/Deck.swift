@@ -24,7 +24,7 @@ class Deck{
         }
     }
     
-    func getDeckCount() -> Int{
+    func getCount() -> Int{
         return deck.count
     }
     

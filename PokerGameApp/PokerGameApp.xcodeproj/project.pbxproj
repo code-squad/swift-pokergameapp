@@ -18,6 +18,7 @@
 		8274A7DF25DB974B00BF317E /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8274A7DE25DB974B00BF317E /* Card.swift */; };
 		828B403625DCF93C004B5139 /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828B403525DCF93C004B5139 /* Deck.swift */; };
 		8293EAD725DE3C3D0072B55F /* TESTCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8293EAD625DE3C3D0072B55F /* TESTCode.swift */; };
+		8293EADF25DE4A430072B55F /* PokerGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8293EADE25DE4A430072B55F /* PokerGame.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		8274A7DE25DB974B00BF317E /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		828B403525DCF93C004B5139 /* Deck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = "<group>"; };
 		8293EAD625DE3C3D0072B55F /* TESTCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TESTCode.swift; sourceTree = "<group>"; };
+		8293EADE25DE4A430072B55F /* PokerGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokerGame.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +112,7 @@
 				823DDE8A25DA49F800A04E6B /* ViewController.swift */,
 				8274A7DE25DB974B00BF317E /* Card.swift */,
 				828B403525DCF93C004B5139 /* Deck.swift */,
+				8293EADE25DE4A430072B55F /* PokerGame.swift */,
 				8293EAD625DE3C3D0072B55F /* TESTCode.swift */,
 				823DDE8C25DA49F800A04E6B /* Main.storyboard */,
 				823DDE8F25DA49F900A04E6B /* Assets.xcassets */,
@@ -267,6 +270,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8293EADF25DE4A430072B55F /* PokerGame.swift in Sources */,
 				8293EAD725DE3C3D0072B55F /* TESTCode.swift in Sources */,
 				823DDE8B25DA49F800A04E6B /* ViewController.swift in Sources */,
 				823DDE8725DA49F800A04E6B /* AppDelegate.swift in Sources */,
