@@ -23,4 +23,12 @@ class PockerGame {
     func gameStart() {
         dealer.distributeCard(participants: participants, numOfCard: self.numOfCard)
     }
+    
+    func getDealer() -> Dealer {
+        return dealer
+    }
+    
+    func getParticipants() -> Participants {
+        return participants
+    }
 }
