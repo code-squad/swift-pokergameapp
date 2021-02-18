@@ -8,10 +8,11 @@
 import Foundation
 
 struct CardDeck {
-    private var cardDeck = [Card]()
+    private var cardDeck: [Card]
 
-    init() {
-        reset()
+    init(empty: Bool) {
+        cardDeck = []
+        empty == true ? nil : reset()
     }
     
     public var count: Int {
