@@ -34,9 +34,9 @@ class ViewController: UIViewController {
             let myGame = try PokerGame(dealer: alice, players: [bob, carol, david], gameType: .fiveCardStud)
             myGame.startGame()
             print(myGame)
-        } catch PokerGameError.tooFewPlayers {
+        } catch PokerGame.PokerGameError.tooFewPlayers {
             print("게임 참가자가 부족해요🥺 1명 이상 참여해야 합니다.")
-        } catch PokerGameError.tooManyPlayers(let playersNeededToLeave) {
+        } catch PokerGame.PokerGameError.tooManyPlayers(let playersNeededToLeave) {
             print("게임 참가자가 너무 많아요😵 \(playersNeededToLeave)명의 참가자는 다음 게임을 이용해주세요.")
         } catch {
             print("예상치 못한 에러가 발생했어요😢: \(error)")
