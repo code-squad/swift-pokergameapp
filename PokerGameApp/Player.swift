@@ -1,5 +1,5 @@
 //
-//  Participants.swift
+//  Player.swift
 //  PokerGameApp
 //
 //  Created by Jun Ho JANG on 2021/02/18.
@@ -12,7 +12,7 @@ class Player {
     private var name: String
     public var hand = [String]()
     
-    init(name: String) {
+    init(name: String, hand: [String]) {
         self.name = name
     }
     
@@ -20,6 +20,6 @@ class Player {
 
 class Players {
     
-    public var willJoinGame: Array<Players> = []
+    public var willJoinGame: Array<Player> = []
     
 }
