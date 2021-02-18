@@ -9,7 +9,7 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    let pockerGameStackView : UIStackView = {
+    private let pockerGameStackView : UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
         stack.distribution = .fill
@@ -19,33 +19,61 @@ class ViewController: UIViewController {
         return stack
     }()
     
-    let backgroundImageChange : UIImage = {
-        guard let backgroundimage = UIImage(named: "bg_pattern") else {
-            return UIImage()
-        }
-        return backgroundimage
+    private let segmentStackView : UIStackView = {
+        let stack = UIStackView()
+        stack.axis = .vertical
+        stack.spacing = 10
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        return stack
     }()
     
-    let pokerGame = PockerGame()
+    private let gameTypeSegmentControl : UISegmentedControl = {
+        let segment = UISegmentedControl(items: ["7card","5card"])
+        segment.selectedSegmentIndex = 0
+        return segment
+    }()
+    
+    private let particpatinSegmentControl : UISegmentedControl = {
+        let segment = UISegmentedControl(items: ["2명","3명","4명"])
+        segment.selectedSegmentIndex = 0
+        return segment
+    }()
+    
+    private let pokerGame = PockerGame()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor(patternImage: backgroundImageChange)
-        
+        setBackgroundViewImage()
+        setSegmentStackView()
+        setPockerGameStackView()
         //while pokerGame.countCardDeck()
         pokerGame.startGame(particpatin: .four, gameType: .seven)
-        pockerGameUI()
         playerStackUI()
         //pokerGame.resetCard()
         //}
     }
     
-    private func pockerGameUI() {
+    private func setBackgroundViewImage() {
+        let backgroundimage = UIImage(named: "bg_pattern") ?? UIImage()
+        self.view.backgroundColor = UIColor(patternImage: backgroundimage)
+    }
+    
+    private func setSegmentStackView() {
+        self.view.addSubview(segmentStackView)
+        NSLayoutConstraint.activate([
+            segmentStackView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor,constant: 10),
+            segmentStackView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor)
+        ])
+        segmentStackView.addArrangedSubview(gameTypeSegmentControl)
+        segmentStackView.addArrangedSubview(particpatinSegmentControl)
+    }
+    
+    private func setPockerGameStackView() {
         self.view.addSubview(pockerGameStackView)
         NSLayoutConstraint.activate([
             pockerGameStackView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 5),
             pockerGameStackView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -50),
-            pockerGameStackView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 100)
+            pockerGameStackView.topAnchor.constraint(equalTo: segmentStackView.bottomAnchor, constant: 20)
         ])
     }
     
