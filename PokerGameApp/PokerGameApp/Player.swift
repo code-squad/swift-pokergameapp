@@ -15,6 +15,10 @@ class Player {
         self.cards = []
     }
     
+    func dealt(_ card: Card) {
+        self.cards.append(card)
+    }
+    
     func showdown() -> [Card] {
         return cards
     }
