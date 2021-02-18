@@ -20,11 +20,11 @@ class PokerGame {
     private var dealer = Dealer(cardDeck: CardDeck())
     private var players: [Player] = []
     
-    func showDealerInfo() -> Dealer {
+    func getDealerInfo() -> Dealer {
         return self.dealer
     }
     
-    func showPlayersInfo() -> [Player] {
+    func getPlayersInfo() -> [Player] {
         return self.players
     }
     
