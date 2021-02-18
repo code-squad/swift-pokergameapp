@@ -7,14 +7,13 @@
 
 import Foundation
 
-class Participants {
+class Players {
     
     private var name: String
-    private var hand: [String]
+    public var hand = [String]()
     
     init(name: String, hand: [String]) {
         self.name = name
-        self.hand = hand
     }
     
 }
