@@ -9,7 +9,7 @@ import Foundation
 
 
 class CardDeck{
-    public var currentCardDeck: Array<Card> = []
+    private var currentCardDeck: Array<Card> = []
     
     private func generateCardSet() -> Array<Card> {
         var result: Array<Card> = []
