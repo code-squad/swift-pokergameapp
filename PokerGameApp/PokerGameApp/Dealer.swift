@@ -13,7 +13,7 @@ class Dealer: Player {
     override init(name: PlayerType) {
         super.init(name: name)
     }
-    // 카드를 나눠주는 함수 -> 그럼 매개변수로 participants 를 받아야겠지 ?
+    
     func distributeCard(participants: Participants, numOfCard: Int) {
         cardDeck.reset()
         cardDeck.shuffle()
@@ -33,7 +33,6 @@ class Dealer: Player {
                 }
             }
         }
-        
     }
 }
 

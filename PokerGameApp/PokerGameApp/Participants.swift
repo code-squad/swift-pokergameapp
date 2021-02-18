@@ -12,13 +12,12 @@ class Participants {
     // 현재 카드를 받을 participant 를 나타낸다. (카드를 받을 차례)
     private var currentIndex: Int
 
-    init(numOfParticipant: Int) {
+    init(number ofParticipant: Int) {
         currentIndex = 0
-        for _ in 1...numOfParticipant {
+        for _ in 1...ofParticipant {
             let participant = Participant(name: PlayerType.Pariticipant)
             participants.append(participant)
         }
-        
     }
     var count: Int {
         return self.participants.count
