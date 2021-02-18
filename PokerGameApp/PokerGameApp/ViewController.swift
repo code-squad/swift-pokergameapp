@@ -9,7 +9,6 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -41,14 +40,9 @@ class ViewController: UIViewController {
             
         }
         
-        let cardGame = Dealer()
+        let gameOperator = GameOperator()
+        gameOperator.dealerStartGame()
         
-        cardGame.startGame()
-        cardGame.distributeCard()
-        
-        for i in 0..<cardGame.gameBoard.count {
-            print("\(cardGame.gameBoard[i])")
-        }
     }
     
 }

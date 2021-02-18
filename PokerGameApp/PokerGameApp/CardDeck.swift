@@ -7,10 +7,10 @@
 
 import Foundation
 
-class DeckHandling {
-    
+class CardDeck {
+
     public var deck = [String]()
-    
+
     public func make() {
         for shape in Card.Shape.allCases {
             for num in Card.Num.allCases {
@@ -39,8 +39,8 @@ class DeckHandling {
         deck.removeAll()
         make()
         print("Reset deck")
-        self.count()
-    }
+         self.count()
+     }
     
     init() {
         deck = [String]()
