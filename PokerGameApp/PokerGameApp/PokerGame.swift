@@ -76,8 +76,11 @@ class PokerGame: CustomStringConvertible {
     func startGame() {
         dealer.shuffleCardDeck()
         (0..<gameType.getMaxCardCounts()).forEach { _ in
-            dealer.deal(to: players)
-            dealer.deal(to: dealer)
+            let cards = dealer.deal(to: players).compactMap { $0 }
+            players.dealt(cards)
+            if let card = dealer.deal() {
+                dealer.dealt(card)
+            }
         }
     }
     
