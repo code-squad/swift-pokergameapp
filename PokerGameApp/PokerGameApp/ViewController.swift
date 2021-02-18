@@ -47,7 +47,7 @@ class ViewController: UIViewController {
         setSegmentStackView()
         setPockerGameStackView()
         //while pokerGame.countCardDeck()
-        pokerGame.startGame(particpatin: .four, gameType: .seven)
+        pokerGame.startGame()
         playerStackUI()
         //pokerGame.resetCard()
         //}
