@@ -57,6 +57,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D46F19D325DE52AA00BFBD9C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D4810C8C25DA8565002B720D /* Card.swift */,
+				D4020D3225DBB19A00796394 /* CardDeck.swift */,
+				D4020D3525DBDBB400796394 /* TestScenario.swift */,
+				D4AE4F6125DD14CD0028615F /* Dealer.swift */,
+				D4AE4F6425DD18580028615F /* Participant.swift */,
+				D4AE4F6725DD190D0028615F /* PockerGame.swift */,
+				D43EEA5825DE2FFC00A38077 /* Player.swift */,
+				D46F19CE25DE348100BFBD9C /* Participants.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		D4810C6225DA3E78002B720D = {
 			isa = PBXGroup;
 			children = (
@@ -76,6 +91,7 @@
 		D4810C6D25DA3E78002B720D /* PokerGameApp */ = {
 			isa = PBXGroup;
 			children = (
+				D46F19D325DE52AA00BFBD9C /* Model */,
 				D4810C8525DA56ED002B720D /* bg_pattern.png */,
 				D4810C8625DA56ED002B720D /* card-back.png */,
 				D4810C6E25DA3E78002B720D /* AppDelegate.swift */,
@@ -85,14 +101,6 @@
 				D4810C7725DA3E79002B720D /* Assets.xcassets */,
 				D4810C7925DA3E79002B720D /* LaunchScreen.storyboard */,
 				D4810C7C25DA3E7A002B720D /* Info.plist */,
-				D4810C8C25DA8565002B720D /* Card.swift */,
-				D4020D3225DBB19A00796394 /* CardDeck.swift */,
-				D4020D3525DBDBB400796394 /* TestScenario.swift */,
-				D4AE4F6125DD14CD0028615F /* Dealer.swift */,
-				D4AE4F6425DD18580028615F /* Participant.swift */,
-				D4AE4F6725DD190D0028615F /* PockerGame.swift */,
-				D43EEA5825DE2FFC00A38077 /* Player.swift */,
-				D46F19CE25DE348100BFBD9C /* Participants.swift */,
 			);
 			path = PokerGameApp;
 			sourceTree = "<group>";
