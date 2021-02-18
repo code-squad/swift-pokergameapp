@@ -7,17 +7,32 @@
 
 import Foundation
 
+enum GameType: Int {
+    case five = 5
+    case seven = 7
+    
+    var value: Int {
+        return self.rawValue
+    }
+}
+
+enum ParticipantType: Int {
+    case one = 1, two, three, four
+    
+    var value: Int {
+        return self.rawValue
+    }
+}
+
 class PockerGame {
-    private var deck: CardDeck
     private var dealer: Dealer
     private var participants: Participants
     private var numOfCard: Int
     
-    init(numOfParticipant: Int, numOfCard: Int) {
-        self.numOfCard = numOfCard
-        deck = CardDeck()
+    init(number ofParticipant: ParticipantType, number ofCard: GameType) {
+        self.numOfCard = ofCard.value
         dealer = Dealer(name: PlayerType.Dealer)
-        participants = Participants(numOfParticipant: numOfParticipant)
+        participants = Participants(number: ofParticipant.value)
     }
     
     func gameStart() {
