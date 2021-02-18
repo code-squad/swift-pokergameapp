@@ -8,7 +8,7 @@
 import Foundation
 
 struct TestCardGame {
-    private var cardDeck = CardDeck()
+    private var cardDeck = CardDeck(empty: false)
 
     init() {
         reset()
