@@ -1,13 +1,13 @@
 //
-//  CardPlaying.swift
+//  CardDeck.swift
 //  PokerGameApp
 //
-//  Created by Jun Ho JANG on 2021/02/16.
+//  Created by Jun Ho JANG on 2021/02/18.
 //
 
 import Foundation
 
-class DeckHandling {
+class CardDeck {
     
     public var deck = [String]()
     
@@ -42,9 +42,4 @@ class DeckHandling {
         self.count()
     }
     
-    init() {
-        deck = [String]()
-    }
-
 }
-
