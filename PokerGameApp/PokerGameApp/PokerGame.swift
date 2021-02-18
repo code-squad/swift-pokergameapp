@@ -11,32 +11,34 @@ class PokerGame {
     private var cardDeck = CardDeck()
     private var players: [[Card]] = [[]]
     
-    enum Player: Int {
+    enum PlayerCount: Int {
         case one = 1, two, three, four
     }
-    enum Rule: Int {
-        case fiveCardStud = 5
-        case sevenCardStud = 7
+    enum CardStud: Int {
+        case five = 5
+        case seven = 7
     }
-    let player: Player, rule: Rule
     
-    init(player: Player, rule: Rule) {
-        self.player = player
-        self.rule = rule
+    let playerCount: PlayerCount
+    let cardStud: CardStud
+    
+    init(playerCount: PlayerCount, cardStud: CardStud) {
+        self.playerCount = playerCount
+        self.cardStud = cardStud
         cardDeck.makeCardDeck()
         cardDeck.shuffle()
     }
     
     func handoutCards() {
         for player in 0..<players.count {
-            for _ in 0..<rule.rawValue {
+            for _ in 0..<cardStud.rawValue {
                 players[player].append(cardDeck.removeOne()!)
             }
         }
     }
     
     func makePlayer() {
-        for _ in 0..<player.rawValue {
+        for _ in 0..<playerCount.rawValue {
             let player: [Card] = []
             players.append(player)
         }
@@ -45,11 +47,10 @@ class PokerGame {
     func start() {
         makePlayer()
         handoutCards()
-        print("\(rule.rawValue)카드 기준, 참가자 \(player.rawValue)일 때")
+        print("\(cardStud.rawValue)카드 기준, 참가자 \(player.rawValue)일 때")
         for i in 0..<players.count - 1 {
             print("player\(i+1): \(players[i])")
         }
         print("dealer: \(players[players.count - 1])")
     }
 }
-
