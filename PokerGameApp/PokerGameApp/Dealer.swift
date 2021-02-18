@@ -24,4 +24,8 @@ class Dealer: Player {
     func deal(to players: Players) -> [Card?] {
         return (0..<players.count).map { _ in deal() }
     }
+    
+    func shuffleCardDeck() {
+        cardDeck.shuffle()
+    }
 }
