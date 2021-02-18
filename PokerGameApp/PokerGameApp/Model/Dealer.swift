@@ -16,6 +16,10 @@ class Dealer: Receiver {
     func receive(card: Card) {
         cardsInHand.append(card)
     }
+    
+    func giveCardInfo() -> Array<Card> {
+        return cardsInHand
+    }
 }
 
 extension Dealer: CustomStringConvertible {

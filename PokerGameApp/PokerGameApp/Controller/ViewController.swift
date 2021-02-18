@@ -9,9 +9,9 @@ import UIKit
 
 class ViewController: UIViewController {
     var cardDeck = CardDeck()
-    var mockGame = PokerGame(withPlayersOf: .four, stud: .fiveCardStud)
+    var game = PokerGame(withPlayersOf: .four, stud: .sevenCardStud)
     
-    let cardStackView: UIStackView = {
+    let dealerCardStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.spacing = 10
@@ -27,17 +27,44 @@ class ViewController: UIViewController {
         let cardBacksideImage: UIImage = UIImage(named: "card-back") ?? UIImage()
         
         self.view.backgroundColor = UIColor(patternImage: backgroundPatternImage)
-        self.view.addSubview(cardStackView)
-        configureCardStackView(cardStackView: cardStackView)
-        addSubviewToCardStackView(numberOfCards: 7, image: cardBacksideImage)
-        
-        mockGame.gamePlay()
+        self.view.addSubview(dealerCardStackView)
+        configureCardStackView(cardStackView: dealerCardStackView)
+        guard let gameResult = game.play() else { return }
+        print(gameResult)
+        addSubviewToCardStackView(numberOfCards: 7, cards: gameResult[0])
     }
     
-    func makeCardImageView(with newImage: UIImage) -> UIImageView {
+    func makeCardImageView(with card: Card) -> UIImageView {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.image = newImage
+        var cardInfoInCode: String {
+            var result: String = ""
+            switch card.suit {
+            case .clovers: result.append("c")
+            case .hearts: result.append("h")
+            case .spades: result.append("s")
+            case .diamonds: result.append("d")
+            default: result.append("")
+            }
+            switch card.value {
+            case .two: result.append("2")
+            case .three: result.append("3")
+            case .four: result.append("4")
+            case .five: result.append("5")
+            case .six: result.append("6")
+            case .seven: result.append("7")
+            case .eight: result.append("8")
+            case .nine: result.append("9")
+            case .ten: result.append("10")
+            case .ace: result.append("A")
+            case .jack: result.append("J")
+            case .queen: result.append("Q")
+            case .king: result.append("K")
+            default: result.append("")
+            }
+            return result
+        }
+        imageView.image = UIImage(named: cardInfoInCode)
         return imageView
     }
     
@@ -47,11 +74,11 @@ class ViewController: UIViewController {
         cardStackView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.07).isActive = true
     }
     
-    func addSubviewToCardStackView(numberOfCards: Int, image: UIImage) {
-        for _ in 0..<numberOfCards {
-            let newCardImageView = makeCardImageView(with: image)
-            cardStackView.addArrangedSubview(newCardImageView)
-            newCardImageView.widthAnchor.constraint(equalTo: cardStackView.heightAnchor, multiplier: 1/1.27).isActive = true
+    func addSubviewToCardStackView(numberOfCards: Int, cards: Array<Card>) {
+        for card in cards {
+            let newCardImageView = makeCardImageView(with: card)
+            dealerCardStackView.addArrangedSubview(newCardImageView)
+            newCardImageView.widthAnchor.constraint(equalTo: dealerCardStackView.heightAnchor, multiplier: 1/1.27).isActive = true
         }
     }
     
