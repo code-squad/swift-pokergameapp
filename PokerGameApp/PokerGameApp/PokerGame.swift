@@ -13,7 +13,7 @@ class PokerGame: CustomStringConvertible {
         case minPlayer = 1
         case maxPlayer = 4
         
-        func isSatisfied(_ players: Players) throws {
+        func isSatisfied(by players: Players) throws {
             switch self {
             case .minPlayer:
                 guard players.count >= self.rawValue else {
@@ -64,8 +64,8 @@ class PokerGame: CustomStringConvertible {
     }
     
     init(dealer: Dealer, players: Players, gameType: StudPoker) throws {
-        try GameRule.minPlayer.isSatisfied(players)
-        try GameRule.maxPlayer.isSatisfied(players)
+        try GameRule.minPlayer.isSatisfied(by: players)
+        try GameRule.maxPlayer.isSatisfied(by: players)
         
         self.dealer = dealer
         self.players = players
