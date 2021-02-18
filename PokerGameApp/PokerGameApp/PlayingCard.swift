@@ -55,6 +55,10 @@ class PlayingCard : CustomStringConvertible{
         self.number = number
     }
     
+    deinit {
+        print("card is deinit\(self.description)")
+    }
+    
     convenience init() {
         self.init(suit: Suits.allCases.randomElement()!,number: Rank.allCases.randomElement()!)
     }
