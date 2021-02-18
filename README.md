@@ -9,9 +9,11 @@
 **시뮬레이터 스크린샷**
 
 [Portrait]
+
 <img src="https://user-images.githubusercontent.com/56751259/108019046-b28fc200-705c-11eb-94ac-5a638546ad09.png" width=390>
 
 [Landscape]
+
 <img src="https://user-images.githubusercontent.com/56751259/108019125-d81ccb80-705c-11eb-928e-c0b568ba0232.png" height=390>
 
 ## Step2. 카드 클래스
@@ -22,3 +24,23 @@
 **콘솔창 스크린샷**
 
 <img width="447" src="https://user-images.githubusercontent.com/56751259/108035080-cac20a00-7079-11eb-87fd-b96d91815d66.png">
+
+## Step3. 카드덱 구현과 테스트
+완성 일자 및 시간: 2021-02-17 01:43PM
+
+* 카드덱 기능을 확인하는 테스트 코드 결과가 콘솔에 출력된다.
+
+**콘솔창 스크린샷**
+
+<img width="244" alt="Screen Shot 2021-02-17 at 12 11 14 PM" src="https://user-images.githubusercontent.com/56751259/108346926-44e1c280-7223-11eb-9059-ba83e7eb9ac5.png">
+
+## Step4. 포커 딜러와 게임 테스트
+완성 일자 및 시간: 2021-02-18 07:30PM
+
+* 모의 포커게임 동작을 확인한다.
+	* 게임 방식: 7카드스터드와 5카드스터드 중 선택
+	* 참여 인원: 딜러 1인, 참여자 1-4인
+
+**콘솔창 스크린샷**
+
+<img width="306" alt="Screen Shot 2021-02-17 at 10 36 27 PM" src="https://user-images.githubusercontent.com/56751259/108347265-aace4a00-7223-11eb-8f0b-db75844c0dd2.png">
