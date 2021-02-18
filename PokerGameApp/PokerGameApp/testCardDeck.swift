@@ -6,3 +6,38 @@
 //
 
 import Foundation
+
+class testCardDeck {
+    var cardDeck = CardDeck()
+    
+    func testSetCard() {
+        print("> 카드 초기화")
+        cardDeck.setCard()
+        print("카드 전체를 초기화했습니다.")
+        print("총 \(cardDeck.count())개의 카드가 있습니다.\n")
+    }
+    
+    func testShuffle() {
+        print("> 카드 섞기")
+        cardDeck.shuffle()
+        print("전체 \(cardDeck.count())장의 카드를 섞었습니다.\n")
+    }
+    
+    func testRemoveOne() {
+        print("> 카드 하나 뽑기")
+        if let card = cardDeck.removeOne() {
+            print(card)
+            print("총 \(cardDeck.count())개의 카드가 있습니다.\n")
+        } else {
+            print("카드가 없습니다.\n")
+        }
+    }
+    
+    func process(){
+        testSetCard()
+        testShuffle()
+        for _ in 0..<5 {
+            testRemoveOne()
+        }
+    }
+}
