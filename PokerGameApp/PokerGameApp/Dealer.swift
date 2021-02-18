@@ -7,56 +7,47 @@
 
 import Foundation
 
+// 참가자 모집
+// 덱 준비
+// distribute
+
 class Dealer: CardDeck {
     
-    enum CardStud: Int {
-        case fiveCardStud = 5, sevenCardStud = 7
-    }
-    
-    enum ParticipantsNum: Int {
-        case one = 1, two = 2, three = 3, four = 4
-    }
-    
-    public var gameBoard = [[String]]()
-    private var dealerCard = ["Dealer"]
-    
+    public var player: Array<Players> = []
+    public var playerNum = 1
     public var cardStud = 5
-    public var participantsNum = 1
+    
+    public func recruitPlayer() {
+        for i in 1...playerNum {
+            player.append(Players(name: "Player\(i)", hand: []))
+        }
+        player.append(Players(name: "Dealer", hand: []))
+    }
+    
+    public func makeDeckForGame() {
+        make()
+    }
+
+    public func distributeCard() {
+        for _ in 1...cardStud {
+            for i in 0..<player.count-1 {
+                player[i].hand.append(deck[0])
+                removeOne()
+            }
+            player[player.endIndex-1].hand.append(deck[0])
+            removeOne()
+        }
+        
+        for j in 0..<player.count {
+            print(player[j].hand)
+        }
+        
+    }
     
     public func startGame() {
-        make()
-        gameBoard.append(dealerCard)
-        for i in 1...participantsNum {
-            gameBoard.append(["Participant \(i)"])
-        }
+        recruitPlayer()
+        makeDeckForGame()
+        distributeCard()
     }
     
-    public func distributeCard() {
-        deck.shuffle()
-        if deck.count >= cardStud * participantsNum {
-            for i in 0..<gameBoard.count {
-                for _ in 1...cardStud {
-                    gameBoard[i].append(deck[0])
-                    removeOne()
-                }
-            }
-        } else if deck.count < cardStud * participantsNum {
-            print("quit")
-            reset()
-        }
-
-    }
-
-}
-
-extension Dealer.CardStud {
-    var description: Int {
-        return self.rawValue
-    }
-}
-
-extension Dealer.ParticipantsNum {
-    var description: Int {
-        return self.rawValue
-    }
 }
