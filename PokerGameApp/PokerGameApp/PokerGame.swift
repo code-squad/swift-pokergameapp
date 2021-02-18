@@ -85,7 +85,7 @@ class PokerGame: CustomStringConvertible {
     }
     
     private func getPlayersResult() -> [[Card]] {
-        return players.map { $0.showdown() }
+        return players.showdown()
     }
     
     private func getDealerResult() -> [Card] {
