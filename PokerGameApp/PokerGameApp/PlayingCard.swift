@@ -20,7 +20,7 @@ extension Suits : CustomStringConvertible {
         return self.rawValue
     }
 }
-
+/// rank입력 케이스에 오류가 없게하기 위해 enum case로 변경.
 enum Rank : Int, CaseIterable, CustomStringConvertible {
     
     case one, two, three, four, five, six, seven, eight, nine, ten, jack, queen, king
