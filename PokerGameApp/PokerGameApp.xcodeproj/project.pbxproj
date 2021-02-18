@@ -51,6 +51,36 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E457C51E25DE80D500471393 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E4E8149E25DBEF9A00AC0DB5 /* Test.swift */,
+				E4E8149B25DBB66E00AC0DB5 /* CardDeck.swift */,
+				E4E8149225DB874900AC0DB5 /* Card.swift */,
+				E4E814AB25DD0DD800AC0DB5 /* PokerGame.swift */,
+				E4E814A525DD05E200AC0DB5 /* Player.swift */,
+				E457C51825DE500500471393 /* Players.swift */,
+				E4E814A825DD06A100AC0DB5 /* Dealer.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		E457C52025DE80DE00471393 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				E4E8147F25DA8CC700AC0DB5 /* ViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		E457C52225DE80EB00471393 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E4E8148125DA8CC700AC0DB5 /* Main.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		E4E8146F25DA8CC700AC0DB5 = {
 			isa = PBXGroup;
 			children = (
@@ -72,15 +102,9 @@
 			children = (
 				E4E8147B25DA8CC700AC0DB5 /* AppDelegate.swift */,
 				E4E8147D25DA8CC700AC0DB5 /* SceneDelegate.swift */,
-				E4E8147F25DA8CC700AC0DB5 /* ViewController.swift */,
-				E4E8149E25DBEF9A00AC0DB5 /* Test.swift */,
-				E4E8149B25DBB66E00AC0DB5 /* CardDeck.swift */,
-				E4E8149225DB874900AC0DB5 /* Card.swift */,
-				E4E814AB25DD0DD800AC0DB5 /* PokerGame.swift */,
-				E4E814A525DD05E200AC0DB5 /* Player.swift */,
-				E457C51825DE500500471393 /* Players.swift */,
-				E4E814A825DD06A100AC0DB5 /* Dealer.swift */,
-				E4E8148125DA8CC700AC0DB5 /* Main.storyboard */,
+				E457C51E25DE80D500471393 /* Models */,
+				E457C52225DE80EB00471393 /* Views */,
+				E457C52025DE80DE00471393 /* Controllers */,
 				E4E8148425DA8CC900AC0DB5 /* Assets.xcassets */,
 				E4E8148625DA8CC900AC0DB5 /* LaunchScreen.storyboard */,
 				E4E8148925DA8CC900AC0DB5 /* Info.plist */,
