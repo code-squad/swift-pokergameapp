@@ -7,14 +7,18 @@
 
 import Foundation
 
-struct CardDeck {
-    private var cards: [PokerCard] = []
+struct CardDeck : CustomStringConvertible {
+    private var cards: [PokerCard]
     var count: Int {
         return cards.count
     }
     
+    var description: String {
+        return "\(self.cards)"
+    }
+    
     init() {
-        self.reset()
+        self.cards = []
     }
     
     mutating func reset() {
@@ -40,5 +44,13 @@ struct CardDeck {
     
     mutating func removeOne() -> PokerCard? {
         return self.cards.popLast()
+    }
+    
+    mutating func getOne(_ card: PokerCard) {
+        self.cards.append(card)
+    }
+    
+    mutating func dropAll() {
+        self.cards = []
     }
 }
