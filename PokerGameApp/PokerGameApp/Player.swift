@@ -7,6 +7,19 @@
 
 import Foundation
 
-class Player {
+class Player: CustomStringConvertible {
+    var description: String{
+        return player.description
+    }
+    
+    private var player: [Card]
+    
+    init() {
+        self.player = [Card]()
+    }
+    
+    func receiveCard(card: Card) {
+        player.append(card)
+    }
     
 }

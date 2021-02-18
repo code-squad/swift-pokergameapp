@@ -7,13 +7,15 @@
 
 import Foundation
 
-class PokerGame {
-    private var cardDeck = CardDeck()
-    private var players: [[Card]] = [[]]
+class PokerGame: CustomStringConvertible {
+    
+    private var players: [Player] = []
+    private var dealer: Dealer
     
     enum PlayerCount: Int {
         case one = 1, two, three, four
     }
+    
     enum CardStud: Int {
         case five = 5
         case seven = 7
@@ -23,34 +25,34 @@ class PokerGame {
     let cardStud: CardStud
     
     init(playerCount: PlayerCount, cardStud: CardStud) {
+        self.dealer = Dealer()
         self.playerCount = playerCount
         self.cardStud = cardStud
-        cardDeck.makeCardDeck()
-        cardDeck.shuffle()
     }
     
-    func handoutCards() {
-        for player in 0..<players.count {
-            for _ in 0..<cardStud.rawValue {
-                players[player].append(cardDeck.removeOne()!)
-            }
-        }
-    }
-    
-    func makePlayer() {
+    func makeGamePlayer()  {
         for _ in 0..<playerCount.rawValue {
-            let player: [Card] = []
-            players.append(player)
+            players.append(Player())
         }
     }
     
-    func start() {
-        makePlayer()
-        handoutCards()
-        print("\(cardStud.rawValue)카드 기준, 참가자 \(player.rawValue)일 때")
-        for i in 0..<players.count - 1 {
-            print("player\(i+1): \(players[i])")
+    func distributeCard() {
+        for _ in 0..<cardStud.rawValue {
+            for player in players {
+                if let card = dealer.handOutCard() {
+                    player.receiveCard(card: card)
+                }
+            }
+            dealer.makeDealerCard()
         }
-        print("dealer: \(players[players.count - 1])")
+    }
+    
+    var description: String{
+        var result: String = ""
+        for i in 0..<playerCount.rawValue {
+            result += "player\(i+1): \(players[i])\n"
+        }
+        result += "dealer: \(dealer)"
+        return result
     }
 }
