@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Players {
+class Player {
     
     private var name: String
     public var hand = [String]()
@@ -15,5 +15,11 @@ class Players {
     init(name: String, hand: [String]) {
         self.name = name
     }
+    
+}
+
+class Players {
+    
+    public var willJoinGame: Array<Players> = []
     
 }
