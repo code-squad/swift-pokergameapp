@@ -331,3 +331,183 @@ class TestCardGame {
 - 강한 순환 참조는 두 개의 객체가 상호참조하는 경우
 - 여기에 연관된 객체들은 레퍼런스 카운트가 0에 도달하지 않음
 - 따라서, iOS 메모리 관리의 핵심은 강한 순환 참조를 발생시키지 않는 것에 있음
+
+## step4.
+
+#### CustomConvertible 프로토콜 추가
+```swift
+enum Suit: String, CaseIterable, CustomStringConvertible {
+        case spades = "♠️"
+        case heart = "♥️"
+        case diamonds = "♦️"
+        case clubs = "♣️"
+        
+        var description: String { return rawValue }
+    }
+enum Rank: Int, CaseIterable, CustomStringConvertible {
+        case Ace = 1
+        case Two
+        case Three
+        case Four
+        case Five
+        case Six
+        case Seven
+        case Eight
+        case Nine
+        case Ten
+        case J
+        case Q
+        case K
+        
+        var description: String {
+            switch self {
+            case .Ace: return "ACE"
+            case .J: return "J"
+            case .Q: return "Q"
+            case .K: return "K"
+            default: return "\(rawValue)"
+            }
+        }
+    }
+```
+- Card Class뿐만 아니라 그 안의 Nested enum에도 CustomStringConvertible 프로토콜 추가
+
+#### 카드덱이 비어있을 경우를 대비하여 옵셔널 처리
+```swift
+mutating func removeOne() -> Card? {
+        if deckOfCard.isEmpty {
+            return nil
+        } else {
+            return self.deckOfCard.removeLast()
+        }
+    }
+```
+- 카드덱 구조체의 프로퍼티에 카드가 없을 경우 nil을 리턴하도록 수정
+
+#### 포커게임 클래스 추가
+```swift
+class PokerGame {
+    private var dealer: Dealer
+    private var players: [Player]
+    private var stud: CardStud
+    private var participants: Participants
+    
+    init(stud: CardStud, participants: Participants) {
+        self.dealer = Dealer()
+        self.players = [Player]()
+        self.stud = .seven
+        self.participants = .four
+        setUpPlayers()
+        startGame()
+    }
+    
+    enum CardStud:Int {
+        case seven = 7
+        case five = 5
+    }
+    
+    enum Participants: Int {
+        case one = 1, two, three, four
+    }
+    
+    private func setUpPlayers() {
+        self.players = [Player]()
+        for _ in 0..<self.participants.rawValue {
+            players.append(Player())
+        }
+    }
+    
+    private func startGame() {
+        for _ in 0..<stud.rawValue {
+            for player in players {
+                dealCardToPlayer(player: player)
+            }
+            dealCardToPlayer(player: dealer)
+        }
+    }
+    
+    private func dealCardToPlayer(player: Player) {
+        let dealCard = dealer.deal()
+        if let card = dealCard {
+            player.recieveCard(card: card)
+        } else {
+            print("모든 카드를 소진하였습니다.")
+        }
+    }
+}
+
+extension PokerGame:CustomStringConvertible {
+    var description: String {
+        var deck = ""
+        var count = 1
+        for player in players {
+            deck += "참가자 #\(count)\(player)\n"
+            count+=1
+        }
+        deck += "딜러 \(dealer)"
+        return deck
+    }
+}
+```
+- 딜러, 플레이어, 스터드, 참가자 프로퍼티 선언
+- init 내부에 프로퍼티 초기화 및 메서드 호출
+- 스터드 및 참가자 enum타입으로 선언
+- 참가자 수만큼 for-loop 반복하면서 플레이어 생성
+- 스터드 타입만큼 for-loop 반복하면서 dealer호출하여 카드분배
+- 딜러와 플레이어 모두 카드 한장씩 수령
+- extension활용하여 CustomStringConvertible 프로토콜 구현
+- extension활용시 코드 가독성이 좋아지는 장점이 있음
+
+#### 딜러 클래스 추가
+```swift
+import Foundation
+
+class Dealer: Player {
+    private var cardDeck:CardDeck
+    
+    override init() {
+        self.cardDeck = CardDeck()
+        self.cardDeck.shuffle() // 셔플은 딜러의 역할
+    }
+    
+    //각 참가자(player)에게 카드를 한 장씩 돌림
+    func deal() -> Card? {
+        return self.cardDeck.removeOne()
+    }
+}
+
+```
+- 카드를 섞고, 카드를 분배하는 기능 추가
+
+#### 플레이어 클래스 추가
+```swift
+import Foundation
+
+class Player {
+    private var handDeck:[Card]
+    
+    init() {
+        self.handDeck = [Card]()
+    }
+    
+    func recieveCard(card: Card) {
+        self.handDeck.append(card)
+    }
+}
+
+/*
+ extension을 사용하면 class 내부에 cumtomstringconvertible 프로토콜 쓰는 것보다 가독성에서 이점이 있을 것 같았는데
+ 가독성 측면에서 크게 이점이 있는지 모르겠음 => 여러 프로토콜을 채택할 경우에는 다를 수도 있을 것 같은데...
+*/
+
+extension Player:CustomStringConvertible {
+    var description: String {
+        return "\(self.handDeck)"
+    }
+}
+```
+- 카드를 받는 메서드 추가
+
+#### 실행화면
+
+<img width="376" alt="스크린샷 2021-02-18 오전 10 13 20" src="https://user-images.githubusercontent.com/74946802/108309317-accce480-71f4-11eb-846e-5ac79197a04f.png">
