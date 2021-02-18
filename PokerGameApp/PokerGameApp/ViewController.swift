@@ -16,8 +16,6 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initGameplay()
-//        let card = Card.init(suit: .spade, number: .J)
-//        print(card.description)
         let test = TESTCode()
         test.excuteTest()
     }
