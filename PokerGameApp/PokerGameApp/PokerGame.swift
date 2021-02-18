@@ -42,6 +42,17 @@ class PokerGame{
     
     func gameStart(){
         decidePlayerNum(3)
+        dealer.deckCreateShuffle()
+        do {
+            try dealer.cardDistribution(currentGame: self)
+        }
+        catch{
+            print("카드가 부족합니다.")
+        }
+        for i in 0..<player.count{
+            player[i].printMycard(index: i + 1)
+        }
+        dealer.printMycard(index: 0) //사실 여긴 0이 필요없는데..? 상속 받은 함수를 새로 고쳐쓸 순 없나..
     }
 }
 
@@ -49,30 +60,39 @@ enum errorOfGame : Error{
     case lackCard
 }
 
-class Player{
-    private var myCard : [Card] = []
+class human {
+    private var myCard : [Card]
+    
+    init(){
+        self.myCard = []
+    }
     
     func receiveCard(_ card : Card) -> Void{
         myCard.append(card)
     }
     
-    func printMycard(){
-        print(myCard)
+    func printMycard(index : Int){
+        print("player# \(index) \(myCard)")
     }
 }
 
-class Dealer{
+class Player : human{
     
-    private var myCard : [Card]
+}
+
+class Dealer : human{
     private let deck : Deck
     
     init(dealerdeck : Deck){
-        self.myCard = []
         self.deck = dealerdeck
     }
     
-    func receiveCard(_ card : Card) -> Void{
-        myCard.append(card)
+    func isCardremain(currentGame: PokerGame) -> Bool{
+        let DEALERCOUNT = 1
+        if deck.getCount() >= (currentGame.getPlayers().count + DEALERCOUNT) * currentGame.getGameStyle(){
+            return true
+        }
+        return false
     }
     
     func cardDistribution(currentGame: PokerGame) throws -> Void{
@@ -89,11 +109,11 @@ class Dealer{
         }
     }
     
-    func isCardremain(currentGame: PokerGame) -> Bool{
-        let DEALERCOUNT = 1
-        if deck.getCount() >= (currentGame.getPlayers().count + DEALERCOUNT) * currentGame.getGameStyle(){
-            return true
+    func deckCreateShuffle(){
+        deck.resetDeck()
+        do {try deck.shuffleDeck()}
+        catch{
+            print("카드가 부족합니다.")
         }
-        return false
     }
 }
