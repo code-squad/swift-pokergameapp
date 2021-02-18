@@ -27,9 +27,9 @@ class PokerGame: CustomStringConvertible {
         }
     }
     
-    enum StudPoker: CustomStringConvertible {
-        case fiveCardStud
-        case sevenCardStud
+    enum StudPoker: Int, CustomStringConvertible {
+        case fiveCardStud = 5
+        case sevenCardStud = 7
         
         var description: String {
             switch self {
@@ -40,13 +40,8 @@ class PokerGame: CustomStringConvertible {
             }
         }
         
-        func getMaxCardCounts() -> Int {
-            switch self {
-            case .fiveCardStud:
-                return 5
-            case .sevenCardStud:
-                return 7
-            }
+        var cardRange: Range<Int> {
+            return 0..<self.rawValue
         }
     }
     
@@ -79,7 +74,7 @@ class PokerGame: CustomStringConvertible {
     
     func startGame() {
         dealer.shuffleCardDeck()
-        (0..<gameType.getMaxCardCounts()).forEach { _ in
+        gameType.cardRange.forEach { _ in
             let cards = dealer.deal(to: players).compactMap { $0 }
             players.dealt(cards)
             if let card = dealer.deal() {
