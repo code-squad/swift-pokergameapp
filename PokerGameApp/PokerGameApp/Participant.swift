@@ -35,7 +35,7 @@ class Participant {
         self.cards = cards
     }
     
-    func introduceMyself() -> String {
+    func myName() -> String {
         return ""
     }
 }
@@ -52,19 +52,19 @@ class Dealer: Participant {
         super.init(name: name)
     }
     
-    func handOutCardStacks(within rule: PokerGame.Rule, _ seat: PokerGame.Seat) -> [[Card]]? {
+    func handOutCardStacks(for headCnt: Int, each cardCnt: Int) -> [[Card]]? {
         cardDeck.shuffle()
         
-        let headCnt = seat.count(), cardCnt = rule.cardCount()
-        
-        if isCardAvailable(for: headCnt, each: cardCnt) {
-            let newCardStacks = makeCardStacks(for: headCnt, each: cardCnt)
-            updateCardCount(to: cardDeck.count())
-            return newCardStacks
-        } else {
+        guard isCardAvailable(for: headCnt, each: cardCnt) else {
             finishGame()
             return nil
         }
+        
+        let newCardStacks = makeCardStacks(for: headCnt, each: cardCnt)
+        
+        updateCardCount(to: cardDeck.count())
+        
+        return newCardStacks
     }
     
     private func isCardAvailable(for headCnt: Int, each cardCnt: Int) -> Bool {
@@ -105,7 +105,7 @@ class Dealer: Participant {
         infoBoard.isGameFinished = true
     }
     
-    override func introduceMyself() -> String {
+    override func myName() -> String {
         return "\(name)"
     }
 }
@@ -120,7 +120,7 @@ class Player: Participant {
         super.init(name: name)
     }
     
-    override func introduceMyself() -> String {
+    override func myName() -> String {
         return "\(name) #\(number)"
     }
 }

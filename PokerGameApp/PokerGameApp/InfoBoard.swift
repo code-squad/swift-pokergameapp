@@ -8,6 +8,7 @@
 import Foundation
 
 class InfoBoard: CustomStringConvertible {
+    
     var isGameFinished = false
     var cardCount: Int?
     var participantsList: [String]?
@@ -20,12 +21,17 @@ class InfoBoard: CustomStringConvertible {
         
         var gameStatus = ""
         
-        if let pList = participantsList, let cList = cardStackList,
-           pList.count == cList.count, let count = cardCount {
+        if let pList = participantsList,
+           let cList = cardStackList,
+           pList.count == cList.count,
+           let count = cardCount {
+            
             for i in 0..<pList.count {
                 gameStatus += "\(pList[i]): \(cList[i])\n"
             }
+            
             gameStatus += "남은 카드는 \(count)장입니다.\n"
+            
         } else {
             gameStatus = "게임 세팅이 잘못되었습니다!\n"
         }

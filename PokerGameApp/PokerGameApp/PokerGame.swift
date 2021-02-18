@@ -26,11 +26,7 @@ class PokerGame {
 
     enum Seat: Int {
         case one = 1, two, three, four
-        
-        func count() -> Int {
-            return self.rawValue + 1
-        }
-        
+
         func makePlayers() -> [Player] {
             var players = [Player]()
             
@@ -52,8 +48,17 @@ class PokerGame {
         self.seat = seat
         self.dealer = Dealer(name: .dealer, with: cardDeck, infoBoard)
         self.participants = seat.makePlayers()
+        
+        addDealer()
+        updateBoardParticipantsList()
+    }
+    
+    private func addDealer() {
         participants.append(dealer)
-        infoBoard.participantsList = participants.map { $0.introduceMyself() }
+    }
+    
+    private func updateBoardParticipantsList() {
+        infoBoard.participantsList = participants.map { $0.myName() }
     }
     
     func start() -> String {
@@ -62,9 +67,10 @@ class PokerGame {
     }
     
     private func takeCard() {
-        if let cardStacks = dealer.handOutCardStacks(within: self.rule, self.seat) {
-            for (i, stack) in cardStacks.enumerated() {
-                self.participants[i].updateStack(with: stack)
+        if let cardStacks = dealer.handOutCardStacks(for: participants.count,
+                                                     each: rule.cardCount()) {
+            for (i, cards) in cardStacks.enumerated() {
+                self.participants[i].updateStack(with: cards)
             }
             updateBoard(with: cardStacks)
         }
