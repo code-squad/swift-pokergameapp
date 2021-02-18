@@ -15,7 +15,7 @@ struct Card: CustomStringConvertible {
         return "\(suit.rawValue)\(rank.rawValue)"
     }
     
-    enum Suit: String, CustomStringConvertible {
+    enum Suit: String, CustomStringConvertible, CaseIterable {
         case spade = "♠️", club = "♣️", heart = "❤️", diamond = "♦️"
         
         var description: String {
@@ -23,9 +23,8 @@ struct Card: CustomStringConvertible {
         }
     }
     
-    enum Rank: Int, CustomStringConvertible {
-        case one = 1, three, four, five, six, seven, eight, nine, ten, eleven, tweleve, thirteen
-        case J, K, Q, A
+    enum Rank: Int, CustomStringConvertible, CaseIterable {
+        case one = 1, two, three, four, five, six, seven, eight, nine, ten, eleven, tweleve, thirteen
         
         var description: String {
             switch self.rawValue {
