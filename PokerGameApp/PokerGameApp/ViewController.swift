@@ -9,6 +9,32 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    let cardGame = Dealer()
+    
+    @IBAction func studDidChange(_ sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+        case 0:
+            cardGame.cardStud = 5
+        case 1:
+            cardGame.cardStud = 7
+        default:
+            cardGame.cardStud = 5
+        }
+    }
+    
+    @IBAction func participantsNumDidChange(_ sender: UISegmentedControl) {
+//        switch sender.selectedSegmentIndex {
+//        case 0:
+//            cardGame.participantsNum = 2
+//        case 1:
+//            cardGame.participantsNum = 3
+//        case 2:
+//            cardGame.participantsNum = 4
+//        default:
+//            cardGame.participantsNum = 2
+//        }
+    }
+    
     
     override func viewDidLoad() {
         
@@ -36,19 +62,14 @@ class ViewController: UIViewController {
             cardUIImageView.frame.size.width = cardWidth
             cardUIImageView.frame.size.height = cardHeight
             
-            cardUIImageView.center = CGPoint(x: firstCardPositionX + CGFloat(i) * (cardWidth + cardToCard), y: 100)
+            cardUIImageView.center = CGPoint(x: firstCardPositionX + CGFloat(i) * (cardWidth + cardToCard), y: 200)
             view.addSubview(cardUIImageView)
             
         }
         
-        let cardGame = Dealer()
+        let cardgame = Dealer()
+        cardgame.startGame()
         
-        cardGame.startGame()
-        cardGame.distributeCard()
-        
-        for i in 0..<cardGame.gameBoard.count {
-            print("\(cardGame.gameBoard[i])")
-        }
     }
     
 }
