@@ -9,7 +9,7 @@ import UIKit
 
 class ViewController: UIViewController {
     var cardDeck = CardDeck()
-    var mockGame = PokerGame(withPlayersOf: 4, stud: .fiveCardStud)
+    var mockGame = PokerGame(withPlayersOf: .four, stud: .fiveCardStud)
     
     let cardStackView: UIStackView = {
         let stackView = UIStackView()
