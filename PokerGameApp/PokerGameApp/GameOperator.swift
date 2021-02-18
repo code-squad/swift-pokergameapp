@@ -6,3 +6,15 @@
 //
 
 import Foundation
+
+class GameOperator {
+    
+    var gameOperator = Dealer()
+    
+    public func startGame() {
+        gameOperator.recruitPlayer()
+        gameOperator.makeDeckForGame()
+        gameOperator.distributeCard()
+    }
+    
+}
