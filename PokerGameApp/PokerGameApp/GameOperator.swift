@@ -6,3 +6,13 @@
 //
 
 import Foundation
+
+class GameOperator {
+    
+    var gameOperator = Dealer()
+    
+    public func dealerStartGame() {
+        gameOperator.startGame()
+    }
+    
+}
