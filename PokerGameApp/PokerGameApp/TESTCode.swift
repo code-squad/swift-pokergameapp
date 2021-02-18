@@ -29,11 +29,11 @@ class TESTCode{
         print("> 카드 전체를 섞었습니다.")
         print(TESTdeck.getCurrentdeck())
         
-        TESTdeck.takeOnecard()
+        TESTdeck.takeRandomcard()
         print("> 카드 하나 뽑기")
         print("> 총 \(TESTdeck.getCount())장의 카드가 남아있습니다.")
         
-        TESTdeck.takeOnecard()
+        TESTdeck.takeRandomcard()
         print("> 카드 하나 뽑기")
         print("> 총 \(TESTdeck.getCount())장의 카드가 남아있습니다.")
         

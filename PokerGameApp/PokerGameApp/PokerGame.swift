@@ -8,16 +8,17 @@
 import Foundation
 
 class PokerGame{
+    
     private var gameStyle : Int
+    private var deck : Deck
     private let dealer : Dealer
     private var player : [Player]
-    private let deck : Deck
     
     init(GameStyle : Int) {
         self.gameStyle = GameStyle
-        self.dealer = Dealer()
-        player = []
-        deck = Deck()
+        self.deck = Deck()
+        self.player = []
+        self.dealer = Dealer(dealerdeck: self.deck)
     }
     
     func decidePlayerNum(_ playerCount : Int) -> Void   {
@@ -27,28 +28,20 @@ class PokerGame{
         }
     }
     
+    func getGameStyle() -> Int{
+        return gameStyle
+    }
+    
+    func getPlayers() -> [Player]{
+        return player
+    }
+    
+    func getDealer() -> Dealer{
+        return dealer
+    }
+    
     func gameStart(){
         decidePlayerNum(3)
-    }
-    
-    func cardDistribution() throws -> Void{
-        guard isCardremain() else{
-            throw errorOfGame.lackCard
-        }
-        for _ in 0..<gameStyle{
-            for i in 0..<player.count{
-                player[i].addCard(deck.takeOnecard())
-            }
-            dealer.addCard(deck.takeOnecard())
-        }
-    }
-    
-    func isCardremain() -> Bool{
-        let DEALERCOUNT = 1
-        if deck.getCount() >= (player.count + DEALERCOUNT) * gameStyle{
-            return true
-        }
-        return false
     }
 }
 
@@ -59,15 +52,48 @@ enum errorOfGame : Error{
 class Player{
     private var myCard : [Card] = []
     
-    func addCard(_ card : Card) -> Void{
+    func receiveCard(_ card : Card) -> Void{
         myCard.append(card)
+    }
+    
+    func printMycard(){
+        print(myCard)
     }
 }
 
 class Dealer{
-    private var myCard : [Card] = []
     
-    func addCard(_ card : Card) -> Void{
+    private var myCard : [Card]
+    private let deck : Deck
+    
+    init(dealerdeck : Deck){
+        self.myCard = []
+        self.deck = dealerdeck
+    }
+    
+    func receiveCard(_ card : Card) -> Void{
         myCard.append(card)
+    }
+    
+    func cardDistribution(currentGame: PokerGame) throws -> Void{
+        guard isCardremain(currentGame: currentGame) else{
+            throw errorOfGame.lackCard
+        }
+        for _ in 0..<currentGame.getGameStyle(){
+            for i in 0..<currentGame.getPlayers().count{
+                currentGame.getPlayers()[i].receiveCard(deck.takeTopcard())
+                deck.removeTopCard()
+            }
+            currentGame.getDealer().receiveCard(deck.takeTopcard())
+            deck.removeTopCard()
+        }
+    }
+    
+    func isCardremain(currentGame: PokerGame) -> Bool{
+        let DEALERCOUNT = 1
+        if deck.getCount() >= (currentGame.getPlayers().count + DEALERCOUNT) * currentGame.getGameStyle(){
+            return true
+        }
+        return false
     }
 }
