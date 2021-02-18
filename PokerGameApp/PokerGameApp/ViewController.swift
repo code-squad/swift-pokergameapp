@@ -14,9 +14,6 @@ class ViewController: UIViewController {
         
         setBackground()
         placeCards()
-        
-        let testCard = Card(suit: .spade, rank: .A)
-        print(testCard)
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
