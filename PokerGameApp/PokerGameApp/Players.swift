@@ -9,4 +9,11 @@ import Foundation
 
 class Players {
     
+    private let players: [Player]
+    let count: Int
+    
+    init(players: [Player]) {
+        self.players = players
+        self.count = players.count
+    }
 }
