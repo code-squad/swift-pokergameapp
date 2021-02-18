@@ -9,21 +9,11 @@ import UIKit
 
 class MainViewController: UIViewController {
     
-    func loadImg(resource: String, type: String) -> UIImage? {
-        guard let filepath = Bundle.main.path(forResource: resource, ofType: type) else {
-            return nil
-        }
-        guard let img = UIImage(contentsOfFile: filepath) else {
-            return nil
-        }
-        return img
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        guard let backgroundImg = loadImg(resource: "bg_pattern", type: "png") else {
-            print("파일경로가 잘못되었습니다.")
+        guard let backgroundImg = UIImage(named: "bg_pattern.png") else {
+            print("파일경로가 잘못되었습니다.1")
             return
         }
         self.view.backgroundColor = UIColor(patternImage: backgroundImg)
@@ -34,8 +24,8 @@ class MainViewController: UIViewController {
         let imgWidth: CGFloat = 50
         let imgHeight: CGFloat = imgWidth * 1.27
         
-        guard let cardImg = loadImg(resource: "card-back", type: "png") else {
-            print("파일경로가 잘못되었습니다.")
+        guard let cardImg = UIImage(named: "card-back.png") else {
+            print("파일경로가 잘못되었습니다.2")
             return
         }
         
