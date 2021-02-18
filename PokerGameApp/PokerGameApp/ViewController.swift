@@ -30,27 +30,48 @@ class ViewController: UIViewController {
     private let gameTypeSegmentControl : UISegmentedControl = {
         let segment = UISegmentedControl(items: ["7card","5card"])
         segment.selectedSegmentIndex = 0
+        segment.addTarget(self, action: #selector(actionGameTypeSegment(_:)) , for: .valueChanged)
         return segment
     }()
     
     private let particpatinSegmentControl : UISegmentedControl = {
         let segment = UISegmentedControl(items: ["2명","3명","4명"])
         segment.selectedSegmentIndex = 0
+        segment.addTarget(self, action: #selector(actionparticpatinSegment(_:)), for: .valueChanged)
         return segment
     }()
     
-    private let pokerGame = PockerGame()
+    @objc func actionGameTypeSegment(_ sender : UISegmentedControl) {
+        gameType = GameType.allValues[sender.selectedSegmentIndex].value
+        resetPokerGame()
+    }
+    @objc func actionparticpatinSegment(_ sender : UISegmentedControl) {
+        participant = Participant.allValues[sender.selectedSegmentIndex].value
+        resetPokerGame()
+    }
+    
+    private var gameType : Int = GameType.seven.value
+    private var participant : Int = Participant.one.value
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setBackgroundViewImage()
         setSegmentStackView()
         setPockerGameStackView()
-        //while pokerGame.countCardDeck()
-        pokerGame.startGame()
-        playerStackUI()
-        //pokerGame.resetCard()
-        //}
+        startPokerGame()
+    }
+    
+    private func startPokerGame() {
+        let pokerGame = PockerGame()
+        pokerGame.startGame(gameType: gameType, participant: participant)
+        playerStackUI(pokergame : pokerGame)
+    }
+    
+    private func resetPokerGame() {
+        pockerGameStackView.subviews.forEach { view in
+            view.removeFromSuperview()
+        }
+        startPokerGame()
     }
     
     private func setBackgroundViewImage() {
@@ -77,8 +98,8 @@ class ViewController: UIViewController {
         ])
     }
     
-    private func playerStackUI() {
-        pokerGame.showPlayersCard().forEach { (card) in
+    private func playerStackUI(pokergame : PockerGame) {
+        pokergame.showPlayersCard().forEach { (card) in
             let playerStackView = UIStackView()
             playerStackView.axis = .vertical
             playerStackView.distribution = .fill
