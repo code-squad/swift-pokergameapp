@@ -47,7 +47,7 @@ class PokerGame: CustomStringConvertible {
     }
     
     private let dealer: Dealer
-    private let players: [Player]
+    private let players: Players
     private let gameType: StudPoker
     var description: String {
         var playerIndex = 0
@@ -59,7 +59,7 @@ class PokerGame: CustomStringConvertible {
         return "🃏카드게임 종류: \(gameType), 👨‍👩‍👧‍👦참가자: \(players.count)명\n\(playersResult)\n\(dealerResult)"
     }
     
-    init(dealer: Dealer, players: [Player], gameType: StudPoker) throws {
+    init(dealer: Dealer, players: Players, gameType: StudPoker) throws {
         guard players.count >= GameRule.minPlayer.getNumber() else {
             throw PokerGameError.tooFewPlayers
         }
