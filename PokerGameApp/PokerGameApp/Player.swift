@@ -11,6 +11,13 @@ class Players {
     private var cardDeck = CardDeck()
     private var players: [Player] = []
     lazy var count = players.count
+    var description: String {
+        var description = ""
+        players.forEach { player in
+            description += "\(player.description)\n"
+        }
+        return description
+    }
     
     init(players: [Player]) {
         self.players = players
@@ -27,12 +34,6 @@ class Players {
         cardDeck.reset()
         players.forEach { player in
             player.reset()
-        }
-    }
-    
-    func printAllPlayerCard() {
-        players.forEach { player in
-            print(player.description)
         }
     }
     

@@ -20,7 +20,7 @@ class ViewController: UIViewController {
         let players = Players(players: [Player(), Player(), Player(), Player(playerType: .dealer)])
         let game = PokerGame(players: players)
         game.play()
-        players.printAllPlayerCard()
+        print(players.description)
     }
 
     func setupBackgroundImage() {
