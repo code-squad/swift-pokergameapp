@@ -9,7 +9,7 @@ import Foundation
 
 class Dealer: Player {
     
-    var cardDeck: CardDeck
+    private var cardDeck: CardDeck
     
     override init() {
         cardDeck = CardDeck()
