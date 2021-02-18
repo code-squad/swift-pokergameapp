@@ -2,15 +2,15 @@ import Foundation
 
 class PokerGame {
     private var dealer: Dealer
-    private var players: [Player]
+    private var players: Players
     private var stud: CardStud
-    private var participants: Participants
+    private var numberOfPlayers: NumberOfPlayer
     
-    init(stud: CardStud, participants: Participants) {
+    init(stud: CardStud, participants: NumberOfPlayer) {
         self.dealer = Dealer()
-        self.players = [Player]()
+        self.players = Players()
         self.stud = .seven
-        self.participants = .four
+        self.numberOfPlayers = .four
         setUpPlayers()
         startGame()
     }
@@ -20,33 +20,35 @@ class PokerGame {
         case five = 5
     }
     
-    enum Participants: Int {
+    enum NumberOfPlayer: Int {
         case one = 1, two, three, four
     }
     
+    enum RemoveError: Error {
+        case outOfIndex
+    }
+    
     private func setUpPlayers() {
-        self.players = [Player]()
-        for _ in 0..<self.participants.rawValue {
-            players.append(Player())
+        for _ in 0..<self.numberOfPlayers.rawValue {
+            players.appendGamePlayer(gamePlayer: Player())
         }
     }
     
     private func startGame() {
         for _ in 0..<stud.rawValue {
-            for player in players {
-                dealCardToPlayer(player: player)
+            for eachPlayer in players.players {
+                try? dealCardToPlayer(to: eachPlayer)
             }
-            dealCardToPlayer(player: dealer)
+            try? dealCardToPlayer(to: dealer)
         }
     }
     
-    private func dealCardToPlayer(player: Player) {
+    private func dealCardToPlayer(to: Player) throws {
         let dealCard = dealer.deal()
-        if let card = dealCard {
-            player.recieveCard(card: card)
-        } else {
-            print("모든 카드를 소진하였습니다.")
+        guard let card = dealCard else {
+            throw RemoveError.outOfIndex
         }
+        to.recieveCard(card: card)
     }
 }
 
@@ -54,7 +56,7 @@ extension PokerGame:CustomStringConvertible {
     var description: String {
         var deck = ""
         var count = 1
-        for player in players {
+        for player in players.players {
             deck += "참가자 #\(count)\(player)\n"
             count+=1
         }
