@@ -11,8 +11,8 @@ class Dealer: Player {
     
     private var cardDeck: CardDeck
     
-    override init() {
-        cardDeck = CardDeck()
+    init(cardDeck: CardDeck) {
+        self.cardDeck = cardDeck
         super.init()
     }
     
