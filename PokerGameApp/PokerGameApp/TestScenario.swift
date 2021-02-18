@@ -45,8 +45,12 @@ func pockerGameScenario() {
     var game = PockerGame(numOfParticipant: 3, numOfCard: 5)
     game.gameStart()
     print("5카드 기준, 참가자 3명 일 때\n")
+    print(game.getDealer())
+    print(game.getParticipants())
     
     game = PockerGame(numOfParticipant: 4, numOfCard: 7)
     game.gameStart()
     print("\n7카드 기준, 참가자 4명 일 때\n")
+    print(game.getDealer())
+    print(game.getParticipants())
 }
