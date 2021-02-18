@@ -12,7 +12,7 @@ class Player {
     private var name: String
     public var hand = [String]()
     
-    init(name: String, hand: [String]) {
+    init(name: String) {
         self.name = name
     }
     
