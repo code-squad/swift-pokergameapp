@@ -113,4 +113,12 @@ array.removeAll()
 -> removeAll() 은 O(n)의 시간 복잡도를 가짐. -> array의 크기에 따라 결과가 다를 것.
 
 ### deck.reset() 시 이전의 카드들은 메모리에서?
+Test전 결과 예상 : 
+Deck.popOneCard() 시 뽑힌 한장의 카드가 deinit 될 것.
+Deck.reset() 시 Deck에 남은 카드가 전부 deinit 될 것
 
+Test 내용 : 
+<img width="295" alt="스크린샷 2021-02-19 오전 1 30 06" src="https://user-images.githubusercontent.com/68788135/108389605-2c899c00-7253-11eb-8c51-93f68d027070.png">
+해당 결과는 Deck.init() 시 console에 표시된 결과.
+
+결과 : Deck.popOneCard(), Deck.reset() 실행 시 Card의 deinit이 일어나지 않았다. 
