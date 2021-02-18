@@ -19,13 +19,13 @@ class ViewController: UIViewController {
         
         show7CardBack()
         
-        let heartQ = PokerCard(suit: .hearts, rank: .queen)
-        let club7 = PokerCard(suit: .clubs, rank: .seven)
-        print(heartQ)
-        print(club7)
+        let game = PokerGame()
+        game.selectOPtion(stud: .five, numberOfPlayers: .three)
+        game.startGame()
         
-        var actionTest = ActionTest()
-        actionTest.startTest()
+        
+        game.selectOPtion(stud: .seven, numberOfPlayers: .two)
+        game.startGame()
     }
 
     func show7CardBack() {
