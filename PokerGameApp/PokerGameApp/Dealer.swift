@@ -16,10 +16,9 @@ class Dealer: Player {
         super.init()
     }
     
-    func deal(to player: Player) {
-        if let card = cardDeck.removeOne() {
-            player.cards.append(card)
-        }
+    func deal() -> Card? {
+        guard let card = cardDeck.removeOne() else { return nil}
+        return card
     }
     
     func deal(to players: [Player]) {
