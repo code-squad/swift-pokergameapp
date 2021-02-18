@@ -12,7 +12,7 @@ class Player {
     private var name: String
     public var hand = [String]()
     
-    init(name: String, hand: [String]) {
+    init(name: String) {
         self.name = name
     }
     
@@ -20,6 +20,15 @@ class Player {
 
 class Players {
     
+    public var playerNum = 1
+    
     public var willJoinGame: Array<Player> = []
+    
+    public func participatePlayer() {
+        for i in 1...playerNum {
+            willJoinGame.append(Player(name: "Player\(i)"))
+        }
+        willJoinGame.append(Player(name: "Dealer"))
+    }
     
 }
