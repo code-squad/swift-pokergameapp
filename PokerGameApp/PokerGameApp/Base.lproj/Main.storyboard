@@ -15,8 +15,42 @@
                     <view key="view" contentMode="scaleToFill" id="erm-0U-Oof">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="wYw-Uj-Q3n">
+                                <rect key="frame" x="108.5" y="58" width="197" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Tvn-tV-gXR"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="First"/>
+                                    <segment title="Second"/>
+                                </segments>
+                                <connections>
+                                    <action selector="studDidChange:" destination="3fZ-AP-jzD" eventType="valueChanged" id="A58-FA-EzI"/>
+                                </connections>
+                            </segmentedControl>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="R3f-1P-kIs">
+                                <rect key="frame" x="108.5" y="96" width="197" height="31"/>
+                                <segments>
+                                    <segment title="First"/>
+                                    <segment title="Second"/>
+                                    <segment title="Third"/>
+                                </segments>
+                                <connections>
+                                    <action selector="participantsNumDidChange:" destination="3fZ-AP-jzD" eventType="valueChanged" id="2rG-9s-1dw"/>
+                                </connections>
+                            </segmentedControl>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="7AH-R9-U8A"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="R3f-1P-kIs" firstAttribute="height" secondItem="wYw-Uj-Q3n" secondAttribute="height" id="CHX-Zr-bcz"/>
+                            <constraint firstItem="R3f-1P-kIs" firstAttribute="top" secondItem="wYw-Uj-Q3n" secondAttribute="bottom" constant="8" symbolic="YES" id="Dg2-Oy-On4"/>
+                            <constraint firstItem="wYw-Uj-Q3n" firstAttribute="top" secondItem="7AH-R9-U8A" secondAttribute="top" constant="14" id="UdK-qy-EjA"/>
+                            <constraint firstItem="R3f-1P-kIs" firstAttribute="width" secondItem="wYw-Uj-Q3n" secondAttribute="width" id="d6c-Gr-psl"/>
+                            <constraint firstItem="R3f-1P-kIs" firstAttribute="centerX" secondItem="wYw-Uj-Q3n" secondAttribute="centerX" id="vNh-pj-FEx"/>
+                            <constraint firstItem="wYw-Uj-Q3n" firstAttribute="centerX" secondItem="7AH-R9-U8A" secondAttribute="centerX" id="y3z-Cf-La5"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="fsz-Ym-qaC"/>
                 </viewController>
