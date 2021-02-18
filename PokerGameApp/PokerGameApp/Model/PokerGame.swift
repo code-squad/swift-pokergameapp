@@ -29,20 +29,17 @@ enum Participant : Int {
 
 class PockerGame {
     private var players = Players()
-    private let participant : Int
-    private let gameType : Int
+    private var participant : Int = 0
+    private var gameType : Int = 0
     
-    init(particpatin : Participant, gameType : GameType) {
+    func startGame(particpatin : Participant, gameType : GameType) {
         self.participant = particpatin.value
         self.gameType = gameType.value
-        players.addPlayer(particpatin: participant)
+        players.addPlayer(particpatin: self.participant)
+        players.drawCard(gameType: self.gameType)
     }
     
-    func startGame() {
-        players.drawCard(gameType: gameType)
-    }
-    
-    func showPlayersCard() -> String {
+    func showPlayersCard() -> [PlayerCard] {
         return players.showPlayerCard()
     }
     

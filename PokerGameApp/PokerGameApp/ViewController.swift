@@ -37,15 +37,18 @@ class ViewController: UIViewController {
         constrainUI()
         makeCard()
     
-        let pokerGame = PockerGame(particpatin: .two, gameType: .five)
-        while pokerGame.countCardDeck() {
-            pokerGame.startGame()
-            print(pokerGame.showPlayersCard())
-            pokerGame.resetCard()
+        let pokerGame = PockerGame()
+        //while pokerGame.countCardDeck() {
+        pokerGame.startGame(particpatin: .two, gameType: .five)
+        pokerGame.showPlayersCard().forEach { (card) in
+            card.hasPlayerCardInfo().values.forEach({ (d) in
+                print(d.showCards())
+            })
         }
+        //pokerGame.resetCard()
+        //}
     }
-
-
+    
     func backgroundImageChange(imageName : String) -> UIImage {
         guard let backgroundimage = UIImage(named: imageName) else {
             return UIImage()

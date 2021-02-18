@@ -27,10 +27,10 @@ class Players {
         dealer.resetPlayerCard(players: players)
     }
     
-    func showPlayerCard() -> String {
-        var showcard = ""
-        players.enumerated().forEach { player in
-            showcard += "\(printResult(player: player.element))\n"
+    func showPlayerCard() -> [PlayerCard] {
+        var showcard : [PlayerCard] = []
+        players.forEach { player in
+            showcard.append(player.showCards())
         }
         return showcard
     }
