@@ -14,6 +14,10 @@ class ViewController: UIViewController {
         
         setBackground()
         placeCards()
+        
+        //test
+        let test = testCardDeck()
+        test.process()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
