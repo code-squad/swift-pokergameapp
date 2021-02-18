@@ -67,8 +67,8 @@ class ViewController: UIViewController {
             
         }
         
-        let cardgame = Dealer()
-        cardgame.startGame()
+        let gameOperator = GameOperator()
+        gameOperator.startGame()
         
     }
     
