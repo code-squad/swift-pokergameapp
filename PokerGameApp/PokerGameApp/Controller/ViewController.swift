@@ -17,8 +17,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         setBackground()
         setStackView()
-        testSevenCardStud()
-        testFiveCardStud()
+        testPoker()
     }
    
     func setBackground() {
@@ -78,30 +77,11 @@ class ViewController: UIViewController {
         printDeckRemoveOne()
         printDeckRemoveOne()
     }
-    func testSevenCardStud() {
-        var participantNum = 1
-        let sevenCardStud = SevenCardStud()
-        sevenCardStud.participate()
-        sevenCardStud.startGame()
-        print("SevenCardStud")
-        sevenCardStud.players.forEach { (player) in
-            print("참가자#\(participantNum) \(player.playerCards)")
-            participantNum += 1
-        }
-        print("딜러 \(sevenCardStud.dealer.dealerCards)")
+    func testPoker() {
+        let pokergame = PokerGame(players: Players(participant: .four), dealer: Dealer(gameType: .seven))
+        pokergame.startGame()
+        pokergame.printParticipantCards()
     }
-    
-    func testFiveCardStud() {
-        var participantNum = 1
-        let fiveCardStud = FiveCardStud()
-        fiveCardStud.participate()
-        fiveCardStud.startGame()
-        print("FiveCardStud")
-        fiveCardStud.players.forEach { (player) in
-            print("참가자#\(participantNum) \(player.playerCards)")
-            participantNum += 1
-        }
-        print("딜러 \(fiveCardStud.dealer.dealerCards)")
-    }
+
 }
 

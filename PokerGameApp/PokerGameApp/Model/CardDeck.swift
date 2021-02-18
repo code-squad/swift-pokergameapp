@@ -22,6 +22,9 @@ struct CardDeck {
             }
         }
     }
+    func printcards() {
+        print(cards)
+    }
     
     func countOfCards() -> Int {
         return cards.count
@@ -32,12 +35,20 @@ struct CardDeck {
     }
     
     mutating func removeOne() -> Card {
-        let drawnCard = cards.remove(at: 0)
+        let drawnCard = cards.removeFirst()
         return drawnCard
     }
     
     mutating func reset() {
         cards.removeAll()
         filltheCardDeck()
+    }
+    
+    mutating func give(gameType: GameType) -> [Card] {
+        var givingCards = [Card]()
+        for _ in 0...gameType.rawValue {
+            givingCards.append(self.removeOne())
+        }
+        return givingCards
     }
 }

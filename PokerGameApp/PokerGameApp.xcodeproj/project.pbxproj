@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B366DE6B25DE31EA00F1F40B /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = B366DE6A25DE31EA00F1F40B /* Player.swift */; };
+		B366DE6E25DE31F100F1F40B /* Dealer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B366DE6D25DE31F100F1F40B /* Dealer.swift */; };
+		B366DE7125DE384400F1F40B /* Players.swift in Sources */ = {isa = PBXBuildFile; fileRef = B366DE7025DE384400F1F40B /* Players.swift */; };
 		B3691E0F25DCB5C900C028EC /* PokerGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3691E0E25DCB5C900C028EC /* PokerGame.swift */; };
 		B3D75F6325DA389C00218D88 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D75F6225DA389C00218D88 /* AppDelegate.swift */; };
 		B3D75F6525DA389C00218D88 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D75F6425DA389C00218D88 /* SceneDelegate.swift */; };
@@ -19,6 +22,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B366DE6A25DE31EA00F1F40B /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		B366DE6D25DE31F100F1F40B /* Dealer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dealer.swift; sourceTree = "<group>"; };
+		B366DE7025DE384400F1F40B /* Players.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Players.swift; sourceTree = "<group>"; };
 		B3691E0E25DCB5C900C028EC /* PokerGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokerGame.swift; sourceTree = "<group>"; };
 		B3D75F5F25DA389C00218D88 /* PokerGameApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PokerGameApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3D75F6225DA389C00218D88 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -47,6 +53,9 @@
 			isa = PBXGroup;
 			children = (
 				B3691E0E25DCB5C900C028EC /* PokerGame.swift */,
+				B366DE6A25DE31EA00F1F40B /* Player.swift */,
+				B366DE7025DE384400F1F40B /* Players.swift */,
+				B366DE6D25DE31F100F1F40B /* Dealer.swift */,
 				B3E1516225DB5652008CF74D /* Card.swift */,
 				B3E1516725DB9590008CF74D /* CardDeck.swift */,
 			);
@@ -162,10 +171,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B366DE7125DE384400F1F40B /* Players.swift in Sources */,
 				B3D75F6725DA389C00218D88 /* ViewController.swift in Sources */,
 				B3E1516825DB9590008CF74D /* CardDeck.swift in Sources */,
 				B3D75F6325DA389C00218D88 /* AppDelegate.swift in Sources */,
 				B3691E0F25DCB5C900C028EC /* PokerGame.swift in Sources */,
+				B366DE6E25DE31F100F1F40B /* Dealer.swift in Sources */,
+				B366DE6B25DE31EA00F1F40B /* Player.swift in Sources */,
 				B3D75F6525DA389C00218D88 /* SceneDelegate.swift in Sources */,
 				B3E1516325DB5652008CF74D /* Card.swift in Sources */,
 			);

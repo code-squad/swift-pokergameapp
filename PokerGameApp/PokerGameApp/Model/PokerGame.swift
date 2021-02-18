@@ -7,33 +7,34 @@
 
 import Foundation
 
+enum GameType: Int {
+    case seven = 7
+    case five = 5
+}
+
+enum Participant: Int {
+    case one = 1
+    case two = 2
+    case three = 3
+    case four = 4
+}
+
 class PokerGame {
-    private var cardDeck: CardDeck
-    private var players: [Player]
-    private var dealer: Dealer = Dealer()
+    private var players: Players
+    private var dealer: Dealer
     
-    init(cardDeck: CardDeck = CardDeck(cards: []), players: [Player] = []) {
-        self.cardDeck = cardDeck
+    init(players: Players, dealer: Dealer) {
         self.players = players
+        self.dealer = dealer
     }
     
     func startGame() {
-        cardDeck.filltheCardDeck()
-        cardDeck.shuffle()
+        dealer.readyToStart()
+        dealer.deal(to: players)
     }
     
-    class Player {
-        var playerCards: [Card] = []
-    }
-    class Dealer {
-        var dealerCards: [Card] = []
-        
-    }
-    
-    class SevenCardStud {
-        
-    }
-    class FiveCardStud {
-        
+    func printParticipantCards() {
+        players.printPlayerCards()
+        dealer.printDealerCards()
     }
 }
