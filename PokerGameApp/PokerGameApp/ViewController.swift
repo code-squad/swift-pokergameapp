@@ -12,10 +12,7 @@ class ViewController: UIViewController {
     let heartQ = Card(suit: .hearts, rank: .twelve)
     let spade7 = Card(suit: .spades, rank: .seven)
     var deckForTest = CardDeck()
-    let alice = Dealer()
-    let bob = Player()
-    let carol = Player()
-    let david = Player()
+    var deckForGame = CardDeck()
     
     let pokerCardImage = UIImage(named: "card-back")
     let cardStackView = UIStackView()
@@ -30,8 +27,13 @@ class ViewController: UIViewController {
             self.view.backgroundColor = UIColor(patternImage: backgroundImage)
         }
         
+        let alice = Dealer(cardDeck: deckForGame)
+        let bob = Player()
+        let carol = Player()
+        let david = Player()
+        let members = Players(players: [bob, carol, david])
         do {
-            let myGame = try PokerGame(dealer: alice, players: [bob, carol, david], gameType: .fiveCardStud)
+            let myGame = try PokerGame(dealer: alice, players: members, gameType: .fiveCardStud)
             myGame.startGame()
             print(myGame)
         } catch PokerGame.PokerGameError.tooFewPlayers {
