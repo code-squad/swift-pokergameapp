@@ -11,7 +11,7 @@ class ViewController: UIViewController {
     
     let heartQ = Card(suit: .hearts, rank: .twelve)
     let spade7 = Card(suit: .spades, rank: .seven)
-    var cardDeck = CardDeck()
+    var deckForTest = CardDeck()
     let alice = Dealer()
     let bob = Player()
     let carol = Player()
@@ -72,12 +72,12 @@ class ViewController: UIViewController {
     }
     
     func testScenarios() {
-        print(Test(testCase: .create, testDeck: cardDeck, expectedValue: 52))
-        cardDeck.shuffle()
-        print(Test(testCase: .shuffle, testDeck: cardDeck, expectedValue: 52))
-        let _ = cardDeck.removeOne()
-        print(Test(testCase: .removeOne, testDeck: cardDeck, expectedValue: 51))
-        cardDeck.reset()
-        print(Test(testCase: .reset, testDeck: cardDeck, expectedValue: 52))
+        print(Test(testCase: .create, testDeck: deckForTest, expectedValue: 52))
+        deckForTest.shuffle()
+        print(Test(testCase: .shuffle, testDeck: deckForTest, expectedValue: 52))
+        let _ = deckForTest.removeOne()
+        print(Test(testCase: .removeOne, testDeck: deckForTest, expectedValue: 51))
+        deckForTest.reset()
+        print(Test(testCase: .reset, testDeck: deckForTest, expectedValue: 52))
     }
 }
