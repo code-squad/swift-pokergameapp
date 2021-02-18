@@ -11,7 +11,9 @@ import UIKit
 class TroubleShooter {
     enum errors : Error {
         case imageOptionalBindingError
+        case noMoreCardError
     }
+    
     func personalError() -> UIAlertController {
         
         let alert = UIAlertController(title: "치명적 오류 발생", message: nil, preferredStyle: .actionSheet)

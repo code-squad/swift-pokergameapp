@@ -29,27 +29,7 @@ class ViewController: UIViewController {
             addCard2StackView(cardCount: 7, stackView: cardStackView)
             setStackViewConstraints(stackView: cardStackView)
         }
-        var testDeck = Deck.init()
-        print(">","덱 초기화")
-        print("총 \(testDeck.count())장의 카드가 있습니다.")
-        print("Deck 내역 : ",testDeck)
-        
-        print(">","덱 섞기")
-        testDeck.shuffle()
-        print("총 \(testDeck.count())장의 카드를 섞었습니다.")
-        print("Deck 내역 : ",testDeck)
-        
-        print(">","카드 하나 뽑기")
-        print(testDeck.popOneCard())
-        print("Deck 내역 : ",testDeck)
-        
-        print(">","카드 하나 뽑기")
-        print(testDeck.popOneCard())
-        print("Deck 내역 : ",testDeck)
-        
-        print(">","덱 리셋")
-        testDeck.reset()
-        print("Deck 내역 : ",testDeck)
+        testDeckMethods()
     }
     
     private func testDeckMethods() {
@@ -62,14 +42,16 @@ class ViewController: UIViewController {
         testDeck.shuffle()
         print("총 \(testDeck.count())장의 카드를 섞었습니다.")
         print("Deck 내역 : ",testDeck)
-        
-        print(">","카드 하나 뽑기")
-        print(testDeck.popOneCard())
-        print("Deck 내역 : ",testDeck)
-        
-        print(">","카드 하나 뽑기")
-        print(testDeck.popOneCard())
-        print("Deck 내역 : ",testDeck)
+        for _ in 0...52 {
+            do {
+            print(">","카드 하나 뽑기")
+            print(try testDeck.popOneCard())
+            print("Deck 내역 : ",testDeck)
+            }
+            catch {
+                print(error)
+            }
+        }
         
         print(">","덱 리셋")
         testDeck.reset()
