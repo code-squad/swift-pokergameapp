@@ -46,6 +46,11 @@ class PokerGame: CustomStringConvertible {
         }
     }
     
+    enum PokerGameError: Error {
+        case tooFewPlayers
+        case tooManyPlayers(playersNeededToLeave: Int)
+    }
+    
     private let dealer: Dealer
     private let players: Players
     private let gameType: StudPoker
@@ -91,9 +96,4 @@ class PokerGame: CustomStringConvertible {
     private func getDealerResult() -> [Card] {
         return dealer.showdown()
     }
-}
-
-enum PokerGameError: Error {
-    case tooFewPlayers
-    case tooManyPlayers(playersNeededToLeave: Int)
 }
