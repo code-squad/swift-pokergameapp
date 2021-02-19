@@ -28,14 +28,14 @@ class ViewController: UIViewController {
     }()
     
     private let gameTypeSegmentControl : UISegmentedControl = {
-        let segment = UISegmentedControl(items: ["7card","5card"])
+        let segment = UISegmentedControl(items: GameType.gameTypeItem)
         segment.selectedSegmentIndex = 0
         segment.addTarget(self, action: #selector(actionGameTypeSegment(_:)) , for: .valueChanged)
         return segment
     }()
     
     private let particpatinSegmentControl : UISegmentedControl = {
-        let segment = UISegmentedControl(items: ["2명","3명","4명"])
+        let segment = UISegmentedControl(items: Participant.participantItem)
         segment.selectedSegmentIndex = 0
         segment.addTarget(self, action: #selector(actionparticpatinSegment(_:)), for: .valueChanged)
         return segment
