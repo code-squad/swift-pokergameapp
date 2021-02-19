@@ -24,7 +24,7 @@ class CardViewController: UIViewController {
     let segmentControlForCards = UISegmentedControl(items: ["5 Cards", "7 Cards"])
     let segmentControlForPlayers = UISegmentedControl(items: ["2명", "3명", "4명"])
     
-    let verticalStackView = UIStackView()
+    let mainStackView = UIStackView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +32,7 @@ class CardViewController: UIViewController {
         
         pockerGame()
         
-        configureVerticalStackView()
+        configureMainStackView()
         configureSegmentControl()
     }
     
@@ -54,7 +54,7 @@ class CardViewController: UIViewController {
             let cardImageView = getCardImageView(card: card)
             horizontalStackView.addArrangedSubview(cardImageView)
         }
-        verticalStackView.addArrangedSubview(horizontalStackView)
+        mainStackView.addArrangedSubview(horizontalStackView)
     }
     
     func getCardImageView(card : Card) -> UIImageView{
@@ -62,32 +62,30 @@ class CardViewController: UIViewController {
         let cardname = OutputView.cardToString(card: card)
         imageView.image = UIImage(named: cardname)
         imageView.contentMode = .scaleAspectFit
-        
         return imageView
     }
     
     func pockerGame(){
-        let pokergame = PokerGame(participants: .three, cardSqud: .seven)
+        let pokergame = PokerGame(participants: .four, cardSqud: .seven)
         pokergame.start()
         drawCards(players: pokergame.players, dealer : pokergame.dealer)
     }
 }
 
 extension CardViewController {
-    // MARK: Configuration
     
-    func configureVerticalStackView(){
-        view.addSubview(verticalStackView)
-        verticalStackView.axis = .vertical
-        verticalStackView.distribution = .fillEqually
-        verticalStackView.spacing = 20
+    // MARK: Configuration
+    func configureMainStackView(){
+        view.addSubview(mainStackView)
+        mainStackView.axis = .vertical
+        mainStackView.distribution = .fillEqually
         
-        setVerticalStackViewConstraints()
+        setMainStackViewConstraints()
     }
     
     func configureHorizontalStackView(with stackView : UIStackView){
         stackView.axis = .horizontal
-        stackView.spacing = 5
+        stackView.spacing = -5
         stackView.distribution = .fillEqually
     }
     
@@ -102,7 +100,6 @@ extension CardViewController {
 
 extension CardViewController {
     // MARK: Segment Control Constraints
-    
     // Cards segmentControl : 가장 위에 그려짐
     func setSegmentControlForCardsConstraints(){
         segmentControlForCards.translatesAutoresizingMaskIntoConstraints = false
@@ -120,17 +117,16 @@ extension CardViewController {
     
     // MARK: StackView Constraints
     // StackView : Player Segment Control 밑에 그려짐
-    func setVerticalStackViewConstraints(){
-        verticalStackView.translatesAutoresizingMaskIntoConstraints = false
-        verticalStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 150).isActive = true // 수정할 것
-        verticalStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 30).isActive = true
-        verticalStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -30).isActive = true
-        verticalStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -30).isActive = true
+    func setMainStackViewConstraints(){
+        mainStackView.translatesAutoresizingMaskIntoConstraints = false
+        mainStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 150).isActive = true // 수정할 것
+        mainStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 30).isActive = true
+        mainStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -30).isActive = true
+        mainStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -30).isActive = true
     }
-    
     func setHorizontalStackViewConstraints(){
-        verticalStackView.translatesAutoresizingMaskIntoConstraints = false
-        verticalStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 30).isActive = true
-        verticalStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -30).isActive = true
+        mainStackView.translatesAutoresizingMaskIntoConstraints = false
+        mainStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 30).isActive = true
+        mainStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -30).isActive = true
     }
 }
