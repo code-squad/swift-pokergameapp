@@ -19,6 +19,18 @@ struct InputView {
         case none = 0
     }
     
+    static func cardToString(card : Card) -> String {
+        var cardname : String = ""
+        
+        switch card.suit {
+        case .clubs : cardname += "c"
+        case .dimonds : cardname += "d"
+        case .hearts : cardname += "h"
+        case .spades : cardname += "s"
+        }
+        cardname += card.rank.description
+        return cardname
+    }
     static func segmentToCardSqud(_ segmentControl : UISegmentedControl) -> InputView.CardStud {
         let value = segmentControl.selectedSegmentIndex
         switch value {

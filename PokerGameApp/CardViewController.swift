@@ -65,7 +65,7 @@ class CardViewController: UIViewController {
     
     func getCardImageView(card : Card) -> UIImageView{
         let imageView = UIImageView()
-        let cardname = OutputView.cardToString(card: card)
+        let cardname = InputView.cardToString(card: card)
         imageView.image = UIImage(named: cardname)
         imageView.contentMode = .scaleAspectFit
         return imageView
