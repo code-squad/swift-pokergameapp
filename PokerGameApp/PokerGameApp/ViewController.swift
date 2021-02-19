@@ -16,13 +16,24 @@ class ViewController: UIViewController {
     var gameRule: PokerGame.Rule = .sevenCardStud
     var numberOfPlayers: PokerGame.NumberOfPlayers = .two
     
-    let cardImage = UIImage(named:  "s7")
+    var allPlayersHandCardStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.distribution = .fillEqually
+        stackView.alignment = .fill
+        stackView.spacing = 10
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+       return stackView
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupBackgroundImage()
-        setupCard()
+        view.addSubview(allPlayersHandCardStackView)
+        allPlayersHandCardStackView.topAnchor.constraint(equalTo: numberOfPlayersSegmentedControl.bottomAnchor, constant: 20).isActive = true
+        allPlayersHandCardStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 8).isActive = true
+        allPlayersHandCardStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -8).isActive = true
     }
 
     func setupBackgroundImage() {
@@ -32,7 +43,7 @@ class ViewController: UIViewController {
         self.view.backgroundColor = .init(patternImage: bgImage)
     }
     
-    func setupCard() {
+    func makePlayerHandCard(with player: Player) -> UIStackView {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.distribution = .fillEqually
@@ -40,21 +51,23 @@ class ViewController: UIViewController {
         stackView.spacing = -14
         stackView.translatesAutoresizingMaskIntoConstraints = false
 
-        for _ in 0..<gameRule.rawValue {
-            let cardImageView = makeCard()
-            cardImageView.translatesAutoresizingMaskIntoConstraints = false
-            cardImageView.widthAnchor.constraint(equalTo: cardImageView.heightAnchor, multiplier: 1.0/1.27).isActive = true
+        (player.handCard.cards).forEach { card in
+            let cardImageView = makeCard(card: card)
             stackView.addArrangedSubview(cardImageView)
         }
-        view.addSubview(stackView)
-        
-        stackView.topAnchor.constraint(equalTo: numberOfPlayersSegmentedControl.bottomAnchor, constant: 20).isActive = true
-        stackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 8).isActive = true
-        stackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -8).isActive = true
+        return stackView
     }
     
-    func makeCard() -> UIImageView {
-        return UIImageView(image: cardImage)
+    func makeCard(card: Card) -> UIImageView {
+        // TODO: 카드 이미지뷰는 매번 새로 만들지 않도록 개선
+        let cardShape = card.shape.getShortCut()
+        let cardNumber = card.number.getShortCut()
+        let cardImage = UIImage(named: "\(cardShape)\(cardNumber)")
+        let cardImageView = UIImageView(image: cardImage)
+        
+        cardImageView.translatesAutoresizingMaskIntoConstraints = false
+        cardImageView.widthAnchor.constraint(equalTo: cardImageView.heightAnchor, multiplier: 1.0/1.27).isActive = true
+        return cardImageView
     }
     
     func makePlayers() -> Players {
@@ -63,6 +76,17 @@ class ViewController: UIViewController {
             players.append(Player())
         }
         return Players(players: players)
+    }
+    
+    func makeAllPlayersHandCard(players: Players) {
+        allPlayersHandCardStackView.subviews.forEach { subview in
+            subview.removeFromSuperview()
+        }
+
+        players.players.forEach { player in
+            let playerCardStackView = makePlayerHandCard(with: player)
+            allPlayersHandCardStackView.addArrangedSubview(playerCardStackView)
+        }
     }
     
     // MARK: - IBAction
@@ -92,6 +116,7 @@ class ViewController: UIViewController {
         let players = makePlayers()
         let game = PokerGame(rule: gameRule, players: players)
         game.play()
+        makeAllPlayersHandCard(players: players)
         print(players.description)
     }
 }

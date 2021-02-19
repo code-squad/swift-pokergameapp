@@ -17,6 +17,19 @@ class Card: CustomStringConvertible {
         var description: String {
             return "\(self.rawValue)"
         }
+        
+        func getShortCut() -> String {
+            switch self {
+            case .clover:
+                return "c"
+            case .heart:
+                return "h"
+            case .diamond:
+                return "d"
+            case .spade:
+                return "s"
+            }
+        }
     }
     
     enum Number: Int, CaseIterable, CustomStringConvertible {
@@ -36,7 +49,15 @@ class Card: CustomStringConvertible {
             default:
                 return "\(self.rawValue)"
             }
-            
+        }
+        
+        func getShortCut() -> String {
+            switch self {
+            case .A, .J, .Q, .K:
+                return description
+            default:
+                return String(rawValue)
+            }
         }
     }
     
