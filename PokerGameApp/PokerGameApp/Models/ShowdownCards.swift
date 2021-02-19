@@ -5,7 +5,7 @@
 //  Created by Song on 2021/02/19.
 //
 
-import Foundation
+import UIKit
 
 struct ShowdownCards {
     
