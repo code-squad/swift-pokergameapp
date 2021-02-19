@@ -37,6 +37,10 @@ struct Deck  {
         return returnCard
     }
     
+    mutating func removeDeck() {
+        self.cards.removeAll()
+    }
+    
     mutating func newDeck() {
         self.cards.removeAll()
         self.cards = { () -> [PlayingCard] in
@@ -61,7 +65,7 @@ struct Deck  {
         print("")
     }
     
-    func allCards() -> String {
+    func allCardsAsString() -> String {
         var strArray = [String]()
         for card in cards {
             strArray.append(card.description)
@@ -70,6 +74,14 @@ struct Deck  {
             return $0 + $1
         })
         return returnString
+    }
+    
+    func allCards() -> [String] {
+        var strArray = [String]()
+        for card in cards {
+            strArray.append(card.description)
+        }
+        return strArray
     }
     
     mutating func addingNewCard(with newCard : PlayingCard) {
