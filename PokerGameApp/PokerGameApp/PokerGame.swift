@@ -26,40 +26,25 @@ enum PlayerNumber: Int {
 
 class PokerGame {
     private var dealer = Dealer()
-    private var players = [Player]()
+    private var players = Players()
     private var gameType: GameType
     private var isEndGame: Bool
     
     init(playerNumber: PlayerNumber, gameType: GameType) {
         self.gameType = gameType
         self.isEndGame = false
-        
-        for _ in 0..<playerNumber.value {
-            players.append(Player())
-        }
+        players.takeSeat(with: playerNumber)
     }
-    
-    private func printAllPeopleCard() {
-        for (number, player) in players.enumerated() {
-            print("참가자#\(number+1) \(player.showCards())")
-        }
-        print("딜러 ",dealer.showCards())
-    }
-    
-    private func dropAllpeopleCard() {
-        players.forEach { player in
-            player.dropMyCards()
-        }
-        dealer.dropMyCards()
-    }
-    
+
     public func startGame() {
         while !isEndGame {
             dealer.distributeCard(players, numberOfCards: gameType)
             isEndGame = dealer.judgeEndGame(numberOfPlayers: players, numberOfCards: gameType)
             
-            printAllPeopleCard()
-            dropAllpeopleCard()
+            players.printAllCard()
+            dealer.showCards()
+            players.dropAllCard()
+            dealer.dropMyCards()
         }
         print("게임이 종료되었습니다.")
     }

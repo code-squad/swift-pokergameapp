@@ -22,3 +22,32 @@ class Player: Playable {
         cards.removeAll()
     }
 }
+
+class Players {
+    private var players = [Player]()
+    var count: Int { players.count }
+    
+    public func takeSeat(with playerNumber: PlayerNumber) {
+        for _ in 0..<playerNumber.value {
+            players.append(Player())
+        }
+    }
+    
+    public func reciveCard(_ card: Card) {
+        players.forEach { player in
+            player.reciveCard(card)
+        }
+    }
+    
+    public func printAllCard() {
+        for (number, player) in players.enumerated() {
+            print("참가자#\(number+1) \(player.showCards())")
+        }
+    }
+    
+    public func dropAllCard() {
+        players.forEach { player in
+            player.dropMyCards()
+        }
+    }
+}
