@@ -9,6 +9,6 @@ import Foundation
 
 struct ShowdownCards {
     
-    let owner: Player
-    let setOfCards: [Card]
+    private let owner: Player
+    private let setOfCards: [Card]
 }
