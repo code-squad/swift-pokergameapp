@@ -9,10 +9,6 @@ import UIKit
 
 class CardViewController: UIViewController {
     
-    static let cardCount : Int = 7 // 카드의 개수
-    static let aspectRatio : CGFloat = 1.27 // 카드의 가로 세로 비율
-    static let padding : CGFloat = (CGFloat(cardCount)-1) // 카드의 간격의 갯수 (7개의 카드이므로 간격은 6번존재)
-    
     let cardBackImage : UIImage = UIImage(named: "cardback.png") ?? UIImage()
     let backgroundImagePattern : UIImage = UIImage(named: "bg_pattern") ?? UIImage()
     
@@ -32,6 +28,22 @@ class CardViewController: UIViewController {
     func setBackgroundColor(){
         self.view.backgroundColor = UIColor(patternImage: backgroundImagePattern)
     }
+    
+    @objc func pockerGame(){
+        let cardSqud = segmentToCardSqud(segmentControlForCards)
+        let participant = segmentToPlayersCount(segmentControlForPlayers)
+        let pokergame = PokerGame(participants: participant, cardSqud: cardSqud)
+        pokergame.start()
+        drawCards(players: pokergame.players, dealer : pokergame.dealer)
+    }
+    
+    func resetView(){
+        mainStackView.subviews.forEach{$0.removeFromSuperview()}
+    }
+}
+
+// MARK: drawing cards
+extension CardViewController {
     
     func drawCards(players : Players,  dealer : Dealer){
         resetView()
@@ -65,22 +77,50 @@ class CardViewController: UIViewController {
     
     func getCardImageView(card : Card) -> UIImageView{
         let imageView = UIImageView()
-        let cardname = InputView.cardToString(card: card)
+        let cardname = cardToString(card: card)
         imageView.image = UIImage(named: cardname)
         imageView.contentMode = .scaleAspectFit
         return imageView
     }
+}
+
+// MARK: methods to change value type
+extension CardViewController {
     
-    @objc func pockerGame(){
-        let cardSqud = InputView.segmentToCardSqud(segmentControlForCards)
-        let participant = InputView.segmentToPlayersCount(segmentControlForPlayers)
-        let pokergame = PokerGame(participants: participant, cardSqud: cardSqud)
-        pokergame.start()
-        drawCards(players: pokergame.players, dealer : pokergame.dealer)
+    func cardToString(card : Card) -> String {
+        var cardname : String = ""
+        
+        switch card.suit {
+        case .clubs : cardname += "c"
+        case .dimonds : cardname += "d"
+        case .hearts : cardname += "h"
+        case .spades : cardname += "s"
+        }
+        cardname += card.rank.description
+        return cardname
     }
-    func resetView(){
-        mainStackView.subviews.forEach{$0.removeFromSuperview()}
+    func segmentToCardSqud(_ segmentControl : UISegmentedControl) -> PlayOption.CardStud {
+        let value = segmentControl.selectedSegmentIndex
+        switch value {
+        case 0 : return PlayOption.CardStud.five
+        case 1 : return PlayOption.CardStud.seven
+        default:
+            return PlayOption.CardStud.none
+        }
     }
+    func segmentToPlayersCount(_ segmentControl : UISegmentedControl) -> PlayOption.PlayersCount {
+        let value = segmentControl.selectedSegmentIndex
+        switch value {
+        case 0 : return PlayOption.PlayersCount.two
+        case 1 : return PlayOption.PlayersCount.three
+        case 2 : return PlayOption.PlayersCount.four
+        default : return PlayOption.PlayersCount.none
+        }
+    }
+}
+
+// MARK: Motion Event Handling
+extension CardViewController {
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         if motion == .motionShake {
             pockerGame()
@@ -88,9 +128,9 @@ class CardViewController: UIViewController {
     }
 }
 
+// MARK: Configuration
 extension CardViewController {
     
-    // MARK: Configuration
     func configureMainStackView(){
         view.addSubview(mainStackView)
         mainStackView.axis = .vertical
@@ -116,6 +156,7 @@ extension CardViewController {
     }
 }
 
+// MARK: Constraints
 extension CardViewController {
     // MARK: Segment Control Constraints
     // Cards segmentControl : 가장 위에 그려짐
