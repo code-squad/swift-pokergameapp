@@ -46,6 +46,6 @@ class Players {
     func resetPlayer() {
         dealer.resetPlayerCard(players: players)
         players.removeAll()
-        dealer.reDrawCardDeck()
+        dealer.redrawCardDeck()
     }
 }
