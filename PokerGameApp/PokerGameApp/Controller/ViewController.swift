@@ -11,13 +11,13 @@ class ViewController: UIViewController {
     var cardDeck = CardDeck()
     var game = PokerGame(withPlayersOf: .four, stud: .sevenCardStud)
     
-    let dealerCardStackView: UIStackView = {
+    let dashboardStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.spacing = 10
+        stackView.spacing = 0
         stackView.distribution = .fillEqually
         stackView.alignment = .center
-        stackView.axis = .horizontal
+        stackView.axis = .vertical
         return stackView
     }()
     
@@ -25,33 +25,51 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         let backgroundPatternImage: UIImage = UIImage(named: "bg_pattern") ?? UIImage()
         let cardBacksideImage: UIImage = UIImage(named: "card-back") ?? UIImage()
-        
         self.view.backgroundColor = UIColor(patternImage: backgroundPatternImage)
-        self.view.addSubview(dealerCardStackView)
-        configureCardStackView(cardStackView: dealerCardStackView)
+        
+        self.view.addSubview(dashboardStackView)
+        configureDashboardStackView()
         guard let gameResult = game.play() else { return }
-        print(gameResult)
-        addSubviewToCardStackView(cards: gameResult[0])
+        addSubviewToDashboardStackView(with: gameResult, to: dashboardStackView)
+    }
+    
+    func configureDashboardStackView() {
+        dashboardStackView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        dashboardStackView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
+        dashboardStackView.widthAnchor.constraint(lessThanOrEqualTo: self.view.widthAnchor, multiplier: 0.9).isActive = true
+    }
+    
+    func addSubviewToDashboardStackView(with gameResult: Array<Array<Card>>, to verticalStackView: UIStackView) {
+        for playerResult in gameResult {
+            let newStackView = makeCardStackView()
+            verticalStackView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.09 * CGFloat(gameResult.count)).isActive = true
+            addSubviewToCardStackView(cards: playerResult, to: newStackView)
+            verticalStackView.addArrangedSubview(newStackView)
+        }
+    }
+    
+    func makeCardStackView() -> UIStackView {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.spacing = -20
+        stackView.distribution = .fillEqually
+        stackView.alignment = .center
+        stackView.axis = .horizontal
+        return stackView
     }
     
     func makeCardImageView(with card: Card) -> UIImageView {
         // need to check case where the image is nil
         let imageView = UIImageView(image: card.exportCardImage())
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFit
         return imageView
     }
     
-    func configureCardStackView(cardStackView: UIStackView) {
-        cardStackView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: self.view.frame.height/10).isActive = true
-        cardStackView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        cardStackView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.07).isActive = true
-    }
-    
-    func addSubviewToCardStackView(cards: Array<Card>) {
+    func addSubviewToCardStackView(cards: Array<Card>, to stackView: UIStackView) {
         for card in cards {
             let newCardImageView = makeCardImageView(with: card)
-            dealerCardStackView.addArrangedSubview(newCardImageView)
-            newCardImageView.widthAnchor.constraint(equalTo: dealerCardStackView.heightAnchor, multiplier: 1/1.27).isActive = true
+            stackView.addArrangedSubview(newCardImageView)
         }
     }
     
