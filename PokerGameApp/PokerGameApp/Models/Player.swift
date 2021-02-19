@@ -17,6 +17,10 @@ class Player {
         self.cards = []
     }
     
+    func tellName() -> String {
+        return nickname
+    }
+    
     func dealt(_ card: Card) {
         self.cards.append(card)
     }
