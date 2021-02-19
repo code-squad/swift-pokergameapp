@@ -9,17 +9,10 @@ import Foundation
 
 struct PlayOption {
     enum PlayersCount : Int, CaseIterable, CustomStringConvertible {
-        case none, one, two, three, four
+        case none = 0, one, two, three, four
         
         var description: String {
-            switch self {
-            case .one: return "1명"
-            case .two: return "2명"
-            case .three: return "3명"
-            case .four : return "4명"
-            default:
-                return "0명"
-            }
+            return "\(self.rawValue)명"
         }
     }
 
@@ -29,12 +22,7 @@ struct PlayOption {
         case seven = 7
         
         var description: String {
-            switch self {
-            case .five: return "5 Cards"
-            case .seven: return "7 Cards"
-            default:
-                return "0 Cards"
-            }
+            return "\(self.rawValue) Cards"
         }
     }
 }
