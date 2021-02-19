@@ -52,6 +52,20 @@ class ViewController: UIViewController {
         setConstraints(of: playerStackView, padding: 0)
     }
     
+    @objc func gameTypeChanged(_ sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+        case 0:
+            currentGameType = .sevenCardStud
+        case 1:
+            currentGameType = .fiveCardStud
+        default:
+            break
+        }
+        let newGame = updateGameInfo(with: currentGameType)
+        clearPlayerStackView()
+        updatePlayerStackView(for: newGame)
+    }
+    
     func clearPlayerStackView() {
         playerStackView.subviews.forEach { $0.removeFromSuperview() }
     }
