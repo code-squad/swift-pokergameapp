@@ -45,24 +45,36 @@ class CardViewController: UIViewController {
             addCardsStackView(from: player)
         }
     }
-    
     func addCardsStackView(from player : Player){
         let horizontalStackView = UIStackView()
         configureHorizontalStackView(with: horizontalStackView)
         
-        for _ in 0..<player.cards.count {
-            let cardImageView = getCardImageView()
+        player.cards.cards.forEach{ card in
+            let cardImageView = getCardImageView(card: card)
             horizontalStackView.addArrangedSubview(cardImageView)
         }
         verticalStackView.addArrangedSubview(horizontalStackView)
     }
     
-    func getCardImageView() -> UIImageView{
+    func getCardImageView(card : Card) -> UIImageView{
         let imageView = UIImageView()
-        imageView.image = cardBackImage
+        let cardname = cardToString(card: card)
+        imageView.image = UIImage(named: cardname)
         imageView.contentMode = .scaleAspectFit
         
         return imageView
+    }
+    func cardToString(card : Card) -> String {
+        var cardname : String = ""
+        
+        switch card.suit {
+        case .clubs : cardname += "c"
+        case .dimonds : cardname += "d"
+        case .hearts : cardname += "h"
+        case .spades : cardname += "s"
+        }
+        cardname += card.rank.description
+        return cardname
     }
     
     func pockerGame(){
