@@ -76,3 +76,23 @@
 
 #### 완료날짜 2021년 02월 17일(수) 23:58
 
+---
+---
+
+# 포커 딜러와 게임 테스트
+
+#### 요구사항
+- Dealer, Player, Players, PokerGame 클래스 생성
+- 객체 지향 프로그램을 연습한다.
+
+#### 해결방법
+- Dealer, Player, Players, PokerGame 클래스 생성
+  - Dealer, Player : 공통적인 메소드를 Playable 프로토콜을 사용하여 일반화 하였다. 상속은 안썻음 딜러와 플레이어는 상하관계아니니까..
+  - 객체의 각 속성에 private 접근지정을 해서 외부 변경으로부터 보호 했다. 
+     > Dealer랑 Player에 [Card] 공통 속성있길래 protocol에 넣었더니 private 못씀.. 그래서 뺌!
+  - 지정된 값만 사용하기 위해 enum 사용 enum에도 프로토콜, 연산프로퍼티를 사용해서 rawValue() 사용을 지양했다.
+
+![스크린샷 2021-02-19 오후 8 35 04](https://user-images.githubusercontent.com/73683735/108499767-27c7f500-72f2-11eb-8f30-fa3fc4d74001.png)
+
+#### 완료날짜 2021년 02월 19일(금) 18:00
+
