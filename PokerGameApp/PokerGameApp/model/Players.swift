@@ -21,4 +21,20 @@ class Players {
         return players[playerNumber]
     }
     
+    func allPlayers() -> [Player] {
+        return players
+    }
+    
+    func printPlayers() {
+        for (index,player) in players.enumerated() {
+            print("참가자#\(index) ", terminator : "")
+            player.printSelf()
+        }
+    }
+    
+    func resetSelf() {
+        for player in players {
+            player.resetSelf()
+        }
+    }
 }

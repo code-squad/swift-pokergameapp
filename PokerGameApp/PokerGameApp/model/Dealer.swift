@@ -16,17 +16,43 @@ class Dealer: Player {
         super.init()
     }
     
-    func sendCard(to player : Player) {
+    func shuffleDeck() {
+        deck.shuffle()
+    }
+    
+    func sendCard(to player : Player, howMany : Int) {
         do {
-            let drawCard = try deck.popOneCard()
-            player.receiveCard(with: drawCard)
+            for _ in 0..<howMany {
+                let drawCard = try deck.popOneCard()
+                player.receiveCard(with: drawCard)
+            }
         }
         catch{
             print(error)
         }
     }
     
+    func sendStartHand(to players : Players, howMany cardCount : Int) {
+        sendCard(to: self, howMany: cardCount)
+        for player in players.allPlayers() {
+            sendCard(to: player, howMany: cardCount)
+        }
+    }
+    
     func printDeck() {
         print(deck)
+    }
+    
+    override func printSelf() {
+        print("딜러 [\(showHandAsString())]")
+    }
+    
+    private func newDeck() {
+        self.deck.newDeck()
+    }
+    
+    override func resetSelf() {
+        super.resetSelf()
+        newDeck()
     }
 }

@@ -29,6 +29,10 @@ class ViewController: UIViewController {
             addCard2StackView(cardCount: 7, stackView: cardStackView)
             setStackViewConstraints(stackView: cardStackView)
         }
+        let newGame = PokerGame.init(howManyHands: .fiveCardStud, howManyPlayer: .three)
+        newGame.test1()
+        newGame.reset(with: .sevenCardStud, howMany: .three)
+        newGame.test2()
     }
     
     private func addCard2StackView( cardCount : Int ,stackView : UIStackView) {
