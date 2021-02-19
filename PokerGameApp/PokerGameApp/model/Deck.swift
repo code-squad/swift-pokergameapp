@@ -52,12 +52,27 @@ struct Deck  {
     
     func printCards() {
         if self.count() == 0 {
-            print("Deck is empty")
+            print("Deck or Hand is empty")
             return
         }
         for index in 0..<self.count() {
             print(cards[index], terminator: " ")
         }
         print("")
+    }
+    
+    func allCards() -> String {
+        var strArray = [String]()
+        for card in cards {
+            strArray.append(card.description)
+        }
+        let returnString = strArray.reduce("", {
+            return $0 + $1
+        })
+        return returnString
+    }
+    
+    mutating func addingNewCard(with newCard : PlayingCard) {
+        self.cards.append(newCard)
     }
 }
