@@ -28,12 +28,12 @@ class Player {
         return cards
     }
 }
-// 데이터가 잘 들어갔나 확인용
-extension Player: CustomStringConvertible {
-    var description: String {
-        var str = self.getCard().map({"\($0)"}).joined(separator: " ,")
-        str.insert(contentsOf: "\(self.name.rawValue) [", at: str.startIndex)
-        str.append("]")
-        return str
-    }
-}
+//// 데이터가 잘 들어갔나 확인용
+//extension Player: CustomStringConvertible {
+//    var description: String {
+//        var str = self.getCard().map({"\($0)"}).joined(separator: " ,")
+//        str.insert(contentsOf: "\(self.name.rawValue) [", at: str.startIndex)
+//        str.append("]")
+//        return str
+//    }
+//}
