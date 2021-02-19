@@ -28,17 +28,17 @@ class ViewController: UIViewController {
         
         let dealer = Dealer(cardDeck: deckForGame)
         let players = Players(numberOfPlayers: 2)
-        do {
-            let myGame = try PokerGame(dealer: dealer, players: players, gameType: .fiveCardStud)
-            myGame.startGame()
-            print(myGame)
-        } catch PokerGame.PokerGameError.tooFewPlayers {
-            print("게임 참가자가 부족해요🥺 1명 이상 참여해야 합니다.")
-        } catch PokerGame.PokerGameError.tooManyPlayers(let playersNeededToLeave) {
-            print("게임 참가자가 너무 많아요😵 \(playersNeededToLeave)명의 참가자는 다음 게임을 이용해주세요.")
-        } catch {
-            print("예상치 못한 에러가 발생했어요😢: \(error)")
-        }
+        //do {
+        let myGame = PokerGame(dealer: dealer, players: players, gameType: .fiveCardStud)
+        myGame.startGame()
+        print(myGame)
+        //} catch PokerGame.PokerGameError.tooFewPlayers {
+        //    print("게임 참가자가 부족해요🥺 1명 이상 참여해야 합니다.")
+        //} catch PokerGame.PokerGameError.tooManyPlayers(let playersNeededToLeave) {
+        //    print("게임 참가자가 너무 많아요😵 \(playersNeededToLeave)명의 참가자는 다음 게임을 이용해주세요.")
+        //} catch {
+        //    print("예상치 못한 에러가 발생했어요😢: \(error)")
+        //}
         
         setProperties(of: segmentedControlStackView, axis: .vertical)
         segmentedControlStackView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
