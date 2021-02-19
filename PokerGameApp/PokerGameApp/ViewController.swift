@@ -16,7 +16,9 @@ class ViewController: UIViewController {
         placeCards()
         
         //test
-
+        let rule = Int.random(in: 2..<3) * 2 + 1
+        let playerCount = Int.random(in: 1..<5)
+        let pokerGame = PokerGame(rule: rule, playerCount: playerCount)
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
