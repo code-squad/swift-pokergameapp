@@ -66,6 +66,22 @@ class ViewController: UIViewController {
         updatePlayerStackView(for: newGame)
     }
     
+    @objc func numberOfPlayersChanged(_ sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+        case 0:
+            currentNumberOfPlayers = PokerGame.Size.twoPlayers.rawValue
+        case 1:
+            currentNumberOfPlayers = PokerGame.Size.threePlayers.rawValue
+        case 2:
+            currentNumberOfPlayers = PokerGame.Size.fourPlayers.rawValue
+        default:
+            break
+        }
+        let newGame = updateGameInfo(with: currentNumberOfPlayers)
+        clearPlayerStackView()
+        updatePlayerStackView(for: newGame)
+    }
+    
     func clearPlayerStackView() {
         playerStackView.subviews.forEach { $0.removeFromSuperview() }
     }
