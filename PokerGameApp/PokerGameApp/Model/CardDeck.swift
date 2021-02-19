@@ -14,7 +14,7 @@ class CardDeck {
     init() {
         for shape in Shape.allCases {
             for rank in Rank.allCases {
-                let card = Card(shape: shape, rank: rank)
+                let card = Card(shape: shape, rank: rank, face: .up)
                 self.cards.append(card)
             }
         }
