@@ -29,6 +29,7 @@ class Dealer: Player {
         }
         catch{
             print(error)
+            print("카드가 부족하여 종료합니다.")
         }
     }
     

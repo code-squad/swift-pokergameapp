@@ -134,3 +134,5 @@ console에 출력되는 내역이 처음에는 init에서 나온다고 생각했
 
 # step 4
 ## 구현 화면
+
+<img width="297" alt="스크린샷 2021-02-19 오후 5 30 00" src="https://user-images.githubusercontent.com/68788135/108478785-43be9d00-72d8-11eb-9dac-a1a4833400ce.png">  
