@@ -16,6 +16,7 @@ class ViewController: UIViewController {
     let segmentedControlStackView = UIStackView()
     let gameTypeSegmentedControl = UISegmentedControl()
     let numberOfPlayersSegmentedControl = UISegmentedControl()
+    let playerStackView = UIStackView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,7 +41,8 @@ class ViewController: UIViewController {
         }
         
         setProperties(of: segmentedControlStackView, axis: .vertical)
-        setConstraints(of: segmentedControlStackView)
+        segmentedControlStackView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
+        setConstraints(of: segmentedControlStackView, padding: 100.0)
         
         gameTypeSegmentedControl.insertSegment(withTitle: "7 Cards", at: 0, animated: true)
         gameTypeSegmentedControl.insertSegment(withTitle: "5 Cards", at: 1, animated: true)
@@ -50,6 +52,12 @@ class ViewController: UIViewController {
         numberOfPlayersSegmentedControl.insertSegment(withTitle: "3명", at: 1, animated: true)
         numberOfPlayersSegmentedControl.insertSegment(withTitle: "4명", at: 2, animated: true)
         setProperties(of: numberOfPlayersSegmentedControl)
+        
+        setProperties(of: playerStackView, axis: .vertical)
+        playerStackView.distribution = .equalSpacing
+        playerStackView.topAnchor.constraint(equalTo: segmentedControlStackView.bottomAnchor, constant: 5).isActive = true
+        playerStackView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        setConstraints(of: playerStackView, padding: 0)
     }
     
     func setProperties(of stackView: UIStackView, axis: NSLayoutConstraint.Axis) {
@@ -70,11 +78,10 @@ class ViewController: UIViewController {
         segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor : UIColor.white], for: .normal)
     }
     
-    func setConstraints(of view: UIView) {
+    func setConstraints(of view: UIView, padding: CGFloat) {
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
-        view.leadingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.leadingAnchor, constant: 100.0).isActive = true
-        view.trailingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.trailingAnchor, constant: -100.0).isActive = true
+        view.leadingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.leadingAnchor, constant: padding).isActive = true
+        view.trailingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.trailingAnchor, constant: -padding).isActive = true
     }
     
     func testScenarios() {
