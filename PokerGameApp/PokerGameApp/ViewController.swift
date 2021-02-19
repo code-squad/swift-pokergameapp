@@ -108,10 +108,8 @@ class ViewController: UIViewController {
                 
             pockerGameStackView.addArrangedSubview(playerStackView)
             
-            card.hasPlayerCardInfo().forEach {
-                playerStackView.addArrangedSubview(makePlayerNameLabel(name: $0.key))
-                playerStackView.addArrangedSubview(makeCard(cards: $0.value.showCards()))
-            }
+            playerStackView.addArrangedSubview(makePlayerNameLabel(name: card.name))
+            playerStackView.addArrangedSubview(makeCard(cards: card.cards.showCards()))
         }
     }
     
