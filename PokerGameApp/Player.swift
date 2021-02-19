@@ -33,7 +33,7 @@ class Players {
     }
     func eachPlayers(_ method : (Int, Player) -> ()){
         for (index, one) in player.enumerated(){
-            method(index, one)
+            method(index+1, one)
         }
     }
 }
