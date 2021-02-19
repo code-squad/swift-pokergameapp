@@ -52,6 +52,10 @@ class ViewController: UIViewController {
         setConstraints(of: playerStackView, padding: 0)
     }
     
+    func clearPlayerStackView() {
+        playerStackView.subviews.forEach { $0.removeFromSuperview() }
+    }
+    
     func updateGameInfo() -> PokerGame {
         let dealer = Dealer(cardDeck: deckForGame)
         let players = Players(numberOfPlayers: 2)
