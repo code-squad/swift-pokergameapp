@@ -11,17 +11,22 @@ class ViewController: UIViewController {
     
     var stackView: UIStackView!
     var gameTypeStackView: UIStackView!
+    var playerStackView: UIStackView!
     let cardBackImage = UIImage(named: "card-back")
     var cards = CardDeck(cards: [])
     let sevenStudButton = UIButton()
     let fiveStudButton = UIButton()
+    let TwoPlayerButton = UIButton()
+    let ThreePlayerButton = UIButton()
+    let FourPlayerButton = UIButton()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setBackground()
-//        setStackView()
         testPoker()
         selectGameTypeButton()
+        selectPlayerButton()
     }
    
     func setBackground() {
@@ -55,10 +60,11 @@ class ViewController: UIViewController {
         fiveStudButton.layer.borderWidth = 1
         sevenStudButton.setBackgroundColor(.clear, for: .normal)
         sevenStudButton.setBackgroundColor(.white, for: .selected)
+                
         self.gameTypeStackView = UIStackView()
         self.gameTypeStackView.axis = .horizontal
         self.gameTypeStackView.alignment = .fill
-        self.gameTypeStackView.distribution = .fill
+        self.gameTypeStackView.distribution = .fillEqually
         self.gameTypeStackView.translatesAutoresizingMaskIntoConstraints = false
         
         gameTypeStackView.addArrangedSubview(sevenStudButton)
@@ -66,8 +72,36 @@ class ViewController: UIViewController {
         
         self.view.addSubview(gameTypeStackView)
         
+        gameTypeStackView.widthAnchor.constraint(equalToConstant: 160).isActive = true
         gameTypeStackView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 50).isActive = true
         gameTypeStackView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+
+    }
+    
+    func selectPlayerButton() {
+        TwoPlayerButton.setTitle("2명", for: .normal)
+        TwoPlayerButton.layer.borderColor = UIColor.white.cgColor
+        TwoPlayerButton.layer.borderWidth = 1
+        ThreePlayerButton.setTitle("3명", for: .normal)
+        ThreePlayerButton.layer.borderColor = UIColor.white.cgColor
+        ThreePlayerButton.layer.borderWidth = 1
+        FourPlayerButton.setTitle("4명", for: .normal)
+        FourPlayerButton.layer.borderColor = UIColor.white.cgColor
+        FourPlayerButton.layer.borderWidth = 1
+        
+        self.playerStackView = UIStackView()
+        self.playerStackView.axis = .horizontal
+        self.playerStackView.alignment = .fill
+        self.playerStackView.distribution = .fillEqually
+        self.playerStackView.translatesAutoresizingMaskIntoConstraints = false
+        playerStackView.addArrangedSubview(TwoPlayerButton)
+        playerStackView.addArrangedSubview(ThreePlayerButton)
+        playerStackView.addArrangedSubview(FourPlayerButton)
+        self.view.addSubview(playerStackView)
+        
+        playerStackView.widthAnchor.constraint(equalToConstant: 160).isActive = true
+        playerStackView.topAnchor.constraint(equalTo: gameTypeStackView.bottomAnchor, constant: 10).isActive = true
+        playerStackView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
     }
     
     func generateImage() -> UIImageView {
@@ -79,32 +113,7 @@ class ViewController: UIViewController {
         imageView.image = cardBackImage
         return imageView
     }
-    
-    func drawCardRandomly() {
-        cards.filltheCardDeck()
-        let card = cards.removeOne()
-        print(card)
-    }
-    
-    func printDeckReset() {
-        cards.reset()
-        print("카드 전체를 초기화했습니다.")
-        print("총 \(cards.countOfCards())장의 카드가 남아있습니다.")
-    }
-    func printDeckShuffle() {
-        cards.shuffle()
-        print("전체 \(cards.countOfCards())장의 카드를 섞었습니다.")
-    }
-    func printDeckRemoveOne() {
-        print(cards.removeOne())
-        print("총 \(cards.countOfCards())장의 카드가 남아있습니다.")
-    }
-    func test() {
-        printDeckReset()
-        printDeckShuffle()
-        printDeckRemoveOne()
-        printDeckRemoveOne()
-    }
+
     func testPoker() {
         let pokergame = PokerGame(players: Players(participant: .four), dealer: Dealer(gameType: .seven))
         pokergame.startGame()
