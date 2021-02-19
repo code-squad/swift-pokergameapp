@@ -11,10 +11,33 @@ class ViewController: UIViewController {
     var cardDeck = CardDeck()
     var game = PokerGame(withPlayersOf: .four, stud: .sevenCardStud)
     
+    lazy var cardSelectSegmentedControl: UISegmentedControl = {
+        let control = UISegmentedControl(items: ["7 cards", "5 cards"])
+        control.selectedSegmentIndex = 0
+        control.backgroundColor = .none
+        control.layer.cornerRadius = 5.0
+        control.layer.masksToBounds = true
+        control.layer.borderWidth = 1
+        control.layer.borderColor = .init(gray:1, alpha: 1)
+        let font = UIFont.systemFont(ofSize: 20)
+        let normalTextAttributes: [NSAttributedString.Key: Any] = [
+            NSAttributedString.Key.foregroundColor: UIColor.white,
+            NSAttributedString.Key.font: font
+        ]
+        let selectedTextAttributes: [NSAttributedString.Key: Any] = [
+            NSAttributedString.Key.foregroundColor: UIColor.black,
+            NSAttributedString.Key.font: font
+        ]
+        control.setTitleTextAttributes(normalTextAttributes, for: .normal)
+        control.setTitleTextAttributes(selectedTextAttributes, for: .selected)
+        control.translatesAutoresizingMaskIntoConstraints = false
+        return control
+     }()
+    
     let verticalStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.spacing = 0
+        stackView.spacing = 20
         stackView.distribution = .fillEqually
         stackView.alignment = .center
         stackView.axis = .vertical
@@ -27,10 +50,19 @@ class ViewController: UIViewController {
         let cardBacksideImage: UIImage = UIImage(named: "card-back") ?? UIImage()
         self.view.backgroundColor = UIColor(patternImage: backgroundPatternImage)
         
+        self.view.addSubview(cardSelectSegmentedControl)
+        configureCardNumberSelectSegmentedControl()
         self.view.addSubview(verticalStackView)
         configureDashboardStackView()
         guard let gameResult = game.play() else { return }
         addSubviewToDashboardStackView(with: gameResult, to: verticalStackView)
+    }
+    
+    func configureCardNumberSelectSegmentedControl() {
+        cardSelectSegmentedControl.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        cardSelectSegmentedControl.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 0).isActive = true
+        cardSelectSegmentedControl.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.5).isActive = true
+        cardSelectSegmentedControl.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.05).isActive = true
     }
     
     func configureDashboardStackView() {
