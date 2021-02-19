@@ -113,6 +113,7 @@ class ViewController: UIViewController {
     func makeCardStackView(with cardViews: [UIImageView]) -> UIStackView {
         let cardStackView = UIStackView()
         cardViews.forEach { cardStackView.addArrangedSubview($0) }
+        cardStackView.spacing = -10.0
         return cardStackView
     }
     
