@@ -125,7 +125,11 @@ class ViewController: UIViewController {
         }
 
         let game = PokerGame(rule: pokerGameRule, count: numberOfPlayers.rawValue)
-        game.play()
+        do {
+            try game.play()
+        } catch {
+            print("카드가 부족해서 게임을 종료합니다.")
+        }
         makeAllPlayersHandCard(players: game.players)
     }
 }
