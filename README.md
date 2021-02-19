@@ -38,3 +38,11 @@ player: [♦️2, ♣️8, ♠️Q, ♣️7, ♥️8, ♠️3, ♠️6]
 player: [♠️4, ♣️6, ♦️7, ♠️J, ♥️2, ♣️2, ♦️8]
 dealer: [♥️10, ♦️6, ♠️8, ♠️K, ♠️9, ♦️9, ♦️Q]
 ```
+
+## Step 5 - PokerGame Result
+- Card Assets 추가
+- GameRule과 NumberOfPlayers를 선택할 수 있는 `UISegmentedControl` 추가
+- Player와 Dealer의 HandCard를 `UIStackView`로 구현
+
+<img width="291" alt="스크린샷 2021-02-19 오후 7 23 29" src="https://user-images.githubusercontent.com/75113784/108492028-006c2a80-72e8-11eb-831f-c6535bd7bca2.png"><img width="291" alt="스크린샷 2021-02-19 오후 7 23 24" src="https://user-images.githubusercontent.com/75113784/108492040-05c97500-72e8-11eb-99ab-9b1f7ad2992d.png">
+
