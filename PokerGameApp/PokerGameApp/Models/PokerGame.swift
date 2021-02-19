@@ -9,6 +9,21 @@ import Foundation
 
 class PokerGame: CustomStringConvertible {
     
+    enum Size: Int, CustomStringConvertible {
+        case twoPlayers = 2, threePlayers, fourPlayers
+        
+        var description: String {
+            switch self {
+            case .twoPlayers:
+                return "2명"
+            case .threePlayers:
+                return "3명"
+            case .fourPlayers:
+                return "4명"
+            }
+        }
+    }
+    
     enum StudPoker: Int, CustomStringConvertible {
         case fiveCardStud = 5
         case sevenCardStud = 7
