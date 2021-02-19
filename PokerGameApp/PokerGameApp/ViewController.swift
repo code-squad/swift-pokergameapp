@@ -12,18 +12,17 @@ class ViewController: UIViewController {
     @IBOutlet weak var gameRuleSegmentedControl: UISegmentedControl!
     @IBOutlet weak var numberOfPlayersSegmentedControl: UISegmentedControl!
     
-    let cardImage = UIImage(named:  "card-back")
+    var game: PokerGame?
+    var gameRule: PokerGame.Rule = .sevenCardStud
+    var numberOfPlayers: PokerGame.NumberOfPlayers = .two
+    
+    let cardImage = UIImage(named:  "s7")
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupBackgroundImage()
-        //setupCard()
-        
-        let players = Players(players: [Player(), Player(), Player(), Player(playerType: .dealer)])
-        let game = PokerGame(players: players)
-        game.play()
-        print(players.description)
+        setupCard()
     }
 
     func setupBackgroundImage() {
@@ -34,53 +33,65 @@ class ViewController: UIViewController {
     }
     
     func setupCard() {
-        let cardWidth = view.frame.size.width/7
-        let cardHeight = cardWidth * 1.27
-        
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.distribution = .fillEqually
         stackView.alignment = .fill
-        stackView.spacing = 8
+        stackView.spacing = -14
         stackView.translatesAutoresizingMaskIntoConstraints = false
 
-        for _ in 0..<7 {
-            stackView.addArrangedSubview(makeCard())
+        for _ in 0..<gameRule.rawValue {
+            let cardImageView = makeCard()
+            cardImageView.translatesAutoresizingMaskIntoConstraints = false
+            cardImageView.widthAnchor.constraint(equalTo: cardImageView.heightAnchor, multiplier: 1.0/1.27).isActive = true
+            stackView.addArrangedSubview(cardImageView)
         }
         view.addSubview(stackView)
         
-        stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        stackView.topAnchor.constraint(equalTo: numberOfPlayersSegmentedControl.bottomAnchor, constant: 20).isActive = true
         stackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 8).isActive = true
         stackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -8).isActive = true
-        stackView.heightAnchor.constraint(equalToConstant: cardHeight).isActive = true
     }
     
     func makeCard() -> UIImageView {
         return UIImageView(image: cardImage)
     }
     
+    func makePlayers() -> Players {
+        var players: [Player] = []
+        (1...numberOfPlayers.rawValue).forEach { _ in
+            players.append(Player())
+        }
+        return Players(players: players)
+    }
+    
     // MARK: - IBAction
     @IBAction func didChangeGameRule(_ sender: Any) {
         switch gameRuleSegmentedControl.selectedSegmentIndex {
         case 0:
-            print("7 Cards")
+            gameRule = .sevenCardStud
         case 1:
-            print("5 Cards")
+            gameRule = .fiveCardStud
         default:
             break
         }
     }
     
     @IBAction func didChangeNumberOfPlayers(_ sender: Any) {
-        switch gameRuleSegmentedControl.selectedSegmentIndex {
+        switch numberOfPlayersSegmentedControl.selectedSegmentIndex {
         case 0:
-            print("2 Players")
+            numberOfPlayers = .two
         case 1:
-            print("3 Players")
+            numberOfPlayers = .three
         case 2:
-            print("4 Players")
+            numberOfPlayers = .four
         default:
             break
         }
+
+        let players = makePlayers()
+        let game = PokerGame(rule: gameRule, players: players)
+        game.play()
+        print(players.description)
     }
 }
