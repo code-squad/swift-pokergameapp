@@ -15,9 +15,38 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="NDK-vc-qZ6">
+                                <rect key="frame" x="140" y="57" width="135" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="7 Cards"/>
+                                    <segment title="5 Cards"/>
+                                </segments>
+                                <connections>
+                                    <action selector="didChangeGameRule:" destination="BYZ-38-t0r" eventType="valueChanged" id="k6Y-e5-aPZ"/>
+                                </connections>
+                            </segmentedControl>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="IUl-Xs-lIe">
+                                <rect key="frame" x="93" y="104" width="230" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="2 Players"/>
+                                    <segment title="3 Players"/>
+                                    <segment title="4 Players"/>
+                                </segments>
+                                <connections>
+                                    <action selector="didChangeNumberOfPlayers:" destination="BYZ-38-t0r" eventType="valueChanged" id="vez-nF-kIt"/>
+                                </connections>
+                            </segmentedControl>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <connections>
+                        <outlet property="gameRuleSegmentedControl" destination="NDK-vc-qZ6" id="YcQ-x2-S1H"/>
+                        <outlet property="numberOfPlayersSegmentedControl" destination="IUl-Xs-lIe" id="fE4-lS-mC8"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
