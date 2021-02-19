@@ -6,6 +6,7 @@
 //
 class CardDeck {
     var cards = [Card]()
+    var playCards = [Card]()
     
     func makeCards() {
         for suit in Card.Suit.allCases {
@@ -36,6 +37,6 @@ class CardDeck {
     }
     
     func getCard(newCard: Card) {
-        cards.append(newCard)
+        playCards.append(newCard)
     }
 }
