@@ -17,6 +17,11 @@ class Players {
         self.count = players.count
     }
     
+    init(numberOfPlayers: Int) {
+        self.players = (0..<numberOfPlayers).map { _ in Player() }
+        self.count = self.players.count
+    }
+    
     func dealt(_ cards: [Card]) {
         var cardsFromDealer = cards
         players.forEach { $0.dealt(cardsFromDealer.removeFirst()) }
