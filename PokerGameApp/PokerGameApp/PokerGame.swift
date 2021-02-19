@@ -51,16 +51,6 @@ class PokerGame {
         participants = Participants(players: seat.makePlayers(), dealer: dealer)
     }
     
-    func changeSetting(rule: Rule?, seat: Seat?) {
-        if let newRule = rule {
-            self.rule = newRule
-        }
-        
-        if let newSeat = seat {
-            self.seat = newSeat
-        }
-    }
-    
     func start() {
         
         let newStacks = cardsFromDealer()
@@ -78,5 +68,18 @@ class PokerGame {
     private func updateInfoBoard() {
         infoBoard.update(participantsList: participants.names())
         infoBoard.update(cardStackList: participants.stacks())
+    }
+    
+    func changeRule(to newRule: Rule) {
+        rule = newRule
+    }
+    
+    func changeSeat(to newSeat: Seat) {
+        seat = newSeat
+        participants = Participants(players: seat.makePlayers(), dealer: dealer)
+    }
+    
+    func info() -> (players: [String], stacks: [[Card]]) {
+        return (infoBoard.participants(), infoBoard.stacks())
     }
 }
