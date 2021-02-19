@@ -59,23 +59,11 @@ class CardViewController: UIViewController {
     
     func getCardImageView(card : Card) -> UIImageView{
         let imageView = UIImageView()
-        let cardname = cardToString(card: card)
+        let cardname = OutputView.cardToString(card: card)
         imageView.image = UIImage(named: cardname)
         imageView.contentMode = .scaleAspectFit
         
         return imageView
-    }
-    func cardToString(card : Card) -> String {
-        var cardname : String = ""
-        
-        switch card.suit {
-        case .clubs : cardname += "c"
-        case .dimonds : cardname += "d"
-        case .hearts : cardname += "h"
-        case .spades : cardname += "s"
-        }
-        cardname += card.rank.description
-        return cardname
     }
     
     func pockerGame(){
