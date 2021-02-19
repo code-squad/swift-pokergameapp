@@ -36,13 +36,13 @@ class ViewController: UIViewController {
         segmentedControlStackView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
         setConstraints(of: segmentedControlStackView, padding: 100.0)
         
-        gameTypeSegmentedControl.insertSegment(withTitle: "7 Cards", at: 0, animated: true)
-        gameTypeSegmentedControl.insertSegment(withTitle: "5 Cards", at: 1, animated: true)
+        gameTypeSegmentedControl.insertSegment(withTitle: PokerGame.StudPoker.sevenCardStud.description, at: 0, animated: true)
+        gameTypeSegmentedControl.insertSegment(withTitle: PokerGame.StudPoker.fiveCardStud.description, at: 1, animated: true)
         setProperties(of: gameTypeSegmentedControl)
         
-        numberOfPlayersSegmentedControl.insertSegment(withTitle: "2명", at: 0, animated: true)
-        numberOfPlayersSegmentedControl.insertSegment(withTitle: "3명", at: 1, animated: true)
-        numberOfPlayersSegmentedControl.insertSegment(withTitle: "4명", at: 2, animated: true)
+        numberOfPlayersSegmentedControl.insertSegment(withTitle: PokerGame.Size.twoPlayers.description, at: 0, animated: true)
+        numberOfPlayersSegmentedControl.insertSegment(withTitle: PokerGame.Size.threePlayers.description, at: 1, animated: true)
+        numberOfPlayersSegmentedControl.insertSegment(withTitle: PokerGame.Size.fourPlayers.description, at: 2, animated: true)
         setProperties(of: numberOfPlayersSegmentedControl)
         
         setProperties(of: playerStackView, axis: .vertical)
