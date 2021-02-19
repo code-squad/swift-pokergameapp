@@ -17,6 +17,9 @@ class ViewController: UIViewController {
     let numberOfPlayersSegmentedControl = UISegmentedControl()
     let playerStackView = UIStackView()
     
+    var currentNumberOfPlayers = PokerGame.Size.twoPlayers.rawValue
+    var currentGameType = PokerGame.StudPoker.sevenCardStud
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         testScenarios()
