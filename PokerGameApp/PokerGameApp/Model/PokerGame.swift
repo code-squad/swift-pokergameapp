@@ -7,80 +7,101 @@
 
 import Foundation
 
-class PokerGame {
-    let cardNum: Int
-    let playerNum: Int
-    private let round: Int
-    private var players: [Player] = []
-    private var dealer: Dealer
+enum PokerType {
+    case five
+    case seven
+}
+
+enum PlayerNumber: Int, CaseIterable {
+    case one = 1, two, three, four
+}
+
+enum Round: Int {
+    case first = 1, second, third, forth, fifth
+}
+
+class Players {
+    let playerNum: PlayerNumber
+    var players: [Player] = []
     
-    init(cardNum: Int, playerNum: Int) {
-        self.cardNum = cardNum
+    init(playerNum: PlayerNumber) {
         self.playerNum = playerNum
-        self.round = cardNum == 5 ? 4 : 5
-        for number in 1...playerNum {
+        for number in 1...playerNum.rawValue {
             players.append(Player(index: number))
         }
-        self.dealer = Dealer(cardNum: cardNum)
     }
-    
-    func playGame() {
-        for round in 1...round {
-            deal()
-            showCards()
-            betting()
-            checkMoney()
-            // last round -> comprehensive judgment
-            if round == self.round {
-                openCards()
-            }
-            // highCard sequence
-            // 아직 구현 안함 (다다음 스텝 예정)
-            _ = judgeHighCard()
-        }
-    }
-    
-    func deal() {
-        print("👉🏻 1. deal")
-        dealer.getCard()
+
+    func getCard(from dealer: Dealer) {
         players.forEach { player in
             player.getCard(from: dealer.deal())
         }
     }
     
-    func showCards() {
-        print("👉🏻 2. show")
-        print(dealer.myCard)
+    func betting(who: PlayerNumber, money: Int) {
+        players[who.rawValue - 1].bet(money: money)
+    }
+    
+    func showCards() -> [Card] {
+        var allCards = [Card]()
         players.forEach { player in
-            print(player.cards)
+            allCards += player.cards
         }
+        return allCards
     }
     
-    // 나중에 버튼으로 배팅 구현하려고 우선 readLine() 썼더니, iOS 에선 안 돌아가네요...ㅠㅠ 일단 생략!
-    func betting() {
-        print("👉🏻 3. betting")
-        for player in players {
-            print("> bet money: ")
-            let betting = Int(readLine() ?? "") ?? 0
-            player.bet(money: betting)
-        }
-    }
-    
-    func checkMoney() {
-        print("👉🏻 4. check money")
+    func checkMoney() -> [Int] {
+        var bettingArr = [Int]()
         players.forEach { player in
-            print(player.index, player.betting)
+            bettingArr.append(player.betting)
         }
+        return bettingArr
     }
-    
-    // 뒤집은 카드 오픈 후 각 플레이어 카드 확인
+
     func openCards() {
-        print("👉🏻 4. open card")
-        dealer.openCard()
-        print(dealer.myCard)
         players.forEach { player in
-            player.openCard()
-            print(player.cards)
+            player.openCards()
+        }
+    }
+    
+}
+
+class PokerGame {
+    let cardNum: PokerType
+    let playerNum: PlayerNumber
+    let round: Round
+    private var players: Players
+    private var dealer: Dealer
+    
+    init(cardNum: PokerType, playerNum: PlayerNumber) {
+        self.cardNum = cardNum
+        self.playerNum = playerNum
+        self.round = cardNum == .five ? Round.forth : Round.fifth
+        self.players = Players(playerNum: self.playerNum)
+        self.dealer = Dealer(cardNum: cardNum)
+    }
+    
+    // 선택 버튼 1: 5-card-stud vs 7-card-stud
+    // 선택 버튼 2: 배팅 금액 1 2 3 4 5
+    
+    func roundStart() {
+        dealer.roundUp()
+        
+        dealer.getCard(from: dealer.deal())
+        players.getCard(from: dealer)
+
+        _ = dealer.cards
+        _ = players.showCards()
+    }
+    
+    func betting(who player: PlayerNumber, money: Int) {
+        players.betting(who: player, money: money)
+        _ = players.checkMoney()
+    }
+    
+    func openCard(isFinal: Bool) {
+        if isFinal {
+            dealer.openCards()
+            players.openCards()
         }
     }
     

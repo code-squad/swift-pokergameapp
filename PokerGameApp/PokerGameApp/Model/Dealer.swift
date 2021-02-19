@@ -7,28 +7,48 @@
 
 import Foundation
 
-class Dealer {
-    private let cardNum: Int
+class Playable {
+    private(set) var cards: [Card]
+    
+    init() {
+        cards = []
+    }
+    
+    func getCard(from cards: [Card]) {
+        self.cards += cards
+    }
+    
+    func openCards() {
+        for i in 0..<cards.count {
+            if cards[i].face == .down {cards[i].face = Face.up}
+        }
+    }
+}
+
+class Dealer: Playable {
+    private let cardNum: PokerType
     private var round: Int
     private var cardDeck: CardDeck
-    private(set) var myCard: [Card]
+
     
-    init(cardNum: Int) {
+    init(cardNum: PokerType) {
         self.cardNum = cardNum
         self.round = 0
         self.cardDeck = CardDeck()
         cardDeck.shuffle()
-        self.myCard = []
     }
-    // dealer should shuffle card (OK)
+    
+    func roundUp() {
+        round += 1
+    }
     
     func deal() -> [Card] {
         switch (cardNum, round) {
-        case (5, 1):
+        case (.five, 1):
             return [dealOneCard(face: .down), dealOneCard(face: .up)]
-        case (7, 1):
+        case (.seven, 1):
             return [dealOneCard(face: .down), dealOneCard(face: .down),  dealOneCard(face: .up)]
-        case (7, 5):
+        case (.seven, 5):
             return [dealOneCard(face: .down)]
         default:
             return [dealOneCard(face: .up)]
@@ -41,16 +61,5 @@ class Dealer {
         oneCard.face = face
         
         return oneCard
-    }
-    
-    func getCard() {
-        round += 1
-        myCard += deal()
-    }
-    
-    func openCard() {
-        for i in 0..<myCard.count {
-            if myCard[i].face == .down {myCard[i].face = Face.up}
-        }
     }
 }
