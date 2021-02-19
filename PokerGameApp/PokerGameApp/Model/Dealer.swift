@@ -7,24 +7,6 @@
 
 import Foundation
 
-class Playable {
-    private(set) var cards: [Card]
-    
-    init() {
-        cards = []
-    }
-    
-    func getCard(from cards: [Card]) {
-        self.cards += cards
-    }
-    
-    func openCards() {
-        for i in 0..<cards.count {
-            if cards[i].face == .down {cards[i].face = Face.up}
-        }
-    }
-}
-
 class Dealer: Playable {
     private let cardNum: PokerType
     private var round: Int
