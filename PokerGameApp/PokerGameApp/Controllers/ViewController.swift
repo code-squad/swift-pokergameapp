@@ -98,18 +98,18 @@ class ViewController: UIViewController {
         return cardStackView
     }
     
-    func makeCardInfoStackView(role: String, cardViews: [UIImageView]) -> UIStackView {
+    func makeCardInfoStackView(nickname: String, cardViews: [UIImageView]) -> UIStackView {
         let cardInfoStackView = UIStackView()
         cardInfoStackView.translatesAutoresizingMaskIntoConstraints = false
         cardInfoStackView.axis = .vertical
         cardInfoStackView.alignment = .fill
         cardInfoStackView.distribution = .fill
         
-        let roleLabel = UILabel()
-        roleLabel.translatesAutoresizingMaskIntoConstraints = false
-        cardInfoStackView.addArrangedSubview(roleLabel)
-        roleLabel.text = role
-        roleLabel.textColor = UIColor.white
+        let nameLabel = UILabel()
+        nameLabel.translatesAutoresizingMaskIntoConstraints = false
+        cardInfoStackView.addArrangedSubview(nameLabel)
+        nameLabel.text = nickname
+        nameLabel.textColor = UIColor.white
         
         let cardStackView = makeCardStackView(with: cardViews)
         cardInfoStackView.addArrangedSubview(cardStackView)
