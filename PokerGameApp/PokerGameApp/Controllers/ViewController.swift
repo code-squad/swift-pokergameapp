@@ -46,7 +46,10 @@ class ViewController: UIViewController {
         gameTypeSegmentedControl.insertSegment(withTitle: "5 Cards", at: 1, animated: true)
         setProperties(of: gameTypeSegmentedControl)
         
-        segmentedControlStackView.addArrangedSubview(numberOfPlayersSegmentedControl)
+        numberOfPlayersSegmentedControl.insertSegment(withTitle: "2명", at: 0, animated: true)
+        numberOfPlayersSegmentedControl.insertSegment(withTitle: "3명", at: 1, animated: true)
+        numberOfPlayersSegmentedControl.insertSegment(withTitle: "4명", at: 2, animated: true)
+        setProperties(of: numberOfPlayersSegmentedControl)
     }
     
     func setProperties(of stackView: UIStackView, axis: NSLayoutConstraint.Axis) {
