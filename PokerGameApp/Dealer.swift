@@ -11,9 +11,9 @@ class Dealer : Player {
     
     private var gameCardDeck : CardDeck
     private(set) var cardSqud : InputView.CardStud
-    
-    override init(){
-        cardSqud = InputView.CardStud.five
+        
+    init(cardSqud : InputView.CardStud){
+        self.cardSqud = cardSqud
         gameCardDeck = CardDeck()
         super.init()
     }
