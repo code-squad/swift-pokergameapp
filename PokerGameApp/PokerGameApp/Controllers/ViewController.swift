@@ -88,9 +88,9 @@ class ViewController: UIViewController {
     }
     
     func makeCardStackView(with cardViews: [UIImageView]) -> UIStackView {
-        let stackView = UIStackView()
-        cardViews.forEach { stackView.addArrangedSubview($0) }
-        return stackView
+        let cardStackView = UIStackView()
+        cardViews.forEach { cardStackView.addArrangedSubview($0) }
+        return cardStackView
     }
     
     func makeCardInfoStackView(role: String, cards: [Card]) -> UIStackView {
