@@ -29,9 +29,10 @@ class CardViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setBackgroundColor()
-//        drawSevenCards()
-//        let pokergame = PokerGame()
-//        pokergame.start()
+        
+        let pokergame = PokerGame(participants: .three, cardSqud: .seven)
+        pokergame.start()
+        
         configureStackView()
         addCardsStackView()
         configureSegmentControl()
@@ -60,6 +61,7 @@ class CardViewController: UIViewController {
     }
     
     // MARK: Configuration
+    
     func configureStackView(){
         view.addSubview(stackView)
         stackView.axis = .horizontal
