@@ -9,17 +9,14 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    let cardBackside = UIImage(named: "card-back.png")
+    @IBOutlet weak var gameView: UIView!
+    
+    private var game = PokerGame(rule: .sevenCardStud, seat: .two)
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setBackground()
-        addCards(count: 7)
-        
-        let game = PokerGame(rule: .fiveCardStud, seat: .three)
-        print(game.start())
-        print(game.start())
-        print(game.start())
+        startGame()
     }
     
     private func setBackground() {
@@ -27,25 +24,88 @@ class ViewController: UIViewController {
         view.backgroundColor = UIColor(patternImage: tile)
     }
     
-    private func addCards(count: Int) {
+    private func startGame() {
+        game.start()
         
-        let countInCGF = CGFloat(count)
+        let (players, stacks) = game.info()
+        updateView(with: players, stacks)
+    }
+    
+    @IBAction func ruleSegmentChanged(_ sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+        case 0:
+            game.changeRule(to: .sevenCardStud)
+        case 1:
+            game.changeRule(to: .fiveCardStud)
+        default:
+            break
+        }
+        startGame()
+    }
+    
+    @IBAction func seatSegmentChanged(_ sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+        case 0:
+            game.changeSeat(to: .two)
+        case 1:
+            game.changeSeat(to: .three)
+        case 2:
+            game.changeSeat(to: .four)
+        default:
+            break
+        }
+        startGame()
+    }
+    
+    private func updateView(with players: [String],_ cards: [[Card]]) {
         
-        let viewSize = (width: view.bounds.width, height: view.bounds.height)
-        let marginRatio: CGFloat = 0.1, cardRatio: CGFloat = 1.27
-        
-        let marginUp = viewSize.height * marginRatio
-        let marginRL = viewSize.width / countInCGF * marginRatio
+        gameView.subviews.forEach { (view) in
+            view.removeFromSuperview()
+        }
 
-        let cardWidth = (viewSize.width - marginRL * (countInCGF + 1)) / countInCGF
-        
-        for i in 0..<count {
-            let cardView = UIImageView(image: cardBackside)
-            cardView.frame = CGRect(x: cardWidth * CGFloat(i) + marginRL * (CGFloat(i) + 1),
-                                    y: marginUp,
-                                    width: cardWidth,
-                                    height: cardWidth * cardRatio)
-            view.addSubview(cardView)
+        for (i, player) in players.enumerated() {
+            addCardView(with: player, cards[i], location: i)
         }
     }
+    
+    private func addCardView(with player: String,_ cards: [Card], location: Int) {
+        
+        let cardCnt = cards.count
+        let countInCGF = CGFloat(cards.count)
+
+        let viewSize = (width: gameView.bounds.width, height: gameView.bounds.height)
+        let marginRatio: CGFloat = 0.1, cardRatio: CGFloat = 1.27
+        let weight: CGFloat = cardCnt == 5 ? 2.2 : 2
+
+        let marginUp = viewSize.height * marginRatio * CGFloat(location) * weight
+        let marginRL = viewSize.width / countInCGF * marginRatio
+
+        let cardWidth = (viewSize.width + marginRL * (countInCGF + 1)) / countInCGF
+        let cardHeight = cardWidth * cardRatio
+
+        for i in 0..<cardCnt {
+            let card = UIImage(named: "\(cards[i]).png")
+            let cardView = UIImageView(image: card)
+            
+            cardView.frame = CGRect(x: cardWidth * CGFloat(i) - marginRL * (CGFloat(i) + 1),
+                                    y: marginUp,
+                                    width: cardWidth,
+                                    height: cardHeight)
+            gameView.addSubview(cardView)
+        }
+        
+        let labelY = marginUp + cardHeight
+        addLabel(of: player, to: labelY)
+    }
+    
+    private func addLabel(of player: String, to labelY: CGFloat) {
+        let label = UILabel(frame: CGRect(x: 0,
+                                          y: labelY,
+                                          width: 80,
+                                          height: 30))
+        label.text = player
+        label.textColor = .white
+        gameView.addSubview(label)
+    }
 }
+
