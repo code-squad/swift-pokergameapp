@@ -30,7 +30,6 @@ class ViewController: UIViewController {
         
         let myGame = updateGameInfo(with: currentGameType)
         updatePlayerStackView(for: myGame)
-        print(myGame)
         
         setProperties(of: segmentedControlStackView, axis: .vertical)
         segmentedControlStackView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
@@ -86,14 +85,6 @@ class ViewController: UIViewController {
     
     func clearPlayerStackView() {
         playerStackView.subviews.forEach { $0.removeFromSuperview() }
-    }
-    
-    func updateGameInfo() -> PokerGame {
-        let dealer = Dealer(cardDeck: deckForGame)
-        let players = Players(numberOfPlayers: 2)
-        let game = PokerGame(dealer: dealer, players: players, gameType: .fiveCardStud)
-        game.startGame()
-        return game
     }
     
     func updateGameInfo(with selectedGame: PokerGame.StudPoker) -> PokerGame {
