@@ -9,7 +9,10 @@ import Foundation
 
 enum PlayerType: String {
     case Dealer = "딜러"
-    case Pariticipant = "참가자"
+    case Pariticipant1 = "참가자1"
+    case Pariticipant2 = "참가자2"
+    case Pariticipant3 = "참가자3"
+    case Pariticipant4 = "참가자4"
 }
 
 class Player {
@@ -26,5 +29,8 @@ class Player {
     
     func getCard() -> [Card] {
         return cards
+    }
+    func getName() -> String {
+        return name.rawValue
     }
 }

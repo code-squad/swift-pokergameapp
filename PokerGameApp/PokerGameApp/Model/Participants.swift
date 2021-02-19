@@ -14,8 +14,8 @@ class Participants {
 
     init(number ofParticipant: Int) {
         currentIndex = 0
-        for _ in 1...ofParticipant {
-            let participant = Participant(name: PlayerType.Pariticipant)
+        for i in 1...ofParticipant {
+            let participant = Participant(name: PlayerType.init(rawValue: "참가자\(i)")!)
             participants.append(participant)
         }
     }
