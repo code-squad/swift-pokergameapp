@@ -12,7 +12,7 @@ struct CardDeck {
 
     init(empty: Bool) {
         cardDeck = []
-        empty == true ? nil : reset()
+        if empty == false { reset() }
     }
     
     public var count: Int {
