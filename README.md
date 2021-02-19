@@ -30,3 +30,12 @@
     - reset: 처음처럼 모든 카드를 다시 채워넣음
 
 완성 날짜: 2021.02.17 수요일 오후 4:41분
+
+## Step-4
+
+<p align="center">
+<img width="300" alt="step4" src="https://user-images.githubusercontent.com/45817559/108452693-40adb780-72ac-11eb-8f9a-ebb4bb52503a.png">
+</p>
+
+- 플레이어 수와 Stud 방식을 선택할 수 있습니다.
+- 카드가 남는 경우는 계속해서 게임을 진행하고, 부족한 경우 게임을 종료합니다.
