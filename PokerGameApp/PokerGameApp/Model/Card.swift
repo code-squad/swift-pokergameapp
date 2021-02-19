@@ -8,13 +8,26 @@
 import Foundation
 
 enum Suit : String, CaseIterable, CustomStringConvertible {
-    case s
-    case h
-    case c
-    case d
+    case spade = "♠️"
+    case heart = "♥️"
+    case club = "♣️"
+    case diamond = "♦️"
     
     var description: String {
         return "\(self.rawValue)"
+    }
+    
+    func firstLetter() -> String {
+        switch self {
+        case .club:
+            return "c"
+        case .diamond:
+            return "d"
+        case .heart:
+            return "h"
+        case .spade:
+            return "s"
+        }
     }
 }
 
@@ -41,10 +54,12 @@ enum Rank : Int, CaseIterable, CustomStringConvertible {
 struct Card : CustomStringConvertible {
     let suit : Suit
     let rank : Rank
+    let imgName : String
     
     init(suit : Suit, rank : Rank) {
         self.suit = suit
         self.rank = rank
+        self.imgName = "\(suit.firstLetter())\(rank)"
     }
     
     var description: String {
