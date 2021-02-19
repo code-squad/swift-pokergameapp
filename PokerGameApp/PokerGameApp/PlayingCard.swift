@@ -23,7 +23,7 @@ extension Suits : CustomStringConvertible {
 /// rank입력 케이스에 오류가 없게하기 위해 enum case로 변경.
 enum Rank : Int, CaseIterable, CustomStringConvertible {
     
-    case one, two, three, four, five, six, seven, eight, nine, ten, jack, queen, king
+    case one = 1, two, three, four, five, six, seven, eight, nine, ten, jack, queen, king
          
     var description: String {
         switch self {
