@@ -22,13 +22,13 @@ class Card: CustomStringConvertible {
         var description: String {
             switch self {
             case .spades:
-                return "♠️"
+                return "s"
             case .hearts:
-                return "♥️"
+                return "h"
             case .diamonds:
-                return "♦️"
+                return "d"
             case .clubs:
-                return "♣️"
+                return "c"
             }
         }
     }
