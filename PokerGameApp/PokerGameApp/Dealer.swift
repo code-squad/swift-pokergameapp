@@ -53,7 +53,7 @@ class Dealer : Player {
         self.stud = stud
     }
     
-    func distributeCard(_ players: Players) -> Bool {
+    func distributeCards(_ players: Players) -> Bool {
         for _ in 0..<self.stud.rawValue {
             var tempCardDeck = CardDeck()
             
@@ -64,7 +64,7 @@ class Dealer : Player {
                     return false
                 }
             }
-            players.eachPlayersGetCards(tempCardDeck)
+            players.distributeEachCard(with: tempCardDeck)
         }
         return true
     }
