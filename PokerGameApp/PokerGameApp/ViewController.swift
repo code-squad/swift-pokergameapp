@@ -12,12 +12,12 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.becomeFirstResponder()
-        initPokerPlate()
         
         if let pattern = UIImage(named: "bg_pattern.png") {
             self.view.backgroundColor = UIColor(patternImage: pattern)
         }
         
+        initPokerPlate()
         makeSegmentedControl(typeof: .cards)
         makeSegmentedControl(typeof: .players)
         pokerGame = PokerGame(numberOfPlayer: .twoPlayer, stud: .sevenCardStud)
@@ -29,7 +29,6 @@ class ViewController: UIViewController {
         for subview in self.view.subviews where !(subview is UISegmentedControl) {
             subview.removeFromSuperview()
         }
-        
         pokerGame = PokerGame(numberOfPlayer: numberOfPlayer, stud: stud)
         pokerPlate = UIStackView()
         initPokerPlate()
@@ -40,25 +39,25 @@ class ViewController: UIViewController {
             let imageStackView = setImageStackView(stud: stud, player: player)
             addPlayersStackViewIntoPokerPlate(imageStackView: imageStackView, nameLabel: playerNameLabel, numberOfPlayer: numberOfPlayer)
         }
-        
-        constraintSettingPokerPlate()
     }
 
     //MARK: Set PokerPlate
     private func addPlayersStackViewIntoPokerPlate(imageStackView: UIStackView, nameLabel: UILabel, numberOfPlayer: Participant){
         
         for _ in 1...numberOfPlayer.rawValue {
-            let playerStackView = UIStackView()
-            playerStackView.axis = .vertical
-            playerStackView.distribution = .fill
-            playerStackView.spacing = 0
-            playerStackView.addArrangedSubview(nameLabel)
-            playerStackView.addArrangedSubview(imageStackView)
+            let playerStackView: UIStackView = {
+                let stackView = UIStackView()
+                stackView.axis = .vertical
+                stackView.distribution = .fill
+                stackView.spacing = 0
+                stackView.addArrangedSubview(nameLabel)
+                stackView.addArrangedSubview(imageStackView)
+                return stackView
+            }()
             
             pokerPlate.addArrangedSubview(playerStackView)
         }
     }
-    
     
     private func initPokerPlate() {
         pokerPlate = {
@@ -68,27 +67,21 @@ class ViewController: UIViewController {
             stackView.spacing = 10
             return stackView
         }()
-    }
-    
-    
-    private func constraintSettingPokerPlate() {
+        
         let margin = view.layoutMarginsGuide
         
         guard let lastSegmentedControlIndex = self.view.subviews.lastIndex(where: { $0 is UISegmentedControl }) else { return }
         let lastSegmentedControl = self.view.subviews[lastSegmentedControlIndex]
         let lastSegmentedControlMargin = lastSegmentedControl.layoutMarginsGuide
         
-        
         self.view.addSubview(pokerPlate)
         
         pokerPlate.translatesAutoresizingMaskIntoConstraints = false
-        
         pokerPlate.leadingAnchor.constraint(equalTo: margin.leadingAnchor, constant: 5).isActive = true
         pokerPlate.trailingAnchor.constraint(equalTo: margin.trailingAnchor, constant: -20).isActive = true
         pokerPlate.topAnchor.constraint(equalTo: lastSegmentedControlMargin.bottomAnchor, constant: 0).isActive = true
         pokerPlate.bottomAnchor.constraint(equalTo: margin.bottomAnchor, constant: -50).isActive = true
     }
-    
     
     //MARK: Set PlayerNameLabel
     private func setPlayerNameLabel(name: String) -> UILabel {
@@ -111,17 +104,16 @@ class ViewController: UIViewController {
             return segmentedControl
         }()
         
+        let lastSegmentedControl = self.view.subviews.last
+        
         self.view.addSubview(segmentedControl)
-        constraintSettingSegmentedControl(segmentedControl)
-    }
-    
-    private func constraintSettingSegmentedControl(_ segmentedControl: UISegmentedControl) {
+        
         segmentedControl.translatesAutoresizingMaskIntoConstraints = false
         
         let margin = view.layoutMarginsGuide
-        if self.view.subviews.count <= 1 {
+        if lastSegmentedControl == nil && lastSegmentedControl is UISegmentedControl {
             segmentedControl.topAnchor.constraint(equalTo: margin.topAnchor, constant: 20).isActive = true
-        } else if let topSegmentedControl = self.view.subviews.first {
+        } else if let topSegmentedControl = lastSegmentedControl {
             let segmentedControlMargin = topSegmentedControl.layoutMarginsGuide
             segmentedControl.topAnchor.constraint(equalTo: segmentedControlMargin.bottomAnchor, constant: 20).isActive = true
         }

@@ -7,11 +7,16 @@ class Players {
     }
     
     init() {
-        players = [Playable]()
+        self.players = [Playable]()
+    }
+    
+    init(of players: [Playable]) {
+        self.players = players
     }
     
     public func registerPlayers(numberOfPlayer: Participant) {
         players = [Playable]()
+        
         for _ in 1...numberOfPlayer.rawValue {
             let player = Player()
             players.append(player)
