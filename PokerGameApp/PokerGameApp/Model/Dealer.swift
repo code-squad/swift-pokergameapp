@@ -49,4 +49,9 @@ class Dealer : Playable {
     func count(gameType : Int ,players : Int) -> Bool {
         return cardDeck.count() > gameType * players
     }
+    
+    func reDrawCardDeck() {
+        cardDeck.reset()
+        cardDeck.shuffle()
+    }
 }
