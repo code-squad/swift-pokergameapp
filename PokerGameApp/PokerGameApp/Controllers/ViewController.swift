@@ -75,6 +75,14 @@ class ViewController: UIViewController {
         view.trailingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.trailingAnchor, constant: -padding).isActive = true
     }
     
+    func makeCardView(from card: Card) -> UIImageView {
+        let cardImage = UIImage(named: "\(card.suit)\(card.rank)")
+        let cardView = UIImageView(image: cardImage)
+        cardView.translatesAutoresizingMaskIntoConstraints = false
+        cardView.heightAnchor.constraint(equalTo: cardView.widthAnchor, multiplier: 1.27).isActive  = true
+        return cardView
+    }
+    
     func testScenarios() {
         print(Test(testCase: .create, testDeck: deckForTest, expectedValue: 52))
         deckForTest.shuffle()
