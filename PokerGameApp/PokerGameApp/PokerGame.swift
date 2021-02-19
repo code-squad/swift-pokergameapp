@@ -14,19 +14,19 @@ class PokerGame {
     }
     
     enum NumberOfPlayers: Int {
-        case one = 1, two, three, four
+        case two = 2, three, four
     }
     
     private(set) var rule: Rule
     private(set) var players: Players
     private(set) var numberOfPlayers: NumberOfPlayers
     
-    init(rule: Rule, players: Players) {
+    init(rule: Rule, count: Int) {
         self.rule = rule
-        self.players = players
-        self.numberOfPlayers = NumberOfPlayers(rawValue: players.count) ?? .one
+        self.numberOfPlayers = NumberOfPlayers(rawValue: count) ?? .two
+        self.players = Players(count: count)
     }
-    
+
     func play() {
         players.setHandCard(rule: rule)
     }

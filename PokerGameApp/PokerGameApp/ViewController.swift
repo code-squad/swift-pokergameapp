@@ -22,7 +22,7 @@ class ViewController: UIViewController {
         stackView.alignment = .fill
         stackView.spacing = 10
         stackView.translatesAutoresizingMaskIntoConstraints = false
-       return stackView
+        return stackView
     }()
     
     override func viewDidLoad() {
@@ -89,15 +89,6 @@ class ViewController: UIViewController {
         return cardImageView
     }
     
-    func makePlayers() -> Players {
-        var players: [Player] = []
-        (1...numberOfPlayers.rawValue).forEach { _ in
-            players.append(Player())
-        }
-        players.append(Player(playerType: .dealer))
-        return Players(players: players)
-    }
-    
     func makeAllPlayersHandCard(players: Players) {
         allPlayersHandCardStackView.subviews.forEach { subview in
             subview.removeFromSuperview()
@@ -133,10 +124,8 @@ class ViewController: UIViewController {
             break
         }
 
-        let players = makePlayers()
-        let game = PokerGame(rule: pokerGameRule, players: players)
+        let game = PokerGame(rule: pokerGameRule, count: numberOfPlayers.rawValue)
         game.play()
-        makeAllPlayersHandCard(players: players)
-        print(players.description)
+        makeAllPlayersHandCard(players: game.players)
     }
 }
