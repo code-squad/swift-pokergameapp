@@ -31,7 +31,7 @@ class ViewController: UIViewController {
         configureCardStackView(cardStackView: dealerCardStackView)
         guard let gameResult = game.play() else { return }
         print(gameResult)
-        addSubviewToCardStackView(numberOfCards: 7, cards: gameResult[0])
+        addSubviewToCardStackView(cards: gameResult[0])
     }
     
     func makeCardImageView(with card: Card) -> UIImageView {
@@ -47,7 +47,7 @@ class ViewController: UIViewController {
         cardStackView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.07).isActive = true
     }
     
-    func addSubviewToCardStackView(numberOfCards: Int, cards: Array<Card>) {
+    func addSubviewToCardStackView(cards: Array<Card>) {
         for card in cards {
             let newCardImageView = makeCardImageView(with: card)
             dealerCardStackView.addArrangedSubview(newCardImageView)
