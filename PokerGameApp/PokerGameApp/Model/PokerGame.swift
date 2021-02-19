@@ -38,11 +38,21 @@ class PockerGame {
     private var participant : Int = 0
     private var gameType : Int = 0
     
-    func startGame(gameType : Int, participant : Int) {
+    func startGame() {
+        players.addPlayer(particpatin: self.participant)
+    }
+    
+    func drawCard() {
+        players.drawCard(gameType: self.gameType)
+    }
+    
+    func setGame(gameType : Int, participant : Int) {
         self.gameType = gameType
         self.participant = participant
-        players.addPlayer(particpatin: self.participant)
-        players.drawCard(gameType: self.gameType)
+    }
+    
+    func resetPlayer() {
+        players.resetPlayer()
     }
     
     func showPlayersCard() -> [PlayerCard] {

@@ -52,6 +52,7 @@ class ViewController: UIViewController {
     
     private var gameType : Int = GameType.seven.value
     private var participant : Int = Participant.one.value
+    private let pokerGame = PockerGame()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,15 +63,15 @@ class ViewController: UIViewController {
     }
     
     private func startPokerGame() {
-        let pokerGame = PockerGame()
-        pokerGame.startGame(gameType: gameType, participant: participant)
-        playerStackUI(pokergame : pokerGame)
+        pokerGame.setGame(gameType: gameType, participant: participant)
+        pokerGame.startGame()
+        pokerGame.drawCard()
+        setPlayerStackView()
     }
     
     private func resetPokerGame() {
-        pockerGameStackView.subviews.forEach { view in
-            view.removeFromSuperview()
-        }
+        removePokerGameStackSubViews()
+        pokerGame.resetPlayer()
         startPokerGame()
     }
     
@@ -98,8 +99,8 @@ class ViewController: UIViewController {
         ])
     }
     
-    private func playerStackUI(pokergame : PockerGame) {
-        pokergame.showPlayersCard().forEach { (card) in
+    private func setPlayerStackView() {
+        pokerGame.showPlayersCard().forEach { (card) in
             let playerStackView = UIStackView()
             playerStackView.axis = .vertical
             playerStackView.distribution = .fill
@@ -144,6 +145,21 @@ class ViewController: UIViewController {
         imageView.image = UIImage(named: card.description)
         imageView.widthAnchor.constraint(equalTo: imageView.heightAnchor, multiplier: 1.0/1.27).isActive = true
         return imageView
+    }
+
+    private func removePokerGameStackSubViews() {
+        pockerGameStackView.subviews.forEach { view in
+            view.removeFromSuperview()
+        }
+    }
+    
+    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        if motion == .motionShake && pokerGame.countCardDeck() {
+            removePokerGameStackSubViews()
+            pokerGame.resetCard()
+            pokerGame.drawCard()
+            setPlayerStackView()
+        }
     }
 }
 

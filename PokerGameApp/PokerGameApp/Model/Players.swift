@@ -46,4 +46,10 @@ class Players {
     private func numberOfPlayer() -> Int {
         return players.count
     }
+    
+    func resetPlayer() {
+        dealer.resetPlayerCard(players: players)
+        players.removeAll()
+        dealer.reDrawCardDeck()
+    }
 }
