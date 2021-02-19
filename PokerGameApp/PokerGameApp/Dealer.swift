@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Dealer {
+class Dealer: Playable {
     private var cards = [Card]()
     private var cardDeck = CardDeck(empty: true)
     
