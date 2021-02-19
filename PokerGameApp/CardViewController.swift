@@ -81,6 +81,11 @@ class CardViewController: UIViewController {
     func resetView(){
         mainStackView.subviews.forEach{$0.removeFromSuperview()}
     }
+    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        if motion == .motionShake {
+            pockerGame()
+        }
+    }
 }
 
 extension CardViewController {
