@@ -9,13 +9,18 @@ import Foundation
 
 class PokerGame {
     
-    var countOfPlayer = InputView.PlayersCount.three
+    var participants : InputView.PlayersCount
+    var cardSqud : InputView.CardStud
     var players : Players
     var dealer : Dealer
     
-    init(){
-        self.players = Players(with: countOfPlayer)
-        self.dealer = Dealer()
+    init(participants : InputView.PlayersCount, cardSqud : InputView.CardStud){
+
+        self.cardSqud = cardSqud
+        self.participants = participants
+        
+        self.players = Players(with: participants)
+        self.dealer = Dealer(cardSqud: cardSqud)
     }
     
     private func gameReset(){
@@ -36,8 +41,8 @@ class PokerGame {
     }
 
     private func printRule(){
-        print("참가자 수 : \(countOfPlayer.rawValue)")
-        print("카드 기준 : \(dealer.cardSqud.rawValue)")
+        print("참가자 수 : \(participants.rawValue)")
+        print("카드 기준 : \(cardSqud.rawValue)")
     }
     
     private func printResult(){
