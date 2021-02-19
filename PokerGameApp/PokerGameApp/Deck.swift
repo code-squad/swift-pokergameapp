@@ -13,19 +13,9 @@ struct Deck  {
     }
     
     private var cards : [PlayingCard]
-    private let firstState : [PlayingCard]
     
     init() {
-        self.cards = { () -> [PlayingCard] in
-            var initDeck = [PlayingCard]()
-            for suit in Suits.allCases {
-                for number in Rank.allCases {
-                    initDeck.append(PlayingCard.init(suit: suit, number: number))
-                }
-            }
-            return initDeck
-        }()
-        self.firstState = self.cards
+        self.cards = []
     }
     
     func count() -> Int {
@@ -47,8 +37,17 @@ struct Deck  {
         return returnCard
     }
     
-    mutating func reset() {
-        self.cards = self.firstState
+    mutating func newDeck() {
+        self.cards.removeAll()
+        self.cards = { () -> [PlayingCard] in
+            var initDeck = [PlayingCard]()
+            for suit in Suits.allCases {
+                for number in Rank.allCases {
+                    initDeck.append(PlayingCard.init(suit: suit, number: number))
+                }
+            }
+            return initDeck
+        }()
     }
     
     func printCards() {
