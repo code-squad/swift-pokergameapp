@@ -7,7 +7,7 @@
 
 import Foundation
 
-class PokerGame: CustomStringConvertible {
+class PokerGame {
     
     enum Size: Int, CustomStringConvertible {
         case twoPlayers = 2, threePlayers, fourPlayers
@@ -50,15 +50,6 @@ class PokerGame: CustomStringConvertible {
     private let dealer: Dealer
     private let players: Players
     private let gameType: StudPoker
-    var description: String {
-        var playerIndex = 0
-        let playersResult: String = getPlayersResult().map {
-            playerIndex += 1
-            return "참가자\(playerIndex): \($0)"
-        }.joined(separator: "\n")
-        let dealerResult: String = "딜러: \(getDealerResult())"
-        return "🃏카드게임 종류: \(gameType), 👨‍👩‍👧‍👦참가자: \(players.count)명\n\(playersResult)\n\(dealerResult)"
-    }
     
     init(dealer: Dealer, players: Players, gameType: StudPoker) {
         self.dealer = dealer
