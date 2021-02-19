@@ -51,7 +51,6 @@ class PokerGame {
     }
     
     public func play() -> Array<Array<Card>>? {
-        var cardDashboard: Array<Array<Card>> = []
         resetCardDeck()
         distribute()
         if lackOfCard == true {
@@ -62,7 +61,8 @@ class PokerGame {
         print("\(dealer)")
         print("\(cardDeck.count())")
         
-        cardDashboard.append(dealer.giveCardInfo())
+        var cardDashboard: Array<Array<Card>> = players.giveCardInfoOfPlayers()
+        cardDashboard.append(dealer.cardInfo())
         return cardDashboard
     }
 }

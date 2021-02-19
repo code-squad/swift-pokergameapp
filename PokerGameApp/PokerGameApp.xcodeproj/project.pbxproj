@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		881F214325DD024E0063604F /* Dealer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881F214225DD024E0063604F /* Dealer.swift */; };
 		881F214625DD0A830063604F /* Players.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881F214525DD0A830063604F /* Players.swift */; };
-		881F214D25DD4E270063604F /* Receiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881F214C25DD4E270063604F /* Receiver.swift */; };
+		881F214D25DD4E270063604F /* Playable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881F214C25DD4E270063604F /* Playable.swift */; };
 		88F39C9325DA88EF0006A7DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F39C9225DA88EF0006A7DF /* AppDelegate.swift */; };
 		88F39C9525DA88EF0006A7DF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F39C9425DA88EF0006A7DF /* SceneDelegate.swift */; };
 		88F39C9725DA88EF0006A7DF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F39C9625DA88EF0006A7DF /* ViewController.swift */; };
@@ -25,7 +25,7 @@
 /* Begin PBXFileReference section */
 		881F214225DD024E0063604F /* Dealer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dealer.swift; sourceTree = "<group>"; };
 		881F214525DD0A830063604F /* Players.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Players.swift; sourceTree = "<group>"; };
-		881F214C25DD4E270063604F /* Receiver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Receiver.swift; sourceTree = "<group>"; };
+		881F214C25DD4E270063604F /* Playable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Playable.swift; sourceTree = "<group>"; };
 		88F39C8F25DA88EF0006A7DF /* PokerGameApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PokerGameApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		88F39C9225DA88EF0006A7DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		88F39C9425DA88EF0006A7DF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -56,7 +56,7 @@
 			children = (
 				88F39CBB25DB9DE20006A7DF /* Card.swift */,
 				88F39CB125DB61E50006A7DF /* CardDeck.swift */,
-				881F214C25DD4E270063604F /* Receiver.swift */,
+				881F214C25DD4E270063604F /* Playable.swift */,
 				88F39CC425DBCFFE0006A7DF /* Player.swift */,
 				881F214225DD024E0063604F /* Dealer.swift */,
 				881F214525DD0A830063604F /* Players.swift */,
@@ -181,7 +181,7 @@
 				88F39CBC25DB9DE20006A7DF /* Card.swift in Sources */,
 				881F214325DD024E0063604F /* Dealer.swift in Sources */,
 				88F39CB225DB61E50006A7DF /* CardDeck.swift in Sources */,
-				881F214D25DD4E270063604F /* Receiver.swift in Sources */,
+				881F214D25DD4E270063604F /* Playable.swift in Sources */,
 				88F39CC525DBCFFE0006A7DF /* Player.swift in Sources */,
 				88F39C9525DA88EF0006A7DF /* SceneDelegate.swift in Sources */,
 			);

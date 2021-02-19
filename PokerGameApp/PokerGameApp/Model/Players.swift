@@ -23,6 +23,14 @@ class Players {
             }
         }
     }
+    
+    func giveCardInfoOfPlayers() -> Array<Array<Card>> {
+        var result: Array<Array<Card>> = []
+        for player in players {
+            result.append(player.cardInfo())
+        }
+        return result
+    }
 }
 
 extension Players: CustomStringConvertible {
