@@ -8,7 +8,9 @@
 import Foundation
 
 class Player: CardDeck {
-    func getCard(newCard: Card) {
-        cards.append(newCard)
+    let number: Int
+    
+    init(number: Int) {
+        self.number = number
     }
 }
