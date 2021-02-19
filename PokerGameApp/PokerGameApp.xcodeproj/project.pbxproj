@@ -17,7 +17,7 @@
 		CE1C23E825DBE70300109419 /* CardDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1C23E725DBE70300109419 /* CardDeck.swift */; };
 		CE1C23EB25DCBE2E00109419 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1C23EA25DCBE2E00109419 /* Test.swift */; };
 		CE1C23F625DD1ED100109419 /* Dealer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1C23F525DD1ED000109419 /* Dealer.swift */; };
-		CE1C23F925DE875200109419 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1C23F825DE875200109419 /* Player.swift */; };
+		CE1C23F925DE875200109419 /* Players.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1C23F825DE875200109419 /* Players.swift */; };
 		CE1C23FC25DE888900109419 /* PokerGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1C23FB25DE888900109419 /* PokerGame.swift */; };
 /* End PBXBuildFile section */
 
@@ -34,7 +34,7 @@
 		CE1C23E725DBE70300109419 /* CardDeck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDeck.swift; sourceTree = "<group>"; };
 		CE1C23EA25DCBE2E00109419 /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
 		CE1C23F525DD1ED000109419 /* Dealer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dealer.swift; sourceTree = "<group>"; };
-		CE1C23F825DE875200109419 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		CE1C23F825DE875200109419 /* Players.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Players.swift; sourceTree = "<group>"; };
 		CE1C23FB25DE888900109419 /* PokerGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokerGame.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -79,7 +79,7 @@
 				CE1C23E725DBE70300109419 /* CardDeck.swift */,
 				CE1C23EA25DCBE2E00109419 /* Test.swift */,
 				CE1C23F525DD1ED000109419 /* Dealer.swift */,
-				CE1C23F825DE875200109419 /* Player.swift */,
+				CE1C23F825DE875200109419 /* Players.swift */,
 				CE1C23FB25DE888900109419 /* PokerGame.swift */,
 			);
 			path = PokerGameApp;
@@ -160,7 +160,7 @@
 				CE1C23E825DBE70300109419 /* CardDeck.swift in Sources */,
 				CE1C23F625DD1ED100109419 /* Dealer.swift in Sources */,
 				CE1C23E025DB645800109419 /* PokerCard.swift in Sources */,
-				CE1C23F925DE875200109419 /* Player.swift in Sources */,
+				CE1C23F925DE875200109419 /* Players.swift in Sources */,
 				CE1C23C925DA3C4400109419 /* AppDelegate.swift in Sources */,
 				CE1C23CB25DA3C4400109419 /* SceneDelegate.swift in Sources */,
 				CE1C23EB25DCBE2E00109419 /* Test.swift in Sources */,

@@ -57,24 +57,3 @@ class Players : CustomStringConvertible {
     }
     
 }
-
-
-class Player : CustomStringConvertible {
-    var myCard: CardDeck
-    
-    var description: String {
-        return "\(self.myCard)"
-    }
-    
-    init() {
-        myCard = CardDeck()
-    }
-    
-    func getOne(_ card: PokerCard) {
-        self.myCard.getOne(card)
-    }
-    
-    func dropAll() {
-        self.myCard.dropAll()
-    }
-}
