@@ -17,6 +17,8 @@
 		AEB5075125DCEB7800E53DAA /* CardDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB5075025DCEB7800E53DAA /* CardDeck.swift */; };
 		AEB5075425DCF6AC00E53DAA /* CardDeckTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB5075325DCF6AC00E53DAA /* CardDeckTest.swift */; };
 		AEDA7ACD25DF4EC5001796DC /* PokerGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDA7ACC25DF4EC5001796DC /* PokerGame.swift */; };
+		AEDA7AD125DF6DD2001796DC /* Dealer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDA7AD025DF6DD2001796DC /* Dealer.swift */; };
+		AEDA7AD425DF6DE0001796DC /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDA7AD325DF6DE0001796DC /* Player.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,8 @@
 		AEB5075025DCEB7800E53DAA /* CardDeck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDeck.swift; sourceTree = "<group>"; };
 		AEB5075325DCF6AC00E53DAA /* CardDeckTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDeckTest.swift; sourceTree = "<group>"; };
 		AEDA7ACC25DF4EC5001796DC /* PokerGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokerGame.swift; sourceTree = "<group>"; };
+		AEDA7AD025DF6DD2001796DC /* Dealer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dealer.swift; sourceTree = "<group>"; };
+		AEDA7AD325DF6DE0001796DC /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +87,8 @@
 				AEB5075025DCEB7800E53DAA /* CardDeck.swift */,
 				AEB5075325DCF6AC00E53DAA /* CardDeckTest.swift */,
 				AEDA7ACC25DF4EC5001796DC /* PokerGame.swift */,
+				AEDA7AD025DF6DD2001796DC /* Dealer.swift */,
+				AEDA7AD325DF6DE0001796DC /* Player.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -159,11 +165,13 @@
 			files = (
 				AEB5075125DCEB7800E53DAA /* CardDeck.swift in Sources */,
 				AEB5075425DCF6AC00E53DAA /* CardDeckTest.swift in Sources */,
+				AEDA7AD125DF6DD2001796DC /* Dealer.swift in Sources */,
 				AE905A6125DA3B1E00C99E3C /* ViewController.swift in Sources */,
 				AE905A5D25DA3B1E00C99E3C /* AppDelegate.swift in Sources */,
 				AE905A5F25DA3B1E00C99E3C /* SceneDelegate.swift in Sources */,
 				AEDA7ACD25DF4EC5001796DC /* PokerGame.swift in Sources */,
 				AE905A7525DAA79000C99E3C /* Card.swift in Sources */,
+				AEDA7AD425DF6DE0001796DC /* Player.swift in Sources */,
 				AE905A7525DAA79000C99E3C /* Card.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
