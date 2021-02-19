@@ -3,6 +3,9 @@ import Foundation
 class Players {
     private var players: [Playable]
     private var cardDeck: CardDeck
+    var list: [Playable] {
+        return players
+    }
     
     init(numberOfPlayer: Participant) {
         players = [Playable]()

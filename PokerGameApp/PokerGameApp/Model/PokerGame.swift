@@ -6,7 +6,6 @@ enum CardStud: Int {
 }
 
 enum Participant: Int {
-    case onePlayer = 1
     case twoPlayer = 2
     case threePlayer = 3
     case fourPlayer = 4
@@ -15,13 +14,15 @@ enum Participant: Int {
 class PokerGame {
     var players: Players
     var cardStud: CardStud
+    var participant: Participant
     var cardDeck: CardDeck
     var dealer: Dealer
     
     init(numberOfPlayer: Participant, stud: CardStud) {
+        self.participant = numberOfPlayer
         self.dealer = Dealer()
         self.cardDeck = CardDeck()
-        self.players = Players(numberOfPlayer: .fourPlayer)
+        self.players = Players(numberOfPlayer: numberOfPlayer)
         self.cardStud = stud
     }
     
