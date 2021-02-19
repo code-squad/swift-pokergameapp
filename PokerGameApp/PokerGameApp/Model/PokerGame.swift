@@ -78,8 +78,10 @@ class PockerGame {
         players.resetPlayer()
     }
     
-    func showPlayersCard() -> [PlayerCard] {
-        return players.showPlayerCard()
+    func showPlayersCard(closure : ((PlayerCard) -> ())) {
+        players.showPlayerCard { (PlayerCard) in
+            closure(PlayerCard)
+        }
     }
     
     func resetCard() {

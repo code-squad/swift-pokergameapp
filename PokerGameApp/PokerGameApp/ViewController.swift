@@ -100,16 +100,15 @@ class ViewController: UIViewController {
     }
     
     private func setPlayerStackView() {
-        pokerGame.showPlayersCard().forEach { (card) in
+        pokerGame.showPlayersCard { (PlayerCard) in
             let playerStackView = UIStackView()
             playerStackView.axis = .vertical
             playerStackView.distribution = .fill
             playerStackView.alignment = .fill
-                
             pockerGameStackView.addArrangedSubview(playerStackView)
             
-            playerStackView.addArrangedSubview(makePlayerNameLabel(name: card.name))
-            playerStackView.addArrangedSubview(makeCard(cards: card.cards.showCards()))
+            playerStackView.addArrangedSubview(makePlayerNameLabel(name: PlayerCard.name))
+            playerStackView.addArrangedSubview(makeCard(cards: PlayerCard.cards.showCards()))
         }
     }
     

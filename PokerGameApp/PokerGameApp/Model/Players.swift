@@ -27,16 +27,12 @@ class Players {
         dealer.resetPlayerCard(players: players)
     }
     
-    func showPlayerCard() -> [PlayerCard] {
-        var showcard : [PlayerCard] = []
+    func showPlayerCard(closure : (PlayerCard) -> ()) {
         players.forEach { player in
-            showcard.append(player.showCards())
+            player.showCards { (playcard) in
+                closure(playcard)
+            }
         }
-        return showcard
-    }
-    
-    private func printResult(player : Playable) -> String {
-        return "\(player.showCards())"
     }
     
     func countCardDeck(gameType : Int) -> Bool {
