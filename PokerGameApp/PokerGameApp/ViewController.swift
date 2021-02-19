@@ -16,8 +16,7 @@ class ViewController: UIViewController {
         placeCards()
         
         //test
-        let test = testCardDeck()
-        test.process()
+
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
