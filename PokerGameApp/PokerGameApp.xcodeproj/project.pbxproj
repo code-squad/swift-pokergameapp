@@ -13,6 +13,7 @@
 		1E3F9DB025DE655200A49DBB /* Dealer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E3F9DAF25DE655200A49DBB /* Dealer.swift */; };
 		1E3F9DB325DE66E200A49DBB /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E3F9DB225DE66E200A49DBB /* Player.swift */; };
 		1E3F9DBB25DF603100A49DBB /* PokerGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E3F9DBA25DF603100A49DBB /* PokerGame.swift */; };
+		1E3F9DBE25DF866800A49DBB /* Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E3F9DBD25DF866700A49DBB /* Protocol.swift */; };
 		1EDE59A825DA415B00360436 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDE59A725DA415B00360436 /* AppDelegate.swift */; };
 		1EDE59AA25DA415B00360436 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDE59A925DA415B00360436 /* SceneDelegate.swift */; };
 		1EDE59AC25DA415B00360436 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDE59AB25DA415B00360436 /* ViewController.swift */; };
@@ -28,6 +29,7 @@
 		1E3F9DAF25DE655200A49DBB /* Dealer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dealer.swift; sourceTree = "<group>"; };
 		1E3F9DB225DE66E200A49DBB /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		1E3F9DBA25DF603100A49DBB /* PokerGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokerGame.swift; sourceTree = "<group>"; };
+		1E3F9DBD25DF866700A49DBB /* Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocol.swift; sourceTree = "<group>"; };
 		1EDE59A425DA415B00360436 /* PokerGameApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PokerGameApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EDE59A725DA415B00360436 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1EDE59A925DA415B00360436 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -81,6 +83,7 @@
 				1E3F9DB225DE66E200A49DBB /* Player.swift */,
 				1E3F9DAF25DE655200A49DBB /* Dealer.swift */,
 				1E3F9DBA25DF603100A49DBB /* PokerGame.swift */,
+				1E3F9DBD25DF866700A49DBB /* Protocol.swift */,
 			);
 			path = PokerGameApp;
 			sourceTree = "<group>";
@@ -164,6 +167,7 @@
 				1EDE59A825DA415B00360436 /* AppDelegate.swift in Sources */,
 				1EDE59AA25DA415B00360436 /* SceneDelegate.swift in Sources */,
 				1E3F9D9725DCAA0F00A49DBB /* Card.swift in Sources */,
+				1E3F9DBE25DF866800A49DBB /* Protocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

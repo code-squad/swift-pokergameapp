@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Player {
+class Player: Playable {
     private var cards = [Card]()
     
     public func reciveCard(_ card: Card) {
