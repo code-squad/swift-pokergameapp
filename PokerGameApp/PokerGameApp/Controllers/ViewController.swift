@@ -87,6 +87,12 @@ class ViewController: UIViewController {
         cards.map { makeCardView(from: $0) }
     }
     
+    func makeCardStackView(with cardViews: [UIImageView]) -> UIStackView {
+        let stackView = UIStackView()
+        cardViews.forEach { stackView.addArrangedSubview($0) }
+        return stackView
+    }
+    
     func testScenarios() {
         print(Test(testCase: .create, testDeck: deckForTest, expectedValue: 52))
         deckForTest.shuffle()
