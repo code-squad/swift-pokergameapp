@@ -20,12 +20,11 @@ class ViewController: UIViewController {
         initPokerPlate()
         makeSegmentedControl(typeof: .cards)
         makeSegmentedControl(typeof: .players)
-        pokerGame = PokerGame(numberOfPlayer: .twoPlayer, stud: .sevenCardStud)
-        resetPokerGame(numberOfPlayer: .twoPlayer, stud: .sevenCardStud)
+        setPokerGame(numberOfPlayer: .twoPlayer, stud: .sevenCardStud)
     }
     
     //MARK: Reset
-    private func resetPokerGame(numberOfPlayer: Participant, stud: CardStud) {
+    private func setPokerGame(numberOfPlayer: Participant, stud: CardStud) {
         for subview in self.view.subviews where !(subview is UISegmentedControl) {
             subview.removeFromSuperview()
         }
@@ -104,16 +103,16 @@ class ViewController: UIViewController {
             return segmentedControl
         }()
         
-        let lastSegmentedControl = self.view.subviews.last
+        let lastSubview = self.view.subviews.last
         
         self.view.addSubview(segmentedControl)
         
         segmentedControl.translatesAutoresizingMaskIntoConstraints = false
         
         let margin = view.layoutMarginsGuide
-        if lastSegmentedControl == nil && lastSegmentedControl is UISegmentedControl {
+        if lastSubview == nil {
             segmentedControl.topAnchor.constraint(equalTo: margin.topAnchor, constant: 20).isActive = true
-        } else if let topSegmentedControl = lastSegmentedControl {
+        } else if let topSegmentedControl = lastSubview {
             let segmentedControlMargin = topSegmentedControl.layoutMarginsGuide
             segmentedControl.topAnchor.constraint(equalTo: segmentedControlMargin.bottomAnchor, constant: 20).isActive = true
         }
@@ -146,17 +145,17 @@ class ViewController: UIViewController {
     
     @objc private func configWhenCardsSegmentSelected(_ segmentedControl: UISegmentedControl) {
         switch segmentedControl.selectedSegmentIndex {
-        case 0: resetPokerGame(numberOfPlayer: pokerGame.participant, stud: .sevenCardStud)
-        case 1: resetPokerGame(numberOfPlayer: pokerGame.participant, stud: .fiveCardStud)
+        case 0: setPokerGame(numberOfPlayer: pokerGame.participant, stud: .sevenCardStud)
+        case 1: setPokerGame(numberOfPlayer: pokerGame.participant, stud: .fiveCardStud)
         default: return
         }
     }
     
     @objc private func configWhenPlayersSegmentSelected(_ segmentedControl: UISegmentedControl) {
         switch segmentedControl.selectedSegmentIndex {
-        case 0: resetPokerGame(numberOfPlayer: .twoPlayer, stud: pokerGame.cardStud)
-        case 1: resetPokerGame(numberOfPlayer: .threePlayer, stud: pokerGame.cardStud)
-        case 2: resetPokerGame(numberOfPlayer: .fourPlayer, stud: pokerGame.cardStud)
+        case 0: setPokerGame(numberOfPlayer: .twoPlayer, stud: pokerGame.cardStud)
+        case 1: setPokerGame(numberOfPlayer: .threePlayer, stud: pokerGame.cardStud)
+        case 2: setPokerGame(numberOfPlayer: .fourPlayer, stud: pokerGame.cardStud)
         default: return
         }
     }
@@ -213,7 +212,7 @@ class ViewController: UIViewController {
     
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         if motion == .motionShake {
-            resetPokerGame(numberOfPlayer: pokerGame.participant, stud: pokerGame.cardStud)
+            setPokerGame(numberOfPlayer: pokerGame.participant, stud: pokerGame.cardStud)
         }
     }
 }
