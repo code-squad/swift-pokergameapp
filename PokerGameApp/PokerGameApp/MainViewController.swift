@@ -15,27 +15,26 @@ class MainViewController: UIViewController {
         stackView.axis = .vertical
         stackView.alignment = .top
         stackView.distribution = .fillEqually
-        stackView.spacing = 10
+        stackView.spacing = 0
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
         return stackView
     }()
     
-
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setBackgroundImg()
-        var game = PockerGame(number: ParticipantType.three, number: GameType.seven)
+        let game = PockerGame(number: ParticipantType.four, number: GameType.seven)
         game.gameStart()
-        print(game.getDealer())
-        
+        let dealer = game.getDealer()
+        let participants = game.getParticipants().getParticipants()
         
         addVerticalStackViewWithConstraints()
-        addCardImg(addHorizontalStackView())
-        addCardImg(addHorizontalStackView())
-        addCardImg(addHorizontalStackView())
-
+        addCardImg(stackView: addHorizontalStackView(), player: dealer)
+        
+        for i in 0..<participants.count {
+            addCardImg(stackView: addHorizontalStackView(), player:participants[i])
+        }
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -48,11 +47,12 @@ class MainViewController: UIViewController {
         }
         self.view.backgroundColor = UIColor(patternImage: backgroundImg)
     }
-    func addCardImg(_ stackView: UIStackView) {
+    func addCardImg(stackView: UIStackView, player: Player) {
         self.verticalStackView.addArrangedSubview(stackView)
-        for _ in 0..<7 {
-            stackView.addArrangedSubview(createImgView(name: "card-back.png"))
-        }
+        
+        player.getCard().forEach({ cardName in
+            stackView.addArrangedSubview(createImgView(name: "\(cardName).png"))
+        })
     }
     func addVerticalStackViewWithConstraints() {
         self.view.addSubview(verticalStackView)
@@ -66,7 +66,7 @@ class MainViewController: UIViewController {
         stackView.axis = .horizontal
         stackView.alignment = .top
         stackView.distribution = .fillEqually
-        stackView.spacing = -1
+        stackView.spacing = -2
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }
