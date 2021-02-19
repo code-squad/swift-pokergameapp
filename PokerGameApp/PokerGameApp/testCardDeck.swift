@@ -12,7 +12,7 @@ class testCardDeck {
     
     private func testSetCard() {
         print("> 카드 초기화")
-        cardDeck.setCard()
+        cardDeck.createCards()
         print("카드 전체를 초기화했습니다.")
         print("총 \(cardDeck.count())개의 카드가 있습니다.\n")
     }

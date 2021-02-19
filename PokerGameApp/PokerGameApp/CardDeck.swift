@@ -7,7 +7,7 @@
 struct CardDeck {
     private var cards = [Card]()
     
-    mutating func setCard() {
+    mutating func createCards() {
         for suit in Card.Suit.allCases {
             for rank in Card.Rank.allCases {
                 self.cards.append(Card(suit: suit, rank: rank))
@@ -28,7 +28,7 @@ struct CardDeck {
     
     mutating func reset() {
         self.cards = []
-        setCard()
+        createCards()
     }
     
     mutating func removeOne() -> Card? {
