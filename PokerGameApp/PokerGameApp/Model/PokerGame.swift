@@ -26,7 +26,6 @@ class PokerGame {
     
     func playGame() {
         for round in 1...round {
-            
             deal()
             showCards()
             betting()
@@ -36,6 +35,7 @@ class PokerGame {
                 openCards()
             }
             // highCard sequence
+            // 아직 구현 안함 (다다음 스텝 예정)
             _ = judgeHighCard()
         }
     }
@@ -73,6 +73,7 @@ class PokerGame {
         }
     }
     
+    // 뒤집은 카드 오픈 후 각 플레이어 카드 확인
     func openCards() {
         print("👉🏻 4. open card")
         dealer.openCard()
@@ -85,7 +86,6 @@ class PokerGame {
     
     // 나중에 승자 판단 때 구현
     func judgeHighCard() -> [Int] {
-        
         return [0,1,2,3,4]
     }    
 }

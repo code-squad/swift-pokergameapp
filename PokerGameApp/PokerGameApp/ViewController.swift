@@ -13,14 +13,16 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // UI
         self.view.backgroundColor = UIColor(patternImage: (UIImage(named: "bg_pattern.png") ?? UIImage()))
         showCards(cardNum: 7)
-//        testCard()
-//        runCardDeckTest()
+        
+        // PokerGame start
         let poker = PokerGame(cardNum: 5, playerNum: 4)
         poker.playGame()
     }
     
+    // MARK:- Card UI
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
@@ -60,13 +62,6 @@ class ViewController: UIViewController {
         cardStackView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -15).isActive = true
         cardStackView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         cardStackView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 40).isActive = true
-    }
-    
-    func testCard(){
-        var card = Card(shape: .Heart, rank: .queen, face: .up)
-        print(card)
-        card = Card(shape: .Spade, rank: .seven, face: .up)
-        print(card)
     }
 }
 
