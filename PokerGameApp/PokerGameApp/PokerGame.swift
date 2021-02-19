@@ -41,7 +41,7 @@ class PokerGame{
     }
     
     func gameStart(){
-        decidePlayerNum(3)
+        decidePlayerNum(3) // 플레이어 결정
         dealer.deckCreateShuffle()
         do {
             try dealer.cardDistribution(currentGame: self)
@@ -52,7 +52,7 @@ class PokerGame{
         for i in 0..<player.count{
             player[i].printMycard(index: i + 1)
         }
-        dealer.printMycard(index: 0) //사실 여긴 0이 필요없는데..? 상속 받은 함수를 새로 고쳐쓸 순 없나..
+        dealer.printMycard(index: 0) //사실 여긴 0이 필요없는데..? 상속 받은 함수를 새로 고쳐쓸 순 없을까..
     }
 }
 
