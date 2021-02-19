@@ -28,4 +28,8 @@ struct ShowdownCards {
         cardView.heightAnchor.constraint(equalTo: cardView.widthAnchor, multiplier: 1.27).isActive  = true
         return cardView
     }
+    
+    func makeCardViews() -> [UIImageView] {
+        setOfCards.map { makeCardView(from: $0) }
+    }
 }
