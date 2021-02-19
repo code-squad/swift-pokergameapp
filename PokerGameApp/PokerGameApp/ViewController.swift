@@ -12,8 +12,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var gameRuleSegmentedControl: UISegmentedControl!
     @IBOutlet weak var numberOfPlayersSegmentedControl: UISegmentedControl!
     
-    var game: PokerGame?
-    var gameRule: PokerGame.Rule = .sevenCardStud
+    var pokerGame: PokerGame?
+    var pokerGameRule: PokerGame.Rule = .sevenCardStud
     var numberOfPlayers: PokerGame.NumberOfPlayers = .two
     
     var allPlayersHandCardStackView: UIStackView = {
@@ -113,9 +113,9 @@ class ViewController: UIViewController {
     @IBAction func didChangeGameRule(_ sender: Any) {
         switch gameRuleSegmentedControl.selectedSegmentIndex {
         case 0:
-            gameRule = .sevenCardStud
+            pokerGameRule = .sevenCardStud
         case 1:
-            gameRule = .fiveCardStud
+            pokerGameRule = .fiveCardStud
         default:
             break
         }
@@ -134,7 +134,7 @@ class ViewController: UIViewController {
         }
 
         let players = makePlayers()
-        let game = PokerGame(rule: gameRule, players: players)
+        let game = PokerGame(rule: pokerGameRule, players: players)
         game.play()
         makeAllPlayersHandCard(players: players)
         print(players.description)
