@@ -10,7 +10,7 @@ import Foundation
 class Players {
     private var cardDeck = CardDeck()
     private(set) var players: [Player] = []
-    lazy var count = players.count
+    var count: Int
     var description: String {
         var description = ""
         players.forEach { player in
@@ -19,9 +19,10 @@ class Players {
         return description
     }
     
-    init(players: [Player]) {
-        self.players = players
+    init(count: Int) {
+        self.count = count
         cardDeck.shuffle()
+        setPlayers()
     }
     
     func setHandCard(rule: PokerGame.Rule) {
@@ -35,6 +36,15 @@ class Players {
         players.forEach { player in
             player.reset()
         }
+    }
+    
+    func setPlayers() {
+        var players: [Player] = []
+        (1...count).forEach { _ in
+            players.append(Player())
+        }
+        players.append(Player(playerType: .dealer))
+        self.players = players
     }
     
     private func handout() {
