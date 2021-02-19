@@ -45,6 +45,23 @@ class ViewController: UIViewController {
         self.view.backgroundColor = .init(patternImage: bgImage)
     }
     
+    func makePlayerStackView(player: Player) -> UIStackView {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.alignment = .fill
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        
+        let label = UILabel()
+        label.text = player.playerType.rawValue
+        label.textColor = .white
+        label.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        
+        stackView.addArrangedSubview(label)
+        stackView.addArrangedSubview(makePlayerHandCard(with: player))
+        
+        return stackView
+    }
+    
     func makePlayerHandCard(with player: Player) -> UIStackView {
         let stackView = UIStackView()
         stackView.axis = .horizontal
@@ -77,6 +94,7 @@ class ViewController: UIViewController {
         (1...numberOfPlayers.rawValue).forEach { _ in
             players.append(Player())
         }
+        players.append(Player(playerType: .dealer))
         return Players(players: players)
     }
     
@@ -86,14 +104,8 @@ class ViewController: UIViewController {
         }
 
         players.players.forEach { player in
-            let label = UILabel()
-            label.text = "Player"
-            label.textColor = .white
-            label.heightAnchor.constraint(equalToConstant: 20).isActive = true
-            let playerCardStackView = makePlayerHandCard(with: player)
-            
-            allPlayersHandCardStackView.addArrangedSubview(label)
-            allPlayersHandCardStackView.addArrangedSubview(playerCardStackView)
+            let stackView = makePlayerStackView(player: player)
+            allPlayersHandCardStackView.addArrangedSubview(stackView)
         }
     }
     

@@ -8,12 +8,12 @@
 import Foundation
 
 class Player {
-    enum PlayerType {
-        case dealer
-        case player
+    enum PlayerType: String {
+        case dealer = "Dealer 🛎"
+        case player = "Player"
     }
     
-    private var playerType: PlayerType
+    private(set) var playerType: PlayerType
     var handCard = HandCard()
     var description: String {
         return "\(playerType) \(handCard.description)"
