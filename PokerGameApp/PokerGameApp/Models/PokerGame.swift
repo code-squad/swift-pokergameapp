@@ -42,11 +42,6 @@ class PokerGame {
         }
     }
     
-    enum PokerGameError: Error {
-        case tooFewPlayers
-        case tooManyPlayers(playersNeededToLeave: Int)
-    }
-    
     private let dealer: Dealer
     private let players: Players
     private let gameType: StudPoker
