@@ -51,9 +51,20 @@ class PokerViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "bg_pattern.png")!)
+
+        guard let backgroundImage = UIImage(named: "bg_pattern.png") else { return }
+        self.view.backgroundColor = UIColor(patternImage: backgroundImage)
         
         drawCards()
+        
+        let test1 = TrumpCard(suit: .clubs, rank: .one)
+        let test2 = TrumpCard(suit: .diamonds, rank: .five)
+        let test3 = TrumpCard(suit: .hearts, rank: .eleven)
+        let test4 = TrumpCard(suit: .spades, rank: .thirteen)
+
+        
+        print("\(test1.result())\n\(test2.result())\n\(test3.result())\n\(test4.result())")
+
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
