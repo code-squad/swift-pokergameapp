@@ -18,7 +18,7 @@ struct CardDeck {
     mutating func filltheCardDeck() {
         Card.Rank.allCases.forEach { (rank) in
             Card.Suit.allCases.forEach { (suit) in
-                cards.append(Card(suit: suit, rank: rank))
+                cards.append(Card(suit: suit, rank: rank, cardImage: "\(rank)+\(suit)"))
             }
         }
     }

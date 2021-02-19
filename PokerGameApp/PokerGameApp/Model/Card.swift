@@ -12,17 +12,23 @@ import Foundation
 class Card {
     private var suit: Suit
     private var rank: Rank
+    private var cardImage: String
     
-    init(suit: Suit, rank: Rank) {
+    init(suit: Suit, rank: Rank, cardImage: String) {
         self.suit = suit
         self.rank = rank
+        self.cardImage = cardImage
+    }
+    
+    func cardImageString() -> String {
+        return "\(suit)+\(rank)"
     }
     
     enum Suit: Character, CaseIterable {
-        case spades = "♠"
-        case hearts = "♡"
-        case diamonds = "♢"
-        case clubs = "♣"
+        case spades = "s"
+        case hearts = "h"
+        case diamonds = "d"
+        case clubs = "c"
     }
     
     enum Rank: String, CaseIterable {
