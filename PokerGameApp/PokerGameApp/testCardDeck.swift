@@ -10,9 +10,9 @@ import Foundation
 class testCardDeck {
     var cardDeck = CardDeck()
     
-    private func testSetCard() {
+    private func testCreateCard() {
         print("> 카드 초기화")
-        cardDeck.createCards()
+        cardDeck.makeCards()
         print("카드 전체를 초기화했습니다.")
         print("총 \(cardDeck.count())개의 카드가 있습니다.\n")
     }
@@ -34,7 +34,7 @@ class testCardDeck {
     }
     
     func process(){
-        testSetCard()
+        testCreateCard()
         testShuffle()
         for _ in 0..<5 {
             testRemoveOne()

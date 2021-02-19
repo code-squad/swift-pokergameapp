@@ -4,10 +4,10 @@
 //
 //  Created by 김지선 on 2021/02/17.
 //
-struct CardDeck {
-    private var cards = [Card]()
+class CardDeck {
+    var cards = [Card]()
     
-    mutating func createCards() {
+    func makeCards() {
         for suit in Card.Suit.allCases {
             for rank in Card.Rank.allCases {
                 self.cards.append(Card(suit: suit, rank: rank))
@@ -15,23 +15,23 @@ struct CardDeck {
         }
     }
     
-    mutating func count() -> Int {
+    func count() -> Int {
         return self.cards.count
     }
     
-    mutating func shuffle() {
+    func shuffle() {
         for i in 0..<self.count() {
             let randomIndex = Int.random(in: i..<self.count())
             self.cards.swapAt(i, randomIndex)
         }
     }
     
-    mutating func reset() {
+    func reset() {
         self.cards.removeAll()
-        createCards()
+        makeCards()
     }
     
-    mutating func removeOne() -> Card? {
+    func removeOne() -> Card? {
         return self.cards.popLast()
     }
 }
