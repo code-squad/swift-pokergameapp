@@ -58,13 +58,11 @@ class ViewController: UIViewController {
     }
     
     func updatePlayerStackView(for game: PokerGame) {
-        var index: Int = 1
         game.getPlayersResult().forEach {
-            let cardInfoStackView = makeCardInfoStackView(role: "Player\(index)", cardViews: $0)
-            index += 1
+            let cardInfoStackView = makeCardInfoStackView(nickname: $0.getOwnerName(), cardViews: $0.makeCardViews())
             playerStackView.addArrangedSubview(cardInfoStackView)
         }
-        let dealerCardInfo = makeCardInfoStackView(role: "Dealer", cardViews: game.getDealerResult())
+        let dealerCardInfo = makeCardInfoStackView(nickname: game.getDealerResult().getOwnerName(), cardViews: game.getDealerResult().makeCardViews())
         playerStackView.addArrangedSubview(dealerCardInfo)
     }
     
