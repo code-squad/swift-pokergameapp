@@ -8,6 +8,9 @@
 import Foundation
 
 struct Deck  {
+    enum errors : Error {
+        case noMoreCardError
+    }
     
     private var cards : [PlayingCard]
     private let firstState : [PlayingCard]
@@ -30,13 +33,16 @@ struct Deck  {
     }
     
     mutating func shuffle() {
-        self.cards.shuffle()
+        for index in 0..<cards.count - 1 {
+            let randomIndex = Int.random(in: 0..<cards.count)
+            cards.swapAt(index, randomIndex)
+        }
     }
     
     ///removeOne 기능
     mutating func popOneCard() throws -> PlayingCard {
         guard let returnCard = cards.popLast() else {
-            throw TroubleShooter.errors.noMoreCardError
+            throw Deck.errors.noMoreCardError
         }
         return returnCard
     }
