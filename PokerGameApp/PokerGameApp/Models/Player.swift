@@ -9,9 +9,11 @@ import Foundation
 
 class Player {
     
+    private let nickname: String
     private var cards: [Card]
     
-    init() {
+    init(nickname: String) {
+        self.nickname = nickname
         self.cards = []
     }
     
