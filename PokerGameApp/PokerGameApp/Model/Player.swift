@@ -3,10 +3,6 @@ import Foundation
 class Player: Playable {
     var name: String
     private var cards = [Card]()
-    var result: [Card] {
-        return cards
-    }
-    
     private static var identifierFactory = 0
     
     init() {
