@@ -7,6 +7,7 @@
 
 import Foundation
 
-protocol Receiver {
+protocol Playable {
     func receive(card: Card)
+    func cardInfo() -> Array<Card>
 }

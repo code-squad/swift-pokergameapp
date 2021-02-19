@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Dealer: Receiver {
+class Dealer: Playable {
     private var cardsInHand: Array<Card>
     
     init() {
@@ -17,7 +17,7 @@ class Dealer: Receiver {
         cardsInHand.append(card)
     }
     
-    func giveCardInfo() -> Array<Card> {
+    func cardInfo() -> Array<Card> {
         return cardsInHand
     }
 }
