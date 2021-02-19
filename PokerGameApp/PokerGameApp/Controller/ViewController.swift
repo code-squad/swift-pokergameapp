@@ -35,36 +35,9 @@ class ViewController: UIViewController {
     }
     
     func makeCardImageView(with card: Card) -> UIImageView {
-        let imageView = UIImageView()
+        // need to check case where the image is nil
+        let imageView = UIImageView(image: card.exportCardImage())
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        var cardInfoInCode: String {
-            var result: String = ""
-            switch card.suit {
-            case .clovers: result.append("c")
-            case .hearts: result.append("h")
-            case .spades: result.append("s")
-            case .diamonds: result.append("d")
-            default: result.append("")
-            }
-            switch card.value {
-            case .two: result.append("2")
-            case .three: result.append("3")
-            case .four: result.append("4")
-            case .five: result.append("5")
-            case .six: result.append("6")
-            case .seven: result.append("7")
-            case .eight: result.append("8")
-            case .nine: result.append("9")
-            case .ten: result.append("10")
-            case .ace: result.append("A")
-            case .jack: result.append("J")
-            case .queen: result.append("Q")
-            case .king: result.append("K")
-            default: result.append("")
-            }
-            return result
-        }
-        imageView.image = UIImage(named: cardInfoInCode)
         return imageView
     }
     
