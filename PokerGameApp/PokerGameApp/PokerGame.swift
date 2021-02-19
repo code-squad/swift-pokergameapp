@@ -7,24 +7,25 @@
 
 import Foundation
 
-enum GameType: Int {
-    case seven = 7
-    case five = 5
-    
-    var value: Int {
-        return self.rawValue
-    }
-}
-
-enum PlayerNumber: Int {
-    case one = 1, two, three, four
-    
-    var value: Int {
-        return self.rawValue
-    }
-}
-
 class PokerGame {
+    
+    enum GameType: Int {
+        case seven = 7
+        case five = 5
+        
+        var value: Int {
+            return self.rawValue
+        }
+    }
+
+    enum PlayerNumber: Int {
+        case one = 1, two, three, four
+        
+        var value: Int {
+            return self.rawValue
+        }
+    }
+    
     private var dealer = Dealer()
     private var players = Players()
     private var gameType: GameType
