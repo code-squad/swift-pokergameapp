@@ -6,3 +6,9 @@
 //
 
 import Foundation
+
+class Player: CardDeck {
+    func getCard(newCard: Card) {
+        cards.append(newCard)
+    }
+}
