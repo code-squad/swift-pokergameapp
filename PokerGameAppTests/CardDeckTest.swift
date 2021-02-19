@@ -15,7 +15,6 @@ class CardDeckTest: XCTestCase {
     override func setUp() {
         super.setUp()
         cardDeck = CardDeck()
-        cardDeck.initialize()
     }
 
     override class func tearDown() {
