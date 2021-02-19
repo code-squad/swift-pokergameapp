@@ -13,7 +13,7 @@ class CardViewController: UIViewController {
     static let aspectRatio : CGFloat = 1.27 // 카드의 가로 세로 비율
     static let padding : CGFloat = (CGFloat(cardCount)-1) // 카드의 간격의 갯수 (7개의 카드이므로 간격은 6번존재)
     
-    let cardImage : UIImage = {
+    let cardBackImage : UIImage = {
         return UIImage(named: "cardback.png") ?? UIImage()
     }()
     
@@ -33,6 +33,7 @@ class CardViewController: UIViewController {
 //        let pokergame = PokerGame()
 //        pokergame.start()
         configureStackView()
+        addCardsStackView()
         configureSegmentControl()
     }
     
@@ -40,12 +41,34 @@ class CardViewController: UIViewController {
         self.view.backgroundColor = UIColor(patternImage: backgroundImagePattern)
     }
     
+    func addCardsStackView(){
+        let cardCount = 7
+
+        for _ in 0..<cardCount {
+            let cardImageView = getCardImageView()
+            stackView.addArrangedSubview(cardImageView)
+        }
+    }
+    
+    func getCardImageView() -> UIImageView{
+        
+        let imageView = UIImageView()
+        imageView.image = cardBackImage
+        imageView.contentMode = .scaleAspectFit
+
+        return imageView
+    }
+    
+    // MARK: Configuration
     func configureStackView(){
+        view.addSubview(stackView)
+        stackView.axis = .horizontal
+        stackView.distribution = .fillEqually
+        stackView.spacing = 10
         
+        setStackViewConstraints()
     }
-    func setStackViewConstraints(){
-        
-    }
+
     func configureSegmentControl(){
         view.addSubview(segmentControlForCards)
         view.addSubview(segmentControlForPlayers)
@@ -53,36 +76,30 @@ class CardViewController: UIViewController {
         setSegmentControlForCardsConstraints()
         setSegmentControlForPlayersConstraints()
     }
+    
+    // MARK: Constraints
+    
+    // Cards segmentControl : 가장 위에 그려짐
     func setSegmentControlForCardsConstraints(){
         segmentControlForCards.translatesAutoresizingMaskIntoConstraints = false
         segmentControlForCards.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50).isActive = true
         segmentControlForCards.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 50).isActive = true
         segmentControlForCards.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -50).isActive = true
     }
-    
+    // Player SegmentControl : Card segmentControl 밑에 그려짐
     func setSegmentControlForPlayersConstraints(){
         segmentControlForPlayers.translatesAutoresizingMaskIntoConstraints = false
         segmentControlForPlayers.topAnchor.constraint(equalTo: segmentControlForCards.safeAreaLayoutGuide.bottomAnchor, constant: 20).isActive = true
         segmentControlForPlayers.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 50).isActive = true
         segmentControlForPlayers.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -50).isActive = true
     }
-    
-    func drawSevenCards(){
-        
-        let cardWidth = (self.view.bounds.maxX - self.view.bounds.minX) / CGFloat(CardViewController.cardCount + 1)
-        let cardHeight = cardWidth * CardViewController.aspectRatio
-        let offset = cardWidth / CardViewController.padding
-        
-        for index in 0..<CardViewController.cardCount {
-            let startpointX = self.view.frame.minX + (cardWidth + offset) * CGFloat(index)
-            let startpointY = self.view.frame.minY + cardHeight * 3
-            
-            let imageView = UIImageView(frame: CGRect(x: startpointX,
-                                                      y: startpointY,
-                                                      width: cardWidth, height: cardHeight))
-            imageView.image = cardImage
-            self.view.addSubview(imageView)
-        }
+    // StackView : Player Segment Control 밑에 그려짐
+    func setStackViewConstraints(){
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 150).isActive = true // 수정할 것
+        stackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 30).isActive = true
+        stackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -30).isActive = true
+//        stackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -30).isActive = true
     }
 }
 
