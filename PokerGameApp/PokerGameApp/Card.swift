@@ -13,10 +13,10 @@ class Card: CustomStringConvertible {
     let suit: Suit
     
     enum Suit: String, CaseIterable, CustomStringConvertible {
-        case spade = "♠️"
-        case club = "♣️"
-        case heart = "♥️"
-        case diamond = "♦️"
+        case spade = "s"
+        case club = "c"
+        case heart = "h"
+        case diamond = "d"
         
         var description: String {
             return rawValue

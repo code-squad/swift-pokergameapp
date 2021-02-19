@@ -24,4 +24,12 @@ class InfoBoard {
     func update(cardStackList newList: [[Card]]) {
         cardStackList = newList
     }
+    
+    func participants() -> [String] {
+        return participantsList
+    }
+    
+    func stacks() -> [[Card]] {
+        return cardStackList
+    }
 }
