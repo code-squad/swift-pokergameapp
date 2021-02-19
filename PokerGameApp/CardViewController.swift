@@ -12,8 +12,13 @@ class CardViewController: UIViewController {
     let cardBackImage : UIImage = UIImage(named: "cardback.png") ?? UIImage()
     let backgroundImagePattern : UIImage = UIImage(named: "bg_pattern") ?? UIImage()
     
-    let segmentControlForCards = UISegmentedControl(items: ["5 Cards", "7 Cards"])
-    let segmentControlForPlayers = UISegmentedControl(items: ["2명", "3명", "4명"])
+    let segmentControlForCards = UISegmentedControl(items: PlayOption.CardStud.allCases
+                                                        .filter{ $0 != .none}
+                                                        .map{($0.description)})
+    
+    let segmentControlForPlayers = UISegmentedControl(items: PlayOption.PlayersCount.allCases
+                                                        .filter{ $0 != .none}
+                                                        .map{($0.description)})
     
     let mainStackView = UIStackView()
     
@@ -66,7 +71,7 @@ extension CardViewController {
     func addCardsStackView(from player : Player){
         let horizontalStackView = UIStackView()
         configureHorizontalStackView(with: horizontalStackView)
-
+        
         player.eachCards{ card in
             let cardImageView = getCardImageView(card: card)
             horizontalStackView.addArrangedSubview(cardImageView)
@@ -110,9 +115,10 @@ extension CardViewController {
     func segmentToPlayersCount(_ segmentControl : UISegmentedControl) -> PlayOption.PlayersCount {
         let value = segmentControl.selectedSegmentIndex
         switch value {
-        case 0 : return PlayOption.PlayersCount.two
-        case 1 : return PlayOption.PlayersCount.three
-        case 2 : return PlayOption.PlayersCount.four
+        case 0 : return PlayOption.PlayersCount.one
+        case 1 : return PlayOption.PlayersCount.two
+        case 2 : return PlayOption.PlayersCount.three
+        case 3 : return PlayOption.PlayersCount.four
         default : return PlayOption.PlayersCount.none
         }
     }
