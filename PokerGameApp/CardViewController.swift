@@ -12,13 +12,8 @@ class CardViewController: UIViewController {
     let cardBackImage : UIImage = UIImage(named: "cardback.png") ?? UIImage()
     let backgroundImagePattern : UIImage = UIImage(named: "bg_pattern") ?? UIImage()
     
-    let segmentControlForCards = UISegmentedControl(items: PlayOption.CardStud.allCases
-                                                        .filter{ $0 != .none}
-                                                        .map{($0.description)})
-    
-    let segmentControlForPlayers = UISegmentedControl(items: PlayOption.PlayersCount.allCases
-                                                        .filter{ $0 != .none}
-                                                        .map{($0.description)})
+    let segmentControlForCards = UISegmentedControl(items: PlayOption.CardStud.allItems)
+    let segmentControlForPlayers = UISegmentedControl(items: PlayOption.PlayersCount.allItems)
     
     let mainStackView = UIStackView()
     

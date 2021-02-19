@@ -24,6 +24,9 @@ struct PlayOption {
             default : self = .none
             }
         }
+        static var allItems : [String] {
+            return PlayersCount.allCases.filter{ $0 != .none}.map{($0.description)}
+        }
     }
 
     enum CardStud : Int, CaseIterable, CustomStringConvertible {
@@ -42,6 +45,9 @@ struct PlayOption {
             default:
                 self = .none
             }
+        }
+        static var allItems : [String] {
+            return CardStud.allCases.filter{ $0 != .none}.map{($0.description)}
         }
     }
 }
