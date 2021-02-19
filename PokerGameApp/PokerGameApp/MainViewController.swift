@@ -8,7 +8,8 @@
 import UIKit
 
 class MainViewController: UIViewController {
-   
+    // horiziontalStackView 는 여러개 만들어줄 필요가 있으므로 아래 함수에서 따로 구현한다.
+    var horizontalStackView: UIStackView!
     let verticalStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
@@ -20,23 +21,20 @@ class MainViewController: UIViewController {
         return stackView
     }()
     
-    let horizontalStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .horizontal
-        stackView.alignment = .top
-        stackView.distribution = .fillEqually
-        stackView.spacing = -1
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        
-        return stackView
-    }()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setBackgroundImg()
+        var game = PockerGame(number: ParticipantType.three, number: GameType.seven)
+        game.gameStart()
+        print(game.getDealer())
+        
         
         addVerticalStackViewWithConstraints()
-        addCardImg()
+        addCardImg(addHorizontalStackView())
+        addCardImg(addHorizontalStackView())
+        addCardImg(addHorizontalStackView())
 
     }
     
@@ -50,10 +48,10 @@ class MainViewController: UIViewController {
         }
         self.view.backgroundColor = UIColor(patternImage: backgroundImg)
     }
-    func addCardImg() {
-        self.verticalStackView.addArrangedSubview(self.horizontalStackView)
+    func addCardImg(_ stackView: UIStackView) {
+        self.verticalStackView.addArrangedSubview(stackView)
         for _ in 0..<7 {
-            self.horizontalStackView.addArrangedSubview(createImgView(name: "card-back.png"))
+            stackView.addArrangedSubview(createImgView(name: "card-back.png"))
         }
     }
     func addVerticalStackViewWithConstraints() {
@@ -62,6 +60,15 @@ class MainViewController: UIViewController {
         verticalStackView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor).isActive = true
         verticalStackView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 50).isActive = true
         verticalStackView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -50).isActive = true
+    }
+    func addHorizontalStackView() -> UIStackView {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.alignment = .top
+        stackView.distribution = .fillEqually
+        stackView.spacing = -1
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
     }
 
     func createImgView(name: String) -> UIImageView {
