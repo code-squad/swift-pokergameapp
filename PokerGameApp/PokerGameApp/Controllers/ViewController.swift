@@ -60,11 +60,11 @@ class ViewController: UIViewController {
     func updatePlayerStackView(for game: PokerGame) {
         var index: Int = 1
         game.getPlayersResult().forEach {
-            let cardInfoStackView = makeCardInfoStackView(role: "Player\(index)", cards: $0)
+            let cardInfoStackView = makeCardInfoStackView(role: "Player\(index)", cardViews: $0)
             index += 1
             playerStackView.addArrangedSubview(cardInfoStackView)
         }
-        let dealerCardInfo = makeCardInfoStackView(role: "Dealer", cards: game.getDealerResult())
+        let dealerCardInfo = makeCardInfoStackView(role: "Dealer", cardViews: game.getDealerResult())
         playerStackView.addArrangedSubview(dealerCardInfo)
     }
     
@@ -92,25 +92,13 @@ class ViewController: UIViewController {
         view.trailingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.trailingAnchor, constant: -padding).isActive = true
     }
     
-    func makeCardView(from card: Card) -> UIImageView {
-        let cardImage = UIImage(named: "\(card.suit)\(card.rank)")
-        let cardView = UIImageView(image: cardImage)
-        cardView.translatesAutoresizingMaskIntoConstraints = false
-        cardView.heightAnchor.constraint(equalTo: cardView.widthAnchor, multiplier: 1.27).isActive  = true
-        return cardView
-    }
-    
-    func makeCardViews(from cards: [Card]) -> [UIImageView] {
-        cards.map { makeCardView(from: $0) }
-    }
-    
     func makeCardStackView(with cardViews: [UIImageView]) -> UIStackView {
         let cardStackView = UIStackView()
         cardViews.forEach { cardStackView.addArrangedSubview($0) }
         return cardStackView
     }
     
-    func makeCardInfoStackView(role: String, cards: [Card]) -> UIStackView {
+    func makeCardInfoStackView(role: String, cardViews: [UIImageView]) -> UIStackView {
         let cardInfoStackView = UIStackView()
         cardInfoStackView.translatesAutoresizingMaskIntoConstraints = false
         cardInfoStackView.axis = .vertical
@@ -123,7 +111,6 @@ class ViewController: UIViewController {
         roleLabel.text = role
         roleLabel.textColor = UIColor.white
         
-        let cardViews = makeCardViews(from: cards)
         let cardStackView = makeCardStackView(with: cardViews)
         cardInfoStackView.addArrangedSubview(cardStackView)
         return cardInfoStackView
