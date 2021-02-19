@@ -27,8 +27,8 @@ class PokerGame {
         self.players = Players(count: count)
     }
 
-    func play() {
-        players.setHandCard(rule: rule)
+    func play() throws {
+        try players.setHandCard(rule: rule)
     }
     
     func reset() {

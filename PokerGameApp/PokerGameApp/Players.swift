@@ -25,9 +25,9 @@ class Players {
         setPlayers()
     }
     
-    func setHandCard(rule: PokerGame.Rule) {
-        (1...rule.rawValue).forEach { _ in
-            handout()
+    func setHandCard(rule: PokerGame.Rule) throws {
+        try (1...rule.rawValue).forEach { _ in
+            try handout()
         }
     }
     
@@ -47,13 +47,16 @@ class Players {
         self.players = players
     }
     
-    private func handout() {
-        players.forEach { player in
+    private func handout() throws {
+        try players.forEach { player in
             guard let card = cardDeck.removeOne() else {
-                print("카드 부족")
-                return
+                throw CardDeckError.emptyCardDeck
             }
             player.receive(card: card)
         }
     }
+}
+
+enum CardDeckError: Error {
+    case emptyCardDeck
 }

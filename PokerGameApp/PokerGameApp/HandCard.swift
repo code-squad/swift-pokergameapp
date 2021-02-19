@@ -21,7 +21,7 @@ class HandCard {
         cards.removeAll()
     }
     
-    func printCard() {
-        print(cards)
+    func handleCards(completion: () -> ()) {
+        completion()
     }
 }
