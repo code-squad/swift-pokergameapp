@@ -21,7 +21,7 @@ class Player {
         self.cards.append(card)
     }
     
-    func showdown() -> [Card] {
-        return cards
+    func showdown() -> ShowdownCards {
+        return ShowdownCards(owner: self, setOfCards: cards)
     }
 }
