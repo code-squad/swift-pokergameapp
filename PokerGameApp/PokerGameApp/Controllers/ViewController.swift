@@ -27,13 +27,10 @@ class ViewController: UIViewController {
             self.view.backgroundColor = UIColor(patternImage: backgroundImage)
         }
         
-        let alice = Dealer(cardDeck: deckForGame)
-        let bob = Player()
-        let carol = Player()
-        let david = Player()
-        let members = Players(players: [bob, carol, david])
+        let dealer = Dealer(cardDeck: deckForGame)
+        let players = Players(numberOfPlayers: 2)
         do {
-            let myGame = try PokerGame(dealer: alice, players: members, gameType: .fiveCardStud)
+            let myGame = try PokerGame(dealer: dealer, players: players, gameType: .fiveCardStud)
             myGame.startGame()
             print(myGame)
         } catch PokerGame.PokerGameError.tooFewPlayers {
