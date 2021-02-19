@@ -25,10 +25,7 @@ class ViewController: UIViewController {
             self.view.backgroundColor = UIColor(patternImage: backgroundImage)
         }
         
-        let dealer = Dealer(cardDeck: deckForGame)
-        let players = Players(numberOfPlayers: 2)
-        let myGame = PokerGame(dealer: dealer, players: players, gameType: .fiveCardStud)
-        myGame.startGame()
+        let myGame = updateGameInfo()
         updatePlayerStackView(for: myGame)
         print(myGame)
         
@@ -50,6 +47,14 @@ class ViewController: UIViewController {
         playerStackView.topAnchor.constraint(equalTo: segmentedControlStackView.bottomAnchor, constant: 5).isActive = true
         playerStackView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor).isActive = true
         setConstraints(of: playerStackView, padding: 0)
+    }
+    
+    func updateGameInfo() -> PokerGame {
+        let dealer = Dealer(cardDeck: deckForGame)
+        let players = Players(numberOfPlayers: 2)
+        let game = PokerGame(dealer: dealer, players: players, gameType: .fiveCardStud)
+        game.startGame()
+        return game
     }
     
     func updatePlayerStackView(for game: PokerGame) {
