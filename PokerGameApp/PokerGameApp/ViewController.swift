@@ -31,32 +31,6 @@ class ViewController: UIViewController {
         updateView(with: players, stacks)
     }
     
-    @IBAction func ruleSegmentChanged(_ sender: UISegmentedControl) {
-        switch sender.selectedSegmentIndex {
-        case 0:
-            game.changeRule(to: .sevenCardStud)
-        case 1:
-            game.changeRule(to: .fiveCardStud)
-        default:
-            break
-        }
-        startGame()
-    }
-    
-    @IBAction func seatSegmentChanged(_ sender: UISegmentedControl) {
-        switch sender.selectedSegmentIndex {
-        case 0:
-            game.changeSeat(to: .two)
-        case 1:
-            game.changeSeat(to: .three)
-        case 2:
-            game.changeSeat(to: .four)
-        default:
-            break
-        }
-        startGame()
-    }
-    
     private func updateView(with players: [String],_ cards: [[Card]]) {
         
         gameView.subviews.forEach { (view) in
@@ -109,3 +83,37 @@ class ViewController: UIViewController {
     }
 }
 
+//MARK: - Event 관련
+extension ViewController {
+    @IBAction func ruleSegmentChanged(_ sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+        case 0:
+            game.changeRule(to: .sevenCardStud)
+        case 1:
+            game.changeRule(to: .fiveCardStud)
+        default:
+            break
+        }
+        startGame()
+    }
+    
+    @IBAction func seatSegmentChanged(_ sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+        case 0:
+            game.changeSeat(to: .two)
+        case 1:
+            game.changeSeat(to: .three)
+        case 2:
+            game.changeSeat(to: .four)
+        default:
+            break
+        }
+        startGame()
+    }
+    
+    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        if motion == .motionShake {
+            startGame()
+        }
+    }
+}
