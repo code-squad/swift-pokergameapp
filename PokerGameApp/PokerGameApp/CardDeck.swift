@@ -34,4 +34,8 @@ class CardDeck {
     func removeOne() -> Card? {
         return self.cards.popLast()
     }
+    
+    func getCard(newCard: Card) {
+        cards.append(newCard)
+    }
 }
