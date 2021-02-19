@@ -1,48 +1,31 @@
 import Foundation
 
-class PokerGame {
-    enum CardStud: Int {
-        case sevenCardStud = 7
-        case fiveCardStud = 5
-    }
-    
-    enum Participant: Int {
-        case onePlayer = 1
-        case twoPlayer = 2
-        case threePlayer = 3
-        case fourPlayer = 4
-    }
-    
-    var players = [Playable]()
-    var cardDeck = CardDeck()
-    var dealer = Dealer()
-    
-    public func start(numberOfPlayer: Participant, stud: CardStud) {
-        players = registerPlayer(of: numberOfPlayer)
+enum CardStud: Int {
+    case sevenCardStud = 7
+    case fiveCardStud = 5
+}
 
-        shareCards(players: players, cardStud: stud)
+enum Participant: Int {
+    case onePlayer = 1
+    case twoPlayer = 2
+    case threePlayer = 3
+    case fourPlayer = 4
+}
+
+class PokerGame {
+    var players: Players
+    var cardStud: CardStud
+    var cardDeck: CardDeck
+    var dealer: Dealer
+    
+    init(numberOfPlayer: Participant, stud: CardStud) {
+        self.dealer = Dealer()
+        self.cardDeck = CardDeck()
+        self.players = Players(numberOfPlayer: .fourPlayer)
+        self.cardStud = stud
     }
     
-    private func registerPlayer(of number: Participant) -> [Playable] {
-        var players = [Playable]()
-        
-        let playerCount = number.rawValue
-        for _ in 1...playerCount {
-            let player = Player()
-            players.append(player)
-        }
-        players.append(dealer)
-        
-        return players
-    }
-    
-    func shareCards(players: [Playable], cardStud: CardStud) {
-        let cardCount = cardStud.rawValue
-        for _ in 1...cardCount {
-            players.forEach { (player) in
-                guard let newCard = cardDeck.removeOne() else { return }
-                player.appendCard(newCard)
-            }
-        }
+    public func start() {
+        players.sharedCards(cardStud: cardStud)
     }
 }
