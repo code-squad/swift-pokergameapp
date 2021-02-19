@@ -10,7 +10,7 @@ import Foundation
 class testCardDeck {
     var cardDeck = CardDeck()
     
-    private func testCreateCard() {
+    private func testmakeCard() {
         print("> 카드 초기화")
         cardDeck.makeCards()
         print("카드 전체를 초기화했습니다.")
@@ -34,7 +34,7 @@ class testCardDeck {
     }
     
     func process(){
-        testCreateCard()
+        testmakeCard()
         testShuffle()
         for _ in 0..<5 {
             testRemoveOne()
