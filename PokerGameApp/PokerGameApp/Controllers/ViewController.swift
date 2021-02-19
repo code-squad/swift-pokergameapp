@@ -29,6 +29,7 @@ class ViewController: UIViewController {
         let players = Players(numberOfPlayers: 2)
         let myGame = PokerGame(dealer: dealer, players: players, gameType: .fiveCardStud)
         myGame.startGame()
+        updatePlayerStackView(for: myGame)
         print(myGame)
         
         setProperties(of: segmentedControlStackView, axis: .vertical)
@@ -49,6 +50,17 @@ class ViewController: UIViewController {
         playerStackView.topAnchor.constraint(equalTo: segmentedControlStackView.bottomAnchor, constant: 5).isActive = true
         playerStackView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor).isActive = true
         setConstraints(of: playerStackView, padding: 0)
+    }
+    
+    func updatePlayerStackView(for game: PokerGame) {
+        var index: Int = 1
+        game.getPlayersResult().forEach {
+            let cardInfoStackView = makeCardInfoStackView(role: "Player\(index)", cards: $0)
+            index += 1
+            playerStackView.addArrangedSubview(cardInfoStackView)
+        }
+        let dealerCardInfo = makeCardInfoStackView(role: "Dealer", cards: game.getDealerResult())
+        playerStackView.addArrangedSubview(dealerCardInfo)
     }
     
     func setProperties(of stackView: UIStackView, axis: NSLayoutConstraint.Axis) {
