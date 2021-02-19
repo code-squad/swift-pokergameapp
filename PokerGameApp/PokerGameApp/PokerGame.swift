@@ -31,7 +31,7 @@ class PokerGame{
     
     func isCardremain() -> Bool{
         let DEALERCOUNT = 1
-        if deck.Count() >= (players.currentPlayers() + DEALERCOUNT) * gameStyle{
+        if deck.count() >= (players.currentPlayers() + DEALERCOUNT) * gameStyle{
             return true
         }
         return false

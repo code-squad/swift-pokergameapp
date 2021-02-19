@@ -32,7 +32,7 @@ class Deck{
         return true
     }
     
-    func Count() -> Int{
+    func count() -> Int{
         return deck.count
     }
     
