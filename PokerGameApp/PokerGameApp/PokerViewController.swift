@@ -10,42 +10,50 @@ import UIKit
 class PokerViewController: UIViewController {
     
     let cardBackName = "card-back.png"
-
-    
-    let cardBackView: UIImageView = {
-//        let theImageView = UIImageView()
-//        theImageView.image =
-//        let image = UIImage(named: "card-back.png")
-        let cardBackView = UIImageView(image: UIImage(named: "card-back.png"))
-//        cardBackView.translatesAutoresizingMaskIntoConstraints = false
-        return cardBackView
-    }()
+    let cardStackView = UIStackView()
+    let cardRatio = CGFloat(1.27)
     
     
-    
-    func createCardView(fileName: String) -> UIImageView {
-        
-        // UIImage
-        let image = UIImage(named: fileName)
-        let imageView = UIImageView(image: image)
-        
-        //
-//        imageView.frame = CGRect(x: 0, y: 0, width: 100, height: 200)
-//        view.addSubview(imageView)
-        
-        return imageView
+    func setUpStackView() {
+        cardStackView.axis = .horizontal
+        cardStackView.alignment = .fill
+        cardStackView.distribution = .fillEqually
+        cardStackView.spacing = 5
+        cardStackView.translatesAutoresizingMaskIntoConstraints = false
     }
-    
+
+    func createCardBackView() {
+        let cardBackView = UIImageView(image: UIImage(named: cardBackName))
+
+        cardBackView.heightAnchor.constraint(equalTo: cardBackView.widthAnchor, multiplier: cardRatio).isActive = true
+        
+        cardStackView.addArrangedSubview(cardBackView)
+    }
+
+    func addCardViewInStackView() {
+        view.addSubview(cardStackView)
+        cardStackView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 10).isActive = true
+        cardStackView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 10).isActive = true
+        cardStackView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -5).isActive = true
+
+    }
+
+    func drawCards() {
+        
+        setUpStackView()
+        
+        for _ in 1...7 {
+            createCardBackView()
+        }
+        
+        addCardViewInStackView()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "bg_pattern.png")!)
         
-//        let imageView = createCardView(fileName: cardBackName)
-//        imageView.frame = CGRect(x: 0, y: 0, width: 100, height: 200)
-//        view.addSubview(imageView)
-        
-        view.addSubview(cardBackView)
+        drawCards()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
