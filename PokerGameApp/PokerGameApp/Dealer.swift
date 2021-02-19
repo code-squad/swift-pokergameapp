@@ -16,6 +16,28 @@ enum NumberOfPlayers: Int {
     case one = 1, two, three, four
 }
 
+
+class Player : CustomStringConvertible {
+    var myCard: CardDeck
+    
+    var description: String {
+        return "\(self.myCard)"
+    }
+    
+    init() {
+        myCard = CardDeck()
+    }
+    
+    func getOne(_ card: PokerCard) {
+        self.myCard.getOne(card)
+    }
+    
+    func dropAll() {
+        self.myCard.dropAll()
+    }
+}
+
+
 class Dealer : Player {
     private var cardDeck: CardDeck
     private var stud:Stud
