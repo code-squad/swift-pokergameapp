@@ -13,6 +13,9 @@ class ViewController: UIViewController {
     var deckForGame = CardDeck()
     
     let cardStackView = UIStackView()
+    let segmentedControlStackView = UIStackView()
+    let gameTypeSegmentedControl = UISegmentedControl()
+    let numberOfPlayersSegmentedControl = UISegmentedControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +38,10 @@ class ViewController: UIViewController {
         } catch {
             print("예상치 못한 에러가 발생했어요😢: \(error)")
         }
+        
+        self.view.addSubview(segmentedControlStackView)
+        segmentedControlStackView.addArrangedSubview(gameTypeSegmentedControl)
+        segmentedControlStackView.addArrangedSubview(numberOfPlayersSegmentedControl)
         
         setProperties(of: cardStackView)
         setConstraints(of: cardStackView)
