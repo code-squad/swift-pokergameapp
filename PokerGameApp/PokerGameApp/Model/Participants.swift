@@ -31,13 +31,3 @@ class Participants {
         return participants
     }
 }
-//// 데이터 잘들어갔나 확인용
-//extension Participants: CustomStringConvertible {
-//    var description: String {
-//        var str = ""
-//        self.participants.forEach({ participant in
-//            str.append("\(participant)\n")
-//        })
-//        return str
-//    }
-//}
