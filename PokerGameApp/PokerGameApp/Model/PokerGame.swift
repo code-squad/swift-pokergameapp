@@ -22,11 +22,17 @@ class PokerGame {
         self.participant = numberOfPlayer
         self.dealer = Dealer()
         self.cardDeck = CardDeck()
-        self.players = Players(numberOfPlayer: numberOfPlayer)
+        self.players = Players()
+        players.registerPlayers(numberOfPlayer: numberOfPlayer)
         self.cardStud = stud
     }
     
-    public func start() {
-        players.sharedCards(cardStud: cardStud)
+    func shareCards(cardStud: CardStud, player: Playable, _ setCardImage: (Card) -> ()) {
+        let cardCount = cardStud.rawValue
+        for _ in 1...cardCount {
+            guard let newCard = cardDeck.removeOne() else { return }
+            setCardImage(newCard)
+            player.appendCard(newCard)
+        }
     }
 }

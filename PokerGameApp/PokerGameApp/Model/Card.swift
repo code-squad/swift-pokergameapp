@@ -2,19 +2,14 @@ import Foundation
 
 struct Card: CustomStringConvertible {
     enum Shape: String, CaseIterable, CustomStringConvertible {
-        case clubs = "♣️"
-        case diamone = "♦️"
-        case hearts = "❤️"
-        case spades = "♠️"
-        
-        var imageName: String {
-            switch self {
-            case .clubs: return "c"
-            case .diamone: return "d"
-            case .hearts: return "h"
-            case .spades: return "s"
-            }
-        }
+        // "♣️"
+        case clubs = "c"
+        // "♦️"
+        case diamone = "d"
+        // "❤️"
+        case hearts = "h"
+        // "♠️"
+        case spades = "s"
         
         var description: String {
             return "\(self.rawValue)"
@@ -27,8 +22,9 @@ struct Card: CustomStringConvertible {
         var description: String {
             switch self {
             case .ace: return "A"
-            case .jack: return "J"
             case .king: return "K"
+            case .queen: return "Q"
+            case .jack: return "J"
             default: return "\(self.rawValue)"
             }
         }
