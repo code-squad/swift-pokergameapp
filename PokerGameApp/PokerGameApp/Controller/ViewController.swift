@@ -11,7 +11,7 @@ class ViewController: UIViewController {
     var cardDeck = CardDeck()
     var game = PokerGame(withPlayersOf: .four, stud: .sevenCardStud)
     
-    let dashboardStackView: UIStackView = {
+    let verticalStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.spacing = 0
@@ -27,27 +27,54 @@ class ViewController: UIViewController {
         let cardBacksideImage: UIImage = UIImage(named: "card-back") ?? UIImage()
         self.view.backgroundColor = UIColor(patternImage: backgroundPatternImage)
         
-        self.view.addSubview(dashboardStackView)
+        self.view.addSubview(verticalStackView)
         configureDashboardStackView()
         guard let gameResult = game.play() else { return }
-        addSubviewToDashboardStackView(with: gameResult, to: dashboardStackView)
+        addSubviewToDashboardStackView(with: gameResult, to: verticalStackView)
     }
     
     func configureDashboardStackView() {
-        dashboardStackView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        dashboardStackView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
-        dashboardStackView.widthAnchor.constraint(lessThanOrEqualTo: self.view.widthAnchor, multiplier: 0.9).isActive = true
+        verticalStackView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        verticalStackView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
+        verticalStackView.widthAnchor.constraint(lessThanOrEqualTo: self.view.widthAnchor, multiplier: 0.9).isActive = true
     }
+    
     func addSubviewToDashboardStackView(with gameResult: Array<Array<Card>>, to verticalStackView: UIStackView) {
-        for playerResult in gameResult {
-            let newStackView = makeHorizontalCardStack()
-            verticalStackView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.09 * CGFloat(gameResult.count)).isActive = true
-            addCardsToHorizontalCardStack(cards: playerResult, to: newStackView)
-            verticalStackView.addArrangedSubview(newStackView)
+        verticalStackView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.15 * CGFloat(gameResult.count)).isActive = true
+        let individualStacks = makeIndividualStackView(with: gameResult)
+        for stack in individualStacks {
+            verticalStackView.addArrangedSubview(stack)
         }
     }
   
-    func addCardsToHorizontalCardStack(cards: Array<Card>, to stackView: UIStackView) {
+    func makeIndividualStackView(with gameResult: Array<Array<Card>>) -> Array<UIStackView> {
+        var individualStacks: Array<UIStackView> = []
+        gameResult.forEach { (cardArray) in
+            let stackViewWithNameLabel: UIStackView = {
+               let stackView = UIStackView()
+                stackView.translatesAutoresizingMaskIntoConstraints = false
+                stackView.axis = .vertical
+                stackView.distribution = .fillProportionally
+                stackView.spacing = 0
+                return stackView
+            }()
+            let nameLabel: UILabel = {
+                let label = UILabel()
+                label.translatesAutoresizingMaskIntoConstraints = false
+                label.textColor = UIColor.red
+                label.text = "이보게"
+                return label
+            }()
+            
+            stackViewWithNameLabel.addArrangedSubview(nameLabel)
+            stackViewWithNameLabel.addArrangedSubview(addCardsToHorizontalCardStack(with: cardArray))
+            individualStacks.append(stackViewWithNameLabel)
+        }
+        return individualStacks
+    }
+    
+    func addCardsToHorizontalCardStack(with cards: Array<Card>) -> UIStackView {
+        let stackView = makeHorizontalCardStack()
         for card in cards {
             let newCardImageView = card.makeCardImageView()
             stackView.addArrangedSubview(newCardImageView)
@@ -59,6 +86,7 @@ class ViewController: UIViewController {
             return imageView
         }()
         stackView.addArrangedSubview(prizeImageView)
+        return stackView
     }
     
     func makeHorizontalCardStack() -> UIStackView {
@@ -71,4 +99,3 @@ class ViewController: UIViewController {
         return stackView
     }
 }
-    
