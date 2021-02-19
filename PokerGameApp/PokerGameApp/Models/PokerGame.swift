@@ -16,9 +16,9 @@ class PokerGame: CustomStringConvertible {
         var description: String {
             switch self {
             case .fiveCardStud:
-                return "5카드 스터드"
+                return "5 Cards"
             case .sevenCardStud:
-                return "7카드 스터드"
+                return "7 Cards"
             }
         }
         
