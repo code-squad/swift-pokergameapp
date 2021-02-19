@@ -43,6 +43,6 @@ class Dealer : Player {
     }
     
     public func getRemainCardDeckCount() -> Int {
-        return gameCardDeck.count
+        return gameCardDeck.cards.count
     }
 }
