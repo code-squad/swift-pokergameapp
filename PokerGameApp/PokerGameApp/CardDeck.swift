@@ -27,7 +27,7 @@ struct CardDeck {
     }
     
     mutating func reset() {
-        self.cards = []
+        self.cards.removeAll()
         createCards()
     }
     
