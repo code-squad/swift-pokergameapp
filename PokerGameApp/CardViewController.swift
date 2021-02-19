@@ -21,7 +21,6 @@ class CardViewController: UIViewController {
         super.viewDidLoad()
         setBackgroundColor()
         configureSegmentControl()
-        pockerGame()
         configureMainStackView()
     }
     
@@ -67,8 +66,8 @@ extension CardViewController {
     func addCardsStackView(from player : Player){
         let horizontalStackView = UIStackView()
         configureHorizontalStackView(with: horizontalStackView)
-        
-        player.cards.cards.forEach{ card in
+
+        player.eachCards{ card in
             let cardImageView = getCardImageView(card: card)
             horizontalStackView.addArrangedSubview(cardImageView)
         }

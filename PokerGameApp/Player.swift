@@ -13,6 +13,9 @@ class Player{
     init(){
         cards = Cards()
     }
+    func eachCards(_ method: (Card) -> ()){
+        cards.cards.forEach{ method($0)}
+    }
 }
 
 class Players {
