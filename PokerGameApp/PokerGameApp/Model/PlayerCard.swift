@@ -15,12 +15,4 @@ struct PlayerCard {
         self.name = name
         self.cards = card
     }
-    
-//    func hasPlayerCardInfo() -> [String:Deck] {
-//        return [name:cards]
-//    }
-//
-//    func showCards() -> [Card] {
-//        return cards.showCards()
-//    }
 }

@@ -1,15 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "dQ.png",
+      "filename" : "dQ-1.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "dQ.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "dQ-2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
