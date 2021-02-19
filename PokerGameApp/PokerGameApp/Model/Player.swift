@@ -17,4 +17,8 @@ class Player: Playable {
     public func appendCard(_ card: Card) {
         cards.append(card)
     }
+    
+    public func resetCard() {
+        self.cards = [Card]()
+    }
 }

@@ -11,6 +11,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.becomeFirstResponder()
         initPokerPlate()
         
         if let pattern = UIImage(named: "bg_pattern.png") {
@@ -23,6 +24,7 @@ class ViewController: UIViewController {
         resetPokerGame(numberOfPlayer: .twoPlayer, stud: .sevenCardStud)
     }
     
+    //MARK: Reset
     private func resetPokerGame(numberOfPlayer: Participant, stud: CardStud) {
         for subview in self.view.subviews where !(subview is UISegmentedControl) {
             subview.removeFromSuperview()
@@ -31,16 +33,43 @@ class ViewController: UIViewController {
         pokerGame = PokerGame(numberOfPlayer: numberOfPlayer, stud: stud)
         pokerPlate = UIStackView()
         initPokerPlate()
+        pokerGame.players.resetPlayersCard()
         
         for player in pokerGame.players.list {
             let playerNameLabel = setPlayerNameLabel(name: player.name)
-            let imageStackView = setImageStackView(stud: stud)
+            let imageStackView = setImageStackView(stud: stud, player: player)
             addPlayersStackViewIntoPokerPlate(imageStackView: imageStackView, nameLabel: playerNameLabel, numberOfPlayer: numberOfPlayer)
         }
         
         constraintSettingPokerPlate()
     }
 
+    //MARK: Set PokerPlate
+    private func addPlayersStackViewIntoPokerPlate(imageStackView: UIStackView, nameLabel: UILabel, numberOfPlayer: Participant){
+        
+        for _ in 1...numberOfPlayer.rawValue {
+            let playerStackView = UIStackView()
+            playerStackView.axis = .vertical
+            playerStackView.distribution = .fill
+            playerStackView.spacing = 0
+            playerStackView.addArrangedSubview(nameLabel)
+            playerStackView.addArrangedSubview(imageStackView)
+            
+            pokerPlate.addArrangedSubview(playerStackView)
+        }
+    }
+    
+    
+    private func initPokerPlate() {
+        pokerPlate = {
+            let stackView = UIStackView()
+            stackView.axis = .vertical
+            stackView.distribution = .equalSpacing
+            stackView.spacing = 10
+            return stackView
+        }()
+    }
+    
     
     private func constraintSettingPokerPlate() {
         let margin = view.layoutMarginsGuide
@@ -61,40 +90,16 @@ class ViewController: UIViewController {
     }
     
     
-    private func initPokerPlate() {
-        pokerPlate = {
-            let stackView = UIStackView()
-            stackView.axis = .vertical
-            stackView.distribution = .equalSpacing
-            stackView.spacing = 10
-            return stackView
-        }()
-    }
-    
-    private func addPlayersStackViewIntoPokerPlate(imageStackView: UIStackView, nameLabel: UILabel, numberOfPlayer: Participant){
-        
-        for _ in 1...numberOfPlayer.rawValue {
-            let stackView = UIStackView()
-            stackView.axis = .vertical
-            stackView.distribution = .fill
-            stackView.spacing = 0
-            stackView.addArrangedSubview(nameLabel)
-            stackView.addArrangedSubview(imageStackView)
-            
-            pokerPlate.addArrangedSubview(stackView)
-        }
-        
-    }
-    
+    //MARK: Set PlayerNameLabel
     private func setPlayerNameLabel(name: String) -> UILabel {
         let nameLabel = UILabel()
         nameLabel.text = name
         nameLabel.font = UIFont.systemFont(ofSize: 17, weight: .bold)
         nameLabel.textColor = .white
-        
         return nameLabel
     }
     
+    //MARK: Set SegmentSelected
     private func makeSegmentedControl(typeof segmentedControlType: TypeOfSegmentedControl) {
         let segmentedControl: UISegmentedControl = {
             var segmentedControl: UISegmentedControl
@@ -107,7 +112,6 @@ class ViewController: UIViewController {
         }()
         
         self.view.addSubview(segmentedControl)
-        
         constraintSettingSegmentedControl(segmentedControl)
     }
     
@@ -165,7 +169,8 @@ class ViewController: UIViewController {
         }
     }
     
-    private func setImageStackView(stud: CardStud) -> UIStackView {
+    //MARK:Image set
+    private func setImageStackView(stud: CardStud, player: Playable) -> UIStackView {
         let imageStackView: UIStackView = {
             let stackView = UIStackView()
             stackView.axis = .horizontal
@@ -175,7 +180,7 @@ class ViewController: UIViewController {
             return stackView
         }()
         
-        let cardImageViews = createCards(count: stud.rawValue)
+        let cardImageViews = createCards(stud: stud, player: player)
         cardImageViews.forEach { (imageView) in
             imageStackView.addArrangedSubview(imageView)
         }
@@ -183,12 +188,11 @@ class ViewController: UIViewController {
         return imageStackView
     }
     
-    private func createCards(count: Int) -> [UIView] {
-        guard let image = UIImage(named: "card-back.png") else { return [UIView]() }
-        
+    private func createCards(stud: CardStud, player: Playable) -> [UIView] {
         var cards = [UIView]()
         
-        for _ in 1...count {
+        pokerGame.shareCards(cardStud: stud, player: player) { (card) in
+            guard let image = UIImage(named: card.description) else { return }
             let imageView = UIImageView(image: image)
             imageView.layer.masksToBounds = true
             imageView.layer.cornerRadius = 5
@@ -206,6 +210,19 @@ class ViewController: UIViewController {
         }
         
         return cards
+    }
+    
+    //MARK:Shake Motion
+    override var canBecomeFirstResponder: Bool {
+        get {
+            return true
+        }
+    }
+    
+    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        if motion == .motionShake {
+            resetPokerGame(numberOfPlayer: pokerGame.participant, stud: pokerGame.cardStud)
+        }
     }
 }
 

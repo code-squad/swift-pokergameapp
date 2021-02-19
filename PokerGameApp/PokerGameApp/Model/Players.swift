@@ -2,15 +2,16 @@ import Foundation
 
 class Players {
     private var players: [Playable]
-    private var cardDeck: CardDeck
     var list: [Playable] {
         return players
     }
     
-    init(numberOfPlayer: Participant) {
+    init() {
         players = [Playable]()
-        cardDeck = CardDeck()
-        
+    }
+    
+    public func registerPlayers(numberOfPlayer: Participant) {
+        players = [Playable]()
         for _ in 1...numberOfPlayer.rawValue {
             let player = Player()
             players.append(player)
@@ -19,13 +20,9 @@ class Players {
         players.append(dealer)
     }
     
-    func sharedCards(cardStud: CardStud) {
-        let cardCount = cardStud.rawValue
-        for _ in 1...cardCount {
-            players.forEach { (player) in
-                guard let newCard = cardDeck.removeOne() else { return }
-                player.appendCard(newCard)
-            }
+    public func resetPlayersCard() {
+        players.forEach { (player) in
+            player.resetCard()
         }
     }
 }
