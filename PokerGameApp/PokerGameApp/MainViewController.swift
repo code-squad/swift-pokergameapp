@@ -8,51 +8,67 @@
 import UIKit
 
 class MainViewController: UIViewController {
+   
+    let verticalStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.alignment = .top
+        stackView.distribution = .fillEqually
+        stackView.spacing = 10
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        
+        return stackView
+    }()
+    
+    let horizontalStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.alignment = .top
+        stackView.distribution = .fillEqually
+        stackView.spacing = -1
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        
+        return stackView
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setBackgroundImg()
+        
+        addVerticalStackViewWithConstraints()
+        addCardImg()
 
-        guard let backgroundImg = UIImage(named: "bg_pattern.png") else {
-            print("파일경로가 잘못되었습니다.1")
-            return
-        }
-        self.view.backgroundColor = UIColor(patternImage: backgroundImg)
-        
-        var imgView: [UIImageView] = []
-        var width: CGFloat = 0
-        let height: CGFloat = self.view.bounds.height / 10
-        let imgWidth: CGFloat = 50
-        let imgHeight: CGFloat = imgWidth * 1.27
-        
-        guard let cardImg = UIImage(named: "card-back.png") else {
-            print("파일경로가 잘못되었습니다.2")
-            return
-        }
-        
-        for i in 0..<7 {
-            imgView.append(UIImageView(frame: CGRect(x: width, y: height, width: imgWidth, height: imgHeight)))
-            imgView[i].image = cardImg
-            self.view.addSubview(imgView[i])
-            width += self.view.bounds.width / 7
-        }
-        printTestResult()
-        testScenario()
-        pockerGameScenario()
     }
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
-    func printTestResult() {
-        let card1 = Card(Card.Nums.ten, Card.Shapes.diamonds)
-        let card2 = Card(Card.Nums.jack, Card.Shapes.hearts)
-        let card3 = Card(Card.Nums.queen, Card.Shapes.clobers)
-        let card4 = Card(Card.Nums.king, Card.Shapes.spades)
-        let card5 = Card(Card.Nums.one, Card.Shapes.hearts)
-        print(card1)
-        print(card2)
-        print(card3)
-        print(card4)
-        print(card5)
+    
+    func setBackgroundImg() {
+        guard let backgroundImg = UIImage(named: "bg_pattern.png") else {
+            return
+        }
+        self.view.backgroundColor = UIColor(patternImage: backgroundImg)
+    }
+    func addCardImg() {
+        self.verticalStackView.addArrangedSubview(self.horizontalStackView)
+        for _ in 0..<7 {
+            self.horizontalStackView.addArrangedSubview(createImgView(name: "card-back.png"))
+        }
+    }
+    func addVerticalStackViewWithConstraints() {
+        self.view.addSubview(verticalStackView)
+        verticalStackView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 50).isActive = true
+        verticalStackView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        verticalStackView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 50).isActive = true
+        verticalStackView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -50).isActive = true
+    }
+
+    func createImgView(name: String) -> UIImageView {
+        let imgView = UIImageView()
+        imgView.widthAnchor.constraint(equalTo: imgView.heightAnchor, multiplier: 1.0/1.27).isActive = true
+        imgView.image = UIImage(named: name)
+        return imgView
     }
 }
 
