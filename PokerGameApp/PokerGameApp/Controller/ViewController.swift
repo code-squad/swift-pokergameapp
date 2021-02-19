@@ -48,9 +48,8 @@ class ViewController: UIViewController {
     }
   
     func addCardsToHorizontalCardStack(cards: Array<Card>, to stackView: UIStackView) {
-        
         for card in cards {
-            let newCardImageView = makeCardImageView(with: card)
+            let newCardImageView = card.makeCardImageView()
             stackView.addArrangedSubview(newCardImageView)
         }
         let prizeImageView: UIImageView = {
@@ -70,14 +69,6 @@ class ViewController: UIViewController {
         stackView.alignment = .center
         stackView.axis = .horizontal
         return stackView
-    }
-    
-    func makeCardImageView(with card: Card) -> UIImageView {
-        // need to check case where the image is nil
-        let imageView = UIImageView(image: card.exportCardImage())
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .scaleAspectFit
-        return imageView
     }
     
     func testScenario(command: String) {

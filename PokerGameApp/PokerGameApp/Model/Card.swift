@@ -36,7 +36,7 @@ struct Card {
 
     public let suit: Suit, value: Value
     
-    public func exportCardImage() -> UIImage? {
+    public func createCardImage() -> UIImage? {
         var cardImageName: String {
             var result: String = ""
             switch self.suit {
@@ -63,6 +63,13 @@ struct Card {
             return result
         }
         return UIImage(named: cardImageName) ?? nil
+    }
+    
+    func makeCardImageView() -> UIImageView {
+        let imageView = UIImageView(image: self.createCardImage())
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFit
+        return imageView
     }
 }
 
