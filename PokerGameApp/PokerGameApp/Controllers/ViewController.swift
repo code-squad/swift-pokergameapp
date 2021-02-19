@@ -28,7 +28,7 @@ class ViewController: UIViewController {
             self.view.backgroundColor = UIColor(patternImage: backgroundImage)
         }
         
-        let myGame = updateGameInfo()
+        let myGame = updateGameInfo(with: currentGameType)
         updatePlayerStackView(for: myGame)
         print(myGame)
         
@@ -56,6 +56,23 @@ class ViewController: UIViewController {
         let dealer = Dealer(cardDeck: deckForGame)
         let players = Players(numberOfPlayers: 2)
         let game = PokerGame(dealer: dealer, players: players, gameType: .fiveCardStud)
+        game.startGame()
+        return game
+    }
+    
+    func updateGameInfo(with selectedGame: PokerGame.StudPoker) -> PokerGame {
+        let dealer = Dealer(cardDeck: deckForGame)
+        let players = Players(numberOfPlayers: currentNumberOfPlayers)
+        let game = PokerGame(dealer: dealer, players: players, gameType: selectedGame)
+        game.startGame()
+        return game
+    }
+    
+    func updateGameInfo(with selectedNumberOfPlayers: Int) -> PokerGame {
+        let dealer = Dealer(cardDeck: deckForGame)
+        let players = Players(numberOfPlayers: selectedNumberOfPlayers)
+        let gameType = currentGameType
+        let game = PokerGame(dealer: dealer, players: players, gameType: gameType)
         game.startGame()
         return game
     }
