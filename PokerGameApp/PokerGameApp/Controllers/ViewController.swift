@@ -42,7 +42,10 @@ class ViewController: UIViewController {
         setProperties(of: segmentedControlStackView, axis: .vertical)
         setConstraints(of: segmentedControlStackView)
         
-        segmentedControlStackView.addArrangedSubview(gameTypeSegmentedControl)
+        gameTypeSegmentedControl.insertSegment(withTitle: "7 Cards", at: 0, animated: true)
+        gameTypeSegmentedControl.insertSegment(withTitle: "5 Cards", at: 1, animated: true)
+        setProperties(of: gameTypeSegmentedControl)
+        
         segmentedControlStackView.addArrangedSubview(numberOfPlayersSegmentedControl)
     }
     
@@ -55,6 +58,10 @@ class ViewController: UIViewController {
     }
     
     func setProperties(of segmentedControl: UISegmentedControl) {
+        segmentedControlStackView.addArrangedSubview(segmentedControl)
+        segmentedControl.translatesAutoresizingMaskIntoConstraints = false
+        segmentedControl.heightAnchor.constraint(equalToConstant: 31).isActive = true
+        
         segmentedControl.selectedSegmentIndex = 0
         segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor : UIColor.black], for: .selected)
         segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor : UIColor.white], for: .normal)
