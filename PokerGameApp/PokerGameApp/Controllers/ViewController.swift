@@ -54,6 +54,12 @@ class ViewController: UIViewController {
         stackView.spacing = 5.0
     }
     
+    func setProperties(of segmentedControl: UISegmentedControl) {
+        segmentedControl.selectedSegmentIndex = 0
+        segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor : UIColor.black], for: .selected)
+        segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor : UIColor.white], for: .normal)
+    }
+    
     func setConstraints(of view: UIView) {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
