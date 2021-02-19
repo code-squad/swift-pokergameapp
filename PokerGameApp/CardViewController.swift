@@ -40,10 +40,11 @@ class CardViewController: UIViewController {
         self.view.backgroundColor = UIColor(patternImage: backgroundImagePattern)
     }
     
-    func drawCards(players : Players){
+    func drawCards(players : Players,  dealer : Dealer){
         for player in players.player {
             addCardsStackView(from: player)
         }
+        addCardsStackView(from: dealer)
     }
     func addCardsStackView(from player : Player){
         let horizontalStackView = UIStackView()
@@ -80,9 +81,11 @@ class CardViewController: UIViewController {
     func pockerGame(){
         let pokergame = PokerGame(participants: .three, cardSqud: .seven)
         pokergame.start()
-        drawCards(players: pokergame.players)
+        drawCards(players: pokergame.players, dealer : pokergame.dealer)
     }
-    
+}
+
+extension CardViewController {
     // MARK: Configuration
     
     func configureVerticalStackView(){
@@ -107,7 +110,9 @@ class CardViewController: UIViewController {
         setSegmentControlForCardsConstraints()
         setSegmentControlForPlayersConstraints()
     }
-    
+}
+
+extension CardViewController {
     // MARK: Segment Control Constraints
     
     // Cards segmentControl : 가장 위에 그려짐
@@ -141,4 +146,3 @@ class CardViewController: UIViewController {
         verticalStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -30).isActive = true
     }
 }
-
