@@ -10,14 +10,18 @@ import UIKit
 class ViewController: UIViewController {
     
     var stackView: UIStackView!
+    var gameTypeStackView: UIStackView!
     let cardBackImage = UIImage(named: "card-back")
     var cards = CardDeck(cards: [])
+    let sevenStudButton = UIButton()
+    let fiveStudButton = UIButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setBackground()
-        setStackView()
+//        setStackView()
         testPoker()
+        selectGameTypeButton()
     }
    
     func setBackground() {
@@ -40,6 +44,30 @@ class ViewController: UIViewController {
         self.view.addSubview(stackView)
         stackView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         stackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 100).isActive = true
+    }
+    
+    func selectGameTypeButton() {
+        sevenStudButton.setTitle("7 Cards", for: .normal)
+        sevenStudButton.layer.borderColor = UIColor.white.cgColor
+        sevenStudButton.layer.borderWidth = 1
+        fiveStudButton.setTitle("5 Cards", for: .normal)
+        fiveStudButton.layer.borderColor = UIColor.white.cgColor
+        fiveStudButton.layer.borderWidth = 1
+        sevenStudButton.setBackgroundColor(.clear, for: .normal)
+        sevenStudButton.setBackgroundColor(.white, for: .selected)
+        self.gameTypeStackView = UIStackView()
+        self.gameTypeStackView.axis = .horizontal
+        self.gameTypeStackView.alignment = .fill
+        self.gameTypeStackView.distribution = .fill
+        self.gameTypeStackView.translatesAutoresizingMaskIntoConstraints = false
+        
+        gameTypeStackView.addArrangedSubview(sevenStudButton)
+        gameTypeStackView.addArrangedSubview(fiveStudButton)
+        
+        self.view.addSubview(gameTypeStackView)
+        
+        gameTypeStackView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 50).isActive = true
+        gameTypeStackView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
     }
     
     func generateImage() -> UIImageView {
@@ -85,3 +113,16 @@ class ViewController: UIViewController {
 
 }
 
+extension UIButton {
+    func setBackgroundColor(_ color: UIColor, for state: UIControl.State) {
+        UIGraphicsBeginImageContext(CGSize(width: 1.0, height: 1.0))
+        guard let context = UIGraphicsGetCurrentContext() else { return }
+        context.setFillColor(color.cgColor)
+        context.fill(CGRect(x: 0.0, y: 0.0, width: 1.0, height: 1.0))
+        
+        let backgroundImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+         
+        self.setBackgroundImage(backgroundImage, for: state)
+    }
+}
