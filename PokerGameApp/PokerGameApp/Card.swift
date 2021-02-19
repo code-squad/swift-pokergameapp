@@ -23,8 +23,6 @@ enum Suit : String, CustomStringConvertible, CaseIterable {
 enum Number : Int, CustomStringConvertible, CaseIterable{
     var description: String {
         switch self {
-        /*case .A, .J, .Q, .K:
-            return "\(self.rawValue)"*/ // 여기 그냥 enum의 고유 값을 반환할 수는 없나요?
         case .A:
             return "A"
         case .J:

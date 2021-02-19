@@ -1,10 +1,3 @@
-//
-//  PokerGame.swift
-//  PokerGameApp
-//
-//  Created by 박정하 on 2021/02/18.
-//
-
 import Foundation
 
 class PokerGame{
@@ -12,36 +5,17 @@ class PokerGame{
     private var gameStyle : Int
     private var deck : Deck
     private let dealer : Dealer
-    private var player : [Player]
+    private var players : Players
     
-    init(GameStyle : Int) {
+    init(GameStyle : Int, gamePlayers: Int) {
         self.gameStyle = GameStyle
         self.deck = Deck()
-        self.player = []
+        self.players = Players.init(playerCount: gamePlayers)
         self.dealer = Dealer(dealerdeck: self.deck)
     }
     
-    func decidePlayerNum(_ playerCount : Int) -> Void   {
-        for _ in 0..<playerCount{
-            let newplayer = Player()
-            player.append(newplayer)
-        }
-    }
-    
-    func getGameStyle() -> Int{
-        return gameStyle
-    }
-    
-    func getPlayers() -> [Player]{
-        return player
-    }
-    
-    func getDealer() -> Dealer{
-        return dealer
-    }
-    
     func gameStart(){
-        decidePlayerNum(3) // 플레이어 결정
+        players.decidePlayerNum()
         dealer.deckCreateShuffle()
         do {
             try dealer.cardDistribution(currentGame: self)
@@ -49,18 +23,38 @@ class PokerGame{
         catch{
             print("카드가 부족합니다.")
         }
-        for i in 0..<player.count{
-            player[i].printMycard(index: i + 1)
+        for i in 0..<players.currentPlayers(){
+            print("player #\(i)"); players.printCardplayers(index: i)
         }
-        dealer.printMycard(index: 0) //사실 여긴 0이 필요없는데..? 상속 받은 함수를 새로 고쳐쓸 순 없을까..
+        print("dealer"); dealer.printMyCard()
     }
+    
+    func isCardremain() -> Bool{
+        let DEALERCOUNT = 1
+        if deck.Count() >= (players.currentPlayers() + DEALERCOUNT) * gameStyle{
+            return true
+        }
+        return false
+    }
+    
+    func distributeCard(){
+        for _ in 0..<gameStyle{
+            for i in 0..<players.currentPlayers(){
+                players.throwCardtoPlayer(i, deck.takeTopcard())
+                deck.removeTopCard()
+            }
+            dealer.receiveCard(deck.takeTopcard())
+            deck.removeTopCard()
+        }
+    }
+    
 }
 
-enum errorOfGame : Error{
+enum ErrorOfgame : Error{
     case lackCard
 }
 
-class human {
+class Player {
     private var myCard : [Card]
     
     init(){
@@ -71,49 +65,57 @@ class human {
         myCard.append(card)
     }
     
-    func printMycard(index : Int){
-        print("player# \(index) \(myCard)")
+    func printMyCard(){
+        print(myCard)
     }
 }
 
-class Player : human{
+class Players{
+    private var players : [Player]
+    private let playerCount : Int
     
+    init(playerCount : Int){
+        self.players = []
+        self.playerCount = playerCount
+        print("플레이어 카운트 \(self.playerCount)")
+    }
+    
+    func decidePlayerNum() -> Void {
+        for _ in 0..<playerCount{
+            let newplayer = Player()
+            players.append(newplayer)
+        }
+    }
+    
+    func printCardplayers(index : Int) -> Void{
+        players[index].printMyCard()
+    }
+    
+    func currentPlayers() -> Int{
+        return players.count
+    }
+    
+    func throwCardtoPlayer(_ index : Int, _ card : Card){
+        players[index].receiveCard(card)
+    }
 }
 
-class Dealer : human{
+class Dealer : Player{
     private let deck : Deck
     
     init(dealerdeck : Deck){
         self.deck = dealerdeck
     }
     
-    func isCardremain(currentGame: PokerGame) -> Bool{
-        let DEALERCOUNT = 1
-        if deck.getCount() >= (currentGame.getPlayers().count + DEALERCOUNT) * currentGame.getGameStyle(){
-            return true
-        }
-        return false
-    }
-    
     func cardDistribution(currentGame: PokerGame) throws -> Void{
-        guard isCardremain(currentGame: currentGame) else{
-            throw errorOfGame.lackCard
+        guard currentGame.isCardremain() else{
+            throw ErrorOfgame.lackCard
         }
-        for _ in 0..<currentGame.getGameStyle(){
-            for i in 0..<currentGame.getPlayers().count{
-                currentGame.getPlayers()[i].receiveCard(deck.takeTopcard())
-                deck.removeTopCard()
-            }
-            currentGame.getDealer().receiveCard(deck.takeTopcard())
-            deck.removeTopCard()
-        }
+        currentGame.distributeCard()
     }
     
     func deckCreateShuffle(){
         deck.resetDeck()
-        do {try deck.shuffleDeck()}
-        catch{
-            print("카드가 부족합니다.")
-        }
+        deck.shuffleDeck()
     }
 }

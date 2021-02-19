@@ -8,16 +8,15 @@
 import Foundation
 
 class Deck{
-    private var deck : [Card] = []
+    private var deck : [Card]
+    
+    init(){
+        deck = []
+    }
     
     func resetDeck(){
-        if isEmpty() {
-            createDeck()
-        }
-        else{
-            deck.removeAll()
-            createDeck()
-        }
+        deck.removeAll()
+        createDeck()
     }
     
     func createDeck(){
@@ -33,21 +32,17 @@ class Deck{
         return true
     }
     
-    func getCount() -> Int{
+    func Count() -> Int{
         return deck.count
-    }
-    
-    func getCurrentdeck() -> [Card]{
-        return deck
     }
     
     enum errorOfDeck : Error{
         case empty
     }
     
-    func shuffleDeck() throws -> Void{
-        guard deck.count != 0 else{
-            throw errorOfDeck.empty
+    func shuffleDeck() -> Void{
+        if deck.count < 1{
+            return
         }
         for i in 0..<deck.count - 1{
             let randomIndex = Int.random(in: i..<deck.count)
@@ -56,13 +51,12 @@ class Deck{
             deck[i] = deck[randomIndex]
             deck[randomIndex] = temp
         }
-    } // 이 부분 shuffle 시작 하는 부분에 옵셔널 바인딩으로 if var deckTemp = deck {} 으로 진행하려 했으나 덱을 옵셔널로 두고 nil을 부여하면 createDeck을 실행해도 덱이 초기화 되질 않습니다. 이런 경우 옵셔널 바인딩 보단 그냥 덱의 count가 0일 경우로 처리하는 것이 더 권장되는 방향일까요?
+    }
     
-    func takeRandomcard(){
+    func takeRandomcard() -> Card{
         let randomIndex = Int.random(in: 0..<deck.count)
         
-        print(deck[randomIndex].description)
-        deck.remove(at: randomIndex)
+        return deck[randomIndex]
     }
     
     func takeTopcard() -> Card{
