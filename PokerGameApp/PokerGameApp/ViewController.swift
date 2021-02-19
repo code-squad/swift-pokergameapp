@@ -9,6 +9,9 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    private let divideYSpace: CGFloat = 8
+    private let divedeXSpace: CGFloat = 3
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -17,8 +20,6 @@ class ViewController: UIViewController {
             self.view.backgroundColor = UIColor(patternImage: bgImg)
         }
         
-        show7CardBack()
-        
         let game = PokerGame()
         game.selectOPtion(stud: .five, numberOfPlayers: .three)
         game.startGame()
@@ -26,31 +27,86 @@ class ViewController: UIViewController {
         
         game.selectOPtion(stud: .seven, numberOfPlayers: .two)
         game.startGame()
+        
+        showCard()
+        segmentStackView()
     }
 
-    func show7CardBack() {
-        //  카드 7장을 놓을 수 있는 치수 설정
+    func showCard() {
         let cardCount:CGFloat = 7
-        let cardWidth = self.view.frame.width / (cardCount + 1)
+        let cardWidth = view.frame.width / (cardCount + 1)
         let cardHeight = cardWidth * 1.27
-        let betweenCard = cardWidth / (cardCount + 1)
+        
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.distribution = .fillEqually
+        stackView.alignment = .fill
+        stackView.spacing = 8
+        stackView.translatesAutoresizingMaskIntoConstraints = false
         let image = UIImage(named: "card-back")
         
-        //  카드를 놓을 초기 위치 설정
-        var currentPosition: CGFloat = 0.0
-        currentPosition += betweenCard
-        
-        //  카드 7장 놓기
         for _ in 1...7 {
-            let cardImage: UIImageView
-            cardImage = UIImageView(frame: CGRect(x: currentPosition, y: self.view.frame.minY + 50, width: cardWidth, height: cardHeight))
-            cardImage.image = image
-            self.view.addSubview(cardImage)
-            
-            //  다음 카드의 위치 설정
-            currentPosition += betweenCard + cardWidth
+            let cardImage = UIImageView(image: image)
+            stackView.addArrangedSubview(cardImage)
         }
+        
+        view.addSubview(stackView)
+        
+        stackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 50).isActive = true
+        stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 8).isActive = true
+        stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8).isActive = true
+        stackView.heightAnchor.constraint(equalToConstant: cardHeight).isActive = true
+        
+    }
+    
+    func segmentStackView() {
+        let segmentHeight = self.view.frame.height / self.divideYSpace
+        let segmentWidth = self.view.frame.width / self.divedeXSpace
+        
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.distribution = .fillEqually
+        stackView.alignment = .fill
+        stackView.spacing = 5
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        
+        self.view.addSubview(stackView)
+        stackView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 10).isActive = true
+        stackView.centerXAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.centerXAnchor).isActive = true
+        stackView.heightAnchor.constraint(equalToConstant: segmentHeight).isActive = true
+        stackView.widthAnchor.constraint(equalToConstant: segmentWidth).isActive = true
+        
+        let studSegment = Segment().studSegment()
+        let playerSegment = Segment().playerSegment()
+        stackView.addArrangedSubview(studSegment)
+        stackView.addArrangedSubview(playerSegment)
     }
 
 }
 
+class Segment {
+    
+    func studSegment() -> UISegmentedControl {
+        var segmentItem: [String] = []
+        Stud.allCases.forEach() { segmentItem.append("\($0)") }
+        let segmentedControl = UISegmentedControl(items: segmentItem)
+        return make(segmentedControl)
+    }
+    
+    func playerSegment() -> UISegmentedControl {
+        var segmentItem: [String] = []
+        NumberOfPlayers.allCases.forEach() { segmentItem.append("\($0)") }
+        let segmentedControl = UISegmentedControl(items: segmentItem)
+        return make(segmentedControl)
+    }
+    
+    func make(_ segmentedControl: UISegmentedControl) -> UISegmentedControl {
+        segmentedControl.selectedSegmentIndex = 0
+        segmentedControl.setTitleTextAttributes([.foregroundColor:UIColor.white], for: .normal)
+        segmentedControl.setTitleTextAttributes([.foregroundColor:UIColor.black], for: .selected)
+        segmentedControl.layer.borderColor = UIColor.white.cgColor
+        segmentedControl.layer.borderWidth = 2
+        
+        return segmentedControl
+    }
+}
