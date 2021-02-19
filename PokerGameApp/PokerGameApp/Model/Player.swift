@@ -1,7 +1,7 @@
 import Foundation
 
 class Player: Playable {
-    var name: String
+    let name: String
     private var cards = [Card]()
     
     init(ID: Int) {

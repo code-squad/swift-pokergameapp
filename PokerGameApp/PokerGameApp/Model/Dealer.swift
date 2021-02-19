@@ -10,11 +10,11 @@ class Dealer: Playable {
     let name = "딜러"
     private var cards = [Card]()
     
-    func appendCard(_ card: Card) {
+    public func appendCard(_ card: Card) {
         cards.append(card)
     }
     
-    func resetCard() {
+    public func resetCard() {
         self.cards = [Card]()
     }
 }

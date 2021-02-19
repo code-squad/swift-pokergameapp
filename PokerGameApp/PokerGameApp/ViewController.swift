@@ -6,8 +6,8 @@ class ViewController: UIViewController {
         case cards
     }
     
-    var pokerGame: PokerGame!
-    var pokerPlate: UIStackView!
+    var pokerGame: PokerGame = PokerGame(numberOfPlayer: .twoPlayer, stud: .sevenCardStud)
+    var pokerPlate: UIStackView = UIStackView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +23,7 @@ class ViewController: UIViewController {
         setPokerGame(numberOfPlayer: .twoPlayer, stud: .sevenCardStud)
     }
     
-    //MARK: Reset
+    //MARK: set
     private func setPokerGame(numberOfPlayer: Participant, stud: CardStud) {
         for subview in self.view.subviews where !(subview is UISegmentedControl) {
             subview.removeFromSuperview()
@@ -32,6 +32,7 @@ class ViewController: UIViewController {
         pokerPlate = UIStackView()
         initPokerPlate()
         pokerGame.players.resetPlayersCard()
+        
         
         for player in pokerGame.players.list {
             let playerNameLabel = setPlayerNameLabel(name: player.name)

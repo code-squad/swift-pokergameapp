@@ -16,11 +16,9 @@ class PokerGame {
     var cardStud: CardStud
     var participant: Participant
     var cardDeck: CardDeck
-    var dealer: Dealer
     
     init(numberOfPlayer: Participant, stud: CardStud) {
         self.participant = numberOfPlayer
-        self.dealer = Dealer()
         self.cardDeck = CardDeck()
         self.players = Players()
         players.registerPlayers(numberOfPlayer: numberOfPlayer)
