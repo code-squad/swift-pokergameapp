@@ -24,7 +24,8 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setBackgroundImg()
-        let game = PockerGame(number: ParticipantType.four, number: GameType.seven)
+        
+        let game = PockerGame(number: ParticipantType.four, number: GameType.five)
         game.gameStart()
         let dealer = game.getDealer()
         let participants = game.getParticipants().getParticipants()
@@ -47,6 +48,7 @@ class MainViewController: UIViewController {
         }
         self.view.backgroundColor = UIColor(patternImage: backgroundImg)
     }
+    
     func addCardImg(stackView: UIStackView, player: Player) {
         self.verticalStackView.addArrangedSubview(stackView)
         
@@ -54,13 +56,15 @@ class MainViewController: UIViewController {
             stackView.addArrangedSubview(createImgView(name: "\(cardName).png"))
         })
     }
+    
     func addVerticalStackViewWithConstraints() {
         self.view.addSubview(verticalStackView)
         verticalStackView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 50).isActive = true
         verticalStackView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor).isActive = true
-        verticalStackView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 50).isActive = true
-        verticalStackView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -50).isActive = true
+        verticalStackView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 25).isActive = true
+        verticalStackView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -25).isActive = true
     }
+    
     func addHorizontalStackView() -> UIStackView {
         let stackView = UIStackView()
         stackView.axis = .horizontal
