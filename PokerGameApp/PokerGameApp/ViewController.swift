@@ -9,13 +9,16 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    @IBOutlet weak var gameRuleSegmentedControl: UISegmentedControl!
+    @IBOutlet weak var numberOfPlayersSegmentedControl: UISegmentedControl!
+    
     let cardImage = UIImage(named:  "card-back")
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupBackgroundImage()
-        setupCard()
+        //setupCard()
         
         let players = Players(players: [Player(), Player(), Player(), Player(playerType: .dealer)])
         let game = PokerGame(players: players)
@@ -54,5 +57,30 @@ class ViewController: UIViewController {
     
     func makeCard() -> UIImageView {
         return UIImageView(image: cardImage)
+    }
+    
+    // MARK: - IBAction
+    @IBAction func didChangeGameRule(_ sender: Any) {
+        switch gameRuleSegmentedControl.selectedSegmentIndex {
+        case 0:
+            print("7 Cards")
+        case 1:
+            print("5 Cards")
+        default:
+            break
+        }
+    }
+    
+    @IBAction func didChangeNumberOfPlayers(_ sender: Any) {
+        switch gameRuleSegmentedControl.selectedSegmentIndex {
+        case 0:
+            print("2 Players")
+        case 1:
+            print("3 Players")
+        case 2:
+            print("4 Players")
+        default:
+            break
+        }
     }
 }
