@@ -93,6 +93,25 @@ class ViewController: UIViewController {
         return stackView
     }
     
+    func makeCardInfoStackView(role: String, cards: [Card]) -> UIStackView {
+        let cardInfoStackView = UIStackView()
+        cardInfoStackView.translatesAutoresizingMaskIntoConstraints = false
+        cardInfoStackView.axis = .vertical
+        cardInfoStackView.alignment = .fill
+        cardInfoStackView.distribution = .fill
+        
+        let roleLabel = UILabel()
+        roleLabel.translatesAutoresizingMaskIntoConstraints = false
+        cardInfoStackView.addArrangedSubview(roleLabel)
+        roleLabel.text = role
+        roleLabel.textColor = UIColor.white
+        
+        let cardViews = makeCardViews(from: cards)
+        let cardStackView = makeCardStackView(with: cardViews)
+        cardInfoStackView.addArrangedSubview(cardStackView)
+        return cardInfoStackView
+    }
+    
     func testScenarios() {
         print(Test(testCase: .create, testDeck: deckForTest, expectedValue: 52))
         deckForTest.shuffle()
