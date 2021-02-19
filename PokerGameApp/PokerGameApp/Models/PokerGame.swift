@@ -9,24 +9,6 @@ import Foundation
 
 class PokerGame: CustomStringConvertible {
     
-    enum GameRule: Int {
-        case minPlayer = 1
-        case maxPlayer = 4
-        
-        func isSatisfied(by players: Players) throws {
-            switch self {
-            case .minPlayer:
-                guard players.count >= self.rawValue else {
-                    throw PokerGameError.tooFewPlayers
-                }
-            case .maxPlayer:
-                guard players.count <= self.rawValue else {
-                    throw PokerGameError.tooManyPlayers(playersNeededToLeave: players.count - self.rawValue)
-                }
-            }
-        }
-    }
-    
     enum StudPoker: Int, CustomStringConvertible {
         case fiveCardStud = 5
         case sevenCardStud = 7
@@ -63,10 +45,7 @@ class PokerGame: CustomStringConvertible {
         return "🃏카드게임 종류: \(gameType), 👨‍👩‍👧‍👦참가자: \(players.count)명\n\(playersResult)\n\(dealerResult)"
     }
     
-    //init(dealer: Dealer, players: Players, gameType: StudPoker) throws {
     init(dealer: Dealer, players: Players, gameType: StudPoker) {
-        //try GameRule.minPlayer.isSatisfied(by: players)
-        //try GameRule.maxPlayer.isSatisfied(by: players)
         self.dealer = dealer
         self.players = players
         self.gameType = gameType
