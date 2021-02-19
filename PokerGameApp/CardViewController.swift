@@ -33,7 +33,6 @@ class CardViewController: UIViewController {
         pockerGame()
         
         configureVerticalStackView()
-        addCardsStackView()
         configureSegmentControl()
     }
     
@@ -41,19 +40,21 @@ class CardViewController: UIViewController {
         self.view.backgroundColor = UIColor(patternImage: backgroundImagePattern)
     }
     
-    func addCardsStackView(){
-        let cardCount = 5
-        let players = 4
-        for _ in 0..<players {
-            let horizontalStackView = UIStackView()
-            configureHorizontalStackView(with: horizontalStackView)
-            
-            for _ in 0..<cardCount {
-                let cardImageView = getCardImageView()
-                horizontalStackView.addArrangedSubview(cardImageView)
-            }
-            verticalStackView.addArrangedSubview(horizontalStackView)
+    func drawCards(players : Players){
+        for player in players.player {
+            addCardsStackView(from: player)
         }
+    }
+    
+    func addCardsStackView(from player : Player){
+        let horizontalStackView = UIStackView()
+        configureHorizontalStackView(with: horizontalStackView)
+        
+        for _ in 0..<player.cards.count {
+            let cardImageView = getCardImageView()
+            horizontalStackView.addArrangedSubview(cardImageView)
+        }
+        verticalStackView.addArrangedSubview(horizontalStackView)
     }
     
     func getCardImageView() -> UIImageView{
@@ -67,6 +68,7 @@ class CardViewController: UIViewController {
     func pockerGame(){
         let pokergame = PokerGame(participants: .three, cardSqud: .seven)
         pokergame.start()
+        drawCards(players: pokergame.players)
     }
     
     // MARK: Configuration
