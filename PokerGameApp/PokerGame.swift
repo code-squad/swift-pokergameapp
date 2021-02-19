@@ -9,12 +9,12 @@ import Foundation
 
 class PokerGame {
     
-    var participants : InputView.PlayersCount
-    var cardSqud : InputView.CardStud
+    var participants : PlayOption.PlayersCount
+    var cardSqud : PlayOption.CardStud
     var players : Players
     var dealer : Dealer
     
-    init(participants : InputView.PlayersCount, cardSqud : InputView.CardStud){
+    init(participants : PlayOption.PlayersCount, cardSqud : PlayOption.CardStud){
 
         self.cardSqud = cardSqud
         self.participants = participants
