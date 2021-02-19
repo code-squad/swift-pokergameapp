@@ -20,20 +20,19 @@ class CardViewController: UIViewController {
     let backgroundImagePattern : UIImage = {
         return UIImage(named: "bg_pattern") ?? UIImage()
     }()
-
+    
     let segmentControlForCards = UISegmentedControl(items: ["5 Cards", "7 Cards"])
     let segmentControlForPlayers = UISegmentedControl(items: ["2명", "3명", "4명"])
     
-    let stackView = UIStackView()
+    let verticalStackView = UIStackView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setBackgroundColor()
         
-        let pokergame = PokerGame(participants: .three, cardSqud: .seven)
-        pokergame.start()
+        pockerGame()
         
-        configureStackView()
+        configureVerticalStackView()
         addCardsStackView()
         configureSegmentControl()
     }
@@ -43,34 +42,50 @@ class CardViewController: UIViewController {
     }
     
     func addCardsStackView(){
-        let cardCount = 7
-
-        for _ in 0..<cardCount {
-            let cardImageView = getCardImageView()
-            stackView.addArrangedSubview(cardImageView)
+        let cardCount = 5
+        let players = 4
+        for _ in 0..<players {
+            let horizontalStackView = UIStackView()
+            configureHorizontalStackView(with: horizontalStackView)
+            
+            for _ in 0..<cardCount {
+                let cardImageView = getCardImageView()
+                horizontalStackView.addArrangedSubview(cardImageView)
+            }
+            verticalStackView.addArrangedSubview(horizontalStackView)
         }
     }
     
     func getCardImageView() -> UIImageView{
-        
         let imageView = UIImageView()
         imageView.image = cardBackImage
         imageView.contentMode = .scaleAspectFit
-
+        
         return imageView
+    }
+    
+    func pockerGame(){
+        let pokergame = PokerGame(participants: .three, cardSqud: .seven)
+        pokergame.start()
     }
     
     // MARK: Configuration
     
-    func configureStackView(){
-        view.addSubview(stackView)
-        stackView.axis = .horizontal
-        stackView.distribution = .fillEqually
-        stackView.spacing = 10
+    func configureVerticalStackView(){
+        view.addSubview(verticalStackView)
+        verticalStackView.axis = .vertical
+        verticalStackView.distribution = .fillEqually
+        verticalStackView.spacing = 20
         
-        setStackViewConstraints()
+        setVerticalStackViewConstraints()
     }
-
+    
+    func configureHorizontalStackView(with stackView : UIStackView){
+        stackView.axis = .horizontal
+        stackView.spacing = 5
+        stackView.distribution = .fillEqually
+    }
+    
     func configureSegmentControl(){
         view.addSubview(segmentControlForCards)
         view.addSubview(segmentControlForPlayers)
@@ -79,7 +94,7 @@ class CardViewController: UIViewController {
         setSegmentControlForPlayersConstraints()
     }
     
-    // MARK: Constraints
+    // MARK: Segment Control Constraints
     
     // Cards segmentControl : 가장 위에 그려짐
     func setSegmentControlForCardsConstraints(){
@@ -95,13 +110,21 @@ class CardViewController: UIViewController {
         segmentControlForPlayers.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 50).isActive = true
         segmentControlForPlayers.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -50).isActive = true
     }
+    
+    // MARK: StackView Constraints
     // StackView : Player Segment Control 밑에 그려짐
-    func setStackViewConstraints(){
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 150).isActive = true // 수정할 것
-        stackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 30).isActive = true
-        stackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -30).isActive = true
-//        stackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -30).isActive = true
+    func setVerticalStackViewConstraints(){
+        verticalStackView.translatesAutoresizingMaskIntoConstraints = false
+        verticalStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 150).isActive = true // 수정할 것
+        verticalStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 30).isActive = true
+        verticalStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -30).isActive = true
+        verticalStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -30).isActive = true
+    }
+    
+    func setHorizontalStackViewConstraints(){
+        verticalStackView.translatesAutoresizingMaskIntoConstraints = false
+        verticalStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 30).isActive = true
+        verticalStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -30).isActive = true
     }
 }
 
