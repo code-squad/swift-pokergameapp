@@ -14,6 +14,16 @@ struct PlayOption {
         var description: String {
             return "\(self.rawValue)명"
         }
+        
+        init(rawValue : Int) {
+            switch rawValue {
+            case 0 : self = .one
+            case 1 : self = .two
+            case 2 : self = .three
+            case 3 : self = .four
+            default : self = .none
+            }
+        }
     }
 
     enum CardStud : Int, CaseIterable, CustomStringConvertible {
@@ -23,6 +33,15 @@ struct PlayOption {
         
         var description: String {
             return "\(self.rawValue) Cards"
+        }
+        
+        init(rawValue : Int){
+            switch rawValue {
+            case 0 : self = .five
+            case 1 : self = .seven
+            default:
+                self = .none
+            }
         }
     }
 }

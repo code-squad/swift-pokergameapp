@@ -105,22 +105,11 @@ extension CardViewController {
     }
     func segmentToCardSqud(_ segmentControl : UISegmentedControl) -> PlayOption.CardStud {
         let value = segmentControl.selectedSegmentIndex
-        switch value {
-        case 0 : return PlayOption.CardStud.five
-        case 1 : return PlayOption.CardStud.seven
-        default:
-            return PlayOption.CardStud.none
-        }
+        return PlayOption.CardStud.init(rawValue: value)
     }
     func segmentToPlayersCount(_ segmentControl : UISegmentedControl) -> PlayOption.PlayersCount {
         let value = segmentControl.selectedSegmentIndex
-        switch value {
-        case 0 : return PlayOption.PlayersCount.one
-        case 1 : return PlayOption.PlayersCount.two
-        case 2 : return PlayOption.PlayersCount.three
-        case 3 : return PlayOption.PlayersCount.four
-        default : return PlayOption.PlayersCount.none
-        }
+        return PlayOption.PlayersCount.init(rawValue: value)
     }
 }
 
