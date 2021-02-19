@@ -9,18 +9,13 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    let heartQ = Card(suit: .hearts, rank: .twelve)
-    let spade7 = Card(suit: .spades, rank: .seven)
     var deckForTest = CardDeck()
     var deckForGame = CardDeck()
     
-    let pokerCardImage = UIImage(named: "card-back")
     let cardStackView = UIStackView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(heartQ)
-        print(spade7)
         testScenarios()
         
         if let backgroundImage = UIImage(named: "bg_pattern") {
@@ -41,7 +36,6 @@ class ViewController: UIViewController {
             print("예상치 못한 에러가 발생했어요😢: \(error)")
         }
         
-        add(numberOfCardViews: 7, to: cardStackView)
         setProperties(of: cardStackView)
         setConstraints(of: cardStackView)
     }
@@ -59,15 +53,6 @@ class ViewController: UIViewController {
         view.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
         view.leadingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.leadingAnchor).isActive = true
         view.trailingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.trailingAnchor).isActive = true
-    }
-    
-    func add(numberOfCardViews: Int, to stackView: UIStackView) {
-        for _ in 0..<numberOfCardViews {
-            let pokerCardView = UIImageView(image: pokerCardImage)
-            pokerCardView.translatesAutoresizingMaskIntoConstraints = false
-            pokerCardView.heightAnchor.constraint(equalTo: pokerCardView.widthAnchor, multiplier: 1.27).isActive  = true
-            stackView.addArrangedSubview(pokerCardView)
-        }
     }
     
     func testScenarios() {
