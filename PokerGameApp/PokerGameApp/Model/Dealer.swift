@@ -35,9 +35,9 @@ class Dealer : Playable {
         }
     }
     
-    func showCards() -> PlayerCard {
-        let playerCard = PlayerCard(name: name, card: deck)
-        return playerCard
+    func showCards(closure: (PlayerCard) -> Void) {
+        let playerCard = PlayerCard(name: "\(name)", card: deck)
+        closure(playerCard)
     }
     
     func resetPlayerCard(players : [Playable]) {
