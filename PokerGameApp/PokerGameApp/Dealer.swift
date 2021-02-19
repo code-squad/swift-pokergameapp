@@ -7,13 +7,21 @@
 
 import Foundation
 
-enum Stud: Int {
+enum Stud: Int, CustomStringConvertible, CaseIterable {
     case five = 5
     case seven = 7
+    
+    var description: String {
+        return "\(self.rawValue) Cards"
+    }
 }
 
-enum NumberOfPlayers: Int {
-    case one = 1, two, three, four
+enum NumberOfPlayers: Int, CustomStringConvertible, CaseIterable {
+    case two = 2, three, four
+    
+    var description: String {
+        return "\(self.rawValue)명"
+    }
 }
 
 
