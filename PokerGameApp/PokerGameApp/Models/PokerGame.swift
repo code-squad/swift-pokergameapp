@@ -62,11 +62,11 @@ class PokerGame: CustomStringConvertible {
         }
     }
     
-    private func getPlayersResult() -> [[Card]] {
+    func getPlayersResult() -> [[Card]] {
         return players.showdown()
     }
     
-    private func getDealerResult() -> [Card] {
+    func getDealerResult() -> [Card] {
         return dealer.showdown()
     }
 }
