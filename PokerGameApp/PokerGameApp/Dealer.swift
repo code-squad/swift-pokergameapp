@@ -20,7 +20,7 @@ class Dealer: Playable {
         cardDeck.shuffle()
     }
     
-    public func distributeCard(_ players: Players, numberOfCards: GameType) {
+    public func distributeCard(_ players: Players, numberOfCards: PokerGame.GameType) {
         for _ in 0..<numberOfCards.value {
             if let card = cardDeck.popCard() {
                 players.reciveCard(card)
@@ -29,7 +29,7 @@ class Dealer: Playable {
         }
     }
 
-    public func judgeEndGame(numberOfPlayers: Players, numberOfCards: GameType) -> Bool {
+    public func judgeEndGame(numberOfPlayers: Players, numberOfCards: PokerGame.GameType) -> Bool {
         return cardDeck.count < numberOfPlayers.count * numberOfCards.value ? true : false
     }
     

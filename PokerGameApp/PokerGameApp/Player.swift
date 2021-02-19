@@ -27,7 +27,7 @@ class Players {
     private var players = [Player]()
     var count: Int { players.count }
     
-    public func takeSeat(with playerNumber: PlayerNumber) {
+    public func takeSeat(with playerNumber: PokerGame.PlayerNumber) {
         for _ in 0..<playerNumber.value {
             players.append(Player())
         }
