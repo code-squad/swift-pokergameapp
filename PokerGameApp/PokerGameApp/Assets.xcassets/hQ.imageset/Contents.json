@@ -6,10 +6,12 @@
       "scale" : "1x"
     },
     {
+      "filename" : "hQ-1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "hQ-2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

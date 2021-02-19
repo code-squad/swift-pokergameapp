@@ -50,7 +50,7 @@ class Dealer : Playable {
         return cardDeck.count() > gameType * players
     }
     
-    func reDrawCardDeck() {
+    func redrawCardDeck() {
         cardDeck.reset()
         cardDeck.shuffle()
     }
