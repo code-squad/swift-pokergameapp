@@ -39,10 +39,12 @@ class Players {
         }
     }
     
-    public func printAllCard() {
-        for (number, player) in players.enumerated() {
-            print("참가자#\(number+1) \(player.showCards())")
+    public func showAllCard() -> [[Card]] {
+        var allCard = [[Card]]()
+        players.forEach { player in
+            allCard.append(player.showCards())
         }
+        return allCard
     }
     
     public func dropAllCard() {

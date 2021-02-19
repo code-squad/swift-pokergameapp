@@ -24,13 +24,15 @@ class Dealer: Playable {
         for _ in 0..<numberOfCards.value {
             if let card = cardDeck.popCard() {
                 players.reciveCard(card)
+            }
+            if let card = cardDeck.popCard() {
                 cards.append(card)
             }
         }
     }
 
     public func judgeEndGame(numberOfPlayers: Players, numberOfCards: PokerGame.GameType) -> Bool {
-        return cardDeck.count < numberOfPlayers.count * numberOfCards.value ? true : false
+        return cardDeck.count < (numberOfPlayers.count+1) * numberOfCards.value ? true : false
     }
     
     public func showCards() -> [Card] {

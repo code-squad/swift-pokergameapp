@@ -42,10 +42,11 @@ class PokerGame {
             dealer.distributeCard(players, numberOfCards: gameType)
             isEndGame = dealer.judgeEndGame(numberOfPlayers: players, numberOfCards: gameType)
             
-            players.printAllCard()
+            players.showAllCard()
             dealer.showCards()
             players.dropAllCard()
             dealer.dropMyCards()
+            
         }
         print("게임이 종료되었습니다.")
     }
