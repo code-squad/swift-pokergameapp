@@ -38,17 +38,31 @@ class ViewController: UIViewController {
         dashboardStackView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
         dashboardStackView.widthAnchor.constraint(lessThanOrEqualTo: self.view.widthAnchor, multiplier: 0.9).isActive = true
     }
-    
     func addSubviewToDashboardStackView(with gameResult: Array<Array<Card>>, to verticalStackView: UIStackView) {
         for playerResult in gameResult {
-            let newStackView = makeCardStackView()
+            let newStackView = makeHorizontalCardStack()
             verticalStackView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.09 * CGFloat(gameResult.count)).isActive = true
-            addSubviewToCardStackView(cards: playerResult, to: newStackView)
+            addCardsToHorizontalCardStack(cards: playerResult, to: newStackView)
             verticalStackView.addArrangedSubview(newStackView)
         }
     }
+  
+    func addCardsToHorizontalCardStack(cards: Array<Card>, to stackView: UIStackView) {
+        
+        for card in cards {
+            let newCardImageView = makeCardImageView(with: card)
+            stackView.addArrangedSubview(newCardImageView)
+        }
+        let prizeImageView: UIImageView = {
+            let imageView = UIImageView()
+            imageView.translatesAutoresizingMaskIntoConstraints = false
+            imageView.image = UIImage(named: "card-back") ?? UIImage()
+            return imageView
+        }()
+        stackView.addArrangedSubview(prizeImageView)
+    }
     
-    func makeCardStackView() -> UIStackView {
+    func makeHorizontalCardStack() -> UIStackView {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.spacing = -20
@@ -64,13 +78,6 @@ class ViewController: UIViewController {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
         return imageView
-    }
-    
-    func addSubviewToCardStackView(cards: Array<Card>, to stackView: UIStackView) {
-        for card in cards {
-            let newCardImageView = makeCardImageView(with: card)
-            stackView.addArrangedSubview(newCardImageView)
-        }
     }
     
     func testScenario(command: String) {
