@@ -41,11 +41,24 @@ class CardViewController: UIViewController {
     }
     
     func drawCards(players : Players,  dealer : Dealer){
-        for player in players.player {
+
+        for (id, player) in players.player.enumerated() {
+            addTextLabel(text : "Player\(id+1)")
             addCardsStackView(from: player)
         }
+        addTextLabel(text : "Dealer")
         addCardsStackView(from: dealer)
     }
+    
+    func addTextLabel(text : String){
+        let textLebel = UILabel()
+        textLebel.text = text
+        textLebel.textColor = .white
+        textLebel.font = UIFont.boldSystemFont(ofSize: 15)
+        textLebel.textAlignment = .left
+        mainStackView.addArrangedSubview(textLebel)
+    }
+    
     func addCardsStackView(from player : Player){
         let horizontalStackView = UIStackView()
         configureHorizontalStackView(with: horizontalStackView)
@@ -85,7 +98,7 @@ extension CardViewController {
     
     func configureHorizontalStackView(with stackView : UIStackView){
         stackView.axis = .horizontal
-        stackView.spacing = -5
+        stackView.spacing = -8
         stackView.distribution = .fillEqually
     }
     
@@ -123,10 +136,5 @@ extension CardViewController {
         mainStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 30).isActive = true
         mainStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -30).isActive = true
         mainStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -30).isActive = true
-    }
-    func setHorizontalStackViewConstraints(){
-        mainStackView.translatesAutoresizingMaskIntoConstraints = false
-        mainStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 30).isActive = true
-        mainStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -30).isActive = true
     }
 }
