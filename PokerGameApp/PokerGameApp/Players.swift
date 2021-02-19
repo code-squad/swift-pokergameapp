@@ -35,7 +35,7 @@ class Players : CustomStringConvertible {
     }
     
     //  인원수 만큼 가져온 카드를 플레이어들에게 한 장씩 나눠준다.
-    func eachPlayersGetCards(_ cards: CardDeck) {
+    func distributeEachCard(with cards: CardDeck) {
         var tempCards = cards
         
         if let card = tempCards.removeOne() {

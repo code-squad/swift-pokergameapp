@@ -24,7 +24,7 @@ class PokerGame {
     func startGame() {
         self.dealer.resetCardDeck()
         print("\(self.dealer.currentStud())카드 기준, 참가자 \(self.players.totalPeopleNum - 1)명 일 때")
-        while self.dealer.distributeCard(self.players) {
+        while self.dealer.distributeCards(self.players) {
             printAll()
             self.players.dropAllCards()
         }
