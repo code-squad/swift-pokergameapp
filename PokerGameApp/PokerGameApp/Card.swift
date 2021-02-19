@@ -12,7 +12,7 @@ struct Card: CustomStringConvertible {
     let rank: Rank
     
     var description: String {
-        return "\(suit.rawValue)\(rank.rawValue)"
+        return "\(suit)\(rank)"
     }
     
     enum Suit: String, CustomStringConvertible, CaseIterable {
