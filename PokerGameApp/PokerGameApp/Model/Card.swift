@@ -9,11 +9,8 @@ import Foundation
 
 class Card {
     
-    enum Shapes: String, CaseIterable, CustomStringConvertible{
-        case hearts = "❤️", spades = "♠️", clobers = "♣️", diamonds = "♦️"
-        var description: String {
-            return self.rawValue
-        }
+    enum Shapes: String, CaseIterable{
+        case h = "❤️", s = "♠️", c = "♣️", d = "♦️"
     }
 
     enum Nums: Int, CaseIterable, CustomStringConvertible{
