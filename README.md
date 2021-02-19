@@ -104,3 +104,16 @@ PockerGameApp에서 Card 객체는 생성된 한번 생성된 인스턴스에 �
 
 ### 결과
 <img width="550" alt="Screen Shot 2021-02-17 at 11 32 24 AM" src="https://user-images.githubusercontent.com/60229909/108148260-cf3b0100-7113-11eb-8188-c12d25564f54.png"><img width="550" alt="Screen Shot 2021-02-17 at 11 32 48 AM" src="https://user-images.githubusercontent.com/60229909/108148297-df52e080-7113-11eb-9982-287801003daf.png">
+
+## Step05
+
+### 프로그래밍 요구사항
+- 화면을 개선하고 카드 이미지를 적용한 UI를 완성한다.
+- CardDeck 인스턴스를 만들고 랜덤으로 카드를 섞고 출력 화면처럼 보이도록 개선한다.
+- 입력을 위해서 화면 디자인처럼 버튼으로 만들어서 선택할 수 있도록 한다.
+- 카드 정보를 화면에 카드 이미지로 표시한다.
+- 앱에서 Shake 이벤트를 발생하면 랜덤 카드를 다시 섞고 다시 동작하도록 구현한다.
+
+### 결과
+<img width="300" alt="Screen Shot 2021-02-19 at 6 38 44 PM" src="https://user-images.githubusercontent.com/60229909/108486698-b3855580-72e1-11eb-8b89-d40c31d2462b.png"><img width="300" alt="Screen Shot 2021-02-19 at 6 38 57 PM" src="https://user-images.githubusercontent.com/60229909/108486721-bb44fa00-72e1-11eb-8db6-edbbd4a2c289.png">
+<img width="500" alt="Screen Shot 2021-02-19 at 6 39 41 PM" src="https://user-images.githubusercontent.com/60229909/108486800-d6176e80-72e1-11eb-95ff-88bad6990710.png">
