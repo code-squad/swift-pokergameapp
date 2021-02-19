@@ -11,4 +11,9 @@ struct ShowdownCards {
     
     private let owner: Player
     private let setOfCards: [Card]
+    
+    init(owner: Player, setOfCards: [Card]) {
+        self.owner = owner
+        self.setOfCards = setOfCards
+    }
 }
