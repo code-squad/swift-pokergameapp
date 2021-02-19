@@ -4,12 +4,7 @@ struct CardDeck {
     private var cards = [Card]()
     
     init() {
-        cards = CardBox.takeSetOfCards()
-        cards = cards.shuffled()
-    }
-    
-    public var count: Int {
-        return cards.count
+        self.reset()
     }
     
     public mutating func shuffle() {
@@ -23,6 +18,7 @@ struct CardDeck {
     
     public mutating func reset() {
         cards = CardBox.takeSetOfCards()
+        cards = cards.shuffled()
     }
 }
 
