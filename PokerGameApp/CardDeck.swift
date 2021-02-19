@@ -9,12 +9,6 @@ import Foundation
 
 class CardDeck : Cards{
     
-    public var count : Int {
-        get {
-            return cards.count
-        }
-    }
-
     override init(){
         super.init()
         for suit in Card.Suit.allCases {

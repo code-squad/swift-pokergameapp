@@ -8,10 +8,10 @@
 import Foundation
 
 class Player{
-    private(set) var cards : CardDeck
+    private(set) var cards : Cards
     
     init(){
-        cards = CardDeck()
+        cards = Cards()
     }
 }
 
