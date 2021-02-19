@@ -17,9 +17,9 @@ class PokerGame {
         case one = 1, two, three, four
     }
     
-    private var rule: Rule
-    private var players: Players
-    private var numberOfPlayers: NumberOfPlayers
+    private(set) var rule: Rule
+    private(set) var players: Players
+    private(set) var numberOfPlayers: NumberOfPlayers
     
     init(rule: Rule = .sevenCardStud, players: Players) {
         self.rule = rule
