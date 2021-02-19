@@ -19,7 +19,6 @@ class ViewController: UIViewController {
     var allPlayersHandCardStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
-        stackView.distribution = .fillEqually
         stackView.alignment = .fill
         stackView.spacing = 10
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -31,9 +30,12 @@ class ViewController: UIViewController {
         
         setupBackgroundImage()
         view.addSubview(allPlayersHandCardStackView)
-        allPlayersHandCardStackView.topAnchor.constraint(equalTo: numberOfPlayersSegmentedControl.bottomAnchor, constant: 20).isActive = true
-        allPlayersHandCardStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 8).isActive = true
-        allPlayersHandCardStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -8).isActive = true
+        allPlayersHandCardStackView.topAnchor.constraint(equalTo: numberOfPlayersSegmentedControl.bottomAnchor,
+                                                         constant: 20).isActive = true
+        allPlayersHandCardStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor,
+                                                             constant: 20).isActive = true
+        allPlayersHandCardStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor,
+                                                              constant: -20).isActive = true
     }
 
     func setupBackgroundImage() {
@@ -84,7 +86,13 @@ class ViewController: UIViewController {
         }
 
         players.players.forEach { player in
+            let label = UILabel()
+            label.text = "Player"
+            label.textColor = .white
+            label.heightAnchor.constraint(equalToConstant: 20).isActive = true
             let playerCardStackView = makePlayerHandCard(with: player)
+            
+            allPlayersHandCardStackView.addArrangedSubview(label)
             allPlayersHandCardStackView.addArrangedSubview(playerCardStackView)
         }
     }
