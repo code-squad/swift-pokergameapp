@@ -7,14 +7,7 @@
 
 import Foundation
 
-struct Deck : CustomStringConvertible {
-    var description: String  {
-        var returnString = String()
-        for index in self.cards {
-            returnString += index.description + " "
-        }
-        return returnString
-    }
+struct Deck  {
     
     private var cards : [PlayingCard]
     private let firstState : [PlayingCard]
@@ -33,7 +26,7 @@ struct Deck : CustomStringConvertible {
     }
     
     func count() -> Int {
-        return cards.count
+        return self.cards.count
     }
     
     mutating func shuffle() {
@@ -50,5 +43,16 @@ struct Deck : CustomStringConvertible {
     
     mutating func reset() {
         self.cards = self.firstState
+    }
+    
+    func printCards() {
+        if self.count() == 0 {
+            print("Deck is empty")
+            return
+        }
+        for index in 0..<self.count() {
+            print(cards[index], terminator: " ")
+        }
+        print("")
     }
 }
