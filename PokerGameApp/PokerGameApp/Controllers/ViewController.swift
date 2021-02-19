@@ -83,6 +83,10 @@ class ViewController: UIViewController {
         return cardView
     }
     
+    func makeCardViews(from cards: [Card]) -> [UIImageView] {
+        cards.map { makeCardView(from: $0) }
+    }
+    
     func testScenarios() {
         print(Test(testCase: .create, testDeck: deckForTest, expectedValue: 52))
         deckForTest.shuffle()
