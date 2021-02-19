@@ -15,8 +15,10 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(patternImage: (UIImage(named: "bg_pattern.png") ?? UIImage()))
         showCards(cardNum: 7)
-        testCard()
-        runCardDeckTest()
+//        testCard()
+//        runCardDeckTest()
+        let poker = PokerGame(cardNum: 5, playerNum: 4)
+        poker.playGame()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -61,9 +63,9 @@ class ViewController: UIViewController {
     }
     
     func testCard(){
-        var card = Card(shape: .Heart, rank: .queen)
+        var card = Card(shape: .Heart, rank: .queen, face: .up)
         print(card)
-        card = Card(shape: .Spade, rank: .seven)
+        card = Card(shape: .Spade, rank: .seven, face: .up)
         print(card)
     }
 }

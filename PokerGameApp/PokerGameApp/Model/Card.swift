@@ -36,17 +36,23 @@ enum Rank: Int, CustomStringConvertible, CaseIterable {
         }
 }
 
+enum Face{
+    case up
+    case down
+}
 
 struct Card: CustomStringConvertible {
     private let shape: Shape
     private let rank: Rank
+    var face: Face
     
-    init(shape: Shape, rank: Rank) {
+    init(shape: Shape, rank: Rank, face: Face) {
         self.shape = shape
         self.rank = rank
+        self.face = face
     }
     
     var description: String {
-        return "\(self.shape)\(self.rank)"
+        return face == Face.up ? "\(self.shape)\(self.rank)" : "(\(self.shape)\(self.rank))"
     }
 }
