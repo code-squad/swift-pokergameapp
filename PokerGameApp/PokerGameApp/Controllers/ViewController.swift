@@ -39,17 +39,16 @@ class ViewController: UIViewController {
             print("예상치 못한 에러가 발생했어요😢: \(error)")
         }
         
-        self.view.addSubview(segmentedControlStackView)
+        setProperties(of: segmentedControlStackView, axis: .vertical)
+        setConstraints(of: segmentedControlStackView)
+        
         segmentedControlStackView.addArrangedSubview(gameTypeSegmentedControl)
         segmentedControlStackView.addArrangedSubview(numberOfPlayersSegmentedControl)
-        
-        setProperties(of: cardStackView)
-        setConstraints(of: cardStackView)
     }
     
-    func setProperties(of stackView: UIStackView) {
+    func setProperties(of stackView: UIStackView, axis: NSLayoutConstraint.Axis) {
         self.view.addSubview(stackView)
-        stackView.axis = .horizontal
+        stackView.axis = axis
         stackView.alignment = .fill
         stackView.distribution = .fillEqually
         stackView.spacing = 5.0
@@ -58,8 +57,8 @@ class ViewController: UIViewController {
     func setConstraints(of view: UIView) {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
-        view.leadingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.leadingAnchor).isActive = true
-        view.trailingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.trailingAnchor).isActive = true
+        view.leadingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.leadingAnchor, constant: 100.0).isActive = true
+        view.trailingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.trailingAnchor, constant: -100.0).isActive = true
     }
     
     func testScenarios() {
