@@ -13,7 +13,7 @@ class Dealer: Player {
     
     init(cardDeck: CardDeck) {
         self.cardDeck = cardDeck
-        super.init()
+        super.init(nickname: "Dealer")
     }
     
     func deal() -> Card? {

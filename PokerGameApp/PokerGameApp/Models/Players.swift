@@ -18,7 +18,11 @@ class Players {
     }
     
     init(numberOfPlayers: Int) {
-        self.players = (0..<numberOfPlayers).map { _ in Player() }
+        var index: Int = 0
+        self.players = (0..<numberOfPlayers).map { _ in
+            index += 1
+            return Player(nickname: "Player\(index)")
+        }
         self.count = self.players.count
     }
     
