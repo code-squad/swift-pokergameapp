@@ -21,16 +21,50 @@ class CardViewController: UIViewController {
         return UIImage(named: "bg_pattern") ?? UIImage()
     }()
 
+    let segmentControlForCards = UISegmentedControl(items: ["5 Cards", "7 Cards"])
+    let segmentControlForPlayers = UISegmentedControl(items: ["2명", "3명", "4명"])
+    
+    let stackView = UIStackView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setBackgroundColor()
-        drawSevenCards()
-        let pokergame = PokerGame()
-        pokergame.start()
+//        drawSevenCards()
+//        let pokergame = PokerGame()
+//        pokergame.start()
+        configureStackView()
+        configureSegmentControl()
     }
     
     func setBackgroundColor(){
         self.view.backgroundColor = UIColor(patternImage: backgroundImagePattern)
+    }
+    
+    func configureStackView(){
+        
+    }
+    func setStackViewConstraints(){
+        
+    }
+    func configureSegmentControl(){
+        view.addSubview(segmentControlForCards)
+        view.addSubview(segmentControlForPlayers)
+        
+        setSegmentControlForCardsConstraints()
+        setSegmentControlForPlayersConstraints()
+    }
+    func setSegmentControlForCardsConstraints(){
+        segmentControlForCards.translatesAutoresizingMaskIntoConstraints = false
+        segmentControlForCards.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50).isActive = true
+        segmentControlForCards.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 50).isActive = true
+        segmentControlForCards.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -50).isActive = true
+    }
+    
+    func setSegmentControlForPlayersConstraints(){
+        segmentControlForPlayers.translatesAutoresizingMaskIntoConstraints = false
+        segmentControlForPlayers.topAnchor.constraint(equalTo: segmentControlForCards.safeAreaLayoutGuide.bottomAnchor, constant: 20).isActive = true
+        segmentControlForPlayers.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 50).isActive = true
+        segmentControlForPlayers.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -50).isActive = true
     }
     
     func drawSevenCards(){
@@ -41,7 +75,7 @@ class CardViewController: UIViewController {
         
         for index in 0..<CardViewController.cardCount {
             let startpointX = self.view.frame.minX + (cardWidth + offset) * CGFloat(index)
-            let startpointY = self.view.frame.minY + cardHeight
+            let startpointY = self.view.frame.minY + cardHeight * 3
             
             let imageView = UIImageView(frame: CGRect(x: startpointX,
                                                       y: startpointY,
