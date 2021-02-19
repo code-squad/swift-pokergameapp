@@ -46,8 +46,8 @@ extension CardViewController {
     
     func drawCards(players : Players,  dealer : Dealer){
         resetView()
-        for (id, player) in players.player.enumerated() {
-            addTextLabel(text : "Player\(id+1)")
+        players.eachPlayers{ id, player in
+            addTextLabel(text : "Player\(id)")
             addCardsStackView(from: player)
         }
         addTextLabel(text : "Dealer")
