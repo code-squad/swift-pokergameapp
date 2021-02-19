@@ -21,7 +21,7 @@ class PokerGame {
     private(set) var players: Players
     private(set) var numberOfPlayers: NumberOfPlayers
     
-    init(rule: Rule = .sevenCardStud, players: Players) {
+    init(rule: Rule, players: Players) {
         self.rule = rule
         self.players = players
         self.numberOfPlayers = NumberOfPlayers(rawValue: players.count) ?? .one
