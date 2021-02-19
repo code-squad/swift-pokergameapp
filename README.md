@@ -59,3 +59,11 @@
 
 <img width="773" alt="스크린샷 2021-02-16 오후 9 08 03" src="https://user-images.githubusercontent.com/33626693/108061163-42546100-709b-11eb-8142-1c8d72d33fcc.png">
 
+![IMG_0042](https://user-images.githubusercontent.com/33626693/108442377-469a9d00-729a-11eb-8c2e-fdf88abfcedb.jpg)
+
+21.02.17
+
+## 포커게임 결과 화면
+
+![ezgif com-video-to-gif-7](https://user-images.githubusercontent.com/33626693/108442430-5fa34e00-729a-11eb-910b-8bb9e0f7c664.gif)
+
