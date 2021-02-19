@@ -39,11 +39,13 @@ class ViewController: UIViewController {
         gameTypeSegmentedControl.insertSegment(withTitle: PokerGame.StudPoker.sevenCardStud.description, at: 0, animated: true)
         gameTypeSegmentedControl.insertSegment(withTitle: PokerGame.StudPoker.fiveCardStud.description, at: 1, animated: true)
         setProperties(of: gameTypeSegmentedControl)
+        gameTypeSegmentedControl.addTarget(self, action: #selector(gameTypeChanged(_:)), for: .valueChanged)
         
         numberOfPlayersSegmentedControl.insertSegment(withTitle: PokerGame.Size.twoPlayers.description, at: 0, animated: true)
         numberOfPlayersSegmentedControl.insertSegment(withTitle: PokerGame.Size.threePlayers.description, at: 1, animated: true)
         numberOfPlayersSegmentedControl.insertSegment(withTitle: PokerGame.Size.fourPlayers.description, at: 2, animated: true)
         setProperties(of: numberOfPlayersSegmentedControl)
+        numberOfPlayersSegmentedControl.addTarget(self, action: #selector(numberOfPlayersChanged(_:)), for: .valueChanged)
         
         setProperties(of: playerStackView, axis: .vertical)
         playerStackView.distribution = .equalSpacing
