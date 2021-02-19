@@ -8,16 +8,15 @@
 import Foundation
 
 struct PokerGame {
-    let rule: Rule
-    let playerCount: PlayerCount
-    // participant(dealer, players) 처럼 타입이 다른 둘을 묶는 건 좋지 않아보인다.
+    let rule: Int
+    let playerCount: Int
+
     var dealer = Dealer()
     var players = [Player]()
     
     init(rule: Int, playerCount: Int) {
-        // 이 부분을 더 깔끔하게 표현하고 싶다..!
-        self.rule = PokerGame.Rule(rawValue: rule)!
-        self.playerCount = PokerGame.PlayerCount(rawValue: playerCount+1)!
+        self.rule = rule
+        self.playerCount = playerCount
         if isValid(rule: rule, playerCount: playerCount) {
             prepareGame()
             startGame()
@@ -27,17 +26,9 @@ struct PokerGame {
         }
     }
     
-    enum Rule: Int {
-        case fiveCardStud = 5, sevenCardStud = 7
-    }
-    
-    enum PlayerCount: Int {
-        case one = 1, two, three, four
-    }
-    
     mutating func isValid(rule: Int, playerCount: Int) -> Bool{
         var ret = true
-        if rule != 5 && rule != 7 { // 이때 enum을 사용해볼까
+        if rule != 5 && rule != 7 { 
             ret = false
         }
         if playerCount < 0 || playerCount > 5 {
@@ -48,24 +39,24 @@ struct PokerGame {
     
     mutating func prepareGame() {
 
-        for i in 0..<playerCount.rawValue {
+        for i in 0..<self.playerCount {
             players.append(Player(number: i + 1))
         }
     }
     
     mutating func startGame() {
-        dealer.giveCardToDealer(rule: self.rule.rawValue)
+        dealer.giveCardToDealer(rule: self.rule)
         
         for player in players {
-            dealer.giveCardToPlayer(rule: self.rule.rawValue, player: player)
+            dealer.giveCardToPlayer(rule: self.rule, player: player)
         }
     }
     
     mutating func showGame() {
         
         for player in players {
-            print("참가자 #\(player.number) \(player.cards)")
+            print("참가자 #\(player.number) \(player.playCards)")
         }
-        print("딜러 \(dealer.cards)")
+        print("딜러 \(dealer.playCards)")
     }
 }
