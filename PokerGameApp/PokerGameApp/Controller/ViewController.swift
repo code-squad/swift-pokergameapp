@@ -82,7 +82,8 @@ class ViewController: UIViewController {
         let prizeImageView: UIImageView = {
             let imageView = UIImageView()
             imageView.translatesAutoresizingMaskIntoConstraints = false
-            imageView.image = UIImage(named: "card-back") ?? UIImage()
+            imageView.image = UIImage()
+            imageView.contentMode = .scaleAspectFit
             return imageView
         }()
         stackView.addArrangedSubview(prizeImageView)
