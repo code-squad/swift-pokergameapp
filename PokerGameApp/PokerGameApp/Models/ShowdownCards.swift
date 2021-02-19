@@ -16,4 +16,8 @@ struct ShowdownCards {
         self.owner = owner
         self.setOfCards = setOfCards
     }
+    
+    func getOwnerName() -> String {
+        return owner.tellName()
+    }
 }
