@@ -18,7 +18,7 @@ class Player{
 class Players {
     var player = [Player]()
     
-    init(with count : InputView.PlayersCount){
+    init(with count : PlayOption.PlayersCount){
         for _ in 0..<count.rawValue {
             player.append(Player())
         }

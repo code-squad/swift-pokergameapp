@@ -10,9 +10,9 @@ import Foundation
 class Dealer : Player {
     
     private var gameCardDeck : CardDeck
-    private(set) var cardSqud : InputView.CardStud
+    private(set) var cardSqud : PlayOption.CardStud
         
-    init(cardSqud : InputView.CardStud){
+    init(cardSqud : PlayOption.CardStud){
         self.cardSqud = cardSqud
         gameCardDeck = CardDeck()
         super.init()
