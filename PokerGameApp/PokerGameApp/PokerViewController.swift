@@ -52,8 +52,8 @@ class PokerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        guard let img = UIImage(named: "bg_pattern.png") else { return }
-        self.view.backgroundColor = UIColor(patternImage: img)
+        guard let backgroundImage = UIImage(named: "bg_pattern.png") else { return }
+        self.view.backgroundColor = UIColor(patternImage: backgroundImage)
         
         drawCards()
     }
