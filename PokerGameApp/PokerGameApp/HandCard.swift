@@ -8,7 +8,7 @@
 import Foundation
 
 class HandCard {
-    private var cards: [Card] = []
+    private(set) var cards: [Card] = []
     var description: String {
         return cards.description
     }

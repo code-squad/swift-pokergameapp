@@ -9,7 +9,7 @@ import Foundation
 
 class Players {
     private var cardDeck = CardDeck()
-    private var players: [Player] = []
+    private(set) var players: [Player] = []
     lazy var count = players.count
     var description: String {
         var description = ""
