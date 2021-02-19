@@ -34,6 +34,30 @@ class ViewController: UIViewController {
         return control
      }()
     
+    lazy var numberOfPlayersSegmentedControl: UISegmentedControl = {
+        let control = UISegmentedControl(items: ["2명", "3명", "4명"])
+        control.selectedSegmentIndex = 0
+        control.backgroundColor = .none
+        control.layer.cornerRadius = 5.0
+        control.layer.masksToBounds = true
+        control.layer.borderWidth = 1
+        control.layer.borderColor = .init(gray:1, alpha: 1)
+        let font = UIFont.systemFont(ofSize: 20)
+        let normalTextAttributes: [NSAttributedString.Key: Any] = [
+            NSAttributedString.Key.foregroundColor: UIColor.white,
+            NSAttributedString.Key.font: font
+        ]
+        let selectedTextAttributes: [NSAttributedString.Key: Any] = [
+            NSAttributedString.Key.foregroundColor: UIColor.black,
+            NSAttributedString.Key.font: font
+        ]
+        control.setTitleTextAttributes(normalTextAttributes, for: .normal)
+        control.setTitleTextAttributes(selectedTextAttributes, for: .selected)
+        control.translatesAutoresizingMaskIntoConstraints = false
+        return control
+     }()
+    
+    
     let verticalStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -52,10 +76,19 @@ class ViewController: UIViewController {
         
         self.view.addSubview(cardSelectSegmentedControl)
         configureCardNumberSelectSegmentedControl()
+        self.view.addSubview(numberOfPlayersSegmentedControl)
+        configureNumberOfPlayersSegementedControl()
         self.view.addSubview(verticalStackView)
         configureDashboardStackView()
         guard let gameResult = game.play() else { return }
         addSubviewToDashboardStackView(with: gameResult, to: verticalStackView)
+    }
+    
+    func configureNumberOfPlayersSegementedControl() {
+        numberOfPlayersSegmentedControl.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        numberOfPlayersSegmentedControl.topAnchor.constraint(equalTo: self.cardSelectSegmentedControl.bottomAnchor, constant: 5).isActive = true
+        numberOfPlayersSegmentedControl.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.5).isActive = true
+        numberOfPlayersSegmentedControl.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.05).isActive = true
     }
     
     func configureCardNumberSelectSegmentedControl() {
