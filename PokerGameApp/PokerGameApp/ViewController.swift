@@ -29,11 +29,22 @@ class ViewController: UIViewController {
             addCard2StackView(cardCount: 7, stackView: cardStackView)
             setStackViewConstraints(stackView: cardStackView)
         }
+        
+        let printClosure = { player in
+            print(player)
+        }
         let newGame = PokerGame.init(howManyHands: .fiveCardStud, howManyPlayer: .three)
-        newGame.test1()
+        
+        if false == newGame.test(with: printClosure) {
+            print("deck is empty, gameover")
+        }
         newGame.reset(with: .sevenCardStud, howMany: .three)
-        newGame.test2()
+        if false == newGame.test(with: printClosure) {
+            print("deck is empty, gameover")
+        }
     }
+    
+
     
     private func addCard2StackView( cardCount : Int ,stackView : UIStackView) {
         for _ in 0..<cardCount {
