@@ -49,3 +49,18 @@
 ### 스크린샷
 
 <img width="520" alt="스크린샷 2021-02-17 오후 3 19 35" src="https://user-images.githubusercontent.com/39956881/108164399-10430d80-7134-11eb-988f-fdfbc54d652f.png">
+
+
+## step 5. 포커게임 결과 화면
+
+### 주요작업
+- 게임 모드 제공 Segmented Contorl  활용
+
+### 스크립샷
+
+![Simulator Screen Shot - iPhone 12 Pro - 2021-02-20 at 16 37 51](https://user-images.githubusercontent.com/39956881/108587957-07537580-739a-11eb-954b-8d6797d3cb43.png)
+
+![Simulator Screen Shot - iPhone 12 Pro - 2021-02-20 at 16 37 57](https://user-images.githubusercontent.com/39956881/108587963-0884a280-739a-11eb-9195-cad602d03024.png)
+
+![Simulator Screen Shot - iPhone 12 Pro - 2021-02-20 at 16 37 54](https://user-images.githubusercontent.com/39956881/108587977-0cb0c000-739a-11eb-8e46-69f1b9ae3784.png)
+
