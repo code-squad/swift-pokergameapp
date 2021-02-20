@@ -8,6 +8,20 @@
 import UIKit
 
 class ViewController: UIViewController {
+    enum NumberOfPlayers: Int {
+        case one = 1
+        case two
+        case three
+        case four
+    }
+    
+    enum StudVariant: Int {
+        case fiveCardStud = 5
+        case sevenCardStud = 7
+    }
+    var playerNumbers: NumberOfPlayers = .one
+    var studVariant: StudVariant = .fiveCardStud
+    
     
     lazy var studSelectSegmentedControl: UISegmentedControl = {
         let control = UISegmentedControl(items: ["7 cards", "5 cards"])
@@ -80,7 +94,7 @@ class ViewController: UIViewController {
     }
     
     func gameInteration() {
-        var game = PokerGame(withPlayersOf: .four, stud: .fiveCardStud)
+        var game = PokerGame(playersOf: playerNumbers.rawValue, stud: studVariant.rawValue)
         self.view.addSubview(verticalStackView)
         configureVerticalStackView()
         guard let gameResult = game.play() else { return }
@@ -165,9 +179,9 @@ class ViewController: UIViewController {
         verticalStackView.removeFullyAllArrangedSubviews()
         switch sender.selectedSegmentIndex {
         case 0:
-            gameInteration()
+            studVariant = .sevenCardStud
         case 1:
-            gameInteration()
+            studVariant = .fiveCardStud
         default:
             print("meh")
         }
@@ -178,11 +192,11 @@ class ViewController: UIViewController {
         verticalStackView.removeFullyAllArrangedSubviews()
         switch sender.selectedSegmentIndex {
         case 0:
-            gameInteration()
+            playerNumbers = .two
         case 1:
-            gameInteration()
+            playerNumbers = .three
         case 2:
-            gameInteration()
+            playerNumbers = .four
         default:
             print("meh")
         }
