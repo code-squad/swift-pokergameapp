@@ -11,6 +11,15 @@ struct Card: CustomStringConvertible {
         // "♠️"
         case spades = "s"
         
+        var imageName: String {
+            switch self {
+            case .clubs: return "c"
+            case .diamone: return "d"
+            case .hearts: return "h"
+            case .spades: return "s"
+            }
+        }
+        
         var description: String {
             return "\(self.rawValue)"
         }
@@ -36,6 +45,10 @@ struct Card: CustomStringConvertible {
     init(with shape: Shape, rank: Rank) {
         self.shape = shape
         self.rank = rank
+    }
+    
+    var imageName: String {
+        return "\(shape.imageName)\(rank)"
     }
     
     var description: String {
