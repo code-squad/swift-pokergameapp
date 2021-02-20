@@ -100,6 +100,22 @@ class ViewController: UIViewController {
         })
     }
     
+    func pokerGameStart() {
+        let game = PokerGame(rule: pokerGameRule, count: numberOfPlayers.rawValue)
+        do {
+            try game.play()
+        } catch {
+            print("카드가 부족해서 게임을 종료합니다.")
+        }
+        makeAllPlayersHandCard(players: game.players)
+    }
+    
+    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        if motion == .motionShake {
+            pokerGameStart()
+        }
+    }
+    
     // MARK: - IBAction
     @IBAction func didChangeGameRule(_ sender: Any) {
         switch gameRuleSegmentedControl.selectedSegmentIndex {
@@ -124,12 +140,6 @@ class ViewController: UIViewController {
             break
         }
 
-        let game = PokerGame(rule: pokerGameRule, count: numberOfPlayers.rawValue)
-        do {
-            try game.play()
-        } catch {
-            print("카드가 부족해서 게임을 종료합니다.")
-        }
-        makeAllPlayersHandCard(players: game.players)
+        pokerGameStart()
     }
 }
