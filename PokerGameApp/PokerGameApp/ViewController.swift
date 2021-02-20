@@ -24,7 +24,7 @@ class ViewController: UIViewController {
     }
     
     //MARK: set
-    private func setPokerGame(numberOfPlayer: Participant, stud: CardStud) {
+    private func setPokerGame(numberOfPlayer: NumberOfParticipant, stud: CardStud) {
         for subview in self.view.subviews where !(subview is UISegmentedControl) {
             subview.removeFromSuperview()
         }
@@ -42,7 +42,7 @@ class ViewController: UIViewController {
     }
 
     //MARK: Set PokerPlate
-    private func addPlayersStackViewIntoPokerPlate(imageStackView: UIStackView, nameLabel: UILabel, numberOfPlayer: Participant){
+    private func addPlayersStackViewIntoPokerPlate(imageStackView: UIStackView, nameLabel: UILabel, numberOfPlayer: NumberOfParticipant){
         
         for _ in 1...numberOfPlayer.rawValue {
             let playerStackView: UIStackView = {
