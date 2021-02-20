@@ -70,13 +70,12 @@ class ViewController: UIViewController {
         return control
      }()
     
-    let verticalStackView: UIStackView = {
+    let verticalDashboardStackView: UIStackView = {
        let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.distribution = .fillProportionally
         stackView.axis = .vertical
         stackView.spacing = 0
-        stackView.backgroundColor = .blue
         stackView.alignment = .leading
         return stackView
     }()
@@ -94,8 +93,8 @@ class ViewController: UIViewController {
     }
     
     func gameInteration() {
-        var game = PokerGame(playersOf: playerNumbers.rawValue, stud: studVariant.rawValue)
-        self.view.addSubview(verticalStackView)
+        let game = PokerGame(playersOf: playerNumbers.rawValue, stud: studVariant.rawValue)
+        self.view.addSubview(verticalDashboardStackView)
         configureVerticalStackView()
         guard let gameResult = game.play() else { return }
         print(gameResult)
@@ -103,11 +102,11 @@ class ViewController: UIViewController {
     }
     
     func configureVerticalStackView() {
-        verticalStackView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        verticalStackView.topAnchor.constraint(equalTo: self.numberOfPlayersSegmentedControl.bottomAnchor, constant: 5).isActive = true
-        verticalStackView.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: self.view.frame.width/20).isActive = true
-        verticalStackView.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -self.view.frame.width/20).isActive = true
-        verticalStackView.bottomAnchor.constraint(lessThanOrEqualTo: self.view.bottomAnchor, constant: -self.view.frame.height/10).isActive = true
+        verticalDashboardStackView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        verticalDashboardStackView.topAnchor.constraint(equalTo: self.numberOfPlayersSegmentedControl.bottomAnchor, constant: 5).isActive = true
+        verticalDashboardStackView.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: self.view.frame.width/20).isActive = true
+        verticalDashboardStackView.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -self.view.frame.width/20).isActive = true
+        verticalDashboardStackView.bottomAnchor.constraint(lessThanOrEqualTo: self.view.bottomAnchor, constant: -self.view.frame.height/10).isActive = true
     }
     
     func configureNumberOfPlayersSegementedControl() {
@@ -132,9 +131,8 @@ class ViewController: UIViewController {
             } else {
                 playerTag = "Player\(index+1)"
             }
-            verticalStackView.addArrangedSubview(makePlayerTagLabel(with: playerTag))
-            verticalStackView.addArrangedSubview(makeindividuallCardStacks(with: participant, with: UIImage()))
-//            verticalStackView.addArrangedSubview(makePlayerTagLabel(with: ""))
+            verticalDashboardStackView.addArrangedSubview(makePlayerTagLabel(with: playerTag))
+            verticalDashboardStackView.addArrangedSubview(makeindividuallCardStacks(with: participant, with: UIImage()))
         }
     }
     
@@ -142,7 +140,6 @@ class ViewController: UIViewController {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = UIColor.white
-        label.backgroundColor = .red
         label.text = name
         label.heightAnchor.constraint(equalToConstant: self.view.frame.height/30).isActive = true
         return label
@@ -176,7 +173,7 @@ class ViewController: UIViewController {
     }
     
     @objc func selectStud(_ sender: UISegmentedControl) {
-        verticalStackView.removeFullyAllArrangedSubviews()
+        verticalDashboardStackView.removeFullyAllArrangedSubviews()
         switch sender.selectedSegmentIndex {
         case 0:
             studVariant = .sevenCardStud
@@ -189,7 +186,7 @@ class ViewController: UIViewController {
     }
     
     @objc func selectNumberOfPlayers(_ sender: UISegmentedControl) {
-        verticalStackView.removeFullyAllArrangedSubviews()
+        verticalDashboardStackView.removeFullyAllArrangedSubviews()
         switch sender.selectedSegmentIndex {
         case 0:
             playerNumbers = .two
