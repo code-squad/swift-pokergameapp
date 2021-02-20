@@ -17,7 +17,7 @@ class ViewController: UIViewController {
     let numberOfPlayersSegmentedControl = UISegmentedControl()
     let playerStackView = UIStackView()
     
-    var currentNumberOfPlayers = PokerGame.Size.twoPlayers.rawValue
+    var currentNumberOfPlayers = PokerGame.Size.twoPlayers
     var currentGameType = PokerGame.StudPoker.sevenCardStud
     
     override func viewDidLoad() {
@@ -70,11 +70,11 @@ class ViewController: UIViewController {
     @objc func numberOfPlayersChanged(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:
-            currentNumberOfPlayers = PokerGame.Size.twoPlayers.rawValue
+            currentNumberOfPlayers = PokerGame.Size.twoPlayers
         case 1:
-            currentNumberOfPlayers = PokerGame.Size.threePlayers.rawValue
+            currentNumberOfPlayers = PokerGame.Size.threePlayers
         case 2:
-            currentNumberOfPlayers = PokerGame.Size.fourPlayers.rawValue
+            currentNumberOfPlayers = PokerGame.Size.fourPlayers
         default:
             break
         }
@@ -95,7 +95,7 @@ class ViewController: UIViewController {
         return game
     }
     
-    func updateGameInfo(with selectedNumberOfPlayers: Int) -> PokerGame {
+    func updateGameInfo(with selectedNumberOfPlayers: PokerGame.Size) -> PokerGame {
         let dealer = Dealer(cardDeck: deckForGame)
         let players = Players(numberOfPlayers: selectedNumberOfPlayers)
         let gameType = currentGameType
