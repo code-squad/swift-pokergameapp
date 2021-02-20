@@ -8,8 +8,9 @@
 import Foundation
 
 class PokerGame {
-    enum Mode {
-        case sevenStud, fiveStud
+    enum Mode:String, CaseIterable {
+        case sevenStud = "7 cards"
+        case fiveStud = "5 cards"
     }
     
     enum NumberOfcards {
@@ -17,25 +18,23 @@ class PokerGame {
         static let five = 5
     }
     
+    enum NumberOfPalyer: String, CaseIterable {
+        case two = "2명"
+        case three = "3명"
+        case four = "4명"
+    }
+    
     private var dealer = Dealer(cardDeck: CardDeck())
-    private var players: [Player] = []
+    lazy private var players: Players = Players(dealer: dealer, players: [])
     
-    func getDealerInfo() -> Dealer {
-        return self.dealer
-    }
-    
-    func getPlayersInfo() -> [Player] {
-        return self.players
-    }
-    
-    func start(gameMode: PokerGame.Mode, NumberOfPlayer: Int) {
+    func start(gameMode: Mode, NumberOfPlayer: Int, completion: @escaping (Players) -> Void) {
         let cardCount = gameMode == .fiveStud ? NumberOfcards.five : NumberOfcards.seven
         
         func HandOutToPlayers(playerNumber index: Int) {
-            let hand = Hand(cards: dealer.handOut(cardCount))
+            let hand = Hand(cards: self.players.getDealerInfo().handOut(cardCount))
             let playerName = setPlayerName(index)
             let player = Player(hand: hand, name: playerName)
-            players.append(player)
+            self.players.appendPlayer(player)
         }
         
         for index in 1...NumberOfPlayer {
@@ -43,6 +42,13 @@ class PokerGame {
         }
         
         dealer = hasAHandToDealer(dealer: dealer, cardCount: cardCount)
+        
+        let players = Players(dealer: dealer, players: self.players.getPlayersInfo())
+        completion(players)
+    }
+    
+    func resetPlayers() {
+        self.players = Players(dealer: Dealer(cardDeck: CardDeck()), players: [])
     }
 }
 
