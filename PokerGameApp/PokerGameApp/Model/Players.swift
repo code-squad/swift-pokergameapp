@@ -31,6 +31,12 @@ class Players {
         }
         return result
     }
+    
+    public func resetPlayers() {
+        players.forEach { (player) in
+            player.resetPlayer()
+        }
+    }
 }
 
 extension Players: CustomStringConvertible {
