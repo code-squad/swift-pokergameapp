@@ -8,7 +8,7 @@
 import Foundation
 
 class HandCard {
-    private(set) var cards: [Card] = []
+    private var cards: [Card] = []
     var description: String {
         return cards.description
     }
@@ -21,7 +21,9 @@ class HandCard {
         cards.removeAll()
     }
     
-    func handleCards(completion: () -> ()) {
-        completion()
+    func retrieveCards(completion: (Card) -> Void) {
+        cards.forEach { card in
+            completion(card)
+        }
     }
 }

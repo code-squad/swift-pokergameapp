@@ -14,7 +14,7 @@ class Player {
     }
     
     private(set) var playerType: PlayerType
-    var handCard = HandCard()
+    private var handCard = HandCard()
     var description: String {
         return "\(playerType) \(handCard.description)"
     }
@@ -29,6 +29,10 @@ class Player {
     
     func reset() {
         handCard.reset()
+    }
+    
+    func retrieveHandCard(completion: (Card) -> Void) {
+        handCard.retrieveCards(completion: completion)
     }
 }
 

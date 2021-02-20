@@ -70,10 +70,10 @@ class ViewController: UIViewController {
         stackView.spacing = -14
         stackView.translatesAutoresizingMaskIntoConstraints = false
 
-        (player.handCard.cards).forEach { card in
+        player.retrieveHandCard(completion: { card in
             let cardImageView = makeCard(card: card)
             stackView.addArrangedSubview(cardImageView)
-        }
+        })
         return stackView
     }
     
@@ -94,10 +94,10 @@ class ViewController: UIViewController {
             subview.removeFromSuperview()
         }
 
-        players.players.forEach { player in
+        players.retrievePlayer(completion: { player in
             let stackView = makePlayerStackView(player: player)
             allPlayersHandCardStackView.addArrangedSubview(stackView)
-        }
+        })
     }
     
     // MARK: - IBAction
