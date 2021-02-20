@@ -28,8 +28,7 @@ class ViewController: UIViewController {
             self.view.backgroundColor = UIColor(patternImage: backgroundImage)
         }
         
-        let myGame = updateGameInfo(with: currentGameType)
-        updatePlayerStackView(for: myGame)
+        createNewGame(with: currentGameType)
         
         setProperties(of: segmentedControlStackView, axis: .vertical)
         segmentedControlStackView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
@@ -62,9 +61,7 @@ class ViewController: UIViewController {
         default:
             break
         }
-        let newGame = updateGameInfo(with: currentGameType)
-        clearPlayerStackView()
-        updatePlayerStackView(for: newGame)
+        createNewGame(with: currentGameType)
     }
     
     @objc func numberOfPlayersChanged(_ sender: UISegmentedControl) {
@@ -78,9 +75,7 @@ class ViewController: UIViewController {
         default:
             break
         }
-        let newGame = updateGameInfo(with: currentNumberOfPlayers)
-        clearPlayerStackView()
-        updatePlayerStackView(for: newGame)
+        createNewGame(with: currentNumberOfPlayers)
     }
     
     func clearPlayerStackView() {
@@ -160,6 +155,17 @@ class ViewController: UIViewController {
         let cardStackView = makeCardStackView(with: cardViews)
         cardInfoStackView.addArrangedSubview(cardStackView)
         return cardInfoStackView
+    }
+    
+    func createNewGame<T>(with info: T) {
+        clearPlayerStackView()
+        if T.self is PokerGame.StudPoker.Type {
+            let newGame = updateGameInfo(with: currentGameType)
+            updatePlayerStackView(for: newGame)
+        } else if T.self is PokerGame.Size.Type {
+            let newGame = updateGameInfo(with: currentNumberOfPlayers)
+            updatePlayerStackView(for: newGame)
+        }
     }
     
     func testScenarios() {
