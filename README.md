@@ -43,6 +43,8 @@ dealer: [♥️10, ♦️6, ♠️8, ♠️K, ♠️9, ♦️9, ♦️Q]
 - Card Assets 추가
 - GameRule과 NumberOfPlayers를 선택할 수 있는 `UISegmentedControl` 추가
 - Player와 Dealer의 HandCard를 `UIStackView`로 구현
+- Shake Gesture를 추가해서 다시 게임을 시작할 수 있도록 추가
+- CardDeckError 타입을 추가해서 상위 모듈(타입)에서 흐름을 제어할 수 있도록 개선
 
 <img width="291" alt="스크린샷 2021-02-19 오후 7 23 29" src="https://user-images.githubusercontent.com/75113784/108492028-006c2a80-72e8-11eb-831f-c6535bd7bca2.png"><img width="291" alt="스크린샷 2021-02-19 오후 7 23 24" src="https://user-images.githubusercontent.com/75113784/108492040-05c97500-72e8-11eb-99ab-9b1f7ad2992d.png">
 
