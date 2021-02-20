@@ -38,7 +38,7 @@ class TrumpCard {
     
     
     let suit: Suit
-    var rank: Rank
+    let rank: Rank
     
     init(suit: Suit, rank: Rank) {
         self.suit = suit
