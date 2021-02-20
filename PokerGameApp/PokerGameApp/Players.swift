@@ -9,7 +9,7 @@ import Foundation
 
 class Players {
     private var cardDeck = CardDeck()
-    private(set) var players: [Player] = []
+    private var players: [Player] = []
     var count: Int
     var description: String {
         var description = ""
@@ -45,6 +45,12 @@ class Players {
         }
         players.append(Player(playerType: .dealer))
         self.players = players
+    }
+    
+    func retrievePlayer(completion: (Player) -> Void) {
+        players.forEach { player in
+            completion(player)
+        }
     }
     
     private func handout() throws {
