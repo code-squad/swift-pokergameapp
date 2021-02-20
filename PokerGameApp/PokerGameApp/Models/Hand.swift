@@ -13,4 +13,8 @@ struct Hand {
     init(cards: [Card]) {
         self.cards = cards
     }
+    
+    func getHand() -> [Card] {
+        return self.cards
+    }
 }
