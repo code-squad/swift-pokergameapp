@@ -13,11 +13,6 @@ class PokerGame {
         case fiveStud = "5 cards"
     }
     
-    enum NumberOfcards {
-        static let seven = 7
-        static let five = 5
-    }
-    
     enum NumberOfPalyer: String, CaseIterable {
         case two = "2명"
         case three = "3명"
@@ -28,7 +23,7 @@ class PokerGame {
     lazy private var players: Players = Players(dealer: dealer, players: [])
     
     func start(gameMode: Mode, NumberOfPlayer: Int, completion: @escaping (Players) -> Void) {
-        let cardCount = gameMode == .fiveStud ? NumberOfcards.five : NumberOfcards.seven
+        let cardCount = gameMode == .fiveStud ? 5 : 7
         
         func HandOutToPlayers(playerNumber index: Int) {
             let hand = Hand(cards: self.players.getDealerInfo().handOut(cardCount))
