@@ -24,21 +24,7 @@ class HandView: UIStackView {
         self.axis = .horizontal
         self.distribution = .fillEqually
         self.alignment = .center
-        self.spacing = 5
-        setHand()
-    }
-    
-    private func setHand() {
-        let cardBack = CardBack.image
-        for _ in 0..<7 {
-            self.addArrangedSubview(cardBack)
-        }
-    }
-    
-    func setConstraint(superView: UIView) {
-        self.topAnchor.constraint(equalTo: superView.topAnchor, constant: 50).isActive = true
-        self.leadingAnchor.constraint(equalTo: superView.leadingAnchor, constant: 10).isActive = true
-        self.trailingAnchor.constraint(equalTo: superView.trailingAnchor, constant: -10).isActive = true
+        self.spacing = -15
     }
 }
  

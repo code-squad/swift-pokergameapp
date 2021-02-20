@@ -23,6 +23,11 @@
 		93C07EDA25DBEAF40037570E /* PokerGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C07ED925DBEAF40037570E /* PokerGame.swift */; };
 		93C07EDE25DC8AC60037570E /* Dealer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C07EDD25DC8AC60037570E /* Dealer.swift */; };
 		93C07EE625DC91630037570E /* Hand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C07EE525DC91630037570E /* Hand.swift */; };
+		93C07EFE25DE371E0037570E /* NameLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C07EFD25DE371E0037570E /* NameLabel.swift */; };
+		93C07F0225DE37EF0037570E /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C07F0125DE37EF0037570E /* PlayerView.swift */; };
+		93C07F0625DE39110037570E /* PokerGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C07F0525DE39110037570E /* PokerGameView.swift */; };
+		93C07F1625DEAF210037570E /* SegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C07F1525DEAF210037570E /* SegmentedControl.swift */; };
+		93C07F1C25DF85A50037570E /* Players.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C07F1B25DF85A50037570E /* Players.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +61,11 @@
 		93C07ED925DBEAF40037570E /* PokerGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokerGame.swift; sourceTree = "<group>"; };
 		93C07EDD25DC8AC60037570E /* Dealer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dealer.swift; sourceTree = "<group>"; };
 		93C07EE525DC91630037570E /* Hand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hand.swift; sourceTree = "<group>"; };
+		93C07EFD25DE371E0037570E /* NameLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameLabel.swift; sourceTree = "<group>"; };
+		93C07F0125DE37EF0037570E /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
+		93C07F0525DE39110037570E /* PokerGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokerGameView.swift; sourceTree = "<group>"; };
+		93C07F1525DEAF210037570E /* SegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedControl.swift; sourceTree = "<group>"; };
+		93C07F1B25DF85A50037570E /* Players.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Players.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,7 +133,11 @@
 			isa = PBXGroup;
 			children = (
 				93C07E9E25DA547C0037570E /* CardImage.swift */,
+				93C07F0525DE39110037570E /* PokerGameView.swift */,
+				93C07F0125DE37EF0037570E /* PlayerView.swift */,
 				93C07EA225DA6F2E0037570E /* HandView.swift */,
+				93C07EFD25DE371E0037570E /* NameLabel.swift */,
+				93C07F1525DEAF210037570E /* SegmentedControl.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -138,6 +152,7 @@
 				93C07EDD25DC8AC60037570E /* Dealer.swift */,
 				93C07ED525DBBE200037570E /* Player.swift */,
 				93C07EE525DC91630037570E /* Hand.swift */,
+				93C07F1B25DF85A50037570E /* Players.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -242,14 +257,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				93C07F1625DEAF210037570E /* SegmentedControl.swift in Sources */,
 				93C07E6A25DA322B0037570E /* ViewController.swift in Sources */,
 				93C07E9F25DA547C0037570E /* CardImage.swift in Sources */,
 				93C07EC125DB6FEE0037570E /* CardDeck.swift in Sources */,
 				93C07EA325DA6F2E0037570E /* HandView.swift in Sources */,
 				93C07E6625DA322B0037570E /* AppDelegate.swift in Sources */,
 				93C07EB025DA8CF10037570E /* Rank.swift in Sources */,
+				93C07F1C25DF85A50037570E /* Players.swift in Sources */,
+				93C07EFE25DE371E0037570E /* NameLabel.swift in Sources */,
 				93C07E6825DA322B0037570E /* SceneDelegate.swift in Sources */,
+				93C07F0625DE39110037570E /* PokerGameView.swift in Sources */,
 				93C07ED625DBBE200037570E /* Player.swift in Sources */,
+				93C07F0225DE37EF0037570E /* PlayerView.swift in Sources */,
 				93C07EE625DC91630037570E /* Hand.swift in Sources */,
 				93C07EBB25DA997A0037570E /* Card.swift in Sources */,
 				93C07EDE25DC8AC60037570E /* Dealer.swift in Sources */,

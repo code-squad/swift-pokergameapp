@@ -1,12 +1,11 @@
 //
-//  nameView.swift
+//  NameLabel.swift
 //  PokerGameApp
 //
 //  Created by zombietux on 2021/02/18.
 //
 
 import UIKit
-
 
 class NameLabel: UILabel {
     override init(frame: CGRect) {
@@ -20,7 +19,7 @@ class NameLabel: UILabel {
     }
     
     private func configure() {
-        self.font = UIFont.preferredFont(forTextStyle: .headline)
-        self.textColor = .label
+        self.font = UIFont.boldSystemFont(ofSize: 20)
+        self.textColor = .white
     }
 }
