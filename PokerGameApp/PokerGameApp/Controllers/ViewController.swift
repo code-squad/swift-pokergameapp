@@ -157,6 +157,12 @@ class ViewController: UIViewController {
         return cardInfoStackView
     }
     
+    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        if motion == .motionShake {
+            createNewGame(with: currentGameType)
+        }
+    }
+    
     func createNewGame<T>(with info: T) {
         clearPlayerStackView()
         if T.self is PokerGame.StudPoker.Type {
