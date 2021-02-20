@@ -2,14 +2,10 @@ import Foundation
 
 struct Card: CustomStringConvertible {
     enum Shape: String, CaseIterable, CustomStringConvertible {
-        // "♣️"
-        case clubs = "c"
-        // "♦️"
-        case diamone = "d"
-        // "❤️"
-        case hearts = "h"
-        // "♠️"
-        case spades = "s"
+        case clubs = "♣️"
+        case diamone = "♦️"
+        case hearts = "❤️"
+        case spades = "♠️"
         
         var imageName: String {
             switch self {

@@ -2,7 +2,7 @@
 
 
 
-![description](https://user-images.githubusercontent.com/62657991/108524613-8f8e3800-7312-11eb-9c03-97df22c70bb1.png)
+![description](https://user-images.githubusercontent.com/62657991/108575454-a443ed80-735d-11eb-850d-e75a0a181e64.png)
 
 #### `pokerPlate: UIStackView`
 
