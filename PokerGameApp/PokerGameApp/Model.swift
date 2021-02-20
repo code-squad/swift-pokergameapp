@@ -44,14 +44,7 @@ class TrumpCard {
         self.suit = suit
         self.rank = rank
     }
-    
-    func result() -> String {
-        if let firstDigit = rank.value.firstDigit {
-            return "\(suit.rawValue)"+"\(firstDigit)"
-        }
-        return "\(suit.rawValue)"+"\(rank.value.secondCharacter)"
-    }
-    
+        
     var description: String {
         if let firstDigit = rank.value.firstDigit {
             return "\(suit.rawValue)\(firstDigit)"
