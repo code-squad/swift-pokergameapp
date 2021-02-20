@@ -22,6 +22,14 @@ class PokerGame {
                 return "4명"
             }
         }
+        
+        func namePlayers() -> [Player] {
+            var index: Int = 0
+            return (0..<self.rawValue).map { _ in
+                index += 1
+                return Player(nickname: "Player\(index)")
+            }
+        }
     }
     
     enum StudPoker: Int, CustomStringConvertible {

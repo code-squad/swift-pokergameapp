@@ -17,12 +17,8 @@ class Players {
         self.count = players.count
     }
     
-    init(numberOfPlayers: Int) {
-        var index: Int = 0
-        self.players = (0..<numberOfPlayers).map { _ in
-            index += 1
-            return Player(nickname: "Player\(index)")
-        }
+    init(numberOfPlayers: PokerGame.Size) {
+        self.players = numberOfPlayers.namePlayers()
         self.count = self.players.count
     }
     
