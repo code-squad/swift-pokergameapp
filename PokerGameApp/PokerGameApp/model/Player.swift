@@ -7,23 +7,18 @@
 
 import Foundation
 
-class Player {
+class Player : CustomStringConvertible {
+    
+    var description: String {
+        return "\(name) : \(hand)"
+    }
+    
     private var hand : Deck
+    private let name : String
     
-    init() {
+    init(name : String) {
         self.hand = Deck.init()
-    }
-    
-    func showHand() -> [String] {
-        return hand.allCards()
-    }
-    
-    func showHandAsString() -> String {
-        var returnString = showHand().reduce("", {
-            return $0 + "," + $1
-        })
-        returnString.removeFirst()
-        return returnString
+        self.name = name
     }
     
     func receiveCard(with newCard : PlayingCard) {
@@ -34,7 +29,7 @@ class Player {
         self.hand = Deck.init()
     }
     
-    func printSelf() {
-        print("[\(showHandAsString())]")
+    func printInfo(do closure : ((Player) -> Void)) {
+        closure(self)
     }
 }

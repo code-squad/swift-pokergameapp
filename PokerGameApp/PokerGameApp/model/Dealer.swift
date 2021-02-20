@@ -10,17 +10,18 @@ import Foundation
 class Dealer: Player {
     private var deck : Deck
     
-    override init() {
+    init() {
         self.deck = Deck.init()
         self.deck.newDeck()
-        super.init()
+        super.init(name: "딜러")
     }
     
     func shuffleDeck() {
         deck.shuffle()
     }
     
-    func sendCard(to player : Player, howMany : Int) {
+    /// if fail, return false
+    func sendCard(to player : Player, howMany : Int) -> Bool {
         do {
             for _ in 0..<howMany {
                 let drawCard = try deck.popOneCard()
@@ -28,24 +29,24 @@ class Dealer: Player {
             }
         }
         catch{
-            print(error)
-            print("카드가 부족하여 종료합니다.")
+            return false
         }
+        return true
     }
     
-    func sendStartHand(to players : Players, howMany cardCount : Int) {
-        sendCard(to: self, howMany: cardCount)
+    /// if fail, return false
+    func sendStartHand(to players : Players, howMany cardCount : Int) -> Bool {
+        if sendCard(to: self, howMany: cardCount) == false {
+            return false
+        }
+        
         for player in players.allPlayers() {
-            sendCard(to: player, howMany: cardCount)
+            if sendCard(to: player, howMany: cardCount) == false {
+                return false
+            }
         }
-    }
-    
-    func printDeck() {
-        print(deck)
-    }
-    
-    override func printSelf() {
-        print("딜러 [\(showHandAsString())]")
+        
+        return true
     }
     
     private func newDeck() {

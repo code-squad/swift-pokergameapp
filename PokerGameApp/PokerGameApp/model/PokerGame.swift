@@ -29,18 +29,15 @@ public class PokerGame {
         self.players = Players.init(howManyPlayer: playerCount.rawValue)
     }
     
-    func test1() {
+    /// if fail, return false
+    func test(with closure : ((Player) -> Void)) -> Bool {
         dealer.shuffleDeck()
-        dealer.sendStartHand(to: players, howMany: currentGameStyle.rawValue)
-        players.printPlayers()
-        dealer.printSelf()
-    }
-    
-    func test2() {
-        dealer.shuffleDeck()
-        dealer.sendStartHand(to: players, howMany: currentGameStyle.rawValue)
-        players.printPlayers()
-        dealer.printSelf()
+        if dealer.sendStartHand(to: players, howMany: currentGameStyle.rawValue) == false {
+            return false
+        }
+        self.printParticipantsInfo(do: closure)
+        
+        return true
     }
     
     func reset(with gameStyle : GameStyle, howMany playerCount : PlayerCount) {
@@ -48,5 +45,10 @@ public class PokerGame {
         self.currentPlayerCount = playerCount
         self.dealer.resetSelf()
         self.players.resetSelf()
+    }
+    
+    func printParticipantsInfo ( do closure : ((Player) -> Void)) {
+        players.printInfo(do: closure)
+        dealer.printInfo(do: closure)
     }
 }

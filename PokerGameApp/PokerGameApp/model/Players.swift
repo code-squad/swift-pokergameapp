@@ -12,8 +12,8 @@ class Players {
     
     init(howManyPlayer playerCount : Int) {
         self.players = []
-        for _ in 0..<playerCount {
-            self.players.append(Player.init())
+        for index in 0..<playerCount {
+            self.players.append(Player.init(name: String(index)))
         }
     }
     
@@ -25,16 +25,15 @@ class Players {
         return players
     }
     
-    func printPlayers() {
-        for (index,player) in players.enumerated() {
-            print("참가자#\(index) ", terminator : "")
-            player.printSelf()
-        }
-    }
-    
     func resetSelf() {
         for player in players {
             player.resetSelf()
+        }
+    }
+    
+    func printInfo( do closure : ((Player) -> Void)) {
+        for player in players {
+            player.printInfo(do: closure)
         }
     }
 }
