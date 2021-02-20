@@ -10,9 +10,9 @@ import Foundation
 class Players {
     private var players: Array<Player> = []
     
-    init(numberOfPlayers: Int) {
-        for i in 1...numberOfPlayers {
-            players.append(Player(id: i))
+    init(with numberOfPlayers: Int) {
+        for sequence in 1...numberOfPlayers {
+            players.append(Player(id: sequence))
         }
     }
     

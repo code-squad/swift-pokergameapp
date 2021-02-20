@@ -8,27 +8,15 @@
 import Foundation
 
 class PokerGame {
-    public enum NumberOfPlayers: Int {
-        case one = 1
-        case two
-        case three
-        case four
-    }
-    
-    public enum StudVariant {
-        case fiveCardStud
-        case sevenCardStud
-    }
-
     private var cardDeck = CardDeck()
     private var dealer = Dealer()
     private var players: Players
     private var numberOfCards: Int
     private var lackOfCard: Bool
 
-    public init(withPlayersOf: NumberOfPlayers, stud: StudVariant) {
-        players = Players(numberOfPlayers: withPlayersOf.rawValue)
-        numberOfCards = stud == .fiveCardStud ? 5 : 7
+    public init(playersOf: Int, stud: Int) {
+        players = Players(with: playersOf)
+        numberOfCards = stud
         lackOfCard = false
     }
     
