@@ -23,6 +23,10 @@ class Player: Playable {
     func cardInfo() -> Array<Card> {
         return cardsInHand
     }
+    
+    public func resetPlayer() {
+        cardsInHand = []
+    }
 }
 
 extension Player: CustomStringConvertible {

@@ -20,6 +20,10 @@ class Dealer: Playable {
     func cardInfo() -> Array<Card> {
         return cardsInHand
     }
+    
+    public func resetDealer() {
+        cardsInHand = []
+    }
 }
 
 extension Dealer: CustomStringConvertible {

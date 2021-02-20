@@ -51,6 +51,8 @@ class PokerGame {
     }
     
     public func play() -> Array<Array<Card>>? {
+        players.resetPlayers()
+        dealer.resetDealer()
         resetCardDeck()
         distribute()
         if lackOfCard == true {
