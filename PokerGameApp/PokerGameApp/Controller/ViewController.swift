@@ -30,6 +30,7 @@ class ViewController: UIViewController {
         control.setTitleTextAttributes(normalTextAttributes, for: .normal)
         control.setTitleTextAttributes(selectedTextAttributes, for: .selected)
         control.translatesAutoresizingMaskIntoConstraints = false
+        control.addTarget(self, action: #selector(selectStud(_:)), for: .valueChanged)
         return control
      }()
     
@@ -77,12 +78,16 @@ class ViewController: UIViewController {
         configureCardNumberSelectSegmentedControl()
         self.view.addSubview(numberOfPlayersSegmentedControl)
         configureNumberOfPlayersSegementedControl()
+    }
+    
+    func gameInteration() {
         self.view.addSubview(verticalStackView)
         configureVerticalStackView()
         guard let gameResult = game.play() else { return }
+        print(gameResult)
         generateGameDashBoard(with: gameResult)
     }
-
+    
     func configureVerticalStackView() {
         verticalStackView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         verticalStackView.topAnchor.constraint(equalTo: self.numberOfPlayersSegmentedControl.bottomAnchor, constant: 5).isActive = true
@@ -154,5 +159,29 @@ class ViewController: UIViewController {
         stackView.distribution = .fillEqually
         stackView.axis = .horizontal
         return stackView
+    }
+    
+    @objc func selectStud(_ sender: UISegmentedControl) {
+        verticalStackView.removeFullyAllArrangedSubviews()
+        switch sender.selectedSegmentIndex {
+        case 0:
+            gameInteration()
+        case 1:
+            gameInteration()
+        default:
+            print("meh")
+        }
+    }
+}
+extension UIStackView {
+    func removeFully(view: UIView) {
+        removeArrangedSubview(view)
+        view.removeFromSuperview()
+    }
+
+    func removeFullyAllArrangedSubviews() {
+        arrangedSubviews.forEach { (view) in
+            removeFully(view: view)
+        }
     }
 }
