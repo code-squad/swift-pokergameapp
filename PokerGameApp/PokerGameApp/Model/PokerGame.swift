@@ -24,11 +24,12 @@ class PokerGame {
     private var dealer = Dealer()
     private var players: Players
     private var numberOfCards: Int
-    private var lackOfCard: Bool = false
+    private var lackOfCard: Bool
 
     public init(withPlayersOf: NumberOfPlayers, stud: StudVariant) {
         players = Players(numberOfPlayers: withPlayersOf.rawValue)
         numberOfCards = stud == .fiveCardStud ? 5 : 7
+        lackOfCard = false
     }
     
     private func resetCardDeck() {

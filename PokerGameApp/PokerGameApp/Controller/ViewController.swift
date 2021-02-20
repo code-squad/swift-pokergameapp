@@ -8,8 +8,6 @@
 import UIKit
 
 class ViewController: UIViewController {
-    var cardDeck = CardDeck()
-    var game = PokerGame(withPlayersOf: .four, stud: .sevenCardStud)
     
     lazy var studSelectSegmentedControl: UISegmentedControl = {
         let control = UISegmentedControl(items: ["7 cards", "5 cards"])
@@ -82,6 +80,7 @@ class ViewController: UIViewController {
     }
     
     func gameInteration() {
+        var game = PokerGame(withPlayersOf: .four, stud: .fiveCardStud)
         self.view.addSubview(verticalStackView)
         configureVerticalStackView()
         guard let gameResult = game.play() else { return }
@@ -172,6 +171,7 @@ class ViewController: UIViewController {
         default:
             print("meh")
         }
+        gameInteration()
     }
     
     @objc func selectNumberOfPlayers(_ sender: UISegmentedControl) {
@@ -186,6 +186,7 @@ class ViewController: UIViewController {
         default:
             print("meh")
         }
+        gameInteration()
     }
 }
 extension UIStackView {
