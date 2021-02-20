@@ -11,7 +11,7 @@ class ViewController: UIViewController {
     var cardDeck = CardDeck()
     var game = PokerGame(withPlayersOf: .four, stud: .sevenCardStud)
     
-    lazy var cardSelectSegmentedControl: UISegmentedControl = {
+    lazy var studSelectSegmentedControl: UISegmentedControl = {
         let control = UISegmentedControl(items: ["7 cards", "5 cards"])
         control.selectedSegmentIndex = 0
         control.layer.cornerRadius = 5.0
@@ -74,7 +74,7 @@ class ViewController: UIViewController {
         let cardBacksideImage: UIImage = UIImage(named: "card-back") ?? UIImage()
         self.view.backgroundColor = UIColor(patternImage: backgroundPatternImage)
         
-        self.view.addSubview(cardSelectSegmentedControl)
+        self.view.addSubview(studSelectSegmentedControl)
         configureCardNumberSelectSegmentedControl()
         self.view.addSubview(numberOfPlayersSegmentedControl)
         configureNumberOfPlayersSegementedControl()
@@ -98,16 +98,16 @@ class ViewController: UIViewController {
     
     func configureNumberOfPlayersSegementedControl() {
         numberOfPlayersSegmentedControl.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        numberOfPlayersSegmentedControl.topAnchor.constraint(equalTo: self.cardSelectSegmentedControl.bottomAnchor, constant: 5).isActive = true
+        numberOfPlayersSegmentedControl.topAnchor.constraint(equalTo: self.studSelectSegmentedControl.bottomAnchor, constant: 5).isActive = true
         numberOfPlayersSegmentedControl.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.33).isActive = true
         numberOfPlayersSegmentedControl.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.05).isActive = true
     }
     
     func configureCardNumberSelectSegmentedControl() {
-        cardSelectSegmentedControl.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        cardSelectSegmentedControl.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 0).isActive = true
-        cardSelectSegmentedControl.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.33).isActive = true
-        cardSelectSegmentedControl.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.05).isActive = true
+        studSelectSegmentedControl.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        studSelectSegmentedControl.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 0).isActive = true
+        studSelectSegmentedControl.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.33).isActive = true
+        studSelectSegmentedControl.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.05).isActive = true
     }
     
     func generateGameDashBoard(with game: Array<Array<Card>>) {
