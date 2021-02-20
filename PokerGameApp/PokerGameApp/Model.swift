@@ -50,6 +50,12 @@ class TrumpCard {
             return "\(suit.rawValue)"+"\(firstDigit)"
         }
         return "\(suit.rawValue)"+"\(rank.value.secondCharacter)"
-
+    }
+    
+    var description: String {
+        if let firstDigit = rank.value.firstDigit {
+            return "\(suit.rawValue)\(firstDigit)"
+        }
+        return "\(suit.rawValue)\(rank.value.secondCharacter)"
     }
 }

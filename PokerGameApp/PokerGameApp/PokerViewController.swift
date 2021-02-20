@@ -61,10 +61,9 @@ class PokerViewController: UIViewController {
         let test2 = TrumpCard(suit: .diamonds, rank: .five)
         let test3 = TrumpCard(suit: .hearts, rank: .eleven)
         let test4 = TrumpCard(suit: .spades, rank: .thirteen)
-
         
-        print("\(test1.result())\n\(test2.result())\n\(test3.result())\n\(test4.result())")
 
+        print("\(test1.description)\n\(test2.description)\n\(test3.description)\n\(test4.description)")
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
