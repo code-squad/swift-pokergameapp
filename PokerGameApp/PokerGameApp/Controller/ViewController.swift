@@ -54,6 +54,7 @@ class ViewController: UIViewController {
         control.setTitleTextAttributes(normalTextAttributes, for: .normal)
         control.setTitleTextAttributes(selectedTextAttributes, for: .selected)
         control.translatesAutoresizingMaskIntoConstraints = false
+        control.addTarget(self, action: #selector(selectNumberOfPlayers(_:)), for: .valueChanged)
         return control
      }()
     
@@ -167,6 +168,20 @@ class ViewController: UIViewController {
         case 0:
             gameInteration()
         case 1:
+            gameInteration()
+        default:
+            print("meh")
+        }
+    }
+    
+    @objc func selectNumberOfPlayers(_ sender: UISegmentedControl) {
+        verticalStackView.removeFullyAllArrangedSubviews()
+        switch sender.selectedSegmentIndex {
+        case 0:
+            gameInteration()
+        case 1:
+            gameInteration()
+        case 2:
             gameInteration()
         default:
             print("meh")
