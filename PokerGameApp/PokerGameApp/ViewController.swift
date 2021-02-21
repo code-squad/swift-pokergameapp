@@ -6,7 +6,7 @@ class ViewController: UIViewController {
         case cards
     }
     
-    var pokerGame: PokerGame = PokerGame(numberOfPlayer: .twoPlayer, stud: .sevenCardStud)
+    var pokerGame: PokerGame = PokerGame()
     var pokerPlate: UIStackView = UIStackView()
     
     override func viewDidLoad() {
@@ -28,6 +28,7 @@ class ViewController: UIViewController {
         for subview in self.view.subviews where !(subview is UISegmentedControl) {
             subview.removeFromSuperview()
         }
+        
         pokerGame = PokerGame(numberOfPlayer: numberOfPlayer, stud: stud)
         pokerPlate = UIStackView()
         initPokerPlate()
@@ -183,7 +184,8 @@ class ViewController: UIViewController {
     private func createCards(stud: CardStud, player: Playable) -> [UIView] {
         var cards = [UIView]()
         
-        pokerGame.shareCards(cardStud: stud, player: player) { (card) in
+        
+        pokerGame.setNextGame(player: player) { (card) in
             let cardImageName = convertCardNameToImageName(card.description)
             guard let image = UIImage(named: cardImageName) else { return }
             let imageView = UIImageView(image: image)
