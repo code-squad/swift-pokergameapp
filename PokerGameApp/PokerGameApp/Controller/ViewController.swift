@@ -8,23 +8,11 @@
 import UIKit
 
 class ViewController: UIViewController {
-    enum NumberOfPlayers: Int {
-        case one = 1
-        case two
-        case three
-        case four
-    }
-    
-    enum StudVariant: Int {
-        case fiveCardStud = 5
-        case sevenCardStud = 7
-    }
-    var playerNumbers: NumberOfPlayers = .one
-    var studVariant: StudVariant = .fiveCardStud
-    
+    let game = PokerGame()
     
     lazy var studSelectSegmentedControl: UISegmentedControl = {
-        let control = UISegmentedControl(items: ["7 cards", "5 cards"])
+        let items = game.exportStudVariant()
+        let control = UISegmentedControl(items: items)
         control.selectedSegmentIndex = 0
         control.layer.cornerRadius = 5.0
         control.layer.masksToBounds = true
@@ -47,7 +35,8 @@ class ViewController: UIViewController {
      }()
     
     lazy var numberOfPlayersSegmentedControl: UISegmentedControl = {
-        let control = UISegmentedControl(items: ["2명", "3명", "4명"])
+        let items = game.exportNumberOfPlayersOptions()
+        let control = UISegmentedControl(items: items)
         control.selectedSegmentIndex = 0
         control.tintColor = UIColor.white
         control.layer.cornerRadius = 5.0
@@ -93,7 +82,6 @@ class ViewController: UIViewController {
     }
     
     func gameInteration() {
-        let game = PokerGame(playersOf: playerNumbers.rawValue, stud: studVariant.rawValue)
         self.view.addSubview(verticalDashboardStackView)
         configureVerticalStackView()
         guard let gameResult = game.play() else { return }
@@ -174,29 +162,13 @@ class ViewController: UIViewController {
     
     @objc func selectStud(_ sender: UISegmentedControl) {
         verticalDashboardStackView.removeFullyAllArrangedSubviews()
-        switch sender.selectedSegmentIndex {
-        case 0:
-            studVariant = .sevenCardStud
-        case 1:
-            studVariant = .fiveCardStud
-        default:
-            print("meh")
-        }
+        game.selectStudVariant(index: sender.selectedSegmentIndex)
         gameInteration()
     }
     
     @objc func selectNumberOfPlayers(_ sender: UISegmentedControl) {
         verticalDashboardStackView.removeFullyAllArrangedSubviews()
-        switch sender.selectedSegmentIndex {
-        case 0:
-            playerNumbers = .two
-        case 1:
-            playerNumbers = .three
-        case 2:
-            playerNumbers = .four
-        default:
-            print("meh")
-        }
+        game.selectNumberOfPlayer(index: sender.selectedSegmentIndex)
         gameInteration()
     }
 }
