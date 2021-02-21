@@ -5,4 +5,9 @@
 //  Created by zombietux on 2021/02/21.
 //
 
-import Foundation
+import UIKit
+
+protocol Playable {
+    var name: String { get }
+    func makeHand() -> [UIImageView]
+}
