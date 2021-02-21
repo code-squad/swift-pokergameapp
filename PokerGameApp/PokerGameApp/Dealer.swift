@@ -22,17 +22,14 @@ class Dealer {
         players.participatePlayer()
         cardDeck.shuffle()
         for _ in 1...cardStud {
-            for i in 0..<players.willJoinGame.count-1 {
-                players.willJoinGame[i].hand.append(cardDeck.deck[0])
+            for i in 0..<players.playerNum {
+                players.receiveCard(playerIndex: i, card: cardDeck.deck[0])
                 cardDeck.removeOne()
             }
-            players.willJoinGame[players.willJoinGame.endIndex-1].hand.append(cardDeck.deck[0])
+            players.receiveCard(playerIndex: players.dealerIndex(), card: cardDeck.deck[0])
             cardDeck.removeOne()
         }
-        
-        for j in 0..<players.willJoinGame.count {
-            print(players.willJoinGame[j].hand)
-        }
+        players.printHand()
     }
     
 }
