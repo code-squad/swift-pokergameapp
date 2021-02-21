@@ -32,46 +32,31 @@ class ViewController: UIViewController {
 private extension ViewController {
     func startPorkerGame(gameMode: PokerGame.Mode, NumberOfPlayer: Int) {
         self.pokerGame.start(gameMode: gameMode, NumberOfPlayer: NumberOfPlayer) { players in
-            self.pokerGame.resetPlayers()
             self.setPokerGameView(data: players)
+            players.resetPlayers()
         }
     }
 
     func setPokerGameView(data players: Players) {
         self.playerView.arrangedSubviews.forEach { $0.removeFromSuperview() }
         
-        players.getPlayersInfo().forEach { player in
+        
+        players.forEachPlayers { player in
             self.pokerGameView.addArrangedSubview(makePlayerView(data: player))
         }
-        
-        self.pokerGameView.addArrangedSubview(makeDealerView(data: players.getDealerInfo()))
         self.view.addSubview(self.pokerGameView)
         pokerGameView.setConstraint(superView: self.view, segmentedControl: segmentedControl)
     }
 
-    func makePlayerView(data player: Player) -> PlayerView {
-        playerView.addArrangedSubview(makePlayerNameLabel(data: player.getNameInfo()))
-        playerView.addArrangedSubview(makeHandView(data: player.getHandInfo()))
+    func makePlayerView(data player: Playable) -> PlayerView {
+        playerView.addArrangedSubview(makePlayerNameLabel(data: player.name))
+        playerView.addArrangedSubview(makeHandView(data: player.makeHand()))
         
         return playerView
     }
 
-    func makeDealerView(data dealer: Dealer) -> PlayerView {
-        playerView.addArrangedSubview(makePlayerNameLabel(data: dealer.getNameInfo()))
-        playerView.addArrangedSubview(makeHandView(data: dealer.getHandInfo()))
-        
-        return playerView
-    }
-
-    func makeHandView(data hand: Hand) -> HandView {
-        let handView = HandView()
-        let hand = hand.getHand()
-        
-        hand.forEach { cardInfo in
-            let card = CardImage.image(cardInfo.description)
-            handView.addArrangedSubview(card)
-        }
-        
+    func makeHandView(data hand: [UIImageView]) -> HandView {
+        let handView = HandView(arrangedSubviews: hand)
         return handView
     }
 
@@ -95,7 +80,7 @@ extension ViewController: ChangePokerGameDelegate {
         let mode = changedValue
         modeChanged(selectedSegmentIndex: mode)
     }
-    
+
     func numbersOfPlayersSegmentControlDidChange(changedValue: Int) {
         let numberOfPlayers = changedValue
         numberOfPlayersChanged(selectecdSegmentIndex: numberOfPlayers)
@@ -105,26 +90,23 @@ extension ViewController: ChangePokerGameDelegate {
         switch selectedSegmentIndex {
         case 0:
             mode = .sevenStud
-            startPorkerGame(gameMode: mode, NumberOfPlayer: self.numberOfPlayers)
         case 1:
             mode = .fiveStud
-            startPorkerGame(gameMode: mode, NumberOfPlayer: self.numberOfPlayers)
-        default: return
+        default: break
         }
+        startPorkerGame(gameMode: mode, NumberOfPlayer: self.numberOfPlayers)
     }
     
     func numberOfPlayersChanged(selectecdSegmentIndex: Int) {
         switch selectecdSegmentIndex {
         case 0:
             numberOfPlayers = 2
-            startPorkerGame(gameMode: self.mode, NumberOfPlayer: numberOfPlayers)
         case 1:
             numberOfPlayers = 3
-            startPorkerGame(gameMode: self.mode, NumberOfPlayer: numberOfPlayers)
         case 2:
             numberOfPlayers = 4
-            startPorkerGame(gameMode: self.mode, NumberOfPlayer: numberOfPlayers)
-        default: return
+        default: break
         }
+        startPorkerGame(gameMode: self.mode, NumberOfPlayer: numberOfPlayers)
     }
 }

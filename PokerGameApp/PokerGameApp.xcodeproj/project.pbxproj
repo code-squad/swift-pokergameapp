@@ -28,6 +28,7 @@
 		93C07F0625DE39110037570E /* PokerGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C07F0525DE39110037570E /* PokerGameView.swift */; };
 		93C07F1625DEAF210037570E /* SegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C07F1525DEAF210037570E /* SegmentedControl.swift */; };
 		93C07F1C25DF85A50037570E /* Players.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C07F1B25DF85A50037570E /* Players.swift */; };
+		93C07F2025E1E1C50037570E /* Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C07F1F25E1E1C50037570E /* Protocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,7 @@
 		93C07F0525DE39110037570E /* PokerGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokerGameView.swift; sourceTree = "<group>"; };
 		93C07F1525DEAF210037570E /* SegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedControl.swift; sourceTree = "<group>"; };
 		93C07F1B25DF85A50037570E /* Players.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Players.swift; sourceTree = "<group>"; };
+		93C07F1F25E1E1C50037570E /* Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +112,7 @@
 				93C07E6525DA322B0037570E /* AppDelegate.swift */,
 				93C07E6725DA322B0037570E /* SceneDelegate.swift */,
 				93C07E6925DA322B0037570E /* ViewController.swift */,
+				93C07F1F25E1E1C50037570E /* Protocol.swift */,
 				93C07E6B25DA322B0037570E /* Main.storyboard */,
 				93C07E6E25DA322C0037570E /* Assets.xcassets */,
 				93C07E7025DA322C0037570E /* LaunchScreen.storyboard */,
@@ -262,6 +265,7 @@
 				93C07E9F25DA547C0037570E /* CardImage.swift in Sources */,
 				93C07EC125DB6FEE0037570E /* CardDeck.swift in Sources */,
 				93C07EA325DA6F2E0037570E /* HandView.swift in Sources */,
+				93C07F2025E1E1C50037570E /* Protocol.swift in Sources */,
 				93C07E6625DA322B0037570E /* AppDelegate.swift in Sources */,
 				93C07EB025DA8CF10037570E /* Rank.swift in Sources */,
 				93C07F1C25DF85A50037570E /* Players.swift in Sources */,
