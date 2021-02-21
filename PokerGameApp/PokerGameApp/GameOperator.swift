@@ -10,10 +10,20 @@ import Foundation
 class GameOperator {
     
     var gameOperator = Dealer()
+    var gameBoard = [[String]]()
     
-    public func startGame() {
+    public func startGame(playersNum: Int, cardStud: Int) {
         gameOperator.makeDeckForGame()
-        gameOperator.distributeCard()
+        gameOperator.distributeCard(playersNum: playersNum, cardStud: cardStud)
+        gameOperator.receiveHandFromPlayers()
+    }
+    
+    public func checkBoard() {
+        gameBoard = gameOperator.hands
+    }
+    
+    public func resetDeck() {
+        gameOperator.resetDeck()
     }
     
 }
