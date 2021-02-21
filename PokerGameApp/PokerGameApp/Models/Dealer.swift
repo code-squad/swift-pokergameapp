@@ -5,12 +5,12 @@
 //  Created by zombietux on 2021/02/17.
 //
 
-import Foundation
+import UIKit
 
-class Dealer {
+class Dealer: Playable {
     private var cardDeck: CardDeck
-    private let hand: Hand
-    private let name = "딜러"
+    private var hand: Hand
+    let name = "딜러"
     
     init(cardDeck: CardDeck, hand: Hand) {
         self.cardDeck = cardDeck
@@ -21,14 +21,6 @@ class Dealer {
         self.init(cardDeck: cardDeck, hand: Hand(cards: []))
     }
     
-    func getHandInfo() -> Hand {
-        return self.hand
-    }
-    
-    func getNameInfo() -> String {
-        return self.name
-    }
-    
     func takeRemainCards() -> CardDeck {
         return cardDeck
     }
@@ -36,14 +28,18 @@ class Dealer {
     func handOut(_ numberOfCards: Int) -> [Card] {
         var cards: [Card] = []
         self.cardDeck.shuffle()
-        
+
         for _ in 0..<numberOfCards {
             guard self.cardDeck.count() > 0 else {
                 continue
             }
             cards.append(self.cardDeck.removeOne())
         }
-        
+
         return cards
+    }
+    
+    func makeHand() -> [UIImageView] {
+        return hand.makeCardImage()
     }
 }
