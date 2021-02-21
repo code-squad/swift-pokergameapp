@@ -98,8 +98,8 @@ class ViewController: UIViewController {
         let segmentedControl: UISegmentedControl = {
             var segmentedControl: UISegmentedControl
             switch segmentedControlType {
-            case .cards: segmentedControl = UISegmentedControl(items: ["7 Cards", "5 Cards"])
-            case .players: segmentedControl = UISegmentedControl(items: ["2명", "3명", "4명"])
+            case .cards: segmentedControl = UISegmentedControl(items: cardsSegmentedControlItemsName)
+            case .players: segmentedControl = UISegmentedControl(items: playersSegmentedControlItemsName)
             }
             configSegmentedControl(segmentedControl, type: segmentedControlType)
             return segmentedControl
@@ -228,5 +228,13 @@ extension ViewController {
             .replacingOccurrences(of: "♦️", with: "d")
             .replacingOccurrences(of: "❤️", with: "h")
             .replacingOccurrences(of: "♠️", with: "s")
+    }
+    
+    var cardsSegmentedControlItemsName: Array<String> {
+        CardStud.allCases.map{ "\($0.rawValue) Cards" }
+    }
+    
+    var playersSegmentedControlItemsName: Array<String> {
+        NumberOfParticipant.allCases.map{ "\($0.rawValue)명" }
     }
 }
