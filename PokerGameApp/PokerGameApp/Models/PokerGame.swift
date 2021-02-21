@@ -21,9 +21,9 @@ class PokerGame {
     
     private var players: Players = Players(players: [])
     
-    func start(gameMode: Mode, NumberOfPlayer: Int, completion: @escaping (Players) -> Void) {
+    func start(gameMode: Mode, numberOfPlayer: Int, completion: @escaping (Players) -> Void) {
         let cardCount = gameMode == .fiveStud ? 5 : 7
-        players.registerPlayers(numberOfPlayers: NumberOfPlayer, cardCount: cardCount)
+        players.registerPlayers(numberOfPlayers: numberOfPlayer, cardCount: cardCount)
         
         completion(players)
     }

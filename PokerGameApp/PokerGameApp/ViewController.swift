@@ -21,7 +21,7 @@ class ViewController: UIViewController {
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: CardImage.background) ?? UIImage())
         setSegmentedContrl()
         segmentedControl.delegate = self
-        startPorkerGame(gameMode: mode, NumberOfPlayer: numberOfPlayers)
+        startPorkerGame(gameMode: mode, numberOfPlayer: numberOfPlayers)
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -30,8 +30,8 @@ class ViewController: UIViewController {
 }
 
 private extension ViewController {
-    func startPorkerGame(gameMode: PokerGame.Mode, NumberOfPlayer: Int) {
-        self.pokerGame.start(gameMode: gameMode, NumberOfPlayer: NumberOfPlayer) { players in
+    func startPorkerGame(gameMode: PokerGame.Mode, numberOfPlayer: Int) {
+        self.pokerGame.start(gameMode: gameMode, numberOfPlayer: numberOfPlayer) { players in
             self.setPokerGameView(data: players)
             players.resetPlayers()
         }
@@ -39,7 +39,6 @@ private extension ViewController {
 
     func setPokerGameView(data players: Players) {
         self.playerView.arrangedSubviews.forEach { $0.removeFromSuperview() }
-        
         
         players.forEachPlayers { player in
             self.pokerGameView.addArrangedSubview(makePlayerView(data: player))
@@ -57,6 +56,7 @@ private extension ViewController {
 
     func makeHandView(data hand: [UIImageView]) -> HandView {
         let handView = HandView(arrangedSubviews: hand)
+        
         return handView
     }
 
@@ -94,7 +94,7 @@ extension ViewController: ChangePokerGameDelegate {
             mode = .fiveStud
         default: break
         }
-        startPorkerGame(gameMode: mode, NumberOfPlayer: self.numberOfPlayers)
+        startPorkerGame(gameMode: mode, numberOfPlayer: self.numberOfPlayers)
     }
     
     func numberOfPlayersChanged(selectecdSegmentIndex: Int) {
@@ -107,6 +107,6 @@ extension ViewController: ChangePokerGameDelegate {
             numberOfPlayers = 4
         default: break
         }
-        startPorkerGame(gameMode: self.mode, NumberOfPlayer: numberOfPlayers)
+        startPorkerGame(gameMode: self.mode, numberOfPlayer: numberOfPlayers)
     }
 }
