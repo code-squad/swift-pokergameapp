@@ -37,7 +37,6 @@ class CardDeck {
     
     public func reset() {
         deck.removeAll()
-        make()
         print("Reset deck")
         self.count()
     }
