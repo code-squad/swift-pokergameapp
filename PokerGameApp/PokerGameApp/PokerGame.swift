@@ -1,5 +1,4 @@
 import Foundation
-import UIKit
 
 class PokerGame{
     
@@ -49,15 +48,8 @@ class PokerGame{
         }
     }
     
-    func drawCard() -> [UIView]{
-        var imageViewTemp : [UIImageView] = []
-        for i in 0..<self.players.currentPlayers(){
-            for j in 0..<self.gameStyle{
-                let cardView : UIImageView = UIImageView(image: UIImage(named: players.playerCards(playerindex: i, cardindex: j)))
-                imageViewTemp.append(cardView)
-            }
-        }
-        return imageViewTemp
+    func drawCard(playerindex: Int, cardindex : Int) -> String{
+        return players.playerCards(playerindex: playerindex, cardindex: cardindex)
     }
     
 }
