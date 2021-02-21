@@ -50,7 +50,7 @@ for i in 0..<7 {
 
 시뮬레이터 모습은 아래와 같습니다.
 
-![Simulator Screen Shot - iPhone 12 Pro - 2021-02-15 at 19 12 48](https://user-images.githubusercontent.com/61342175/107951625-fbebfd00-6fdb-11eb-8da5-b6b3c4e0ffaf.png){: width="50%" height="50%"}
+<img src = "https://user-images.githubusercontent.com/61342175/107951625-fbebfd00-6fdb-11eb-8da5-b6b3c4e0ffaf.png" width="50%" height="50%">
 
 ## 2단계 (2021.02.15 22:35)
 
@@ -198,6 +198,13 @@ Link
 컴파일 모습을 다시 첨부합니다.
 
 ![스크린샷 2021-02-18 오후 7 40 53](https://user-images.githubusercontent.com/61342175/108345180-532edf00-7221-11eb-8d6b-67a31cbefd0f.png)
+
+## 5단계 (2021.02.21 20:20)
+
+<img src = "https://user-images.githubusercontent.com/61342175/108623413-4eb53100-7482-11eb-8b56-16752cfddf8d.png" width="50%" height="50%">
+<img src = "https://user-images.githubusercontent.com/61342175/108623415-51178b00-7482-11eb-92ac-525a3ef2cbb1.png" width="50%" height="50%">
+
+버튼 터치 시 변경된 게임 옵션으로 게임이 다시 진행됩니다. shake 모션으로 설정된 게임 옵션 하에 게임을 재시작합니다.
 
 # 추가적으로 알아볼 부분 (2021.02.16 16:35)
 
