@@ -10,14 +10,13 @@ class Players {
         self.players = [Playable]()
     }
     
-    public func registerPlayers(numberOfPlayer: NumberOfParticipant) {
+    public func registerPlayers(numberOfPlayer: NumberOfParticipant, dealer: Dealer) {
         players = [Playable]()
         
         for index in 1...numberOfPlayer.rawValue {
             let player = Player(ID: index)
             players.append(player)
         }
-        let dealer = Dealer()
         players.append(dealer)
     }
     
