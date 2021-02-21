@@ -9,3 +9,7 @@ STEP15 포커게임 앱 저장소
 ![TESTcode](/images/TESTCODE.png)
 ## step4 실행 후 결과 출력
 ![Step4Com](/images/step4Com.png)
+## 7cards 선택 후 결과 출력
+![_7Cards](/images/_7cards.png)
+## 5cards 선택 후 결과 출력
+![_5Cards](/images/_5cards.png)
