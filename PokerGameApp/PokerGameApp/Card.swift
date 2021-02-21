@@ -17,7 +17,8 @@ enum Suit : String, CustomStringConvertible, CaseIterable {
     var description: String{
         return "\(self.rawValue)"
     }
-    case spade = "♠︎", club = "♣︎", heart = "♥︎", diamond = "♦︎"
+    //case spade = "♠︎", club = "♣︎", heart = "♥︎", diamond = "♦︎"
+    case spade = "s", club = "c", heart = "h", diamond = "d"
 }
 
 enum Number : Int, CustomStringConvertible, CaseIterable{
