@@ -2,9 +2,6 @@ import Foundation
 
 class Players {
     private var players: [Playable]
-    var list: [Playable] {
-        return players
-    }
     
     init() {
         self.players = [Playable]()
@@ -23,6 +20,12 @@ class Players {
     public func resetPlayersCard() {
         players.forEach { (player) in
             player.resetCard()
+        }
+    }
+    
+    public func configEachPlayer(config: (Playable) -> ()) {
+        for player in players {
+            config(player)
         }
     }
 }
