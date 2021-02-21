@@ -14,4 +14,10 @@
 
 4. (브랜치 Step3으로 진행) 포커게임과 참가자 OOP 통해 구현  2020.02.17  23:27
 
-5. 
+5. 포커게임 결과 화면 표시 (종료시간)
+<p float="left">
+<img src="images/step5_1.png" width="200" />
+<img src="images/step5_2.png" width="200" />
+<img src="images/step5_3.png" width="200" />
+<img src="images/step5_4.png" width="200" />
+</p>
