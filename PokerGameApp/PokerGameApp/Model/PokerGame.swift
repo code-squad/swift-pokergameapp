@@ -1,11 +1,11 @@
 import Foundation
 
-enum CardStud: Int {
+enum CardStud: Int, CaseIterable {
     case sevenCardStud = 7
     case fiveCardStud = 5
 }
 
-enum NumberOfParticipant: Int {
+enum NumberOfParticipant: Int, CaseIterable {
     case twoPlayer = 2
     case threePlayer = 3
     case fourPlayer = 4
