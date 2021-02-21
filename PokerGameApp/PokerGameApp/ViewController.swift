@@ -44,7 +44,8 @@ class ViewController: UIViewController {
     //MARK: Set PokerPlate
     private func addPlayersStackViewIntoPokerPlate(imageStackView: UIStackView, nameLabel: UILabel, numberOfPlayer: NumberOfParticipant){
         
-        for _ in 1...numberOfPlayer.rawValue {
+        
+        numberOfPlayer.iterateRawValue {
             let playerStackView: UIStackView = {
                 let stackView = UIStackView()
                 stackView.axis = .vertical

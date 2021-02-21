@@ -9,6 +9,12 @@ enum NumberOfParticipant: Int {
     case twoPlayer = 2
     case threePlayer = 3
     case fourPlayer = 4
+    
+    func iterateRawValue(eachConfig: () -> ()) {
+        for _ in 1...self.rawValue {
+            eachConfig()
+        }
+    }
 }
 
 class PokerGame {
