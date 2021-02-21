@@ -19,41 +19,12 @@ class PokerGame {
         case four = "4명"
     }
     
-    private var dealer = Dealer(cardDeck: CardDeck())
-    lazy private var players: Players = Players(dealer: dealer, players: [])
+    private var players: Players = Players(players: [])
     
     func start(gameMode: Mode, NumberOfPlayer: Int, completion: @escaping (Players) -> Void) {
         let cardCount = gameMode == .fiveStud ? 5 : 7
+        players.registerPlayers(numberOfPlayers: NumberOfPlayer, cardCount: cardCount)
         
-        func HandOutToPlayers(playerNumber index: Int) {
-            let hand = Hand(cards: self.players.getDealerInfo().handOut(cardCount))
-            let playerName = setPlayerName(index)
-            let player = Player(hand: hand, name: playerName)
-            self.players.appendPlayer(player)
-        }
-        
-        for index in 1...NumberOfPlayer {
-            HandOutToPlayers(playerNumber: index)
-        }
-        
-        dealer = hasAHandToDealer(dealer: dealer, cardCount: cardCount)
-        
-        let players = Players(dealer: dealer, players: self.players.getPlayersInfo())
         completion(players)
-    }
-    
-    func resetPlayers() {
-        self.players = Players(dealer: Dealer(cardDeck: CardDeck()), players: [])
-    }
-}
-
-private extension PokerGame {
-    func setPlayerName(_ playerNumber: Int) -> String {
-        return "참가자\(playerNumber)"
-    }
-    
-    func hasAHandToDealer(dealer: Dealer, cardCount: Int) -> Dealer {
-        let dealer = dealer
-        return Dealer(cardDeck: dealer.takeRemainCards(), hand: Hand(cards: dealer.handOut(cardCount)))
     }
 }
