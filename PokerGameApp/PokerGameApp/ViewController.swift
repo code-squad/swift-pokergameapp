@@ -34,8 +34,7 @@ class ViewController: UIViewController {
         initPokerPlate()
         pokerGame.players.resetPlayersCard()
         
-        
-        for player in pokerGame.players.list {
+        pokerGame.players.configEachPlayer { (player) in
             let playerNameLabel = setPlayerNameLabel(name: player.name)
             let imageStackView = setImageStackView(stud: stud, player: player)
             addPlayersStackViewIntoPokerPlate(imageStackView: imageStackView, nameLabel: playerNameLabel, numberOfPlayer: numberOfPlayer)
