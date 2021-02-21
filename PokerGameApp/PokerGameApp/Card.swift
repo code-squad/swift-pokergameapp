@@ -48,3 +48,19 @@ class Card: CustomStringConvertible {
     }
 }
 
+extension Shape {
+    var imageFileName: String {
+        switch self {
+        case .clover:
+            return "c"
+        case .diamond:
+            return "d"
+        case .heart:
+            return "h"
+        case .spade:
+            return "s"
+        default:
+            break
+        }
+    }
+}
