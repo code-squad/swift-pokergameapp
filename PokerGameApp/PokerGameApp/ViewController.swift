@@ -154,11 +154,9 @@ class ViewController: UIViewController {
     }
     
     @objc private func configWhenPlayersSegmentSelected(_ segmentedControl: UISegmentedControl) {
-        switch segmentedControl.selectedSegmentIndex {
-        case 0: setPokerGame(numberOfPlayer: .twoPlayer, stud: pokerGame.cardStud)
-        case 1: setPokerGame(numberOfPlayer: .threePlayer, stud: pokerGame.cardStud)
-        case 2: setPokerGame(numberOfPlayer: .fourPlayer, stud: pokerGame.cardStud)
-        default: return
+        if let participant = NumberOfParticipant.init(rawValue: segmentedControl.selectedSegmentIndex + 2)
+        {
+            setPokerGame(numberOfPlayer: participant, stud: pokerGame.cardStud)
         }
     }
     
