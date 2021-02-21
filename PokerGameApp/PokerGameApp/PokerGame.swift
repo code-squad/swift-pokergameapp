@@ -1,4 +1,5 @@
 import Foundation
+import UIKit
 
 class PokerGame{
     
@@ -48,6 +49,17 @@ class PokerGame{
         }
     }
     
+    func drawCard() -> [UIView]{
+        var imageViewTemp : [UIImageView] = []
+        for i in 0..<self.players.currentPlayers(){
+            for j in 0..<self.gameStyle{
+                let cardView : UIImageView = UIImageView(image: UIImage(named: players.playerCards(playerindex: i, cardindex: j)))
+                imageViewTemp.append(cardView)
+            }
+        }
+        return imageViewTemp
+    }
+    
 }
 
 enum ErrorOfgame : Error{
@@ -61,42 +73,16 @@ class Player {
         self.myCard = []
     }
     
+    func myCardDescription(index : Int) -> String{
+        return myCard[index].description
+    }
+    
     func receiveCard(_ card : Card) -> Void{
         myCard.append(card)
     }
     
     func printMyCard(){
         print(myCard)
-    }
-}
-
-class Players{
-    private var players : [Player]
-    private let playerCount : Int
-    
-    init(playerCount : Int){
-        self.players = []
-        self.playerCount = playerCount
-        print("플레이어 카운트 \(self.playerCount)")
-    }
-    
-    func decidePlayerNum() -> Void {
-        for _ in 0..<playerCount{
-            let newplayer = Player()
-            players.append(newplayer)
-        }
-    }
-    
-    func printCardplayers(index : Int) -> Void{
-        players[index].printMyCard()
-    }
-    
-    func currentPlayers() -> Int{
-        return players.count
-    }
-    
-    func throwCardtoPlayer(_ index : Int, _ card : Card){
-        players[index].receiveCard(card)
     }
 }
 

@@ -15,6 +15,7 @@
 		823DDE9325DA49F900A04E6B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 823DDE9125DA49F900A04E6B /* LaunchScreen.storyboard */; };
 		823DDE9E25DA49F900A04E6B /* PokerGameAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823DDE9D25DA49F900A04E6B /* PokerGameAppTests.swift */; };
 		823DDEA925DA49F900A04E6B /* PokerGameAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823DDEA825DA49F900A04E6B /* PokerGameAppUITests.swift */; };
+		8271C96825E26729005238C5 /* Players.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8271C96725E26729005238C5 /* Players.swift */; };
 		8274A7DF25DB974B00BF317E /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8274A7DE25DB974B00BF317E /* Card.swift */; };
 		828B403625DCF93C004B5139 /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828B403525DCF93C004B5139 /* Deck.swift */; };
 		8293EAD725DE3C3D0072B55F /* TESTCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8293EAD625DE3C3D0072B55F /* TESTCode.swift */; };
@@ -53,6 +54,7 @@
 		823DDEA425DA49F900A04E6B /* PokerGameAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PokerGameAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		823DDEA825DA49F900A04E6B /* PokerGameAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokerGameAppUITests.swift; sourceTree = "<group>"; };
 		823DDEAA25DA49F900A04E6B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8271C96725E26729005238C5 /* Players.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Players.swift; sourceTree = "<group>"; };
 		8274A7DE25DB974B00BF317E /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		828B403525DCF93C004B5139 /* Deck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = "<group>"; };
 		8293EAD625DE3C3D0072B55F /* TESTCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TESTCode.swift; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 				828B403525DCF93C004B5139 /* Deck.swift */,
 				8293EADE25DE4A430072B55F /* PokerGame.swift */,
 				8293EAD625DE3C3D0072B55F /* TESTCode.swift */,
+				8271C96725E26729005238C5 /* Players.swift */,
 				823DDE8C25DA49F800A04E6B /* Main.storyboard */,
 				823DDE8F25DA49F900A04E6B /* Assets.xcassets */,
 				823DDE9125DA49F900A04E6B /* LaunchScreen.storyboard */,
@@ -270,6 +273,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8271C96825E26729005238C5 /* Players.swift in Sources */,
 				8293EADF25DE4A430072B55F /* PokerGame.swift in Sources */,
 				8293EAD725DE3C3D0072B55F /* TESTCode.swift in Sources */,
 				823DDE8B25DA49F800A04E6B /* ViewController.swift in Sources */,
