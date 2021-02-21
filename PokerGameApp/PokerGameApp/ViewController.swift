@@ -184,7 +184,8 @@ class ViewController: UIViewController {
         var cards = [UIView]()
         
         pokerGame.shareCards(cardStud: stud, player: player) { (card) in
-            guard let image = UIImage(named: card.imageName) else { return }
+            let cardImageName = convertCardNameToImageName(card.description)
+            guard let image = UIImage(named: cardImageName) else { return }
             let imageView = UIImageView(image: image)
             imageView.layer.masksToBounds = true
             imageView.layer.cornerRadius = 5
@@ -218,3 +219,12 @@ class ViewController: UIViewController {
     }
 }
 
+extension ViewController {
+    private func convertCardNameToImageName(_ card: String) -> String {
+        return card.description
+            .replacingOccurrences(of: "♣️", with: "c")
+            .replacingOccurrences(of: "♦️", with: "d")
+            .replacingOccurrences(of: "❤️", with: "h")
+            .replacingOccurrences(of: "♠️", with: "s")
+    }
+}
