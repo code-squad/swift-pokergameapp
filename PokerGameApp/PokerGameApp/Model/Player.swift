@@ -18,13 +18,19 @@ enum PlayerType: String {
 class Player {
     private var cards: [Card] = [] 
     private var name: PlayerType
+    private var currentIndex: Int
     
     init(name: PlayerType) {
         self.name = name
+        self.currentIndex = 0
     }
     
     func receiveCard(_ card: Card) {
         cards.append(card)
+    }
+    
+    func eachCard(method: (Card)->()) {
+        cards.forEach({method($0)})
     }
     
     func getCard() -> [Card] {
