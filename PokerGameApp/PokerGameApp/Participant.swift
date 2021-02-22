@@ -7,42 +7,40 @@
 
 import Foundation
 
-class Participant {
+protocol Participant {
     
-    fileprivate let role: Role
+    var role: String { get }
+    var cards: [Card] { get }
     
-    enum Role {
-        case dealer, player
-    }
+    func updateStack(with cards: [Card])
+    func myName() -> String
+    func myStack() -> [Card]
     
-    fileprivate var cards: [Card]
+}
+
+class Dealer: Participant {
     
-    init(name: Role) {
-        self.role = name
+    let role: String
+    var cards: [Card]
+    
+    private var cardDeck: CardDeck
+    
+    init(with cardDeck: CardDeck) {
+        role = "Dealer"
         cards = []
+        self.cardDeck = cardDeck
     }
     
     func updateStack(with cards: [Card]) {
         self.cards = cards
     }
-    
+
     func myName() -> String {
-        return ""
+        return role
     }
     
     func myStack() -> [Card] {
         return cards
-    }
-}
-
-
-class Dealer: Participant {
-    
-    private var cardDeck: CardDeck
-    
-    init(name: Role, with cardDeck: CardDeck) {
-        self.cardDeck = cardDeck
-        super.init(name: name)
     }
     
     func handOutCardStacks(for headCnt: Int, each cardCnt: Int) -> [[Card]] {
@@ -77,23 +75,31 @@ class Dealer: Participant {
         }
         return cards
     }
-
-    override func myName() -> String {
-        return "\(role)"
-    }
 }
 
 
 class Player: Participant {
     
+    let role: String
+    var cards: [Card]
+    
     private let number: Int
     
-    init(name: Role, number: Int) {
+    init(number: Int) {
+        role = "Player"
+        cards = []
         self.number = number
-        super.init(name: name)
     }
     
-    override func myName() -> String {
+    func updateStack(with cards: [Card]) {
+        self.cards = cards
+    }
+    
+    func myName() -> String {
         return "\(role) #\(number)"
+    }
+    
+    func myStack() -> [Card] {
+        return cards
     }
 }
