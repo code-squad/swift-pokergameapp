@@ -52,4 +52,8 @@ class Players {
             player.dropMyCards()
         }
     }
+    
+    public func repeatForEachPlayer<T>(_ transform: (Player) -> T) -> [T] {
+        return players.map{ transform($0) }
+    }
 }
