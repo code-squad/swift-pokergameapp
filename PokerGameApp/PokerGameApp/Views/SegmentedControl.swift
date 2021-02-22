@@ -23,7 +23,7 @@ class PokerGameSegmentedControl: UISegmentedControl {
     }()
     
     private let numbersOfPlayersSegmentedControl: UISegmentedControl = {
-        let numbersOfPlayersItems = PokerGame.NumberOfPalyer.allCases.map { $0.rawValue }
+        let numbersOfPlayersItems = PokerGame.NumberOfPalyer.allCases.map { "\($0.rawValue)명" }
         let segmentedControl = UISegmentedControl(items: numbersOfPlayersItems)
         segmentedControl.translatesAutoresizingMaskIntoConstraints = false
         segmentedControl.selectedSegmentIndex = 2

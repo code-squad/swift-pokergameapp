@@ -98,15 +98,6 @@ extension ViewController: ChangePokerGameDelegate {
     }
     
     func numberOfPlayersChanged(selectecdSegmentIndex: Int) {
-        switch selectecdSegmentIndex {
-        case 0:
-            numberOfPlayers = 2
-        case 1:
-            numberOfPlayers = 3
-        case 2:
-            numberOfPlayers = 4
-        default: break
-        }
-        startPorkerGame(gameMode: self.mode, numberOfPlayer: numberOfPlayers)
+        startPorkerGame(gameMode: self.mode, numberOfPlayer: PokerGame.NumberOfPalyer.init(rawValue: selectecdSegmentIndex + 2)?.rawValue ?? 2)
     }
 }
