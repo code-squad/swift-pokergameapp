@@ -24,6 +24,7 @@ class ViewController: UIViewController {
         
         //showCard()
         segmentStackView()
+        allPlayerStackView()
     }
 
     func showCard() {
@@ -38,7 +39,7 @@ class ViewController: UIViewController {
         stackView.spacing = 8
         stackView.translatesAutoresizingMaskIntoConstraints = false
         let image = UIImage(named: "card-back")
-        
+
         for _ in 1...7 {
             let cardImage = UIImageView(image: image)
             stackView.addArrangedSubview(cardImage)
@@ -51,6 +52,39 @@ class ViewController: UIViewController {
         stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8).isActive = true
         stackView.heightAnchor.constraint(equalToConstant: cardHeight).isActive = true
         
+    }
+    
+    func allPlayerStackView() {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.distribution = .fillEqually
+        stackView.alignment = .fill
+        stackView.spacing = 10
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        
+        self.view.addSubview(stackView)
+        
+        let topSpace = self.view.frame.height / self.divideYSpace + 20
+        stackView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: topSpace).isActive = true
+        //stackView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: 10).isActive = true
+        stackView.leftAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leftAnchor, constant: 10).isActive = true
+        stackView.rightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.rightAnchor, constant: -10).isActive = true
+        
+        let a = playerStackView()
+        
+        stackView.addArrangedSubview(a)
+        
+    }
+    
+    func playerStackView() -> UIStackView {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.distribution = .fillEqually
+        stackView.alignment = .fill
+        stackView.spacing = -8
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        
+        return stackView
     }
     
     func segmentStackView() {
