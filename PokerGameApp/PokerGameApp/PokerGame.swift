@@ -26,18 +26,7 @@ class PokerGame {
 
     enum Seat: Int {
         case one = 1, two, three, four
-
-        func makePlayers() -> [Player] {
-            var players = [Player]()
-            
-            for i in 1...self.rawValue {
-                players.append(Player(name: .player, number: i))
-            }
-            return players
-        }
     }
-    
-    private var infoBoard: InfoBoard
     
     private var dealer: Dealer
 
@@ -46,9 +35,8 @@ class PokerGame {
     init(rule: Rule, seat: Seat) {
         self.rule = rule
         self.seat = seat
-        infoBoard = InfoBoard()
-        dealer = Dealer(name: .dealer, with: cardDeck)
-        participants = Participants(players: seat.makePlayers(), dealer: dealer)
+        dealer = Dealer(with: cardDeck)
+        participants = Participants(playerCount: seat.rawValue, dealer: dealer)
     }
     
     func start() {
@@ -56,7 +44,6 @@ class PokerGame {
         let newStacks = cardsFromDealer()
         
         participants.takeCard(from: newStacks)
-        updateInfoBoard()
     }
     
     private func cardsFromDealer() -> [[Card]] {
@@ -65,10 +52,6 @@ class PokerGame {
         return newStacks
     }
     
-    private func updateInfoBoard() {
-        infoBoard.update(participantsList: participants.names())
-        infoBoard.update(cardStackList: participants.stacks())
-    }
     
     func changeRule(to newRule: Rule) {
         rule = newRule
@@ -76,10 +59,6 @@ class PokerGame {
     
     func changeSeat(to newSeat: Seat) {
         seat = newSeat
-        participants = Participants(players: seat.makePlayers(), dealer: dealer)
-    }
-    
-    func info() -> (players: [String], stacks: [[Card]]) {
-        return (infoBoard.participants(), infoBoard.stacks())
+        participants = Participants(playerCount: seat.rawValue, dealer: dealer)
     }
 }

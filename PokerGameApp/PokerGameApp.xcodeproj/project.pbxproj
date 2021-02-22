@@ -18,7 +18,6 @@
 		E4CE9B4C25DB5DF4000CE7F4 /* CardDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CE9B4B25DB5DF4000CE7F4 /* CardDeck.swift */; };
 		E4D83DDA25DCB04C00D0F905 /* PokerGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D83DD925DCB04C00D0F905 /* PokerGame.swift */; };
 		E4D83DDE25DD202900D0F905 /* Participant.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D83DDD25DD202900D0F905 /* Participant.swift */; };
-		E4D83DE225DD701F00D0F905 /* InfoBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D83DE125DD701F00D0F905 /* InfoBoard.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,7 +34,6 @@
 		E4CE9B4B25DB5DF4000CE7F4 /* CardDeck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDeck.swift; sourceTree = "<group>"; };
 		E4D83DD925DCB04C00D0F905 /* PokerGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokerGame.swift; sourceTree = "<group>"; };
 		E4D83DDD25DD202900D0F905 /* Participant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Participant.swift; sourceTree = "<group>"; };
-		E4D83DE125DD701F00D0F905 /* InfoBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoBoard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,7 +74,6 @@
 				E4D83DD925DCB04C00D0F905 /* PokerGame.swift */,
 				E4D83DDD25DD202900D0F905 /* Participant.swift */,
 				E4AD365125DE5384007929FD /* Participants.swift */,
-				E4D83DE125DD701F00D0F905 /* InfoBoard.swift */,
 				E438090325DA3D6C0024C294 /* Main.storyboard */,
 				E438090625DA3D6D0024C294 /* Assets.xcassets */,
 				E438090825DA3D6D0024C294 /* LaunchScreen.storyboard */,
@@ -161,7 +158,6 @@
 				E4D83DDE25DD202900D0F905 /* Participant.swift in Sources */,
 				E43808FE25DA3D6C0024C294 /* AppDelegate.swift in Sources */,
 				E438090025DA3D6C0024C294 /* SceneDelegate.swift in Sources */,
-				E4D83DE225DD701F00D0F905 /* InfoBoard.swift in Sources */,
 				E4AD365225DE5384007929FD /* Participants.swift in Sources */,
 				E438091525DA63D60024C294 /* Card.swift in Sources */,
 			);
