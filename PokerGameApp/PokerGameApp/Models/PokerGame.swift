@@ -13,10 +13,13 @@ class PokerGame {
         case fiveStud = "5 cards"
     }
     
-    enum NumberOfPalyer: String, CaseIterable {
-        case two = "2명"
-        case three = "3명"
-        case four = "4명"
+//    enum NumberOfPalyer: String, CaseIterable {
+//        case two = "2명"
+//        case three = "3명"
+//        case four = "4명"
+//    }
+    enum NumberOfPalyer: Int, CaseIterable {
+        case two = 2, three, four
     }
     
     private var players: Players = Players(players: [])
