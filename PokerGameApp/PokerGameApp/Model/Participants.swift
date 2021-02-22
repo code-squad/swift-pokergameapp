@@ -27,7 +27,8 @@ class Participants {
         // 카드를 받고난 후 다음차례에 선수가 받을 수 있도록 index를 증가시켜준다. (단, 마지막 차례였을 경우 다시 처음 플레이어에게 순서를 넘겨준다.)
         currentIndex = currentIndex == participants.count-1 ? 0 : currentIndex+1
     }
-    func getParticipants() -> [Participant] {
-        return participants
+
+    func eachParticipant(method: (Participant) -> ()) {
+        participants.forEach({ method($0) })
     }
 }
