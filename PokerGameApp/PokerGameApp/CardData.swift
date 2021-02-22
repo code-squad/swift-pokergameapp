@@ -16,6 +16,9 @@ class Card: CustomStringConvertible {
         var description: String {
             return rawValue
         }
+        func transformSuit() {
+            
+        }
     }
     
     // Rank를 위한 열거형 생성, rawValue가 Int 이므로 Int 타입 지정
@@ -34,6 +37,9 @@ class Card: CustomStringConvertible {
             default:
                 return String(rawValue)
             }
+        }
+        func transformRank() {
+            
         }
     }
     
