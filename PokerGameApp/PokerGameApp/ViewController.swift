@@ -11,10 +11,41 @@ class ViewController: UIViewController {
     
     var cardBacksideImage = UIImage()
     let trouble = TroubleShooter()
+    let pokerGame = PokerGame()
     let cardStackView = UIStackView()
+    let topStackView : UIStackView = {
+        let stack = UIStackView()
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        stack.axis = .vertical
+        stack.spacing = 10
+        return stack
+    }()
+    
+    let gameStyleSegmentControl : UISegmentedControl = {
+        let segment = UISegmentedControl(items: GameStyle.allCases)
+        segment.selectedSegmentIndex = 0
+        segment.addTarget(self, action: #selector(gameStyleChanged(_:)), for: .valueChanged)
+        return segment
+    }()
+    
+    let gamePlayerSegmentControl  : UISegmentedControl = {
+        let segment = UISegmentedControl(items: GameStyle.allCases)
+        segment.selectedSegmentIndex = 0
+        segment.addTarget(self, action: #selector(gamePlayerChanged(_:)), for: .valueChanged)
+        return segment
+    }()
+    
+    @objc func gameStyleChanged (_ sender : UISegmentedControl) {
+        pokerGame.reset(with: GameStyle(rawValue: sender.selectedSegmentIndex) ?? .fiveCardStud)
+    }
+    
+    @objc func gamePlayerChanged (_ sender : UISegmentedControl) {
+        pokerGame.reset(howMany: PlayerCount(rawValue: sender.selectedSegmentIndex + 1) ?? .one)
+    }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(false)
+        
         if cardStackView.subviews.count == 0 {
             do {
                 self.view.backgroundColor = UIColor(patternImage: try optionalBindingImage(calledCard: "bg_pattern"))
@@ -23,28 +54,25 @@ class ViewController: UIViewController {
             catch {
                 print(error)
                 present(trouble.personalError(), animated: true, completion: nil)
-                //UIControl().sendAction(#selector(URLSessionTask.suspend), to: UIApplication.shared, for: nil)
             }
             setStackView(cardStackView)
             addCard2StackView(cardCount: 7, stackView: cardStackView)
             setStackViewConstraints(stackView: cardStackView)
         }
         
-        let printClosure = { player in
-            print(player)
-        }
-        let newGame = PokerGame.init(howManyHands: .fiveCardStud, howManyPlayer: .three)
-        
-        if false == newGame.test(with: printClosure) {
-            print("deck is empty, gameover")
-        }
-        newGame.reset(with: .sevenCardStud, howMany: .three)
-        if false == newGame.test(with: printClosure) {
-            print("deck is empty, gameover")
-        }
+//        let printClosure = { player in
+//            print(player)
+//        }
+//        let newGame = PokerGame.init(howManyHands: .fiveCardStud, howManyPlayer: .three)
+//
+//        if false == newGame.test(with: printClosure) {
+//            print("deck is empty, gameover")
+//        }
+//        newGame.reset(with: .sevenCardStud, howMany: .three)
+//        if false == newGame.test(with: printClosure) {
+//            print("deck is empty, gameover")
+//        }
     }
-    
-
     
     private func addCard2StackView( cardCount : Int ,stackView : UIStackView) {
         for _ in 0..<cardCount {
