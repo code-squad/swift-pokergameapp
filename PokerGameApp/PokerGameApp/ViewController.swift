@@ -12,24 +12,55 @@ class ViewController: UIViewController {
     var cardBacksideImage = UIImage()
     let trouble = TroubleShooter()
     let pokerGame = PokerGame()
-    let cardStackView = UIStackView()
-    let topStackView : UIStackView = {
-        let stack = UIStackView()
-        stack.translatesAutoresizingMaskIntoConstraints = false
-        stack.axis = .vertical
-        stack.spacing = 10
-        return stack
+    
+    let segmentStackView : UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        stackView.distribution = .fill
+        stackView.alignment = .center
+        stackView.spacing = 10
+        return stackView
+    }()
+    
+    let playersStackView : UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        stackView.distribution = .fill
+        stackView.alignment = .fill
+        stackView.spacing = 30
+        return stackView
+    }()
+
+    let playerInfoStackView : UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        stackView.distribution = .fill
+        stackView.alignment = .leading
+        stackView.spacing = 5
+        return stackView
+    }()
+    
+    let cardStackView : UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .horizontal
+        stackView.spacing = -10
+        stackView.distribution = .fillEqually
+        return stackView
     }()
     
     let gameStyleSegmentControl : UISegmentedControl = {
-        let segment = UISegmentedControl(items: GameStyle.allCases)
+        let segment = UISegmentedControl(items: GameStyle.gameTypes)
         segment.selectedSegmentIndex = 0
         segment.addTarget(self, action: #selector(gameStyleChanged(_:)), for: .valueChanged)
         return segment
     }()
     
     let gamePlayerSegmentControl  : UISegmentedControl = {
-        let segment = UISegmentedControl(items: GameStyle.allCases)
+        let segment = UISegmentedControl(items: PlayerCount.availablePlayerCount)
         segment.selectedSegmentIndex = 0
         segment.addTarget(self, action: #selector(gamePlayerChanged(_:)), for: .valueChanged)
         return segment
@@ -40,7 +71,7 @@ class ViewController: UIViewController {
     }
     
     @objc func gamePlayerChanged (_ sender : UISegmentedControl) {
-        pokerGame.reset(howMany: PlayerCount(rawValue: sender.selectedSegmentIndex + 1) ?? .one)
+        pokerGame.reset(howMany: PlayerCount(rawValue: sender.selectedSegmentIndex) ?? .one)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -55,9 +86,13 @@ class ViewController: UIViewController {
                 print(error)
                 present(trouble.personalError(), animated: true, completion: nil)
             }
-            setStackView(cardStackView)
-            addCard2StackView(cardCount: 7, stackView: cardStackView)
-            setStackViewConstraints(stackView: cardStackView)
+            setSegmentStackViewConstraints()
+            setSegmentControllerConstraints()
+            setPlayersStackViewConstraints()
+            setPlayerInfoStackView()
+            setCardStackView()
+            addCard2CardView(cardCount: 7, stackView: cardStackView)
+            
         }
         
 //        let printClosure = { player in
@@ -74,24 +109,50 @@ class ViewController: UIViewController {
 //        }
     }
     
-    private func addCard2StackView( cardCount : Int ,stackView : UIStackView) {
+    private func setSegmentStackViewConstraints() {
+        self.view.addSubview(segmentStackView)
+        segmentStackView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 10).isActive = true
+        segmentStackView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 10).isActive = true
+        segmentStackView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -10).isActive = true
+    }
+    
+    private func setSegmentControllerConstraints() {
+        gamePlayerSegmentControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor : UIColor.black], for: .selected)
+        gamePlayerSegmentControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor : UIColor.white], for: .normal)
+        gameStyleSegmentControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor : UIColor.black], for: .selected)
+        gameStyleSegmentControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor : UIColor.white], for: .normal)
+        self.segmentStackView.addArrangedSubview(gamePlayerSegmentControl)
+        self.segmentStackView.addArrangedSubview(gameStyleSegmentControl)
+    }
+    
+    private func setPlayersStackViewConstraints() {
+        self.view.addSubview(playersStackView)
+        playersStackView.topAnchor.constraint(equalTo: segmentStackView.bottomAnchor, constant: 30).isActive = true
+        playersStackView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 10).isActive = true
+        playersStackView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -10).isActive = true
+    }
+    
+    private func setPlayerInfoStackView() {
+        playersStackView.addArrangedSubview(playerInfoStackView)
+        let nameLabel : UILabel = {
+            let label = UILabel(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
+            label.font = UIFont.systemFont(ofSize: 30)
+            label.textColor = UIColor.white
+            label.textAlignment = NSTextAlignment.left
+            label.text = "Test"
+            return label
+        }()
+        playerInfoStackView.addArrangedSubview(nameLabel)
+    }
+    
+    private func setCardStackView() {
+        playerInfoStackView.addArrangedSubview(cardStackView)
+    }
+    
+    private func addCard2CardView( cardCount : Int ,stackView : UIStackView) {
         for _ in 0..<cardCount {
             stackView.addArrangedSubview(generatingBacksideOfCard())
         }
-    }
-    
-    private func setStackViewConstraints(stackView : UIStackView) {
-        stackView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 10).isActive = true
-        stackView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 10).isActive = true
-        stackView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -10).isActive = true
-    }
-    
-    private func setStackView(_ stackView : UIStackView) {
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .horizontal
-        stackView.spacing = 5
-        stackView.distribution = .fillEqually
-        self.view.addSubview(stackView)
     }
     
     private func optionalBindingImage(calledCard : String) throws -> UIImage {

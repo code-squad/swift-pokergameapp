@@ -7,13 +7,28 @@
 
 import Foundation
 
-enum GameStyle : Int, CaseIterable{
+enum GameStyle : Int, CustomStringConvertible {
+    var description: String {
+        return "\(self.rawValue) Card"
+    }
+    
     case sevenCardStud = 7
     case fiveCardStud = 5
+    
+    static var gameTypes: [String] {
+        return [self.sevenCardStud.description, self.fiveCardStud.description]
+    }
 }
 
-enum PlayerCount : Int, CaseIterable {
+enum PlayerCount : Int, CustomStringConvertible {
+    var description: String {
+        return "\(self.rawValue)명"
+    }
     case one = 1, two, three, four
+    
+    static var availablePlayerCount : [String] {
+        return [self.one.description, self.two.description, self.three.description, self.four.description]
+    }
 }
 public class PokerGame {
     
