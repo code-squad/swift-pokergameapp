@@ -15,6 +15,7 @@ class ViewController: UIViewController {
     let card2 = Card(shape: .diamond, number: .seven)
     var testCardGame = TestCardGame()
     var pokerGame = PokerGame(playerNumber: .one, gameType: .seven)
+    var mainStackView = UIStackView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +28,32 @@ class ViewController: UIViewController {
     
     private func initialize() {
         drawBackground()
-        createCardStackView()
+        initMainStackView()
+    }
+    
+    private func writeParticipantNameLabel(name: String) -> UILabel {
+        let nameLabel = UILabel()
+        nameLabel.text = name
+        nameLabel.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+        nameLabel.textColor = .white
+        return nameLabel
+    }
+    
+    private func initMainStackView() {
+        mainStackView.addArrangedSubview(writeParticipantNameLabel(name: "참가자"))
+        mainStackView.addArrangedSubview(createCardStackView())
+        mainStackView.addArrangedSubview(writeParticipantNameLabel(name: "딜러"))
+        mainStackView.addArrangedSubview(createCardStackView())
+        self.view.addSubview(mainStackView)
+        
+        let margin = view.layoutMarginsGuide
+        mainStackView.axis = .vertical
+        mainStackView.distribution = .equalSpacing
+        mainStackView.spacing = 10
+        mainStackView.translatesAutoresizingMaskIntoConstraints = false
+        mainStackView.leadingAnchor.constraint(equalTo: margin.leadingAnchor, constant: 5).isActive = true
+        mainStackView.trailingAnchor.constraint(equalTo: margin.trailingAnchor, constant: -20).isActive = true
+        mainStackView.topAnchor.constraint(equalTo: margin.topAnchor, constant: 0).isActive = true
     }
     
     private func drawBackground() {
@@ -43,14 +69,13 @@ class ViewController: UIViewController {
         imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor, multiplier: 1.27).isActive = true
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 5
-        
         return imageView
     }
     
-    private func createCardStackView() {
+    private func createCardStackView() -> UIStackView {
         let stackView = UIStackView()
         let numberOfCard = 7
-        let intervalBetweenCards: CGFloat = 5
+        let intervalBetweenCards: CGFloat = -5
         
         for _ in 0..<numberOfCard {
             stackView.addArrangedSubview(createCardImageView())
@@ -59,12 +84,8 @@ class ViewController: UIViewController {
         stackView.axis = .horizontal
         stackView.distribution = .fillEqually
         stackView.spacing = intervalBetweenCards
-        self.view.addSubview(stackView)
-        
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.topAnchor.constraint(equalTo: self.view.layoutMarginsGuide.topAnchor, constant: 5).isActive = true
-        stackView.trailingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.trailingAnchor).isActive = true
-        stackView.leadingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.leadingAnchor).isActive = true
+
+        return stackView
     }
     
     //상태바 글씨를 흰색으로 변경
