@@ -99,6 +99,14 @@ class ViewController: UIViewController {
         }
     }
     
+    func startGame() {
+        guard let gameType = pokerGameType else {return}
+        guard let participant = pokerGameParticipant else {return}
+        pokerGame = PokerGame(players: Players(participant: participant), dealer: Dealer(gameType: gameType))
+        pokerGame?.startGame()
+        makePlayersStackView(players: pokerGame.)
+    }
+    
     @objc func gameTypeChanged(sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:
