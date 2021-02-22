@@ -9,10 +9,12 @@ import Foundation
 
 class Participants {
     
-    private var list: [Participant]
+    private var list = [Participant]()
     
-    init(players: [Player], dealer: Dealer) {
-        list = players
+    init(playerCount: Int, dealer: Dealer) {
+        for i in 1...playerCount {
+            list.append(Player(number: i))
+        }
         list.append(dealer)
     }
     
@@ -25,11 +27,11 @@ class Participants {
     func names() -> [String] {
         return list.map{ $0.myName() }
     }
-    
+
     func stacks() -> [[Card]] {
         return list.map{ $0.myStack() }
     }
-    
+
     func count() -> Int {
         return list.count
     }
