@@ -11,7 +11,7 @@ class ViewController: UIViewController {
     
     var cardBacksideImage = UIImage()
     let trouble = TroubleShooter()
-    let pokerGame = PokerGame()
+    let pokerGame = PokerGame(howManyHands: .sevenCardStud, howManyPlayer: .one)
     
     let segmentStackView : UIStackView = {
         let stackView = UIStackView()
@@ -77,13 +77,7 @@ class ViewController: UIViewController {
                 print(error)
                 present(trouble.personalError(), animated: true, completion: nil)
             }
-            setSegmentStackViewConstraints()
-            setSegmentControllerConstraints()
-            setPlayersStackViewConstraints()
-            setPlayerInfoStackView(with: "test1")
-            createCardStackView()
-            setPlayerInfoStackView(with: "test2")
-            createCardStackView()
+            makeUIs()
         }
         
 //        let printClosure = { player in
@@ -98,6 +92,20 @@ class ViewController: UIViewController {
 //        if false == newGame.test(with: printClosure) {
 //            print("deck is empty, gameover")
 //        }
+    }
+    
+    private func gameStart() {
+        
+    }
+    
+    private func makeUIs() {
+        setSegmentStackViewConstraints()
+        setSegmentControllerConstraints()
+        setPlayersStackViewConstraints()
+        setPlayerInfoStackView(with: "test1")
+        createCardStackView()
+        setPlayerInfoStackView(with: "test2")
+        createCardStackView()
     }
     
     private func setSegmentStackViewConstraints() {
