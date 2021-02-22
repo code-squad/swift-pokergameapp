@@ -101,10 +101,10 @@ class ViewController: UIViewController {
     
     func updatePlayerStackView(for game: PokerGame) {
         game.getPlayersResult().forEach {
-            let cardInfoStackView = makeCardInfoStackView(nickname: $0.getOwnerName(), cardViews: $0.makeCardViews())
+            let cardInfoStackView = CardInfoStackView(showdownCards: $0)
             playerStackView.addArrangedSubview(cardInfoStackView)
         }
-        let dealerCardInfo = makeCardInfoStackView(nickname: game.getDealerResult().getOwnerName(), cardViews: game.getDealerResult().makeCardViews())
+        let dealerCardInfo = CardInfoStackView(showdownCards: game.getDealerResult())
         playerStackView.addArrangedSubview(dealerCardInfo)
     }
     
@@ -130,31 +130,6 @@ class ViewController: UIViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.leadingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.leadingAnchor, constant: padding).isActive = true
         view.trailingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.trailingAnchor, constant: -padding).isActive = true
-    }
-    
-    func makeCardStackView(with cardViews: [UIImageView]) -> UIStackView {
-        let cardStackView = UIStackView()
-        cardViews.forEach { cardStackView.addArrangedSubview($0) }
-        cardStackView.spacing = -10.0
-        return cardStackView
-    }
-    
-    func makeCardInfoStackView(nickname: String, cardViews: [UIImageView]) -> UIStackView {
-        let cardInfoStackView = UIStackView()
-        cardInfoStackView.translatesAutoresizingMaskIntoConstraints = false
-        cardInfoStackView.axis = .vertical
-        cardInfoStackView.alignment = .fill
-        cardInfoStackView.distribution = .fill
-        
-        let nameLabel = UILabel()
-        nameLabel.translatesAutoresizingMaskIntoConstraints = false
-        cardInfoStackView.addArrangedSubview(nameLabel)
-        nameLabel.text = nickname
-        nameLabel.textColor = UIColor.white
-        
-        let cardStackView = makeCardStackView(with: cardViews)
-        cardInfoStackView.addArrangedSubview(cardStackView)
-        return cardInfoStackView
     }
     
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
