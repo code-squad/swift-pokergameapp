@@ -54,15 +54,24 @@ class PockerGame {
     private var dealer: Dealer
     private var participants: Participants
     private var gameType: GameType
+    private var participantType: ParticipantType
     
     init(participantType: ParticipantType, gameType: GameType) {
         self.gameType = gameType
+        self.participantType = participantType
         dealer = Dealer(name: PlayerType.Dealer)
         participants = Participants(participantType: participantType)
     }
+    func setGameType(gameType: GameType) {
+        self.gameType = gameType
+    }
+    
+    func setParticipantType(participantType: ParticipantType) {
+        self.participantType = participantType
+    }
     
     func gameStart() {
-        dealer.distributeCard(participants: participants, gameType: self.gameType)
+        dealer.distributeCard(participants: participants, participantType: self.participantType, gameType: self.gameType)
     }
     
     func getDealer() -> Dealer {

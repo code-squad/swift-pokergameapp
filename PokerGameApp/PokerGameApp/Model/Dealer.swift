@@ -14,9 +14,13 @@ class Dealer: Player {
         super.init(name: name)
     }
     
-    func distributeCard(participants: Participants, gameType: GameType) {
+    func distributeCard(participants: Participants, participantType: ParticipantType, gameType: GameType) {
+        
         cardDeck.reset()
         cardDeck.shuffle()
+        
+        self.resetCard()
+        participants.resetParticipant(participantType)
         
         for _ in 1...gameType.value {
             if let selectedCard = cardDeck.removeOn() {

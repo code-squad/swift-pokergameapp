@@ -29,6 +29,9 @@ class Player {
     func eachCard(method: (Card)->()) {
         cards.forEach({method($0)})
     }
+    func resetCard() {
+        cards.removeAll()
+    }
     
     func getCard() -> [Card] {
         return cards

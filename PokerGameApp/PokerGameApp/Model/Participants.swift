@@ -9,15 +9,9 @@ import Foundation
 
 class Participants {
     private var participants: [Participant] = []
-    // 현재 카드를 받을 participant 를 나타낸다. (카드를 받을 차례)
-    private var currentIndex: Int
 
     init(participantType: ParticipantType) {
-        currentIndex = 0
-        for i in 1...participantType.value {
-            let participant = Participant(name: PlayerType.Pariticipant)
-            participants.append(participant)
-        }
+        self.createParticipants(participantType)
     }
     var count: Int {
         return self.participants.count
@@ -25,5 +19,17 @@ class Participants {
 
     func eachParticipant(method: (Participant) -> ()) {
         participants.forEach({ method($0) })
+    }
+    
+    func resetParticipant(_ participantType: ParticipantType) {
+        participants.removeAll()
+        createParticipants(participantType)
+    }
+    
+    func createParticipants(_ participantType: ParticipantType) {
+        for _ in 1...participantType.value {
+            let participant = Participant(name: PlayerType.Pariticipant)
+            participants.append(participant)
+        }
     }
 }
