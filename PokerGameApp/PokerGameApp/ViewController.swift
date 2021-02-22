@@ -8,8 +8,11 @@
 import UIKit
 
 class ViewController: UIViewController {
-    var test = Test()
+    @IBOutlet weak var cardStudSegment: UISegmentedControl!
+    @IBOutlet weak var playerCountSegment: UISegmentedControl!
     
+    var cardStud: PokerGame.CardStud = .five
+    var playerCount: PokerGame.PlayerCount = .one
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,13 +51,36 @@ class ViewController: UIViewController {
         stackView.spacing = 5
         stackView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(stackView)
-        stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30).isActive = true
+        stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 100).isActive = true
         stackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 10).isActive = true
         stackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -10).isActive = true
         for _ in 0..<7 {
             stackView.addArrangedSubview(makeCardImageView())
         }
     }
+    
+    @IBAction func changeCardStud(_ sender: Any) {
+        switch cardStudSegment.selectedSegmentIndex {
+        case 0:
+            cardStud = .seven
+        case 1:
+            cardStud = .five
+        default:
+            break
+        }
+    }
+    
+    @IBAction func changePlayerCount(_ sender: Any) {
+        switch playerCountSegment.selectedSegmentIndex {
+        case 0:
+            playerCount = .two
+        case 1:
+            playerCount = .three
+        case 2:
+            playerCount = .four
+        default:
+            break
+        }
+    }
+    
 }
-
-

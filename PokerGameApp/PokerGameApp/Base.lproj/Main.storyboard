@@ -16,17 +16,43 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZPp-Sf-g0L">
-                                <rect key="frame" x="107" y="161" width="200" height="110"/>
-                            </stackView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="cTd-aZ-F0q">
+                                <rect key="frame" x="142" y="44" width="131" height="32"/>
+                                <segments>
+                                    <segment title="7 Cards"/>
+                                    <segment title="5 Cards"/>
+                                </segments>
+                                <connections>
+                                    <action selector="changeCardStud:" destination="BYZ-38-t0r" eventType="valueChanged" id="o1f-T4-Pnu"/>
+                                </connections>
+                            </segmentedControl>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="xVh-qr-CtJ">
+                                <rect key="frame" x="142" y="83" width="131" height="32"/>
+                                <segments>
+                                    <segment title="2명"/>
+                                    <segment title="3명"/>
+                                    <segment title="4명"/>
+                                </segments>
+                                <connections>
+                                    <action selector="changePlayerCount:" destination="BYZ-38-t0r" eventType="valueChanged" id="ZZe-gh-EG2"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="ZPp-Sf-g0L" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="107" id="UbT-3u-RqW"/>
-                            <constraint firstItem="ZPp-Sf-g0L" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="326" id="k79-c6-hAZ"/>
+                            <constraint firstItem="xVh-qr-CtJ" firstAttribute="top" secondItem="cTd-aZ-F0q" secondAttribute="bottom" constant="8" symbolic="YES" id="Gsg-cU-RxH"/>
+                            <constraint firstItem="xVh-qr-CtJ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="142" id="Qpd-q4-Bbk"/>
+                            <constraint firstItem="cTd-aZ-F0q" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="142" id="hRE-Yc-PDl"/>
+                            <constraint firstItem="cTd-aZ-F0q" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="iqa-t7-UMt"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="xVh-qr-CtJ" secondAttribute="trailing" constant="141" id="nWg-sF-hKv"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="cTd-aZ-F0q" secondAttribute="trailing" constant="141" id="sUD-kd-CxZ"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="cardStudSegment" destination="cTd-aZ-F0q" id="D0L-LV-4dL"/>
+                        <outlet property="playerCountSegment" destination="xVh-qr-CtJ" id="o0j-cO-ifM"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
