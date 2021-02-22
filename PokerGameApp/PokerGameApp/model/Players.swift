@@ -13,7 +13,7 @@ class Players {
     init(howManyPlayer playerCount : Int) {
         self.players = []
         for index in 0..<playerCount {
-            self.players.append(Player.init(name: String(index)))
+            self.players.append(Player.init(name: "Player \(index)"))
         }
     }
     
@@ -34,6 +34,12 @@ class Players {
     func printInfo( do closure : ((Player) -> Void)) {
         for player in players {
             player.printInfo(do: closure)
+        }
+    }
+    
+    func showInfo ( do closure : ((Player) -> Void)) {
+        for player in players {
+            player.showInfo(do: closure)
         }
     }
 }

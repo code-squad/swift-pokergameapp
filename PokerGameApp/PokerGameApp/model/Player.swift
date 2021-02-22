@@ -32,4 +32,8 @@ class Player : CustomStringConvertible {
     func printInfo(do closure : ((Player) -> Void)) {
         closure(self)
     }
+    
+    func showInfo(do closure : ((Player) -> Void)) {
+        closure(self)
+    }
 }
