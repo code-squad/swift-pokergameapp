@@ -73,7 +73,24 @@ class ViewController: UIViewController {
         }
         return stackView
     }
-
+    
+    func makePlayerStackView(player: Player) -> UIStackView{
+        let stackView = UIStackView()
+        self.stackView.axis = .horizontal
+        self.stackView.alignment = .fill
+        self.stackView.distribution = .equalSpacing
+        self.stackView.spacing = 5
+        self.stackView.translatesAutoresizingMaskIntoConstraints = false
+        
+        let label = UILabel()
+        label.textColor = .white
+        label.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        
+        stackView.addArrangedSubview(label)
+        stackView.addArrangedSubview(makeCardStackView(player: player))
+        
+        return stackView
+    }
     
     @objc func gameTypeChanged(sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
