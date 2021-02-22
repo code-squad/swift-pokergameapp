@@ -92,6 +92,13 @@ class ViewController: UIViewController {
         return stackView
     }
     
+    func makePlayersStackView(players: Players) {
+        players.retrievePlayer { (player) in
+            let stackView = makePlayerStackView(player: player)
+            playersStackView.addArrangedSubview(stackView)
+        }
+    }
+    
     @objc func gameTypeChanged(sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:
