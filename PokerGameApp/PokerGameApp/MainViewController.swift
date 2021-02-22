@@ -34,21 +34,21 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setBackgroundImg()
+        setBackgroundImage()
         run(game: PockerGame(number: participantType, number: gameType))
     }
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
     
-    func setBackgroundImg() {
+    func setBackgroundImage() {
         guard let backgroundImg = UIImage(named: "bg_pattern.png") else {
             return
         }
         self.view.backgroundColor = UIColor(patternImage: backgroundImg)
     }
     
-    func addCardImg(stackView: UIStackView, player: Player) {
+    func addCardImage(stackView: UIStackView, player: Player) {
         self.mainStackView.addArrangedSubview(addLabel(name: player.getName()))
         self.mainStackView.addArrangedSubview(stackView)
 
@@ -80,10 +80,10 @@ class MainViewController: UIViewController {
         
         addMainStackView()
         addSegmentStackView()
-        addCardImg(stackView: addCardsStackView(), player: dealer)
+        addCardImage(stackView: addCardsStackView(), player: dealer)
         
         participants.eachParticipant(method: {
-            (participant) in addCardImg(stackView: addCardsStackView(), player: participant)
+            (participant) in addCardImage(stackView: addCardsStackView(), player: participant)
         })
         
     }
