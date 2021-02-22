@@ -13,11 +13,16 @@ class PokerGame {
     
     init() {
         self.dealer = Dealer()
+        self.dealer.selectStud(.five)
         self.players = Players.init(self.dealer)
+        self.players.selectPlayerNum(.two)
     }
     
-    func selectOPtion(stud: Stud, numberOfPlayers: NumberOfPlayers) {
+    func selectStud(stud: Stud) {
         self.dealer.selectStud(stud)
+    }
+    
+    func selectPlayers(numberOfPlayers: NumberOfPlayers) {
         self.players.selectPlayerNum(numberOfPlayers)
     }
     

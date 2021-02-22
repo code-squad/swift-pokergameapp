@@ -14,6 +14,10 @@ enum Stud: Int, CustomStringConvertible, CaseIterable {
     var description: String {
         return "\(self.rawValue) Cards"
     }
+    
+    static var studType: [Stud] {
+        return [.five, .seven]
+    }
 }
 
 enum NumberOfPlayers: Int, CustomStringConvertible, CaseIterable {
@@ -21,6 +25,10 @@ enum NumberOfPlayers: Int, CustomStringConvertible, CaseIterable {
     
     var description: String {
         return "\(self.rawValue)명"
+    }
+    
+    static var playerType: [NumberOfPlayers] {
+        return [.two, .three, .four]
     }
 }
 
