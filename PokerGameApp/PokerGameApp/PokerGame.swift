@@ -40,16 +40,10 @@ class PokerGame {
     }
     
     func start() {
-        
-        let newStacks = cardsFromDealer()
-        
-        participants.takeCard(from: newStacks)
-    }
-    
-    private func cardsFromDealer() -> [[Card]] {
-        let newStacks = dealer.handOutCardStacks(for: participants.count(),
-                                                 each: rule.cardCount())
-        return newStacks
+        if let newStacks = dealer.handOutCardStacks(for: participants.count(),
+                                                    each: rule.cardCount()) {
+            participants.takeCard(from: newStacks)
+        }
     }
     
     func changeRule(to newRule: Rule) {

@@ -43,7 +43,7 @@ class Dealer: Participant {
         return cards
     }
     
-    func handOutCardStacks(for headCnt: Int, each cardCnt: Int) -> [[Card]] {
+    func handOutCardStacks(for headCnt: Int, each cardCnt: Int) -> [[Card]]? {
         
         if !isCardAvailable(for: headCnt, each: cardCnt) {
             cardDeck.reset()
@@ -58,20 +58,28 @@ class Dealer: Participant {
         return cardDeck.count() >= headCnt * cardCnt ? true : false
     }
     
-    private func makeCardStacks(for headCnt: Int, each cardCnt: Int) -> [[Card]] {
+    private func makeCardStacks(for headCnt: Int, each cardCnt: Int) -> [[Card]]? {
         var stacks = [[Card]]()
         
         for _ in 0..<headCnt {
-            stacks.append(makeCardStack(of: cardCnt))
+            if let newStack = makeCardStack(of: cardCnt){
+                stacks.append(newStack)
+            } else {
+                return nil
+            }
         }
         return stacks
     }
     
-    private func makeCardStack(of count: Int) -> [Card] {
+    private func makeCardStack(of count: Int) -> [Card]? {
         var cards = [Card]()
         
         for _ in 0..<count {
-            cards.append(cardDeck.removeOne()!)
+            if let newCard = cardDeck.removeOne() {
+                cards.append(newCard)
+            } else {
+                return nil
+            }
         }
         return cards
     }
