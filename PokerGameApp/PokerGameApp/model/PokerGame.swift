@@ -7,12 +7,12 @@
 
 import Foundation
 
-enum GameStyle : Int{
+enum GameStyle : Int, CaseIterable{
     case sevenCardStud = 7
     case fiveCardStud = 5
 }
 
-enum PlayerCount : Int {
+enum PlayerCount : Int, CaseIterable {
     case one = 1, two, three, four
 }
 public class PokerGame {
@@ -42,6 +42,18 @@ public class PokerGame {
     
     func reset(with gameStyle : GameStyle, howMany playerCount : PlayerCount) {
         self.currentGameStyle = gameStyle
+        self.currentPlayerCount = playerCount
+        self.dealer.resetSelf()
+        self.players.resetSelf()
+    }
+    
+    func reset(with gameStyle : GameStyle) {
+        self.currentGameStyle = gameStyle
+        self.dealer.resetSelf()
+        self.players.resetSelf()
+    }
+    
+    func reset(howMany playerCount : PlayerCount) {
         self.currentPlayerCount = playerCount
         self.dealer.resetSelf()
         self.players.resetSelf()
