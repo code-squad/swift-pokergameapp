@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		E457C51925DE500500471393 /* Players.swift in Sources */ = {isa = PBXBuildFile; fileRef = E457C51825DE500500471393 /* Players.swift */; };
+		E4E22CC125E3A6AB008CA611 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E22CC025E3A6AB008CA611 /* CardView.swift */; };
 		E4E749AC25DFA70C000A474D /* ShowdownCards.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E749AB25DFA70C000A474D /* ShowdownCards.swift */; };
 		E4E8147C25DA8CC700AC0DB5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E8147B25DA8CC700AC0DB5 /* AppDelegate.swift */; };
 		E4E8147E25DA8CC700AC0DB5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E8147D25DA8CC700AC0DB5 /* SceneDelegate.swift */; };
@@ -25,6 +26,7 @@
 
 /* Begin PBXFileReference section */
 		E457C51825DE500500471393 /* Players.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Players.swift; sourceTree = "<group>"; };
+		E4E22CC025E3A6AB008CA611 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		E4E749AB25DFA70C000A474D /* ShowdownCards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowdownCards.swift; sourceTree = "<group>"; };
 		E4E8147825DA8CC700AC0DB5 /* PokerGameApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PokerGameApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4E8147B25DA8CC700AC0DB5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -80,6 +82,7 @@
 			isa = PBXGroup;
 			children = (
 				E4E8148125DA8CC700AC0DB5 /* Main.storyboard */,
+				E4E22CC025E3A6AB008CA611 /* CardView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -195,6 +198,7 @@
 				E4E814A625DD05E200AC0DB5 /* Player.swift in Sources */,
 				E4E749AC25DFA70C000A474D /* ShowdownCards.swift in Sources */,
 				E4E8149325DB874900AC0DB5 /* Card.swift in Sources */,
+				E4E22CC125E3A6AB008CA611 /* CardView.swift in Sources */,
 				E4E8149F25DBEF9A00AC0DB5 /* Test.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
