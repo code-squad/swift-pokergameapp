@@ -33,3 +33,11 @@
 
 ![step4](https://user-images.githubusercontent.com/72188416/108311279-24504300-71f8-11eb-8681-d2f37ba1bd23.png)
 
+
+
+## Step 5 - 포커게임 결과 화면 (🎉 Feb 22)
+
+- `SegmentedControl`을 통해 게임 룰(7 Cards / 5 Cards)과 플레이 인원(2인 / 3인 / 4인)을 선택할 수 있다.
+- 게임 룰 변경 시 바뀐 룰에 따라 `카드`가 재분배되며, 화면이 다시 로드된다.
+
+<img width="704" alt="step5" src="https://user-images.githubusercontent.com/72188416/108679983-a3af8080-7530-11eb-8dc2-96d8c2c1ed3d.png">
