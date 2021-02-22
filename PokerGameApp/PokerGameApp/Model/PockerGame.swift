@@ -53,16 +53,16 @@ enum ParticipantType: Int {
 class PockerGame {
     private var dealer: Dealer
     private var participants: Participants
-    private var numOfCard: Int
+    private var gameType: GameType
     
-    init(number ofParticipant: ParticipantType, number ofCard: GameType) {
-        self.numOfCard = ofCard.value
+    init(participantType: ParticipantType, gameType: GameType) {
+        self.gameType = gameType
         dealer = Dealer(name: PlayerType.Dealer)
-        participants = Participants(number: ofParticipant.value)
+        participants = Participants(participantType: participantType)
     }
     
     func gameStart() {
-        dealer.distributeCard(participants: participants, numOfCard: self.numOfCard)
+        dealer.distributeCard(participants: participants, gameType: self.gameType)
     }
     
     func getDealer() -> Dealer {

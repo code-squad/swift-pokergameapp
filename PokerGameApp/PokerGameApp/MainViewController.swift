@@ -36,7 +36,7 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setBackgroundImage()
-        game = PockerGame(number: participantType, number: gameType)
+        game = PockerGame(participantType: participantType, gameType: gameType)
         run(game: game)
     }
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -139,11 +139,10 @@ class MainViewController: UIViewController {
     }
     @objc func changeGameType(sender: UISegmentedControl) {
         let stud = GameType.init(rawValue:sender.selectedSegmentIndex)
-        
-        resetPockerGame(game: PockerGame(number: self.participantType, number: stud))
+        resetPockerGame(game: PockerGame(participantType: self.participantType, gameType: stud))
     }
     @objc func changeParticipantType(sender: UISegmentedControl) {
         let participant = ParticipantType.init(rawValue: sender.selectedSegmentIndex)
-        resetPockerGame(game: PockerGame(number: participant, number: self.gameType))
+        resetPockerGame(game: PockerGame(participantType: participant, gameType: self.gameType))
     }
 }

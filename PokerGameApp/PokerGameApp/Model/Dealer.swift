@@ -14,24 +14,23 @@ class Dealer: Player {
         super.init(name: name)
     }
     
-    func distributeCard(participants: Participants, numOfCard: Int) {
+    func distributeCard(participants: Participants, gameType: GameType) {
         cardDeck.reset()
         cardDeck.shuffle()
         
-        for _ in 1...numOfCard {
+        for _ in 1...gameType.value {
             if let selectedCard = cardDeck.removeOn() {
                 self.receiveCard(selectedCard)
             } else {
                 return
             }
-            
-            for _ in 0..<participants.count {
+            participants.eachParticipant(method: { (participant) in
                 if let selectedCard = cardDeck.removeOn() {
-                    participants.receiveCard(selectedCard)
+                    participant.receiveCard(selectedCard)
                 } else {
                     return
                 }
-            }
+            })
         }
     }
 }
