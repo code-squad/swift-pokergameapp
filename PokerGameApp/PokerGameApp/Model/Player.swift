@@ -18,6 +18,12 @@ class Player: CustomStringConvertible {
     func takeCard(with cards: [Card]) {
         self.cards = cards
     }
+    
+    func retrieveCard(completion: (Card) -> Void) {
+        cards.forEach { (card) in
+            completion(card)
+        }
+    }
 
     var description: String {
         return "\(cards)"

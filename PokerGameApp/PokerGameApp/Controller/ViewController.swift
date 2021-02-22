@@ -10,11 +10,17 @@ import UIKit
 class ViewController: UIViewController {
     
     var stackView: UIStackView!
-    let cardBackImage = UIImage(named: "card-back")
-    var cards = CardDeck(cards: [])
     var pokerGame: PokerGame?
     var pokerGameParticipant: Participant?
     var pokerGameType: GameType?
+    var playersStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.alignment = .fill
+        stackView.spacing = 10
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
     var gameTypeSegment: UISegmentedControl {
         let sc: UISegmentedControl = UISegmentedControl(items: ["5 Cards", "7 Cards"])
         sc.center = CGPoint(x: self.view.frame.width/2, y: 80)
@@ -34,6 +40,7 @@ class ViewController: UIViewController {
         setBackground()
         self.view.addSubview(gameTypeSegment)
         self.view.addSubview(participantSegment)
+        self.view.addSubview(playersStackView)
     }
    
     func setBackground() {
@@ -41,38 +48,33 @@ class ViewController: UIViewController {
         self.view.backgroundColor = UIColor(patternImage: bgImage)
     }
     
-//    func setStackView() {
-//        self.stackView = UIStackView()
-//        self.stackView.axis = .horizontal
-//        self.stackView.alignment = .fill
-//        self.stackView.distribution = .equalSpacing
-//        self.stackView.spacing = 5
-//        self.stackView.translatesAutoresizingMaskIntoConstraints = false
-//
-//        for _ in 0...6 {
-//            self.stackView.addArrangedSubview(generateImage())
-//        }
-//
-//        self.view.addSubview(stackView)
-//        stackView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-//        stackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 100).isActive = true
-//    }
+    func generateImage(with cardImage: String) -> UIImageView {
+        let width = self.view.bounds.width/8
+        let height = self.view.bounds.width/8 * 1.27
+        let imageView = UIImageView()
+        imageView.widthAnchor.constraint(equalToConstant: width).isActive = true
+        imageView.heightAnchor.constraint(equalToConstant: height).isActive = true
+        imageView.image = UIImage(named: cardImage)
+        return imageView
+    }
     
-//    func generateImage() -> UIImageView {
-//        let width = self.view.bounds.width/8
-//        let height = self.view.bounds.width/8 * 1.27
-//        let imageView = UIImageView()
-//        imageView.widthAnchor.constraint(equalToConstant: width).isActive = true
-//        imageView.heightAnchor.constraint(equalToConstant: height).isActive = true
-//        imageView.image = cardBackImage
-//        return imageView
-//    }
+    func makeCardStackView(player: Player) -> UIStackView {
+        let stackView = UIStackView()
+        self.stackView.axis = .horizontal
+        self.stackView.alignment = .fill
+        self.stackView.distribution = .equalSpacing
+        self.stackView.spacing = 5
+        self.stackView.translatesAutoresizingMaskIntoConstraints = false
+        
+        player.retrieveCard { (card) in
+            let imageView = UIImageView()
+            imageView.image = UIImage(named: card.description)
+            stackView.addArrangedSubview(imageView)
+        }
+        return stackView
+    }
 
-//    func testPoker() {
-//        let pokergame = PokerGame(players: Players(participant: .four), dealer: Dealer(gameType: .seven))
-//        pokergame.startGame()
-//        pokergame.printParticipantCards()
-//    }
+    
     @objc func gameTypeChanged(sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:
@@ -94,6 +96,7 @@ class ViewController: UIViewController {
         default:
             return
         }
+        startGame()
     }
 
 }
