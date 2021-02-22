@@ -26,12 +26,10 @@ class ViewController: UIViewController {
     
     private func startGame() {
         game.start()
-        
-        let (players, stacks) = game.info()
-        updateView(with: players, stacks)
+        game.newView(handler: viewUpdater(players:cards:))
     }
     
-    private func updateView(with players: [String],_ cards: [[Card]]) {
+    private func viewUpdater(players: [String], cards: [[Card]]) {
         
         gameView.subviews.forEach { (view) in
             view.removeFromSuperview()
