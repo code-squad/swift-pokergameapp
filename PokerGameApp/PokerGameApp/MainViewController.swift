@@ -76,15 +76,16 @@ class MainViewController: UIViewController {
     func run(game: PockerGame) {
         game.gameStart()
         let dealer = game.getDealer()
-        let participants = game.getParticipants().getParticipants()
+        let participants = game.getParticipants()
         
         addMainStackView()
         addSegmentStackView()
         addCardImg(stackView: addCardsStackView(), player: dealer)
         
-        for i in 0..<participants.count {
-            addCardImg(stackView: addCardsStackView(), player:participants[i])
-        }
+        participants.eachParticipant(method: {
+            (participant) in addCardImg(stackView: addCardsStackView(), player: participant)
+        })
+        
     }
     
     func resetPockerGame(game: PockerGame) {
