@@ -8,8 +8,20 @@
 import Foundation
 
 enum GameType: Int {
+    case none = 0
     case five = 5
     case seven = 7
+    
+    init(rawValue: Int) {
+        switch rawValue {
+        case 0:
+            self = .five
+        case 1:
+            self = .seven
+        default:
+            self = .none
+        }
+    }
     
     var value: Int {
         return self.rawValue
@@ -17,7 +29,21 @@ enum GameType: Int {
 }
 
 enum ParticipantType: Int {
-    case one = 1, two, three, four
+    case none = 0
+    case two = 2, three, four
+    
+    init(rawValue: Int) {
+        switch rawValue {
+        case 0:
+            self = .two
+        case 1:
+            self = .three
+        case 2:
+            self = .four
+        default :
+            self = .none
+        }
+    }
     
     var value: Int {
         return self.rawValue

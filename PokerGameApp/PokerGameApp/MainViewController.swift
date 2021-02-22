@@ -10,6 +10,7 @@ import UIKit
 class MainViewController: UIViewController {
     var participantType: ParticipantType = .four
     var gameType: GameType = .five
+    var game: PockerGame!
     
     let mainStackView: UIStackView = {
         let stackView = UIStackView()
@@ -35,7 +36,8 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setBackgroundImage()
-        run(game: PockerGame(number: participantType, number: gameType))
+        game = PockerGame(number: participantType, number: gameType)
+        run(game: game)
     }
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -120,10 +122,10 @@ class MainViewController: UIViewController {
     }
     
     func addSegmentStackView() {
-        let gameTypeSegment = UISegmentedControl(items: ["7Cards", "5Cards"])
+        let gameTypeSegment = UISegmentedControl(items: ["5Cards", "7Cards"])
         let participantTypeSegment = UISegmentedControl(items: ["2명", "3명", "4명"])
-        gameTypeSegment.addTarget(self, action: #selector(changeGameType(value:)), for: UIControl.Event.valueChanged)
-        participantTypeSegment.addTarget(self, action: #selector(changeParticipantType(value:)), for: UIControl.Event.valueChanged)
+        gameTypeSegment.addTarget(self, action: #selector(changeGameType(sender:)), for: UIControl.Event.valueChanged)
+        participantTypeSegment.addTarget(self, action: #selector(changeParticipantType(sender:)), for: UIControl.Event.valueChanged)
 
         self.view.addSubview(segmentStackView)
         segmentStackView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
@@ -135,30 +137,13 @@ class MainViewController: UIViewController {
         participantTypeSegment.tintColor = UIColor.white
         
     }
-    @objc func changeGameType(value: UISegmentedControl) {
-        let stud: GameType
-        switch value.selectedSegmentIndex {
-        case 0:
-            stud = .seven
-        case 1:
-            stud = .five
-        default:
-            return
-        }
+    @objc func changeGameType(sender: UISegmentedControl) {
+        let stud = GameType.init(rawValue:sender.selectedSegmentIndex)
+        
         resetPockerGame(game: PockerGame(number: self.participantType, number: stud))
     }
-    @objc func changeParticipantType(value: UISegmentedControl) {
-        let participant: ParticipantType
-        switch value.selectedSegmentIndex {
-        case 0:
-            participant = .two
-        case 1:
-            participant = .three
-        case 2:
-            participant = .four
-        default:
-            return
-        }
+    @objc func changeParticipantType(sender: UISegmentedControl) {
+        let participant = ParticipantType.init(rawValue: sender.selectedSegmentIndex)
         resetPockerGame(game: PockerGame(number: participant, number: self.gameType))
     }
 }
