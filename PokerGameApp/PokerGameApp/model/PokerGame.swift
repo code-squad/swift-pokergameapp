@@ -77,6 +77,10 @@ public class PokerGame {
         self.players.resetSelf()
     }
     
+    func resetDeck() {
+        self.dealer.newDeck()
+    }
+    
     func printParticipantsInfo ( do closure : ((Player) -> Void)) {
         players.printInfo(do: closure)
         dealer.printInfo(do: closure)
