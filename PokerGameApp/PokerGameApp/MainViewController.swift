@@ -8,14 +8,25 @@
 import UIKit
 
 class MainViewController: UIViewController {
-    // horiziontalStackView 는 여러개 만들어줄 필요가 있으므로 아래 함수에서 따로 구현한다.
-    var horizontalStackView: UIStackView!
-    let verticalStackView: UIStackView = {
+    var participantType: ParticipantType = .four
+    var gameType: GameType = .five
+    
+    let mainStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.alignment = .top
         stackView.distribution = .fillEqually
-        stackView.spacing = 0
+        stackView.spacing = 5
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        
+        return stackView
+    }()
+    let segmentStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.alignment = .center
+        stackView.distribution = .fillEqually
+        stackView.spacing = 5
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
         return stackView
@@ -24,18 +35,35 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setBackgroundImg()
-        
-        let game = PockerGame(number: ParticipantType.four, number: GameType.five)
+        run(game: PockerGame(number: participantType, number: gameType))
+    }
+    
+    func run(game: PockerGame) {
         game.gameStart()
         let dealer = game.getDealer()
         let participants = game.getParticipants().getParticipants()
         
-        addVerticalStackViewWithConstraints()
-        addCardImg(stackView: addHorizontalStackView(), player: dealer)
+        addMainStackView()
+        addSegmentStackView()
+        addCardImg(stackView: addCardsStackView(), player: dealer)
         
         for i in 0..<participants.count {
-            addCardImg(stackView: addHorizontalStackView(), player:participants[i])
+            addCardImg(stackView: addCardsStackView(), player:participants[i])
         }
+    }
+    
+    func resetPockerGame(game: PockerGame) {
+        self.segmentStackView.arrangedSubviews.forEach({ (segmentStackView) in
+            self.segmentStackView.removeArrangedSubview(segmentStackView)
+            segmentStackView.removeFromSuperview()
+        })
+        
+        self.mainStackView.arrangedSubviews.forEach({ (cardStackView) in
+            self.mainStackView.removeArrangedSubview(cardStackView)
+            cardStackView.removeFromSuperview()
+        })
+        
+        run(game: game)
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -49,26 +77,78 @@ class MainViewController: UIViewController {
         self.view.backgroundColor = UIColor(patternImage: backgroundImg)
     }
     
-    func addCardImg(stackView: UIStackView, player: Player) {
-        self.verticalStackView.addArrangedSubview(stackView)
+    func addSegmentStackView() {
+        let gameTypeSegment = UISegmentedControl(items: ["7Cards", "5Cards"])
+        let participantTypeSegment = UISegmentedControl(items: ["2명", "3명", "4명"])
+        gameTypeSegment.addTarget(self, action: #selector(changeGameType(value:)), for: UIControl.Event.valueChanged)
+        participantTypeSegment.addTarget(self, action: #selector(changeParticipantType(value:)), for: UIControl.Event.valueChanged)
+
+        self.view.addSubview(segmentStackView)
+        segmentStackView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
+        segmentStackView.bottomAnchor.constraint(equalTo: self.mainStackView.safeAreaLayoutGuide.topAnchor, constant: 30).isActive = true
+        segmentStackView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 25).isActive = true
+        segmentStackView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -25).isActive = true
+        self.segmentStackView.addArrangedSubview(gameTypeSegment)
+        self.segmentStackView.addArrangedSubview(participantTypeSegment)
+        participantTypeSegment.tintColor = UIColor.white
         
+    }
+    @objc func changeGameType(value: UISegmentedControl) {
+        let stud: GameType
+        switch value.selectedSegmentIndex {
+        case 0:
+            stud = .seven
+        case 1:
+            stud = .five
+        default:
+            return
+        }
+        resetPockerGame(game: PockerGame(number: self.participantType, number: stud))
+    }
+    @objc func changeParticipantType(value: UISegmentedControl) {
+        let participant: ParticipantType
+        switch value.selectedSegmentIndex {
+        case 0:
+            participant = .two
+        case 1:
+            participant = .three
+        case 2:
+            participant = .four
+        default:
+            return
+        }
+        resetPockerGame(game: PockerGame(number: participant, number: self.gameType))
+    }
+    
+    func addCardImg(stackView: UIStackView, player: Player) {
+        self.mainStackView.addArrangedSubview(addLabel(name: player.getName()))
+        self.mainStackView.addArrangedSubview(stackView)
+
         player.getCard().forEach({ cardName in
             stackView.addArrangedSubview(createImgView(name: "\(cardName).png"))
         })
     }
-    
-    func addVerticalStackViewWithConstraints() {
-        self.view.addSubview(verticalStackView)
-        verticalStackView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 50).isActive = true
-        verticalStackView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor).isActive = true
-        verticalStackView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 25).isActive = true
-        verticalStackView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -25).isActive = true
+    func addLabel(name: String) -> UILabel {
+        let label = UILabel()
+        label.text = name
+        label.textColor = .white
+        label.font = UIFont.boldSystemFont(ofSize: 20)
+
+        return label
     }
     
-    func addHorizontalStackView() -> UIStackView {
+    func addMainStackView() {
+        self.view.addSubview(mainStackView)
+        mainStackView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 50).isActive = true
+        mainStackView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        mainStackView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 25).isActive = true
+        mainStackView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -25).isActive = true
+    }
+    
+    func addCardsStackView() -> UIStackView {
         let stackView = UIStackView()
         stackView.axis = .horizontal
-        stackView.alignment = .top
+        stackView.alignment = .center
         stackView.distribution = .fillEqually
         stackView.spacing = -2
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -82,4 +162,3 @@ class MainViewController: UIViewController {
         return imgView
     }
 }
-
