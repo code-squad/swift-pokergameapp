@@ -23,6 +23,12 @@ class Players {
         }
     }
     
+    func retrievePlayer(completion: (Player) -> Void) {
+        players.forEach { (player) in
+            completion(player)
+        }
+    }
+    
     func printPlayerCards() {
         var count = 1
         players.forEach { (player) in
