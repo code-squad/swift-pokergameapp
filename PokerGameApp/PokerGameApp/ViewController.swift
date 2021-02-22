@@ -62,6 +62,11 @@ class ViewController: UIViewController {
             break;
         }
     }
+
+    @IBAction func shakeBtn(_ sender: Any) {
+        print("실행함")
+        drawCardinView()
+    }
     
     func initGamestyleSegcon(){ // 게임 스타일 세그먼트 컨트롤 초기화
         let gameStyle = ["7 Cards", "5 Cards"]
