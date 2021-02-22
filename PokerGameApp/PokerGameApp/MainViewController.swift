@@ -52,9 +52,10 @@ class MainViewController: UIViewController {
         self.mainStackView.addArrangedSubview(addLabel(name: player.getName()))
         self.mainStackView.addArrangedSubview(stackView)
 
-        player.getCard().forEach({ cardName in
-            stackView.addArrangedSubview(createImgView(name: "\(cardName).png"))
-        })
+        player.eachCard {
+            cardName in
+               stackView.addArrangedSubview(createImgView(name: "\(cardName).png"))
+        }
     }
     func addLabel(name: String) -> UILabel {
         let label = UILabel()
