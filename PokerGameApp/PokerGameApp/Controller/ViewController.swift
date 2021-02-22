@@ -10,23 +10,26 @@ import UIKit
 class ViewController: UIViewController {
     
     var stackView: UIStackView!
-    var gameTypeStackView: UIStackView!
-    var playerStackView: UIStackView!
     let cardBackImage = UIImage(named: "card-back")
     var cards = CardDeck(cards: [])
-    let sevenStudButton = UIButton()
-    let fiveStudButton = UIButton()
-    let TwoPlayerButton = UIButton()
-    let ThreePlayerButton = UIButton()
-    let FourPlayerButton = UIButton()
-    
-    
+    var gameTypeSegment: UISegmentedControl {
+        let sc: UISegmentedControl = UISegmentedControl(items: ["7 Cards", "5 Cards"])
+        sc.center = CGPoint(x: self.view.frame.width/2, y: 80)
+        return sc
+    }
+    var playerCountSegment: UISegmentedControl {
+        let sc: UISegmentedControl = UISegmentedControl(items: ["2명", "3명", "4명"])
+        sc.center = CGPoint(x: self.view.frame.width/2, y: 120)
+        return sc
+    }
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setBackground()
         testPoker()
-        selectGameTypeButton()
-        selectPlayerButton()
+        self.view.addSubview(gameTypeSegment)
+        self.view.addSubview(playerCountSegment)
     }
    
     func setBackground() {
@@ -49,59 +52,6 @@ class ViewController: UIViewController {
         self.view.addSubview(stackView)
         stackView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         stackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 100).isActive = true
-    }
-    
-    func selectGameTypeButton() {
-        sevenStudButton.setTitle("7 Cards", for: .normal)
-        sevenStudButton.layer.borderColor = UIColor.white.cgColor
-        sevenStudButton.layer.borderWidth = 1
-        fiveStudButton.setTitle("5 Cards", for: .normal)
-        fiveStudButton.layer.borderColor = UIColor.white.cgColor
-        fiveStudButton.layer.borderWidth = 1
-        sevenStudButton.setBackgroundColor(.clear, for: .normal)
-        sevenStudButton.setBackgroundColor(.white, for: .selected)
-                
-        self.gameTypeStackView = UIStackView()
-        self.gameTypeStackView.axis = .horizontal
-        self.gameTypeStackView.alignment = .fill
-        self.gameTypeStackView.distribution = .fillEqually
-        self.gameTypeStackView.translatesAutoresizingMaskIntoConstraints = false
-        
-        gameTypeStackView.addArrangedSubview(sevenStudButton)
-        gameTypeStackView.addArrangedSubview(fiveStudButton)
-        
-        self.view.addSubview(gameTypeStackView)
-        
-        gameTypeStackView.widthAnchor.constraint(equalToConstant: 160).isActive = true
-        gameTypeStackView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 50).isActive = true
-        gameTypeStackView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-
-    }
-    
-    func selectPlayerButton() {
-        TwoPlayerButton.setTitle("2명", for: .normal)
-        TwoPlayerButton.layer.borderColor = UIColor.white.cgColor
-        TwoPlayerButton.layer.borderWidth = 1
-        ThreePlayerButton.setTitle("3명", for: .normal)
-        ThreePlayerButton.layer.borderColor = UIColor.white.cgColor
-        ThreePlayerButton.layer.borderWidth = 1
-        FourPlayerButton.setTitle("4명", for: .normal)
-        FourPlayerButton.layer.borderColor = UIColor.white.cgColor
-        FourPlayerButton.layer.borderWidth = 1
-        
-        self.playerStackView = UIStackView()
-        self.playerStackView.axis = .horizontal
-        self.playerStackView.alignment = .fill
-        self.playerStackView.distribution = .fillEqually
-        self.playerStackView.translatesAutoresizingMaskIntoConstraints = false
-        playerStackView.addArrangedSubview(TwoPlayerButton)
-        playerStackView.addArrangedSubview(ThreePlayerButton)
-        playerStackView.addArrangedSubview(FourPlayerButton)
-        self.view.addSubview(playerStackView)
-        
-        playerStackView.widthAnchor.constraint(equalToConstant: 160).isActive = true
-        playerStackView.topAnchor.constraint(equalTo: gameTypeStackView.bottomAnchor, constant: 10).isActive = true
-        playerStackView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
     }
     
     func generateImage() -> UIImageView {
