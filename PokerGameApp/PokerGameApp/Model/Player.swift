@@ -9,10 +9,7 @@ import Foundation
 
 enum PlayerType: String {
     case Dealer = "딜러"
-    case Pariticipant1 = "참가자1"
-    case Pariticipant2 = "참가자2"
-    case Pariticipant3 = "참가자3"
-    case Pariticipant4 = "참가자4"
+    case Pariticipant = "참가자"
 }
 
 class Player {
