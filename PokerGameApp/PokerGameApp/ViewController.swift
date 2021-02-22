@@ -9,7 +9,6 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    var cardBacksideImage = UIImage()
     let trouble = TroubleShooter()
     let pokerGame = PokerGame(howManyHands: .sevenCardStud, howManyPlayer: .one)
     
@@ -71,12 +70,12 @@ class ViewController: UIViewController {
         if self.view.subviews.count == 0 {
             do {
                 self.view.backgroundColor = UIColor(patternImage: try optionalBindingImage(calledCard: "bg_pattern"))
-                self.cardBacksideImage = try optionalBindingImage(calledCard: "card-back")
             }
             catch {
                 print(error)
                 present(trouble.personalError(), animated: true, completion: nil)
             }
+            gameStart()
             makeUIs()
         }
         
@@ -95,17 +94,31 @@ class ViewController: UIViewController {
     }
     
     private func gameStart() {
-        
+        if false == pokerGame.start() {
+            print("deck is empty, gameover. reset game")
+            pokerGame.reset()
+            gameStart()
+        }
     }
     
     private func makeUIs() {
         setSegmentStackViewConstraints()
         setSegmentControllerConstraints()
         setPlayersStackViewConstraints()
-        setPlayerInfoStackView(with: "test1")
-        createCardStackView()
-        setPlayerInfoStackView(with: "test2")
-        createCardStackView()
+        pokerGame.showParticipatnsInfo(do: { player in
+            let info = player.description.components(separatedBy: ":")
+            let name = info[0].trimmingCharacters(in: .whitespacesAndNewlines)
+            var cards = info[1].components(separatedBy: ",").map(){
+                $0.trimmingCharacters(in: .whitespacesAndNewlines)
+            }
+            cards = cards.map(){
+                $0.trimmingCharacters(in: .punctuationCharacters)
+            }
+            
+            setPlayerInfoStackView(with: name)
+            createCardStackView(with: card2FileName(with: cards))
+        })
+        
     }
     
     private func setSegmentStackViewConstraints() {
@@ -133,6 +146,7 @@ class ViewController: UIViewController {
     
     private func setPlayerInfoStackView(with playerName : String) {
         playersStackView.addArrangedSubview(playerInfoStackView)
+        
         let nameLabel : UILabel = {
             let label = UILabel(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
             label.font = UIFont.systemFont(ofSize: 30)
@@ -141,10 +155,11 @@ class ViewController: UIViewController {
             label.text = playerName
             return label
         }()
+        
         playerInfoStackView.addArrangedSubview(nameLabel)
     }
     
-    private func createCardStackView() {
+    private func createCardStackView(with cardFileNames: [String]) {
         let cardStackView : UIStackView = {
             let stackView = UIStackView()
             stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -153,13 +168,13 @@ class ViewController: UIViewController {
             stackView.distribution = .fillEqually
             return stackView
         }()
-        addCard2CardView(cardCount: 7, stackView: cardStackView)
+        addCard2CardView(with: cardFileNames, stackView: cardStackView)
         playerInfoStackView.addArrangedSubview(cardStackView)
     }
     
-    private func addCard2CardView( cardCount : Int ,stackView : UIStackView) {
-        for _ in 0..<cardCount {
-            stackView.addArrangedSubview(generatingBacksideOfCard())
+    private func addCard2CardView(with cardFileNames: [String] ,stackView : UIStackView) {
+        for fileName in cardFileNames {
+            stackView.addArrangedSubview(generateCardImage(with: fileName))
         }
     }
     
@@ -174,11 +189,40 @@ class ViewController: UIViewController {
         return .lightContent
     }
 
-    private func generatingBacksideOfCard() -> UIImageView {
-        let imageView = UIImageView(image: self.cardBacksideImage)
+    private func generateCardImage(with cardFileName : String) -> UIImageView {
+        var image = UIImage()
+        do {
+            image = try optionalBindingImage(calledCard: cardFileName)
+        }
+        catch {
+            print(error, cardFileName)
+        }
+        
+        let imageView = UIImageView(image: image)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor, multiplier: 1.27).isActive = true
         return imageView
+    }
+    
+    func card2FileName(with cardNames: [String]) -> [String] {
+        var cardFileNames = [String]()
+        for card in cardNames {
+            var fileName = String()
+            switch String(card.first!) {
+            case "\u{2660}": //spade
+                fileName = "s" + card.trimmingCharacters(in: .symbols)
+            case "\u{2665}": //heart
+                fileName = "h" + card.trimmingCharacters(in: .symbols)
+            case "\u{2666}": //diamond
+                fileName = "d" + card.trimmingCharacters(in: .symbols)
+            case "\u{2663}": //club
+                fileName = "c" + card.trimmingCharacters(in: .symbols)
+            default:
+                fileName = "card-back"
+            }
+            cardFileNames.append(fileName)
+        }
+        return cardFileNames
     }
 }
 
