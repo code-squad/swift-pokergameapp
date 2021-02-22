@@ -43,15 +43,6 @@ class ViewController: UIViewController {
         return stackView
     }()
     
-    let cardStackView : UIStackView = {
-        let stackView = UIStackView()
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .horizontal
-        stackView.spacing = -10
-        stackView.distribution = .fillEqually
-        return stackView
-    }()
-    
     let gameStyleSegmentControl : UISegmentedControl = {
         let segment = UISegmentedControl(items: GameStyle.gameTypes)
         segment.selectedSegmentIndex = 0
@@ -77,7 +68,7 @@ class ViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(false)
         
-        if cardStackView.subviews.count == 0 {
+        if self.view.subviews.count == 0 {
             do {
                 self.view.backgroundColor = UIColor(patternImage: try optionalBindingImage(calledCard: "bg_pattern"))
                 self.cardBacksideImage = try optionalBindingImage(calledCard: "card-back")
@@ -89,10 +80,10 @@ class ViewController: UIViewController {
             setSegmentStackViewConstraints()
             setSegmentControllerConstraints()
             setPlayersStackViewConstraints()
-            setPlayerInfoStackView()
-            setCardStackView()
-            addCard2CardView(cardCount: 7, stackView: cardStackView)
-            
+            setPlayerInfoStackView(with: "test1")
+            createCardStackView()
+            setPlayerInfoStackView(with: "test2")
+            createCardStackView()
         }
         
 //        let printClosure = { player in
@@ -132,20 +123,29 @@ class ViewController: UIViewController {
         playersStackView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -10).isActive = true
     }
     
-    private func setPlayerInfoStackView() {
+    private func setPlayerInfoStackView(with playerName : String) {
         playersStackView.addArrangedSubview(playerInfoStackView)
         let nameLabel : UILabel = {
             let label = UILabel(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
             label.font = UIFont.systemFont(ofSize: 30)
             label.textColor = UIColor.white
             label.textAlignment = NSTextAlignment.left
-            label.text = "Test"
+            label.text = playerName
             return label
         }()
         playerInfoStackView.addArrangedSubview(nameLabel)
     }
     
-    private func setCardStackView() {
+    private func createCardStackView() {
+        let cardStackView : UIStackView = {
+            let stackView = UIStackView()
+            stackView.translatesAutoresizingMaskIntoConstraints = false
+            stackView.axis = .horizontal
+            stackView.spacing = -10
+            stackView.distribution = .fillEqually
+            return stackView
+        }()
+        addCard2CardView(cardCount: 7, stackView: cardStackView)
         playerInfoStackView.addArrangedSubview(cardStackView)
     }
     
