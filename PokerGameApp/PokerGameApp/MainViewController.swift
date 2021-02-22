@@ -87,7 +87,6 @@ class MainViewController: UIViewController {
         participants.eachParticipant(method: {
             (participant) in addCardImage(stackView: addCardsStackView(), player: participant)
         })
-        
     }
     
     func resetPockerGame(game: PockerGame) {
@@ -139,10 +138,12 @@ class MainViewController: UIViewController {
     }
     @objc func changeGameType(sender: UISegmentedControl) {
         let stud = GameType.init(rawValue:sender.selectedSegmentIndex)
-        resetPockerGame(game: PockerGame(participantType: self.participantType, gameType: stud))
+        self.game.setGameType(gameType: stud)
+        resetPockerGame(game: game)
     }
     @objc func changeParticipantType(sender: UISegmentedControl) {
         let participant = ParticipantType.init(rawValue: sender.selectedSegmentIndex)
-        resetPockerGame(game: PockerGame(participantType: participant, gameType: self.gameType))
+        self.game.setParticipantType(participantType: participant)
+        resetPockerGame(game: game)
     }
 }
