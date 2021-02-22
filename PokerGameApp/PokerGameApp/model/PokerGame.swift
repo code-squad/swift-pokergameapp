@@ -35,7 +35,7 @@ public class PokerGame {
     private var currentGameStyle : GameStyle
     private var currentPlayerCount : PlayerCount
     private let dealer : Dealer
-    private let players : Players
+    private var players : Players
     
     init(howManyHands gameStyle : GameStyle = .fiveCardStud, howManyPlayer playerCount : PlayerCount = .one) {
         self.currentGameStyle = gameStyle
@@ -57,7 +57,7 @@ public class PokerGame {
         self.currentGameStyle = gameStyle
         self.currentPlayerCount = playerCount
         self.dealer.resetSelf()
-        self.players.resetSelf()
+        self.players = Players.init(howManyPlayer: playerCount.rawValue)
     }
     
     func reset(with gameStyle : GameStyle) {
@@ -69,7 +69,7 @@ public class PokerGame {
     func reset(howMany playerCount : PlayerCount) {
         self.currentPlayerCount = playerCount
         self.dealer.resetSelf()
-        self.players.resetSelf()
+        self.players = Players.init(howManyPlayer: playerCount.rawValue)
     }
     
     func reset() {

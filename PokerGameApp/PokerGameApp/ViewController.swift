@@ -57,11 +57,36 @@ class ViewController: UIViewController {
     }()
     
     @objc func gameStyleChanged (_ sender : UISegmentedControl) {
-        pokerGame.reset(with: GameStyle(rawValue: sender.selectedSegmentIndex) ?? .fiveCardStud)
+        switch sender.selectedSegmentIndex {
+        case 0:
+            pokerGame.reset(with: .sevenCardStud)
+        case 1:
+            pokerGame.reset(with: .fiveCardStud)
+        default:
+            break
+        }
+        self.gameStart()
+        updatePlayerUIs()
+        printPlayerInfo()
     }
     
     @objc func gamePlayerChanged (_ sender : UISegmentedControl) {
-        pokerGame.reset(howMany: PlayerCount(rawValue: sender.selectedSegmentIndex) ?? .one)
+        switch sender.selectedSegmentIndex {
+        case 0:
+            pokerGame.reset(howMany: .one)
+        case 1:
+            pokerGame.reset(howMany: .two)
+        case 2:
+            pokerGame.reset(howMany: .three)
+        case 3:
+            pokerGame.reset(howMany: .four)
+        default:
+            break
+        }
+        
+        self.gameStart()
+        updatePlayerUIs()
+        printPlayerInfo()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -77,27 +102,14 @@ class ViewController: UIViewController {
             }
             gameStart()
             makeUIs()
+            printPlayerInfo()
         }
-        
-//        let printClosure = { player in
-//            print(player)
-//        }
-//        let newGame = PokerGame.init(howManyHands: .fiveCardStud, howManyPlayer: .three)
-//
-//        if false == newGame.test(with: printClosure) {
-//            print("deck is empty, gameover")
-//        }
-//        newGame.reset(with: .sevenCardStud, howMany: .three)
-//        if false == newGame.test(with: printClosure) {
-//            print("deck is empty, gameover")
-//        }
     }
     
     private func gameStart() {
         if false == pokerGame.start() {
             print("deck is empty, gameover. reset game")
             pokerGame.reset()
-            gameStart()
         }
     }
     
@@ -105,6 +117,10 @@ class ViewController: UIViewController {
         setSegmentStackViewConstraints()
         setSegmentControllerConstraints()
         setPlayersStackViewConstraints()
+        makePlayerUIs()
+    }
+    
+    private func makePlayerUIs() {
         pokerGame.showParticipatnsInfo(do: { player in
             let info = player.description.components(separatedBy: ":")
             let name = info[0].trimmingCharacters(in: .whitespacesAndNewlines)
@@ -118,7 +134,6 @@ class ViewController: UIViewController {
             setPlayerInfoStackView(with: name)
             createCardStackView(with: card2FileName(with: cards))
         })
-        
     }
     
     private func setSegmentStackViewConstraints() {
@@ -223,6 +238,24 @@ class ViewController: UIViewController {
             cardFileNames.append(fileName)
         }
         return cardFileNames
+    }
+    
+    func updatePlayerUIs() {
+        playersStackView.subviews.forEach({
+        $0.subviews.forEach({
+            $0.removeFromSuperview()
+        })
+        $0.removeFromSuperview()
+        })
+        makePlayerUIs()
+    }
+    
+    func printPlayerInfo() {
+        
+        let printClosure = { player in
+            print(player)
+        }
+        pokerGame.printParticipantsInfo(do: printClosure)
     }
 }
 
