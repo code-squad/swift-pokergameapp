@@ -49,12 +49,11 @@ class Dealer: Player {
         return true
     }
     
-    private func newDeck() {
+    func newDeck() {
         self.deck.newDeck()
     }
     
     override func resetSelf() {
         super.resetSelf()
-        newDeck()
     }
 }

@@ -89,6 +89,15 @@ class ViewController: UIViewController {
         printPlayerInfo()
     }
     
+    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        if motion == .motionShake {
+            pokerGame.reset()
+            self.gameStart()
+            updatePlayerUIs()
+            printPlayerInfo()
+        }
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(false)
         
@@ -109,6 +118,7 @@ class ViewController: UIViewController {
     private func gameStart() {
         if false == pokerGame.start() {
             print("deck is empty, gameover. reset game")
+            pokerGame.resetDeck()
             pokerGame.reset()
         }
     }
@@ -223,7 +233,7 @@ class ViewController: UIViewController {
         var cardFileNames = [String]()
         for card in cardNames {
             var fileName = String()
-            switch String(card.first!) {
+            switch String(card.first ?? "f") {
             case "\u{2660}": //spade
                 fileName = "s" + card.trimmingCharacters(in: .symbols)
             case "\u{2665}": //heart
