@@ -52,7 +52,6 @@ class PokerGame {
         return newStacks
     }
     
-    
     func changeRule(to newRule: Rule) {
         rule = newRule
     }
@@ -60,5 +59,9 @@ class PokerGame {
     func changeSeat(to newSeat: Seat) {
         seat = newSeat
         participants = Participants(playerCount: seat.rawValue, dealer: dealer)
+    }
+    
+    func newView(handler: ([String], [[Card]]) -> ()) {
+        handler(participants.names(), participants.stacks())
     }
 }
