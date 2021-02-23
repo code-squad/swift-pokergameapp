@@ -86,8 +86,8 @@ class ViewController: UIViewController {
     }
     
     func updateGameInfo() -> PokerGame {
-        let newDeck = CardDeck()
-        dealer = Dealer(cardDeck: newDeck)
+        deckForGame.reset()
+        dealer = Dealer(cardDeck: deckForGame)
         players = Players(numberOfPlayers: currentGameSize)
         pokerGame = PokerGame(dealer: dealer, players: players, gameType: currentGameType)
         pokerGame.startGame()
