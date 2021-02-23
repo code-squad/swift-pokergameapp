@@ -7,12 +7,12 @@
 
 import Foundation
 
-enum GameType: Int {
+enum GameType: Int, CaseIterable {
     case seven = 7
     case five = 5
 }
 
-enum Participant: Int {
+enum Participant: Int, CaseIterable {
     case one = 1
     case two = 2
     case three = 3
@@ -20,7 +20,7 @@ enum Participant: Int {
 }
 
 class PokerGame {
-    private var players: Players
+    private(set) var players: Players
     private var dealer: Dealer
     
     init(players: Players, dealer: Dealer) {
