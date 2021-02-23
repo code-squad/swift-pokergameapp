@@ -12,7 +12,7 @@ class Player: CustomStringConvertible {
         return player.description
     }
     
-    private var player: [Card]
+    private(set) var player: [Card]
     
     init() {
         self.player = [Card]()
@@ -21,5 +21,4 @@ class Player: CustomStringConvertible {
     func receiveCard(card: Card) {
         player.append(card)
     }
-    
 }

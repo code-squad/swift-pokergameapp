@@ -9,8 +9,8 @@ import Foundation
 
 class PokerGame: CustomStringConvertible {
     
-    private var players: [Player] = []
-    private var dealer: Dealer
+    private(set) var players: [Player] = []
+    private(set) var dealer: Dealer
     
     enum PlayerCount: Int {
         case one = 1, two, three, four
@@ -30,7 +30,7 @@ class PokerGame: CustomStringConvertible {
         self.cardStud = cardStud
     }
     
-    func makeGamePlayer()  {
+    func makeGamePlayer() {
         for _ in 0..<playerCount.rawValue {
             players.append(Player())
         }

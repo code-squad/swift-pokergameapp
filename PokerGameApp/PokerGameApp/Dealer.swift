@@ -13,7 +13,7 @@ class Dealer: CustomStringConvertible {
     }
     
     private var cardDeck = CardDeck()
-    private var dealer: [Card]
+    private(set) var dealer: [Card]
     
     init() {
         self.dealer = [Card]()
