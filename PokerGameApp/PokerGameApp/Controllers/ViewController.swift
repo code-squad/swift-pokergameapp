@@ -19,6 +19,9 @@ class ViewController: UIViewController {
     
     var currentNumberOfPlayers = PokerGame.Size.twoPlayers
     var currentGameType = PokerGame.StudPoker.sevenCardStud
+    lazy var dealer = Dealer(cardDeck: deckForGame)
+    lazy var players = Players(numberOfPlayers: currentNumberOfPlayers)
+    lazy var pokerGame = PokerGame(dealer: dealer, players: players, gameType: currentGameType)
     
     override func viewDidLoad() {
         super.viewDidLoad()
