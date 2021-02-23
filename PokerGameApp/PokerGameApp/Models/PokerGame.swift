@@ -68,12 +68,4 @@ class PokerGame {
             }
         }
     }
-    
-    func getPlayersResult() -> [ShowdownCards] {
-        return players.showdown()
-    }
-    
-    func getDealerResult() -> ShowdownCards {
-        return dealer.showdown()
-    }
 }
