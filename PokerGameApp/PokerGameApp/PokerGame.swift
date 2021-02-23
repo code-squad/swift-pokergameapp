@@ -52,8 +52,8 @@ class PokerGame {
     public func resetGame() {
         players.dropAllCard()
         dealer.dropMyCards()
-        shareCards()
         dealer.resetCardDeck()
+        shareCards()
     }
 
     public func startGame() {

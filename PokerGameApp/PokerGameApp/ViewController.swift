@@ -204,5 +204,13 @@ class ViewController: UIViewController {
     override var preferredStatusBarStyle: UIStatusBarStyle {
            return .lightContent
        }
+    
+    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+            if motion == .motionShake {
+                pokerGame.resetGame()
+                removeMainStackViewSubViews()
+                initMainStackView()
+            }
+    }
 }
 
