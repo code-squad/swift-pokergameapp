@@ -13,6 +13,7 @@ class Participants {
     init(participantType: ParticipantType) {
         self.createParticipants(participantType)
     }
+    
     var count: Int {
         return self.participants.count
     }
@@ -29,7 +30,7 @@ class Participants {
     }
     
     func createParticipants(_ participantType: ParticipantType) {
-        for _ in 1...participantType.value {
+        for _ in 1...participantType.rawValue {
             let participant = Participant(name: PlayerType.Pariticipant)
             participants.append(participant)
         }

@@ -22,7 +22,7 @@ class Dealer: Player {
         self.resetCard()
         participants.resetParticipant(participantType)
         
-        for _ in 1...gameType.value {
+        for _ in 1...gameType.rawValue {
             if let selectedCard = cardDeck.removeOn() {
                 self.receiveCard(selectedCard)
             } else {

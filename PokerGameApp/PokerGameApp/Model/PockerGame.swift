@@ -7,7 +7,11 @@
 
 import Foundation
 
-enum GameType: Int {
+enum GameType: Int, CaseIterable, CustomStringConvertible {
+    var description: String {
+        return "\(self.rawValue)Cards"
+    }
+    
     case none = 0
     case five = 5
     case seven = 7
@@ -23,12 +27,13 @@ enum GameType: Int {
         }
     }
     
-    var value: Int {
-        return self.rawValue
+    static var allItems: [String] {
+        return GameType.allCases.filter({ $0 != .none}).map({$0.description})
     }
 }
 
-enum ParticipantType: Int {
+enum ParticipantType: Int, CaseIterable, CustomStringConvertible {
+    
     case none = 0
     case two = 2, three, four
     
@@ -45,8 +50,12 @@ enum ParticipantType: Int {
         }
     }
     
-    var value: Int {
-        return self.rawValue
+    var description: String {
+        return "\(self.rawValue)명"
+    }
+    
+    static var allItems: [String] {
+        return ParticipantType.allCases.filter({$0 != .none}).map{$0.description}
     }
 }
 
@@ -62,6 +71,7 @@ class PockerGame {
         dealer = Dealer(name: PlayerType.Dealer)
         participants = Participants(participantType: participantType)
     }
+    
     func setGameType(gameType: GameType) {
         self.gameType = gameType
     }

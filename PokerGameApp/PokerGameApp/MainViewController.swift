@@ -22,6 +22,7 @@ class MainViewController: UIViewController {
         
         return stackView
     }()
+    
     let segmentStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
@@ -39,6 +40,7 @@ class MainViewController: UIViewController {
         game = PockerGame(participantType: participantType, gameType: gameType)
         run(game: game)
     }
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
@@ -62,6 +64,7 @@ class MainViewController: UIViewController {
             addCardImage(player: participant)
         })
     }
+    
     func addCardImage(player: Player) {
         let stackView = addCardsStackView()
         self.mainStackView.addArrangedSubview(stackView)
@@ -71,6 +74,7 @@ class MainViewController: UIViewController {
                stackView.addArrangedSubview(createImgView(name: "\(cardName).png"))
         }
     }
+    
     func addLabel(name: String) {
         let label = UILabel()
         label.text = name
@@ -106,6 +110,7 @@ class MainViewController: UIViewController {
         
         run(game: game)
     }
+    
     func addMainStackView() {
         self.view.addSubview(mainStackView)
         mainStackView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 50).isActive = true
@@ -125,8 +130,8 @@ class MainViewController: UIViewController {
     }
     
     func addSegmentStackView() {
-        let gameTypeSegment = UISegmentedControl(items: ["5Cards", "7Cards"])
-        let participantTypeSegment = UISegmentedControl(items: ["2명", "3명", "4명"])
+        let gameTypeSegment = UISegmentedControl(items: GameType.allItems)
+        let participantTypeSegment = UISegmentedControl(items: ParticipantType.allItems)
         gameTypeSegment.addTarget(self, action: #selector(changeGameType(sender:)), for: UIControl.Event.valueChanged)
         participantTypeSegment.addTarget(self, action: #selector(changeParticipantType(sender:)), for: UIControl.Event.valueChanged)
 
@@ -140,11 +145,13 @@ class MainViewController: UIViewController {
         participantTypeSegment.tintColor = UIColor.white
         
     }
+    
     @objc func changeGameType(sender: UISegmentedControl) {
         let stud = GameType.init(rawValue:sender.selectedSegmentIndex)
         self.game.setGameType(gameType: stud)
         resetPockerGame(game: game)
     }
+    
     @objc func changeParticipantType(sender: UISegmentedControl) {
         let participant = ParticipantType.init(rawValue: sender.selectedSegmentIndex)
         self.game.setParticipantType(participantType: participant)
