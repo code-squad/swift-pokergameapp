@@ -10,9 +10,9 @@ import Foundation
 class PokerGame {
     
     enum GameType: Int, CaseIterable {
-        case seven = 7
         case five = 5
-        
+        case seven = 7
+
         var value: Int {
             return self.rawValue
         }
@@ -49,16 +49,14 @@ class PokerGame {
         closure(dealer)
     }
     
+    public func resetGame() {
+        players.dropAllCard()
+        dealer.dropMyCards()
+        shareCards()
+        dealer.resetCardDeck()
+    }
+
     public func startGame() {
-        while !isEndGame {
-            shareCards()
-            isEndGame = dealer.judgeEndGame(numberOfPlayers: players, numberOfCards: gameType)
-            
-            players.repeatForEachPlayer{$0.showCards()}
-            dealer.showCards()
-//            players.dropAllCard()
-//            dealer.dropMyCards()
-        }
-        print("게임이 종료되었습니다.")
+        shareCards()
     }
 }

@@ -14,7 +14,7 @@ class ViewController: UIViewController {
     let card = Card(shape: .diamond, number: .king)
     let card2 = Card(shape: .diamond, number: .seven)
     var testCardGame = TestCardGame()
-    var pokerGame = PokerGame(playerNumber: .four, gameType: .seven)
+    var pokerGame = PokerGame(playerNumber: .one, gameType: .five)
     var mainStackView = UIStackView()
     
     override func viewDidLoad() {
@@ -38,7 +38,7 @@ class ViewController: UIViewController {
         
         gameTypeSegmentControl.translatesAutoresizingMaskIntoConstraints = false
         gameTypeSegmentControl.widthAnchor.constraint(equalToConstant: 150).isActive = true
-        gameTypeSegmentControl.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 20).isActive = true
+        gameTypeSegmentControl.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 10).isActive = true
         gameTypeSegmentControl.centerXAnchor.constraint(equalTo: view.layoutMarginsGuide.centerXAnchor).isActive = true
         
         playerNumberSegmentControl.translatesAutoresizingMaskIntoConstraints = false
@@ -67,7 +67,7 @@ class ViewController: UIViewController {
         mainStackView.translatesAutoresizingMaskIntoConstraints = false
         mainStackView.leadingAnchor.constraint(equalTo: margin.leadingAnchor, constant: 5).isActive = true
         mainStackView.trailingAnchor.constraint(equalTo: margin.trailingAnchor, constant: -20).isActive = true
-        mainStackView.topAnchor.constraint(equalTo: playerNumberSegmentControl.bottomAnchor, constant: 30).isActive = true
+        mainStackView.topAnchor.constraint(equalTo: playerNumberSegmentControl.bottomAnchor, constant: 10).isActive = true
     }
     
     private func drawBackground() {
@@ -79,14 +79,41 @@ class ViewController: UIViewController {
     private let playerNumberSegmentControl : UISegmentedControl = {
         let segment = UISegmentedControl(items: PokerGame.PlayerNumber.allCases.map{"\($0.value)명"})
         configSegmentedControl(segment: segment)
+        segment.addTarget(self, action: #selector(changePlayerNumber), for: .valueChanged)
         return segment
     }()
 
     private let gameTypeSegmentControl : UISegmentedControl = {
         let segment = UISegmentedControl(items: PokerGame.GameType.allCases.map{ "\($0.value) Card" })
         configSegmentedControl(segment: segment)
+        segment.addTarget(self, action: #selector(changeGameType), for: .valueChanged)
         return segment
     }()
+    
+    var newPlayerNumber: PokerGame.PlayerNumber = .one
+    var newGameType: PokerGame.GameType = .five
+    
+    @objc func changeGameType(_ sender : UISegmentedControl) {
+        newGameType = PokerGame.GameType.allCases[sender.selectedSegmentIndex]
+        pokerGame = PokerGame(playerNumber: newPlayerNumber, gameType: newGameType)
+        pokerGame.resetGame()
+        removeMainStackViewSubViews()
+        initMainStackView()
+    }
+ 
+    @objc func changePlayerNumber(_ sender : UISegmentedControl) {
+        newPlayerNumber = PokerGame.PlayerNumber.allCases[sender.selectedSegmentIndex]
+        pokerGame = PokerGame(playerNumber: newPlayerNumber, gameType: newGameType)
+        pokerGame.resetGame()
+        removeMainStackViewSubViews()
+        initMainStackView()
+    }
+    
+    private func removeMainStackViewSubViews() {
+        mainStackView.subviews.forEach { view in
+               view.removeFromSuperview()
+           }
+       }
     
     static private func configSegmentedControl(segment: UISegmentedControl) {
         segment.tintColor = .white
