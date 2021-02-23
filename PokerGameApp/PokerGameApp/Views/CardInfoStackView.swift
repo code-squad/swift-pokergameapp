@@ -28,7 +28,10 @@ class CardInfoStackView: UIStackView {
         nameLabel.textColor = UIColor.white
         nameLabel.text = showdownCards.getOwnerName()
         
-        let cardViews = showdownCards.makeCardViews()
+        var cardViews: [UIImageView] = []
+        showdownCards.showCards {
+            cardViews.append(CardView(of: $0))
+        }
         cardStackView = makeCardStackView(with: cardViews)
         self.addArrangedSubview(cardStackView)
     }
