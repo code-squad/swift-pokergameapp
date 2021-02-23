@@ -5,7 +5,7 @@
 //  Created by Song on 2021/02/19.
 //
 
-import UIKit
+import Foundation
 
 struct ShowdownCards {
     
@@ -21,7 +21,7 @@ struct ShowdownCards {
         return owner.tellName()
     }
     
-    func makeCardViews() -> [UIImageView] {
-        setOfCards.map { CardView(card: $0) }
+    func showCards(handler: (Card) -> ()) {
+        setOfCards.forEach { handler($0) }
     }
 }

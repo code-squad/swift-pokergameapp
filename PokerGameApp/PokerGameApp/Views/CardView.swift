@@ -11,7 +11,7 @@ class CardView: UIImageView {
     
     private let card: Card
     
-    init(card: Card) {
+    init(of card: Card) {
         self.card = card
         super.init(frame: .zero)
         
