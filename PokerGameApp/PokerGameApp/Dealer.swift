@@ -58,6 +58,10 @@ class Dealer : Player {
     private var cardDeck: CardDeck
     private var stud:Stud
     
+    override var description: String {
+        return "딜러 \(self.myCard)"
+    }
+    
     override init() {
         self.cardDeck = CardDeck()
         self.cardDeck.reset()
@@ -73,6 +77,12 @@ class Dealer : Player {
         for _ in 0..<self.stud.rawValue {
             var tempCardDeck = CardDeck()
             
+            if let card = self.cardDeck.removeOne() {
+                self.getOne(card)
+            } else {
+                return false
+            }
+            
             for _ in 0..<players.totalPeopleNum {
                 if let card = self.cardDeck.removeOne() {
                     tempCardDeck.getOne(card)
@@ -81,6 +91,7 @@ class Dealer : Player {
                 }
             }
             players.distributeEachCard(with: tempCardDeck)
+            
         }
         return true
     }

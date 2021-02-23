@@ -14,7 +14,7 @@ class PokerGame {
     init() {
         self.dealer = Dealer()
         self.dealer.selectStud(.five)
-        self.players = Players.init(self.dealer)
+        self.players = Players()
         self.players.selectPlayerNum(.two)
     }
     
@@ -28,16 +28,19 @@ class PokerGame {
     
     func startGame() {
         self.dealer.resetCardDeck()
-        print("\(self.dealer.currentStud())카드 기준, 참가자 \(self.players.totalPeopleNum - 1)명 일 때")
+        print("\(self.dealer.currentStud())카드 기준, 참가자 \(self.players.totalPeopleNum)명 일 때")
         while self.dealer.distributeCards(self.players) {
             printAll()
+            self.dealer.dropAll()
             self.players.dropAllCards()
         }
+        self.dealer.dropAll()
         self.players.dropAllCards()
         print("게임이 종료되었습니다.\n")
     }
     
     func printAll() {
         print(self.players)
+        print(self.dealer)
     }
 }

@@ -9,22 +9,20 @@ import Foundation
 
 class Players : CustomStringConvertible {
     private var players: [Player]
-    private var dealer: Dealer
     var totalPeopleNum: Int {
-        return self.players.count + 1
+        return self.players.count
     }
     
     var description: String {
         var tempStr = ""
-        for index in 0..<totalPeopleNum - 1 {
+        for index in 0..<totalPeopleNum {
             tempStr += "참가자#\(index + 1) \(self.players[index])\n"
         }
-        return tempStr + "딜러 \(self.dealer)"
+        return tempStr
     }
     
-    init(_ dealer: Dealer) {
+    init() {
         self.players = []
-        self.dealer = dealer
     }
     
     func selectPlayerNum(_ playerNum: NumberOfPlayers) {
@@ -38,11 +36,7 @@ class Players : CustomStringConvertible {
     func distributeEachCard(with cards: CardDeck) {
         var tempCards = cards
         
-        if let card = tempCards.removeOne() {
-            dealer.getOne(card)
-        }
-        
-        for index in 0..<self.totalPeopleNum - 1 {
+        for index in 0..<self.totalPeopleNum {
             if let card = tempCards.removeOne() {
                 players[index].getOne(card)
             }
@@ -50,8 +44,7 @@ class Players : CustomStringConvertible {
     }
     
     func dropAllCards() {
-        self.dealer.dropAll()
-        for index in 0..<self.totalPeopleNum - 1 {
+        for index in 0..<self.totalPeopleNum {
             self.players[index].dropAll()
         }
     }
