@@ -9,7 +9,6 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    var stackView: UIStackView!
     var pokerGame: PokerGame?
     var pokerGameParticipant: Participant?
     var pokerGameType: GameType?
@@ -21,18 +20,16 @@ class ViewController: UIViewController {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
-    var gameTypeSegment: UISegmentedControl {
+    var gameTypeSegment: UISegmentedControl = {
         let sc: UISegmentedControl = UISegmentedControl(items: ["5 Cards", "7 Cards"])
-        sc.center = CGPoint(x: self.view.frame.width/2, y: 80)
         sc.addTarget(self, action: #selector(gameTypeChanged(sender:)), for: .valueChanged)
         return sc
-    }
-    var participantSegment: UISegmentedControl {
+    }()
+    var participantSegment: UISegmentedControl = {
         let sc: UISegmentedControl = UISegmentedControl(items: ["2명", "3명", "4명"])
-        sc.center = CGPoint(x: self.view.frame.width/2, y: 120)
         sc.addTarget(self, action: #selector(participantChanged(sender:)), for: .valueChanged)
         return sc
-    }
+    }()
 
 
     override func viewDidLoad() {
@@ -41,6 +38,8 @@ class ViewController: UIViewController {
         self.view.addSubview(gameTypeSegment)
         self.view.addSubview(participantSegment)
         self.view.addSubview(playersStackView)
+        setSegmentControlConstraints()
+        setPlayersStackViewConstraints()
     }
    
     func setBackground() {
@@ -60,15 +59,14 @@ class ViewController: UIViewController {
     
     func makeCardStackView(player: Player) -> UIStackView {
         let stackView = UIStackView()
-        self.stackView.axis = .horizontal
-        self.stackView.alignment = .fill
-        self.stackView.distribution = .equalSpacing
-        self.stackView.spacing = 5
-        self.stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .horizontal
+        stackView.alignment = .fill
+        stackView.distribution = .fillEqually
+        stackView.spacing = -14
+        stackView.translatesAutoresizingMaskIntoConstraints = false
         
         player.retrieveCard { (card) in
-            let imageView = UIImageView()
-            imageView.image = UIImage(named: card.description)
+            let imageView = generateImage(with: card.description)
             stackView.addArrangedSubview(imageView)
         }
         return stackView
@@ -76,11 +74,9 @@ class ViewController: UIViewController {
     
     func makePlayerStackView(player: Player) -> UIStackView{
         let stackView = UIStackView()
-        self.stackView.axis = .horizontal
-        self.stackView.alignment = .fill
-        self.stackView.distribution = .equalSpacing
-        self.stackView.spacing = 5
-        self.stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        stackView.alignment = .fill
+        stackView.translatesAutoresizingMaskIntoConstraints = false
         
         let label = UILabel()
         label.textColor = .white
@@ -93,6 +89,10 @@ class ViewController: UIViewController {
     }
     
     func makePlayersStackView(players: Players) {
+        playersStackView.subviews.forEach { (subView) in
+            subView.removeFromSuperview()
+        }
+        
         players.retrievePlayer { (player) in
             let stackView = makePlayerStackView(player: player)
             playersStackView.addArrangedSubview(stackView)
@@ -104,7 +104,7 @@ class ViewController: UIViewController {
         guard let participant = pokerGameParticipant else {return}
         pokerGame = PokerGame(players: Players(participant: participant), dealer: Dealer(gameType: gameType))
         pokerGame?.startGame()
-        makePlayersStackView(players: pokerGame.)
+        makePlayersStackView(players: pokerGame!.players)
     }
     
     @objc func gameTypeChanged(sender: UISegmentedControl) {
@@ -130,6 +130,21 @@ class ViewController: UIViewController {
         }
         startGame()
     }
-
 }
 
+extension ViewController {
+    func setSegmentControlConstraints() {
+        gameTypeSegment.translatesAutoresizingMaskIntoConstraints = false
+        participantSegment.translatesAutoresizingMaskIntoConstraints = false
+        gameTypeSegment.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10).isActive = true
+        gameTypeSegment.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        participantSegment.topAnchor.constraint(equalTo: gameTypeSegment.bottomAnchor, constant: 10).isActive = true
+        participantSegment.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+    }
+    
+    func setPlayersStackViewConstraints() {
+        playersStackView.topAnchor.constraint(equalTo: participantSegment.bottomAnchor, constant: 10).isActive = true
+        playersStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 10).isActive = true
+        playersStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10).isActive = true
+    }
+}

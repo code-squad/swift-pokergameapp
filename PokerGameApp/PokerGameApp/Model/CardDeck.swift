@@ -46,7 +46,7 @@ struct CardDeck {
     
     mutating func give(gameType: GameType) -> [Card] {
         var givingCards = [Card]()
-        for _ in 0...gameType.rawValue {
+        for _ in 0..<gameType.rawValue {
             givingCards.append(self.removeOne())
         }
         return givingCards
