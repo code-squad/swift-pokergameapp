@@ -8,10 +8,25 @@
 import Foundation
 
 class Dealer: Player {
-    private var cardDeck = CardDeck()
 
-    override init(name: PlayerType) {
-        super.init(name: name)
+    private var cardDeck = CardDeck()
+    private var name: String
+    private var cards: [Card] = []
+    
+    init() {
+        name = "딜러"
+    }
+    
+    func receiveCard(_ card: Card) {
+        cards.append(card)
+    }
+    
+    func eachCard(method: (Card) -> ()) {
+        cards.forEach{method($0)}
+    }
+    
+    func resetCard() {
+        cards.removeAll()
     }
     
     func distributeCard(participants: Participants, participantType: ParticipantType, gameType: GameType) {

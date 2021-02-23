@@ -31,7 +31,7 @@ class Participants {
     
     func createParticipants(_ participantType: ParticipantType) {
         for _ in 1...participantType.rawValue {
-            let participant = Participant(name: PlayerType.Pariticipant)
+            let participant = Participant()
             participants.append(participant)
         }
     }

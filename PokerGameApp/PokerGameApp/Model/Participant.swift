@@ -8,7 +8,23 @@
 import Foundation
 
 class Participant: Player {
-    override init(name: PlayerType) {
-        super.init(name: name)
+    
+    private var name: String
+    private var cards: [Card] = []
+    
+    init() {
+        self.name = "참가자"
+    }
+    
+    func receiveCard(_ card: Card) {
+        cards.append(card)
+    }
+    
+    func eachCard(method: (Card) -> ()) {
+        cards.forEach{method($0)}
+    }
+    
+    func resetCard() {
+        cards.removeAll()
     }
 }
