@@ -57,32 +57,20 @@ class ViewController: UIViewController {
     }()
     
     @objc func gameStyleChanged (_ sender : UISegmentedControl) {
-        switch sender.selectedSegmentIndex {
-        case 0:
-            pokerGame.reset(with: .sevenCardStud)
-        case 1:
-            pokerGame.reset(with: .fiveCardStud)
-        default:
-            break
-        }
+        
+        let calculatedSelectedGameStyleIndex = 7 - 2 * sender.selectedSegmentIndex // 7stud : rawValue = 7, 5stud : 5 so func y = -2x + 7 , x = sender.selectedSgementIndex -> {0,1}. so y= {7,5}
+        let selectedGameStyle = GameStyle.init(rawValue: calculatedSelectedGameStyleIndex) ?? .sevenCardStud
+        
+        pokerGame.reset(with: selectedGameStyle)
         self.gameStart()
         updatePlayerUIs()
         printPlayerInfo()
     }
     
     @objc func gamePlayerChanged (_ sender : UISegmentedControl) {
-        switch sender.selectedSegmentIndex {
-        case 0:
-            pokerGame.reset(howMany: .one)
-        case 1:
-            pokerGame.reset(howMany: .two)
-        case 2:
-            pokerGame.reset(howMany: .three)
-        case 3:
-            pokerGame.reset(howMany: .four)
-        default:
-            break
-        }
+        
+        let selectedPlayerCount = PlayerCount.init(rawValue: sender.selectedSegmentIndex + 1) ?? .one
+        pokerGame.reset(howMany: selectedPlayerCount)
         
         self.gameStart()
         updatePlayerUIs()
@@ -117,7 +105,6 @@ class ViewController: UIViewController {
     
     private func gameStart() {
         if false == pokerGame.start() {
-            print("deck is empty, gameover. reset game")
             pokerGame.resetDeck()
             pokerGame.reset()
         }
@@ -131,15 +118,9 @@ class ViewController: UIViewController {
     }
     
     private func makePlayerUIs() {
-        pokerGame.showParticipatnsInfo(do: { player in
-            let info = player.description.components(separatedBy: ":")
-            let name = info[0].trimmingCharacters(in: .whitespacesAndNewlines)
-            var cards = info[1].components(separatedBy: ",").map(){
-                $0.trimmingCharacters(in: .whitespacesAndNewlines)
-            }
-            cards = cards.map(){
-                $0.trimmingCharacters(in: .punctuationCharacters)
-            }
+        pokerGame.showParticipatnsInfo(do: { playerDeck,playerName  in
+            let name = playerName
+            let cards = playerDeck.toStringArray()
             
             setPlayerInfoStackView(with: name)
             createCardStackView(with: card2FileName(with: cards))
@@ -172,16 +153,13 @@ class ViewController: UIViewController {
     private func setPlayerInfoStackView(with playerName : String) {
         playersStackView.addArrangedSubview(playerInfoStackView)
         
-        let nameLabel : UILabel = {
-            let label = UILabel(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
-            label.font = UIFont.systemFont(ofSize: 30)
-            label.textColor = UIColor.white
-            label.textAlignment = NSTextAlignment.left
-            label.text = playerName
-            return label
-        }()
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
+        label.font = UIFont.systemFont(ofSize: 30)
+        label.textColor = UIColor.white
+        label.textAlignment = NSTextAlignment.left
+        label.text = playerName
         
-        playerInfoStackView.addArrangedSubview(nameLabel)
+        playerInfoStackView.addArrangedSubview(label)
     }
     
     private func createCardStackView(with cardFileNames: [String]) {
@@ -221,6 +199,7 @@ class ViewController: UIViewController {
         }
         catch {
             print(error, cardFileName)
+            image = UIImage.init(named: "card-back") ?? UIImage()
         }
         
         let imageView = UIImageView(image: image)
@@ -234,16 +213,16 @@ class ViewController: UIViewController {
         for card in cardNames {
             var fileName = String()
             switch String(card.first ?? "f") {
-            case "\u{2660}": //spade
-                fileName = "s" + card.trimmingCharacters(in: .symbols)
-            case "\u{2665}": //heart
-                fileName = "h" + card.trimmingCharacters(in: .symbols)
-            case "\u{2666}": //diamond
-                fileName = "d" + card.trimmingCharacters(in: .symbols)
-            case "\u{2663}": //club
-                fileName = "c" + card.trimmingCharacters(in: .symbols)
-            default:
-                fileName = "card-back"
+                case "\u{2660}": //spade
+                    fileName = "s" + card.trimmingCharacters(in: .symbols)
+                case "\u{2665}": //heart
+                    fileName = "h" + card.trimmingCharacters(in: .symbols)
+                case "\u{2666}": //diamond
+                    fileName = "d" + card.trimmingCharacters(in: .symbols)
+                case "\u{2663}": //club
+                    fileName = "c" + card.trimmingCharacters(in: .symbols)
+                default:
+                    fileName = "card-back"
             }
             cardFileNames.append(fileName)
         }
@@ -262,10 +241,10 @@ class ViewController: UIViewController {
     
     func printPlayerInfo() {
         
-        let printClosure = { player in
-            print(player)
+        let printClosure = { (hand: Deck,name: String) -> Void in
+            print("\(name) : \(hand)")
         }
-        pokerGame.printParticipantsInfo(do: printClosure)
+        pokerGame.showParticipatnsInfo(do: printClosure)
     }
 }
 

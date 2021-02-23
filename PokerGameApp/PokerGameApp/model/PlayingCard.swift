@@ -58,4 +58,8 @@ class PlayingCard : CustomStringConvertible{
     convenience init() {
         self.init(suit: Suits.allCases.randomElement()!,number: Rank.allCases.randomElement()!)
     }
+    
+    func toString() -> String {
+        return "\(suit)\(number)"
+    }
 }

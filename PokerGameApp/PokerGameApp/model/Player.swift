@@ -29,11 +29,7 @@ class Player : CustomStringConvertible {
         self.hand = Deck.init()
     }
     
-    func printInfo(do closure : ((Player) -> Void)) {
-        closure(self)
-    }
-    
-    func showInfo(do closure : ((Player) -> Void)) {
-        closure(self)
+    func showInfo(do closure : ((Deck,String) -> Void)) {
+        closure(hand,name)
     }
 }
