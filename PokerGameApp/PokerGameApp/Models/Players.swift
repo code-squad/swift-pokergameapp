@@ -18,7 +18,11 @@ class Players {
     }
     
     init(numberOfPlayers: PokerGame.Size) {
-        self.players = numberOfPlayers.namePlayers()
+        var players: [Player] = []
+        numberOfPlayers.showPlayers { index in
+            players.append(Player(nickname: "Player\(index)"))
+        }
+        self.players = players
         self.count = self.players.count
     }
     
