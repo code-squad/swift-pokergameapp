@@ -8,46 +8,29 @@
 import Foundation
 
 enum GameType: Int, CaseIterable, CustomStringConvertible {
-    var description: String {
-        return "\(self.rawValue)Cards"
-    }
-    
-    case none = 0
+
     case five = 5
     case seven = 7
     
     init(rawValue: Int) {
-        switch rawValue {
-        case 0:
-            self = .five
-        case 1:
-            self = .seven
-        default:
-            self = .none
-        }
+        self = GameType.allCases[rawValue]
+    }
+    
+    var description: String {
+        return "\(self.rawValue)Cards"
     }
     
     static var allItems: [String] {
-        return GameType.allCases.filter({ $0 != .none}).map({$0.description})
+        return GameType.allCases.map({$0.description})
     }
 }
 
 enum ParticipantType: Int, CaseIterable, CustomStringConvertible {
     
-    case none = 0
     case two = 2, three, four
     
     init(rawValue: Int) {
-        switch rawValue {
-        case 0:
-            self = .two
-        case 1:
-            self = .three
-        case 2:
-            self = .four
-        default :
-            self = .none
-        }
+        self = ParticipantType.allCases[rawValue]
     }
     
     var description: String {
@@ -55,7 +38,7 @@ enum ParticipantType: Int, CaseIterable, CustomStringConvertible {
     }
     
     static var allItems: [String] {
-        return ParticipantType.allCases.filter({$0 != .none}).map{$0.description}
+        return ParticipantType.allCases.map{$0.description}
     }
 }
 
