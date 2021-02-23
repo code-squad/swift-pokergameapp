@@ -50,8 +50,20 @@ class MainViewController: UIViewController {
         self.view.backgroundColor = UIColor(patternImage: backgroundImg)
     }
     
-    func addCardImage(stackView: UIStackView, player: Player) {
-        self.mainStackView.addArrangedSubview(addLabel(name: player.getName()))
+    func createGameView() {
+        let dealer = game.getDealer()
+        let participants = game.getParticipants()
+        
+        addLabel(name: "딜러")
+        addCardImage(player: dealer)
+        
+        participants.eachParticipant(method: { (index, participant) in
+            addLabel(name: "플레이어\(index)")
+            addCardImage(player: participant)
+        })
+    }
+    func addCardImage(player: Player) {
+        let stackView = addCardsStackView()
         self.mainStackView.addArrangedSubview(stackView)
 
         player.eachCard {
@@ -59,13 +71,12 @@ class MainViewController: UIViewController {
                stackView.addArrangedSubview(createImgView(name: "\(cardName).png"))
         }
     }
-    func addLabel(name: String) -> UILabel {
+    func addLabel(name: String) {
         let label = UILabel()
         label.text = name
         label.textColor = .white
         label.font = UIFont.boldSystemFont(ofSize: 20)
-
-        return label
+        self.mainStackView.addArrangedSubview(label)
     }
 
     func createImgView(name: String) -> UIImageView {
@@ -74,19 +85,12 @@ class MainViewController: UIViewController {
         imgView.image = UIImage(named: name)
         return imgView
     }
-    
+
     func run(game: PockerGame) {
         game.gameStart()
-        let dealer = game.getDealer()
-        let participants = game.getParticipants()
-        
         addMainStackView()
         addSegmentStackView()
-        addCardImage(stackView: addCardsStackView(), player: dealer)
-        
-        participants.eachParticipant(method: {
-            (participant) in addCardImage(stackView: addCardsStackView(), player: participant)
-        })
+        createGameView()
     }
     
     func resetPockerGame(game: PockerGame) {

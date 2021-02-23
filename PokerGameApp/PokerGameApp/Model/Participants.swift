@@ -17,8 +17,10 @@ class Participants {
         return self.participants.count
     }
 
-    func eachParticipant(method: (Participant) -> ()) {
-        participants.forEach({ method($0) })
+    func eachParticipant(method: (Int, Player) -> ()) {
+        for (index, participant) in participants.enumerated() {
+            method(index+1, participant)
+        }
     }
     
     func resetParticipant(_ participantType: ParticipantType) {
