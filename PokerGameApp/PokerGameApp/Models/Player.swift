@@ -20,4 +20,12 @@ class Player {
     func dealt(_ card: Card) {
         self.cards.append(card)
     }
+    
+    func cardsCount() -> Int {
+        cards.count
+    }
+    
+    func tellCard(at index: Int) -> Card {
+        return cards[index]
+    }
 }
