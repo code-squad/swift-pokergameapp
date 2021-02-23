@@ -12,7 +12,7 @@ enum Score: Comparable {
     var rawValue: String {
         switch self {
         case .onePair: return "onePair"
-        case .twoPair: return "twoPari"
+        case .twoPair: return "twoPair"
         case .triple: return "triple"
         case .straight: return "straight"
         case .fourCard: return "fourCard"

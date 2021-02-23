@@ -53,6 +53,29 @@ class ViewController: UIViewController {
 
     //MARK: Set PokerPlate
     private func addPlayersResultStackViewIntoPokerPlate(imageStackView: UIStackView, nameLabel: UILabel, numberOfPlayer: NumberOfParticipant){
+
+        let playerStackView = makePlayerStackView(imageStackView: imageStackView, nameLabel: nameLabel)
+        let winnerSignLabel = makeWinnerSignLabel()
+        let playerResultStackView = makePlayerResultStackView(playerStackView: playerStackView, winnerSignLabel: winnerSignLabel)
+
+        pokerPlate.addArrangedSubview(playerResultStackView)
+    }
+    
+    private func makePlayerResultStackView(playerStackView: UIStackView, winnerSignLabel: UILabel) -> UIStackView{
+        let playerResultStackView: UIStackView = {
+            let stackView = UIStackView()
+            stackView.axis = .horizontal
+            stackView.distribution = .fill
+            stackView.spacing = 5
+            stackView.addArrangedSubview(playerStackView)
+            stackView.addArrangedSubview(winnerSignLabel)
+            stackView.heightAnchor.constraint(equalToConstant: 90).isActive = true
+            return stackView
+        }()
+        return playerResultStackView
+    }
+    
+    private func makePlayerStackView(imageStackView: UIStackView, nameLabel: UILabel) -> UIStackView {
         let playerStackView: UIStackView = {
             let stackView = UIStackView()
             stackView.axis = .vertical
@@ -62,7 +85,10 @@ class ViewController: UIViewController {
             stackView.addArrangedSubview(imageStackView)
             return stackView
         }()
-        
+        return playerStackView
+    }
+    
+    private func makeWinnerSignLabel() -> UILabel {
         var winnerSignLabel: UILabel {
             let label = UILabel()
             label.text = " "
@@ -71,18 +97,7 @@ class ViewController: UIViewController {
             label.widthAnchor.constraint(equalToConstant: 50).isActive = true
             return label
         }
-        
-        let playerResultStackView: UIStackView = {
-            let stackView = UIStackView()
-            stackView.axis = .horizontal
-            stackView.distribution = .fill
-            stackView.spacing = 5
-            stackView.addArrangedSubview(playerStackView)
-            stackView.addArrangedSubview(winnerSignLabel)
-            return stackView
-        }()
-        
-        pokerPlate.addArrangedSubview(playerResultStackView)
+        return winnerSignLabel
     }
     
     private func initPokerPlate() {
