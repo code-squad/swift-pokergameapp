@@ -33,10 +33,4 @@ class Player {
         cards.removeAll()
     }
     
-    func getCard() -> [Card] {
-        return cards
-    }
-    func getName() -> String {
-        return name.rawValue
-    }
 }

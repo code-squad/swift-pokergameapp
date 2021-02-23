@@ -28,7 +28,7 @@ class Dealer: Player {
             } else {
                 return
             }
-            participants.eachParticipant(method: { (participant) in
+            participants.eachParticipant(method: { (num, participant) in
                 if let selectedCard = cardDeck.removeOn() {
                     participant.receiveCard(selectedCard)
                 } else {
