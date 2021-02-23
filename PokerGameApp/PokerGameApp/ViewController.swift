@@ -19,14 +19,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         makeBackGround()
         startGame()
-//        self.becomeFirstResponder()
     }
-    
-//    override var canBecomeFirstResponder: Bool {
-//        get {
-//            return true
-//        }
-//    }
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         if motion == .motionShake {
             startGame()
@@ -38,7 +31,6 @@ class ViewController: UIViewController {
         return .lightContent
     }
     
-    // 백그라운드 배경
     func makeBackGround() {
         if let bgImage = UIImage(named: "bg_pattern") {
             self.view.backgroundColor = .init(patternImage: bgImage)
@@ -46,14 +38,15 @@ class ViewController: UIViewController {
     }
     
     func startGame() {
-        let pokerGame = PokerGame(playerCount: PokerGame.PlayerCount(rawValue: playerCount.rawValue)!, cardStud: PokerGame.CardStud(rawValue: cardStud.rawValue)!)
-        self.pokerGame = pokerGame
-        pokerGame.makeGamePlayer()
-        pokerGame.distributeCard()
+        pokerGame = PokerGame(playerCount: playerCount, cardStud: cardStud)
+        guard let game = pokerGame else {
+            return
+        }
+        game.makeGamePlayer()
+        game.distributeCard()
         makeVerticalStackView()
     }
     
-    // 카드 이미지 뷰
     func makeCardImageView(card: Card) -> UIImageView {
         let cardSuit = card.suit.transformSuit()
         let cardRank = card.rank.transformRank()
@@ -64,10 +57,7 @@ class ViewController: UIViewController {
         return cardImageView
     }
     
-    
-    // 카드 이미지 뷰를 가지고 있는 스택 뷰
     func makePlayerCardStackView(player: Player) -> UIStackView {
-        let cards = player.player
         let cardStackView = UIStackView()
         cardStackView.axis = .horizontal
         cardStackView.distribution = .fillEqually
@@ -75,14 +65,14 @@ class ViewController: UIViewController {
         
         cardStackView.spacing = -10
         cardStackView.translatesAutoresizingMaskIntoConstraints = false
-        for i in 0..<cardStud.rawValue {
-            cardStackView.addArrangedSubview(makeCardImageView(card: cards[i]))
-        }
-        
+        player.retrieveCard(completion: {card in
+            let cardImageView = makeCardImageView(card: card)
+            cardStackView.addArrangedSubview(cardImageView)
+        })
         return cardStackView
     }
+    
     func makeDealerCardStackView(dealer: Dealer) -> UIStackView {
-        let cards = dealer.dealer
         let cardStackView = UIStackView()
         cardStackView.axis = .horizontal
         cardStackView.distribution = .fillEqually
@@ -90,14 +80,13 @@ class ViewController: UIViewController {
         
         cardStackView.spacing = -10
         cardStackView.translatesAutoresizingMaskIntoConstraints = false
-        for i in 0..<cardStud.rawValue {
-            cardStackView.addArrangedSubview(makeCardImageView(card: cards[i]))
-        }
+        dealer.retrieveCard(completion: {card in
+            let cardImageView = makeCardImageView(card: card)
+            cardStackView.addArrangedSubview(cardImageView)
+        })
         return cardStackView
     }
     
-    
-    // 플레이어 라벨을 가지고 있는 스택 뷰
     func makeLabelStackView(text: String) -> UIStackView {
         let nameStackView = UIStackView()
         nameStackView.axis = .vertical
@@ -112,9 +101,7 @@ class ViewController: UIViewController {
         return nameStackView
     }
     
-    // 라벨 스택 뷰, 카드 스택 뷰를 가지고 있는 큰 스택 뷰
     func makeVerticalStackView() {
-        // 옵셔널 바인딩
         guard let game = pokerGame else { return  }
         let stackView = verticalStackView
         stackView.subviews.forEach { subview in
