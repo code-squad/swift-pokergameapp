@@ -28,7 +28,23 @@ class ViewController: UIViewController {
     
     private func initialize() {
         drawBackground()
+        makeSegmentedControl()
         initMainStackView()
+    }
+    
+    private func makeSegmentedControl() {
+        self.view.addSubview(gameTypeSegmentControl)
+        self.view.addSubview(playerNumberSegmentControl)
+        
+        gameTypeSegmentControl.translatesAutoresizingMaskIntoConstraints = false
+        gameTypeSegmentControl.widthAnchor.constraint(equalToConstant: 150).isActive = true
+        gameTypeSegmentControl.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor).isActive = true
+        gameTypeSegmentControl.centerXAnchor.constraint(equalTo: view.layoutMarginsGuide.centerXAnchor).isActive = true
+        
+        playerNumberSegmentControl.translatesAutoresizingMaskIntoConstraints = false
+        playerNumberSegmentControl.topAnchor.constraint(equalTo: gameTypeSegmentControl.bottomAnchor, constant: 10).isActive = true
+        playerNumberSegmentControl.widthAnchor.constraint(equalTo: gameTypeSegmentControl.widthAnchor).isActive = true
+        playerNumberSegmentControl.centerXAnchor.constraint(equalTo: view.layoutMarginsGuide.centerXAnchor).isActive = true
     }
     
     private func writeParticipantNameLabel(name: String) -> UILabel {
@@ -53,7 +69,7 @@ class ViewController: UIViewController {
         mainStackView.translatesAutoresizingMaskIntoConstraints = false
         mainStackView.leadingAnchor.constraint(equalTo: margin.leadingAnchor, constant: 5).isActive = true
         mainStackView.trailingAnchor.constraint(equalTo: margin.trailingAnchor, constant: -20).isActive = true
-        mainStackView.topAnchor.constraint(equalTo: margin.topAnchor, constant: 0).isActive = true
+        mainStackView.topAnchor.constraint(equalTo: playerNumberSegmentControl.bottomAnchor, constant: 0).isActive = true
     }
     
     private func drawBackground() {
@@ -61,7 +77,36 @@ class ViewController: UIViewController {
             self.view.backgroundColor = UIColor(patternImage: image)
         }
     }
+    
+    private let playerNumberSegmentControl : UISegmentedControl = {
+        let segment = UISegmentedControl(items: PokerGame.PlayerNumber.allCases.map{"\($0.value)명"})
+        configSegmentedControl(segment: segment)
+        return segment
+    }()
 
+    private let gameTypeSegmentControl : UISegmentedControl = {
+        let segment = UISegmentedControl(items: PokerGame.GameType.allCases.map{ "\($0.value) Card" })
+        configSegmentedControl(segment: segment)
+        return segment
+    }()
+    
+    static private func configSegmentedControl(segment: UISegmentedControl) {
+        segment.tintColor = .white
+        segment.selectedSegmentIndex = 0
+        segment.layer.borderWidth = 1
+        segment.layer.borderColor = UIColor.white.cgColor
+
+        let normalFontColor: [NSAttributedString.Key: Any] = [
+                 .foregroundColor: UIColor.white
+             ]
+             
+        let selectedFontColor: [NSAttributedString.Key: Any] = [
+            .foregroundColor: UIColor.black
+        ]
+        segment.setTitleTextAttributes(normalFontColor, for: .normal)
+        segment.setTitleTextAttributes(selectedFontColor, for: .selected)
+    }
+    
     private func createCardImageView() -> UIImageView {
         let imageView = UIImageView()
         imageView.image = cardBackImage
