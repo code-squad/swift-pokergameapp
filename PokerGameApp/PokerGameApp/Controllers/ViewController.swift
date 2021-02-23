@@ -17,10 +17,10 @@ class ViewController: UIViewController {
     let numberOfPlayersSegmentedControl = UISegmentedControl()
     let playerStackView = UIStackView()
     
-    var currentNumberOfPlayers = PokerGame.Size.twoPlayers
+    var currentGameSize = PokerGame.Size.twoPlayers
     var currentGameType = PokerGame.StudPoker.sevenCardStud
     lazy var dealer = Dealer(cardDeck: deckForGame)
-    lazy var players = Players(numberOfPlayers: currentNumberOfPlayers)
+    lazy var players = Players(numberOfPlayers: currentGameSize)
     lazy var pokerGame = PokerGame(dealer: dealer, players: players, gameType: currentGameType)
     
     override func viewDidLoad() {
@@ -70,11 +70,11 @@ class ViewController: UIViewController {
     @objc func numberOfPlayersChanged(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:
-            currentNumberOfPlayers = PokerGame.Size.twoPlayers
+            currentGameSize = PokerGame.Size.twoPlayers
         case 1:
-            currentNumberOfPlayers = PokerGame.Size.threePlayers
+            currentGameSize = PokerGame.Size.threePlayers
         case 2:
-            currentNumberOfPlayers = PokerGame.Size.fourPlayers
+            currentGameSize = PokerGame.Size.fourPlayers
         default:
             break
         }
@@ -88,7 +88,7 @@ class ViewController: UIViewController {
     func updateGameInfo() -> PokerGame {
         let newDeck = CardDeck()
         dealer = Dealer(cardDeck: newDeck)
-        players = Players(numberOfPlayers: currentNumberOfPlayers)
+        players = Players(numberOfPlayers: currentGameSize)
         pokerGame = PokerGame(dealer: dealer, players: players, gameType: currentGameType)
         pokerGame.startGame()
         return pokerGame
