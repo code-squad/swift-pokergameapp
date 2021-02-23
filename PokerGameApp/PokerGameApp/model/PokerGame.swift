@@ -20,14 +20,16 @@ enum GameStyle : Int, CustomStringConvertible {
     }
 }
 
-enum PlayerCount : Int, CustomStringConvertible {
+enum PlayerCount : Int, CustomStringConvertible, CaseIterable {
     var description: String {
         return "\(self.rawValue)명"
     }
     case one = 1, two, three, four
     
     static var availablePlayerCount : [String] {
-        return [self.one.description, self.two.description, self.three.description, self.four.description]
+        return self.allCases.map({
+            $0.description
+        })
     }
 }
 public class PokerGame {
@@ -53,40 +55,24 @@ public class PokerGame {
         return true
     }
     
-    func reset(with gameStyle : GameStyle, howMany playerCount : PlayerCount) {
-        self.currentGameStyle = gameStyle
-        self.currentPlayerCount = playerCount
+    func reset(with gameStyle : GameStyle? = nil, howMany playerCount : PlayerCount? = nil) {
+        if gameStyle != nil {
+            self.currentGameStyle = gameStyle!
+        }
+        
+        if playerCount != nil {
+            self.currentPlayerCount = playerCount!
+        }
+        
         self.dealer.resetSelf()
-        self.players = Players.init(howManyPlayer: playerCount.rawValue)
-    }
-    
-    func reset(with gameStyle : GameStyle) {
-        self.currentGameStyle = gameStyle
-        self.dealer.resetSelf()
-        self.players.resetSelf()
-    }
-    
-    func reset(howMany playerCount : PlayerCount) {
-        self.currentPlayerCount = playerCount
-        self.dealer.resetSelf()
-        self.players = Players.init(howManyPlayer: playerCount.rawValue)
-    }
-    
-    func reset() {
-        self.dealer.resetSelf()
-        self.players.resetSelf()
+        self.players = Players.init(howManyPlayer: currentPlayerCount.rawValue)
     }
     
     func resetDeck() {
         self.dealer.newDeck()
     }
     
-    func printParticipantsInfo ( do closure : ((Player) -> Void)) {
-        players.printInfo(do: closure)
-        dealer.printInfo(do: closure)
-    }
-    
-    func showParticipatnsInfo(do closure : ((Player)->Void)) {
+    func showParticipatnsInfo(do closure : ((Deck,String)->Void)) {
         players.showInfo(do : closure)
         dealer.showInfo(do : closure)
     }

@@ -31,13 +31,7 @@ class Players {
         }
     }
     
-    func printInfo( do closure : ((Player) -> Void)) {
-        for player in players {
-            player.printInfo(do: closure)
-        }
-    }
-    
-    func showInfo ( do closure : ((Player) -> Void)) {
+    func showInfo ( do closure : ((Deck,String) -> Void)) {
         for player in players {
             player.showInfo(do: closure)
         }

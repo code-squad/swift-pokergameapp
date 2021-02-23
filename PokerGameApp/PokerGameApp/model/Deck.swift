@@ -62,4 +62,13 @@ struct Deck : CustomStringConvertible {
     mutating func addingNewCard(with newCard : PlayingCard) {
         self.cards.append(newCard)
     }
+    
+    func toStringArray() -> [String] {
+        var returnArray = [String]()
+        for card in cards{
+            returnArray.append(card.toString())
+        }
+        
+        return returnArray
+    }
 }
