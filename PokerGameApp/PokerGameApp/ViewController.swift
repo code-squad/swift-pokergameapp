@@ -22,52 +22,8 @@ class ViewController: UIViewController {
     
     private func initialize() {
         drawBackground()
-        makeSegmentedControl()
+        createSegmentedControl()
         initMainStackView()
-    }
-    
-    private func makeSegmentedControl() {
-        self.view.addSubview(gameTypeSegmentControl)
-        self.view.addSubview(playerNumberSegmentControl)
-        
-        gameTypeSegmentControl.translatesAutoresizingMaskIntoConstraints = false
-        gameTypeSegmentControl.widthAnchor.constraint(equalToConstant: 150).isActive = true
-        gameTypeSegmentControl.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 10).isActive = true
-        gameTypeSegmentControl.centerXAnchor.constraint(equalTo: view.layoutMarginsGuide.centerXAnchor).isActive = true
-        
-        playerNumberSegmentControl.translatesAutoresizingMaskIntoConstraints = false
-        playerNumberSegmentControl.topAnchor.constraint(equalTo: gameTypeSegmentControl.bottomAnchor, constant: 10).isActive = true
-        playerNumberSegmentControl.widthAnchor.constraint(equalTo: gameTypeSegmentControl.widthAnchor).isActive = true
-        playerNumberSegmentControl.centerXAnchor.constraint(equalTo: view.layoutMarginsGuide.centerXAnchor).isActive = true
-    }
-    
-    private func writeParticipantNameLabel(name: String) -> UILabel {
-        let nameLabel = UILabel()
-        nameLabel.text = name
-        nameLabel.font = UIFont.systemFont(ofSize: 20, weight: .bold)
-        nameLabel.textColor = .white
-        return nameLabel
-    }
-    
-    private func initMainStackView() {
-        setPlayerStackView()
-
-        mainStackView.axis = .vertical
-        mainStackView.distribution = .equalSpacing
-        mainStackView.spacing = 10
-        self.view.addSubview(mainStackView)
-        
-        let margin = view.layoutMarginsGuide
-        mainStackView.translatesAutoresizingMaskIntoConstraints = false
-        mainStackView.leadingAnchor.constraint(equalTo: margin.leadingAnchor, constant: 5).isActive = true
-        mainStackView.trailingAnchor.constraint(equalTo: margin.trailingAnchor, constant: -20).isActive = true
-        mainStackView.topAnchor.constraint(equalTo: playerNumberSegmentControl.bottomAnchor, constant: 10).isActive = true
-    }
-    
-    private func drawBackground() {
-        if let image = UIImage(named: "bg_pattern") {
-            self.view.backgroundColor = UIColor(patternImage: image)
-        }
     }
     
     private let playerNumberSegmentControl : UISegmentedControl = {
@@ -99,17 +55,20 @@ class ViewController: UIViewController {
         resetGame()
     }
     
-    private func resetGame() {
-        pokerGame.resetGame()
-        removeMainStackViewSubViews()
-        initMainStackView()
+    private func createSegmentedControl() {
+        self.view.addSubview(gameTypeSegmentControl)
+        self.view.addSubview(playerNumberSegmentControl)
+        
+        gameTypeSegmentControl.translatesAutoresizingMaskIntoConstraints = false
+        gameTypeSegmentControl.widthAnchor.constraint(equalToConstant: 150).isActive = true
+        gameTypeSegmentControl.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 10).isActive = true
+        gameTypeSegmentControl.centerXAnchor.constraint(equalTo: view.layoutMarginsGuide.centerXAnchor).isActive = true
+        
+        playerNumberSegmentControl.translatesAutoresizingMaskIntoConstraints = false
+        playerNumberSegmentControl.topAnchor.constraint(equalTo: gameTypeSegmentControl.bottomAnchor, constant: 10).isActive = true
+        playerNumberSegmentControl.widthAnchor.constraint(equalTo: gameTypeSegmentControl.widthAnchor).isActive = true
+        playerNumberSegmentControl.centerXAnchor.constraint(equalTo: view.layoutMarginsGuide.centerXAnchor).isActive = true
     }
-    
-    private func removeMainStackViewSubViews() {
-        mainStackView.subviews.forEach { view in
-               view.removeFromSuperview()
-           }
-       }
     
     static private func configSegmentedControl(segment: UISegmentedControl) {
         segment.tintColor = .white
@@ -124,6 +83,47 @@ class ViewController: UIViewController {
         
         segment.setTitleTextAttributes(normalFontColor, for: .normal)
         segment.setTitleTextAttributes(selectedFontColor, for: .selected)
+    }
+    
+    private func createParticipantNameLabel(name: String) -> UILabel {
+        let nameLabel = UILabel()
+        nameLabel.text = name
+        nameLabel.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+        nameLabel.textColor = .white
+        return nameLabel
+    }
+    
+    private func initMainStackView() {
+        createParticipantStackView()
+
+        mainStackView.axis = .vertical
+        mainStackView.distribution = .equalSpacing
+        mainStackView.spacing = 10
+        self.view.addSubview(mainStackView)
+        
+        let margin = view.layoutMarginsGuide
+        mainStackView.translatesAutoresizingMaskIntoConstraints = false
+        mainStackView.leadingAnchor.constraint(equalTo: margin.leadingAnchor, constant: 5).isActive = true
+        mainStackView.trailingAnchor.constraint(equalTo: margin.trailingAnchor, constant: -20).isActive = true
+        mainStackView.topAnchor.constraint(equalTo: playerNumberSegmentControl.bottomAnchor, constant: 10).isActive = true
+    }
+    
+    private func drawBackground() {
+        if let image = UIImage(named: "bg_pattern") {
+            self.view.backgroundColor = UIColor(patternImage: image)
+        }
+    }
+ 
+    private func resetGame() {
+        pokerGame.resetGame()
+        removeMainStackViewSubViews()
+        initMainStackView()
+    }
+    
+    private func removeMainStackViewSubViews() {
+        mainStackView.subviews.forEach { view in
+               view.removeFromSuperview()
+        }
     }
     
     private func createCardImageView(image: UIImage) -> UIImageView {
@@ -150,7 +150,7 @@ class ViewController: UIViewController {
           return cardStackView
       }
     
-    private func setPlayerStackView() {
+    private func createParticipantStackView() {
         pokerGame.showPlayersCard { (Players) in
             let playerStackView = UIStackView()
             var playerNumber = 0
@@ -163,21 +163,21 @@ class ViewController: UIViewController {
            
             Players.repeatForEachPlayer{
                 playerNumber += 1
-                playerStackView.addArrangedSubview(writeParticipantNameLabel(name: "참가자\(playerNumber)"))
+                playerStackView.addArrangedSubview(createParticipantNameLabel(name: "참가자\(playerNumber)"))
                 playerStackView.addArrangedSubview(makeCard(cards: $0.showCards()))
             }
         }
         
         pokerGame.showDealerCard { (Dealer) in
-            let playerStackView = UIStackView()
-            playerStackView.axis = .vertical
-            playerStackView.distribution = .fill
-            playerStackView.alignment = .fill
-            playerStackView.spacing = 10
-            mainStackView.addArrangedSubview(playerStackView)
+            let dealerStackView = UIStackView()
+            dealerStackView.axis = .vertical
+            dealerStackView.distribution = .fill
+            dealerStackView.alignment = .fill
+            dealerStackView.spacing = 10
+            mainStackView.addArrangedSubview(dealerStackView)
             
-            playerStackView.addArrangedSubview(writeParticipantNameLabel(name: "딜러"))
-            playerStackView.addArrangedSubview(makeCard(cards: Dealer.showCards()))
+            dealerStackView.addArrangedSubview(createParticipantNameLabel(name: "딜러"))
+            dealerStackView.addArrangedSubview(makeCard(cards: Dealer.showCards()))
         }
     }
     
