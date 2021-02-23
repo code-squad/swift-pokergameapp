@@ -12,8 +12,18 @@ struct Card: CustomStringConvertible {
         }
     }
     
-    enum Rank: Int, CaseIterable, CustomStringConvertible {
+    enum Rank: Int, CaseIterable, CustomStringConvertible, Comparable {
         case ace = 1, two, three, four, five, six, seven, eight, nine, ten, jack, queen, king
+        
+        static func < (lhs: Card.Rank, rhs: Card.Rank) -> Bool {
+            if lhs == .ace {
+                return lhs > rhs
+            } else if rhs == .ace {
+                return lhs < rhs
+            } else {
+                return lhs.rawValue < rhs.rawValue
+            }
+        }
         
         var description: String {
             switch self {
@@ -32,6 +42,12 @@ struct Card: CustomStringConvertible {
     init(with shape: Shape, rank: Rank) {
         self.shape = shape
         self.rank = rank
+    }
+    
+    func calcurareScore(block: (Card.Shape, Card.Rank) -> ()) {
+        let rank = self.rank
+        let shape = self.shape
+        block(shape, rank)
     }
     
     var description: String {
