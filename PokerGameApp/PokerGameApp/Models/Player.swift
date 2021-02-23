@@ -7,7 +7,15 @@
 
 import Foundation
 
-class Player {
+protocol Participant {
+    var nickname: String { get }
+    
+    func dealt(_ card: Card)
+    func cardsCount() -> Int
+    func tellCard(at index: Int) -> Card
+}
+
+class Player: Participant {
     
     private(set) var nickname: String
     private var cards: [Card]
