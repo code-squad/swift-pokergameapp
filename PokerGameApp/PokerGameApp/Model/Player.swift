@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Player: CustomStringConvertible {
+class Player: CustomStringConvertible, Playable {
     
     private var cards: [Card]
     private(set) var name: String

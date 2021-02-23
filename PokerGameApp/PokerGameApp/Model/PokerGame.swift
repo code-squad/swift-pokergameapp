@@ -21,7 +21,7 @@ enum Participant: Int, CaseIterable {
 
 class PokerGame {
     private(set) var players: Players
-    private var dealer: Dealer
+    private(set) var dealer: Dealer
     
     init(players: Players, dealer: Dealer) {
         self.players = players
