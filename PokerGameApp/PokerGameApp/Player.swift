@@ -32,21 +32,7 @@ class Players {
             players.append(Player())
         }
     }
-    
-    public func reciveCard(_ card: Card) {
-        players.forEach { player in
-            player.reciveCard(card)
-        }
-    }
-    
-    public func showAllCard() -> [[Card]] {
-        var allCard = [[Card]]()
-        players.forEach { player in
-            allCard.append(player.showCards())
-        }
-        return allCard
-    }
-    
+
     public func dropAllCard() {
         players.forEach { player in
             player.dropMyCards()

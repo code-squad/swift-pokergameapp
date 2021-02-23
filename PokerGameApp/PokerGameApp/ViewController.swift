@@ -11,9 +11,6 @@ class ViewController: UIViewController {
     let cardBackImage: UIImage = {
         UIImage(named: "card-back") ?? UIImage()
     }()
-    let card = Card(shape: .diamond, number: .king)
-    let card2 = Card(shape: .diamond, number: .seven)
-    var testCardGame = TestCardGame()
     var pokerGame = PokerGame(playerNumber: .one, gameType: .five)
     var mainStackView = UIStackView()
     
@@ -21,9 +18,6 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         pokerGame.startGame()
         initialize()
-        print(card)
-        print(card2)
-        //testCardGame.testGame()
     }
     
     private func initialize() {
@@ -96,14 +90,16 @@ class ViewController: UIViewController {
     @objc func changeGameType(_ sender : UISegmentedControl) {
         newGameType = PokerGame.GameType.allCases[sender.selectedSegmentIndex]
         pokerGame = PokerGame(playerNumber: newPlayerNumber, gameType: newGameType)
-        pokerGame.resetGame()
-        removeMainStackViewSubViews()
-        initMainStackView()
+        resetGame()
     }
  
     @objc func changePlayerNumber(_ sender : UISegmentedControl) {
         newPlayerNumber = PokerGame.PlayerNumber.allCases[sender.selectedSegmentIndex]
         pokerGame = PokerGame(playerNumber: newPlayerNumber, gameType: newGameType)
+        resetGame()
+    }
+    
+    private func resetGame() {
         pokerGame.resetGame()
         removeMainStackViewSubViews()
         initMainStackView()
@@ -184,21 +180,6 @@ class ViewController: UIViewController {
             playerStackView.addArrangedSubview(makeCard(cards: Dealer.showCards()))
         }
     }
-
-    private func createCardStackView() -> UIStackView {
-        let stackView = UIStackView()
-        let numberOfCard = 7
-        let intervalBetweenCards: CGFloat = -5
-        
-        for _ in 0..<numberOfCard {
-            stackView.addArrangedSubview(createCardImageView(image: UIImage(named: "dK") ?? UIImage()))
-        }
-        stackView.axis = .horizontal
-        stackView.distribution = .fillEqually
-        stackView.spacing = intervalBetweenCards
-
-        return stackView
-    }
     
     //상태바 글씨를 흰색으로 변경
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -207,9 +188,7 @@ class ViewController: UIViewController {
     
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
             if motion == .motionShake {
-                pokerGame.resetGame()
-                removeMainStackViewSubViews()
-                initMainStackView()
+                resetGame()
             }
     }
 }
