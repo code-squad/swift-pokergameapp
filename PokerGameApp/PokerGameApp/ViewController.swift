@@ -14,16 +14,16 @@ class ViewController: UIViewController {
     let card = Card(shape: .diamond, number: .king)
     let card2 = Card(shape: .diamond, number: .seven)
     var testCardGame = TestCardGame()
-    var pokerGame = PokerGame(playerNumber: .one, gameType: .seven)
+    var pokerGame = PokerGame(playerNumber: .four, gameType: .seven)
     var mainStackView = UIStackView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        pokerGame.startGame()
         initialize()
         print(card)
         print(card2)
         //testCardGame.testGame()
-        pokerGame.startGame()
     }
     
     private func initialize() {
@@ -38,7 +38,7 @@ class ViewController: UIViewController {
         
         gameTypeSegmentControl.translatesAutoresizingMaskIntoConstraints = false
         gameTypeSegmentControl.widthAnchor.constraint(equalToConstant: 150).isActive = true
-        gameTypeSegmentControl.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor).isActive = true
+        gameTypeSegmentControl.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 20).isActive = true
         gameTypeSegmentControl.centerXAnchor.constraint(equalTo: view.layoutMarginsGuide.centerXAnchor).isActive = true
         
         playerNumberSegmentControl.translatesAutoresizingMaskIntoConstraints = false
@@ -56,20 +56,18 @@ class ViewController: UIViewController {
     }
     
     private func initMainStackView() {
-        mainStackView.addArrangedSubview(writeParticipantNameLabel(name: "참가자"))
-        mainStackView.addArrangedSubview(createCardStackView())
-        mainStackView.addArrangedSubview(writeParticipantNameLabel(name: "딜러"))
-        mainStackView.addArrangedSubview(createCardStackView())
-        self.view.addSubview(mainStackView)
-        
-        let margin = view.layoutMarginsGuide
+        setPlayerStackView()
+
         mainStackView.axis = .vertical
         mainStackView.distribution = .equalSpacing
         mainStackView.spacing = 10
+        self.view.addSubview(mainStackView)
+        
+        let margin = view.layoutMarginsGuide
         mainStackView.translatesAutoresizingMaskIntoConstraints = false
         mainStackView.leadingAnchor.constraint(equalTo: margin.leadingAnchor, constant: 5).isActive = true
         mainStackView.trailingAnchor.constraint(equalTo: margin.trailingAnchor, constant: -20).isActive = true
-        mainStackView.topAnchor.constraint(equalTo: playerNumberSegmentControl.bottomAnchor, constant: 0).isActive = true
+        mainStackView.topAnchor.constraint(equalTo: playerNumberSegmentControl.bottomAnchor, constant: 30).isActive = true
     }
     
     private func drawBackground() {
@@ -97,19 +95,17 @@ class ViewController: UIViewController {
         segment.layer.borderColor = UIColor.white.cgColor
 
         let normalFontColor: [NSAttributedString.Key: Any] = [
-                 .foregroundColor: UIColor.white
-             ]
-             
+            .foregroundColor: UIColor.white ]
         let selectedFontColor: [NSAttributedString.Key: Any] = [
-            .foregroundColor: UIColor.black
-        ]
+            .foregroundColor: UIColor.black ]
+        
         segment.setTitleTextAttributes(normalFontColor, for: .normal)
         segment.setTitleTextAttributes(selectedFontColor, for: .selected)
     }
     
-    private func createCardImageView() -> UIImageView {
+    private func createCardImageView(image: UIImage) -> UIImageView {
         let imageView = UIImageView()
-        imageView.image = cardBackImage
+        imageView.image = image
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor, multiplier: 1.27).isActive = true
         imageView.clipsToBounds = true
@@ -117,15 +113,59 @@ class ViewController: UIViewController {
         return imageView
     }
     
+    private func makeCard(cards : [Card]) -> UIStackView {
+          let cardStackView = UIStackView()
+          cardStackView.axis = .horizontal
+          cardStackView.distribution = .fillEqually
+          cardStackView.alignment = .fill
+          cardStackView.spacing = -10
+          cardStackView.translatesAutoresizingMaskIntoConstraints = false
+          
+          cards.forEach { card in
+            cardStackView.addArrangedSubview(createCardImageView(image: UIImage(named: "\(card.shape.imageFileName)\(card.number)") ?? UIImage()))
+          }
+          return cardStackView
+      }
+    
+    private func setPlayerStackView() {
+        pokerGame.showPlayersCard { (Players) in
+            let playerStackView = UIStackView()
+            var playerNumber = 0
+            
+            playerStackView.axis = .vertical
+            playerStackView.distribution = .fill
+            playerStackView.alignment = .fill
+            playerStackView.spacing = 10
+            mainStackView.addArrangedSubview(playerStackView)
+           
+            Players.repeatForEachPlayer{
+                playerNumber += 1
+                playerStackView.addArrangedSubview(writeParticipantNameLabel(name: "참가자\(playerNumber)"))
+                playerStackView.addArrangedSubview(makeCard(cards: $0.showCards()))
+            }
+        }
+        
+        pokerGame.showDealerCard { (Dealer) in
+            let playerStackView = UIStackView()
+            playerStackView.axis = .vertical
+            playerStackView.distribution = .fill
+            playerStackView.alignment = .fill
+            playerStackView.spacing = 10
+            mainStackView.addArrangedSubview(playerStackView)
+            
+            playerStackView.addArrangedSubview(writeParticipantNameLabel(name: "딜러"))
+            playerStackView.addArrangedSubview(makeCard(cards: Dealer.showCards()))
+        }
+    }
+
     private func createCardStackView() -> UIStackView {
         let stackView = UIStackView()
         let numberOfCard = 7
         let intervalBetweenCards: CGFloat = -5
         
         for _ in 0..<numberOfCard {
-            stackView.addArrangedSubview(createCardImageView())
+            stackView.addArrangedSubview(createCardImageView(image: UIImage(named: "dK") ?? UIImage()))
         }
-
         stackView.axis = .horizontal
         stackView.distribution = .fillEqually
         stackView.spacing = intervalBetweenCards
