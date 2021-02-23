@@ -51,7 +51,7 @@ class PockerGame {
     init(participantType: ParticipantType, gameType: GameType) {
         self.gameType = gameType
         self.participantType = participantType
-        dealer = Dealer(name: PlayerType.Dealer)
+        dealer = Dealer()
         participants = Participants(participantType: participantType)
     }
     
