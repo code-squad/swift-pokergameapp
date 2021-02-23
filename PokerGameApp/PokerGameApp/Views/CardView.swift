@@ -15,8 +15,8 @@ class CardView: UIImageView {
         self.card = card
         super.init(frame: .zero)
         
-        let cardImage = UIImage(named: "\(card.suit)\(card.rank)")
-        self.image = cardImage
+        let cardImage = CardImage(of: card)
+        self.image = UIImage(named: cardImage.fileName)
         self.translatesAutoresizingMaskIntoConstraints = false
         self.heightAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1.27).isActive = true
     }
