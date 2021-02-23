@@ -20,7 +20,13 @@ class ViewController: UIViewController {
         initPokerPlate()
         makeSegmentedControl(typeof: .cards)
         makeSegmentedControl(typeof: .players)
+        
+        // 메달
         setPokerGame(numberOfPlayer: .twoPlayer, stud: .sevenCardStud)
+        let foo = pokerPlate.subviews[0] as! UIStackView
+        let label = foo.subviews.last as! UILabel
+        label.text = "🏅"
+        
     }
     
     //MARK: set
@@ -37,27 +43,42 @@ class ViewController: UIViewController {
         pokerGame.players.configEachPlayer { (player) in
             let playerNameLabel = setPlayerNameLabel(name: player.name)
             let imageStackView = setImageStackView(stud: stud, player: player)
-            addPlayersStackViewIntoPokerPlate(imageStackView: imageStackView, nameLabel: playerNameLabel, numberOfPlayer: numberOfPlayer)
+            addPlayersResultStackViewIntoPokerPlate(imageStackView: imageStackView, nameLabel: playerNameLabel, numberOfPlayer: numberOfPlayer)
         }
     }
 
     //MARK: Set PokerPlate
-    private func addPlayersStackViewIntoPokerPlate(imageStackView: UIStackView, nameLabel: UILabel, numberOfPlayer: NumberOfParticipant){
+    private func addPlayersResultStackViewIntoPokerPlate(imageStackView: UIStackView, nameLabel: UILabel, numberOfPlayer: NumberOfParticipant){
+        let playerStackView: UIStackView = {
+            let stackView = UIStackView()
+            stackView.axis = .vertical
+            stackView.distribution = .fill
+            stackView.spacing = 5
+            stackView.addArrangedSubview(nameLabel)
+            stackView.addArrangedSubview(imageStackView)
+            return stackView
+        }()
         
-        
-        numberOfPlayer.iterateRawValue {
-            let playerStackView: UIStackView = {
-                let stackView = UIStackView()
-                stackView.axis = .vertical
-                stackView.distribution = .fill
-                stackView.spacing = 0
-                stackView.addArrangedSubview(nameLabel)
-                stackView.addArrangedSubview(imageStackView)
-                return stackView
-            }()
-            
-            pokerPlate.addArrangedSubview(playerStackView)
+        var winnerSign: UILabel {
+            let label = UILabel()
+            label.text = " "
+            label.font = UIFont.systemFont(ofSize: 45)
+            label.textAlignment = .center
+            label.widthAnchor.constraint(equalToConstant: 50).isActive = true
+            return label
         }
+        
+        let playerResultStackView: UIStackView = {
+            let stackView = UIStackView()
+            stackView.axis = .horizontal
+            stackView.distribution = .fill
+            stackView.spacing = 5
+            stackView.addArrangedSubview(playerStackView)
+            stackView.addArrangedSubview(winnerSign)
+            return stackView
+        }()
+        
+        pokerPlate.addArrangedSubview(playerResultStackView)
     }
     
     private func initPokerPlate() {
@@ -65,7 +86,6 @@ class ViewController: UIViewController {
             let stackView = UIStackView()
             stackView.axis = .vertical
             stackView.distribution = .equalSpacing
-            stackView.spacing = 10
             return stackView
         }()
         
@@ -79,8 +99,8 @@ class ViewController: UIViewController {
         
         pokerPlate.translatesAutoresizingMaskIntoConstraints = false
         pokerPlate.leadingAnchor.constraint(equalTo: margin.leadingAnchor, constant: 5).isActive = true
-        pokerPlate.trailingAnchor.constraint(equalTo: margin.trailingAnchor, constant: -20).isActive = true
-        pokerPlate.topAnchor.constraint(equalTo: lastSegmentedControlMargin.bottomAnchor, constant: 0).isActive = true
+        pokerPlate.trailingAnchor.constraint(equalTo: margin.trailingAnchor, constant: -5).isActive = true
+        pokerPlate.topAnchor.constraint(equalTo: lastSegmentedControlMargin.bottomAnchor, constant: 30).isActive = true
         pokerPlate.bottomAnchor.constraint(equalTo: margin.bottomAnchor, constant: -50).isActive = true
     }
     
