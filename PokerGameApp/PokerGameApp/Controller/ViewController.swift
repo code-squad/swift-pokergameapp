@@ -57,7 +57,7 @@ class ViewController: UIViewController {
         return imageView
     }
     
-    func makeCardStackView(player: Player) -> UIStackView {
+    func makeCardStackView(player: Playable) -> UIStackView {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.alignment = .fill
@@ -72,7 +72,7 @@ class ViewController: UIViewController {
         return stackView
     }
     
-    func makePlayerStackView(player: Player) -> UIStackView{
+    func makePlayerStackView(player: Playable) -> UIStackView{
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.alignment = .fill
@@ -89,7 +89,7 @@ class ViewController: UIViewController {
         return stackView
     }
     
-    func makePlayersStackView(players: Players) {
+    func makePlayersStackView(players: Players, dealer: Dealer) {
         playersStackView.subviews.forEach { (subView) in
             subView.removeFromSuperview()
         }
@@ -98,6 +98,8 @@ class ViewController: UIViewController {
             let stackView = makePlayerStackView(player: player)
             playersStackView.addArrangedSubview(stackView)
         }
+        let dealerStackView = makePlayerStackView(player: dealer)
+        playersStackView.addArrangedSubview(dealerStackView)
     }
     
     func startGame() {
@@ -105,7 +107,7 @@ class ViewController: UIViewController {
         guard let participant = pokerGameParticipant else {return}
         pokerGame = PokerGame(players: Players(participant: participant), dealer: Dealer(gameType: gameType))
         pokerGame?.startGame()
-        makePlayersStackView(players: pokerGame!.players)
+        makePlayersStackView(players: pokerGame!.players, dealer: pokerGame!.dealer)
     }
     
     @objc func gameTypeChanged(sender: UISegmentedControl) {

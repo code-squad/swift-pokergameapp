@@ -7,7 +7,10 @@
 
 import Foundation
 
-class Dealer {
+class Dealer: Playable {
+    var name: String {
+        return "Dealer"
+    }
     private var cardDeck: CardDeck
     private var cards: [Card]
     private var gameType: GameType
@@ -18,6 +21,11 @@ class Dealer {
         self.gameType = gameType
     }
     
+    func retrieveCard(completion: (Card) -> Void) {
+        cards.forEach { (card) in
+            completion(card)
+        }
+    }
     func deal(to players: Players) {
         players.distribute(dealer: self)
         self.cards = give()
@@ -35,4 +43,9 @@ class Dealer {
         cardDeck.filltheCardDeck()
         cardDeck.shuffle()
     }
+}
+
+protocol Playable {
+    var name: String{get}
+    func retrieveCard(completion: (Card) -> Void)
 }
