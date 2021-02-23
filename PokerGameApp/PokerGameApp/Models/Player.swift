@@ -9,16 +9,12 @@ import Foundation
 
 class Player {
     
-    private let nickname: String
+    private(set) var nickname: String
     private var cards: [Card]
     
     init(nickname: String) {
         self.nickname = nickname
         self.cards = []
-    }
-    
-    func tellName() -> String {
-        return nickname
     }
     
     func dealt(_ card: Card) {

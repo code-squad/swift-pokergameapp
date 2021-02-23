@@ -26,7 +26,7 @@ class CardInfoStackView: UIStackView {
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         self.addArrangedSubview(nameLabel)
         nameLabel.textColor = UIColor.white
-        nameLabel.text = showdownCards.getOwnerName()
+        nameLabel.text = showdownCards.owner.nickname
         
         var cardViews: [UIImageView] = []
         showdownCards.showCards {
