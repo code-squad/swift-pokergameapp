@@ -10,9 +10,11 @@ import Foundation
 class Player: CustomStringConvertible {
     
     private var cards: [Card]
+    private(set) var name: String
     
-    init() {
+    init(name: String) {
         self.cards = [Card]()
+        self.name = name
     }
     
     func takeCard(with cards: [Card]) {

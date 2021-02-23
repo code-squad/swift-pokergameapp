@@ -80,6 +80,7 @@ class ViewController: UIViewController {
         
         let label = UILabel()
         label.textColor = .white
+        label.text = player.name
         label.heightAnchor.constraint(equalToConstant: 20).isActive = true
         
         stackView.addArrangedSubview(label)
