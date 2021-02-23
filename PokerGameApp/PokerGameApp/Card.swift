@@ -16,8 +16,17 @@ class Card: CustomStringConvertible {
         var description: String {
             return rawValue
         }
-        func transformSuit() {
-            
+        func transformSuit() -> String{
+            switch self {
+            case .clover:
+                return "c"
+            case .heart:
+                return "h"
+            case .diamond:
+                return "d"
+            case .spade:
+                return "s"
+            }
         }
     }
     
@@ -38,8 +47,13 @@ class Card: CustomStringConvertible {
                 return String(rawValue)
             }
         }
-        func transformRank() {
-            
+        func transformRank() -> String {
+            switch self {
+            case .A, .J, .Q, .K:
+                return description
+            default:
+                return String(rawValue)
+            }
         }
     }
     
