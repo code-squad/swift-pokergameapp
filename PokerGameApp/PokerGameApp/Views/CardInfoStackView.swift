@@ -9,10 +9,12 @@ import UIKit
 
 class CardInfoStackView: UIStackView {
     
+    private let player: Player
     private let nameLabel = UILabel()
     private var cardStackView = UIStackView()
     
-    init() {
+    init(player: Player) {
+        self.player = player
         super.init(frame: .zero)
         
         self.translatesAutoresizingMaskIntoConstraints = false
@@ -23,7 +25,7 @@ class CardInfoStackView: UIStackView {
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         self.addArrangedSubview(nameLabel)
         nameLabel.textColor = UIColor.white
-        //nameLabel.text = showdownCards.owner.nickname
+        nameLabel.text = player.nickname
         
         var cardViews: [UIImageView] = []
         //showdownCards.showCards {
