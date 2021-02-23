@@ -7,13 +7,27 @@
 
 import Foundation
 
-class Dealer: Player {
-    
+class Dealer: Participant {
+    private(set) var nickname: String
+    private var cards: [Card]
     private var cardDeck: CardDeck
     
     init(cardDeck: CardDeck) {
+        self.nickname = "Dealer"
+        self.cards = []
         self.cardDeck = cardDeck
-        super.init(nickname: "Dealer")
+    }
+    
+    func dealt(_ card: Card) {
+        self.cards.append(card)
+    }
+    
+    func cardsCount() -> Int {
+        cards.count
+    }
+    
+    func tellCard(at index: Int) -> Card {
+        return cards[index]
     }
     
     func deal() -> Card? {
