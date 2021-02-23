@@ -30,4 +30,10 @@ class Players {
         var cardsFromDealer = cards
         players.forEach { $0.dealt(cardsFromDealer.removeFirst()) }
     }
+    
+    func showPlayers(handler: (Player) -> ()) {
+        self.players.forEach {
+            handler($0)
+        }
+    }
 }
