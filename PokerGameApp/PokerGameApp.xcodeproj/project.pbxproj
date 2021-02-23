@@ -11,7 +11,6 @@
 		E4E22CC125E3A6AB008CA611 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E22CC025E3A6AB008CA611 /* CardView.swift */; };
 		E4E22CC825E3A8B7008CA611 /* CardInfoStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E22CC725E3A8B7008CA611 /* CardInfoStackView.swift */; };
 		E4E22CCF25E4AD8F008CA611 /* CardImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E22CCE25E4AD8F008CA611 /* CardImage.swift */; };
-		E4E749AC25DFA70C000A474D /* ShowdownCards.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E749AB25DFA70C000A474D /* ShowdownCards.swift */; };
 		E4E8147C25DA8CC700AC0DB5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E8147B25DA8CC700AC0DB5 /* AppDelegate.swift */; };
 		E4E8147E25DA8CC700AC0DB5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E8147D25DA8CC700AC0DB5 /* SceneDelegate.swift */; };
 		E4E8148025DA8CC700AC0DB5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E8147F25DA8CC700AC0DB5 /* ViewController.swift */; };
@@ -31,7 +30,6 @@
 		E4E22CC025E3A6AB008CA611 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		E4E22CC725E3A8B7008CA611 /* CardInfoStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardInfoStackView.swift; sourceTree = "<group>"; };
 		E4E22CCE25E4AD8F008CA611 /* CardImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardImage.swift; sourceTree = "<group>"; };
-		E4E749AB25DFA70C000A474D /* ShowdownCards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowdownCards.swift; sourceTree = "<group>"; };
 		E4E8147825DA8CC700AC0DB5 /* PokerGameApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PokerGameApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4E8147B25DA8CC700AC0DB5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E4E8147D25DA8CC700AC0DB5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -69,7 +67,6 @@
 				E4E814A525DD05E200AC0DB5 /* Player.swift */,
 				E457C51825DE500500471393 /* Players.swift */,
 				E4E814A825DD06A100AC0DB5 /* Dealer.swift */,
-				E4E749AB25DFA70C000A474D /* ShowdownCards.swift */,
 				E4E22CCE25E4AD8F008CA611 /* CardImage.swift */,
 			);
 			path = Models;
@@ -204,7 +201,6 @@
 				E4E814A925DD06A100AC0DB5 /* Dealer.swift in Sources */,
 				E457C51925DE500500471393 /* Players.swift in Sources */,
 				E4E814A625DD05E200AC0DB5 /* Player.swift in Sources */,
-				E4E749AC25DFA70C000A474D /* ShowdownCards.swift in Sources */,
 				E4E8149325DB874900AC0DB5 /* Card.swift in Sources */,
 				E4E22CC125E3A6AB008CA611 /* CardView.swift in Sources */,
 				E4E8149F25DBEF9A00AC0DB5 /* Test.swift in Sources */,

@@ -30,8 +30,4 @@ class Players {
         var cardsFromDealer = cards
         players.forEach { $0.dealt(cardsFromDealer.removeFirst()) }
     }
-    
-    func showdown() -> [ShowdownCards] {
-        return players.map { $0.showdown() }
-    }
 }

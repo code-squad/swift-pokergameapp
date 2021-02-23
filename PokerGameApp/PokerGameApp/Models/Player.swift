@@ -20,8 +20,4 @@ class Player {
     func dealt(_ card: Card) {
         self.cards.append(card)
     }
-    
-    func showdown() -> ShowdownCards {
-        return ShowdownCards(owner: self, setOfCards: cards)
-    }
 }
