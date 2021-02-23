@@ -85,21 +85,13 @@ class ViewController: UIViewController {
         playerStackView.subviews.forEach { $0.removeFromSuperview() }
     }
     
-    func updateGameInfo(with selectedGame: PokerGame.StudPoker) -> PokerGame {
-        let dealer = Dealer(cardDeck: deckForGame)
-        let players = Players(numberOfPlayers: currentNumberOfPlayers)
-        let game = PokerGame(dealer: dealer, players: players, gameType: selectedGame)
-        game.startGame()
-        return game
-    }
-    
-    func updateGameInfo(with selectedNumberOfPlayers: PokerGame.Size) -> PokerGame {
-        let dealer = Dealer(cardDeck: deckForGame)
-        let players = Players(numberOfPlayers: selectedNumberOfPlayers)
-        let gameType = currentGameType
-        let game = PokerGame(dealer: dealer, players: players, gameType: gameType)
-        game.startGame()
-        return game
+    func updateGameInfo() -> PokerGame {
+        let newDeck = CardDeck()
+        dealer = Dealer(cardDeck: newDeck)
+        players = Players(numberOfPlayers: currentNumberOfPlayers)
+        pokerGame = PokerGame(dealer: dealer, players: players, gameType: currentGameType)
+        pokerGame.startGame()
+        return pokerGame
     }
     
     func updatePlayerStackView(for game: PokerGame) {
@@ -144,10 +136,10 @@ class ViewController: UIViewController {
     func createNewGame<T>(with info: T) {
         clearPlayerStackView()
         if T.self is PokerGame.StudPoker.Type {
-            let newGame = updateGameInfo(with: currentGameType)
+            let newGame = updateGameInfo()
             updatePlayerStackView(for: newGame)
         } else if T.self is PokerGame.Size.Type {
-            let newGame = updateGameInfo(with: currentNumberOfPlayers)
+            let newGame = updateGameInfo()
             updatePlayerStackView(for: newGame)
         }
     }
