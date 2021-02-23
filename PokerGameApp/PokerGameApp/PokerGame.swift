@@ -36,17 +36,28 @@ class PokerGame {
         self.isEndGame = false
         players.takeSeat(with: playerNumber)
     }
-
+    
+    public func shareCards() {
+        dealer.distributeCard(players, numberOfCards: gameType)
+    }
+    
+    public func showPlayersCard(closure: (Players) -> ()) {
+        closure(players)
+    }
+    
+    public func showDealerCard(closure: (Dealer) -> ()) {
+        closure(dealer)
+    }
+    
     public func startGame() {
         while !isEndGame {
-            dealer.distributeCard(players, numberOfCards: gameType)
+            shareCards()
             isEndGame = dealer.judgeEndGame(numberOfPlayers: players, numberOfCards: gameType)
             
-            players.showAllCard()
+            players.repeatForEachPlayer{$0.showCards()}
             dealer.showCards()
-            players.dropAllCard()
-            dealer.dropMyCards()
-            
+//            players.dropAllCard()
+//            dealer.dropMyCards()
         }
         print("게임이 종료되었습니다.")
     }

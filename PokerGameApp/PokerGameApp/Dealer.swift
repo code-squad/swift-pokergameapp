@@ -22,8 +22,10 @@ class Dealer: Playable {
     
     public func distributeCard(_ players: Players, numberOfCards: PokerGame.GameType) {
         for _ in 0..<numberOfCards.value {
-            if let card = cardDeck.popCard() {
-                players.reciveCard(card)
+            players.repeatForEachPlayer {
+                if let card = cardDeck.popCard() {
+                    $0.reciveCard(card)
+                }
             }
             if let card = cardDeck.popCard() {
                 cards.append(card)
