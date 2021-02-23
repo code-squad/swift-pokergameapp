@@ -95,12 +95,10 @@ class ViewController: UIViewController {
     }
     
     func updatePlayerStackView(for game: PokerGame) {
-        //game.getPlayersResult().forEach {
-        //    let cardInfoStackView = CardInfoStackView(showdownCards: $0)
-        //    playerStackView.addArrangedSubview(cardInfoStackView)
-        //}
-        //let dealerCardInfo = CardInfoStackView(showdownCards: game.getDealerResult())
-        //playerStackView.addArrangedSubview(dealerCardInfo)
+        players.showPlayers {
+            playerStackView.addArrangedSubview(CardInfoStackView(player: $0))
+        }
+        playerStackView.addArrangedSubview(CardInfoStackView(player: dealer))
     }
     
     func setProperties(of stackView: UIStackView, axis: NSLayoutConstraint.Axis) {
