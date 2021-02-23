@@ -17,9 +17,9 @@ struct Card: CustomStringConvertible {
         
         static func < (lhs: Card.Rank, rhs: Card.Rank) -> Bool {
             if lhs == .ace {
-                return lhs > rhs
+                return false
             } else if rhs == .ace {
-                return lhs < rhs
+                return true
             } else {
                 return lhs.rawValue < rhs.rawValue
             }

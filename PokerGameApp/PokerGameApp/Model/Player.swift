@@ -3,7 +3,7 @@ import Foundation
 class Player: Playable {
     let name: String
     private var cards = [Card]()
-    private var result: Score {
+    var result: Score {
         return Dealer.calcurateCardScore(cards: cards)
     }
     

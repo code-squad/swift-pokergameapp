@@ -21,11 +21,7 @@ class ViewController: UIViewController {
         makeSegmentedControl(typeof: .cards)
         makeSegmentedControl(typeof: .players)
         
-        // 메달
         setPokerGame(numberOfPlayer: .twoPlayer, stud: .sevenCardStud)
-        let foo = pokerPlate.subviews[0] as! UIStackView
-        let label = foo.subviews.last as! UILabel
-        label.text = "🏅"
         
     }
     
@@ -34,7 +30,6 @@ class ViewController: UIViewController {
         for subview in self.view.subviews where !(subview is UISegmentedControl) {
             subview.removeFromSuperview()
         }
-        
         pokerGame = PokerGame(numberOfPlayer: numberOfPlayer, stud: stud)
         pokerPlate = UIStackView()
         initPokerPlate()
@@ -45,6 +40,15 @@ class ViewController: UIViewController {
             let imageStackView = setImageStackView(stud: stud, player: player)
             addPlayersResultStackViewIntoPokerPlate(imageStackView: imageStackView, nameLabel: playerNameLabel, numberOfPlayer: numberOfPlayer)
         }
+        
+        award()
+    }
+    
+    private func award() {
+        let winnerSeat = pokerGame.players.winnerPlayerSeatIndex()
+        guard let foo = pokerPlate.subviews[winnerSeat] as? UIStackView else { return }
+        guard let label = foo.subviews.last as? UILabel else { return }
+        label.text = "🏅"
     }
 
     //MARK: Set PokerPlate
@@ -59,7 +63,7 @@ class ViewController: UIViewController {
             return stackView
         }()
         
-        var winnerSign: UILabel {
+        var winnerSignLabel: UILabel {
             let label = UILabel()
             label.text = " "
             label.font = UIFont.systemFont(ofSize: 45)
@@ -74,7 +78,7 @@ class ViewController: UIViewController {
             stackView.distribution = .fill
             stackView.spacing = 5
             stackView.addArrangedSubview(playerStackView)
-            stackView.addArrangedSubview(winnerSign)
+            stackView.addArrangedSubview(winnerSignLabel)
             return stackView
         }()
         

@@ -2,6 +2,7 @@ import Foundation
 
 protocol Playable {
     var name: String { get }
+    var result: Score { get }
     func appendCard(_ card: Card)
     func resetCard()
 }
@@ -10,7 +11,7 @@ class Dealer: Playable {
     let name = "딜러"
     private var cards = [Card]()
     private var cardDeck: CardDeck
-    private var result: Score {
+    var result: Score {
         return Dealer.calcurateCardScore(cards: cards)
     }
     
@@ -50,19 +51,19 @@ class Dealer: Playable {
         let correctTwoRank = eachCardCount.filter({ $0.value == 2 })
         switch maxCardCount.value {
         case 4:
-            return .fourCard(maxCardCount.key)
+            return .fourCard(rank: maxCardCount.key)
         case _ where straightScore != .none:
             return straightScore
         case 3:
-            return .triple(maxCardCount.key)
+            return .triple(rank: maxCardCount.key)
         case 2 where correctTwoRank.count == 2:
             if let twoPair = correctTwoRank.max(by: { $0.value < $1.value }) {
-                return .twoPair(twoPair.key)
+                return .twoPair(rank: twoPair.key)
             } else {
                 return .none
             }
         case 2:
-            return .onePair(maxCardCount.key)
+            return .onePair(rank: maxCardCount.key)
         default:
             return .none
         }
@@ -74,6 +75,7 @@ extension Dealer {
         var isStraight = false
         var beforeNum = -1
         var currectCount = 1
+        
         var high: Card.Rank = .ace
         for rank in eachCardCount.keys.sorted() {
             if beforeNum + 1 == rank.rawValue || (beforeNum == 13 && rank.rawValue == 1) {
@@ -91,7 +93,7 @@ extension Dealer {
         
         let straightHighRank = high.rawValue >= 6 && high.rawValue <= 13 ? high : .ace
         if isStraight {
-            return .straight(straightHighRank)
+            return .straight(rank: straightHighRank)
         } else {
             return .none
         }
