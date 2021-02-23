@@ -31,7 +31,7 @@ class ViewController: UIViewController {
             self.view.backgroundColor = UIColor(patternImage: backgroundImage)
         }
         
-        createNewGame(with: currentGameType)
+        resetPlayerStackView()
         
         setProperties(of: segmentedControlStackView, axis: .vertical)
         segmentedControlStackView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
@@ -64,7 +64,7 @@ class ViewController: UIViewController {
         default:
             break
         }
-        createNewGame(with: currentGameType)
+        resetPlayerStackView()
     }
     
     @objc func numberOfPlayersChanged(_ sender: UISegmentedControl) {
@@ -78,7 +78,7 @@ class ViewController: UIViewController {
         default:
             break
         }
-        createNewGame(with: currentNumberOfPlayers)
+        resetPlayerStackView()
     }
     
     func clearPlayerStackView() {
@@ -129,19 +129,14 @@ class ViewController: UIViewController {
     
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         if motion == .motionShake {
-            createNewGame(with: currentGameType)
+            resetPlayerStackView()
         }
     }
     
-    func createNewGame<T>(with info: T) {
+    func resetPlayerStackView() {
         clearPlayerStackView()
-        if T.self is PokerGame.StudPoker.Type {
-            let newGame = updateGameInfo()
-            updatePlayerStackView(for: newGame)
-        } else if T.self is PokerGame.Size.Type {
-            let newGame = updateGameInfo()
-            updatePlayerStackView(for: newGame)
-        }
+        pokerGame = updateGameInfo()
+        updatePlayerStackView(for: pokerGame)
     }
     
     func testScenarios() {
