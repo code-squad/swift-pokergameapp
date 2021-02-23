@@ -11,8 +11,8 @@ class Players {
     private var players: [Player] = []
     
     init(participant: Participant) {
-        for _ in 0..<participant.rawValue {
-            players.append(Player())
+        for i in 0..<participant.rawValue {
+            players.append(Player(name: "Player\(i+1)"))
         }
     }
 
