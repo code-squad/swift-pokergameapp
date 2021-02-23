@@ -23,11 +23,9 @@ class PokerGame {
             }
         }
         
-        func namePlayers() -> [Player] {
-            var index: Int = 0
-            return (0..<self.rawValue).map { _ in
-                index += 1
-                return Player(nickname: "Player\(index)")
+        func showPlayers(handler: (Int) -> ()) {
+            (1...self.rawValue).forEach {
+                handler($0)
             }
         }
     }
