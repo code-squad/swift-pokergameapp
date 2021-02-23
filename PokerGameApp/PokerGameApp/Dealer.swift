@@ -9,14 +9,14 @@ import Foundation
 
 class Dealer: CustomStringConvertible {
     var description: String{
-        return dealer.description
+        return cards.description
     }
     
     private var cardDeck = CardDeck()
-    private(set) var dealer: [Card]
+    private var cards: [Card]
     
     init() {
-        self.dealer = [Card]()
+        self.cards = [Card]()
         cardDeck.makeCardDeck()
         cardDeck.shuffle()
     }
@@ -27,7 +27,13 @@ class Dealer: CustomStringConvertible {
     
     func makeDealerCard() {
         if let card = handOutCard() {
-            dealer.append(card)
+            cards.append(card)
+        }
+    }
+    
+    func retrieveCard(completion: (Card) -> Void) {
+        cards.forEach { (card) in
+            completion(card)
         }
     }
 }

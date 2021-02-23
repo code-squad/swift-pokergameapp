@@ -9,16 +9,22 @@ import Foundation
 
 class Player: CustomStringConvertible {
     var description: String{
-        return player.description
+        return cards.description
     }
     
-    private(set) var player: [Card]
+    private var cards: [Card]
     
     init() {
-        self.player = [Card]()
+        self.cards = [Card]()
     }
     
     func receiveCard(card: Card) {
-        player.append(card)
+        cards.append(card)
+    }
+    
+    func retrieveCard(completion: (Card) -> Void) {
+        cards.forEach { (card) in
+            completion(card)
+        }
     }
 }
