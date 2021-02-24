@@ -45,7 +45,7 @@ class Players : CustomStringConvertible {
     
     func dropAllCards() {
         for index in 0..<self.totalPeopleNum {
-            self.players[index].dropAll()
+            self.players[index].dropAllCards()
         }
     }
     
