@@ -30,7 +30,7 @@ class Players {
         }
     }
     
-    public func winnerPlayerSeatIndex() -> Int {
+    public func winnerPlayer() -> Playable {
         let winner = players.reduce(players[0]) { (playerA, playerB) -> Playable in
             if playerA.result < playerB.result {
                 return playerB
@@ -39,9 +39,9 @@ class Players {
             }
         }
         if let index = players.firstIndex(where: { $0.name == winner.name }) {
-            return Int(index)
+            return players[index]
         } else {
-            return -1
+            return Player(ID: 0)
         }
     }
 }

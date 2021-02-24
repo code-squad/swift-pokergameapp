@@ -45,14 +45,21 @@ class ViewController: UIViewController {
     }
     
     private func award() {
-        let winnerSeat = pokerGame.players.winnerPlayerSeatIndex()
-        guard let foo = pokerPlate.subviews[winnerSeat] as? UIStackView else { return }
-        guard let label = foo.subviews.last as? UILabel else { return }
-        label.text = "🏅"
+        let winner = pokerGame.players.winnerPlayer()
+        
+        for subView in pokerPlate.subviews {
+            guard let playerResultStackView = subView as? UIStackView else { return }
+            guard let playerStackView = playerResultStackView.subviews.first as? UIStackView else { return }
+            guard let label = playerStackView.subviews.first as? UILabel else { return }
+            if label.text == winner.name {
+                guard let winnerLabel = playerResultStackView.subviews.last as? UILabel else { return }
+                winnerLabel.text = "🏅"
+            }
+        }
     }
 
     //MARK: Set PokerPlate
-    private func addPlayersResultStackViewIntoPokerPlate(imageStackView: UIStackView, nameLabel: UILabel, numberOfPlayer: NumberOfParticipant){
+    private func addPlayersIntoPokerPlate(imageStackView: UIStackView, nameLabel: UILabel, numberOfPlayer: NumberOfParticipant){
 
         let playerStackView = makePlayerStackView(imageStackView: imageStackView, nameLabel: nameLabel)
         let winnerSignLabel = makeWinnerSignLabel()
