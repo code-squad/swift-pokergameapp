@@ -25,3 +25,21 @@ enum CardImage {
         return imageView
     }
 }
+
+enum CrownImage {
+    static let crown = "crown"
+    static let widthRatio: CGFloat = 0.4
+    static let heightRatio: CGFloat = 0.4
+    
+    static func image(_ name: String) -> UIImageView {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleToFill
+        imageView.clipsToBounds = true
+        imageView.image = UIImage(named: name)
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.widthAnchor.constraint(equalToConstant: 70).isActive = true
+        imageView.heightAnchor.constraint(equalToConstant: 70).isActive = true
+        
+        return imageView
+    }
+}
