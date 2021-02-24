@@ -48,9 +48,10 @@ class Player : CustomStringConvertible {
         self.myCard.getOne(card)
     }
     
-    func dropAll() {
+    func dropAllCards() {
         self.myCard.dropAll()
     }
+    
 }
 
 
@@ -73,27 +74,26 @@ class Dealer : Player {
         self.stud = stud
     }
     
-    func distributeCards(_ players: Players) -> Bool {
+    func distributeCards(_ players: Players) {
         for _ in 0..<self.stud.rawValue {
             var tempCardDeck = CardDeck()
             
             if let card = self.cardDeck.removeOne() {
                 self.getOne(card)
-            } else {
-                return false
             }
             
             for _ in 0..<players.totalPeopleNum {
                 if let card = self.cardDeck.removeOne() {
                     tempCardDeck.getOne(card)
-                } else {
-                    return false
                 }
             }
             players.distributeEachCard(with: tempCardDeck)
-            
         }
-        return true
+    }
+    
+    func checkEndGame(_ totalPeopleNum: Int) -> Bool {
+        let needCardNum = (totalPeopleNum + 1) * stud.rawValue
+        return cardDeck.count > needCardNum ? true : false
     }
     
     func resetCardDeck() {
@@ -104,4 +104,6 @@ class Dealer : Player {
     func currentStud() -> String {
         return "\(self.stud.rawValue)"
     }
+    
+
 }
