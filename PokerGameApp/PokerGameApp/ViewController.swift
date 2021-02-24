@@ -9,86 +9,68 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    private var viewBoardContents = [[String]]()
-    private var cardStud = 7
-    private var playersNum = 2
-    private var handStackViewArray = [UIStackView]()
-    private var verticalStackView = UIStackView()
-    private var cardArray = [UIImageView]()
-    private var playerLabelArray = [UILabel]()
+    let gameOperator = GameOperator()
+    let players = Players()
+    let verticalStackView = UIStackView()
+    private var playerInfo = [Player]()
     
     @IBAction func studChange(_ sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 {
-            cardStud = 7
-            restartGame(playersNum: playersNum, cardStud: cardStud)
+            gameOperator.stud = 7
+            restartGame(playerNum: gameOperator.num, cardStud: gameOperator.stud)
         } else if sender.selectedSegmentIndex == 1 {
-            cardStud = 5
-            restartGame(playersNum: playersNum, cardStud: cardStud)
+            gameOperator.stud = 5
+            restartGame(playerNum: gameOperator.num, cardStud: gameOperator.stud)
         }
     }
     
     @IBAction func numChange(_ sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 {
-            playersNum = 2
-            restartGame(playersNum: playersNum, cardStud: cardStud)
+            gameOperator.num = 1
+            restartGame(playerNum: gameOperator.num, cardStud: gameOperator.stud)
         } else if sender.selectedSegmentIndex == 1 {
-            playersNum = 3
-            restartGame(playersNum: playersNum, cardStud: cardStud)
+            gameOperator.num = 2
+            restartGame(playerNum: gameOperator.num, cardStud: gameOperator.stud)
         } else if sender.selectedSegmentIndex == 2 {
-            playersNum = 4
-            restartGame(playersNum: playersNum, cardStud: cardStud)
+            gameOperator.num = 3
+            restartGame(playerNum: gameOperator.num, cardStud: gameOperator.stud)
         } else if sender.selectedSegmentIndex == 3 {
-            playersNum = 5
-            restartGame(playersNum: playersNum, cardStud: cardStud)
+            gameOperator.num = 4
+            restartGame(playerNum: gameOperator.num, cardStud: gameOperator.stud)
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setBackgroundImage()
-        startGame(playersNum: playersNum, cardStud: cardStud)
+        startGame()
     }
     
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
-        if motion == .motionShake {
-            restartGame(playersNum: playersNum, cardStud: cardStud)
-        }
+        restartGame(playerNum: gameOperator.num, cardStud: gameOperator.stud)
     }
     
 }
 
-// Game Playing
-
+// Game Play
 extension ViewController {
     
-    private func startGame(playersNum: Int, cardStud: Int) {
-        let gameOperator = GameOperator()
-        gameOperator.startGame(playersNum: playersNum, cardStud: cardStud)
-        gameOperator.checkBoard()
-        viewBoardContents = gameOperator.gameBoard
-        replaceChar()
-        print(viewBoardContents)
-        makeCardStackView()
-        makeVerticalStackView()
-        addGameBoardSubview()
+    private func startGame() {
+        playerInfo = gameOperator.retrieveInfo()
+        addVerticalStackView()
     }
     
-    private func restartGame(playersNum: Int, cardStud: Int) {
-        removeCardView()
-        handStackViewArray.removeAll()
-        cardArray.removeAll()
-        playerLabelArray.removeAll()
-        for subview in verticalStackView.subviews {
-            subview.removeFromSuperview()
-        }
-        startGame(playersNum: playersNum, cardStud: cardStud)
+    private func restartGame(playerNum: Int, cardStud: Int) {
+        verticalStackView.subviews.forEach{ $0.removeFromSuperview() }
+        gameOperator.resetGame()
+        playerInfo.removeAll()
+        gameOperator.startGame(playerNum: playerNum, cardStud: cardStud)
+        startGame()
     }
-    
-    
     
 }
 
-// View Output
+// View
 extension ViewController {
     
     private func setBackgroundImage() {
@@ -97,82 +79,95 @@ extension ViewController {
         }
     }
     
-    func addGameBoardSubview() {
-        playerLabelArray[playerLabelArray.endIndex-1].text = "Dealer"
-        for i in 0...playersNum {
-            verticalStackView.addArrangedSubview(playerLabelArray[i])
-            verticalStackView.addArrangedSubview(handStackViewArray[i])
-        }
+    private func makeCardImageView(card: Card) -> UIImageView {
+        let cardUIImageView = UIImageView()
+        cardUIImageView.image = UIImage(named: "\(stringConverter(card: card)).png")
+        cardUIImageView.heightAnchor.constraint(equalTo: cardUIImageView.widthAnchor, multiplier: 1.27).isActive = true
+        return cardUIImageView
     }
     
+    private func makeCardStackView(playerIndex: Int) -> UIStackView {
+        let cardUIStackView = UIStackView()
+        cardUIStackView.axis = .horizontal
+        cardUIStackView.distribution = .fillEqually
+        cardUIStackView.alignment = .fill
+        cardUIStackView.spacing = 5
+        cardUIStackView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(cardUIStackView)
+        
+        for i in 0..<playerInfo[playerIndex].hand.count {
+            let cardUIImageView = makeCardImageView(card: playerInfo[playerIndex].hand[i])
+            cardUIStackView.addArrangedSubview(cardUIImageView)
+        }
+        
+        return cardUIStackView
+    }
     
-    private func makeVerticalStackView() {
-        for i in 0...playersNum {
-            
-            verticalStackView.axis = .vertical
-            verticalStackView.distribution = .equalSpacing
-            verticalStackView.alignment = .fill
-            verticalStackView.spacing = 10
-            verticalStackView.translatesAutoresizingMaskIntoConstraints = false
-            
+    private func makeUILabelView(name: String) -> UILabel {
+        let playerUILabel = UILabel()
+        playerUILabel.text = name
+        playerUILabel.textColor = .white
+        playerUILabel.font = UIFont.boldSystemFont(ofSize: 20)
+        playerUILabel.textAlignment = .left
+        return playerUILabel
+    }
+    
+    private func makeVerticalStackView() -> UIStackView {
+        verticalStackView.axis = .vertical
+        verticalStackView.distribution = .equalSpacing
+        verticalStackView.alignment = .fill
+        verticalStackView.spacing = 10
+        verticalStackView.translatesAutoresizingMaskIntoConstraints = false
+        return verticalStackView
+    }
+    
+    private func addVerticalStackView() {
+        let verticalStackView = makeVerticalStackView()
+        for i in 0..<playerInfo.count {
             view.addSubview(verticalStackView)
-            
             verticalStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 100 + CGFloat(i) * 100).isActive = true
             verticalStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 10).isActive = true
             verticalStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -10).isActive = true
-            
-            playerLabelArray.append(UILabel())
-            playerLabelArray[i].text = "Player \(i+1)"
-            playerLabelArray[i].textColor = .white
-            playerLabelArray[i].font = UIFont.boldSystemFont(ofSize: 20)
-            playerLabelArray[i].textAlignment = .left
-            
-        }
-    }
-
-    private func makeCardStackView() {
-        for j in 0...playersNum {
-            handStackViewArray.append(UIStackView())
-            handStackViewArray[j].axis = .horizontal
-            handStackViewArray[j].distribution = .fillEqually
-            handStackViewArray[j].alignment = .fill
-            handStackViewArray[j].spacing = 5
-            handStackViewArray[j].translatesAutoresizingMaskIntoConstraints = false
-            
-            view.addSubview(handStackViewArray[j])
-            
-            for i in 0..<cardStud {
-                let cardUIImageView = UIImageView()
-                let image = UIImage(named: "\(viewBoardContents[j][i])")
-                cardUIImageView.image = image
-                cardUIImageView.heightAnchor.constraint(equalTo: cardUIImageView.widthAnchor, multiplier: 1.27).isActive = true
-                handStackViewArray[j].addArrangedSubview(cardUIImageView)
-            }
+            verticalStackView.addArrangedSubview(makeUILabelView(name: playerInfo[i].name))
+            verticalStackView.addArrangedSubview(makeCardStackView(playerIndex: i))
         }
     }
     
-    private func removeCardView() {
-        for i in 0..<handStackViewArray.count {
-            handStackViewArray[i].removeFromSuperview()
-            
-        }
-    }
 }
 
-// Convert Character to Image File Name
+// Converter: Card Value to Image File Name
 extension ViewController {
-
-    private func replaceChar() {
-        for i in 0..<viewBoardContents.count {
-            viewBoardContents[i] = viewBoardContents[i].map({$0[$0.startIndex] == "\u{2664}" ? "s\($0[$0.index(after: $0.startIndex)])" : $0})
-            viewBoardContents[i] = viewBoardContents[i].map({$0[$0.startIndex] == "\u{2667}" ? "c\($0[$0.index(after: $0.startIndex)])" : $0})
-            viewBoardContents[i] = viewBoardContents[i].map({$0[$0.startIndex] == "\u{2662}" ? "d\($0[$0.index(after: $0.startIndex)])" : $0})
-            viewBoardContents[i] = viewBoardContents[i].map({$0[$0.startIndex] == "\u{2661}" ? "h\($0[$0.index(after: $0.startIndex)])" : $0})
+    
+    func stringConverter(card: Card) -> String {
+        var cardName = String()
+        
+        switch card.shape {
+        case .spades:
+            cardName.append("s")
+        case .clubs:
+            cardName.append("c")
+        case .diamonds:
+            cardName.append("d")
+        case .hearts:
+            cardName.append("h")
         }
-        for i in 0..<viewBoardContents.count {
-            viewBoardContents[i] = viewBoardContents[i].map({$0[$0.index(after: $0.startIndex)] == "1" ? "\($0[$0.startIndex])10" : $0})
+        
+        switch card.num {
+        case .eleven:
+            cardName.append("J")
+        case .twelve:
+            cardName.append("Q")
+        case .thirteen:
+            cardName.append("K")
+        case .one:
+            cardName.append("A")
+        default:
+            cardName.append("\(card.num)")
         }
+        
+        return cardName
     }
     
 }
+
 
