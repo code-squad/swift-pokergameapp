@@ -47,7 +47,7 @@ class PokerGame {
         players.playerInfo(closure: closure)
     }
     
-    func dealerCardsInfo(closure: (PokerCard) -> Void) {
-        dealer.cardsInfo(closure: closure)
+    func dealerCardsInfo(closure: (Dealer) -> Void) {
+        closure(dealer)
     }
 }
