@@ -12,13 +12,21 @@ class PokerGame: CustomStringConvertible {
     private var players: [Player] = []
     private var dealer: Dealer
     
-    enum PlayerCount: Int {
-        case one = 1, two, three, four
+    enum PlayerCount: Int, CaseIterable {
+        case two = 2, three, four
+        
+        init(rawValue: Int) {
+            self = PlayerCount.allCases[rawValue]
+        }
     }
     
-    enum CardStud: Int {
-        case five = 5
+    enum CardStud: Int, CaseIterable {
         case seven = 7
+        case five = 5
+        
+        init(rawValue: Int) {
+            self = CardStud.allCases[rawValue]
+        }
     }
     
     let playerCount: PlayerCount

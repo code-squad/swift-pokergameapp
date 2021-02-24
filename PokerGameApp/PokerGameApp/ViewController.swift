@@ -136,29 +136,15 @@ class ViewController: UIViewController {
         return verticalStackView
     }()
     
-    @IBAction func changeCardStud(_ sender: Any) {
-        switch cardStudSegment.selectedSegmentIndex {
-        case 0:
-            cardStud = .seven
-        case 1:
-            cardStud = .five
-        default:
-            break
-        }
+    @IBAction func changeCardStud(_ sender: UISegmentedControl) {
+        let rule = PokerGame.CardStud.init(rawValue: sender.selectedSegmentIndex)
+        self.cardStud = rule
         startGame()
     }
     
-    @IBAction func changePlayerCount(_ sender: Any) {
-        switch playerCountSegment.selectedSegmentIndex {
-        case 0:
-            playerCount = .two
-        case 1:
-            playerCount = .three
-        case 2:
-            playerCount = .four
-        default:
-            break
-        }
+    @IBAction func changePlayerCount(_ sender: UISegmentedControl) {
+        let count = PokerGame.PlayerCount.init(rawValue: sender.selectedSegmentIndex)
+        self.playerCount = count
         startGame()
     }
 }
