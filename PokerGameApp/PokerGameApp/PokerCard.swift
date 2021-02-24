@@ -17,6 +17,19 @@ class PokerCard : CustomStringConvertible {
         var description: String {
             return "\(self.rawValue)"
         }
+        
+        var keyWord: String {
+            switch self {
+            case .clubs:
+                return "c"
+            case .diamonds:
+                return "d"
+            case .hearts:
+                return "h"
+            case .spades:
+                return "s"
+            }
+        }
     }
     
     enum Rank: Int, CaseIterable, CustomStringConvertible {
@@ -39,14 +52,14 @@ class PokerCard : CustomStringConvertible {
                 return "\(self.rawValue)"
             }
         }
+        
     }
     
     let suit:Suit, rank:Rank
     
     var description: String {
-        return "\(self.suit)\(self.rank)"
+        return "\(self.suit.keyWord)\(self.rank)"
     }
-    
     
     init(suit: Suit, rank: Rank) {
         self.suit = suit
