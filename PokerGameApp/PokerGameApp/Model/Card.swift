@@ -36,8 +36,8 @@ struct Card: CustomStringConvertible {
         }
     }
     
-    private var shape: Shape
-    private var rank: Rank
+    private(set) var shape: Shape
+    private(set) var rank: Rank
     
     init(with shape: Shape, rank: Rank) {
         self.shape = shape
