@@ -115,13 +115,13 @@ class ViewController: UIViewController {
       
         game.retrievePlayer(completion: { player in
             let stackView = makePlayerCardStackView(player: player)
-            verticalStackView.addArrangedSubview(makeLabelStackView(text: "Player"))
+            verticalStackView.addArrangedSubview(makeLabelStackView(text: player.description))
             verticalStackView.addArrangedSubview(stackView)
         })
         
         game.retrieveDealer(completion: { dealer in
             let stackView = makeDealerCardStackView(dealer: dealer)
-            verticalStackView.addArrangedSubview(makeLabelStackView(text: "Dealer"))
+            verticalStackView.addArrangedSubview(makeLabelStackView(text: dealer.description))
             verticalStackView.addArrangedSubview(stackView)
         })
 
