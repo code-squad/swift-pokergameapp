@@ -16,11 +16,13 @@ class PokerGame {
     var cardStud: CardStud
     var participant: NumberOfParticipant
     var dealer: Dealer
+    var cardDeck: CardDeck
     
     init() {
         self.participant = .twoPlayer
         self.players = Players()
-        self.dealer = Dealer()
+        self.cardDeck = CardDeck()
+        self.dealer = Dealer(cardDeck: cardDeck)
         players.registerPlayers(numberOfPlayer: self.participant, dealer: self.dealer)
         self.cardStud = .sevenCardStud
     }
@@ -28,7 +30,8 @@ class PokerGame {
     init(numberOfPlayer: NumberOfParticipant, stud: CardStud) {
         self.participant = numberOfPlayer
         self.players = Players()
-        self.dealer = Dealer()
+        self.cardDeck = CardDeck()
+        self.dealer = Dealer(cardDeck: cardDeck)
         players.registerPlayers(numberOfPlayer: numberOfPlayer, dealer: self.dealer)
         self.cardStud = stud
     }

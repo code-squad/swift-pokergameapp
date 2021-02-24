@@ -44,7 +44,7 @@ struct Card: CustomStringConvertible {
         self.rank = rank
     }
     
-    func calcurareScore(block: (Card.Rank) -> ()) {
+    func countScoreOfRankValue(block: (Card.Rank) -> ()) {
         let rank = self.rank
         block(rank)
     }
