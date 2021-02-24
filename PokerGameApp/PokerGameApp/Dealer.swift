@@ -33,8 +33,9 @@ enum NumberOfPlayers: Int, CustomStringConvertible, CaseIterable {
 }
 
 
+
 class Player : CustomStringConvertible {
-    var myCard: CardDeck
+    fileprivate var myCard: CardDeck
     
     var description: String {
         return "\(self.myCard)"
@@ -71,6 +72,7 @@ class Dealer : Player {
         self.cardDeck.reset()
         self.cardDeck.shuffle()
         self.stud = .five
+        super.init()
     }
     
     func selectStud(_ stud: Stud) {
