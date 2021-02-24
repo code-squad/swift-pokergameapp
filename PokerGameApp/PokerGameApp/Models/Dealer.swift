@@ -42,4 +42,8 @@ class Dealer: Playable {
     func makeHand() -> [UIImageView] {
         return hand.makeCardImage()
     }
+    
+    func calcHandKind() -> (Int, Set<Rank>) {
+        return (hand.judge()?.tellScore() ?? 0, hand.combiCardRank)
+    }
 }
