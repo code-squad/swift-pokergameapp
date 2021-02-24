@@ -13,11 +13,6 @@ class PokerGame {
         case fiveStud = "5 cards"
     }
     
-//    enum NumberOfPalyer: String, CaseIterable {
-//        case two = "2명"
-//        case three = "3명"
-//        case four = "4명"
-//    }
     enum NumberOfPalyer: Int, CaseIterable {
         case two = 2, three, four
     }
@@ -29,5 +24,11 @@ class PokerGame {
         players.registerPlayers(numberOfPlayers: numberOfPlayer, cardCount: cardCount)
         
         completion(players)
+    }
+    
+    func findWinner(players: Players, completion: @escaping (Playable) -> Void) {
+        if let winner: Playable = players.findPlayableWithHighestHands() {
+            completion(winner)
+        }
     }
 }
