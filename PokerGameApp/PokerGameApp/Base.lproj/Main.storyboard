@@ -17,27 +17,27 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="wYw-Uj-Q3n">
-                                <rect key="frame" x="108.5" y="58" width="197" height="31"/>
+                                <rect key="frame" x="165.5" y="58" width="83" height="31"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Tvn-tV-gXR"/>
                                 </constraints>
                                 <segments>
-                                    <segment title="First"/>
-                                    <segment title="Second"/>
+                                    <segment title="7"/>
+                                    <segment title="5"/>
                                 </segments>
                                 <connections>
-                                    <action selector="studDidChange:" destination="3fZ-AP-jzD" eventType="valueChanged" id="A58-FA-EzI"/>
+                                    <action selector="studChange:" destination="3fZ-AP-jzD" eventType="valueChanged" id="GyN-ke-X47"/>
                                 </connections>
                             </segmentedControl>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="R3f-1P-kIs">
-                                <rect key="frame" x="108.5" y="96" width="197" height="31"/>
+                                <rect key="frame" x="165.5" y="96" width="83" height="31"/>
                                 <segments>
-                                    <segment title="First"/>
-                                    <segment title="Second"/>
-                                    <segment title="Third"/>
+                                    <segment title="2"/>
+                                    <segment title="3"/>
+                                    <segment title="4"/>
                                 </segments>
                                 <connections>
-                                    <action selector="participantsNumDidChange:" destination="3fZ-AP-jzD" eventType="valueChanged" id="2rG-9s-1dw"/>
+                                    <action selector="numChange:" destination="3fZ-AP-jzD" eventType="valueChanged" id="Uqz-U3-oyn"/>
                                 </connections>
                             </segmentedControl>
                         </subviews>

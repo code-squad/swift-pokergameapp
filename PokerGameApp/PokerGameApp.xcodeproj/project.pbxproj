@@ -103,12 +103,12 @@
 			children = (
 				A00AAF5625DA3BC500DFEB07 /* AppDelegate.swift */,
 				A00AAF5825DA3BC500DFEB07 /* SceneDelegate.swift */,
-				A00AAF5A25DA3BC500DFEB07 /* ViewController.swift */,
 				A00AB02325DA897400DFEB07 /* Card.swift */,
 				A0A826B825DE42FC003B22C8 /* CardDeck.swift */,
 				A0A826FE25DE712B003B22C8 /* Player.swift */,
 				A0AE925525DCA9AD003F2755 /* Dealer.swift */,
 				A0A8270925DE7211003B22C8 /* GameOperator.swift */,
+				A00AAF5A25DA3BC500DFEB07 /* ViewController.swift */,
 				A00AAF5C25DA3BC500DFEB07 /* Main.storyboard */,
 				A00AAF5F25DA3BC600DFEB07 /* Assets.xcassets */,
 				A00AAF6125DA3BC600DFEB07 /* LaunchScreen.storyboard */,
