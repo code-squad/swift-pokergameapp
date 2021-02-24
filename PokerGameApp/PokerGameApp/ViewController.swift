@@ -15,6 +15,8 @@ class ViewController: UIViewController {
     private var mode = PokerGame.Mode.sevenStud
     private var numberOfPlayers = 4
     private var playerView = PlayerView()
+    private var playerWithWinnerView = PlayerWithWinnerView()
+    private var winner: Playable?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,8 +34,11 @@ class ViewController: UIViewController {
 private extension ViewController {
     func startPorkerGame(gameMode: PokerGame.Mode, numberOfPlayer: Int) {
         self.pokerGame.start(gameMode: gameMode, numberOfPlayer: numberOfPlayer) { players in
-            self.setPokerGameView(data: players)
-            players.resetPlayers()
+            self.pokerGame.findWinner(players: players) { playable in
+                self.winner = playable
+                self.setPokerGameView(data: players)
+                players.resetPlayers()
+            }
         }
     }
 
@@ -41,10 +46,18 @@ private extension ViewController {
         self.playerView.arrangedSubviews.forEach { $0.removeFromSuperview() }
         
         players.forEachPlayers { player in
-            self.pokerGameView.addArrangedSubview(makePlayerView(data: player))
+            self.pokerGameView.addArrangedSubview(makePlayerWithWinnerView(data: player))
         }
         self.view.addSubview(self.pokerGameView)
         pokerGameView.setConstraint(superView: self.view, segmentedControl: segmentedControl)
+    }
+    
+    func makePlayerWithWinnerView(data player: Playable) -> PlayerWithWinnerView {
+        if player.name == winner?.name {
+            return PlayerWithWinnerView(arrangedSubviews: [makePlayerView(data: player), makeWinnerView()])
+        } else {
+            return PlayerWithWinnerView(arrangedSubviews: [makePlayerView(data: player)])
+        }
     }
 
     func makePlayerView(data player: Playable) -> PlayerView {
@@ -58,6 +71,10 @@ private extension ViewController {
         let handView = HandView(arrangedSubviews: hand)
         
         return handView
+    }
+    
+    func makeWinnerView() -> UIImageView {
+        return CrownImage.image(CrownImage.crown)
     }
 
     func makePlayerNameLabel(data name: String) -> UILabel {
