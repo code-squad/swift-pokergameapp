@@ -4,7 +4,7 @@ class Player: Playable {
     let name: String
     private var cards = [Card]()
     var result: Score {
-        return Dealer.calcurateScore(of: cards)
+        return calcurateScore(of: cards)
     }
     
     init(ID: Int) {
