@@ -57,4 +57,30 @@ class Players {
     func resetPlayers() {
         players = [Playable]()
     }
+    
+    func findPlayableWithHighestHands() -> Playable? {
+        guard var winner: Playable = players.last else { return nil }
+        
+        players.forEach { playable in
+            winner = rankHandsKind(playable: playable, winner: winner)
+        }
+
+        return winner
+    }
+
+    private func rankHandsKind(playable: Playable, winner: Playable) -> Playable {
+        guard playable.calcHandKind().0 == winner.calcHandKind().0 else {
+            return playable.calcHandKind().0 > winner.calcHandKind().0 ? playable : winner
+        }
+
+        guard playable.calcHandKind().0 != 2 else {
+            return playable.calcHandKind().1.first?.rawValue ?? 0
+                > winner.calcHandKind().1.first?.rawValue ?? 0
+                ? playable : winner
+        }
+
+        return playable.calcHandKind().1.first?.rawValue ?? 0
+            > winner.calcHandKind().1.first?.rawValue ?? 0
+            ? playable : winner
+    }
 }
