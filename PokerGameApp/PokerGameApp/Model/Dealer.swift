@@ -30,17 +30,17 @@ class Dealer: Playable {
         players.distribute(dealer: self)
         self.cards = give()
     }
-    
     func give() -> [Card] {
         return cardDeck.give(gameType: gameType)
     }
-    
     func printDealerCards() {
         print("딜러 \(cards)")
     }
-    
     func readyToStart() {
         cardDeck.filltheCardDeck()
+        cardDeck.shuffle()
+    }
+    func shuffle() {
         cardDeck.shuffle()
     }
 }

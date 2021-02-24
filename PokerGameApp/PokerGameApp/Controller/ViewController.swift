@@ -41,7 +41,12 @@ class ViewController: UIViewController {
         setSegmentControlConstraints()
         setPlayersStackViewConstraints()
     }
-   
+    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        if motion == .motionShake {
+            startGame()
+        }
+    }
+    
     func setBackground() {
         guard let bgImage = UIImage(named: "bg_pattern") else { return }
         self.view.backgroundColor = UIColor(patternImage: bgImage)
