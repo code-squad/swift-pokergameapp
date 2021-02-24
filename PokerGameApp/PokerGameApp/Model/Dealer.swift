@@ -12,11 +12,11 @@ class Dealer: Playable {
     private var cards = [Card]()
     private var cardDeck: CardDeck
     var result: Score {
-        return Dealer.calcurateCardScore(cards: cards)
+        return Dealer.calcurateScore(of: cards)
     }
     
-    init() {
-        self.cardDeck = CardDeck()
+    init(cardDeck: CardDeck) {
+        self.cardDeck = cardDeck
     }
     
     
@@ -37,10 +37,10 @@ class Dealer: Playable {
         }
     }
     
-    static func calcurateCardScore(cards: [Card]) -> Score {
+    static func calcurateScore(of cards: [Card]) -> Score {
         var eachCardScore = Dictionary<Card.Rank, Int>()
         for card in cards {
-            card.calcurareScore { (rank) in
+            card.countScoreOfRankValue { (rank) in
                 eachCardScore[rank, default: 0] += 1
             }
         }
