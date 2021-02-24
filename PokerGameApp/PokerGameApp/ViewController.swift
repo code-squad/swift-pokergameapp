@@ -44,34 +44,55 @@ class ViewController: UIViewController {
         
     }
 
-    func showCard() {
-        let cardCount:CGFloat = 7
-        let cardWidth = view.frame.width / (cardCount + 1)
-        let cardHeight = cardWidth * 1.27
-        
-        let stackView = UIStackView()
-        stackView.axis = .horizontal
-        stackView.distribution = .fillEqually
-        stackView.alignment = .fill
-        stackView.spacing = 8
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        let image = UIImage(named: "card-back")
-
-        for _ in 1...7 {
-            let cardImage = UIImageView(image: image)
-            stackView.addArrangedSubview(cardImage)
-        }
-        
-        view.addSubview(stackView)
-        
-        stackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 50).isActive = true
-        stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 8).isActive = true
-        stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8).isActive = true
-        stackView.heightAnchor.constraint(equalToConstant: cardHeight).isActive = true
-        
+    func gameStart() {
+        game.startGame()
+        deletePlayerStackView()
+        makePlayerStackView()
     }
     
-    func playerStackView() -> UIStackView {
+    func deletePlayerStackView() {
+        allPlayerStackView.subviews.forEach { subview in
+            subview.removeFromSuperview()
+        }
+    }
+    
+    func makePlayerStackView() {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.distribution = .fill
+        stackView.alignment = .fill
+        stackView.spacing = 5
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        
+        var label = ""
+        var playerCount = 1
+        
+        game.playersInfo { player in
+            label = "Player\(playerCount)"
+            stackView.addArrangedSubview(makePlayerLabel(label))
+            stackView.addArrangedSubview(makePlayerCard(player))
+            
+            playerCount += 1
+        }
+        
+        game.dealerCardsInfo { Dealer in
+            label = "Dealer"
+            stackView.addArrangedSubview(makePlayerLabel(label))
+            stackView.addArrangedSubview(makePlayerCard(Dealer))
+        }
+        
+        allPlayerStackView.addArrangedSubview(stackView)
+    }
+    
+    func makePlayerLabel(_ text: String) -> UILabel {
+        let label = UILabel()
+        label.text = text
+        label.textColor = UIColor.white
+        label.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        return label
+    }
+    
+    func makePlayerCard(_ player: Player) -> UIStackView {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.distribution = .fillEqually
@@ -79,7 +100,19 @@ class ViewController: UIViewController {
         stackView.spacing = -8
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
+        player.cardsInfo { card in
+            stackView.addArrangedSubview(makeCardImage(card))
+        }
+        
         return stackView
+    }
+    
+    func makeCardImage(_ card: PokerCard) -> UIImageView {
+        let cardImage = UIImage(named: "\(card)")
+        let imageView = UIImageView(image: cardImage)
+        
+        imageView.widthAnchor.constraint(equalTo: imageView.heightAnchor, multiplier: 1/1.27).isActive = true
+        return imageView
     }
     
     func segmentStackView() {
@@ -112,14 +145,15 @@ class ViewController: UIViewController {
     @IBAction func studChanged(sender: UISegmentedControl) {
         let stud = Stud.studType[sender.selectedSegmentIndex]
         game.selectStud(stud: stud)
-        game.startGame()
+        gameStart()
     }
 
     @IBAction func playersChanged(sender: UISegmentedControl) {
         let player = NumberOfPlayers.playerType[sender.selectedSegmentIndex]
         game.selectPlayers(numberOfPlayers: player)
-        game.startGame()
+        gameStart()
     }
+
 }
 
 class Segment {
