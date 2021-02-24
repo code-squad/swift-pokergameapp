@@ -9,41 +9,36 @@ import Foundation
 
 class Dealer {
     
-    private var cardDeck = CardDeck()
-    private var players = Players()
-    public var hands = [[String]]()
+    let deck = CardDeck()
+    let players = Players()
     
-    public func makeDeckForGame() {
-        cardDeck.make()
+    public func makeDeck() {
+        deck.make()
     }
     
-    public func distributeCard(playersNum: Int, cardStud: Int) {
-        players.participatePlayer(num: playersNum)
-        if cardDeck.deck.count > playersNum * cardStud {
-            cardDeck.shuffle()
-            for _ in 1...cardStud {
-                for i in 0..<playersNum {
-                    players.receiveCard(playerIndex: i, card: cardDeck.deck[0])
-                    cardDeck.removeOne()
-                }
-                players.receiveCard(playerIndex: players.dealerIndex(), card: cardDeck.deck[0])
-                cardDeck.removeOne()
+    public func recruitPlayer(playerNum: Int) {
+        players.participate(playerNum: playerNum)
+    }
+    
+    public func shuffleDeck() {
+        deck.shuffle()
+    }
+    
+    public func distributeCard(playerNum: Int, cardStud: Int) {
+        for _ in 1...cardStud {
+            for j in 0...playerNum {
+                players.receiveCard(index: j, card: deck.selectedCard())
+                deck.removeSelectedCard()
             }
-            players.printHand()
-        } else {
-            cardDeck.reset()
         }
-        
-        
     }
     
-    public func receiveHandFromPlayers() {
-        players.submitHandToDealer()
-        hands = players.hands
+    public func retrieveInfo() -> [Player] {
+        return players.submitInfo()
     }
     
-    public func resetDeck() {
-        cardDeck.reset()
+    public func resetPlayer() {
+        players.retrieveCard()
     }
     
 }
