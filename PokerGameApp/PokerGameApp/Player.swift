@@ -22,6 +22,7 @@ class Player: CustomStringConvertible {
         cards.append(card)
     }
     
+    
     func retrieveCard(completion: (Card) -> Void) {
         cards.forEach { (card) in
             completion(card)

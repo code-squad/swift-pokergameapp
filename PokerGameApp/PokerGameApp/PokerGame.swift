@@ -9,8 +9,8 @@ import Foundation
 
 class PokerGame: CustomStringConvertible {
     
-    private(set) var players: [Player] = []
-    private(set) var dealer: Dealer
+    private var players: [Player] = []
+    private var dealer: Dealer
     
     enum PlayerCount: Int {
         case one = 1, two, three, four
@@ -46,6 +46,17 @@ class PokerGame: CustomStringConvertible {
             dealer.makeDealerCard()
         }
     }
+    
+    func retrievePlayer(completion: (Player) -> Void) {
+        players.forEach { (player) in
+            completion(player)
+        }
+    }
+    
+    func retrieveDealer(completion: (Dealer) -> Void) {
+        completion(dealer)
+    }
+
     
     var description: String{
         var result: String = ""

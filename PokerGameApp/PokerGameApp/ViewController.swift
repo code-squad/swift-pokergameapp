@@ -103,25 +103,31 @@ class ViewController: UIViewController {
     
     func makeVerticalStackView() {
         guard let game = pokerGame else { return  }
-        let stackView = verticalStackView
-        stackView.subviews.forEach { subview in
+        let verticalStackView = stackView
+        verticalStackView.subviews.forEach { subview in
             subview.removeFromSuperview()
         }
         
-        view.addSubview(stackView)
-        stackView.topAnchor.constraint(equalTo: playerCountSegment.bottomAnchor, constant: 20).isActive = true
-        stackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 10).isActive = true
-        stackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -10).isActive = true
+        view.addSubview(verticalStackView)
+        verticalStackView.topAnchor.constraint(equalTo: playerCountSegment.bottomAnchor, constant: 20).isActive = true
+        verticalStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 10).isActive = true
+        verticalStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -10).isActive = true
       
-        for num in 0..<playerCount.rawValue {
-            stackView.addArrangedSubview(makeLabelStackView(text: "Player\(num+1)"))
-            stackView.addArrangedSubview(makePlayerCardStackView(player: game.players[num]))
-        }
-        stackView.addArrangedSubview(makeLabelStackView(text: "Dealer"))
-        stackView.addArrangedSubview(makeDealerCardStackView(dealer: game.dealer))
+        game.retrievePlayer(completion: { player in
+            let stackView = makePlayerCardStackView(player: player)
+            verticalStackView.addArrangedSubview(makeLabelStackView(text: "Player"))
+            verticalStackView.addArrangedSubview(stackView)
+        })
+        
+        game.retrieveDealer(completion: { dealer in
+            let stackView = makeDealerCardStackView(dealer: dealer)
+            verticalStackView.addArrangedSubview(makeLabelStackView(text: "Dealer"))
+            verticalStackView.addArrangedSubview(stackView)
+        })
+
     }
     
-    let verticalStackView: UIStackView = {
+    let stackView: UIStackView = {
         let verticalStackView = UIStackView()
         verticalStackView.axis = .vertical
         verticalStackView.alignment = .top
