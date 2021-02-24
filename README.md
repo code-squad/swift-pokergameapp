@@ -80,3 +80,11 @@ statusBar는 화면의 상단 가장자리에 표시되며 시간, 이동통신�
 
 <img width="411" alt="스크린샷 2021-02-17 오후 11 19 11" src="https://user-images.githubusercontent.com/73586326/108217850-6a18f700-7177-11eb-9ba8-ffcb779b77de.png">
 
+# 5단계 포커게임 결과 화면
+
+2021.02.24(수)
+
+![Simulator Screen Shot - iPhone 12 Pro - 2021-02-24 at 15 07 15](https://user-images.githubusercontent.com/73586326/108955849-2d3a8c00-76b2-11eb-953e-a9ea69ed8a3d.png)
+
+![Simulator Screen Shot - iPhone 12 Pro - 2021-02-24 at 15 07 20](https://user-images.githubusercontent.com/73586326/108955946-50653b80-76b2-11eb-995f-63b0b6be51a1.png)
+
