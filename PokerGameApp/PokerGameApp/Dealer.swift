@@ -52,6 +52,9 @@ class Player : CustomStringConvertible {
         self.myCard.dropAll()
     }
     
+    func cardsInfo(closure: (PokerCard) -> Void) {
+        self.myCard.cardInfo(closure: closure)
+    }
 }
 
 

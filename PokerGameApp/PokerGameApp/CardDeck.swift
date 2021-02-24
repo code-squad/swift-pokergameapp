@@ -53,4 +53,10 @@ struct CardDeck : CustomStringConvertible {
     mutating func dropAll() {
         self.cards = []
     }
+    
+    func cardInfo(closure: (PokerCard) -> Void) {
+        self.cards.forEach() { card in
+            closure(card)
+        }
+    }
 }
