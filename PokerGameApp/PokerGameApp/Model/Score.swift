@@ -1,7 +1,7 @@
 import Foundation
 
 
-enum Score: Comparable {
+enum Score: Comparable, CustomStringConvertible {
     case onePair(rank: Card.Rank)
     case twoPair(rank: Card.Rank)
     case triple(rank: Card.Rank)
@@ -9,7 +9,7 @@ enum Score: Comparable {
     case fourCard(rank: Card.Rank)
     case none
     
-    var rawValue: String {
+    var description: String {
         switch self {
         case .onePair: return "onePair"
         case .twoPair: return "twoPair"
@@ -36,7 +36,7 @@ enum Score: Comparable {
             return true
         } else if rhs.cardRank == nil {
             return false
-        } else if lhs.rawValue == rhs.rawValue {
+        } else if lhs.description == rhs.description {
             return lhs.cardRank! < rhs.cardRank!
         }
         
