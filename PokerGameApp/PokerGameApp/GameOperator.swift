@@ -9,33 +9,52 @@ import Foundation
 
 class GameOperator {
     
-    var gameOperator = Dealer()
-    var gameBoard = [[String]]()
+    let gameOperator = Dealer()
+    let players = Players()
+    let cardDeck = CardDeck()
     
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-    public func startGame() {
-=======
-    public func startGame(playersNum: Int, cardStud: Int) {
->>>>>>> d8caa9f8... 게임 진행을 위한 함수를 구현했습니다.
-=======
-    public func startGame(playersNum: Int, cardStud: Int) {
->>>>>>> d8caa9f8... 게임 진행을 위한 함수를 구현했습니다.
-=======
-    public func startGame(playersNum: Int, cardStud: Int) {
->>>>>>> bb7e5f81... 게임 진행을 위한 함수를 구현했습니다.
-        gameOperator.makeDeckForGame()
-        gameOperator.distributeCard(playersNum: playersNum, cardStud: cardStud)
-        gameOperator.receiveHandFromPlayers()
+    public var stud = Int()
+    public var num = Int()
+
+    public func startGame(playerNum: Int, cardStud: Int) {
+        gameOperator.recruitPlayer(playerNum: playerNum)
+        gameOperator.makeDeck()
+        gameOperator.shuffleDeck()
+        gameOperator.distributeCard(playerNum: num, cardStud: stud)
     }
     
-    public func checkBoard() {
-        gameBoard = gameOperator.hands
+    public func resetGame() {
+        cardDeck.reset()
+        gameOperator.resetPlayer()
     }
     
-    public func resetDeck() {
-        gameOperator.resetDeck()
+    public func retrieveInfo() -> [Player] {
+        return gameOperator.retrieveInfo()
+    }
+    
+    // Game Default Option
+    init() {
+        stud = GameOption.CardStud.seven.returnRaw()
+        num = GameOption.PlayerNumber.one.returnRaw()
+        startGame(playerNum: num, cardStud: stud)
+    }
+    
+}
+
+struct GameOption {
+    
+    enum CardStud: Int {
+        case five = 5, seven = 7
+        func returnRaw() -> Int {
+            return self.rawValue
+        }
+    }
+    
+    enum PlayerNumber: Int {
+        case one = 1, two = 2, three = 3, four = 4
+        func returnRaw() -> Int {
+            return self.rawValue
+        }
     }
     
 }
