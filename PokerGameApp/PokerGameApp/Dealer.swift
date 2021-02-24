@@ -9,7 +9,7 @@ import Foundation
 
 class Dealer: CustomStringConvertible {
     var description: String{
-        return cards.description
+        return "Dealer"
     }
     
     private var cardDeck = CardDeck()
@@ -29,9 +29,6 @@ class Dealer: CustomStringConvertible {
         if let card = handOutCard() {
             cards.append(card)
         }
-    }
-    func makeDealerName() -> String {
-        return "Dealer"
     }
     
     func retrieveCard(completion: (Card) -> Void) {

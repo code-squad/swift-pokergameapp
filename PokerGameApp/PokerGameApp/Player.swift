@@ -9,7 +9,7 @@ import Foundation
 
 class Player: CustomStringConvertible {
     var description: String{
-        return cards.description
+        return "Player"
     }
     
     private var cards: [Card]
