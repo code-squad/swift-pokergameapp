@@ -38,7 +38,7 @@ class ViewController: UIViewController {
         pokerGame.players.configEachPlayer { (player) in
             let playerNameLabel = setPlayerNameLabel(name: player.name)
             let imageStackView = setImageStackView(stud: stud, player: player)
-            addPlayersResultStackViewIntoPokerPlate(imageStackView: imageStackView, nameLabel: playerNameLabel, numberOfPlayer: numberOfPlayer)
+            addPlayersIntoPokerPlate(imageStackView: imageStackView, nameLabel: playerNameLabel, numberOfPlayer: numberOfPlayer)
         }
         
         award()
@@ -69,51 +69,40 @@ class ViewController: UIViewController {
     }
     
     private func makePlayerResultStackView(playerStackView: UIStackView, winnerSignLabel: UILabel) -> UIStackView{
-        let playerResultStackView: UIStackView = {
-            let stackView = UIStackView()
-            stackView.axis = .horizontal
-            stackView.distribution = .fill
-            stackView.spacing = 5
-            stackView.addArrangedSubview(playerStackView)
-            stackView.addArrangedSubview(winnerSignLabel)
-            stackView.heightAnchor.constraint(equalToConstant: 90).isActive = true
-            return stackView
-        }()
+        let playerResultStackView = UIStackView()
+        playerResultStackView.axis = .horizontal
+        playerResultStackView.distribution = .fill
+        playerResultStackView.spacing = 5
+        playerResultStackView.addArrangedSubview(playerStackView)
+        playerResultStackView.addArrangedSubview(winnerSignLabel)
+        playerResultStackView.heightAnchor.constraint(equalToConstant: 90).isActive = true
         return playerResultStackView
     }
     
     private func makePlayerStackView(imageStackView: UIStackView, nameLabel: UILabel) -> UIStackView {
-        let playerStackView: UIStackView = {
-            let stackView = UIStackView()
-            stackView.axis = .vertical
-            stackView.distribution = .fill
-            stackView.spacing = 5
-            stackView.addArrangedSubview(nameLabel)
-            stackView.addArrangedSubview(imageStackView)
-            return stackView
-        }()
+        let playerStackView = UIStackView()
+        playerStackView.axis = .vertical
+        playerStackView.distribution = .fill
+        playerStackView.spacing = 5
+        playerStackView.addArrangedSubview(nameLabel)
+        playerStackView.addArrangedSubview(imageStackView)
         return playerStackView
     }
     
     private func makeWinnerSignLabel() -> UILabel {
-        var winnerSignLabel: UILabel {
-            let label = UILabel()
-            label.text = " "
-            label.font = UIFont.systemFont(ofSize: 45)
-            label.textAlignment = .center
-            label.widthAnchor.constraint(equalToConstant: 50).isActive = true
-            return label
-        }
+        let winnerSignLabel = UILabel()
+        winnerSignLabel.text = " "
+        winnerSignLabel.font = UIFont.systemFont(ofSize: 45)
+        winnerSignLabel.textAlignment = .center
+        winnerSignLabel.widthAnchor.constraint(equalToConstant: 50).isActive = true
         return winnerSignLabel
     }
     
     private func initPokerPlate() {
-        pokerPlate = {
-            let stackView = UIStackView()
-            stackView.axis = .vertical
-            stackView.distribution = .equalSpacing
-            return stackView
-        }()
+        pokerPlate = UIStackView()
+        pokerPlate.axis = .vertical
+        pokerPlate.distribution = .equalSpacing
+
         
         let margin = view.layoutMarginsGuide
         
@@ -208,14 +197,11 @@ class ViewController: UIViewController {
     
     //MARK:Image set
     private func setImageStackView(stud: CardStud, player: Playable) -> UIStackView {
-        let imageStackView: UIStackView = {
-            let stackView = UIStackView()
-            stackView.axis = .horizontal
-            stackView.distribution = .fillEqually
-            stackView.alignment = .center
-            stackView.spacing = stud == .sevenCardStud ? -5 : 20
-            return stackView
-        }()
+        let imageStackView = UIStackView()
+        imageStackView.axis = .horizontal
+        imageStackView.distribution = .fillEqually
+        imageStackView.alignment = .center
+        imageStackView.spacing = stud == .sevenCardStud ? -5 : 20
         
         let cardImageViews = createCards(stud: stud, player: player)
         cardImageViews.forEach { (imageView) in
