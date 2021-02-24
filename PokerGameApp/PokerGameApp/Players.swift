@@ -49,4 +49,9 @@ class Players : CustomStringConvertible {
         }
     }
     
+    func playerInfo(closure: (Player) -> Void) {
+        players.forEach { player in
+            closure(player)
+        }
+    }
 }

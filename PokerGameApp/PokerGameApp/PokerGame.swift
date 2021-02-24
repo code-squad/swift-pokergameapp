@@ -8,8 +8,8 @@
 import Foundation
 
 class PokerGame {
-    var players: Players
-    var dealer: Dealer
+    private var players: Players
+    private var dealer: Dealer
     
     init() {
         self.dealer = Dealer()
@@ -43,4 +43,11 @@ class PokerGame {
         print(self.dealer)
     }
     
+    func playersInfo(closure: (Player) -> Void) {
+        players.playerInfo(closure: closure)
+    }
+    
+    func dealerCardsInfo(closure: (PokerCard) -> Void) {
+        dealer.cardsInfo(closure: closure)
+    }
 }
