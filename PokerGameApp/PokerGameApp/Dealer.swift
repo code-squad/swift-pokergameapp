@@ -30,6 +30,9 @@ class Dealer: CustomStringConvertible {
             cards.append(card)
         }
     }
+    func makeDealerName() -> String {
+        return "Dealer"
+    }
     
     func retrieveCard(completion: (Card) -> Void) {
         cards.forEach { (card) in
