@@ -153,7 +153,12 @@ class ViewController: UIViewController {
         game.selectPlayers(numberOfPlayers: player)
         gameStart()
     }
-
+    
+    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        if motion == .motionShake {
+            gameStart()
+        }
+    }
 }
 
 class Segment {
