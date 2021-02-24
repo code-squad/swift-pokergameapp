@@ -27,6 +27,6 @@ class PokerGameView: UIStackView {
     func setConstraint(superView: UIView, segmentedControl: UISegmentedControl) {
         self.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor, constant: 30).isActive = true
         self.leadingAnchor.constraint(equalTo: superView.leadingAnchor, constant: 15).isActive = true
-        self.trailingAnchor.constraint(equalTo: superView.trailingAnchor, constant: -60).isActive = true
+        self.trailingAnchor.constraint(equalTo: superView.trailingAnchor, constant: -10).isActive = true
     }
 }
