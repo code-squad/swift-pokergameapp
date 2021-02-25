@@ -124,9 +124,10 @@ extension ViewController: ChangePokerGameDelegate {
             mode = .fiveStud
         default: break
         }
+        startPorkerGame(gameMode: mode, numberOfPlayer: self.numberOfPlayers)
     }
     
     func numberOfPlayersChanged(selectecdSegmentIndex: Int) {
-        startPorkerGame(gameMode: self.mode, numberOfPlayer: PokerGame.NumberOfPalyer.init(rawValue: selectecdSegmentIndex + 2)?.rawValue ?? 2)
+        startPorkerGame(gameMode: self.mode, numberOfPlayer: PokerGame.NumberOfPalyer.init(rawValue: selectecdSegmentIndex + 2)?.rawValue ?? Int())
     }
 }
