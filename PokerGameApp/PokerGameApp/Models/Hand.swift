@@ -38,14 +38,14 @@ class Hand {
     private func highCard() -> Hand.Kind? {
         return cards.max().map { card in
             combiCardRank.insert(card.rank)
-            return Hand.Kind.highCard
+            return .highCard
         }
     }
         
     private func pair() -> Hand.Kind? {
         findRepeated(count: 2).map { rank in
             combiCardRank.insert(rank)
-            return Hand.Kind.pair
+            return .pair
         }
     }
     
@@ -65,14 +65,14 @@ class Hand {
     private func triple() -> Hand.Kind? {
         findRepeated(count: 3).map { rank in
             combiCardRank.insert(rank)
-            return Hand.Kind.triple
+            return .triple
         }
     }
     
     private func fourOfAKind() -> Hand.Kind? {
         findRepeated(count: 4).map { rank in
             combiCardRank.insert(rank)
-            return Hand.Kind.fourOfAKind
+            return .fourOfAKind
         }
     }
     
