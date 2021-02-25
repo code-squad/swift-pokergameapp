@@ -10,5 +10,5 @@ import UIKit
 protocol Playable {
     var name: String { get }
     func calcHandKind() -> (Int, Set<Rank>)
-    func makeHand() -> [UIImageView]
+    func forEachPlayer(behavior: (Hand) -> ())
 }

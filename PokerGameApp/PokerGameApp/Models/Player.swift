@@ -5,7 +5,7 @@
 //  Created by zombietux on 2021/02/16.
 //
 
-import UIKit
+import Foundation
 
 class Player: Playable {
     private var hand: Hand
@@ -16,11 +16,11 @@ class Player: Playable {
         self.name = name
     }
     
-    func makeHand() -> [UIImageView] {
-        return hand.makeCardImage()
-    }
-    
     func calcHandKind() -> (Int, Set<Rank>) {
         return (hand.judge()?.tellScore() ?? 0, hand.combiCardRank)
+    }
+    
+    func forEachPlayer(behavior: (Hand) -> ()) {
+        behavior(hand)
     }
 }
