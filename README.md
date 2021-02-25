@@ -64,3 +64,13 @@
 
 ![Simulator Screen Shot - iPhone 12 Pro - 2021-02-20 at 16 37 54](https://user-images.githubusercontent.com/39956881/108587977-0cb0c000-739a-11eb-8e46-69f1b9ae3784.png)
 
+## step 6. 승자 확인하기
+
+### 주요작업
+- Hand가 어떤 Kind(원페어, 투페어, 트리플, 포카드, 스트레이트)인지 계산하고 우선순위가 높은 규칙이 승자가 되는 로직 추가
+- 승자 Playable View옆에 왕관 이미지 추가
+
+## 스크린샷
+
+![Simulator Screen Shot - iPhone 12 Pro - 2021-02-24 at 19 25 59](https://user-images.githubusercontent.com/39956881/109105427-448c7e80-7771-11eb-81d0-b564220da470.png)
+
