@@ -10,10 +10,6 @@ import Foundation
 class Hand {
     enum Kind: Int {
         case highCard = 0, pair, twoPair, triple, straight, fourOfAKind
-        
-        func tellScore() -> Int {
-            return self.rawValue
-        }
     }
     
     private var cards: [Card]
