@@ -32,15 +32,63 @@ class PokerGameAppTests: XCTestCase {
         XCTAssertEqual(50, cardDeck.count())
     }
     
-    func testPokerGamePlayers() {
-        let pokerGame = PokerGame()
-        pokerGame.start(gameMode: .sevenStud, NumberOfPlayer: 3)
-        let dealerInfo = pokerGame.showDealerInfo()
-        let firstPlayerInfo = pokerGame.showPlayersInfo().first
-        let lastPlayerInfo = pokerGame.showPlayersInfo().last
-        
-        XCTAssertEqual("딜러", dealerInfo.showNameInfo())
-        XCTAssertEqual("참가자1", firstPlayerInfo?.showNameInfo())
-        XCTAssertEqual("참가자3", lastPlayerInfo?.showNameInfo())
+    func testDetectsPair() {
+        let cards = [ Card(rank: .eight, suit: .clubs),
+                      Card(rank: .eight, suit: .diamonds),
+                      Card(rank: .A, suit: .clubs),
+                      Card(rank: .J, suit: .hearts),
+                      Card(rank: .five, suit: .spades),
+                    ]
+        let hand = Hand(cards: cards)
+        assertHand(hand, .pair)
+    }
+    
+    func testDetectsTwoPair() {
+        let cards = [ Card(rank: .eight, suit: .clubs),
+                      Card(rank: .eight, suit: .diamonds),
+                      Card(rank: .A, suit: .clubs),
+                      Card(rank: .A, suit: .hearts),
+                      Card(rank: .five, suit: .spades),
+                    ]
+        let hand = Hand(cards: cards)
+        assertHand(hand, .twoPair)
+    }
+    
+    func testDetectsTriple() {
+        let cards = [ Card(rank: .eight, suit: .clubs),
+                      Card(rank: .eight, suit: .diamonds),
+                      Card(rank: .eight, suit: .hearts),
+                      Card(rank: .A, suit: .hearts),
+                      Card(rank: .five, suit: .spades),
+                    ]
+        let hand = Hand(cards: cards)
+        assertHand(hand, .triple)
+    }
+    
+    func testDetectsStraight() {
+        let cards = [ Card(rank: .five, suit: .clubs),
+                      Card(rank: .six, suit: .diamonds),
+                      Card(rank: .seven, suit: .hearts),
+                      Card(rank: .eight, suit: .hearts),
+                      Card(rank: .nine, suit: .spades),
+                    ]
+        let hand = Hand(cards: cards)
+        assertHand(hand, .straight)
+    }
+    
+    func testDetectsFourOfAKind() {
+        let cards = [ Card(rank: .five, suit: .clubs),
+                      Card(rank: .five, suit: .diamonds),
+                      Card(rank: .five, suit: .hearts),
+                      Card(rank: .five, suit: .spades),
+                      Card(rank: .nine, suit: .spades),
+                    ]
+        let hand = Hand(cards: cards)
+        assertHand(hand, .fourOfAKind)
+    }
+    
+    private func assertHand(_ hand: Hand, _ expectedHand: Hand.Kind) {
+        let handKind = hand.judge()
+        XCTAssertEqual(handKind, expectedHand)
     }
 }
