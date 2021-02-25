@@ -40,7 +40,7 @@ class Dealer: Playable {
     }
     
     func calcHandKind() -> (Int, Set<Rank>) {
-        return (hand.judge()?.tellScore() ?? 0, hand.combiCardRank)
+        return (hand.judge()?.rawValue ?? 0, hand.combiCardRank)
     }
     
     func forEachPlayer(behavior: (Hand) -> ()) {
