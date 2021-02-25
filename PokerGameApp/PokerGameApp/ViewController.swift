@@ -62,7 +62,7 @@ private extension ViewController {
 
     func makePlayerView(data player: Playable) -> PlayerView {
         playerView.addArrangedSubview(makePlayerNameLabel(data: player.name))
-        playerView.addArrangedSubview(makeHandView(data: player.makeHand()))
+        playerView.addArrangedSubview(makeHandView(data: makeCardImages(data: player)))
         
         return playerView
     }
@@ -81,6 +81,19 @@ private extension ViewController {
         let nameLabel = NameLabel()
         nameLabel.text = name
         return nameLabel
+    }
+    
+    func makeCardImages(data player: Playable) -> [UIImageView] {
+        var cardImages: [UIImageView] = []
+        
+        player.forEachPlayer { hand in
+            hand.forEachHand { card in
+                let cardImage = CardImage.image(card.description)
+                cardImages.append(cardImage)
+            }
+        }
+    
+        return cardImages
     }
     
     func setSegmentedContrl() {
@@ -111,7 +124,6 @@ extension ViewController: ChangePokerGameDelegate {
             mode = .fiveStud
         default: break
         }
-        startPorkerGame(gameMode: mode, numberOfPlayer: self.numberOfPlayers)
     }
     
     func numberOfPlayersChanged(selectecdSegmentIndex: Int) {

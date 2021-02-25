@@ -5,7 +5,7 @@
 //  Created by zombietux on 2021/02/17.
 //
 
-import UIKit
+import Foundation
 
 class Dealer: Playable {
     private var cardDeck: CardDeck
@@ -39,11 +39,11 @@ class Dealer: Playable {
         return cards
     }
     
-    func makeHand() -> [UIImageView] {
-        return hand.makeCardImage()
-    }
-    
     func calcHandKind() -> (Int, Set<Rank>) {
         return (hand.judge()?.tellScore() ?? 0, hand.combiCardRank)
+    }
+    
+    func forEachPlayer(behavior: (Hand) -> ()) {
+        behavior(hand)
     }
 }

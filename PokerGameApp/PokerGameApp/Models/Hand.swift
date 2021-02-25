@@ -5,7 +5,7 @@
 //  Created by zombietux on 2021/02/17.
 //
 
-import UIKit
+import Foundation
 
 class Hand {
     enum Kind: Int {
@@ -114,14 +114,9 @@ class Hand {
         return counts
     }
     
-    func makeCardImage() -> [UIImageView] {
-        var cardImages: [UIImageView] = []
-        
+    func forEachHand(behavior: (Card) -> ()) {
         cards.forEach { card in
-            let cardImage = CardImage.image(card.description)
-            cardImages.append(cardImage)
+            behavior(card)
         }
-    
-        return cardImages
     }
 }
