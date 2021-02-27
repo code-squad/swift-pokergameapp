@@ -15,6 +15,7 @@ class TESTCode{
     }
     
     func excuteTest()-> Void{
+        var tempCard : Card
         
         TESTdeck.resetDeck()
         print("> 카드 초기화")
@@ -25,12 +26,16 @@ class TESTCode{
         print("> 카드 섞기")
         print("> 카드 전체를 섞었습니다.")
         
-        TESTdeck.takeRandomcard()
+        tempCard = TESTdeck.takeRandomcard()
         print("> 카드 하나 뽑기")
+        print(tempCard)
+        TESTdeck.removeCard(Card: tempCard)
         print("> 총 \(TESTdeck.count())장의 카드가 남아있습니다.")
         
-        TESTdeck.takeRandomcard()
+        tempCard = TESTdeck.takeRandomcard()
         print("> 카드 하나 뽑기")
+        print(tempCard)
+        TESTdeck.removeCard(Card: tempCard)
         print("> 총 \(TESTdeck.count())장의 카드가 남아있습니다.")
         
     }
