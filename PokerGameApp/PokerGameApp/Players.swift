@@ -15,7 +15,6 @@ class Players{
     init(playerCount : Int){
         self.players = []
         self.playerCount = playerCount
-        print("플레이어 카운트 \(self.playerCount)")
     }
     
     func decidePlayerNum() -> Void {
@@ -25,19 +24,17 @@ class Players{
         }
     }
     
-    func printCardplayers(index : Int) -> Void{
-        players[index].printMyCard()
+    func distributeCardPlayers(deck : Deck){
+        for i in 0..<players.count{
+            let currentCard = deck.takeTopcard()
+            players[i].receiveCard(currentCard)
+            deck.removeTopCard()
+        }
     }
     
-    func playerCards(playerindex : Int, cardindex : Int) -> String{
-        return players[playerindex].myCardDescription(index: cardindex)
-    }
-    
-    func currentPlayers() -> Int{
-        return players.count
-    }
-    
-    func throwCardtoPlayer(_ index : Int, _ card : Card){
-        players[index].receiveCard(card)
+    func showYourHands(){
+        for i in 0..<players.count{
+            players[i].showMyHands()
+        }
     }
 }

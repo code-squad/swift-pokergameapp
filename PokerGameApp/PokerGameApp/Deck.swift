@@ -20,9 +20,9 @@ class Deck{
     }
     
     func createDeck(){
-        Suit.allCases.forEach{ suit in
-            Number.allCases.forEach{ num in
-                deck.append(Card.init(suit: suit, number: num))
+        Card.Suit.allCases.forEach{ suit in
+            Card.Rank.allCases.forEach{ rank in
+                deck.append(Card.init(suit: suit, rank: rank))
             }
         }
     }
@@ -57,6 +57,15 @@ class Deck{
         let randomIndex = Int.random(in: 0..<deck.count)
         
         return deck[randomIndex]
+    }
+    
+    func removeCard(Card : Card){ //테스트 코드 출력용
+        for i in 0..<deck.count{
+            if deck[i].description == Card.description {
+                deck.remove(at: i)
+                break;
+            }
+        }
     }
     
     func takeTopcard() -> Card{
