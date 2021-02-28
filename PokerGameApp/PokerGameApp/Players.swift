@@ -54,10 +54,4 @@ class Players{
             players[i].drawMycard(mainView: mainView, cardView: cardView, currentGameStyle: currentGameStyle, Pos: i) // 여기서 던질 때 y좌표 결정해 줘야함
         }
     }
-    
-    func showYourHands(){
-        for i in 0..<players.count{
-            players[i].showMyHands()
-        }
-    }
 }

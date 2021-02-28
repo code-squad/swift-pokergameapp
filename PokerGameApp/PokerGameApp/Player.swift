@@ -18,10 +18,6 @@ class Player {
         myCard.append(card)
     }
     
-    func showMyHands(){
-        print(myCard)
-    }
-    
     func changeUnicodeToString(cardindex : Int) -> String{
         var cardName : String = ""
         var CharacterArrayCardName = Array(myCard[cardindex].description)
