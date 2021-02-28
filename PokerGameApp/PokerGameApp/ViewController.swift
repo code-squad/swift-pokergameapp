@@ -20,13 +20,9 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initUserInterface()
-        let pokergame = PokerGame.init(GameStyle: gameStyle, gamePlayers: players) // nil이란 상태 값을 부여해서 포커게임아 게임시작 가능하니? 혹시 nil이니? 가능? 일단 나중에
+        let pokergame = PokerGame.init(GameStyle: gameStyle, gamePlayers: players)
         currentPokerGame = pokergame
-        if let tempPokerGame = currentPokerGame{
-            tempPokerGame.gameStart()
-            tempPokerGame.showPlayersHands()
-            tempPokerGame.drawCardinView(mainView: self.view, cardView: mainCardView)
-        }
+        currentPokerGame?.initPokerGame()
     }
     
     func initUserInterface(){
@@ -66,6 +62,7 @@ class ViewController: UIViewController {
         }
         let gamestyleSeg : UISegmentedControl = UISegmentedControl(items: localgameStyle)
         gamestyleSeg.center = CGPoint(x: self.view.frame.width/2, y: 50)
+        gamestyleSeg.selectedSegmentIndex = 0
         let titleTextSelected = [NSAttributedString.Key.foregroundColor: UIColor.black]
         let titleTextNonSelected = [NSAttributedString.Key.foregroundColor: UIColor.white]
         gamestyleSeg.setTitleTextAttributes(titleTextSelected, for: .selected)
@@ -80,6 +77,7 @@ class ViewController: UIViewController {
         }
         let segmentPlayers : UISegmentedControl = UISegmentedControl(items: players)
         segmentPlayers.center = CGPoint(x: self.view.frame.width/2, y: 100)
+        segmentPlayers.selectedSegmentIndex = 0
         let titleTextSelected = [NSAttributedString.Key.foregroundColor: UIColor.black]
         let titleTextNonSelected = [NSAttributedString.Key.foregroundColor: UIColor.white]
         segmentPlayers.setTitleTextAttributes(titleTextSelected, for: .selected)
