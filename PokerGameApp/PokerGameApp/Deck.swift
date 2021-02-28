@@ -36,17 +36,13 @@ class Deck{
         return deck.count
     }
     
-    enum errorOfDeck : Error{
-        case empty
-    }
     
     func shuffleDeck() -> Void{
-        if deck.count < 1{
+        if isEmpty() {
             return
         }
         for i in 0..<deck.count - 1{
             let randomIndex = Int.random(in: i..<deck.count)
-            
             let temp = deck[i]
             deck[i] = deck[randomIndex]
             deck[randomIndex] = temp
