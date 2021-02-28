@@ -11,10 +11,9 @@ class PokerGame{
         self.dealer = Dealer.init(dealerdeck: Deck())
     }
 
-    func gameStart(){
+    func initPokerGame(){
         players.decidePlayerNum()
         dealer.deckCreateShuffle()
-        dealer.distributeCard(players: players, GameStyle: gameStyle, dealer: dealer)
     }
     
     func drawCardinView(mainView : UIView, cardView : UIView){
