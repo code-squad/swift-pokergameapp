@@ -45,11 +45,6 @@ class PokerGame{
         }
         return false
     }
-    
-    func showPlayersHands(){
-        players.showYourHands()
-        dealer.showMyHands()
-    }
 }
 
 enum ErrorOfgame : Error{
