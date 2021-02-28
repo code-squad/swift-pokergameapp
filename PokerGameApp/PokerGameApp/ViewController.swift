@@ -36,7 +36,9 @@ class ViewController: UIViewController {
     
     
     @IBAction func shakeBtn(_ sender: Any) {
-        self.mainCardView.subviews.forEach{$0.removeFromSuperview()}
+        self.mainCardView.subviews.forEach{
+            $0.removeFromSuperview()
+        }
         if let pokergame = currentPokerGame {
             pokergame.CardShake(mainView: self.view, cardView: mainCardView)
         }
