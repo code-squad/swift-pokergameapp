@@ -29,13 +29,13 @@ class PokerGame{
     }
     
     func CardShake(mainView : UIView, cardView : UIView){
-        if isCardremain() {
+        if !isCardremain() {
+            return
+        }
+        else{
             players.decidePlayerNum()
             dealer.distributeCard(players: players, GameStyle: gameStyle, dealer: dealer)
             drawCardinView(mainView: mainView, cardView: cardView)
-        }
-        else{
-            print("카드 부족해서 더 게임 못함") // 일단 기능 확인용
         }
     }
     
