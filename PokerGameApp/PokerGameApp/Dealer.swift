@@ -5,7 +5,7 @@
 //  Created by 박정하 on 2021/02/27.
 //
 
-import Foundation
+import UIKit
 
 class Dealer : Player{
     private let deck : Deck
@@ -17,6 +17,14 @@ class Dealer : Player{
     func deckCreateShuffle(){
         deck.resetDeck()
         deck.shuffleDeck()
+    }
+    
+    func shuffleDeck(){
+        deck.shuffleDeck()
+    }
+    
+    func currentDeckcount() -> Int{
+        return deck.count()
     }
     
     func distributeCard(players : Players, GameStyle : GameStyle, dealer : Dealer) {
