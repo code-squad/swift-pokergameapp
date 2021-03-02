@@ -9,11 +9,11 @@ import Foundation
 
 
 class TrumpCard {
-    enum Suit: Character {
+    enum Suit: Character, CaseIterable {
         case spades = "♠", hearts = "♡", diamonds = "♢", clubs = "♣"
     }
     
-    enum Rank: Int {
+    enum Rank: Int, CaseIterable {
         case one, two = 2, three, four, five, six, seven, eight, nine, ten, eleven, twelve, thirteen
         
         struct Value {
@@ -52,3 +52,36 @@ class TrumpCard {
         return "\(suit.rawValue)\(rank.value.secondCharacter)"
     }
 }
+
+
+struct CardDeck {
+        
+    var cardDeck: Array<TrumpCard> = []
+    
+    func count() -> Int{
+        return cardDeck.count
+    }
+    
+    mutating func shuffle()-> [TrumpCard] {
+        return cardDeck.shuffled()
+    }
+    
+    mutating func removeOne() -> TrumpCard? {
+        if let lastElement = cardDeck.last {
+            cardDeck.removeLast()
+            return lastElement
+        }
+        return nil
+    }
+    
+    mutating func reset() {
+        cardDeck = TrumpCard.Suit.allCases.flatMap { suit in
+            TrumpCard.Rank.allCases.map { rank in
+                TrumpCard(suit: suit, rank: rank)
+            }
+        }
+   
+    }
+    
+}
+
