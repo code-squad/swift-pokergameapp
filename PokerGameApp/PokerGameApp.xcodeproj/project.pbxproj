@@ -15,6 +15,7 @@
 		FA55E8CC25FA125A00AA44F4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA55E8CA25FA125A00AA44F4 /* LaunchScreen.storyboard */; };
 		FA55E8D725FA125A00AA44F4 /* PokerGameAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA55E8D625FA125A00AA44F4 /* PokerGameAppTests.swift */; };
 		FA55E8E225FA125A00AA44F4 /* PokerGameAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA55E8E125FA125A00AA44F4 /* PokerGameAppUITests.swift */; };
+		FAC1995B25FB33F000402AAA /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC1995A25FB33F000402AAA /* Card.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		FA55E8DD25FA125A00AA44F4 /* PokerGameAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PokerGameAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA55E8E125FA125A00AA44F4 /* PokerGameAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokerGameAppUITests.swift; sourceTree = "<group>"; };
 		FA55E8E325FA125A00AA44F4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FAC1995A25FB33F000402AAA /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 				FA55E8C825FA125A00AA44F4 /* Assets.xcassets */,
 				FA55E8CA25FA125A00AA44F4 /* LaunchScreen.storyboard */,
 				FA55E8CD25FA125A00AA44F4 /* Info.plist */,
+				FAC1995A25FB33F000402AAA /* Card.swift */,
 			);
 			path = PokerGameApp;
 			sourceTree = "<group>";
@@ -261,6 +264,7 @@
 				FA55E8C425FA125700AA44F4 /* ViewController.swift in Sources */,
 				FA55E8C025FA125700AA44F4 /* AppDelegate.swift in Sources */,
 				FA55E8C225FA125700AA44F4 /* SceneDelegate.swift in Sources */,
+				FAC1995B25FB33F000402AAA /* Card.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
