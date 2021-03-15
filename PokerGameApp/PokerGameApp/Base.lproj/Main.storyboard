@@ -16,18 +16,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Spw-f8-Shg">
+                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Spw-f8-Shg">
                                 <rect key="frame" x="0.0" y="100" width="390" height="100"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="Spw-f8-Shg" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="56" id="9yP-C2-huQ"/>
-                            <constraint firstItem="Spw-f8-Shg" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="eA9-Ot-qxe"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Spw-f8-Shg" secondAttribute="trailing" id="eHN-Qc-bom"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Spw-f8-Shg" secondAttribute="bottom" constant="610" id="xvM-u3-Lx7"/>
-                        </constraints>
                     </view>
                     <connections>
                         <outlet property="cardStackView" destination="Spw-f8-Shg" id="5uG-Dj-h4Z"/>
