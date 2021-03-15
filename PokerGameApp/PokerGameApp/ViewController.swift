@@ -15,12 +15,12 @@ fileprivate let CARD_IMAGE_PATH : String = "bg_pattern.png"
 
 
 class ViewController: UIViewController {
-
+    
     @IBOutlet weak var cardStackView: UIStackView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
         /*백그라운드 디자인 패턴 이미지*/
         
         func makeStackView() {
@@ -30,11 +30,10 @@ class ViewController: UIViewController {
             /*참조 영상 : https://www.youtube.com/watch?v=zpb4-VnaaqQ */
             /*카드 스택 뷰 옵션 설정. */
             cardStackView.distribution = .fillEqually
-            cardStackView.spacing = STACKVIEW_SPACING
-                    
+            cardStackView.spacing = STACKVIEW_SPACING            
             
         }
-       
+        
         /*이미지 뷰 배열 생성 및 설정*/
         func arrangeImgViewToStackView() {
             var cardImgViewArr : [UIImageView] = []
@@ -49,23 +48,29 @@ class ViewController: UIViewController {
                 
                 cardImgViewArr[index].contentMode = .scaleAspectFit
                 cardImgViewArr[index].clipsToBounds = true
-
+                
             }
         }
         
         makeStackView()
         arrangeImgViewToStackView()
         
-        /*Step2 콘솔 표현*/
         
-        let spadeAce = Spade(NumberOfCard(rawValue: "2")!)
-        let heartJack = Heart(NumberOfCard(rawValue: "K")!)
-
-
-        print(spadeAce.description)
-        print(heartJack.description)
-
+        /*Step 3 기능 테스트*/
+        let cardDeck = CardDeck()
         
+        cardDeck.showCardDeck()
+        cardDeck.shuffleDeck()
+        
+        cardDeck.showCardDeck()
+        cardDeck.shuffleDeck()
+
+        cardDeck.pickOneCard()
+        cardDeck.pickOneCard()
+        
+        cardDeck.showCardDeck()
+        cardDeck.resetDeck()
+        cardDeck.showCardDeck()
     }
 }
 
