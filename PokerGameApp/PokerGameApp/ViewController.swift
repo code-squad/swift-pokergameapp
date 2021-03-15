@@ -58,11 +58,13 @@ class ViewController: UIViewController {
         
         /*Step2 콘솔 표현*/
         
-        let spadeAce = Spade("1")
-        let heartJack = Heart("11")
-                
-        spadeAce.showCardInfo()
-        heartJack.showCardInfo()
+        let spadeAce = Spade(NumberOfCard(rawValue: "2")!)
+        let heartJack = Heart(NumberOfCard(rawValue: "K")!)
+
+
+        print(spadeAce.description)
+        print(heartJack.description)
+
         
     }
 }
