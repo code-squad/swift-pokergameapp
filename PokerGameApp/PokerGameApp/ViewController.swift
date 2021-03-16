@@ -56,21 +56,6 @@ class ViewController: UIViewController {
         arrangeImgViewToStackView()
         
         
-        /*Step 3 기능 테스트*/
-        let cardDeck = CardDeck()
-        
-        cardDeck.showCardDeck()
-        cardDeck.shuffleDeck()
-        
-        cardDeck.showCardDeck()
-        cardDeck.shuffleDeck()
-
-        cardDeck.pickOneCard()
-        cardDeck.pickOneCard()
-        
-        cardDeck.showCardDeck()
-        cardDeck.resetDeck()
-        cardDeck.showCardDeck()
     }
 }
 
