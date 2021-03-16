@@ -30,3 +30,11 @@
 
 <img width="200" alt="Screen Shot 2021-03-15 at 9 43 12 PM" src="https://user-images.githubusercontent.com/52390975/111156024-9be77700-85d8-11eb-9295-591055be42b3.png">
 
+# Step 4 Make pocker frame.
+### 2021.3.16 10:00 pm
+- OOP적 접근방식
+- 1. 딜러와 플레이어를 사람으로부터 상속받으려다가 두 클래스가 타입만 다를뿐 나머지 개념이 같다고 생각해서 사람 클래스 하나만을 생성함.
+- 2. Error 핸들링을 알아보고, 플레이어 수의 min, max의 bound를 init에서 정해주었다.
+- 3. Enum의 CustomStringConvertible를 다시한번 공부하고 string에 한하여 rawValue를 안쓸수 있게 공부해보았다. 
+- 4. print문을 로직에서 최대한 사용하지 않도록 노력하려고 한다. 디버깅 브레이크 포인트를 찍어봐야 할 것 같다.
+

@@ -13,103 +13,81 @@ import Foundation
  또한 카드의 속성을 알기위한 함수를 재사용하여 함수 생성을 최소화 시킨다.
  */
 
+/*CaseIterable을 사용함으로써 for-loop 으로 init화 시킬수 있다.
+ CustomStringConvertible 를 학습하여 rawValue를 안쓰는법을 조금은 더 이해함.
+ */
 
-fileprivate let TOTALCARDS : Int = 52
-
-/*CaseIterable을 사용함으로써 for-loop 으로 init화 시킬수 있다.*/
-enum SuitCard : String, CaseIterable {
-    case Spade = "♠️"
-    case Club = "♣️"
-    case Heart = "♥️"
-    case Diamond = "♦️"
+enum SuitCard : String, CaseIterable, CustomStringConvertible {
+    case Spade,Club,Heart,Diamond
+    
+    var description: String {
+        switch self {
+        case .Spade:
+            return "♠️"
+        case .Club:
+            return "♣️"
+        case .Heart:
+            return "♥️"
+        case .Diamond:
+            return "♦️"
+        }
+    }
+    
+    
 }
 
 /*Type을 Character로 하려고 했으나, case Ten = 10 으로 인해서 String으로 타입 지정.*/
-enum NumberOfCard : String, CaseIterable {
+enum NumberOfCard : String, CaseIterable, CustomStringConvertible{
     
-    case Ace = "A"
-    case Two = "2"
-    case Three = "3"
-    case Four = "4"
-    case Five = "5"
-    case Six = "6"
-    case Seven = "7"
-    case Eight = "8"
-    case Nine = "9"
-    case Ten = "10"
-    case Jack = "J"
-    case Queen = "Q"
-    case King = "K"
+    case Ace,Two,Three,Four,Five,Six,Seven,Eight,Nine,Ten,Jack,Queen,King
+    
+    var description: String {
+        switch self {
+        case .Ace:
+            return "A"
+        case .Two:
+            return "2"
+        case .Three:
+            return "3"
+        case .Four:
+            return "4"
+        case .Five:
+            return "5"
+        case .Six:
+            return "6"
+        case .Seven:
+            return "7"
+        case .Eight:
+            return "8"
+        case .Nine:
+            return "9"
+        case .Ten:
+            return "10"
+        case .Jack:
+            return "J"
+        case .Queen:
+            return "Q"
+        case .King:
+            return "K"
+        }
+    }
+    
 }
 
 
 class Card : CustomStringConvertible {
     
     /*변수 출력을 함수 대체, customStringConvertible 프로토콜을 이용*/
-    var description: String {
-        return "\(suit.rawValue)\(number.rawValue)"
+    var description: String {        
+        return "\(self.suit)\(self.number)"
     }
     
     private var suit : SuitCard //4가지 모양을 알아내기 위해.
-    private var number : NumberOfCard //A,J,K,Q 를 표현하기 위함
+    private var number : NumberOfCard
     
     init(_ suit : SuitCard , _ numberOfCard : NumberOfCard ) {
         self.suit = suit
         self.number = numberOfCard
-    }
-    
-}
-
-class CardDeck {
-    
-    /*외부에서 접근 불가해야함.*/
-    private var deck : [Card] = []
-    
-    init() {
-        //52장 총 4종류의 13개씩 있어야한다.
-        self.deck.reserveCapacity(TOTALCARDS) //총 52장의 카드를 가지고 있다.
-        
-        resetDeck()
-    }
-    
-    func getCountOfCurrentDeck() -> Int {
-        return deck.count
-    }
-    
-    
-    func pickOneCard() {
-        let card = self.deck.removeLast()
-        print(card,"\n 총 \(self.deck.count) 카드 존재" )
-    }
-    
-    /* Durstenfeld's version Shuffle a Deck. */
-    func shuffleDeck() {
-        var newDeck : [Card] = []
-        while getCountOfCurrentDeck() > 0 {
-            let randNum = Int.random(in: 0 ..< getCountOfCurrentDeck())
-            (self.deck[getCountOfCurrentDeck() - 1], self.deck[randNum]) = (self.deck[randNum], self.deck[getCountOfCurrentDeck() - 1])
-            newDeck.append(self.deck.removeLast())
-        }
-        self.deck = newDeck
-        print("카드를 섞음\n 총 \(self.deck.count) 카드 존재")
-    }
-    
-    /* Reset the card. */
-    func resetDeck() {
-        self.deck.removeAll()
-        /* append all kind of cards to deck. */
-        SuitCard.allCases.forEach {
-            let suit = $0
-            NumberOfCard.allCases.forEach {
-                let numberOfCard = $0
-                self.deck.append(Card.init(suit, numberOfCard))
-            }
-        }
-        print("카드를 초기화 함\n 총 \(self.deck.count) 카드 존재")
-    }
-    
-    func showCardDeck() {
-        print(self.deck)
     }
     
 }

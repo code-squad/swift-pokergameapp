@@ -16,6 +16,9 @@
 		FA55E8D725FA125A00AA44F4 /* PokerGameAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA55E8D625FA125A00AA44F4 /* PokerGameAppTests.swift */; };
 		FA55E8E225FA125A00AA44F4 /* PokerGameAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA55E8E125FA125A00AA44F4 /* PokerGameAppUITests.swift */; };
 		FAC1995B25FB33F000402AAA /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC1995A25FB33F000402AAA /* Card.swift */; };
+		FAC6566726009D1A00D93AC4 /* CardDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC6566626009D1A00D93AC4 /* CardDeck.swift */; };
+		FAC6566C26009FDA00D93AC4 /* PockerGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC6566B26009FDA00D93AC4 /* PockerGame.swift */; };
+		FAC656742600A4BC00D93AC4 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC656732600A4BC00D93AC4 /* Person.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +54,9 @@
 		FA55E8E125FA125A00AA44F4 /* PokerGameAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokerGameAppUITests.swift; sourceTree = "<group>"; };
 		FA55E8E325FA125A00AA44F4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FAC1995A25FB33F000402AAA /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		FAC6566626009D1A00D93AC4 /* CardDeck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDeck.swift; sourceTree = "<group>"; };
+		FAC6566B26009FDA00D93AC4 /* PockerGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PockerGame.swift; sourceTree = "<group>"; };
+		FAC656732600A4BC00D93AC4 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +115,9 @@
 				FA55E8CA25FA125A00AA44F4 /* LaunchScreen.storyboard */,
 				FA55E8CD25FA125A00AA44F4 /* Info.plist */,
 				FAC1995A25FB33F000402AAA /* Card.swift */,
+				FAC6566626009D1A00D93AC4 /* CardDeck.swift */,
+				FAC6566B26009FDA00D93AC4 /* PockerGame.swift */,
+				FAC656732600A4BC00D93AC4 /* Person.swift */,
 			);
 			path = PokerGameApp;
 			sourceTree = "<group>";
@@ -262,8 +271,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA55E8C425FA125700AA44F4 /* ViewController.swift in Sources */,
+				FAC6566726009D1A00D93AC4 /* CardDeck.swift in Sources */,
 				FA55E8C025FA125700AA44F4 /* AppDelegate.swift in Sources */,
 				FA55E8C225FA125700AA44F4 /* SceneDelegate.swift in Sources */,
+				FAC656742600A4BC00D93AC4 /* Person.swift in Sources */,
+				FAC6566C26009FDA00D93AC4 /* PockerGame.swift in Sources */,
 				FAC1995B25FB33F000402AAA /* Card.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
